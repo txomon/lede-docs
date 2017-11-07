@@ -1,0 +1,33 @@
+====== Collection of views ======
+~~NOTOC~~
+
+<columns 95% 45% ->
+===== Selected views =====
+
+  * [[toh:start|I have a router and want to know if it is supported]] by LEDE
+  * [[toh:views:toh_available_864|I want to buy a router which is supported]] by LEDE
+  * [[toh:views:toh_fwdownload|Where can I download LEDE firmware for my router?]]
+
+<newcolumn>
+  * **Selected views:** Provide answers to your first questions.
+    * Add your views //manually// to this list.
+    * Preferably link the views with a kind of question, that the user wants to be answered.
+  * **Complete lists:** 
+    * Save your view in the ''views'' namespace. New views will //automatically// show up in these lists.
+    * **Developer views** are accessible for all, but not interesting for all :)
+    * **Admin views** are accessible for all, but mostly interesting for administrative purposes only (searching for missing data, ...).\\ However, take a look, maybe you can contribute some missing data?
+</columns>
+
+----
+
+===== Complete lists =====
+
+<columns 100% 50% ->
+{{pagequery>@toh:views *;filter=!name:toh_admin*;filter=name:(toh_minimal*|toh_standard*|toh_extended*);sort=title:desc;layout=table;bullet=disc;hidejump;hidestart;display={title};hidemsg;label=Standard user views;}}
+{{pagequery>@toh:views *;filter=!name:(toh_admin*|toh_minimal*|toh_standard*|toh_extended*|toh_dev_*);sort=title:asc;layout=table;bullet=disc;hidejump;hidestart;display={title};hidemsg;label=Special user views;}}
+
+<newcolumn>
+{{pagequery>@toh:views *;filter=name:toh_dev_*;sort=title;layout=table;bullet=disc;hidejump;hidestart;display={title};hidemsg;label=Developer views;}}
+{{pagequery>@toh:views *;filter=name:toh_admin*;sort=title;layout=table;bullet=disc;hidejump;hidestart;display={title};hidemsg;label=Admin views;}}
+
+</columns>

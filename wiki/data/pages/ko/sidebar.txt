@@ -1,0 +1,23 @@
+~~NOCACHE~~
+
+  * [[ko:start|LEDE 프로젝트에 오신 것을 환영합니다]]
+  * [[ko:supported_devices|지원 기기]]
+  * [[ko:packages:start|패키지]]
+  * [[ko:downloads|최신 LEDE 펌웨어 다운로드]]
+  * [[ko:docs:start|도큐먼트]]
+  * [[ko:submitting-patches|패치 배포]]
+  * [[ko:bugs|버그 보고하기]]
+  * [[https://forum.lede-project.org|Forum]]
+  * [[ko:faq:start|FAQ]] 
+
+----
+
+  * [[ko:about|LEDE 프로젝트란?]] 
+    * [[ko:rules|LEDE 프로젝트의 규칙]]
+    * [[ko:todo|LEDE 프로젝트의 TODO 목록]] 
+    * [[ko:infrastructure|LEDE의 인프라]]
+  * [[ko:wiki:start|LEDE 웹사이트]]
+
+  * [[ko:contact|LEDE 프로젝트와의 의사소통]] 
+
+----

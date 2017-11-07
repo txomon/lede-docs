@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: luci-i18n-asterisk ======
+---- dataentry packages ----
+Name                             : luci-i18n-asterisk
+Version                          : git-17.294.22464-0ed8086-1
+Description                      : Translation for luci-app-asterisk - ca [ Català (Catalan) ] - cs [ Čeština (Czech) ] - de [ Deutsch (German) ] - el [ Ελληνικά (Greek) ] - en [ English ] - es [ Español (Spanish) ] - fr [ Français (French) ] - he [ עִבְרִית (Hebrew) ] - hu [ Magyar (Hungarian) ] - it [ Italiano (Italian) ] - ja [ 日本語 (Japanese) ] - ms [ Bahasa Melayu (Malay) ] - no [ Norsk (Norwegian) ] - pl [ Polski (Polish) ] - pt [ Português (Portuguese) ] - pt-br [ Português do Brasil (Brazialian Portuguese) ] - ro [ Română (Romanian) ] - ru [ Русский (Russian) ] - sk [ Slovenčina (Slovak) ] - sv [ Svenska (Swedish) ] - tr [ Türkçe (Turkish) ] - uk [ украї́нська (Ukrainian) ] - vi [ Tiếng Việt (Vietnamese) ] - zh-cn [ 中文 (Chinese) ] - zh-tw [ 臺灣華語 (Taiwanese) ] # max. 1kB
+Installed size_pkg-filesize      : 0 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, luci-app-asterisk
+Categories_pkg-categorys         :  #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : 
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 1
+License                          : 
+Maintainer_pkg-maintainer        : 
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/feeds/luci/applications/luci-app-asterisk|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             :  # short version of the package, for display in table
+----
+

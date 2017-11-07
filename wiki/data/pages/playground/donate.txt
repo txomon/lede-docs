@@ -1,0 +1,7 @@
+LEDE Project is maintained by a global community of volunteers (individuals and companies) and it incurs some monthly [[:infrastructure#servers|infrastructure]] costs.
+
+If you wish to support LEDE projects, there are [[:start#lede_wants_you|multiple ways to do it]] and one of those ways is to donate towards the monthly [[:infrastructure#servers|infrastructure]] costs.
+
+All money collected are controlled by the project leaders and go towards those specific [[:infrastructure#servers|infrastructure]] costs only. You can donate with PayPal, credit card, bitcoin and bottle caps.
+
+If you wish to donate please follow this link. Please note however that when enough money to cover the costs for a foreseeable future is collected, you will no longer be able to donate.

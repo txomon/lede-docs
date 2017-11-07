@@ -1,0 +1,30 @@
+~~NOTOC~~
+<- ^ ..:helloworld:chapter1|Start with Chapter 1 ^ ->
+
+====== "Hello, world!" for LEDE ======
+
+Welcome to the "Hello, world!" -article series for LEDE. This article series walks you through the basics of developing new software for your router. We will start with an extremely simple application that does (almost) nothing, and slowly evolve it throughout the series. Each individual chapter in this series will introduce an additional concept, and once you've gone through all the chapters, you should feel much more comfortable foraging into the world of LEDE development.
+
+All the source code example files in this series are written in the C programming language. While the outlining concepts i.e. creating new packages, specifying source code location, using build tools and creating installable packages are applicable to any other programming language as well, explicit examples for other programming languages besides [[http://c-language.com/|C]] are not provided.
+
+Command examples in this article series use the Bash command interpreter when inside the development environment, and the Ash command interpreter when operating on the target device.
+
+===== Requirements =====
+
+In order to proceed alongside this article series, the following requirements should be met:
+  * Basic understanding of a Linux operating system, preferably one of the [[docs:guide-developer:install-buildsystem|supported distributions]] for running the LEDE build system
+  * Access to the Internet (for downloading the source code of the build system, or the LEDE SDK for your target device)
+  * Basic understanding of the [[http://fresh2refresh.com/c-programming/c-basic-program/|C programming language]]
+  * Basic understanding of the [[https://www.gnu.org/software/make/manual/make.html|GNU make]] system
+  * Knowledge on how to create and commission virtual machines, or access to a dedicated computer running a suitable Linux distribution
+  * Your target device **should already be supported** by the LEDE build system
+
+If you feel unsure on any of the above topics, feel free to follow the links in order to find some basic information.
+
+The author of this article chose to use a Debian 8 Linux distribution as the development environment for this article, running inside a VirtualBox virtual machine. You are free to choose an alternative virtualization platform, or even run the environment on a dedicated physical computer. Note that you should be familiar with the environment that you are operating in, and be able to perform basic file system operations (creating and deleting files) and be familiar with using a text editor of choice in your environment.
+
+===== List of topics =====
+
+This article series will cover the following topics:
+
+<doctoc start=chapter1, includeheadings=2-3>

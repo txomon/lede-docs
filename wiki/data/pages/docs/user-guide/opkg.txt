@@ -1,0 +1,345 @@
+===== Opkg Package Manager =====
+Like most Linux distributions (or mobile device operating systems like say Android or iOS), the functionality of the system can be upgraded rather significantly by downloading and installing pre-made packages from package repositories (local or on the Internet).\\ 
+The ''opkg'' utility is the lightweight package manager used for this job. Opkg is a fork of ''ipkg'', the package manager used in NSLU2's [[http://www.nslu2-linux.org/wiki/Optware/|Optware]], which is designed to add software to stock firmware of embedded devices.\\ 
+Opkg is a full package manager for the root file system, including kernel modules and drivers, while ipkg of just a way to add software to a seperate directory (e.g. ''/opt''). 
+
+Opkg is sometimes called //Entware//, as it is used also in the [[http://entware.wl500g.info|Entware repository]] for embedded devices (a fork of OpenWRT community packages repository).
+
+The package manager ''opkg'' attempts to resolve dependencies with packages in the repositories - if this fails, it will report an error and abort the installation of that package.
+
+Missing dependencies with third-party packages are probably available from the source of the package.\\
+To ignore dependency errors, pass the ''<nowiki>--</nowiki>force-depends'' flag.
+
+:!: If you are using a snapshot / trunk  / bleeding edge version, installing packages may fail if the package in the repository is for a newer kernel version than the kernel version you have.\\ 
+In this case, you will get the error message //"Cannot satisfy the following dependencies for…"//.\\ 
+For such usage of LEDE firmware, it's warmly recommended to use the Image Builder to make a flashable image containing all packages you need.\\ 
+
+
+:!: When on trunk/snapshot, kernel and kmod packages are flagged as //hold//. The ''opkg upgrade'' command won't attempt to update them. 
+
+
+==== Invocation ====
+<code>
+opkg must have one sub-command argument:
+usage: opkg [options...] sub-command [arguments...]
+where sub-command is one of:
+</code>
+
+You can use [[wp>Glob_(programming)|glob patterns]].
+
+==== Package Manipulation ====
+| ''**update**''  | Update list of available packages\\ This simply retrieves a file like this one: [[https://downloads.lede-project.org/snapshots/packages/aarch64_armv8-a/base/Packages|example]], for your installation and stores it on your [[wp>tmpfs|RAM partition]] under ''/tmp/opkg-lists''. As of LEDE 17.01, after the opkg upgrade, this folder occupies about 450 KiB of space. OPKG needs the content of this folder in order to install or upgrade packages or to print info about them. You can safely delete the contents of this folder anytime to free up some RAM (its content is also lost on reboot), don't forget to run ''opkg update'' again before you install a new package.  |
+| ''**upgrade** <pkgs>''  | Upgrade packages\\ To upgrade a group of packages, run ''opkg upgrade //packagename1// //packagename2//''.\\ A list of upgradeable packages can be obtained with the ''opkg list-upgradable'' command.\\ ------------\\ :!: Since LEDE firmware stores the base system in a compressed read-only partition, any update to base system packages will be written in the read-write partition and therefore use more space than it would if it was just overwriting the older version in the compressed base system partition. It's recommended to check the available space in internal flash memory and the space requirements for updates of base system packages.\\ Upgrading packages you installed should not have this issue as they are already in the read-write partition so the new one will overwrite the older one, although checking before upgrading never hurts.\\ As a general rule of thumb, devices that have 8 MiB or more total flash size and no user-installed packages should not have space issues when updating base packages, and of course devices set up for [[docs:user-guide:extroot_configuration|Extroot]] won't have any space issue.\\ To check for free space, write ''df -h /'' from SSH or go in Software page in Luci webinterface (System submenu --> Software) to see how much space is left in the internal storage.\\ Check the size of packages you want to update by writing ''opkg info package-name'' in SSH or by checking the package size listed in the table in Software page, or you can check the [[packages:start|Table of  Packages]] here in the wiki. While the "size" in opkg is the size of package in a compressed archive, the jffs2 or ubifs read-write partition will use the same compression algorithm on the installed files, so it should have similar size when installed.\\ :!: The package repositories in the development snapshots are updated by the build bots to new versions very often, so it's very likely you won't be able to upgrade some packages due to broken dependencies with kernel or kernel-related packages. In that case, it's recommended to use the [[docs:user-guide:imagebuilder|Image Builder]] and make a new firmware image with all packages you need and flash that instead of upgrading through opkg. |
+| ''**opkg list-upgradable <nowiki>|</nowiki> cut -f 1 -d ' ' <nowiki>|</nowiki> xargs opkg upgrade**'' | Updates all installed packages that are currently upgradable \\ :!: Read the file system notes of the previous section first before upgrading all packages |
+| ''**install** <pkgs|FQDN>'' | Install package(s)\\ Examples: <code>opkg install hiawatha</code> <code>opkg install http://downloads.openwrt.org/snapshots/trunk/ar71xx/packages/hiawatha_7.7-2_ar71xx.ipk</code> <code>opkg install /tmp/hiawatha_7.7-2_ar71xx.ipk</code>  |
+| ''**configure** <pkgs>'' | Configure unpacked package(s)  |
+| ''**remove** <pkgs|globp>'' | Remove package(s)  |
+| ''**flag** <flag> <pkgs>'' | Flag one or multiple package(s). Only one flag per invocation is allowed. Available flags:\\ hold • noprune • user • ok • installed • unpacked  |
+
+==== Informational Commands ====
+| ''**list** [pkg|globp]''      | List available packages\\ <code>Package name - Version - Description</code> The Description can contain line breaks, so using merely grep is inapt since grep is line-based.  |
+| ''**list-installed**''         | List installed packages  |
+| ''**list-upgradable**''        | List installed and upgradable packages  |
+| ''**list-changed-conffiles**'' | List user modified configuration files  |
+| ''**files** <pkg>''            | List files belonging to <pkg>. The package has to be already installed for this to work. Example:<code>
+opkg files asterisk18
+Package asterisk18 (1.8.4.4-1) is installed on root and has the following files:
+/usr/lib/asterisk/modules/res_rtp_multicast.so
+/usr/lib/asterisk/modules/codec_ulaw.so
+/etc/asterisk/features.conf
+/usr/lib/asterisk/modules/format_wav_gsm.so
+/usr/lib/asterisk/modules/app_macro.so
+/usr/lib/asterisk/modules/chan_sip.so
+/usr/lib/asterisk/modules/app_dial.so
+/usr/lib/asterisk/modules/app_playback.so
+/usr/lib/asterisk/modules/format_gsm.so
+/usr/lib/asterisk/modules/func_callerid.so
+/usr/lib/asterisk/modules/func_timeout.so
+/etc/asterisk/asterisk.conf
+/etc/asterisk/modules.conf
+/usr/lib/asterisk/modules/format_wav.so
+/etc/asterisk/extensions.conf
+/etc/init.d/asterisk
+/etc/asterisk/manager.conf
+/usr/lib/asterisk/modules/res_rtp_asterisk.so
+/etc/asterisk/logger.conf
+/etc/asterisk/rtp.conf
+/usr/lib/asterisk/modules/codec_gsm.so
+/etc/asterisk/indications.conf
+/usr/lib/asterisk/modules/func_strings.so
+/usr/lib/asterisk/modules/app_echo.so
+/usr/lib/asterisk/modules/format_pcm.so
+/etc/asterisk/sip_notify.conf
+/etc/asterisk/sip.conf
+/etc/default/asterisk
+/usr/sbin/asterisk
+/usr/lib/asterisk/modules/pbx_config.so
+/usr/lib/asterisk/modules/func_logic.so
+</code>  |
+| ''**search** <file|globp>''   | List package providing <file>  |
+| ''**info** [pkg|globp]''      | Display all info for <pkg>\\ <code>
+Package: horst
+Version: 2.0-rc1-2
+Depends: libncurses
+Provides:
+Status: install user installed
+Section: net
+Architecture: ar71xx
+Maintainer: Bruno Randolf <br1@einfach.org>
+MD5Sum: 378cea9894ec971c419876e822666a6a
+Size: 19224
+Filename: horst_2.0-rc1-2_ar71xx.ipk
+Source: feeds/packages/net/horst
+Description: [horst] is a scanning and analysis tool for 802.11 wireless networks and
+ especially IBSS (ad-hoc) mode and mesh networks (OLSR).</code> **''Note1:''** The <color red>size</color> is the size of the gzip compressed tar archive. At installation package gets un-tared and decompressed, but then again JFFS2 uses compression itself.\\ **''Note2:''** Since the compression of JFFS2 is transparent, commands like ''ls'' will always report the size of the uncompressed file. |
+| ''**status** [pkg|globp]''  | Display all status for <pkg>  |
+| ''**download** <pkg>''       | Download <pkg> to current directory  |
+| ''**compare-versions** <v1> <op> <v2>''  | Compare versions ''v1'' and ''v2'' using the operators ''%%<=%%'', ''<'', ''>'', ''>='', ''='', ''%%<<%%'' or ''%%>>%%''  |
+| ''**print-architecture**''   | List installable package architectures  |
+| ''**whatdepends** [-A] [pkgname|pat]+'' | This only works for installed packages. So if you would like to know, how much storage a package and all of it's dependencies would need, at the moment, you will have to piece this information together with the ''info''-option.  |
+| ''**whatdependsrec** [-A] [pkgname|pat]+''  | This only works for installed packages. So if you would like to know, how much storage a package and all of it's dependencies would need, at the moment, you will have to piece this information together with the ''info''-option.  |
+| ''**whatprovides** [-A] [pkgname|pat]+''   |  |
+| ''**whatconflicts** [-A] [pkgname|pat]+''  |  |
+| ''**whatreplaces** [-A] [pkgname|pat]+''   |  |
+
+==== Options ====
+^ Option ^ Long ^ Description  ^
+| ''-A''             |                        | Query all packages not just those installed  |
+| ''-V[<level>]''    | ''%%--%%verbosity[=<level>]''  | Set verbosity level to <level>.  Available verbosity levels:\\ 0 errors only\\ 1 normal messages (default)\\ 2 informative messages\\ 3 debug\\ 4 debug level 2  |
+| ''-f <conf_file>''     | ''%%--%%conf <conf_file>''  | Use <conf_file> as the opkg configuration file. Default is ''/etc/opkg.conf''  |
+|   | ''%%--cache <directory>%%''  | Use a package cache  |
+| ''-d <dest_name>''     | ''%%--%%dest <dest_name>''  | Use <dest_name> as the the root directory for package installation, removal, upgrading. <dest_name> should be a defined dest name from the configuration file, (but can also be a directory name in a pinch).  |
+| ''-o <dir>''           | ''%%--%%offline-root <dir>''  | Use <dir> as the root directory for offline installation of packages.  |
+| | ''%%--%%add-arch <arch>:<prio>''  | Register architecture with given priority  |
+| | ''%%--%%add-dest <name>:<path>''  | Register destination with given path  |
+^ Force Options ^^^
+| | ''%%--force-depends%%''      | Install/remove despite failed dependencies  |
+| | ''%%--force-maintainer%%''   | Overwrite preexisting config files  |
+| | ''%%--force-reinstall%%''    | Reinstall package(s)  |
+| | ''%%--force-overwrite%%''    | Overwrite files from other package(s)  |
+| | ''%%--force-downgrade%%''    | Allow opkg to downgrade packages  |
+| | ''%%--force-space%%''        | Disable free space checks  |
+| | ''%%--force-checksum%%''     | Ignore checksum mismatches  |
+| | ''%%--force-postinstall%%''  | Run postinstall scripts even in offline mode  |
+| | ''%%--noaction%%''           | No action -- test only  |
+| | ''%%--download-only%%''      | No action -- download only  |
+| | ''%%--nodeps%%''             | Do not follow dependencies  |
+| | ''%%--force-removal-of-dependent-packages%%''  | Remove package and all dependencies  |
+| | ''%%--autoremove%%''         | Remove packages that were installed automatically to satisfy dependencies  |
+| ''-t''  | ''%%--tmp-dir%%''    | Specify tmp-dir.  |
+
+
+
+===== Examples =====
+To install a package run the following commands. List of available packages is lost upon reboot, so make sure to update the list before trying to install a package
+
+<code>
+opkg update
+opkg install <package>
+</code>
+
+To search 
+  * ''opkg list'' will display only ''Package name — Version — Description''
+  * ''opkg info'' will display all available information.
+
+You can make use of [[wp>Glob_(programming)|glob pattern]]s directly and also write a little  [[wp>Shell script|shell script]] to use [[wp>Regular expression]]s and otherwise further process information. Use a pipe (''|'') and ''grep'' or ''awk'' or ''sed'' to filter that output:
+
+  * ''opkg list | grep pattern'' 
+  * ''opkg list | awk '/pattern/ {print $0}''
+  * ''opkg info kmod-ipt-* | awk '/length/ {print $0}'''
+  * ''opkg list-installed | awk '{print $1}' | sed ':M;N;$!bM;s#\n# #g'''
+  * ''var="packagename1 packagename2 packagename2"; for i in $var; do opkg info $i; done;''
+  * ''opkg depends dropbear'' doesn't work either.
+
+
+===== Configuration =====
+The main configuration file is ''/etc/opkg.conf''. It could look like this:
+<code>
+dest root /
+dest ram /tmp
+lists_dir ext /var/opkg-lists
+option overlay_root /overlay
+</code>
+As you can see, it sets default folders.\\ 
+- default root directory (default / ),\\ 
+- default ram disk (default /tmp )
+- default folder to store package lists (default /var/opkg-lists, still a ram disk)
+- what is the overlay directory (default /overlay)
+
+Most of these options must be left to default, or have no real reason to be changed.
+
+You might want to change the ''lists_dir ext /var/opkg-lists'' to ''lists_dir ext /path/on/disk'' if your device has 32 MiB or less of RAM and [[docs:user-guide:extroot_configuration|you expanded your firmware's storage space in an external drive]], so you can use opkg without causing Out Of Memory errors.
+==== Adjust Repositories ====
+Feeds are set in ''/etc/opkg/distfeeds.conf''
+<code>
+src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt7620/packages
+src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base
+src/gz reboot_telephony http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/telephony
+src/gz reboot_packages http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/packages
+src/gz reboot_routing http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/routing
+src/gz reboot_luci http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/luci
+</code>
+there is also another file for custom feeds called ''/etc/opkg/customfeeds.conf''
+<code>
+# add your custom package feeds here
+#
+# src/gz example_feed_name http://www.example.com/path/to/files
+</code>
+=== Local Repositories ===
+You can configure opkg to fetch the packages locally:
+<code>
+src/gz local file:///path/to/packagesDirectory
+</code>
+
+LEDE uses multiple repositories, where every repository requires a unique identifier. It is logical to use their original names, e.g.:
+
+<code>
+...
+src/gz base file:///path/to/packages/directory/packages/base
+src/gz luci file:///path/to/packages/directory/packages/luci
+src/gz packages file:///path/to/packages/directory/packages/packages
+src/gz oldpackages file:///path/to/packages/directory/packages/oldpackages
+... etc ...
+</code>
+
+==== Change Architectures ====
+<WRAP center round todo 90%>
+LEDE is using package architectures, many devices pull packages from the same pool.\\
+The following paragraph requires proofreading and likely some modification to be adapted for the current LEDE status.
+</WRAP>
+
+By default, opkg only allows packages with the architecture ''all'' (= architecture independent) and the architecture of the installed target.\\ 
+In order to download and install packages for a foreign target architecture, the list of allowed architectures can be overridden in ''/etc/opkg.conf''
+ with the use of ''arch'' options:
+
+<code>arch all 100
+arch brcm4716 200
+arch brcm47xx 300
+</code>
+
+This example would allow installing ''brcm47xx'' packages (compiled to run on ''brcm47xx'' family of SoC/devices) on the ''brcm4716'' (a specific SoC) target.\\ 
+The number specifies a priority index which is used by ''opkg'' to determine which package to prefer in case it is available in multiple architectures.
+
+==== Proxy support ====
+To use ''opkg'' through a proxy, add the following to ''/etc/opkg.conf'':
+
+<code>
+option http_proxy http://proxy.example.org:8080/
+option ftp_proxy ftp://proxy.example.org:2121/
+</code>
+
+Use the options below to authenticate against the proxy server:
+
+<code>
+option proxy_username xxxx
+option proxy_password xxxx
+</code>
+
+The authentication may fail due to the limitations of onboard wget (shouldn't be the case, as currently wget is provided by uclient-fetch).
+Try passing the username and password as part of the url in this case.
+
+<code>
+option http_proxy http://username:password@proxy.example.org:8080/
+option ftp_proxy http://username:password@proxy.example.org:2121/
+</code>
+
+===== Troubleshooting =====
+==== Out of space ====
+If //opkg// runs out of space, it usually fails to recover cleanly leaving dangling lock files in place resulting in a ''//Could not obtain administrative lock//'' error. The lock file can be deleted by issuing the ''rm /usr/lib/opkg/lock'' command.
+
+Additionally, //opkg// may not remove the files it was installing.\\
+One way to do this is get a list of the files it was installing, then delete them.
+
+Replace the url with the appropriate package.
+
+<code>
+(cd /; \
+ wget -qO- http://download.link.to.package | \
+ tar -Oxz ./data.tar.gz | tar -tz | xargs rm)
+</code>
+
+However, the above line does not delete the dependencies that were installed along with the package responsible. Also, it leaves empty directories around. The script below intends to fix those.
+
+<code>
+#!/bin/sh
+#takes one argument/parameter: the name of the package which didn't install correctly and should be removed along with its dependencies
+#example: ./opkgremovepartlyinstalledpackage.sh pulseaudio-daemon
+
+#get list of all packages that would be installed along with package x
+PACKAGES=`opkg --force-space --noaction install $1 | grep "http:" | cut -f 2 -d ' ' | sed 's/\.$//'`
+opkg update
+
+for i in $PACKAGES
+do
+        LIST=`wget -qO- $i | tar -Oxz ./data.tar.gz | tar -tz | sort -r | sed 's/^./\/overlay\/upper/'`
+        for f in $LIST
+        do
+                if [ -f $f ]
+                then
+                        echo "Removing file $f"
+                        rm -f $f
+                fi
+                if [ -d $f ]
+                then
+                        echo "Try to remove directory $f (will only work on empty directories)"
+                        rmdir $f
+                fi
+        done
+done
+echo "You may need to reboot for the free space to become visible"
+</code>
+Save it as ''opkgremovepartlyinstalledpackage.sh'' somewhere, set it as an executable with ''chmod +x ./opkgremovepartlyinstalledpackage.sh'' and you can execute it by doing ''./opkgremovepartlyinstalledpackage.sh <package-name> '' .
+
+====Local Repository====
+
+FIXME Convert this into LEDE and explain what it is actually doing.\\
+Live example:
+<code>
+r=44685
+search="http://downloads.openwrt.org/snapshots/trunk/ar71xx/generic"
+replace="file:///mnt/sdcard/shared/users/www/r$r"
+sed -i -e "s!$search!$replace!" /etc/opkg.conf
+</code>
+
+Share for a second router:
+<code>
+ln -s /mnt/sdcard/shared/users/www /www/pendrive
+</code>
+
+In the second router:
+<code>
+r=44685
+search="downloads.openwrt.org/snapshots/trunk/ar71xx/generic"
+replace="192.168.1.1/pendrive/r$r"
+sed -i -e "s!$search!$replace!" /etc/opkg.conf
+</code>
+
+
+===== Non-standard Installation Destinations =====
+Due to its history (fork of ipkg), opkg can specify a destination different than root for package installation, but since most packages don't support this natively, it's more a curiosity than actually useful.
+
+<WRAP center round info 90%>
+The recommended way to have more space to install your packages is [[docs:user-guide:extroot_configuration|Extroot]]
+</WRAP>
+
+<WRAP center round important 90%>
+**WARNING:** this solution will NOT work out-of-the-box in most cases, LEDE packages are designed to be installed in root filesystem and may need additional symlinks or modifications to work at all under the changed path!
+</WRAP>
+
+The default opkg.conf actually contains three destinations:
+
+<code>
+dest root /
+dest ram /tmp
+dest mnt /mnt
+</code>
+
+The format of destination lines is simply the keyword dest, followed by a name for this destination (this can be anything), followed by a filesystem location.  Any destination that has been thus configured can then be specified on the opkg command line like this:
+
+<code>
+opkg install somepackage -d destination_name
+</code>
+
+The //dest// argument must refer to one of the defined destinations in ''/etc/opkg.conf'', e.g. ''-d ram'' to install packages to ''/tmp/''.
+
+If you want to install kernel modules on any other destination than root, you might want to read this first: https://dev.openwrt.org/ticket/10739

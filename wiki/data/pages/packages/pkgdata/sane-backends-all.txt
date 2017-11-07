@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: sane-backends-all ======
+---- dataentry packages ----
+Name                             : sane-backends-all
+Version                          : 1.0.25-2
+Description                      : SANE (Scanner Access Now Easy) is a universal scanner interface.\\ . \\ Metapackage for selecting all SANE Backends\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 0 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, sane-abaton, sane-agfafocus, sane-apple, sane-artec, sane-artec_eplus48u, sane-as6e, sane-avision, sane-bh, sane-canon, sane-canon630u, sane-canon_dr, sane-cardscan, sane-coolscan, sane-coolscan2, sane-coolscan3, sane-dc210, sane-dc240, sane-dc25, sane-dell1600n_net, sane-dmc, sane-epjitsu, sane-epson, sane-epsonds, sane-epson2, sane-fujitsu, sane-genesys, sane-gt68xx, sane-hp, sane-hp3500, sane-hp3900, sane-hp4200, sane-hp5400, sane-hp5590, sane-hpljm1005, sane-hs2p, sane-ibm, sane-kodak, sane-kodakaio, sane-kvs20xx, sane-kvs40xx, sane-kvs1025, sane-leo, sane-lexmark, sane-ma1509, sane-magicolor, sane-matsushita, sane-microtek, sane-microtek2, sane-mustek, sane-mustek_usb, sane-mustek_usb2, sane-nec, sane-net, sane-niash, sane-p5, sane-pie, sane-pieusb, sane-pixma, sane-plustek, sane-plustek_pp, sane-ricoh, sane-rts8891, sane-s9036, sane-sceptre, sane-sharp, sane-sm3600, sane-sm3840, sane-snapscan, sane-sp15c, sane-st400, sane-stv680, sane-tamarack, sane-teco1, sane-teco2, sane-teco3, sane-test, sane-u12, sane-umax, sane-umax1220u, sane-umax_pp, sane-v4l, sane-xerox_mfp
+Categories_pkg-categorys         : utilities #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 1
+License                          : GPL-2.0 GPL-2.0+
+Maintainer_pkg-maintainer        : Luiz Angelo Daros de Luca
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/utils/sane-backends|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1.0.25-2 # short version of the package, for display in table
+----
+

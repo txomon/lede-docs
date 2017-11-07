@@ -1,0 +1,119 @@
+====== Tabla de Hardware: Ideal para LEDE ======
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+Con el fin de enumerar los dispositivos con los que tendrás la mejor experiencia, vamos a filtrar por los dispositivos que...
+
+  * estén **'Disponibles'** o **'desconocidos'** (si es 'desconocido' -> busca en la red la disponibilidad en primer lugar, después actualiza los datos aquí)
+  * tienen **>4MB Flash** (con 4M puede funcionar, pero no es divertido trabajar. >4M te hará más feliz que 4M o menos).
+  * tienen **>32MB RAM** (con 32M puede funcionar bastante bien, pero 64M son más cómodos para trabajar, dependiendo del caso.)
+
+> Ten en cuenta que la compatibilidad de los chipsets inalámbricos de Broadcom es limitada (debido a la disponibilidad del controlador FLOSS)
+
+{{page>es:meta:infobox:toh_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+----
+
+++++Show Filter: Availability|
+---- datacloud ----
+col        : Availability
+summarize  : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+filter     : Availability!~Discontinued*
+filter     : Flash MB!=1
+filter     : Flash MB!=2
+filter     : Flash MB!=4
+filter     : RAM MB!=8
+filter     : RAM MB!=16
+filter     : RAM MB!=32
+filter     : LEDE Supported Current Rel!=''
+filter     : LEDE Supported Current Rel!=¿
+filter     : LEDE Supported Current Rel!=-
+filter     : LEDE Supported Current Rel!=EOL
+----
+++++
+
+++++Show Filter: Device Type|
+---- datacloud ----
+col       : Device Type
+summarize : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+filter     : Availability!~Discontinued*
+filter     : Flash MB!=1
+filter     : Flash MB!=2
+filter     : Flash MB!=4
+filter     : RAM MB!=8
+filter     : RAM MB!=16
+filter     : RAM MB!=32
+filter     : LEDE Supported Current Rel!=''
+filter     : LEDE Supported Current Rel!=¿
+filter     : LEDE Supported Current Rel!=-
+filter     : LEDE Supported Current Rel!=EOL
+----
+++++
+
+++++Show Filter: Modem|
+---- datacloud ----
+col       : Modem
+summarize : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+filter     : Availability!~Discontinued*
+filter     : Flash MB!=1
+filter     : Flash MB!=2
+filter     : Flash MB!=4
+filter     : RAM MB!=8
+filter     : RAM MB!=16
+filter     : RAM MB!=32
+filter     : LEDE Supported Current Rel!=''
+filter     : LEDE Supported Current Rel!=¿
+filter     : LEDE Supported Current Rel!=-
+filter     : LEDE Supported Current Rel!=EOL
+----
+++++
+
+++++Show Filter: LEDE Current Supported Release|
+---- datacloud ----
+col       : LEDE Supported current rel
+summarize : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+filter     : Availability!~Discontinued*
+filter     : Flash MB!=1
+filter     : Flash MB!=2
+filter     : Flash MB!=4
+filter     : RAM MB!=8
+filter     : RAM MB!=16
+filter     : RAM MB!=32
+filter     : LEDE Supported Current Rel!=''
+filter     : LEDE Supported Current Rel!=¿
+filter     : LEDE Supported Current Rel!=-
+filter     : LEDE Supported Current Rel!=EOL
+----
+++++
+
+----
+
+---- datatable ----
+cols       : Device Type, Brand, Model, Versions, Availability, LEDE Supported Current Rel_releasepage, LEDE Unsupported, CPU MHz, CPU cores_, Flash MB, RAM MB, WLAN 2.4GHz, WLAN 5.0GHz, WLAN Comments_, WLAN Hardware, Modem, OEM Device Homepage URL_url, OpenWrt Device Page_url, LEDE Device Page_page, OWrt Forum Topic URL_url, LEDE Forum Topic URL_url, Device Techdata_pageid
+headers    : Device Type, Brand, Model, Versions, Availability, LEDE Supported Current Rel, LEDE Unsupported, CPU MHz, CPU cores, Flash MB, RAM MB, WLAN 2.4GHz, WLAN 5.0GHz, WLAN Comments, WLAN Hardware, Modem, OEM Device Homepage, OpenWrt Device Page, LEDE Device Page, OpenWrt Forum Topic URL, LEDE Forum Topic URL, Device Techdata
+align      : l,l,l,l,l,l,l,l,l,l,l,c,l,l,l,l,l,l,l,l,c
+dynfilters : 1
+rownumbers : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+filter     : Availability!~Discontinued*
+filter     : Flash MB!=1
+filter     : Flash MB!=2
+filter     : Flash MB!=4
+filter     : RAM MB!=8
+filter     : RAM MB!=16
+filter     : RAM MB!=32
+filter     : LEDE Supported Current Rel!=''
+filter     : LEDE Supported Current Rel!=¿
+filter     : LEDE Supported Current Rel!=-
+filter     : LEDE Supported Current Rel!=EOL
+sort       : Brand
+----

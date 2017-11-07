@@ -1,0 +1,216 @@
+====== LEDE Public Keys ======
+
+===== LEDE Public Keys =====
+
+This page lists the fingerprints of all public keys in use by the LEDE project and is automatically generated from the developer keys present in the [[https://git.lede-project.org/?p=keyring.git|keyring.git]] repository.
+
+Refer to our [[docs:user-guide:release_signatures|signing documentation page]] to learn more about file verification and key generation.
+
+==== GnuPG key fingerprints ====
+
+GnuPG keys are mainly used to verify the integrity of firmware image downloads.
+
+Signature verification ensures that image downloads have not been tampered with and that the third-party download mirrors serve genuine content.
+
+/* BEGIN GPG KEYS */
+
+---
+
+=== LEDE GnuPG key for unattended build jobs ===
+
+User ID: **LEDE Build System** <lede-adm@lists.infradead.org>\\
+Public Key: 0xCD84BCED**626471F1** (4096 Bit RSA, created 2016-07-26)\\
+Fingerprint: ''%%54CC 7430 7A2C 6DC9 CE61  8269 CD84 BCED 6264 71F1%%''\\
+Signing Subkey: 0xF93525A8 **8B699029** (4096 Bit RSA, created 2016-07-26)\\
+Fingerprint: ''%%6D92 78A3 3A9A B314 6262  DCEC F935 25A8 8B69 9029%%''\\
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=gpg/626471F1.asc|Last change: 2016-07-26 13:54:36 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=gpg/626471F1.asc|Download]]
+
+---
+
+=== 17.01 "Reboot" Signing Key ===
+
+User ID: **LEDE Release Builder** <lede-dev@lists.lede-project.org>\\
+Public Key: 0x833C6010**D52BBB6B** (4096 Bit RSA, created 2017-01-16)\\
+Fingerprint: ''%%B09B E781 AE8A 0CD4 702F  DCD3 833C 6010 D52B BB6B%%''\\
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=gpg/D52BBB6B.asc|Last change: 2017-01-20 09:06:22 +0200]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=gpg/D52BBB6B.asc|Download]]
+
+---
+
+=== Public key of Alexander Couzens ===
+
+User ID: **Alexander Couzens** <lynxis@fe80.eu>\\
+Public Key: 0xC29E9DA6**A0DF8604** (4096 Bit RSA, created 2012-12-18, expires 2017-09-14)\\
+Fingerprint: ''%%390D CF78 8BF9 AA50 4F8F  F1E2 C29E 9DA6 A0DF 8604%%''\\
+Signing Subkey: 0xB43BC93C **03A94AEB** (4096 Bit RSA, created 2012-12-18, expires 2017-09-14)\\
+Fingerprint: ''%%E838 0FB2 1525 57F5 B6A6  7C78 B43B C93C 03A9 4AEB%%''\\
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=gpg/A0DF8604.asc|Last change: 2017-06-09 10:07:28 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=gpg/A0DF8604.asc|Download]]
+
+---
+
+=== Public key of Álvaro Fernández Rojas ===
+
+User ID: **Álvaro Fernández Rojas** <noltari@gmail.com>\\
+Public Key: 0x9E2ADB5C**AA382EC1** (4096 Bit RSA, created 2016-04-16)\\
+Fingerprint: ''%%5155 F5AE EACC 0C33 E8A3  6F2A 9E2A DB5C AA38 2EC1%%''\\
+Signing Subkey: 0x9712EBC9 **A7DCDFFB** (4096 Bit RSA, created 2016-04-16, expires 2018-04-16)\\
+Fingerprint: ''%%FB89 4037 B454 05CA 95EE  34DC 9712 EBC9 A7DC DFFB%%''\\
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=gpg/A7DCDFFB.asc|Last change: 2016-04-16 09:59:03 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=gpg/A7DCDFFB.asc|Download]]
+
+---
+
+=== Public key of Florian Fainelli ===
+
+User ID: **Florian Fainelli** <f.fainelli@gmail.com>\\
+Public Key: 0xED7282E2**08DAF586** (4096 Bit RSA, created 2016-08-26)\\
+Fingerprint: ''%%10BD EE38 E7DF DFC7 D5D3  CC09 ED72 82E2 08DA F586%%''\\
+Signing Subkey: 0x411E8E8B **13CEE033** (4096 Bit RSA, created 2016-08-26, expires 2018-08-26)\\
+Fingerprint: ''%%3892 DB8D 02B0 2F94 4457  F826 411E 8E8B 13CE E033%%''\\
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=gpg/08DAF586.asc|Last change: 2017-01-15 04:17:20 +0200]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=gpg/08DAF586.asc|Download]]
+
+---
+
+=== Public key of Hans Dedecker ===
+
+User ID: **Hans Dedecker** <dedeckeh@gmail.com>\\
+Public Key: 0xAAD7E169**0C74E7B8** (4096 Bit RSA, created 2016-12-06)\\
+Fingerprint: ''%%569E 3F24 712D EF28 C244  8C12 AAD7 E169 0C74 E7B8%%''\\
+Signing Subkey: 0xB4662C25 **42AB0412** (4096 Bit RSA, created 2016-12-06, expires 2018-12-06)\\
+Fingerprint: ''%%FBDA 576F 6054 FE3B 8A74  7233 B466 2C25 42AB 0412%%''\\
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=gpg/0C74E7B8.asc|Last change: 2016-12-07 20:27:23 +0200]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=gpg/0C74E7B8.asc|Download]]
+
+---
+
+=== Public key of John Crispin ===
+
+User ID: **John Crispin** <john@phrozen.org>\\
+Public Key: 0x9E8F1F29**34E5BBCC** (4096 Bit RSA, created 2016-04-14)\\
+Fingerprint: ''%%B4DE 4970 B205 473D 26CD  818F 9E8F 1F29 34E5 BBCC%%''\\
+Signing Subkey: 0x3D8BE4EB **49785F4F** (4096 Bit RSA, created 2016-04-14, expires 2018-04-14)\\
+Fingerprint: ''%%AA98 B891 5121 33A3 CD28  BB4A 3D8B E4EB 4978 5F4F%%''\\
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=gpg/34E5BBCC.asc|Last change: 2016-04-14 12:40:54 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=gpg/34E5BBCC.asc|Download]]
+
+---
+
+=== Public key of Jo-Philipp Wich ===
+
+User ID: **Jo-Philipp Wich** <jo@mein.io>\\
+Public Key: 0xC76FDE50**612A0E98** (4096 Bit RSA, created 2016-04-05)\\
+Fingerprint: ''%%69B2 6A27 62D0 65E6 6F59  6755 C76F DE50 612A 0E98%%''\\
+Signing Subkey: 0x2D87FF6E **1584F206** (4096 Bit RSA, created 2016-04-05, expires 2018-04-05)\\
+Fingerprint: ''%%A8B2 D538 69A3 E72D 1392  3D8F 2D87 FF6E 1584 F206%%''\\
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=gpg/612A0E98.asc|Last change: 2016-04-05 17:03:17 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=gpg/612A0E98.asc|Download]]
+
+---
+
+=== Public key of Stijn Tintel ===
+
+User ID: **Stijn Tintel** <stijn@linux-ipv6.be>\\
+Public Key: 0x818021EB**B6C9ECDA** (4096 Bit RSA, created 2016-12-11)\\
+Fingerprint: ''%%3176 362F 0318 F3C1 7DBF  89DE 8180 21EB B6C9 ECDA%%''\\
+Signing Subkey: 0xB36CBB03 **10F11685** (4096 Bit RSA, created 2016-12-11, expires 2018-12-11)\\
+Fingerprint: ''%%6957 1749 D3D7 48C5 6B6B  742D B36C BB03 10F1 1685%%''\\
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=gpg/10F11685.asc|Last change: 2017-10-03 11:43:41 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=gpg/10F11685.asc|Download]]
+
+---
+
+=== Public key of Ted Hess ===
+
+User ID: **Ted Hess** <thess@kitschensync.net>\\
+Public Key: 0x9C46FAFC**12D89000** (4096 Bit RSA, created 2016-04-26)\\
+Fingerprint: ''%%C2C9 C93B F477 5C11 D4F6  617C 9C46 FAFC 12D8 9000%%''\\
+Signing Subkey: 0x31464E53 **8A1617C4** (4096 Bit RSA, created 2016-04-26, expires 2018-04-26)\\
+Fingerprint: ''%%021D 623A 818E E4D3 D1AC  6041 3146 4E53 8A16 17C4%%''\\
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=gpg/12D89000.asc|Last change: 2016-04-26 18:18:19 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=gpg/12D89000.asc|Download]]
+
+/* END GPG KEYS */
+
+==== usign public keys ====
+
+The //usign// EC keys are used to sign repository indexes in order to ensure that packages fetched and installed via //opkg// are unmodified and genuine.
+
+Those keys are usually installed by default and bundled as [[https://git.lede-project.org/?p=source.git;a=tree;f=package/system/lede-keyring|lede-keyring]] package.
+
+/* BEGIN USIGN KEYS */
+
+---
+
+=== LEDE 17.01 "Reboot" public key ===
+
+  * Key-ID: ''%%792d9d9b39f180dc%%''
+  * Key-Data: ''%%RWR5LZ2bOfGA3FGliZosEDhodiAKDOISmQs/mmjo4rhcbFtqkibJqMzo%%''
+
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=usign/792d9d9b39f180dc|Last change: 2017-01-20 08:59:11 +0200]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=usign/792d9d9b39f180dc|Download]]
+
+---
+
+=== LEDE usign key for unattended build jobs ===
+
+  * Key-ID: ''%%b5043e70f9a75cde%%''
+  * Key-Data: ''%%RWS1BD5w+adc3j2Hqg9+b66CvLR7NlHbsj7wjNVj0XGt/othDgIAOJS+%%''
+
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=usign/b5043e70f9a75cde|Last change: 2016-04-30 16:58:47 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=usign/b5043e70f9a75cde|Download]]
+
+---
+
+=== LEDE usign key of Alexander Couzens ===
+
+  * Key-ID: ''%%c10b9afab19ee428%%''
+  * Key-Data: ''%%RWTBC5r6sZ7kKA/C5VnxUbJw5E0vy3MGo3MP2eXCQlgg65+2si4MKBnf%%''
+
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=usign/c10b9afab19ee428|Last change: 2017-06-09 10:07:28 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=usign/c10b9afab19ee428|Download]]
+
+---
+
+=== LEDE usign key of Álvaro Fernández Rojas ===
+
+  * Key-ID: ''%%9ef4694208102c43%%''
+  * Key-Data: ''%%RWSe9GlCCBAsQwI5+wztnWKHfBlvPFP2G00FvZyx+Wfv9AwSViUwo/s2%%''
+
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=usign/9ef4694208102c43|Last change: 2016-04-16 09:58:31 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=usign/9ef4694208102c43|Download]]
+
+---
+
+=== LEDE usign key of Hans Dedecker ===
+
+  * Key-ID: ''%%5151f69420c3f508%%''
+  * Key-Data: ''%%RWRRUfaUIMP1CAL9wvk3ABBHdUM+3SjMvIuJlK68b3b04Pw3wiaiAfxX%%''
+
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=usign/5151f69420c3f508|Last change: 2016-12-07 20:35:29 +0200]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=usign/5151f69420c3f508|Download]]
+
+---
+
+=== LEDE usign key of John Crispin ===
+
+  * Key-ID: ''%%dd6de0d06bbd3d85%%''
+  * Key-Data: ''%%RWTdbeDQa709heyMmwDZjWmlhcTCUv/q+3TBYDPdJAGRuys6xcxE09fp%%''
+
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=usign/dd6de0d06bbd3d85|Last change: 2016-04-14 12:44:03 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=usign/dd6de0d06bbd3d85|Download]]
+
+---
+
+=== LEDE usign key of Jo-Philipp Wich ===
+
+  * Key-ID: ''%%72a57f2191b211e0%%''
+  * Key-Data: ''%%RWRypX8hkbIR4FLhtx5pjXcAIsI1iPUIcI5bMG8jZoiCkrwTstECBPqL%%''
+
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=usign/72a57f2191b211e0|Last change: 2016-04-05 17:18:02 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=usign/72a57f2191b211e0|Download]]
+
+---
+
+=== LEDE usign key of Stijn Tintel ===
+
+  * Key-ID: ''%%%%''
+  * Key-Data: ''%%RWQLJvNq4PQQbSGZ05Az9jXSt/xlw/IfWc6USiB2FHEUoWL7QpMibzv6%%''
+
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=usign/b26f36ae0f4106d|Last change: 2017-10-03 11:46:46 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=usign/b26f36ae0f4106d|Download]]
+
+---
+
+=== LEDE usign key of Ted Hess ===
+
+  * Key-ID: ''%%dace9d4df16896bf%%''
+  * Key-Data: ''%%RWTazp1N8WiWvy7rYxstJqaMzGiS4XfW1oyYrk2vwJMRBeBF+8xEA+EZ%%''
+
+[[https://git.lede-project.org/?p=keyring.git;a=history;f=usign/dace9d4df16896bf|Last change: 2016-04-26 18:22:18 +0300]] | [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=usign/dace9d4df16896bf|Download]]
+
+/* END USIGN KEYS */

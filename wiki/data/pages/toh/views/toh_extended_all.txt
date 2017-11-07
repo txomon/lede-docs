@@ -1,0 +1,29 @@
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                                                                         * 
+ * THIS PAGE IS AUTOMATICALLY GENERATED, AND SHOULD NOT BE MODIFIED.                                       *
+ *                                                                                                         * 
+ * WANT TO ADD A DEVICE TO THIS PAGE? Read this link: http://wiki.lede-project.org/doc/howto/adding_to_toh *
+ *                                                                                                         * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+====== Table of Hardware: Full details ======
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+This table shows full hardware details for all devices listed in the Table of Hardware.
+
+{{page>meta:infobox:toh_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+----
+
+**Scrolling through the table:** Click anywhere in the table, then use your cursor keys to scroll left/right, up/down.
+
+---- datatable ----
+cols       : Device Type, Brand, Model, Versions, FCCID_url, Availability, OWrt Supported Since Rev_url, OWrt Supported Since Rel, OWrt Supported Current Rel, OWrt Unsupported, LEDE Supported Since Commit_git, LEDE Supported Since Rel, LEDE Supported Current Rel_releasepage, LEDE Unsupported, Bootloader, CPU, Target_target, Subtarget, CPU cores_, CPU MHz, Flash MB, RAM MB, Switch, Ethernet 100M ports_, Ethernet Gbit ports_, Comments network ports_, Switch, Modem, VLAN, WLAN Hardware, WLAN 2.4GHz, WLAN 5.0GHz, WLAN Comments_, Detachable Antennas_, Bluetooth, USB ports_, SATA ports_, Serial, Serial connection parameters_, JTAG, Video port, Audio port, Phone ports, LED count, Button count, GPIOs_, Power Supply, OpenWrt Device Page_url, LEDE Device Page_page, Device Techdata_pageid, OWrt Forum Topic URL_url, LEDE Forum Topic URL_url, WikiDevi URL_url, OEM Device Homepage URL_url, Firmware OEM Stock URL_url, Firmware OWrt Install URL_url, Firmware OWrt Upgrade URL_url, Firmware LEDE Install URL_url, Firmware LEDE Upgrade URL_url, Comments_
+dynfilters : 1
+rownumbers : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+sort       : Brand
+----

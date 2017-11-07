@@ -1,0 +1,86 @@
+====== LEDE 17.01.0 - First Stable Release - February 2017 ======
+
+<code>
+     _________
+    /        /\      _    ___ ___  ___
+   /  LE    /  \    | |  | __|   \| __|
+  /    DE  /    \   | |__| _|| |) | _|
+ /________/  LE  \  |____|___|___/|___|                      lede-project.org
+ \        \   DE /
+  \    LE  \    /  -----------------------------------------------------------
+   \  DE    \  /    Reboot (17.01.0, r3205-59508e3)
+    \________\/    -----------------------------------------------------------
+</code>
+
+The LEDE Project (“Linux Embedded Development Environment”) is a Linux operating system emerged from the [[https://openwrt.org|OpenWrt]] project. It is a complete replacement for the vendor-supplied firmware of a wide range of wireless routers and non-network devices. See the [[https://lede-project.org/toh/start|Table of Hardware]] for supported devices. For more information about LEDE Project organization, see the [[https://lede-project.org/about|About LEDE pages.]]
+
+Get LEDE Firmware at: http://downloads.lede-project.org/releases/
+
+===== Highlights In LEDE 17.01.0 ===== 
+
+The LEDE Community is proud to announce the first stable release of the LEDE 17.01 version series. It incorporates thousands of commits over the last nine months of effort. With this release, the LEDE development team closes out an intense effort to modernize many parts of OpenWrt and incorporate many new modules, packages, and technologies. These are some of the highlights compared to OpenWrt Chaos Calmer:
+
+  * Linux kernel updated to version 4.4.50 (from 3.18 in Chaos Calmer)
+  * Update of essential software:
+    * dnsmasq updated to 2.76 (from 2.73 in Chaos Calmer)
+    * busybox updated to 1.25.1 (from 1.23.2 in Chaos Calmer)
+    * mbedtls version 2.4.0 (updated from polarssl 1.3.14 in Chaos Calmer)
+    * openssl updated to 1.0.2k
+  * Improved Security Features
+    * Use SHA256 instead of MD5 to validate source code for upstream packages
+    * mbedtls: disable SSLv3 support
+    * OpenSSL: disable support for compression, heartbeats, NPN, Whirlpool, and J-PAKE
+    * Memory Corruption Mitigation Methods
+      * gcc -Wformat -Wformat-security
+      * User space Stack-Smashing Protection (Regular)
+      * Kernel space Stack-Smashing Protection (Regular)
+      * buffer-overflows detection (FORTIFY_SOURCE) (Conservative)
+      * RELRO protection (Full)
+  * Improved Networking Support
+    * Smart Queue Management (SQM) minimizes bufferbloat by using the cake and fq_codel qdisc's. //[[docs:user-guide:sqm|More...]]//
+    * Improvements to the WiFi stack eliminating bufferbloat on ath9k, mt76 and some ath10k chipsets
+    * Airtime fairness scheduler for ath9k to prevent slow stations from hogging too much airtime
+    * Various stability and regression fixes to the Linux wireless stack and ath9k in particular
+    * Provide alternative Candela-Tech ath10k-ct driver 
+    * IPv6 hardening
+  * Updated toolchain
+    * musl 1.1.16
+    * gcc 5.4.0
+    * binutils 2.25.1
+  * Platform and Driver Support
+    * Lantiq
+      * Added redistributable DSL firmware
+      * Updated DSL phy drivers
+    * Added new targets:
+      * apm821xx (AppliedMicro APM821xx)
+      * arc770 (Synopsys DesignWare ARC 770D)
+      * archs38 (Synopsys DesignWare ARC HS38)
+      * armvirt (QEMU ARM Virtual Machine)
+      * ipq806x (Qualcomm Atheros IPQ806X)
+      * layerscape (NXP Layerscape)
+      * zynq (Xilinx Zynq 7000 SoCs)
+    * Reorganized x86 target:
+      * Drop dedicated Xen DomU target, merged with x86/generic
+      * Enable AES-NI support
+    * Removed targets:
+      * realview, replaced by armvirt
+      * ppc44x, disabled due to code brokeness
+      * netlogic, dropped due to no available hardware
+  * Build system improvements
+    * Separation of base system and community feeds to simplify distribution of binary package updates
+    * Fixes and enhancements in package dependency handling, better support for virtual provides
+    * Per-device rootfs images to better tune package selection to each individual device profile
+    * New image build code improving compilation times and simplifying device profile declarations
+    * New package/.../check make target to run a series of standard diagnostics on Makefiles
+    * Support for fetching sources using Curl
+    * Generate reproducible source tarballs when packing SCM checkouts
+  * Image Builder / SDK
+    * Rework library bundling to allow for better portability between different Linux distributions
+    * Add support for building kernel modules using the SDK
+  * Added support for a many new routers and boards
+
+As always, a big thank you goes to all our active package maintainers, testers, documenters, and supporters.
+
+Have fun!
+    
+The LEDE Community

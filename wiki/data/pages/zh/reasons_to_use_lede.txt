@@ -1,0 +1,64 @@
+====== 为何使用LEDE？给你找个理由 ======
+
+用户选择并安装使用 LEDE 固件是因为他们发现，LEDE（前身为OpenWRT） 是众多路由固件之中最优秀的！ 本页列出了 LEDE 各种优点以供参考：
+
+===== 高性能 & 高稳定性 =====
+LEDE 由非常关注网络性能的专业人士设计开发。相比原厂固件，LEDE 整合了非常多的最新算法和机制来加强其性能表现。
+    * LEDE 相当稳定，通过了长时间运行的考验。
+    * LEDE reduces latency/lag and increased network throughput via bufferbloat control algorithms.
+    * Wi-Fi improvements support higher data rates and airtime fairness between stations.
+    * Older devices are still supported by LEDE improvements (as long as RAM/Flash of your device can accommodate new releases) long after the manufacturer stops making updates.
+
+===== 高安全性 =====
+LEDE 是一个开源软件.来自全世界的许多开发者在发布前反复检查它的源码. 
+    * No hidden backdoors left by hardware vendors. 
+    * LEDE is resistant to common vulnerabilities thanks to its Linux OS which is unaffected by many common attacks.
+    * LEDE is actively updated so any vulnerabilities are closed shortly after they are discovered.
+    * Default LEDE configuration is very conservative allowing full internet connectivity without exposing your router or connected devices to attacks.
+    * Many of the older devices are supported by LEDE and can enjoy security LEDE brings, long after vendors stop releasing firmware updates.
+    * LEDE prolongs the life of your router. While many vendors only provide updates for your router/device until the newer model is released, LEDE supports all [[:supported_devices|compatible models]] for as long as their RAM/Flash can accommodate new releases.
+
+===== 可扩展性 =====
+ 
+While vendor firmware for a router ships with a fixed set of capabilities, LEDE provides more than [[packages:start|3000 packages]] ready to be installed. Some of the more popular packages allow you to:
+    * Run [[docs:user-guide:ad-blocking]] on your router so you can enjoy clean uncluttered web experience from any connected device.
+    * Reduce latency/lag (bufferbloat) even during heavy traffic with [[docs:user-guide:sqm|Smart Queue Management]]
+    * Secure access to your home network when away via [[docs:user-guide:openvpn.server|OpenVPN Server]].
+    * Secure your internet access and prevent your ISP from snooping on your internet activity (requires third party service) [[:docs:howto:openvpn.client:OpenVPN Client]].
+    * Prevent your ISP from snooping on your DNS requests via [[:docs:howto:dnscrypt-proxy|DNSCrypt Proxy]].
+    * Force connected devices with hard-coded DNS servers to use your router's DNS with [[:docs:howto:DNS-request-hijacking|DNS Request Hijacking]].
+    * Create a [[:docs:howto:Guest-WiFi|Guest Wi-Fi]] network allowing access to internet, but not your local devices.
+    * Control access using the [[docs:user-guide:parental-controls|time limits and parental controls]].
+    * [[:docs:howto:webcam|Add a webcam]] for live surveillance or timelapse video creation of landscapes or 3D printers.
+    * [[:docs:howto:weatherstation|Connect to your weather station]], record [[:docs:howto:weather.statistics|weather statistics]] and make them accessible via a [[:docs:howto:webserver|webserver]], garnished with a [[:docs:howto:webcam|live webcam image]].
+    * [[:docs:howto:1wire|Interact with 1-wire devices]] (sensors, actors, ...).
+    * Make your router a central for [[:docs:howto:home automation|home automation]].
+    * Access a wider range of [[docs:user-guide:ddns.client|Dynamic DNS (ddns)]] providers than vendor firmware via [[packages:pkgdata:ddns-scripts|DDNS scripts]].
+
+
+===== 强大的社区支持 =====
+
+The vibrant community of developers, volunteers, and other long-time LEDE users are always available to help solve an issue. 
+
+  * [[https://forum.lede-project.org|LEDE forum]] - member-to-member conversations about LEDE
+  * [[http://lists.infradead.org/mailman/listinfo/lede-dev|LEDE Developer]] and [[http://lists.infradead.org/mailman/listinfo/lede-adm|LEDE Admin]] mailing lists
+  * [[https://webchat.freenode.net/|#lede-dev]] and [[https://webchat.freenode.net/|#lede-adm]] on IRC
+  * [[:contact|Contacts]] on the LEDE site for more information.
+
+===== 研发平台 =====
+
+Many teams who are doing cutting-edge research into networking topics use LEDE as a stable platform for their work. As their work moves from the experimental realm into practical, production-quality code, it is available in LEDE builds first. Some teams using LEDE include:
+  * Continuing development of the [[http://bufferbloat.net|fq_codel and cake algorithms]] that decrease bufferbloat.
+  * The [[https://www.bufferbloat.net/projects/make-wifi-fast/wiki/|Make Wi-Fi Fast]] team has been working to decrease queueing and latency in the wi-fi stack, and is testing out their airtime fairness code using LEDE.
+  * [[http://homewrt.org|Homenet]] provides implementation of zeroconf IPv6 (and IPv4) routing, prefix assignment and service discovery for a home network consisting of multiple routers connected to multiple service providers. There's a hnet-full package for LEDE.
+
+===== 配置简单===== 
+Because LEDE is a true Linux-based system, you have full control over all functions of your router/device.
+  * LEDE provides both command-line interface (via SSH) and a web-based user interface for configuration. 
+  * Configuration information is stored in plain-text files to ease the editing and/or copying.
+  * LEDE Image Builder allows you to create your own firmware images for your device with any customizations (pre-defined password, WiFi, etc).
+  * The Web GUI allows you to select [[docs:user-guide:luci.themes|themes]] that suit your needs/tastes In addition, [[packages:pkgdata:luci-i18n-base-lang|Localization of Web UI]] is available via packages in over 20 languages.
+  * Configure the external LEDs and buttons/switches to suit your needs.
+
+===== 固件代码开源/零成本无额外支出 =====
+LEDE is provided for free through its GPL license, and thanks to the efforts of many volunteer contributors (both individuals and companies). There are no subscription or licensing fees.

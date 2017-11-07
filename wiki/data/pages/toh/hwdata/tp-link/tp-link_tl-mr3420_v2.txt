@@ -1,0 +1,98 @@
+====== Techdata: TP-Link TL-MR3420 v2, v2.1, v2.2, v2.3, v2.4 ======
+~~HIDEPAGE~~
+~~NOTOC~~
+
+{{section>meta:infobox:432_warning#infobox_for_dataentries&noheader&nofooter&noeditbutton}}
+{{page>meta:infobox:dataentry_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+
+/*********************************************************
+*                 >>>>>>>> ! <<<<<<<<
+* -------- >>>>>>>>  W A R N I N G  <<<<<<<<--------
+*                 >>>>>>>> ! <<<<<<<<
+*
+*   If you can read this, YOU ARE DOING IT WRONG.
+*
+*   To edit this page in the only right way, do this:
+*   1) Click "Cancel", then
+*   2) Edit this page ONLY via the lower LEFT edit button.
+*
+*   In case you disobey to the above: You break it, you pay it.
+*   Thank you for respecting the rules of this wiki.
+*
+*   --- Your wiki administration
+*********************************************************/
+
+===== Dataentry =====
+---- dataentry techdata ----
+Device Type_devicetype                         : WiFi Router # If 'other' -> request new devicetype @wiki admin
+Brand                                          : TP-Link # ===>  Mandatory  <===
+Model                                          : TL-MR3420 # ===>  Mandatory  <===
+Versions                                       : v2, v2.1, v2.2, v2.3, v2.4 # List versions comma separated: v1, v1.1, v1.5, v2, v2.5
+FCCID_urls                                     :  # link-scheme: https://fcc.io/yourFCCid
+Availability_availability                      : Available 2017
+OWrt Supported Since Rev_hidden                : https://dev.openwrt.org/changeset/37878 # https://dev.openwrt.org/changeset/xxxxx
+OWrt Supported Since Rel_hidden                : 14.07 # First official release (i.e. not trunk)
+OWrt Supported Current Rel_hidden              : 15.05 # Current official release (i.e. not trunk)
+OWrt Unsupported_hidden                        :  # e.g. '5GHz wifi'; Describe what is not supported
+LEDE Supported Since Commit_git                : https://git.lede-project.org/?p=source.git;a=commit;h=44cc1507e98151b070ab363b345190020caeb44b # https://git.lede-project.org/?p=source.git;a=commit;h=<commithash>
+LEDE Supported Since Rel_releasesince-lede     : 17.01.0 # First official release (i.e. not trunk)
+LEDE Supported Current Rel_releasecurrent-lede : 17.01.4 # Current official release (i.e. not trunk)
+LEDE Unsupported                               :  # Describe what is not supported, e.g. '5GHz wifi'
+Target_target                                  : ar71xx # https://wiki.lede-project.org/docs/targets
+Subtarget                                      : generic # https://wiki.lede-project.org/docs/targets
+Instruction Set_hidden                         : MIPS32 # https://en.wikipedia.org/wiki/List_of_instruction_sets
+Sub Instruction Set_hidden                     : MIPS32 74K series # --------> Description goes here
+Package architecture_pkg-arch                  : mips_24kc # https://wiki.lede-project.org/docs/instructionset
+Packages download_pkg-dl                       : mips_24kc|Download # https://wiki.lede-project.org/docs/instructionset
+Bootloader_bootloader                          : U-Boot # https://wiki.lede-project.org/doc/techref/bootloader
+CPU                                            : Atheros AR9341 # Main CPU/SoC, e.g. Atheros AR9331; Broadcom BCM6361
+CPU Cores_numcores_                            : 1 # Number of CPU cores
+CPU MHz                                        : 535 # pure number without 'MHz'
+Flash MB_mbflashs                              : 4 # CTRL+click for multiselect
+RAM MB_mbram                                   : 32
+Ethernet 100M ports_numethport                 : 5 # Number of 100Mbit ethernet ports
+Ethernet GBit ports_numethport                 : - # Number of Gbit ethernet ports
+Switch                                         : Atheros AR9341 # e.g. Atheros AR8236
+Modem_modem                                    : No # Select type of modem
+Comments network ports_                        :  # Comments on Ethernet, Fibre and Modem
+VLAN_yesno                                     : Yes
+WLAN Hardwares                                 : Atheros AR9341 # e.g. Atheros AR5416; separate multiple by comma; add '#x (mini-)PCI(e)' if necessary
+WLAN 2.4GHz_wlan24                             : b/g/n
+WLAN 5.0GHz_wlan50                             : -
+WLAN Comments_                                 :  # MIMO and other WIFI information
+Detachable Antennas_numdetachantenna           : 2 # Number of detachable antennas
+Bluetooth_bluetooth                            : - # Bluetooth version, e.g. 4.1
+USB ports_port-usbs                            : 1x 2.0 # Number of USB2.0 & 3.0 ports; CTRL+click for multiselect
+SATA ports_numsataport                         : - # Number of SATA or eSATA ports
+Comments USB SATA ports_                       :  # Comments on USB, SATA and eSATA ports
+Video ports_port-videos                        : - # Kind of video port, e.g. LVDS, HDMI, Composite, ...
+Audio ports_port-audios                        : - # Kind of audio port, e.g. Line out, phone jack, ...
+Phone ports_port-phones                        : - # Number or kind of phone ports
+Comments AV ports_                             :  # Comments on Audio, Video, Phone ports
+Serial_yesno                                   : Yes
+Serial connection parameters_serialparam       : 115200 / 8N1 # e.g. 115200 / 8N1
+JTAG_yesno                                     : No
+LED count_numled                               : 4 # Number of (user configurable) LEDs
+Button count_numbutton                         : 2 # Number of (user configurable) buttons/switches (other than Power)
+GPIOs_numgpio                                  : - # Number of accessible GPIOs
+Power Supply                                   : 12 VDC, 1.0 A # Specifications of Power Supply (Volt, Amp) or Battery (Volt, mAh)
+OpenWrt Device Page_hidden                     : https://wiki.openwrt.org/toh/tp-link/tl-ap121 # https://wiki.openwrt.org/toh/brand/brand_model_version
+LEDE Device Page_page                          :  # toh/brand/brand_model_version
+Device Techdata_hidden                         : View/Edit data # ===> Mandatory, must be "View/Edit data" <===
+OWrt Forum Topic URL_hidden                    : https://forum.openwrt.org/viewtopic.php?id=41326 # forum.openwrt.org/viewtopic.php?id=xxxxx
+LEDE Forum Topic URL_url                       :  # forum.lede-project.org/...
+WikiDevi URL_url                               : https://wikidevi.com/wiki/TP-LINK_TL-MR3420_v2 # wikidevi.com/wiki/yourdevice
+OEM Device Homepage URL_url                    : http://www.tp-link.com/en/products/details/cat-4691_TL-MR3420.html # yourbrand.com/yourdevice
+Firmware OEM Stock URL_url                     : http://www.tp-link.com/en/download/TL-MR3420_V2.html # yourbrand.com/yourdevice/stockfirmware
+Firmware OWrt Install URL_hidden               : https://downloads.openwrt.org/chaos_calmer/15.05.1/ar71xx/generic/openwrt-15.05.1-ar71xx-generic-tl-mr3420-v2-squashfs-factory.bin # downloads.openwrt.org/latest/...factory.bin; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware OWrt Upgrade URL_hidden               : https://downloads.openwrt.org/chaos_calmer/15.05.1/ar71xx/generic/openwrt-15.05.1-ar71xx-generic-tl-mr3420-v2-squashfs-sysupgrade.bin # downloads.openwrt.org/latest/...sysupgrade.bin; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware LEDE Install URL_url                  : https://downloads.lede-project.org/releases/17.01.4/targets/ar71xx/generic/lede-17.01.4-ar71xx-generic-tl-mr3420-v2-squashfs-factory.bin # downloads.lede-project.org/releases/<release>/targets/...; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware LEDE Upgrade URL_url                  : https://downloads.lede-project.org/releases/17.01.4/targets/ar71xx/generic/lede-17.01.4-ar71xx-generic-tl-mr3420-v2-squashfs-sysupgrade.bin # downloads.lede-project.org/releases/<release>/targets/...; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Picture_img100s                                : media:example:genericrouter1.png # media:brand:model_general_view.jpg; Single general picture to identify the device; detail pictures to be provided on device page. How to add images: http://wiki.lede-project.org/meta/adding_images_to_lede_wiki
+Comments_                                      : Stock install leaves only 360KiB free for loading packages which doesn't seem to be enough to enable USB storage support # Anything that is worth mentioning
+----
+
+
+
+{{section>:meta:template_dataentry_background#conventions_for_dataentry_values&nofooter&noeditbtn}}

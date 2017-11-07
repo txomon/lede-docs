@@ -1,0 +1,25 @@
+~~NOCACHE~~
+
+  * [[:start|Главная страница проекта]]
+  * [[:supported_devices|Поддержка устройств]]
+  * [[packages:start|Пакеты]]
+  * [[:downloads|Загрузка]]
+  * [[:docs:start|Документация]]
+    * [[:docs:guide-quick-start:start|Инструкция по началу работы]]
+    * [[:docs:user-guide:start|Инструкция для пользователя]]
+    * [[:docs:guide-developer:start|Инструкция разработчика]]
+  * [[:docs:guide-developer:the-source-code|Исходный код]]
+  * [[https://forum.lede-project.org|Форум]]
+  * [[:faq|FAQ]] 
+
+----
+
+  * [[:about|О проекте LEDE]] 
+    * [[:rules|LEDE Rules]]
+    * [[:todo|LEDE To-Do]] 
+    * [[:infrastructure|Инфраструктура проекта]]
+  * [[:wiki:start|Об этом сайте]]
+
+  * [[:contact|Контакты]] 
+
+----

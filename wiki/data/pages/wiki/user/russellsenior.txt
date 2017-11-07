@@ -1,0 +1,31 @@
+Hi,
+
+I am a volunteer with the Personal Telco Project, located in Portland, Oregon USA.  The Personal Telco Project is a 501c3 non-profit Community Wireless Network.  I first became involved in 2005, and very soon became the technical lead on a mesh network, and then was involved in building software infrastructure for our mostly hot-spot networks.  In 2006, I started building OpenWrt particularly for use with wifi mapping devices, initially running on Netgear WGT634U.  Over time, use expanded to support myriad tasks, including scientific data loggers, network gateways, batman-adv mesh networks, and dumb access points.  I currently maintain a test bed consisting of:
+
+  * Netgear WGT634U
+  * Soekris net4501
+  * Soekris net4826
+  * Accton MR3201A
+  * Ubiquiti RouterStation
+  * Ubiquiti AirRouter
+  * Ubiquiti Bullet 2
+  * Ubiquiti NanoStation 2
+  * Ubiquiti NanoStation 5
+  * Ubiquiti Bullet M2HP
+  * Ubiquiti Bullet M5HP
+  * Ubiquiti NanoStation Loco M2
+  * Ubiquiti NanoStation M900
+  * PCEngines Alix 2D13
+  * PCEngines Alix 3D
+  * PCEngines APU1
+  * PCEngines APU2
+  * Netgear WNDR3800
+  * Buffalo WZR600DHP
+  * TP-Link TP-WDR3600
+  * TP-Link Archer C7 v2
+  * AsiaRF AWM002
+  * D-Link DIR-860L B1
+  * PogoPlug V3
+  * Cisco Meraki MR24
+
+I also have a few Linksys WRT54G and Buffalo WHR-HP-54G still in shrink wrap, but most of the WRT54G's have gone to recycling.  We have a considerable supply of the WGT634Us still and still have a few deployed.

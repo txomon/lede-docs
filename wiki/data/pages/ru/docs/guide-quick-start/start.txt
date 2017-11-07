@@ -1,0 +1,95 @@
+====== Краткое руководство - Установка Lede Release ======
+
+Донное руководство поможет вам поэтапно собрать и установить свежую стабильную прошивку на основе LEDE для вашего маршрутизатора. Прошивки на основе LEDE имеют веб-интерфейс и предназначены для использования в домашних условиях, где члены вашей семьи пользуются сетями.
+
+По завершении всех процедур, ваш маршрутизатор сможет подключаться к Интернету, имеют сильный пароль, продемонстрирует мощный и привлекательный графический веб-интерфейс, а также включит Wi-Fi.
+
+Lede основан на проекте OpenWrt (https://wiki.openwrt.org/doc/start) - большинство оперативных аспектов двух проектов идентичны.
+Если у вас есть вопросы, вы можете найти на сайте, в поиск [[https://forum.lede-project.org|Lede Форум]], или посмотреть на страницах [[https://wiki.openwrt.org|OpenWrt вики]]
+
+
+===== Prerequisites for these instructions===== 
+If your situation doesn't match the criteria below, follow the links for more information:
+  * You plan to install a "Release" build of LEDE. ([[docs:guide-quick-start:developmentinstallation|Or use this alternate procedure for a Development build...]]) 
+  * Your router has at least 8 MBytes of Flash and 64 MBytes of RAM ([[#why_we_require_8_mbytes_of_flash|Why is this important?]])
+  * If you have any questions about this process, or want to flash LEDE on another kind of device besides a router, please ask for help on the [[https://forum.lede-project.org/c/installation|Installing and Using LEDE]] category of the [[https://forum.lede-project.org/c/installation|forum]] before beginning this procedure.
+
+
+===== Standard LEDE Installation =====
+
+  - **Install (or "flash") the LEDE firmware image.** Use the [[docs:guide-quick-start:standardflashinginstructions|Standard Flashing Instructions]] to install LEDE on your device, then come back to finish these steps.
+  - **Connect your computer directly to the newly-flashed device via Ethernet using a dymanic address** if you haven't already done so. Wi-Fi is disabled by default in devices that have Ethernet ports (while devices with only Wi-Fi connectivity will have it enabled of course). 
+  - **Go to the device's default address http://192.168.1.1** to complete configuration. You will see the LEDE Login page.
+  - **Set the password.** LEDE ships without a password, and you must set it before you can proceed. To do this:
+    * Set the Username to "root", leave the password field empty, and click "Login". You will go to the System->Administration page.
+    * Enter the new password in both fields, then click Save and Apply (at the bottom of the page). 
+    * //Note: Use a good password: it is the first line of defense for your home network. Write the username ("root") and password, and the IP address of the router, on a sticker on the bottom of the device so you don't forget. Use the username and password for any other access through Luci and ssh in the future.//
+  - **Set up networking** we are now setting up networking to integrate it in your current network, the configuration varies depending on what is the role of the new LEDE device you are configuring. 
+     - **Client device** If you want to connect your device to an existing network to provide additional functions (for example, you just want to use the Wi-Fi network it provides, or the device is a NAS serving files over the network, or a mini-server offering whatever other service).
+        * **Luci instructions**:
+          - Click on **Network** -> **Interfaces**, then click on the **Edit** button of the LAN Network.
+          - In **General Setup** tab, in **Protocol**, select **Static Address**
+          - In **IPv4 address** write the static address of this device, if your router's address is 192.168.1.1 (most common) and there are no other devices with static addresses on your network (also the most common situation for home networks) you can usually choose any address from 192.168.1.2 to 192.168.1.250. Once you have chosen and written the IP address, write it down in the same sticker with the user/password above, it will be used to connect to your device in the future.\\
+          - in **IPv4 Netmask** select the same netmask as set in your router's Lan/ethernet settings, it is (very) usually 255.255.255.0 
+          - in **IPv4 gateway** write the address of the gateway, the device that allows internet access in your local network. In most home networks, the router is the gateway too, and its default address is 192.168.1.1. 
+          - Set the DNS in the Custom DNS field. A DNS is a server used to translate human-readable website names (like "www.google.com") into their actual IP address. In most cases you should write there the address of the local network's router/gateway (that acts as local DNS), so 192.168.1.1, or the address of an actual DNS server in the internet, for example 8.8.8.8 that is the address of Google's DNS servers.
+          - Scroll down and in **DHCP Server**, in **General** tab, select "**Disable DHCP for this interface**", to disable automatic IP assignment on the LAN. Client devices will be connected to a network where there is a router doing DHCP server already and this will avoid conflicts with it.
+          - :!: Setting **DHCP Client** in the **Protocol** field will allow you to skip all of the above in most cases, but a device set like that will have an IP that changes depending on the current network router's decisions, so any time you need to connect to it you need to find its current IP first, which may be easy or not depending on the router's web interface or other networking tools you have on your PC/smartphone. This option is not recommended, as it makes connecting with the device unnecessarily more complex.
+          - When you are done, click on **Save & Apply** button at the end of the page. This will change the network configuration of the device, and will now be accessible at the IP you set above (or at an unknown dynamic IP if you used "**DHCP client option**"), so the current page you used for configuring it will fail to connect to the device. Disconnect the cable from the PC and connect it to the current network router's Lan ethernet ports, write the IP address in your browser's address bar and you should be able to connect to it again as normal.
+        * **Command line instructions** to make the same we just did with Luci webinterface above, see above for more detailed explanation of the steps:
+          - type ''uci set network.lan.ipaddr='new-ip-address''' and press Return 
+          - type ''uci set network.lan.gateway='your-gateway-address''' and press Return 
+          - type ''uci set network.lan.dns='dns-address-here''' and press Return  
+          - type ''uci commit && service network restart'' (this will save the changes and restart network interfaces)
+          - the ssh session will not work anymore because the device has changed address, this is normal
+          - now you can connect the network cable from the device's LAN port to your existing network (the other router's LAN ports usually)
+          - connect again to the device at its new address as defined above
+     - **Router device** If your device has some ports labeled LAN and at least a port labeled WAN and you want it to operate as a router (a bridge between two different networks). Depending on actual hardware support, it may be possible to create a WAN port on a device with only LAN ports, see your device's page for more info about this.\\ :!: the default IP of the LAN ports of a LEDE device is 192.168.1.1, if the addresses of the devices in the network you connect to the WAN port are **192.168.1.X** (X=any number), you need to change the IP address of the LAN interfaces your LEDE router to **192.168.2.1** (or to something that isn't **192.168.1.X**, anyway), or change the addressing of the other network you are connecting to.\\ The LAN and WAN ports MUST have at least different subnets for routing to work.
+       * **Luci instructions**:
+          - Click on **Network** -> **Interfaces**, then click on the **Edit** button of the LAN Network.
+          - In **General Setup** tab, in **IPv4 address** write the static address of this device, if your router's address is 192.168.1.1 (most common) you can usually choose any address from 192.168.1.2 to 192.168.1.250. Once you have chosen and written the IP address, write it down in the same sticker with the user/password above, it will be used to connect to your device in the future.\\
+          - By default the WAN interface/port is set as **DHCP client**, this will allow it to work with networks where there is another router giving addresses without further configuration. If you need to set static address please see the instructions for Client device above, and change the WAN interface settings accordingly.
+        * **Command line instructions**:
+          - type ''uci set network.lan.ipaddr='new-ip-address''' ("new-ip-address" is the new IP address you want for the LEDE device in your network) and press Return, 
+          - if needed, type ''uci set network.wan.proto='static''' to switch to static protocol on WAN interface, then change wan settings by using the same procedure detailed for Client device, settings for wan interface are ''network.wan.ipaddr'', ''network.wan.gateway'', ''network.wan.dns'', and so on, so change the commands accordingly.
+          - You might want to [[docs:user-guide:start#basic_configuration|basic LEDE documentation]] too, as these setups are usually very specific to your own network setup and it makes no sense to try to cover all possible cases here.
+          - type ''uci commit && service network restart'' and press Return 
+          - then connect again to your device at its new IP address and continue
+     - **Gateway device** If your device has a port labeled WAN or an integrated modem (supported by LEDE) and you want it to operate as a gateway (controlling a modem to give Internet access to all devices in a local network, usually a gateway is also a router for the local network).\\ Here Router settings as detailed above apply as in most cases the gateway is also the router in the same local network, but on the WAN port you either connect a modem in bridging, or you use an integrated modem. In either case, read the article about [[docs:user-guide:wan_interface_protocols|WAN interface protocols]] or look in your device's page. /* LINK TO A WIKI ARTICLE TO CONNECT MODEMS IN BRIDGING SHOULD ALSO GO HERE */
+  - **Confirm internet connectivity of your device:** Go to Network -> Diagnostics and Click on "ping" button (or write ''ping lede-project.org'' from command line ) - it should print "0% packet loss" if all is right.\\ If you cannot connect to the internet, review the steps at [[:docs:guide-quick-start:ts-internetconnectivity|Troubleshooting Internet Connectivity.]]
+  - **Enable Wi-Fi in the device.** Devices that have ethernet ports have Wi-Fi turned off by default. Go to **Network -> Wireless** in the Web GUI to enable and configure Wi-Fi. /*WOULD BE COOL TO HAVE WIFI CONFIG TUTORIAL TOO HERE*/
+  - **Set your Country for the Wi-Fi**. This is important to ensure your router meets legal regulations in your country. 
+    * **From Luci**: 
+      - **Network** -> **Wireless** 
+      - click on **Edit** for the first Wi-Fi network (if you have more than one you must do this for all others too)
+      - in **Device Configuration**, click on **Advanced Settings**, then select the correct country in **Country Code** field. 
+      - Click **Save & Apply** when done.
+    * **From Command line**:
+      - write ''uci show wireless'' to see all the wireless configuration and how many Wi-Fi chips (called "radio" in the config) there are on the device
+      - find your country in a list of ISO/IEC 3166 alpha2 country codes. There is a list on the wikipedia article about [[https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2|ISO 3166-1 alpha-2]]
+      - type ''uci set wireless.radio0.country='XX''' to set the country code **XX** for **radio0** device, and adjust this command to set the same country code for all wireless radios in the device. 
+  - **Congratulations!** Your device is now fully operational.
+
+
+===== Coming from sysupgrade =====
+
+After a sysupgrade you must install again all the packages you installed before the sysupgrade, also enable them again if they added system services.
+After you did so, you can restore the setting backup file you generated before the upgrade from Luci's System -> Backup/Flash Firmware page.
+You might also want to check [[docs:user-guide:sysupgrade.cli|Installing LEDE from the Command Line]] if you want to see what are the differences between new/old config files or do other advanced-user tasks.
+
+
+===== Optional Next Steps =====
+
+Once the device is working, you can look through the [[:docs:user-guide:start|User Guide]] for ways to customize the device, or use any of these tips:
+  * Set your default time zone from the **System** page.
+  * Make your new LEDE device the primary router by connecting it directly to your cable/DSL modem.
+  * Install other packages from the System -> Software page. Useful packages are snmpd, netperf, and any of your favorites.
+
+
+==== Why We Require 8 MBytes of Flash ====
+
+This procedure is designed to //work every time// and create a fully-functional router, with GUI and a standard set of packages/capabilities.  Routers with 4 MBytes (or less) of Flash work, but usually require a firmware rebuild to include any additional packages you need. Those instructions are outside the scope of this procedure.
+
+If you are purchasing a new router to use with LEDE, we strongly recommend getting one with at least 8 MBytes of Flash memory, and 64 MBytes of RAM to ease installation, and to provide some measure of ability to expand in the future.
+
+If you wish to install LEDE on a device with less than 8/64 MBytes Flash/RAM, please ask for help on the [[https://forum.lede-project.org/c/installation|Installing and Using LEDE]] category of the [[https://forum.lede-project.org/c/installation|forum]].

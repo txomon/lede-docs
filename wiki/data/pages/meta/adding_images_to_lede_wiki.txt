@@ -1,0 +1,125 @@
+====== Adding images to the LEDE Wiki ======
+
+===== Upload new image =====
+
+  *  Open the Media Manager at: [[http://lede-project.org/start?do=media&ns=media]]
+  *  Click your brand in the tree, select image to be uploaded, then click the //Upload// tab.
+  *  If your brand is not listed, select the image, then prefix the name field with the brand name, separated by ":", e.g. ''yourbrand:yourmodel.jpg''
+
+==== Troubleshooting ====
+
+<WRAP box 40%>
+//Sorry, you don't have enough rights to upload files.//
+</WRAP>
+
+
+You are probably trying to upload to the wrong namespace: Upload is allowed only to the ''media'' namespace and the sub-namespaces contained therein (mostly for the different brands).
+
+<WRAP center box 50%>
+**When the media manager opens,\\ your very first action should be to change to the ''media'' namespace, and possibly further down until you have reached the namespace to which you want to upload the picture.**
+</WRAP>
+
+===== Add image to wiki page =====
+
+  *  After you image is uploaded, you can add it to a wiki page
+  *  The image URL has the form ''<nowiki>{{media:brand:model_short_text.jpg?400|Tooltip to be shown when hovering over the picture}}</nowiki>''. You don't have to write this yourself: Use the media manager, he will help you.
+  *  The ''?400'' says to display the image 400 pixels wide (recommended size)
+  *  The text after the ''|'' is a tooltip that appears when hovering over the image.\\ When the ''|'' and the following text are left away, the images ''Title'' (if available, see ->metadata) is displayed as tooltip instead.
+
+
+===== Size =====
+
+  * max 2MB
+  * not too small (on a 640x480 of a complete PCBs you can not see details)
+  * not too big (4000x3000 directly out of your DSLR are not necessary)
+  * The image to be uploaded may / should be bigger than the "400" mentioned above: 400 is the width, that the image is displayed with on the wiki page; however, the image that's shown when you click on it may be bigger.
+
+===== Quality =====
+
+  * Leave unsharp, shaky, blurry, too dark / too bright images at home. You can and should do better.
+  * Flash reflections can be avoided by
+    * not shooting perpendicular, but at a slight angle.
+    * not using a flash at all. Make sure to have enough lighting or a steady camera stand, in order to avoid shaky images.
+  * Writings (Manufacturer, Model, ...) on main chips (SoC/CPU, RAM, Flash, WLAN, Switch, ...) should be readable. This can be tricky. Experiment with angle of lightsource / angle of camera to get good results.
+  * Concentrate on what you want to show. We don't need to see excessively much of your workbench or your living room.
+
+
+==== Bad examples ====
+
+Avoid the errors shown here:
+
+**Unsharp**\\
+{{media:huawei:hg520:hg520b-01.jpg?0x200}}
+{{media:huawei:hg520:hg520b-02.jpg?0x200}}
+
+**Too much background, too little content**\\
+{{:media:kingston:mlw221-mod-01.jpg?0x200|}}
+{{:media:buffalo:wmr-300-0.jpg?0x200|}}
+
+**Unreadable chip markings**\\
+{{:media:dlink:dir-320_pcb.jpg?0x200|}}
+{{:media:tp-link:tl-wr702n:tl-wr702n_pcb_top.jpg?0x200|}}
+
+
+===== Naming =====
+
+Nobody will know what ''1.jpg'' or ''20150723-123232.jpg'' is, nobody will find those pictures when searching for them.\\
+**Therefore: (Re-)name your images to something useful __before__ uploading them.**
+
+  * Put at least the model in the name of the picture.
+  * If you save the picture in a brand namespace, e.g. ''media:dlink:'', you //can// leave out the brand in name of the picture. If you save it elsewhere, add the brand accordingly.
+  * If the picture shows a certain version, add that to the name of the picture.
+  * Use a few (!) descriptive words in the name (you may use more in the metadata, see below)
+
+Examples for helpful naming of images:
+  * ''yourmodel-v4.25_case_front.jpg''
+  * ''yourmodel-v4.25_case_rear.jpg''
+  * ''yourmodel-v4.25_pcb_top.jpg''
+  * ''yourmodel-v4.25_pcb_bottom.jpg''
+  * ''yourmodel-v4.25_serial.jpg''
+  * ''yourmodel-v4.25_jtag.jpg''
+  * ....
+
+
+==== Separators ====
+
+  * Use '-' within the model name, e.g. ''tl<color #FF00FF>-</color>mr3020.jpg''
+  * Use '-' to separate model name from version, e.g. ''tl-mr3020<color #FF00FF>-</color>v1.jpg''
+  * Use '_' to separate model name from any following descriptive text, e.g. ''tl-mr3020-v1<color #FF00FF>_</color>pcb_top.jpg''
+
+
+===== Additional information (jpg only) =====
+
+Media manager -> Select image -> Click ''Edit'' -> Add metadata
+
+==== Title ====
+
+You can add a //short// descriptive text in the ''Title'' field. Depending on the way you link to the image, this ''Title'' text will be shown (or not) when hovering over the image.
+
+Default Media-Manager image-link: ''<nowiki>{{:media:bt:bthh2a_rev2_serial.jpg?300|}}</nowiki>''\\
+{{media:bt:homehub2a_rev2_serial.jpg?300|}}
+
+Default Media-Manager image-link: ''<nowiki>{{:media:bt:bthh2a_rev2_serial.jpg?300|With additional comment}}</nowiki>''\\
+{{media:bt:homehub2a_rev2_serial.jpg?300|With additional comment}}
+
+Removed ''|'' at the end -> Title of jpg will automagically be shown at mouseover: ''<nowiki>{{:media:bt:bthh2a_rev2_serial.jpg?300}}</nowiki>''\\
+{{media:bt:homehub2a_rev2_serial.jpg?300}}
+
+==== Caption ====
+
+You can add more descriptive text here. Add as you like, but don't count on that it will be noticed by anyone.
+
+==== Other metadata ====
+
+Add as you like, but don't count on that it will be noticed by anyone.
+
+
+===== Markings =====
+
+  * Make sure to use a good contrast color and sufficient line thickness for any markings or text that you add to an image (e.g. serial port pins RX/TX/GND).
+  * Suggestion: Add brand / model / version as text to the image, e.g. at one image border. This way, image content can be identified regardless of naming.
+
+{{media:bt:homehub2a_rev2_serial.jpg?0x250}}
+{{:media:tp-link:tl-wr740n:tl-wr740n-v3-uart.jpg?0x250}}
+
+{{:media:tp-link:tl-wr740n:tl-wr740n_case-back.jpg?0x180}}

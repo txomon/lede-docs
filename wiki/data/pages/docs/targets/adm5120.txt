@@ -1,0 +1,36 @@
+====== adm5120 ======
+
+  * rb1xx subtarget marked as broken since commit [[https://git.lede-project.org/?p=source.git;a=commit;h=21591a336198beaffa11d40e3581215ef0fe67ec]]
+  * adm5120 marked as "source only" since commit [[https://git.lede-project.org/?p=source.git;a=commitdiff;h=982dd01ac37f64892deb4003f4e53d3bc7a114c4]]
+
+  * [[https://git.lede-project.org/?p=source.git&a=search&h=HEAD&st=commit&s=adm5120:|Latest git commits for this target]]
+
+
+===== Devices with this target =====
+<hidden onHidden="Show devices with this target" onVisible="Hide devices with this target">
+++++Filter: Subtarget|
+---- datacloud ----
+col        : subtarget
+filter     : Target=adm5120
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+++++Filter: LEDE Instructionset|
+---- datacloud ----
+col        : lede instructionset
+filter     : Target=adm5120
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+---- datatable ----
+cols       : Target, Subtarget, Lede Instructionset_lede-instset, Brand, Model, Version, LEDE Device Page_page
+filter     : Target=adm5120
+filter     : Brand!=(EXAMPLE)
+sort       : Brand
+rownumbers : 1
+----
+</hidden>

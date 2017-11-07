@@ -1,0 +1,34 @@
+====== netifd (Network Interface Daemon) – Technical Reference ======
+
+  * [[https://git.lede-project.org/?p=project/netifd.git;a=summary|Project's git]]
+  * netifd first appeared in OpenWrt [[https://dev.openwrt.org/changeset/28499|R28499 (trunk)]] and is published under the GPLv2.
+  * [[https://git.lede-project.org/?p=project/netifd.git;a=blob;f=DESIGN|Design of netifd]]
+
+==== What is netifd? ====
+''netifd'' is an [[wp>Remote procedure call|RPC]]-capable [[wp>Daemon (computing)|daemon]] written in [[wp>C (programming language)|C]] for better access to kernel APIs with the ability to listen on [[wp>Netlink|netlink events]]. ''Netifd'' has replaced the old //OpenWrt-network configuration scripts//, the actual scripts that configured the network, e.g.
+  * ''/lib/network/*.sh'',
+  * ''/sbin/ifup''
+  * some scripts in ''/etc/hotplug.d''.)
+
+''netifd'' is intended to stay compatible with the existing format of ''[[docs:user-guide:network_configuration|LEDE network configuration]]'', the only exceptions being rare special cases like 
+aliases or the overlay variables in ''/var/state'' (though even most of those can be easily emulated).
+
+==== Help with the development of netifd ====
+  - test what has been ported
+  - review of the code
+  - help porting more of our protocol handler scripts (so far, static, ppp, pppoe, pppoa and dhcp are supported)
+
+==== Why do we want netifd? ====
+One thing that ''netifd'' does much better then old //OpenWrt-network configuration scripts// is handling configuration changes. With ''netfid'', when the file ''/etc/config/network'' changes, you no longer have to restart all interfaces.\\ 
+Simply run **''/etc/init.d/network reload''**. This will issue an ''ubus''-call to ''netifd'', telling it to figure out the difference between runtime state and the new config and apply only that. This works on a per-interface level, even with protocol handlers written as shell scripts.
+
+It boils down to the fact that the current network and interface setup mechanisms (via network configuration scripts) are rather constrained and inflexible:
+  * lack of statefulness
+  * tendency for raceconditions
+  * inability to properly nest protocols
+  * limited featureset of the ash shell which will not allow for complex interface operations like e.g. calculating [[wp>Unique local address|ULAs]]
+  * you name it
+
+''Netifd'' will be able to manage even complex interface configurations with a mix of bonding, vlans, bridges, etc. and handle the dependencies 
+between interfaces properly - and of course all that without adding unnecessary bloat.\\ 
+AFAIK there are no alternatives to netifd, e.g. [[https://connman.net/|connman]] seems to be centered around one specifific use case only: having a mobile device access the internet through multiple connections.

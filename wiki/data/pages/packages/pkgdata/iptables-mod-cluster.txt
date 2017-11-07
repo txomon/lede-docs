@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: iptables-mod-cluster ======
+---- dataentry packages ----
+Name                             : iptables-mod-cluster
+Version                          : 1.4.21-2
+Description                      : iptables extensions for matching cluster.\\  \\ Netfilter (IPv4/IPv6) module for matching cluster\\ This option allows you to build work-load-sharing clusters of\\ network servers/stateful firewalls without having a dedicated\\ load-balancing router/server/switch. Basically, this match returns\\ true when the packet must be handled by this cluster node. Thus,\\ all nodes see all packets and this match decides which node handles\\ what packets. The work-load sharing algorithm is based on source\\ address hashing.\\  \\ This module is usable for ipv4 and ipv6.\\  \\ If you select it, it enables kmod-ipt-cluster.\\  \\ see `iptables -m cluster --help` for more information.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 1 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libssp, iptables, kmod-ipt-cluster
+Categories_pkg-categorys         : network---firewall #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : aarch64_armv8-a, arc_arc700, arc_archs, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 2
+License                          : GPL-2.0
+Maintainer_pkg-maintainer        : LEDE team
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/network/utils/iptables|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1.4.21-2 # short version of the package, for display in table
+----
+

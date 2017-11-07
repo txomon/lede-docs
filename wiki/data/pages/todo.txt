@@ -1,0 +1,37 @@
+
+
+===== LEDE project's TODO List =====
+
+This page lists the current project wide todos. Items listed in random order without any prioritisation.
+
+==== Project Reboot ====
+
+  - Announce feature freeze and start stabilising trunk
+  - <del>Prepare //LEDE// #1 release</del> ### LEDE 17.01 released
+
+==== Infrastructure ====
+
+  - Wiki [This is it here]
+  - Forum https://forum.lede-project.org
+  - New buildbots for release
+
+==== Code base ====
+
+  - Review recent IPV6 changes
+  - Review and fix procd, netfid, firewall issues/quirks
+  - Bump all kernels to v4.4
+  - Review PPPoE support
+  - Convert ar71xx to devicetree
+  - Document core services (procd, netifd, …)
+  - Define rules for board support status Green, Orange, Red and start testing all supported boards
+
+==== Releases ====
+
+  - Define the scope of the first release
+  - Define pre-release testing rules/guidelines
+  - Decide on new naming scheme - YY.MM + animal names have been proposed as an naming option
+
+==== Buildbot Setup ====
+
+  - Rework buildbot setup to allow running more than one build in the same tree
+  - Rework buildbot setup to allow building release on the same setup

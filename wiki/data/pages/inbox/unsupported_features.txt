@@ -1,0 +1,108 @@
+====== Unsupported features ======
+
+  * see also [[https://forum.lede-project.org/t/asus-rt-ac87u-fully-supported/2764/8]]
+  * see also [[https://forum.lede-project.org/t/table-of-hardware-unsupported-column/2815]]
+
+===== SoC =====
+
+LEDE supported? -> [yes|no|partly|n/a]
+
+^ SoC                                                                          ^  DSL  ^  DOCSIS modem  ^  WLAN 2.4  ^  WLAN 5.0  ^ Unsupported column             ^
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.broadcom.bcm33xx|BCM33xx]]   |  n/a  |       ?        |   partly   |     no     | 5GHz, 2GHz partly              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.broadcom.bcm47xx|BCM47xx]]   |   ?   |      n/a       |   partly   |     no     | 5GHz, 2GHz partly              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.broadcom.bcm63xx|BCM63xx]]   |  no   |      n/a       |   partly   |     no     | DSL modem, 5GHz, 2GHz partly   |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.qualcomm.ar71xx|AR91xx]]     |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.qualcomm.ar71xx|AR92xx]]     |   ?   |       ?        |    yes     |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.qualcomm.ar71xx|AR93xx]]     |   ?   |       ?        |    yes     |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.qualcomm.ipq806x|IPQ806x]]   |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.qualcomm.ar71xx|QCA453x]]    |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.qualcomm.ar71xx|QCA953x]]    |   ?   |       ?        |    yes     |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.qualcomm.ar71xx|QCA955x]]    |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.qualcomm.ar71xx|QCA956x]]    |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.mediatek|MT7620]]            |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.mediatek|MT7621]]            |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.mediatek|MT7628]]            |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.mediatek|MT7688]]            |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.mediatek|RT3050]]            |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.mediatek|RT3052]]            |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.mediatek|RT5350]]            |   ?   |       ?        |     ?      |     ?      | ?                              |
+| [[https://wiki.openwrt.org/doc/hardware/soc/soc.lantiq|VRX288]]              |   ?   |       ?        |     ?      |     ?      | ?                              |
+
+
+===== WLAN hardware =====
+
+LEDE supported? -> [yes|no|partly|n/a]
+
+^ WLAN hardware   ^  WLAN 2.4  ^  WLAN 5.0  ^ Unsupported column   ^
+| BCM4317         |     ?      |     ?      |          ?           |
+| BCM4318         |     ?      |     ?      |          ?           |
+| BCM43217        |   partly   |     no     | 5GHz, 2GHz partly    |
+| BCM4320         |     ?      |     ?      |          ?           |
+| BCM4321         |     ?      |     ?      |          ?           |
+| BCM4322         |     ?      |     ?      |          ?           |
+| BCM43222        |     ?      |     ?      |          ?           |
+| BCM43224        |     ?      |     ?      |          ?           |
+| BCM43225        |     ?      |     ?      |          ?           |
+| BCM43226        |     ?      |     ?      |          ?           |
+| BCM43227        |   partly   |     no     | 5GHz, 2GHz partly    |
+| BCM43228        |     ?      |     ?      |          ?           |
+| BCM43236        |     ?      |     ?      |          ?           |
+| BCM4329         |     ?      |     ?      |          ?           |
+| BCM4331         |   partly   |     no     | 5GHz, 2GHz partly    |
+| BCM4352         |   partly   |     no     | 5GHz, 2GHz partly    |
+| BCM4360         |   partly   |     no     | 5GHz, 2GHz partly    |
+| BCM43602        |    yes     |    yes     |          ?           |
+| BCM4712         |     ?      |     ?      |          ?           |
+| BCM4716         |     ?      |     ?      |          ?           |
+| BCM4718         |     ?      |     ?      |          ?           |
+| BCM47186        |     ?      |     ?      |          ?           |
+| BCM5354         |     ?      |     ?      |          ?           |
+| BCM5356         |     ?      |     ?      |          ?           |
+| BCM5357         |     ?      |     ?      |          ?           |
+| BCM5358         |     ?      |     ?      |          ?           |
+| BCM63xx         |   partly   |     no     | 5GHz, 2GHz partly    |
+| MT7603E         |     ?      |     ?      | ?                    |
+| MT7610E/EN      |     ?      |     no     | 5GHz                 |
+| MT7612E         |     ?      |     ?      | ?                    |
+| MT7615N         |     no     |     no     | 5GHz, 2GHz           |
+
+
+===== Switch hardware =====
+
+VLAN capable? -> [yes|no]
+
+^ Switch hardware   ^ VLAN capable   ^
+| ADM6996L/LC/M     | ?              |
+| AR7240            | Yes            |
+| AR7241            | Yes            |
+| AR8216            | ?              |
+| AR8236            | Yes            |
+| AR8316            | ?              |
+| AR8327            | Yes            |
+| AR8327N           | Yes            |
+| AR8328            | Yes            |
+| AR8337            | Yes            |
+| AR9287            | No             |
+| AR9331            | Yes            |
+| AR9341            | Yes            |
+| AR9344            | Yes            |
+| BCM53115          | Yes            |
+| BCM53125          | ?              |
+| BCM53128          | ?              |
+| BCM5325v          | ?              |
+| MT7530            | Yes            |
+| MT7620            | Yes            |
+| MT7621A           | ?              |
+| MT7621AT          | ?              |
+| MT7621S           | ?              |
+| QCA8337           | Yes            |
+| RT305x            | ?              |
+| TP9343            | ?              |
+| 88E6060           | Yes            |
+| 88E6061           | ?              |
+| 88E6063           | ?              |
+| 88E6131           | ?              |
+| 88E6172           | ?              |
+| 88E6176           | ?              |
+| 88E6352           | ?              |
+| 88F6560           | ?              |

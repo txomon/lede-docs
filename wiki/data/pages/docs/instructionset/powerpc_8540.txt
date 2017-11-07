@@ -1,0 +1,24 @@
+====== powerpc_8540 ======
+Produced by NXP/Freescale under the name MPC8540.
+
+The MPC8540 processor integrates two 10/100/1000 Ethernet controllers (with support for jumbo frames), a 10/100 Ethernet controller, a 64-bit PCI/PCI-X controller operating at up to 133 MHz, an 8-bit 500 MHz parallel RapidIO ® controller, a DDR memory controller, a four-channel DMA, a multi-channel interrupt controller and a DUART serial interface.\\ 
+The MPC8540 integrates the e500 core, 256 KB of on-chip L2 cache and the revolutionary on-chip, non-blocking, crossbar switch fabric on-chip network (OCeaN), allowing for full duplex port connections and independent per-port transaction queuing and flow control.\\ 
+
+[[http://cache.freescale.com/files/32bit/doc/fact_sheet/MPC8540FACT.pdf|source]]
+===== Download Packages =====
+
+/* Link to packages download goes here. */
+
+| HTTP   | [[https://downloads.lede-project.org/releases/packages-17.01/powerpc_8540/]]      |
+| FTP    | [[ftp://ftp.halifax.rwth-aachen.de/lede/releases/packages-17.01/powerpc_8540/]]   |
+
+See [[/downloads#mirrors|Mirrors]] for more download sites.
+
+===== Devices with this instructionset =====
+
+---- datatable ----
+cols   : Package architecture, Target, Subtarget, Brand, Model_pageid, Version
+filter : Package architecture=powerpc_8540
+filter : Brand!=(EXAMPLE)
+sort   : Brand
+----

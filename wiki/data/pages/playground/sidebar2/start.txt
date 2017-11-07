@@ -1,0 +1,3 @@
+Dummy startpage to show the sidebar2 on the left side.
+
+{{page>:playground:sidebar2:sidebar&noheader&nofooter&noeditbutton}}

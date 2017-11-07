@@ -1,0 +1,201 @@
+====== LEDE v17.01.4 Changelog ======
+
+This changelog lists all commits done in LEDE since the v17.01.3 tag, grouped by subsystem. The changes are chronologically ordered from top to bottom and cover the Git repository history until the tagging of the final 17.01.4 release.
+
+==== Build System / Buildroot (2 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2ce9c84a9233946ca229429d053fcd289b1d1342|2ce9c84]]'' **<nowiki>build:</nowiki>** <nowiki>add a darwin sitefile to deal with macOS 10.12 + Xcode 9 build errors</nowiki> //<color #ccc>(</color><color #282>+7</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=444add156f2a6d92fc15005c5ade2208a978966c|444add1]]'' <nowiki>LEDE v17.01.4: adjust config defaults</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+
+==== Build System / Feeds (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=444add156f2a6d92fc15005c5ade2208a978966c|444add1]]'' <nowiki>LEDE v17.01.4: adjust config defaults</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+
+==== Build System / Host Utilities (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=067221360e87fe7bd66b194feb8a080a9dbdf17c|0672213]]'' **<nowiki>cmake:</nowiki>** <nowiki>fix build error with Xcode 9 on macOS 12</nowiki> //<color #ccc>(</color><color #282>+15</color><color #ccc>)</color>//\\
+
+==== Build System / Toolchain (2 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a999f91ca3f9cf0ec57de2dc62d7a77ea45822c2|a999f91]]'' **<nowiki>gcc:</nowiki>** <nowiki>fix build error with macOS + Xcode 9</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f67c22e0c2431c0e152adc573bbf46a8607779c4|f67c22e]]'' **<nowiki>toolchain/gdb:</nowiki>** <nowiki>update to version 8.0.1</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+
+==== Kernel (2 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=8ad1b09c6dcff814eb04084ef349f975025b7dc1|8ad1b09]]'' **<nowiki>kernel:</nowiki>** <nowiki>add fix for bgmac with B50212E B1 PHY</nowiki> //<color #ccc>(</color><color #282>+98</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=fa0b5fce1f53c3520cacff49e9d371fb2c5c3685|fa0b5fc]]'' **<nowiki>kernel:</nowiki>** <nowiki>bump 4.4 to 4.4.92</nowiki> //<color #ccc>(</color><color #282>+12</color><color #ccc>,</color><color #f00>-12</color><color #ccc>)</color>//\\
+
+==== Packages / Common (5 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=63c17142c865618977a540485eea7a9487a58029|63c1714]]'' **<nowiki>hostapd:</nowiki>** <nowiki>merge fixes for WPA packet number reuse with replayed messages and k...</nowiki> //<color #ccc>(</color><color #282>+929</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=907d8703f492bca533743c327ffe60a7405aee28|907d870]]'' **<nowiki>wireguard:</nowiki>** <nowiki>add wireguard to base packages</nowiki> //<color #ccc>(</color><color #282>+308</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=b6c3931ad6554357a108127797c8d7097a93f18f|b6c3931]]'' **<nowiki>hostapd:</nowiki>** <nowiki>backport extra changes related to KRACK</nowiki> //<color #ccc>(</color><color #282>+730</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=d501786ff25684208d22b7c93ce60c194327c771|d501786]]'' **<nowiki>hostapd:</nowiki>** <nowiki>add wpa_disable_eapol_key_retries option</nowiki> //<color #ccc>(</color><color #282>+6</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=79f57e422d229bb21837f588f40259835893837b|79f57e4]]'' **<nowiki>wireguard:</nowiki>** <nowiki>version bump to 0.0.20171017</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+
+==== Packages / LEDE base files (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=444add156f2a6d92fc15005c5ade2208a978966c|444add1]]'' <nowiki>LEDE v17.01.4: adjust config defaults</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+
+==== Target / ar71xx (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=94aa2b8af07fa72565eb0c73a41c1fcd384b2102|94aa2b8]]'' **<nowiki>ar71xx:</nowiki>** <nowiki>add rssileds to WA850RE v1 image</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+
+==== Target / bcm53xx (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=baa8eaaba66c0195650bf06513c30f5b091a150f|baa8eaa]]'' **<nowiki>bcm53xx:</nowiki>** <nowiki>backport DTS changes up to the first 4.15 queued commits</nowiki> //<color #ccc>(</color><color #282>+662</color><color #ccc>)</color>//\\
+
+==== Target / brcm2708 (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=fa0b5fce1f53c3520cacff49e9d371fb2c5c3685|fa0b5fc]]'' **<nowiki>kernel:</nowiki>** <nowiki>bump 4.4 to 4.4.92</nowiki> //<color #ccc>(</color><color #282>+12</color><color #ccc>,</color><color #f00>-12</color><color #ccc>)</color>//\\
+
+==== Target / cns3xxx (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=fa0b5fce1f53c3520cacff49e9d371fb2c5c3685|fa0b5fc]]'' **<nowiki>kernel:</nowiki>** <nowiki>bump 4.4 to 4.4.92</nowiki> //<color #ccc>(</color><color #282>+12</color><color #ccc>,</color><color #f00>-12</color><color #ccc>)</color>//\\
+
+==== Target / oxnas (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=fa0b5fce1f53c3520cacff49e9d371fb2c5c3685|fa0b5fc]]'' **<nowiki>kernel:</nowiki>** <nowiki>bump 4.4 to 4.4.92</nowiki> //<color #ccc>(</color><color #282>+12</color><color #ccc>,</color><color #f00>-12</color><color #ccc>)</color>//\\
+
+==== Target / ramips (4 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f9a849ca84f596aafd7c167b2410ec5446c84784|f9a849c]]'' **<nowiki>ramips:</nowiki>** <nowiki>mt7620: do not pad sysupgrade Archer images</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c1023c8075b0590390020d65fd077b908cefad63|c1023c8]]'' **<nowiki>mt76:</nowiki>** <nowiki>sync with version 878456caf60d from master</nowiki> //<color #ccc>(</color><color #282>+38</color><color #ccc>,</color><color #f00>-52</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2e9f3c6225ffbb67862abbb503c4d77d691edaa3|2e9f3c6]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix typo in MT7621 NAND driver</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=e6fd17d04c7d738598414c55cd091f7fb9c6567a|e6fd17d]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix compile warning in MT7621 NAND driver</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+
+==== Target / x86 (5 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f52b404aeea328b4e021a245c640ed3b0e095fa8|f52b404]]'' **<nowiki>x86/generic:</nowiki>** <nowiki>use HIGHMEM64G instead of HIGHMEM4G to fix PAE and Xen</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=da0219ed9f990e5a951197c2c9c6a916d17109d1|da0219e]]'' **<nowiki>x86:</nowiki>** <nowiki>Fix xen serial console by removing conflicting PATA driver</nowiki> //<color #ccc>(</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=cabf775e64ba337d96f393447bf0347e129e9157|cabf775]]'' **<nowiki>x86:</nowiki>** <nowiki>Refresh subtargets kernel config</nowiki> //<color #ccc>(</color><color #282>+16</color><color #ccc>,</color><color #f00>-14</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=cdd093b5399d5962a44680aef74e2034f4bcf64a|cdd093b]]'' **<nowiki>x86/64:</nowiki>** <nowiki>add xen DomU support</nowiki> //<color #ccc>(</color><color #282>+58</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=46e29bd0788c9549cca9fb927da2c5e49ccbe6f6|46e29bd]]'' **<nowiki>x86:</nowiki>** <nowiki>partly revert cabf775</nowiki> //<color #ccc>(</color><color #282>+12</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+
+==== Wireless / Common (3 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=bff16304b0bf5ebc98a6599235cc19512d051888|bff1630]]'' **<nowiki>brcmfmac:</nowiki>** <nowiki>backport length check in brcmf_cfg80211_escan_handler()</nowiki> //<color #ccc>(</color><color #282>+63</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=707305a19dbd235a55fe5fee45d92485f40022b8|707305a]]'' **<nowiki>mac80211:</nowiki>** <nowiki>Update wireless-regdb to master-2017-03-07</nowiki> //<color #ccc>(</color><color #282>+19</color><color #ccc>,</color><color #f00>-12</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a5e1f7f5ef63eb4036d7f1299d1da97687719ca1|a5e1f7f]]'' **<nowiki>mac80211:</nowiki>** <nowiki>backport kernel fix for CVE-2017-13080</nowiki> //<color #ccc>(</color><color #282>+81</color><color #ccc>)</color>//\\
+
+==== Wireless / MT76 (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c1023c8075b0590390020d65fd077b908cefad63|c1023c8]]'' **<nowiki>mt76:</nowiki>** <nowiki>sync with version 878456caf60d from master</nowiki> //<color #ccc>(</color><color #282>+38</color><color #ccc>,</color><color #f00>-52</color><color #ccc>)</color>//\\
+
+===== Addressed bugs =====
+=== #787 ===
+**Description:** <nowiki>no console in Xen-DomU guests</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=787]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=da0219ed9f990e5a951197c2c9c6a916d17109d1|da0219e]]'' **<nowiki>x86:</nowiki>** <nowiki>Fix xen serial console by removing conflicting PATA driver</nowiki> //<color #ccc>(</color><color #f00>-2</color><color #ccc>)</color>//\\
+\\
+=== #908 ===
+**Description:** <nowiki>x86: Xen support broken in 17.01.2 and later</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=908]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f52b404aeea328b4e021a245c640ed3b0e095fa8|f52b404]]'' **<nowiki>x86/generic:</nowiki>** <nowiki>use HIGHMEM64G instead of HIGHMEM4G to fix PAE and Xen</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== #1025 ===
+**Description:** <nowiki>lede-17.01.2-ramips-mt7620-ArcherC50-squashfs-sysupgrade.bin does not fit on device</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=1025]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f9a849ca84f596aafd7c167b2410ec5446c84784|f9a849c]]'' **<nowiki>ramips:</nowiki>** <nowiki>mt7620: do not pad sysupgrade Archer images</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+\\
+=== #1039 ===
+**Description:** <nowiki>lede-17.01.3-ramips-mt7620-ArcherC50-squashfs-sysupgrade.bin wont fit (7.63 Mb - 7.62 left)</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=1039]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f9a849ca84f596aafd7c167b2410ec5446c84784|f9a849c]]'' **<nowiki>ramips:</nowiki>** <nowiki>mt7620: do not pad sysupgrade Archer images</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+\\
+=== #1043 ===
+**Description:** <nowiki>WA850RE v1 leds</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=1043]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=94aa2b8af07fa72565eb0c73a41c1fcd384b2102|94aa2b8]]'' **<nowiki>ar71xx:</nowiki>** <nowiki>add rssileds to WA850RE v1 image</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+\\
+
+===== Security fixes ====
+=== CVE-2017-0786 ===
+**Description:** <nowiki>A elevation of privilege vulnerability in the Broadcom wi-fi driver. Product: Android. Versions: Android kernel. Android ID: A-37351060. References: B-V2017060101.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0786]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=bff16304b0bf5ebc98a6599235cc19512d051888|bff1630]]'' **<nowiki>brcmfmac:</nowiki>** <nowiki>backport length check in brcmf_cfg80211_escan_handler()</nowiki> //<color #ccc>(</color><color #282>+63</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-9778 ===
+**Description:** <nowiki>GNU Debugger (GDB) 8.0 and earlier fails to detect a negative length field in a DWARF section. A malformed section in an ELF binary or a core file can cause GDB to repeatedly allocate memory until a process limit is reached. This can, for example, impede efforts to analyze malware with GDB.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-9778]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f67c22e0c2431c0e152adc573bbf46a8607779c4|f67c22e]]'' **<nowiki>toolchain/gdb:</nowiki>** <nowiki>update to version 8.0.1</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12153 ===
+**Description:** <nowiki>A security flaw was discovered in the nl80211_set_rekey_data() function in net/wireless/nl80211.c in the Linux kernel through 4.13.3. This function does not check whether the required attributes are present in a Netlink request. This request can be issued by a user with the CAP_NET_ADMIN capability and may result in a NULL pointer dereference and system crash.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12153]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=fa0b5fce1f53c3520cacff49e9d371fb2c5c3685|fa0b5fc]]'' **<nowiki>kernel:</nowiki>** <nowiki>bump 4.4 to 4.4.92</nowiki> //<color #ccc>(</color><color #282>+12</color><color #ccc>,</color><color #f00>-12</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12154 ===
+**Description:** <nowiki>The prepare_vmcs02 function in arch/x86/kvm/vmx.c in the Linux kernel through 4.13.3 does not ensure that the "CR8-load exiting" and "CR8-store exiting" L0 vmcs02 controls exist in cases where L1 omits the "use TPR shadow" vmcs12 control, which allows KVM L2 guest OS users to obtain read and write access to the hardware CR8 register.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12154]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=fa0b5fce1f53c3520cacff49e9d371fb2c5c3685|fa0b5fc]]'' **<nowiki>kernel:</nowiki>** <nowiki>bump 4.4 to 4.4.92</nowiki> //<color #ccc>(</color><color #282>+12</color><color #ccc>,</color><color #f00>-12</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13077 ===
+**Description:** <nowiki>Wi-Fi Protected Access (WPA and WPA2) allows reinstallation of the Pairwise Transient Key (PTK) Temporal Key (TK) during the four-way handshake, allowing an attacker within radio range to replay, decrypt, or spoof frames.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13077]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=63c17142c865618977a540485eea7a9487a58029|63c1714]]'' **<nowiki>hostapd:</nowiki>** <nowiki>merge fixes for WPA packet number reuse with replayed messages and k...</nowiki> //<color #ccc>(</color><color #282>+929</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13078 ===
+**Description:** <nowiki>Wi-Fi Protected Access (WPA and WPA2) allows reinstallation of the Group Temporal Key (GTK) during the four-way handshake, allowing an attacker within radio range to replay frames from access points to clients.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13078]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=63c17142c865618977a540485eea7a9487a58029|63c1714]]'' **<nowiki>hostapd:</nowiki>** <nowiki>merge fixes for WPA packet number reuse with replayed messages and k...</nowiki> //<color #ccc>(</color><color #282>+929</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13079 ===
+**Description:** <nowiki>Wi-Fi Protected Access (WPA and WPA2) that supports IEEE 802.11w allows reinstallation of the Integrity Group Temporal Key (IGTK) during the four-way handshake, allowing an attacker within radio range to spoof frames from access points to clients.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13079]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=63c17142c865618977a540485eea7a9487a58029|63c1714]]'' **<nowiki>hostapd:</nowiki>** <nowiki>merge fixes for WPA packet number reuse with replayed messages and k...</nowiki> //<color #ccc>(</color><color #282>+929</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13080 ===
+**Description:** <nowiki>Wi-Fi Protected Access (WPA and WPA2) allows reinstallation of the Group Temporal Key (GTK) during the group key handshake, allowing an attacker within radio range to replay frames from access points to clients.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13080]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=63c17142c865618977a540485eea7a9487a58029|63c1714]]'' **<nowiki>hostapd:</nowiki>** <nowiki>merge fixes for WPA packet number reuse with replayed messages and k...</nowiki> //<color #ccc>(</color><color #282>+929</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a5e1f7f5ef63eb4036d7f1299d1da97687719ca1|a5e1f7f]]'' **<nowiki>mac80211:</nowiki>** <nowiki>backport kernel fix for CVE-2017-13080</nowiki> //<color #ccc>(</color><color #282>+81</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13081 ===
+**Description:** <nowiki>Wi-Fi Protected Access (WPA and WPA2) that supports IEEE 802.11w allows reinstallation of the Integrity Group Temporal Key (IGTK) during the group key handshake, allowing an attacker within radio range to spoof frames from access points to clients.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13081]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=63c17142c865618977a540485eea7a9487a58029|63c1714]]'' **<nowiki>hostapd:</nowiki>** <nowiki>merge fixes for WPA packet number reuse with replayed messages and k...</nowiki> //<color #ccc>(</color><color #282>+929</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13082 ===
+**Description:** <nowiki>Wi-Fi Protected Access (WPA and WPA2) that supports IEEE 802.11r allows reinstallation of the Pairwise Transient Key (PTK) Temporal Key (TK) during the fast BSS transmission (FT) handshake, allowing an attacker within radio range to replay, decrypt, or spoof frames.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13082]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=63c17142c865618977a540485eea7a9487a58029|63c1714]]'' **<nowiki>hostapd:</nowiki>** <nowiki>merge fixes for WPA packet number reuse with replayed messages and k...</nowiki> //<color #ccc>(</color><color #282>+929</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13086 ===
+**Description:** <nowiki>Wi-Fi Protected Access (WPA and WPA2) allows reinstallation of the Tunneled Direct-Link Setup (TDLS) Peer Key (TPK) during the TDLS handshake, allowing an attacker within radio range to replay, decrypt, or spoof frames.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13086]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=63c17142c865618977a540485eea7a9487a58029|63c1714]]'' **<nowiki>hostapd:</nowiki>** <nowiki>merge fixes for WPA packet number reuse with replayed messages and k...</nowiki> //<color #ccc>(</color><color #282>+929</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13087 ===
+**Description:** <nowiki>Wi-Fi Protected Access (WPA and WPA2) that support 802.11v allows reinstallation of the Group Temporal Key (GTK) when processing a Wireless Network Management (WNM) Sleep Mode Response frame, allowing an attacker within radio range to replay frames from access points to clients.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13087]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=63c17142c865618977a540485eea7a9487a58029|63c1714]]'' **<nowiki>hostapd:</nowiki>** <nowiki>merge fixes for WPA packet number reuse with replayed messages and k...</nowiki> //<color #ccc>(</color><color #282>+929</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13088 ===
+**Description:** <nowiki>Wi-Fi Protected Access (WPA and WPA2) that support 802.11v allows reinstallation of the Integrity Group Temporal Key (IGTK) when processing a Wireless Network Management (WNM) Sleep Mode Response frame, allowing an attacker within radio range to replay frames from access points to clients.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13088]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=63c17142c865618977a540485eea7a9487a58029|63c1714]]'' **<nowiki>hostapd:</nowiki>** <nowiki>merge fixes for WPA packet number reuse with replayed messages and k...</nowiki> //<color #ccc>(</color><color #282>+929</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-1000252 ===
+**Description:** <nowiki>The KVM subsystem in the Linux kernel through 4.13.3 allows guest OS users to cause a denial of service (assertion failure, and hypervisor hang or crash) via an out-of bounds guest_irq value, related to arch/x86/kvm/vmx.c and virt/kvm/eventfd.c.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-1000252]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=fa0b5fce1f53c3520cacff49e9d371fb2c5c3685|fa0b5fc]]'' **<nowiki>kernel:</nowiki>** <nowiki>bump 4.4 to 4.4.92</nowiki> //<color #ccc>(</color><color #282>+12</color><color #ccc>,</color><color #f00>-12</color><color #ccc>)</color>//\\
+\\
+

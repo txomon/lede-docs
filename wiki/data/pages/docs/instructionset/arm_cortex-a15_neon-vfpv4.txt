@@ -1,0 +1,25 @@
+====== arm_cortex-a15_neon-vfpv4 ======
+
+The ARM® Cortex®-A15 processor is a high-performance ARMv7-A processor that has enjoyed proven success with shipments in excess of 50 million units across a variety of premium mobile and infrastructure applications. For area sensitive designs, the Cortex-A15 offers the option to remove the sizable Neon-VFP unit for embedded applications.
+
+The Cortex-A15 is the first ARM processor to incorporate hardware support for virtualized software environments providing isolation and robustness between tasks running in the processor. Coupled with full ECC protection on the caches and 1TB addressing, the Cortex-A15 is well suited for a variety of 32-bit infrastructure applications including networking, storage, and industrial automation.
+
+[[https://www.arm.com/products/processors/cortex-a/cortex-a15.php|source]]
+
+===== Download Packages =====
+
+/* Link to packages download goes here. */
+
+| HTTP   | [[https://downloads.lede-project.org/releases/packages-17.01/arm_cortex-a15_neon-vfpv4/]]      |
+| FTP    | [[ftp://ftp.halifax.rwth-aachen.de/lede/releases/packages-17.01/arm_cortex-a15_neon-vfpv4/]]   |
+
+See [[/downloads#mirrors|Mirrors]] for more download sites.
+
+===== Devices with this instructionset =====
+
+---- datatable ----
+cols   : Package architecture, Target, Subtarget, Brand, Model_pageid, Version
+filter : Package architecture=arm_cortex-a15_neon-vfpv4
+filter : Brand!=(EXAMPLE)
+sort   : Brand
+----

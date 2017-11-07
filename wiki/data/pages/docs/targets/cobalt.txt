@@ -1,0 +1,32 @@
+====== cobalt ======
+
+As of 2016-11-07, this target is not supported by LEDE.
+
+===== Devices with this target =====
+<hidden onHidden="Show devices with this target" onVisible="Hide devices with this target">
+++++Filter: Subtarget|
+---- datacloud ----
+col        : subtarget
+filter     : Target=cobalt
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+++++Filter: LEDE Instructionset|
+---- datacloud ----
+col        : lede instructionset
+filter     : Target=cobalt
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+---- datatable ----
+cols       : Target, Subtarget, Package architecture_pkg-arch, Brand, Model, Version, LEDE Device Page_page
+filter     : Target=cobalt
+filter     : Brand!=(EXAMPLE)
+sort       : Brand
+rownumbers : 1
+----
+</hidden>

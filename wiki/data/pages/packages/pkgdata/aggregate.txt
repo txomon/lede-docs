@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: aggregate ======
+---- dataentry packages ----
+Name                             : aggregate
+Version                          : 1.6-1
+Description                      : takes a list of prefixes in conventional format on stdin, and performs two\\ optimisations to reduce the length of the prefix list. It removes any\\ supplied prefixes which are supurfluous because they are already included in\\ another supplied prefix (e.g., 203.97.2.0/24 would be removed if\\ 203.97.0.0/17 was also supplied), and identifies adjacent prefixes that can\\ be combined under a single, shorter-length prefix (e.g., 203.97.2.0/24 and\\ 203.97.3.0/24 can be combined into the single prefix 203.97.2.0/23).\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 3 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libssp
+Categories_pkg-categorys         : network---ip-addresses-and-names #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arc_arc700, arc_archs, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 4
+License                          : ISC
+Maintainer_pkg-maintainer        : Nikil Mehta
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/net/aggregate|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1.6-1 # short version of the package, for display in table
+----
+

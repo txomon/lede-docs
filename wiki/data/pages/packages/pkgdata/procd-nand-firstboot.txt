@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: procd-nand-firstboot ======
+---- dataentry packages ----
+Name                             : procd-nand-firstboot
+Version                          : 2017-02-15-5f912410-1
+Description                      : OpenWrt firstboot nand helper\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 0 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, procd-nand
+Categories_pkg-categorys         : utilities #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : apm821xx-nand, ar71xx-mikrotik, ar71xx-nand, at91-legacy, at91-sama5d3, bcm53xx-generic, imx6-generic, ipq806x-generic, kirkwood-generic, lantiq-falcon, lantiq-xrx200, lantiq-xway, layerscape-32b, layerscape-64b, mediatek-generic, mvebu-generic, omap-generic, oxnas-generic, ramips-mt7621, rb532-generic,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 1
+License                          : GPL-2.0
+Maintainer_pkg-maintainer        : John Crispin
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/system/procd|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 2017-02-15-5f912410-1 # short version of the package, for display in table
+----
+

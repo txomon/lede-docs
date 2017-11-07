@@ -1,0 +1,65 @@
+====== Create New Dataentry Page ======
+~~NOTOC~~
+
+A [[template_dataentry_background|dataentry page]] is a page that holds information about a router or device in a standard format. This data then automatically appears in the [[toh:start|Table of Hardware]], or on the //Device Page// itself.  
+===== Before You Begin =====
+
+  * **You must be logged in** to be able to create new dataentry pages.
+  * **Check** that your device is not already in the [[toh:views:toh_minimal_all|Table of Hardware]]
+  * **Only create new dataentries** for devices that //you know// are supported by LEDE. \\ (Our goal is to build a database of devices that LEDE supports. There's no value to our database if most routers have 'unknown' status.)
+  * **Collect** all information required by the [[meta:criteria_for_adding_new_devices_to_the_toh|Criteria for adding devices to the ToH]] before starting.
+
+<WRAP left 55%>
+<form>
+action   template templates:template_dataentry "toh:hwdata:@@Brand@@:" _
+
+fieldset "Basic device data (* = mandatory)"
+
+data_aliastextbox Brand _brand-new @
+textbox "Model" @
+textbox "Version" ! @
+select "LEDE support status" "|Not yet supported|Already supported"
+
+fieldset "Unsupported device" "LEDE support status" "Not yet supported"
+static "Unsupported devices can not be added to the ToH. Please come back when the device is supported."
+static "To save the hardware specs, you can either post them in the LEDE forum, or create a page at https://wikidevi.com/."
+
+fieldset "Basic hardware data" "LEDE support status" "Already supported"
+textbox "WikiDevi URL" ! /^https:\/\/wikidevi.com\/wiki\// "**Must be like https://wikidevi.com/wiki/..."
+data_aliastextbox "Target" _target-new
+data_aliastextbox "Subtarget" ! _subtarget-new
+textbox "CPU" !
+data_aliastextbox "Flash MB" ! _mbflash
+data_aliastextbox "RAM MB" ! _mbram
+
+fieldset "LEDE support" "LEDE support status" "Already supported"
+textbox "LEDE Supported Since Commit" ! /^https:\/\/git.lede-project.org\/\?p=source.git;a=commit;h=[A-Za-z0-9]*/ "**https://git.lede-project.org/?p=source.git;a=commit;h=<commithash>"
+data_aliastextbox "LEDE Supported Since Rel" ! _releasesince-lede-new
+data_aliastextbox "LEDE Supported Current Rel" _releasecurrent-lede-new
+textbox "Firmware LEDE Install URL" ! /^https:\/\/downloads.lede-project.org\// "**Must be like https://downloads.lede-project.org/..."
+textbox "Firmware LEDE Upgrade URL" ! /^https:\/\/downloads.lede-project.org\// "**Must be like https://downloads.lede-project.org/..."
+Submit "Create New Dataentry"
+</form>
+</WRAP>
+<WRAP right 40%>
+\\
+\\
+**Step-by-Step Instructions**\\
+  - Select a **Brand** from the dropdown.\\ //If you need a new Brand added, please [[/contact|contact a LEDE wiki admin]] or post a note to [[https://forum.lede-project.org/|LEDE forum]].//
+  - Enter a **Model** and optionally a **Version** (hardware revision).
+  - Select **LEDE support status**.\\ (After you select "Already supported", additional fields and the Submit button will appear.)
+  - Fill in the new fields.
+  - Click **Create New Dataentry** to create a new [[template_dataentry_background|dataentry page.]]
+  - Follow the link on resulting page to your new Dataentry. 
+The Dataentry page lists all the fields for the device. 
+  - Click the ''Edit'' button (at the bottom-left of the page) to add or modify the information.
+  - Update the dataentry using the text fields of the form.\\ For more info, see [[template_dataentry_background|Dataentry template background]]
+</WRAP>
+/*
+fieldset "Create new dataentry page" "LEDE support status" "Already supported"
+static "* = mandatory"
+**Is your Brand missing from the dropdown?**\\
+To have a new brand added to the dropdown, please [[/contact|contact a LEDE wiki admin]] or post a note to [[https://forum.lede-project.org/|LEDE forum]].
+</WRAP>
+
+*/

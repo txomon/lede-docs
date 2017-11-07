@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: nail ======
+---- dataentry packages ----
+Name                             : nail
+Version                          : 12.5-2
+Description                      : Heirloom mailx (formerly known as "nail") is intended provide\\ the functionality of the POSIX mailx command with additional\\ support for MIME messages, IMAP (including caching), POP3,\\ SMTP, S/MIME, message threading/sorting, scoring, and filtering\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 123 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libssp, libopenssl
+Categories_pkg-categorys         : mail #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : arc_arc700, arc_archs, arm_arm926ej-s, arm_cortex-a53_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, i386_pentium, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 124
+License                          : BSD-2-Clause
+Maintainer_pkg-maintainer        : Dmitry V. Zimin
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/mail/nail|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 12.5-2 # short version of the package, for display in table
+----
+

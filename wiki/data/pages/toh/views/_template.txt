@@ -1,0 +1,62 @@
+====== Table of Hardware: --->>> 1) Enter a name for your ToH version here <<<--- ======
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+/****************** How to create your own ToH version **************************/
+/*                                                                              */
+/* 1) Enter a name for your ToH version (see above)                             */
+/* 2) Enter a description for your ToH version (see below)                      */
+/*    What is it good for? What is it's purpose? Why has it been created?       */
+/*    Which question does it answer that other tables don't answer?             */
+/* 3) Edit the datatable below according to your needs:                         */
+/*    - Delete any unwanted "cols". Horizontal space on your screen is scarce,  */
+/*      therefore minimize the number of columns to keep the tables small.      */
+/*    - Filter "Model!=@@Model@@" must stay as it is.                           */
+/*    - More filters may be added as needed. See dokuwiki for filter options +  */
+/*      comparators ->  https://www.dokuwiki.org/plugin:data#data_table_output  */
+/*    - Leave everything else as it is                                          */
+/* 4) Modify/add/delete dataclouds as needed                                    */
+/* 5) -> Preview and check if you are happy with the result. If not -> 3)+4)    */
+/* 6) Save                                                                      */
+/*                                                                              */
+/*     For questions and troubleshooting, regarding the ToH and datatables      */
+/*           -> https://wiki.lede-project.org/wiki/start#contact                */ 
+/*                                                                              */
+/********************************************************************************/
+
+/* --->>> 2) Enter a description for your ToH version + the filtercriteria below <<<--- */
+
+**Purpose:** This ToH version shows devices which match the following criteria:
+
+  * YourFilterCriteria#1
+  * YourFilterCriteria#2
+  * YourFilterCriteria#3
+
+{{page>meta:infobox:toh_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+----
+
+**Scrolling through the table:** Click anywhere in the table, then use your cursor keys to scroll left/right, up/down.
+
+/* --->>> 4) Add/modify/delete dataclouds for filtering as needed; Filter "Model!=@@Model@@" must stay as is. <<<--- */
+
+++++Filter: Bootloader|
+---- datacloud ----
+col        : bootloader
+filter     : Model!=@@Model@@
+summarize  : 1
+----
+++++
+
+----
+
+/* --->>> 3) Edit the datatable below according to your needs <<<--- */
+
+---- datatable ----
+cols       : Device Type, Brand, Model, Versions, FCCID_url, Availability, OWrt Supported Since Rev_url, OWrt Supported Since Rel, OWrt Supported Current Rel, OWrt Unsupported, LEDE Supported Since Commit_git, LEDE Supported Since Rel, LEDE Supported Current Rel, LEDE Unsupported, Bootloader, Target, Subtarget, CPU, CPU cores_, CPU MHz, Flash MB, RAM MB, Ethernet 100M ports_, Ethernet Gbit ports_, Comments network ports_, Switch, Modem, VLAN, WLAN Hardware, WLAN 2.4GHz, WLAN 5.0GHz, WLAN Comments_, Detachable Antennas_, Bluetooth, USB ports_, SATA ports_, Audio ports_, Video ports_, Phone ports_, Serial, JTAG, LED count, Button count, Power Supply, OpenWrt Device Page_url, LEDE Device Page_page, Device Techdata_pageid, OWrt Forum Topic URL_url, LEDE Forum Topic URL_url, WikiDevi URL_url, OEM Device Homepage URL_url, Firmware OEM Stock URL_url, Firmware OpenWrt Install URL_url, Firmware OpenWrt Upgrade URL_url, Firmware LEDE Install URL_url, Firmware LEDE Upgrade URL_url, Comments_
+dynfilters : 1
+rownumbers : 1
+filter     : Model!=@@Model@@
+sort       : Brand
+----
+

@@ -1,0 +1,50 @@
+====== LEDE 17.01.4 - Fourth Service Release - October 2017 ======
+
+<code>
+     _________
+    /        /\      _    ___ ___  ___
+   /  LE    /  \    | |  | __|   \| __|
+  /    DE  /    \   | |__| _|| |) | _|
+ /________/  LE  \  |____|___|___/|___|                      lede-project.org
+ \        \   DE /
+  \    LE  \    /  -----------------------------------------------------------
+   \  DE    \  /    Reboot (17.01.4, r3560-79f57e422d)
+    \________\/    -----------------------------------------------------------
+</code>
+
+The LEDE Project (“Linux Embedded Development Environment”) is a Linux operating system emerged from the [[https://openwrt.org|OpenWrt]] project. It is a complete replacement for the vendor-supplied firmware of a wide range of wireless routers and non-network devices. See the [[https://lede-project.org/toh/start|Table of Hardware]] for supported devices. For more information about LEDE Project organization, see the [[https://lede-project.org/about|About LEDE pages.]]
+
+Get LEDE Firmware at: http://downloads.lede-project.org/releases/
+
+===== Highlights In LEDE 17.01.4 ===== 
+
+The LEDE Community is proud to announce the fourth service release of
+stable LEDE 17.01 series.
+
+LEDE 17.01.4 "Reboot" incorporates a fair number of fixes back ported
+from the development branch during the last two weeks.
+
+Some selected highlights of the service release are:
+
+
+  * Linux kernel updated to version 4.4.92 (from 4.4.89 in v17.01.3)
+  * [[releases:17.01:changelog-17.01.4#security_fixes|Security fixes]] to //brcmfmac//, //hostapd//, //mac80211//, //toolchain/gdb// and the //Linux kernel//
+  * Introduce latest version of the Wireguard VPN software (0.0.20171017)
+  * Fix Xen support in the x86/generic subtarget, add Xen support in the x86/64 subtarget
+  * Assorted platform fixes for //ar71xx//, //bcm53xx//, //ramips// and //x86//
+
+===About the KRACK attack=== 
+
+While the LEDE 17.01.4 release includes fixes for the [[https://www.krackattacks.com/|KRACK bugs in the WPA Protocol disclosed earlier this week]] in the router firmware, these fixes do not fix the problem on the client-side. 
+**You still need to update all your client devices - computers, phones, tablets, cameras, refrigerators, thermostats, light bulbs, and any other device using Wi-Fi.** 
+Since some client devices might never receive an update, //hostapd// contains an [[docs:user-guide:wifi_configuration#wpa_key_reinstallation_attack_workaround|optional AP-side workaround]] to complicate these attacks, slowing them down. Please note that this does not fully protect you from them, especially when running older versions of //wpa_supplicant// vulnerable to CVE-2017-13086, which the workaround does not address. As this workaround can cause interoperability issues and reduced robustness of key negotiation, this workaround is disabled by default.
+
+Due to the version bump of toolchain/gdb to 8.0.1, at least GCC 4.8 is now required to build LEDE.
+
+For a detailed list of changes since 17.01.3 refer to https://lede-project.org/releases/17.01/changelog-17.01.4
+
+As always, a big thank you goes to all our active package maintainers, testers, documenters, and supporters.
+
+Have fun!
+    
+The LEDE Community

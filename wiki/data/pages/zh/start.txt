@@ -1,0 +1,41 @@
+====== 欢迎来到 LEDE 项目 ======
+~~NOTOC~~
+
+LEDE（Linux Embedded Development Environment，Linux嵌入式开发环境）项目是一个基于OpenWrt的Linux操作系统。它完全可以替代广泛的网络设备和非网络设备中的原厂固件。  [[toh:start|硬件列表（Table of Hardware）]] 列出了支持的设备。 前往 [[:about|关于LEDE]] 以了解更多LEDE机构的信息。
+
+===== 为何使用LEDE? =====
+
+LEDE相比制造商的原厂固件更加出色，才使得人们更倾向于使用LEDE。LEDE工作起来更加稳定、提供更多的功能，并且更加安全，同时具有良好的技术支持。
+  * **可扩展性：** LEDE提供了许多以往只在高端设备上才提供的各种功能。它具有3000个以上的标准化应用软件包，您可以轻松地将他们应用于各种支持的设备，包括各种陈旧的路由器。 [[reasons_to_use_lede#extensibility|更多...]]
+
+  * **高安全性：** 从安装开始，LEDE就以安全的标准来设计。例如Wi-Fi默认禁用，没有弱密码，没有任何后门程序。LEDE的系统组件始终保持最新，因此漏洞一旦被发现后会很快得到解决。 [[reasons_to_use_lede#security|更多...]]
+
+  * **高性能、高稳定性** LEDE固件是由所支持的所有设备的标准化组件制作而成。这意味着每个组件都会接受更多的测试和bug修复，而不像原厂固件那样一旦为生产线的产品提供固件后就不闻不问。 [[reasons_to_use_lede#performance_stability|更多...]]
+
+  * **强大的社区支持：** LEDE团队成员会经常参与到[[https://forum.lede-project.org|LEDE论坛]]、[[http://lists.infradead.org/mailman/listinfo/lede-dev|LEDE开发者]]、[[http://lists.infradead.org/mailman/listinfo/lede-adm|LEDE管理员]]以及[[:contact#irc_channels|LEDE的IRC频道]]中去。您可以直接与开发人员，管理软件模块的志愿者和其他LEDE用户交流，大大增加您解决问题的机会。 [[:contact|更多...]]
+
+  * **研发：** 许多团队使用LEDE作为他们对网络性能研究的平台。这意味着他们的成功实验案例将会首先在LEDE中实现，而原厂固件将会滞后许多。[[reasons_to_use_lede#research_platform|更多...]]
+
+  * **开源/无额外支出：** 使用LEDE没有任何金钱成本。它完全是由志愿者团队、开发者、维护人员、个人以及一些公司创建的。 如果您喜欢LEDE，可以考虑[[#lede_wants_you|将它变得更好]]。作为开源社区的一部分，LEDE由强大的Linux Kernel驱动 [[https://git.lede-project.org|获取源代码...]]。
+
+  * **以及更多...** 不妨看看 [[reasons_to_use_lede#configuration|使用LEDE的理由...]]
+
+
+===== LEDE需要你! =====
+
+就像任何开源项目一样，LEDE需要在开发者与使用者的共同努力下蓬勃发展。
+
+  * 如果您想参与开发，请参阅我们的[[docs:guide-developer:the-source-code|"开发者指南"]]，了解如何获取源代码，构建它，并将更改提交给项目。
+
+  * 如果您不是开发人员，您仍然可以提供帮助。文档可以随时改进（即使要验证说明是否符合您的体验），或者您可以给其他遇到问题的社区成员提供帮助。 不要犹豫，[[:register_yourself_in_the_wiki|在维基页面中注册]]，或加入我们的[[https://lists.infradead.org/mailman/listinfo/lede-dev|邮件列表]]和[[https://lede-project.org/contact#irc_channels|IRC频道]]，以获得联系。
+
+
+===== 鼎力支持 =====
+
+* Wrt社区由许多伟大的社区组成，他们都怀着各自的使命，改善这个星球上的东西。 以下社区已决定支持这个项目。万分感谢！
+
+| {{wiki:qmp.png|qMp logo}}| **[[http://qmp.cat/News/31_qMp_endorses_the_LEDE_project|qMp endorses the LEDE project]]** |
+| {{wiki:wirelesspt.png|WirelessPT logo}}| **[[https://wirelesspt.net/wiki/LEDE|"We wish huge success to the LEDE project"]]** |
+| {{wiki:weimarnetz.png|Weimarnetz logo}}| **[[https://weimarnetz.de/|Weimarnetz Project Homepage]]** |
+| {{wiki:bmx7.png|bmx.net logo}}| **[[http://bmx6.net/news/24|"We … will consider it the new default OS environment for embedded devices running bmx6 and bmx7"]]** |
+| {{wiki:libremesh.png|Libre-Mesh logo}}| **[[http://libre-mesh.org/news.html#2016_08_06_endorsement_to_lede_project|"We endorse the LEDE project and we plan to start basing Libre-Mesh releases on Linux Embedded Development Environment"]]** |

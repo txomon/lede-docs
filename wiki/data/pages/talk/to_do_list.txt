@@ -1,0 +1,19 @@
+**Theme:** 
+
+I personally prefer the Bootstrap3 theme, it's a clean layout -- [[borromini.reg@protonmail.com|Borromini]] 27/09/2016 22:36
+
+I agree with Borromini about Bootstrap3 theme, but I also add that the any other theme proposal should be "responsive" i.e. allow easy usage from mobile devices (Bootstrap3 is "responsive" already so it should be fine)  -- [[alberto.bursi@outlook.it|Alberto]] 28/09/2016 
+
+**Structure:** 
+
+I was thinking about dividing the wiki in five main pages (names not final): "**LEDE info**" (links to forums, mailing list, contacts, copies of their meeting's transcripts, and any LEDE-related information that does not relate directly to the firmware and the hardware) "**this wiki**" (where we have the wiki rules, the TODO and other wiki-related information) "**installation/configuration**" (of LEDE and of packages), "**developer documentation**" (where info about how things are supposed to work currently, and how to make your own firmware), and last but not least "**supported hardware**" (with ToH and all that).
+Then all other things are children of these pages, for example in the "**installation/configuration**" you will find "downloading" "installation" "basic configuration" "advanced configuration". Under "first time configuration" you can find all topics that matter to get the router up and running in a simple home network, under "advanced configuration" you find all topics for configuring everything else. And so on and so forth. 
+Also I'd like to have the "hardware support" page to have the devices divided by most likely usecase, for example the obvious biggest category is the one about "routers", but also one about NAS devices (most Kirkwood-based devices are NAS, not routers for example and LEDE supports only a fraction of those out in the wild), a page about wifi music streamers (there are a few supported), a page about dev boards, and so on. I'd like to have only very odd stuff in the "miscellaneous" category.
+
+The general idea is making something like NasCentral wiki (they do it with brands and make sub-wikis with a different hostname, I'm not asking to make subwikis here) http://www.nas-central.org/wiki/Main_Page
+
+I propose to start putting down a skeleton of this structure so people passing by (and us) will have a general idea of what is needed and where by just looking at the red links on the left and on the page they land on (as on the left it won't make sense to have more than 2 levels). 
+
+-- (yes this whole post is mine) [[alberto.bursi@outlook.it|Alberto]] 28/09/2016
+
+~~DISCUSSION~~

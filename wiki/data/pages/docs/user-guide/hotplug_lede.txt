@@ -1,0 +1,207 @@
+====== Hotplug ======
+
+Procd (the LEDE init system and process management daemon) executes scripts located in ''/etc/hotplug.d/'' when certain events happen, like for example when an interface goes up or down, when a new storage drive is detected, or when a button is pressed.
+It can be very useful with PPPoE connection or in an unstable network, or to use hardware buttons.
+
+This functionality emulates/extends what was done by the long retired Hotplug2 package.
+
+=== How it works ===
+In the /etc/hotplug.d folder you will find some subfolders **block**  **iface**,  **net** and **ntp**.
+
+When the trigger event fires, Procd will execute all scripts in that trigger's subfolder, in alphabetical order. Which is why most scripts in there use a numeric prefix.
+
+  * **block** folder is for block device events (block device connected/disconnected).
+  * **iface** folder is for interface events (when a interface like LAN or WAN is connected/disconnected)
+  * **net** folder is for :?: (probably network-related)
+  * **ntp** folder is for :?: (probably related to the times the clock is adjusted from the network)
+  * **button** folder is for buttons (not created by default)
+
+There may (should) be others, for other types of triggers. By looking at the source [[https://github.com/lede-project/source/blob/master/package/system/procd/files/hotplug.json|on github]] there should be some also for buttons, sound devices, serial and usb serial dongles.
+
+===== Usage =====
+Simply place your script(s) into the right hotplug.d subdirectory, if there is none just create the right one.
+
+===== Information provided to your scripts =====
+Procd exposes a wealth of info when executes your scripts in hotplug.d, usually as environmental variables.
+
+If you want to see what environmental variables it is providing, make a script that contains this line\\ 
+
+**env > /tmp/envs_log.log**
+
+and place it in the folder you want to use, then trigger the event connected to that folder, and then you can see what envs were passed by reading the ''/tmp/envs_log.log'' text file
+
+
+=== The block folder ===
+For scripts in **block** folder, these are the (releavant) environmental variables
+
+^ Variable name ^ Description ^
+| ACTION | Either "add"  or "remove" |
+| DEVICENAME | seems same as DEVNAME below |
+| DEVNAME | Device or partition name (e.g. "sdc" or "sdc1")|
+| DEVPATH | full device path (for example "/devices/pci0000:00/0000:00:0b.0/usb1/1-1/1-1:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc1 " |
+| DEVTYPE | what the DEVNAME e DEVICENAME are names of, I've seen "partition" here when a device with a readable partition is inserted and a "disk" when that device is removed.|
+| MAJOR | major device number |
+| MINOR | minor device number |
+| SEQNUM | seqnum (a number) |
+| SUBSYSTEM | seems this is only "block" |
+
+=== The iface folder ===
+
+There are three main environment variables that are passed to each **iface** hotplug script:
+^ Variable name ^ Description ^
+| ACTION | Either "ifup"  or "ifdown" |
+| INTERFACE | Name of the interface which went up or down (e.g. "wan" or "ppp0")|
+| DEVICE | Physical device name which interface went up or down (e.g. "eth0.1" or "br-lan")|
+
+==== Finding the internal name of hardware buttons ====
+
+Internal name of hardware buttons is useful if you want to run a script linked to that button, as the hotplug functionality will just call all scripts in **/button** any time any button is pressed, and it is up to the script to read the name of the button pressed and decide if it's his button or not.\\
+While button names can be easily seen in the source code if you know how it is arranged, for people not familiar with LEDE source it's easier to use the following method.
+
+  * Create the directory if you don't have it: ''mkdir -p /etc/hotplug.d/button''
+  * Create the file ''/etc/hotplug.d/button/button_test'' by copy-pasting the following code:
+<code bash>cat > /etc/hotplug.d/button/button_test <<End-of-message
+#!/bin/sh
+logger the button was $BUTTON and the action was $ACTION 
+End-of-message</code>
+  * Make it executable with ''chmod +x /etc/hotplug.d/button/button_test''
+  * Press the button you want to use, then read the system log by writing ''logread'' in the console and pressing enter/return. You should see something like the following:
+
+<code bash>
+Jan 1 00:01:15 OpenWrt user.notice root: BTN_1   
+Jan 1 00:01:15 OpenWrt user.notice root: pressed   
+Jan 1 00:01:16 OpenWrt user.notice root: BTN_1    
+Jan 1 00:01:16 OpenWrt user.notice root: released 
+</code>
+
+And now you see that ''BTN_1'' is the name of the button you just pressed. Note that depending on button it may show 2 events like in the example (for press and for release). This is useless for momentary buttons that don't keep their state, but useful for push switches and the like (that stay pressed until you release them)
+
+===== Examples =====
+Save the example script at ''/etc/hotplug.d/iface/99-my-action''.
+<code>
+[ "$ACTION" = ifup ] && {
+  logger -t button-hotplug Device: $DEVICE / Action: $ACTION
+} 
+</code>
+
+Every time an interface goes up then the if/fi statement will be executed.
+
+Niii has posted this quick example for a USB WiFi device hotplug event to trigger an init.d network restart wlan0 script.
+
+For determine RTL8188SU_PRODID variable, use "lsusb -v":
+  idVendor           0x0bda Realtek Semiconductor Corp.
+  idProduct          0x8171 RTL8188SU 802.11n WLAN Adapter
+  bcdDevice            2.00
+
+**/etc/hotplug.d/usb/20-rtl8188su** 
+
+<code> 
+BINARY="/sbin/wifi up"
+RTL8188SU_PRODID="bda/8171/200"
+
+if [ "${PRODUCT}" = "${RTL8188SU_PRODID}" ]; then
+    if [ "${ACTION}" = "add" ]; then
+        ${BINARY}
+    fi
+fi
+</code>
+
+**/etc/hotplug.d/usb/20-cp210x** 
+
+An other script to create a symlink instead of renaming the device.\\
+I test if DEVICE_NAME is empty because when I plug usb device I retrieve two add event, and the first come before created device, so symlink fails.
+<code>
+CP210_PRODID="10c4/ea60/100"
+SYMLINK="my_link"
+
+if [ "${PRODUCT}" = "${CP210_PRODID}" ];
+   then if [ "${ACTION}" = "add" ];
+      then
+         DEVICE_NAME=$(ls /sys/$DEVPATH | grep tty)
+         if [ -z ${DEVICE_NAME} ];
+            then logger -t Hotplug Warning DEVICE_NAME is empty
+            exit
+         fi
+         logger -t Hotplug Device name of cp210 is $DEVICE_NAME
+         ln -s /dev/$DEVICE_NAME /dev/${SYMLINK}
+         logger -t Hotplug Symlink from /dev/$DEVICE_NAME to /dev/${SYMLINK} created
+   fi
+fi
+
+if [ "${PRODUCT}" = "${CP210_PRODID}" ];
+   then if [ "${ACTION}" = "remove" ];
+         then 
+         rm /dev/${SYMLINK}
+         logger -t Hotplug Symlink /dev/${SYMLINK} removed
+   fi
+fi
+</code>
+
+Script that detects if plugged usb device is bluetooth or not.
+
+<code>
+BT_PRODID="a12/1/"
+BT_PRODID_HOT=`echo $PRODUCT | cut -c 1-6`
+
+#logger -t HOTPLUG "PRODUCT ID is" $BT_PRODID_HOT
+
+if [ "$BT_PRODID_HOT" = "$BT_PRODID" ]; then
+    if [ "$ACTION" = "add" ]; then
+        logger -t HOTPLUG "bluetooth device has been plugged in!"
+        if [ "$BSBTID_NEW" = "$BSBTID_OLD" ]; then
+            logger -t HOTPLUG "bluetooth device hasn't changed"
+        else
+            logger -t HOTPLUG "bluetooth device has changed"
+        fi
+    fi
+    if [ "$ACTION" = "remove" ]; then
+        logger -t HOTPLUG "bluetooth device has been removed!"
+    fi
+else
+    logger -t HOTPLUG "USB device is not bluetooth"
+fi
+</code>
+
+Auto start mjpg-streamer when an usb camera is plugged in.
+<code>
+case "$ACTION" in
+    add)
+            # start process
+        /etc/init.d/mjpg-streamer start
+            ;;
+    remove)
+            # stop process
+        /etc/init.d/mjpg-streamer stop
+            ;;
+esac
+</code>
+
+===== Troubleshoot =====
+
+If you wish to troubleshoot hotplug of some type of device this can be done via simple debug script. For example to troubleshoot adding and removing of any type of usb devices, simply create this **/etc/hotplug.d/usb/10-usb_debug** script with all variables:
+<code>
+#!/bin/sh
+logger -t DEBUG "hotplug usb: action='$ACTION' devicename='$DEVICENAME' devname='$DEVNAME' devpath='$DEVPATH' product='$PRODUCT' type='$TYPE' interface='$INTERFACE'"
+</code>
+
+or this one with only essential ones used:
+<code>
+#!/bin/sh
+logger -t DEBUG "hotplug usb: action='$ACTION' product='$PRODUCT' type='$TYPE' interface='$INTERFACE'"
+</code>
+
+So with debuging enabled here is how it looks like when you plug two different usb bluetooth dongles:
+
+<code>action='add' product='a12/1/1915' type='224/1/1' interface=''
+action='add' product='a12/1/1915' type='224/1/1' interface='224/1/1'
+action='add' product='a12/1/1915' type='224/1/1' interface='224/1/1'
+action='add' product='a12/1/1915' type='224/1/1' interface='254/1/0'
+action='remove' product='a12/1/1915' type='224/1/1' interface='224/1/1'
+action='remove' product='a12/1/1915' type='224/1/1' interface='224/1/1'
+action='remove' product='a12/1/1915' type='224/1/1' interface='254/1/0'
+action='remove' product='a12/1/1915' type='224/1/1' interface=''
+action='add' product='a12/1/134' type='224/1/1' interface=''
+action='add' product='a12/1/134' type='224/1/1' interface='224/1/1'
+action='add' product='a12/1/134' type='224/1/1' interface='224/1/1'</code>
+
+So by using some (maybe flawed) logic we can deduce that match Bluetooth is possible if we use product='a12/1*'

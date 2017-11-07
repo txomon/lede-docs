@@ -1,0 +1,23 @@
+~~NOCACHE~~
+
+  * [[:es:start|Bienvenido al Proyecto LEDE]]
+  * [[:es:supported_devices|Dispositivos compatibles]]
+  * [[:es:packages:start|Paquetes]]
+  * [[:es:downloads|Descargas]]
+  * [[:docs:start|Documentation]]
+  * [[:submitting-patches|Submitting patches]]
+  * [[:bugs|Reporting bugs]]
+  * [[https://forum.lede-project.org|Forum]]
+  * [[:faq|FAQ]] 
+
+----
+
+  * [[:about|About LEDE]] 
+    * [[:rules|LEDE Rules]]
+    * [[:todo|LEDE To-Do]] 
+    * [[:infrastructure|LEDE Infrastructure]]
+  * [[:wiki:start|About this site]]
+
+  * [[:contact|Contact Us]] 
+
+----

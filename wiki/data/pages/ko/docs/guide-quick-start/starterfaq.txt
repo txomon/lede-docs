@@ -1,0 +1,52 @@
+====== LEDE 입문자 FAQ ======
+
+**내 장치에 LEDE 이미지를 성공적으로 다운로드 하였습니다. 그다음은 무엇을 해야 하나요? **\\
+root 암호설정, WiFi 설정, user guide를 참고하여 troubleshooting 해결방법 숙지, 추가적으로 변경을 원하면 사용자 설명서에서 관련된 내용을 찾아 볼 수 있습니다.
+
+**기본 설치 이후 관리자 웹 페이지에 어떻게 접속 하나요?**\\
+사용하시는 웹 브라우저를 이용해 http://192.168.1.1 혹은 http://lede 페이지에 접속 할 수 있습니다.
+
+**LEDE의 기본 관리자 계정의 이름은 무엇인가요?**\\
+"root"
+
+**초기 'root' 패스워드는 무엇인가요?**\\
+초기 비밀번호는 설정되어 있지 않습니다. 첫번째 로그인 후 콘솔에서 ''passwd'' 명령어를 사용하거나, [[http://lede/cgi-bin/luci/admin/system/admin| LUCI Menu System/Administration]] 페이지에서 설정 하세요.
+
+**'root' 패스워드를 분실했을 경우 리셋 할수 있나요?**\\
+네, troubleshooting 섹션의 user guide를 참고 하세요.
+
+**LEDE 설정이 잘못되어 제 LEDE 장치에 연결 할 수 없습니다. 어떻게 하면 되나요?**\\
+troubleshooting 섹션의 user guide를 참고 하세요. 몇가지 복구 방법을 시도 해볼 수 있습니다.
+
+**관리자 웹 페이지에 SSL을 적용 하는 방법이 어떻게 되나요?**\\
+SSH 콘솔창에서 ''opkg update''을 실행하세요, 그다음 ''opkg install luci-ssl''를 실행하여 패키지를 설치한 다음 라우터를 다시 시작하세요. 라우터의 부팅이 완료되면 웹브라우저에서 https://192.168.1.1 혹은 https://lede 페이지에 접속 할 수 있습니다.
+
+**SSH에서 사용 할 수 있는 텍스트 편집기가 있나요?**\\
+''vi''를 사용하세요. 다음은 주요 단축키 입니다 : \\
+|ESC :q! | 저장하지 않고 종료|
+|ESC :wq | 저장후 종료|
+|ESC i | 현재 커서 앞에 입력|
+|ESC x | 한글자 삭제|
+|ESC dd | 행 삭제|
+|ESC o | 행아래 입력|
+|ESC O | 행 위 입력|
+
+**Windows에서 LEDE를 관리하는데 사용 할 수 있는 Tool이 있나요?**\\
+[[http://www.putty.org|Putty]]를 사용하여 LEDE에 SSH에 접속 할 수 있습니다.
+[[https://winscp.net|WinSCP]]를 파일 브라우저로 사용 할 수 있습니다. WinSCP의 접속을 위해서는 먼저 ''opkg update''를 실행 후 ''opkg install openssh-sftp-server''를 실행하여 패키지를 설치해야 합니다. 그런다음 WinSCP를 사용하여 GUI형태로 편리하게 LEDE 파일시스템에 접근 할 수 있습니다. WinSCP를 통해 접속하려면 라우터의 IP와 Port(기본 22)정보를 입력해야 합니다. 자세한 내용은 [[https://winscp.net/eng/docs/guides| Guides to Using WinSCP]]를 참고하세요.
+
+**나만의 LEDE를 구성하고 싶지만, 특정 패키지를 찾는데 어려움이 있습니다.**\\
+LEDE가 부팅된 이후 ''opkg update''를 먼저 실행 해주세요. 설치 가능한 패키지들이 업데이트 됩니다. 이는 휘발성 메모리인 RAM 영역에 임시로 저장되므로 재부팅 할대마다 사라집니다. 참고하세요.
+
+**LEDE에는 "WAN", "WAN6", "LAN" 인터페이스는 있지만, "LAN6" 인터페이스는 왜 없나요?**\\
+Note that there is a "WAN" and "WAN6" interface. Each of the 2 WAN interfaces holds config date related to the related upstream interface (WAN is for IPv4 and has "DHCP client", while WAN6 is for IPv6 has "DPCPv6 client"). On the other hand "LAN" has both the config data for the downstream side for both IPv4 and IPv6 associated, so there is no need to have an extra LAN6 interface.
+Also note that both an interface and a zone called "LAN" exist. Also "WAN" is used both as a name for a zone and as a name for the IPv4 WAN interface. Both the "WAN" and "WAN6" interface belog to the "WAN" zone (so furthermore there is no "WAN6" zone)
+
+**LuCi에 "Save & Apply"와 "Save"버튼이 둘다 존재하는 이유가 무엇인가요?**\\
+각 탭에서 내용을 수정 후 "Save"를 클릭 할때마다 변경사항을 적용 하지 않고 임시 저장 됩니다. 이후 "Save & Apply"를 클릭하면 모든 변경사항을 한번에 적용 합니다.
+
+**LuCi status overview 에 표시된 메모리 사용량은 무엇을 의미 하나요?**\\
+Total = free + buffered. \\
+Buffered = I/O를 처리하기 위해 임시로 사용되는 메모리 입니다\\
+Free = really free memory\\
+

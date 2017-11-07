@@ -1,0 +1,25 @@
+=====Bridge Mode=====
+This method relies on switching the current modem-router in bridge mode, or by buying a Ethernet modem that supports this mode.
+
+Bridge mode is a special mode of operation where the current gateway/modem acts as a network bridge, forwarding all traffic to a downstream device.
+
+For this to work, the gateway device must be switched to bridge mode from its own interface. The procedure to do this differs quite dramatically so I can't really write down a tutorial to help you in this, please look at the device's manual (or download the pdf of it from the manufacturer's support page about your device, it's usually more complete).\\
+Also asking your ISP's customer support to help you is an option. In many cases they have a remote connection and can do this configuration change for you (especially useful if you don't have access to the device).
+
+:!: Please note: device manufacturers can call "bridge mode" all sorts of things, like wifi bridging (using two wireless devices to connect two Ethernet networks) or access point mode, or whatever else.\\
+
+====Half Bridge====
+Most common in ISP-provided consumer devices is Half Bridge Mode (cheerfully called "Bridge Mode" by many manufacturers).\\
+In this mode, the device handles authentication (the login/password of your Internet contract) and encapsulation, and it will duplicate the WAN IP address from the ISP to the downstream device. More often than not this makes it inaccessible on the local network so the only way to get it back to normal operation is to reset it.\\
+Some devices offer a secondary "management" IP for this mode that can be used to reach their web interface, check the manual.
+
+====Full Bridge====
+Less common in ISP-provided consumer devices is Full Bridge Mode.\\
+In this mode, the device acts as a dumb modem. All authentication and encapsulation etc happens on the router that is connected to it through a specific protocol, pppoE.\\
+This mode is the one that allows the most control, stability and performance, but usually requires a specialized device (usually an Ethernet modem) that supports this mode, and it's easier to set up if your ISP is using pppoE protocol for their upstream lines.
+===pppoA and Full Bridge===
+If your ISP is using another protocol like pppoA in their upstream infrastructure (it is common in UK and Italy, but also NZ and AU, probably elsewhere too), you can do a full bridge only with specific Ethernet modems that do a pppoA<->pppoE conversion.\\ 
+<WRAP left round info 60%>
+When I looked for these devices for my own home network, I found only [[http://www.draytek.co.uk/products/business/vigor-120|DrayTek Vigor 120]]\\  --- //[[bobafetthotmail@gmail.com|Alberto Bursi]] 2017/03/10 17:43//
+</WRAP>
+

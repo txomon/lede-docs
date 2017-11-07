@@ -1,0 +1,13 @@
+====== LEDE Dokumentation ======
+~~NOTOC~~
+
+LEDE ist eine leicht erweiterbare GNU/Linux Distribution für embedded Geräte (üblicherweise WLAN Router). LEDE ist ein Fork des OpenWRT Projekts. Im Gegensatz zu anderen Router Distributionen ist LEDE ein voll funktionales und leicht zu modifizierendes Router Betriebssystem. In der Praxis bedeutet das man die Freiheit hat beliebige Features hinzuzufügen oder zu entfernen ohne etwaige Bloatware und das ganze läuft auf einem modernen Linux Kernel.
+
+===== LEDE Leitfäden =====
+^  [[docs:guide-quick-start:start|Schnellstart]]        ^  [[docs:user-guide:start|Benutzerleitfaden]]      ^  [[docs:guide-developer:start|Entwicklerleitfaden]]         ^
+| Starte hier wenn du neu bei LEDE bist. Finde heraus wie du auf deinen Router LEDE aufspielst und mach dein Heimnetzwerk besser als je zuvor. //[[docs:guide-quick-start:start|Lese mehr...]]//| Starte hier wenn du LEDE bereits auf deinem Router nutzt. LEDE hat hunderte Erweiterungen die dir alles erdenkliche ermöglichen, egal ob DLNA, VLANs, VPNs oder anderes. //[[docs:user-guide:start|Lese mehr...]]//| Starte hier wenn du eigene Builds von LEDE erstellen oder zur allgemeinen Entwicklung etwas beisteuern möchtest. Es gibt viele Tools die, die Entwicklung vereinfachen können. //[[docs:guide-developer:the-source-code|Lese mehr...]]//|
+
+===== Wo kann Ich mehr erfahren? =====
+Die 3 Leitfäden (Schnellstarter, Benutzer and Entwickler) enthalten links zu beinahe allen Informationen über LEDE. Du kannst auf jeder Wiki Seite die Suchfunktion nutzen oder kannst dich durch untenstehende Dokumentationslinks durchklicken.
+
+{{pagequery>@:docs: *;sort=ns,title;group;cols=2;label=Einzelne Dokumentationsseiten;hidestart;hidejump;display={title};}}

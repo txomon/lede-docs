@@ -1,0 +1,83 @@
+====== LEDE 프로젝트란? ======
+
+===== OpenWrt 프로젝트의 재탄생 =====
+
+LEDE프로젝트는 OpenWrt 프로젝트로 부터 파생되어 시작된 프로젝트입니다. LEDE 프로젝트가 추구하는 목표는 OpenWrt 프로젝트가 목표로 했던 바와 같습니다. 이 프로젝트는 개발자, 시스템 관리자 또는 기타 Linux 사용자들이 무선 라우터와 같은 임베디드 소프트웨어를 작성하고 수정할 수 있는 임베디드 Linux 배보판을 구축합니다. //LEDE// 라는 이름은 //Linux Embedded Development Environment//를 의미합니다.
+
+OpenWrt 커뮤니티의 가장 활동적인 멤버들이 상당수 이미 LEDE 프로젝트의 멤버로 포함되어 있습니다. 우리는 분업과 협업, 그리고 투명성에 중점을 둠으로써 임베디드 리눅스 개발에 새 생명을 부여할 계획입니다.
+
+LEDE의 목표는 다음과 같습니다:
+
+  * 안정성과 기능성에 중점을 둔 임베디드 리눅스 배포판을 만듭니다.
+  * 커뮤니티로 부터 테스팅 피드백을 받아 정기적인 배포판을 만듭니다.
+  * 커뮤니티의 참여와 공적인 미팅을 통해서 투명한 의사결정을 하게 합니다.
+
+우리는 OpenWrt 프로젝트해서 해결하지 못했던 문제들을 해결하기 위해서 이 프로젝트를 시작하였습니다:
+
+  - 활동중인 핵심 개발자의 수가 항상 부족하고 더 많은 사람들이 참여할 수 있는 프로세스들이 없습니다.
+  - 내부의 의견 충돌과 실패들로 인해 고치기 어려운 신뢰하기 어려운 구조을 가지고 있습니다.
+  - OpenWrt 프로젝트의 핵심 팀과 커뮤니티의 나머지 사람들 사이의 대화와 투명성, 협업이 부족합니다.
+  - 여러 패치들을 다룰 수 있는 사람들이 부족하고 테스트 및 정기적인 빌드에 집중하지 못합니다.
+  - 안정성과 기록 문서들에 대한 집중이 부족합니다.
+
+이러한 문제들을 해결하기 위해 OpenWrt와는 다른 방식으로 LEDE 프로젝트를 설정했습니다:
+
+  - 우리의 모든 커뮤니케이션 채널은 공개 되어 있으며, 회원이 아닌 사람들에게는 읽기 전용파일이 항상 공개됩니다.
+  - 개발자와 투표권을 가진 파워유저들의 비율을 50대 50으로 맞춰, 우리의 의사결정 과정을 좀더 공개합니다.
+  - 유지보수를 위한 작업의 최소화를 보장하기위해, 우리 프로젝트의 구조를 간소화 합니다.
+  - OpenWrt 패키지의 github 피드백의 경험을 바탕으로 프로젝트의 merge를 훨씬 자유롭게 만들었습니다.
+  - 단순화된 릴리즈 프로세스와 결합된 자동화 테스트에 중점을 둡니다.
+
+===== 이름 =====
+
+| {{wiki:logo.png|The LEDE logo}} | //LEDE//란 이름은 Linux Embedded Development Environment의 약자로서, 무선 라우터나 네트워크 기기 등의 임베디드 리눅스 응용프로그램을 만들고 배포하는 기준이 됩니다.|
+
+===== 프로젝트 회의 =====
+
+우리는 정기적인 IRC 미팅을 통해 프로젝트의 사안들에 대해서 토의하고 결정합니다.
+
+==== 다음 회의 ====
+
+다음 회의 시간은 아직 정해지지 않았습니다.
+
+다음 회의의 안건은 [[http://piratepad.net/ep/pad/view/ro.UdKV08dIlKx/latest|agenda pad]]를 참조하세요.
+
+===== 회의 기록 =====
+
+모든 회의 기록은 [[http://meetings.lede-project.org/lede-adm/|여기서]] 확인할 수 있습니다.
+
+===== 참여 회원 목록 =====
+
+현재 //LEDE// 프로젝트에 참여하고 있는 사람들이 알파벳순으로 정리되어 있습니다:
+
+<WRAP column>
+^ 개발자                   ^ 닉네임       ^
+| Alexander Couzens        | lynxis      |
+| Álvaro Fernández Rojas   | noltari     |
+| Daniel Golle             | dangole     |
+| Felix Fietkau            | nbd         |
+| Florian Fainelli         | [florian]   |
+| Hans Dedecker            | dedeckeh    |
+| Hauke Mehrtens           | hauke       |
+| Jo-Philipp Wich          | jow         |
+| John Crispin             | blogic      |
+| Jonas Gorski             | jogo        |
+| Luka Perkov              |             |
+| Mathias Kresin           | mkresin     |
+| Matthias Schiffer        | neoraider   |
+| Mirko Vogt               | mirko       |
+| Piotr Dymacz             | pepe2k      |
+| Rafał Miłecki            | rmilecki    |
+| Steven Barth             | cyrus       |
+| Stijn Tintel             | stintel     |
+| Ted Hess                 | thess       |
+| Yousong Zhou             |             |
+</WRAP>
+
+<WRAP column>
+^ Wiki 문서            ^ 닉네임                    ^
+| Thomas Endt          | [[user:tmomas|tmomas]]   |
+| Rich Brown           | richb-hanover            |
+| Alberto Bursi        | bobafetthotmail          |
+</WRAP>
+

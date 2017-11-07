@@ -1,0 +1,3 @@
+====== Firmware file not found ======
+
+This indicates that a firmware-download link in the [[toh:views:toh_fwdownload|Table of Hardware]] doesn't work as expected. There should be a firmware image available, but obviously couldn't be found. If you  know the correct link, please edit the data accordingly.

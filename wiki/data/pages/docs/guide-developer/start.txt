@@ -1,0 +1,43 @@
+====== LEDE Developer Guide ======
+
+This page has links to all the pages of LEDE development documentation. Use the Search facility to find more information.
+
+===== Quick overview of LEDE's internals =====
+  * [[docs:guide-developer:overview| Overview]]
+
+===== Assembling firmware images with the ImageBuilder =====
+
+  * [[docs:guide-developer:quickstart-build-images| ImageBuilder Quickstart]]
+  * [[docs:user-guide:imagebuilder| Using the ImageBuilder]]
+
+===== Contribution Guidelines =====
+See [[:submitting-patches|Submitting patches]]
+
+===== The source code =====
+  * [[docs:guide-developer:the-source-code| LEDE source code]]
+  * [[docs:guide-developer:source-revision-calculation| Source code revision calculation]]
+
+===== Using the toolchain =====
+  * [[docs:guide-developer:Compile packages for LEDE with the SDK]]
+  * [[docs:guide-developer:build-system | The Build system]]
+    * [[docs:guide-developer:install-buildsystem | Install the build system on the host]]
+    * [[docs:guide-developer:use-buildsystem| Use the build system to compile a firmware image]]
+    * [[docs:guide-developer:use-patches-with-buildsystem| Work with patches in the build system]]
+
+===== Development Articles =====
+  * [[docs:guide-developer:uci-defaults]]
+  * [[docs:guide-developer:adding_new_device]]
+  * [[docs:guide-developer:mdns]]
+  * [[docs:guide-developer:procd]]
+  * [[docs:guide-developer:rpcd]]
+  * [[docs:guide-developer:ubus]]
+  * [[docs:guide-developer:netifid]]
+  * [[https://github.com/btsimonh/lede-vagrant|Vagrant-based automatic setup for a LEDE build environment in a VM]]
+  * [[docs:guide-developer:embedding-files-in-image| Including custom files/configurations in a firmware image]]
+  * [[docs:guide-developer:using-build-environments| Build for multiple targets from the same build tree (build environments aka config swapping)]]
+  * [[docs:guide-developer:test-virtual-image-using-armvirt|Testing a virtual image using the armvirt target]]
+  * [[docs:guide-developer:helloworld:start|"Hello, world!" for LEDE - Developing your first application]]
+
+===== Bug Tracker =====
+
+Please submit bug reports at [[https://bugs.lede-project.org/]]. 

@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: ltq-adsl-app ======
+---- dataentry packages ----
+Name                             : ltq-adsl-app
+Version                          : 3.24.4.4-2
+Description                      : Infineon DSL CPE API for Amazon SE, Danube and Vinax.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 41 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libpthread
+Categories_pkg-categorys         : network #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : lantiq-xway, lantiq-xway_legacy,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 42
+License                          : BSD-3-Clause
+Maintainer_pkg-maintainer        : John Crispin
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/network/config/ltq-adsl-app|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 3.24.4.4-2 # short version of the package, for display in table
+----
+

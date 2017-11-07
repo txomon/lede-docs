@@ -1,0 +1,51 @@
+^  General  ^^
+^ Brand                                                 | @@brand@@                          |
+^ Model                                                 | @@model@@                          |
+^ Versions                                              | @@version@@                        |
+^ Device Type                                           | @@device type@@                    |
+^ Availability                                          | @@availability@@                   |
+^ Comments - general                                    | @@comments@@                       |
+^  OpenWrt Support  ^^
+^ Supported Since Revision                              | @@supported since rev@@            |
+^ Supported Since Release                               | @@supported since rel@@            |
+^ Supported Current Release                             | @@supported current rel@@          |
+^ Unsupported                                           | @@unsupported@@                    |
+^  Hardware  ^^
+^ Sub Instruction Set                                   | @@sub instruction set@@            |
+^ [[docs:techref:Bootloader]]                            | @@bootloader@@                     |
+^ Target                                                | @@target@@                         |
+^ [[docs:hardware:soc|System-On-Chip]]                   | @@platform@@                       |
+^ [[docs:hardware:cpu|CPU]] MHz                          | @@cpu mhz@@                        |
+^ Flash MB                                              | @@flash mb@@                       |
+^ RAM MB                                                | @@ram mb@@                         |
+^  Network  ^^
+^ Ethernet 100M ports                                   | @@ethernet 100m ports@@            |
+^ Ethernet Gbit ports                                   | @@ethernet gbit ports@@            |
+^ [[docs:hardware:Switch]]                               | @@switch@@                         |
+^ [[docs:hardware:internet.access.technologies|Modem]]   | @@modem@@                          |
+^ VLAN                                                  | @@vlan@@                           |
+^ Comments - network ports                              | @@comments network ports@@         |
+^  Wireless  ^^
+^ WLAN 2.4GHz                                           | @@wlan 2.4ghz@@                    |
+^ WLAN 5.0GHz                                           | @@wlan 5.0ghz@@                    |
+^ WLAN Hardware                                         | @@wlan hardware@@                  |
+^ Detachable Antennas                                   | @@detachable antennas@@            |
+^ Comments - WLAN                                       | @@wlan comments@@                  |
+^  Interfaces  ^^
+^ [[docs:howto:usb.essentials|USB]] ports                | @@usb ports@@                      |
+^ SATA ports                                            | @@sata ports@@                     |
+^ [[docs:hardware:port.serial|Serial]]                   | @@serial@@                         |
+^ [[docs:hardware:port.jtag|JTAG]]                       | @@jtag@@                           |
+^ Comments - USB & SATA ports                           | @@comments usb sata ports@@        |
+^  Misc  ^^
+^ LED count                                             | @@led count@@                      |
+^ [[docs:howto:hardware.button|Button]] count            | @@button count@@                   |
+^ Power supply                                          | @@power supply@@                   |
+^  Links  ^^
+^ [[https://forum.openwrt.org/|Forum]] Topic URL        | @@forum topic url@@                |
+^ [[https://wikidevi.com/|WikiDevi]] URL                | @@wikidevi url@@                   |
+^ OEM device homepage URL                               | @@oem device homepage url@@        |
+^ Firmware OEM Stock URL                                | @@firmware oem stock url@@         |
+^ Firmware OpenWrt Install URL                          | @@firmware openwrt install url@@   |
+^ Firmware OpenWrt Upgrade URL                          | @@firmware openwrt upgrade url@@   |
+^ Edit the underlying data                              | @@device techdata@@                |

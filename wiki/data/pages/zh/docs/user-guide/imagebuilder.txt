@@ -1,0 +1,30 @@
+====== 使用镜像生成工具 (Image Builder) ======
+镜像生成工具是一个适合创建自定义镜像（且无需从源码编译）的预编译环境。\\
+它负责下载预编译的包，并将软件包整合在一个可擦写镜像文件中。\\
+
+以下情形适合你： 
+  * 你希望在有限存储介质中放入更多软件包
+  * 你希望跟踪开发版的快照
+  * 你的设备只有32MB或更低的内存，以至于OPKG无法正常工作
+  * 你有许多大容量存储的设备，并且需要特殊定制的固件
+
+===== 先决条件 =====
+:!: 镜像生成工具仅可运行在64位LINUX环境下。你可以在32位WINDOWS上通过虚拟机环境安装64位LINUX (例如 virtualbox) 。\\
+:!: 镜像生成工具工作环境的先决条件 [[docs:guide-developer:install-buildsystem|Build system – Installation]]。\\
+
+常见发行版的解决依赖性范例:
+<WRAP>Debian/Ubuntu<code>apt-get install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc wget</code></WRAP>
+
+<WRAP>CentOS/RHEL<code>yum install subversion git gawk gettext ncurses-devel zlib-devel openssl-devel libxslt wget
+yum group install "Development Tools"</code></WRAP>
+
+
+===== 获取镜像生成工具 =====
+你可以在你的路由设备固件所属下载页面找到**镜像生成工具** 压缩包。\\
+以下是下载 **ar71xx/generic** 路由设备固件的链接：\\ 
+https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/ \\
+点击该链接，你可以找到一个名为 **lede-imagebuilder-ar71xx-generic.Linux-x86_64.tar.xz** 的压缩包， **镜像生成工具** 就包含在里面。
+
+除此以外，当你从源码编译固件且勾选 "**Build the LEDE Image Builder**" 之后, 镜像生成工具会被创建在 (''source/bin/targets/xxx'') 。 
+
+----

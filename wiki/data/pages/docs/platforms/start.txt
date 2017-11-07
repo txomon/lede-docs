@@ -1,0 +1,16 @@
+====== Platforms ======
+{{pagequery>ns:docs:platforms: *;
+    sort=title;
+    display={title};
+    bullet=disc;
+    hidestart;
+    hidejump;
+}}
+
+
+===== Devices with a certain platform =====
+---- datacloud ----
+col       : CPU
+summarize : 1
+page      : toh/views/toh_dev_instructionset
+----

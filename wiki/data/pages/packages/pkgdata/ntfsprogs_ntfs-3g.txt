@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: ntfsprogs_ntfs-3g ======
+---- dataentry packages ----
+Name                             : ntfsprogs_ntfs-3g
+Version                          : 2016.2.22-1-fuseint
+Description                      : Suite of NTFS utilities for doing neat things with NTFS.\\ Contains: \\ - mkntfs - Create an NTFS filesystem.\\ - ntfscat - Dump a file's content to the standard output.\\ - ntfsclone - Efficiently clone, backup, restore or rescue NTFS.\\ - ntfscluster - Locate the files which use the given sectors or clusters.\\ - ntfscmp - Compare two NTFS filesystems and tell the differences.\\ - ntfscp - Copy a file to an NTFS volume.\\ - ntfsfix - Check and fix some common errors, clear the LogFile.\\ - ntfsinfo - Show information about NTFS or one of the files or directories within it.\\ - ntfslabel - Show, or set, an NTFS filesystem's volume label.\\ - ntfsls - List information about files in a directory residing on an NTFS.\\ - ntfsresize - Resize NTFS without losing data.\\ - ntfsundelete - Recover deleted files from NTFS.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 170 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, ntfs-3g, libgcrypt, libuuid
+Categories_pkg-categorys         : utilities---filesystem #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arc_arc700, arc_archs, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 170
+License                          : GPL-2.0 LGPL-2.0
+Maintainer_pkg-maintainer        : Ted Hess
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/utils/ntfs-3g|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 2016.2.22-1-fuseint # short version of the package, for display in table
+----
+

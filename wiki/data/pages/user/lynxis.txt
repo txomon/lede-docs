@@ -1,0 +1,11 @@
+located in Berlin, Germany
+lynxis@fe80.eu
+
+contibuting to:
+  * coreboot
+  * LEDE
+
+packages I care:
+  * libmicrohttpd
+  * nodogsplash
+  * tunneldigger 

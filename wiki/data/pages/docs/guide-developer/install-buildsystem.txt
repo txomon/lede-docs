@@ -1,0 +1,121 @@
+====== Build system – Installation ======
+The build system works on Linux, BSD or MacOSX operating system. A case-sensitive filesystem is required.
+
+It is recommended that you use a Linux distribution (for example [[wp>Debian]]), either a standalone installation or one running in a virtual environment ([[wp>Virtualbox]], [[wp>VMware]] or [[wp>Qemu]]).
+
+Ubuntu under [[wp>Windows Subsystem for Linux]] is not an officially supported environment, but it appears to produce good builds. [[wp>Cygwin]](Windows) is NOT supported because the file system isn't case-sensitive.
+
+===== Prerequisites =====
+To generate a flashable firmware image file with a size of e.g. 8MB, you need:
+  * ca. 200 MB of hard disk space for the build system
+  * ca. 300 MB of hard disk space for the build system + package feeds
+  * ca. 2.1 GB of hard disk space for source packages downloaded during build from package feeds
+  * ca. 3-4 GB of available hard disk space to build (i.e. cross-compile) and generate the firmware file
+  * ca. 1-4 GB of RAM are needed for the compilation stage.(4GB of RAM are required for compilation of x86 firmwares)
+
+===== Install procedure on Linux =====
+| ->[[docs:howto:buildroot.exigence.bsd|Procedure on ~BSD]] | ->[[docs:howto:buildroot.exigence.macosx|Procedure on Mac OS X]] |
+ \\
+  - Install ''[[wp>Git (software)|git]]'' , to conveniently download the source code, and your distro's default ''[[wp>GNU build system|build tools]]'' metapackage to do the cross-compilation process\\ 
+  - Some feeds might not available over git but only via ''[[wp>Apache Subversion|subversion]]'' (short: ''svn'') or ''[[wp>Mercurial|mercurial]]''. If you want to obtain their source-code, you need to install svn and mercurial as well
+  - Install other prerequisite packages, as indicated in the table and examples below
+  - Set (or unset) proper environment variables:
+    * ''SED'' should not be set.  If it is, run ''`unset SED`'' before compiling. (See [[https://dev.openwrt.org/ticket/10612|Ticket 10612]].)
+    * ''GREP_OPTIONS'' should not have ''--initial-tab'' or other options affecting its output
+
+===== Table of known prerequisites =====
+This table contains the package name for each build prerequisite in different GNU/Linux and Unix like distributions.
+
+^ Prerequisite ^ Debian ^ SUSE ^ Red Hat ^ OS X (via MacPorts) ^ Fedora ^ Arch ^ Gentoo ^
+| asciidoc         | asciidoc | asciidoc | asciidoc | asciidoc | asciidoc | asciidoc | app-text/asciidoc |
+| [[wp>Bash (Unix shell)|GNU Bash]] | bash |bash| bash | bash | bash| bash| app-shells/bash |
+| [[wp>Bc_(programming_language)#GNU_bc|GNU bc]] | bc| bc| | | bc| bc| sys-devel/bc |
+| [[wp>GNU Binutils]] | binutils | binutils| binutils| binutils| binutils| binutils| sys-devel/binutils |
+| [[wp>bzip2]]     | bzip2 | bzip2| bzip2| bzip2| bzip2| bzip2| app-arch/bzip2 |
+| fastjar          | fastjar|fastjar| libgcj| fastjar| libgcj| fastjar| app-arch/fastjar |
+| [[wp>flex lexical analyser|flex]]  | flex|flex| flex | flex| flex| flex| sys-devel/flex |
+| [[wp>Git (software)|git]] | git-core| git-core| git | git-core | git | git| dev-vcs/git |
+| [[wp>GNU C++ Compiler]]  | g++| gcc-c++| gcc-c++| ?| gcc-c++| gcc | sys-devel/gcc |
+| [[wp>GNU C Compiler]]    | gcc| gcc| gcc| ?| gcc| gcc| sys-devel/gcc |
+| getopt           | util-linux | util-linux | util-linux | getopt| util-linux | util-linux | sys-apps/util-linux |
+| [[wp>GNU awk]]   | gawk| gawk| gawk| gawk| gawk| gawk| sys-apps/gawk |
+| gtk2.0-dev       | libgtk2.0-dev| gtk2-devel| gtk2-devel| gtk2| gtk2-devel| gtk2 | x11-libs/gtk+:2 |
+| intltool-update  | intltool| intltool| intltool| intltool| intltool| intltool | dev-util/intltool |
+| jikes            | [[http://packages.debian.org/jessie/jikespg|jikespg]] | jikes| ?| jikes| ---| | dev-java/jikes |
+| libz, libz-dev   | zlib1g-dev | zlib-devel| zlib-devel| zlib| zlib-devel| zlib | sys-libs/zlib |
+| Mercurial / hg   | | mercurial| | | hg | | dev-vcs/mercurial |
+| make             | make | make| make | gmake| make| make | sys-devel/make |
+| mkisofs          | genisoimage | genisoimage| ?| ?| genisoimage| cdrkit | virtual/cdrtools |
+| [[wp>ncurses]]   | libncurses5-dev| ncurses-devel| ncurses-devel| ncurses| ncurses-devel| ncurses | sys-libs/ncurses |
+| openssl/ssl.h    | libssl-dev| libopenssl-devel| openssl-devel| openssl| openssl-devel| openssl | dev-libs/openssl |
+| patch| patch     | patch | patch | patchutils| patch| patch | sys-devel/patch |
+| perl-ExtUtils-MakeMaker| perl-modules | perl-ExtUtils-MakeMaker| perl-ExtUtils-MakeMaker| p5-extutils-makemaker| perl-ExtUtils-MakeMaker| perl-extutils-makemaker | virtual/perl-ExtUtils-MakeMaker |
+| python2.6-dev    | python2.6-dev | python-devel| ?| python26| python-devel | python2 | dev-lang/python:2.6 |
+| rsync            | rsync| rsync| rsync | rsync| rsync| rsync | net-misc/rsync |
+| ruby             | ruby| ruby | ?| ruby| ruby| ruby | dev-lang/ruby |
+| sdcc             | sdcc| sdcc| sdcc| sdcc| sdcc| sdcc | dev-embedded/sdcc |
+| unzip            | unzip| unzip| unzip| unzip| unzip| unzip | app-arch/unzip |
+| [[wp>GNU Wget]]  | wget | wget| wget| wget| wget| wget | net-misc/wget |
+| xgettext         | gettext| gettext-tools| gettext | gettext| gettext| gettext | sys-devel/gettext |
+| xsltproc         | xsltproc| libxslt-tools| ?| libxslt| libxslt| libxslt | dev-libs/libxslt |
+| zlib, zlib-static| zlib1g-dev| zlib-devel| zlib-devel | zlib-devel| zlib-devel,zlib-static | zlib | sys-libs/zlib (USE=static-libs)|
+
+---
+
+Unfortunately not all dependencies are checked by ''make config'', especially for packages.\\ 
+You may encounter compile errors because you need a specific library in your system, and the only way is to search the missing library from the compiler error log and see what package contains it in your own distro.\\
+The following table is a partial list of such dependencies:
+^ Package ^ Prerequisite ^ Debian (8) ^ SUSE ^ Red Hat ^ OS X ^ Fedora ^ Arch ^ Gentoo ^
+| boost    | bjam / boost-jam   | libboost1.55-dev   | | | | boost-jam | boost | dev-util/boost-build |
+| intltool | [Perl] XML::Parser | libxml-parser-perl | | perl-XML-Parser | | perl-XML-Parser | intltool | dev-perl/XML-Parser |
+| libftdi  | libusb-config      | libusb-dev | | | | libusb-devel | libusb | dev-libs/libusb-compat |
+| lilo     | as86,ld86          | bin86 | | | | dev86 | bin86 | sys-devel/bin86 |
+| lilo     | bcc                | bcc | | | | dev86 | [[https://aur.archlinux.org/packages/bcc/|aur/bcc]] | sys-devel/dev86 |
+| lilo     | uudecode           | sharutils | | | | sharutils | sharutils | app-arch/sharutils |
+| classpath| javac, gcj         | openjdk-7-jdk | | | | java-1.7.0-openjdk-devel | jdk7-openjdk | dev-java/oracle-jdk-bin, sys-devel/gcc[gcj], and one (or both) of dev-java/icedtea-bin:7 and dev-java/icedtea:7 |
+| mac80211 | b43-fwcutter       | | | | | b43-fwcutter | b43-fwcutter | net-wireless/b43-fwcutter |
+| jamvm    | zip                | | | | | zip | | app-arch/zip |
+
+==== Examples of Package Installations ====
+  * **Arch Linux**<code>pacman -S --needed subversion asciidoc bash bc binutils bzip2 fastjar flex git gcc util-linux gawk intltool zlib make cdrkit ncurses openssl patch perl-extutils-makemaker rsync sdcc unzip wget gettext libxslt boost libusb bin86 sharutils b43-fwcutter findutils</code>
+  * **Debian 7 Wheezy:**<code>apt-get install libncurses5-dev zlib1g-dev gawk</code>
+  * **Debian 8 Jessie:**<code>sudo apt-get install build-essential libncurses5-dev gawk git subversion libssl-dev gettext unzip zlib1g-dev file python</code>
+  * **Debian 9 Stretch:**<code>sudo apt-get install build-essential libncurses5-dev gawk git subversion libssl-dev gettext zlib1g-dev unzip</code>
+  * **Fedora 24 - 64Bit** :<code>dnf install subversion binutils bzip2 gcc gcc-c++ gawk gettext git-core flex ncurses-devel ncurses-compat-libs zlib-devel zlib-static make patch unzip perl-ExtUtils-MakeMaker perl-Thread-Queue \
+ glibc glibc-devel glibc-static quilt sed sdcc intltool sharutils bison wget openssl-devel</code>
+  * **Fedora 26 - 64Bit** :<code>dnf install @c-development @development-tools @development-libs zlib-static</code>
+  * **openSUSE 13.2**<code>zypper install asciidoc bash bc binutils bzip2 fastjar flex git-core gcc-c++ gcc util-linux gawk gtk2-devel intltool jikes zlib-devel mercurial make genisoimage ncurses-devel libopenssl-devel patch perl-ExtUtils-MakeMaker python-devel rsync ruby sdcc unzip wget gettext-tools libxslt-tools zlib-devel subversion</code>
+  * **openSUSE 42.3**<code>zypper install patterns-openSUSE-devel_basis zlib-devel-static git-core</code>
+  * **Ubuntu 12.04LTS:**<code>sudo apt-get install build-essential subversion git-core libncurses5-dev zlib1g-dev gawk flex quilt libssl-dev xsltproc libxml-parser-perl mercurial bzr ecj cvs unzip</code>
+  * **Ubuntu 64bit:**<code>sudo apt-get install build-essential subversion libncurses5-dev zlib1g-dev gawk gcc-multilib flex git-core gettext libssl-dev</code>
+  * **Centos x86-64 (some packages require EPEL):**<code>yum install subversion binutils bzip2 gcc gcc-c++ gawk gettext flex ncurses-devel zlib-devel zlib-static make patch unzip perl-ExtUtils-MakeMaker glibc glibc-devel glibc-static quilt ncurses-libs sed sdcc intltool sharutils bison wget git-core openssl-devel xz</code>
+  * **Gentoo:**<code bash>$ echo \
+    app-arch/{bzip2,fastjar,sharutils,unzip,zip} \
+    app-text/asciidoc dev-java/{icedtea:7,jikes,oracle-jdk-bin} \
+    dev-libs/{libusb-compat,libxslt,openssl} dev-util/intltool \
+    dev-vcs/{git,mercurial} net-misc/{rsync,wget} \
+    net-wireless/b43-fwcutter sys-apps/{gawk,util-linux} \
+    sys-devel/{bc,bin86,binutils,dev86,flex,gcc[gcj],gettext} \
+    sys-libs/{ncurses,zlib} virtual/{cdrtools,perl-ExtUtils-MakeMaker} \
+    x11-libs/gtk+:2 \
+        | sed 's/\s/\n/g' \
+            | sort \
+                | sudo tee /etc/portage/sets/openwrt-prerequisites \
+                    && sudo emerge -DuvNa '@openwrt-prerequisites'</code>
+                    
+                    
+==== Distros with known issues ====
+  * **alpine linux** uses musl as libc replacement. Some host tools fail to compile (mtd-utils, e2fsprogs). Detection possibly has to be overridden (gcc -dumpmachine outputs a result where some scripts will fail - tools/sed)
+
+
+===== Downloading Sources =====
+clone the Git repository using one of the following commands.\\
+:!: Do everything as normal user, don't use root user or sudo!\\ 
+:!: Do not download sources in a directory that has spaces in its parent folders or full path!\\ 
+-\\ 
+=== Master or HEAD (main development tree) ===
+The development branch contains the latest additions to LEDE, may have **experimental** or **unstable** code.
+
+<code bash>git clone https://git.lede-project.org/source.git</code>
+
+Additional packages can be found in several feeds (Luci, packages, routing, management etc.). The build system will clone the correct feeds later when you update the package feeds.

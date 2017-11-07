@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: perf ======
+---- dataentry packages ----
+Name                             : perf
+Version                          : see kernel for details
+Description                      : perf is the Linux performance monitoring tool\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 597 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libelf1, libdw, libpthread, librt, objdump
+Categories_pkg-categorys         : development #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : apm821xx-nand, apm821xx-sata, ar71xx-generic, ar71xx-mikrotik, ar71xx-nand, archs38-generic, arm64-generic, at91-legacy, at91-sama5d3, ath25-generic, bcm53xx-generic, brcm47xx-generic, brcm47xx-legacy, brcm47xx-mips74k, brcm63xx-generic, brcm63xx-smp, gemini-wiligear, ixp4xx-generic, ixp4xx-harddisk, kirkwood-generic, lantiq-falcon, lantiq-xrx200, lantiq-xway, lantiq-xway_legacy, layerscape-32b, layerscape-64b, mediatek-generic, mpc85xx-generic, mpc85xx-p1020, mxs-generic, octeon-generic, oxnas-generic, ramips-mt7620, ramips-mt7621, ramips-mt7628, ramips-mt7688, ramips-rt288x, ramips-rt305x, ramips-rt3883, rb532-generic, x86-64, x86-generic, x86-geode, x86-legacy,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 596
+License                          : 
+Maintainer_pkg-maintainer        : Felix Fietkau
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/devel/perf|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : see kernel for details # short version of the package, for display in table
+----
+

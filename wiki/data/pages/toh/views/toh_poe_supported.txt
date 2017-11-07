@@ -1,0 +1,52 @@
+====== Table of Hardware: PoE capable ======
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+**Purpose:** Show devices **with PoE capability** which are **supported by LEDE**
+
+{{page>meta:infobox:toh_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+----
+
+**Scrolling through the table:** Click anywhere in the table, then use your cursor keys to scroll left/right, up/down.
+
+++++Filter: Device Type|
+---- datacloud ----
+col        : Device Type
+filter     : Model!=@@Model@@
+filter     : Power Supply*~PoE
+filter     : LEDE supported current rel!=
+summarize  : 1
+----
+++++
+
+++++Filter: LEDE current release|
+---- datacloud ----
+col        : LEDE supported current rel
+filter     : Model!=@@Model@@
+filter     : Power Supply*~PoE
+filter     : LEDE supported current rel!=
+summarize  : 1
+----
+++++
+
+++++Filter: Availability|
+---- datacloud ----
+col        : Availability
+filter     : Model!=@@Model@@
+filter     : Power Supply*~PoE
+filter     : LEDE supported current rel!=
+summarize  : 1
+----
+++++
+
+----
+
+---- datatable ----
+cols       : Device Type, Brand, Model, Versions, Availability, LEDE supported current rel, CPU, Flash MB, RAM MB, Power supply, WLAN Hardware, WLAN 2.4GHz, WLAN 5.0GHz, OEM Device Homepage URL_url, OpenWrt Device Page_url, WikiDevi URL_url, Device Techdata_pageid
+dynfilters : 1
+rownumbers : 1
+filter     : Power Supply*~PoE
+filter     : LEDE supported current rel!=
+sort       : Brand
+----

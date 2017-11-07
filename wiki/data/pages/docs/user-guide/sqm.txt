@@ -1,0 +1,225 @@
+====== Smart Queue Management (SQM) - Minimizing Bufferbloat ======
+
+LEDE 17.01.0 has pre-built packages for controlling Bufferbloat - the undesirable latency that arises when the router buffers too much data.  
+
+Bufferbloat is most evident when the link is heavily loaded. It causes bad performance for voice and video conversations, causes gamers to lag out, and generally makes people say, "The Internet is slow today."
+
+The "luci-app-sqm" package of LEDE solves the problem of Bufferbloat. In a three-minute installation and configuration, you'll have a much more lively network connection. Here's how:
+
+**TL;DR** Install LEDE 17.01 newer, and follow the video at: https://www.youtube.com/watch?v=FvYhifdQ92Q
+
+===== Preparation: Measure Your Current Speed and Latency ===== 
+
+Before you can optimize your network, you need to know its current state. Run a speed test to find your down/upload link speeds. 
+  - When your network is relatively quiet, use DSLReports Speedtest at: http://www.dslreports.com/speedtest You will need this information below. (See [[https://forum.lede-project.org/t/sqm-qos-recommended-settings-for-the-dslreports-speedtest-bufferbloat-testing/2803]] for how to get the most out of the dslreports speedtest)
+  - This is probably a good time to [[docs:user-guide:backingup|Back up your Configuration]]. 
+ 
+===== Installing the SQM Bufferbloat Packages in LEDE =====
+
+Install the //luci-app-sqm// package in LEDE. Watch the [[https://youtu.be/FvYhifdQ92Q|Youtube Video]] that shows these steps:
+
+  - Uninstall //qos-scripts// and //luci-app-qos// if they are installed. To do this, choose **System -> Software**, then scroll down the list in the Installed Packages tab. Click **Remove** if either of these scripts is installed.
+  - Install the //luci-app-sqm// package. It will automatically install other required packages. To do this:
+    * From the LuCI web GUI, go to **System -> Software**, then click **Update Lists**
+    * Click the **Available packages** tab, and find //luci-app-sqm//. Click **Install**
+  - Start and Enable the SQM scripts. To do this, choose **System -> Startup**
+    * Click Start to start the SQM process
+    * Click Enable to start the SQM process when the route reboots
+
+===== Configuring the SQM Bufferbloat Packages in LEDE =====
+
+The default values described below work quite well for most situations. You may be able to improve performance by experimenting with settings, see [[#a_little_about_tuning_sqm|A little about tuning SQM]] below.
+
+To configure SQM, choose **Network -> SQM QoS** to see the Smart Queue Management (SQM) GUI.
+
+  - In the **Basic Settings** tab:
+    * Check the **Enable** box
+    * Set the **Interface name:** to your wide area link (usually //eth0// for LEDE, but check **Network -> Interfaces** to find the name for the WAN port.)
+    * Set the **Download** and **Upload** speeds to 80-95% of the speed you measured above in the Preparation.
+  - In the **Queue Discipline** tab, you can leave the settings at their default.
+    * Choose //cake// as the Queueing Discipline
+    * Choose //piece_of_cake.qos// as the Queue Setup Script
+    * The Advanced Configuration defaults are designed to work well out of the box.
+  - In the **Link Layer Adaptation** tab, choose the kind of link you have:
+    * //For VDSL// - Choose **Ethernet**, and set per packet overhead to 8 
+    * //For DSL of any other type// - Choose **ATM**, and set per packet overhead to 44
+    * //For Cable or other kinds of connections// - Choose **none (default)**
+  - Click **Save & Apply**. That's it!
+
+Measure your latency again with the speed test. You should notice that the measured ping times should only be slightly larger during the downloads and uploads. Try using VoIP, Skype, Facetime, gaming, DNS, and general web browsing. They should be much more pleasant, even if someone's uploading or downloading a lot of data. 
+
+Note, sqm-scripts shaper interprets the bandwidth values as gross bandwidth, while speedtests typically report TCP/IPv4 good-put. So how to estimate what sppedtest result is a good match for a given shaper bandwidth? Just use the following formula and plug in the correct values:  
+
+${ShaperBandwidth} * (${pMTU} - ${IPv4Header} - ${TCPHeader}) / (${pMTU} + ${Overhead})
+
+with: pMTU typically around 1500, IPv4Header = 20 bytes, TCPHeader = 20 bytes, Overhead the value you specified in the shaper (or typically 14 bytes if you did not explicitly configured this)
+
+E.g.: for a DOCSIS link with 18 bytes overhead you at best get a 100-100*(1500-20-20)/(1500+18) = 3.82% lower good-put than gross bandwidth.
+
+
+You've reduced your connection's  bufferbloat! 
+===== A little about tuning SQM =====
+
+The steps above will control latency well without additional effort. The 80-95% figures mentioned above are good first-cut estimates, but you can often gain more speed while still controlling latency by making a couple experiments to adjust the settings.
+
+The most important settings are the Download and Upload speeds. While it may seem counterintuitive, it may be your //upstream// buffering that is slowing your //downstream//. Remember that each packet that is sent in a TCP connection needs to be acknowledged, so you are always doing both.
+
+Adjust the Download speed upwards until the latency begins to increase, then enter a slightly lower final value. One good test for this is the [[http://dslreports.com/speedtest|DSLReports Speed Test]] because it automatically measures latency as well as speed. Then do the same for the Upload speed entry. It may be worthwhile to tweak the two a bit up and down to find a sweet spot for your connection and usage.
+
+**Note:** If you have a DSL link, the experiments above may produce Download and Upload values that are actually //higher// than the original speed test results. This is OK: the ATM framing bytes of a DSL link add an average of 9% overhead, and these settings simply tell SQM how to make up for that overhead.
+
+**Note:** If you use a cable modem, you should use a speed test that runs for a longer time. Cable modem makers have gamed speed tests thoroughly by using "Speedboost", which usually gives you an extra 10 mbits or so for the first 10 seconds (so the speed test will look good(!)). Don't be surprised if the "right" setting for your queue rates is significantly lower than the no-SQM speed test results. You may need to tune the speeds //down// from your initial settings to get the latency to the point you need for your own usage of your connection.
+
+You can also experiment with the other settings (read the "the details" sections below for more information), but they will not make nearly as large a difference as ensuring that the Download and Upload speeds are maximized. 
+===== SQM: The Longer Description =====
+
+Smart Queue Management (SQM) is our name for an intelligent combination of better packet scheduling (flow queueing) techniques along with with active queue length management (AQM).
+
+LEDE has full capability of tuning the network traffic control parameters. If you want to do the work, you can read the full description at the [[http://wiki.openwrt.org/doc/howto/traffic.control|Traffic Control HOWTO.]] You may still find it useful to get into all the details of classifying and prioritizing certain kinds of traffic, but the SQM algorithms and scripts (fq_codel, cake, and sqm-scripts) require a few minutes to set up, and work as well or better than most hand-tuned classification schemes.
+
+Current versions of LEDE have SQM, fq_codel, and cake built in. These algorithms were developed as part of the [[http://www.bufferbloat.net/projects/cerowrt/wiki|CeroWrt]] project. They have been tested and refined over the last four years, and have been accepted back into the LEDE, OpenWrt, as well as the Linux Kernel, and in dozens of commercial offerings. 
+
+To use SQM in your LEDE router, use the **SQM QoS** tab in the web interface. This will optimize the performance of the WAN interface (generally eth0) that connects your router to the ISP/the Internet. There are three sub-tabs in the **SQM QoS** page that you may configure:
+
+  * **Basic Settings** sets the download and upload speeds of the uplink. Be sure to read about the adjustment you should make when entering speeds.
+  * **Queue Discipline** selects which queueing discipline to use on the WAN link. The default settings are good in almost every case.
+  * **Link Layer Adaptation** lets LEDE calculate the proper overheads for WAN links such as DSL and ADSL. If you use any kind of DSL link, you should review this section.
+
+
+==== SQM: Basic Settings Tab ====
+
+Set the **Download** and **Upload** speeds in the web GUI for the speed of your Internet connection. To do this
+
+  - Get a speed measurement. See [[#preparationmeasure_your_current_speed_and_latency|Preparations]] above.
+  - Set Download and Upload according to those link speeds. See examples below.
+  - Be sure to check the **Enable** box and set the Interface for your WAN interface.
+  - (Optional) Read [[#a_little_bit_about_tuning_SQM|A little bit about tuning SQM]] above.
+
+**Example 1:** If your your provider boasts "7 megabit download/768 kbps upload", set **Download** to 5950 kbit/s and **Upload** to 653 kbit/s. Those numbers are 85% of the advertised speeds.
+
+**Example 2:** If you have measured your bandwidth with a speed test (be sure to disable SQM first), set the **Download** and **Upload** speeds to 95% of those numbers. For example, if you have measured 6.2 megabits down and 0.67 megabits up (6200 kbps and 670 kbps, respectively), set your **Download** and **Upload** speeds to 95% of those numbers (5890 and 637 kbps, respectively)
+
+**Basic Settings - the details...**
+
+SQM is designed to manage the queues of packets waiting to be sent across the slowest (bottleneck) link, which is usually your connection to the Internet. LEDE cannot automatically adapt to network conditions on DSL, cable modems or GPON without any settings. Since the majority of ISP provided configurations for buffering are broken today, you need take control of the bottleneck link away from the ISP and move it into LEDE so it can be fixed. You do this by entering link speeds that are a few percent below the actual speeds.
+
+Use a speed test program or web site like the [[https://www.dslreports.com/speedtest|DSL Reports Speed Test]] to get an estimate of the actual download and upload values. After setting the initial Download and Upload entries, you should feel free to try the suggestions at [[#a_little_about_tuning_sqm|A little about tuning SQM]] above to see if you can further increase the speeds.
+==== SQM: Queue Discipline Tab ====
+
+The **Queue Discipline** tab controls how packets are prioritized for sending and receipt. The default settings shown here work very well for nearly all circumstances. Those defaults are:
+  * //cake// queueing discipline
+  * //piece_of_cake.qos// queue setup script
+  * //ECN// for inbound packets
+  * //NOECN// for outbound packets
+  * The default values of the **Advanced Configuration** work fine
+
+**Queueing Discipline - the details...**
+
+The default //cake// queueing discipline works well in virtually all situations. Feel free to try out other algorithms to see if they work better in your environment.
+
+The default //piece_of_cake.qos// script has a traffic shaper (the Queueing Discipline you select) and three classes with different priorities for traffic. This provides good defaults.
+
+Explicit Congestion Notification (ECN) is a mechanism for notifying a sender that its packets are encountering congestion and that the sender should slow its packet delivery rate. Instead of dropping a packet, fq_codel marks the packet with a congestion notification and passes it along to the receiver. That receiver sends the congestion notification back to the sender, which can adjust its rate. This provides faster feedback than having the router drop the received packet. //Note:// this technique requires that the TCP stack on both sides enable ECN.
+
+At low bandwidth, we recommend that you turn ECN off for the Upload (outbound, egress) direction, because fq_codel handles and drops packets before they reach the bottleneck, leaving room for more important packets to get out. For the Download (inbound, ingress) link, we recommend you turn ECN on so that fq_codel can inform the local receiver (that will in turn notify the remote sender) that it has detected congestion without loss of a packet.
+
+The "Dangerous Configuration" options allow you to change other parameters. They are not heavily error checked, so be careful that they are exactly as shown when you enter them. As with other options in this tab, it is safe to leave them at their default. They include:
+
+  * **Hard limit on ingress queues:** This is a limit the ingress (inbound) queues, measured in packets. Leave it empty for default.
+  * **Hard limit on egress queues:** This is a limit on the egress (outbound) queues. Similar to the ingress hard limit.
+  * **Latency target for ingress:** The codel algorithm specifies a target, expressed in msec. Leave empty or use "auto" for a calculated compensation for slow links (less than 4 mbps). Use "default" for the qdisc's default.
+  * **Latency target for egress:** The target setting for the egress queues. Similar to the ingress latency target.
+  * **Advanced option string for ingress:** This string passes additional parameters to the ingress queueing discipline. There is no error checking, so enter carefully. Empty is the default.
+  * **Advanced option string for egress:** Similar to the ingress advanced option string.
+
+Please note that if any of the "Advanced option strings" contain values that are not interpreted by the selected qdisc, sqm will _silently_ fail to instantiate, so make sure to always check these two field on changing the qdisc. Also run "tc -d qdisc ; tc -s qdisc" on the router's command line to check whether the expected shapers (ingress/egress) were instantiated, "not heavily error checked" for these two fields is emphatic for "not at all" and the placement under "Dangerous Configuration" quite fitting.
+==== SQM: Link Layer Adaptation Tab ====
+
+Set the Link Layer Adaptation options based on your connection to the Internet. The general rule for selecting the Link Layer Adaption is:
+
+  * Choose **ATM: select for e.g. ADSL1, ADSL2, ADSL2+** and set the Per-packet Overhead to 44 bytes if you use any kind of DSL/ADSL connection to the Internet (that is, if you get your internet service through a telephone line).
+  * Choose **Ethernet with overhead: select for e.g. VDSL2** and set the Per-packet Overhead to 8 if you know you have a VDSL2 connection. If you have a cable modem, see the **Ethernet with Overhead** details below.
+  * Choose **none (default)** if you use Fiber, direct Ethernet, or another kind of connection to the Internet. All the other parameters will be ignored.
+
+If you are not sure what kind of link you have, first try using "None", then run the Quick Test for Bufferbloat. If the results are good, you’re done. Next, try the ATM choice, then the Ethernet choice to see which performs best. Read the Details (below) to learn more about tuning the parameters for your link.
+
+**Link Layer Adaptation - the details…**
+
+Various link-layer transmission methods affect the rate that data is transmitted/received. Setting the Link Layer properly helps SQM make accurate predictions, and improves performance. 
+
+  * **ATM:** It is especially important to set the Link Layer Adaptation on links that use ATM framing (almost all DSL/ADSL links do), because ATM adds five additional bytes of overhead to a 48-byte frame. Unless the SQM algorithm knows to account for the ATM framing bytes, short packets will appear to take longer to send than expected, and will be penalized. For true ATM links, one often can measure the real per-packet overhead empirically, see https://github.com/moeller0/ATM_overhead_detector for further information how to do that.
+  * **Ethernet with Overhead:** SQM can also account for the overhead imposed by VDSL links - add 8 bytes of overhead. Cable Modems (DOCSIS) are known to typically use 28 bytes of overhead in the upstream direction but only 14 bytes in the downstream direction. If your version of SQM only supports to specify one value for the overhead, select 28 Bytes… UPDATE: while the reported numbers are not wrong per se, it turned out that the user traffic shaper mandated? by DOCSIS systems only account for L2 ethernet frames including the frame check sequence (FCS), so the 2017 recommendations for cable users is to set both up- and downstream overhead to 18 bytes (6 bytes source MAC, 6 bytes destination MAC, 2 bytes ether-type, 4 bytes FCS).
+  * **None:** Fiber, and direct Ethernet connections generally do not need any kind of link layer adaptation.
+
+The "Advanced Link Layer" choices are relevant if you are sending packets larger than 1500 bytes. This would be unusual for most home setups, since ISPs generally limit traffic to 1500 byte packets. UPDATE 2017, most recent link technologies will transfer complete L2 ethernet frames including the FCS; that in turn means that they will effectively all inherit the ethernet minimal packet size of 64 bytes. It is hence recommended to set tcMPU to 64. Note that most (but not all) ATM based links will exclude the FCS and hence probably do not require that setting. As of March 2017 sqm-scripts does not evaluate tcMPU if cake is selected as "link layer adaptation mechanism".
+
+Unless you are experimenting, you should use the default choice for the link layer adaptation mechanism. This will select cake if cake is used as qdisc other wise tc_stab.
+===== Selecting the optimal queue setup script =====
+
+**TL;DR:** Use cake, not fq_codel.
+
+//Note:// As of early 2017, cake is an improvement both in speed and capabilities over the original fq_codel algorithm first deployed in May 2012. cake is in every way better than fq_codel. The following description is preserved for historical information.
+
+The right queue setup script (simple, hfsc_lite, ...) for you depends on the combination of several factors like the ISP connection's speed and latency, router's CPU power, wifi/wired connection from LAN clients etc.. You will need likely to experiment with several scripts to see which performs best for you. Below is a summary of real-life testing with three different setup scripts. 
+
+This was tested with WNDR3700 running trunk with kernel 4.1.16 and SQM 1.0.7 with simple, hfsc_lite and hfsc_litest scripts with SQM speed setting 85000/10000 (intentionally lower than ISP connection speed), 110000/15000 (that should exceed the ISP connection speed and also totally burden the router's CPU), as well as 110000/15000 using Wifi.
+
+             wired 85/10             wired 110/15         Wifi 110/15
+           Download/Up/Latency     Download/Up/Latency    Download/Up/Latency
+  Simple       19.5/2.1/18.5           21.2/2.7/19          11.0/3.0/21
+  hfsc_lite    20.7/2.2/19.5           25.0/2.7/50          19.0/2.9/35
+  hfsc_litest  20.7/2.2/18.7           25.0/2.7/52          18.0/2.8/35
+
+("flent" network measurement tool reports the overview as average of the 4 different traffic classes, so the total bandwidth was 4x the figures shown in the above table that shows "per-class" speed. The maximum observed combined download+upload speed was ~110 Mbit/s.)
+
+With wired 85/10 the experience was almost identical with all four qdisc strategies in SQM. Approx. 20 Mbit/s download / 2.1 Mbit/s upload and 19 ms latency shown in the flent summary graph.
+
+With wired 110/15 there was more difference. Interestingly "simple" kept latency at 20 ms, while with the other 3 strategies latency jumped to 50 ms after ~20 seconds. (Might be a flent peculiarity, but still mentioning it.) "simple" kept low latency at 19 ms and 21 Mbit/s download, while the other 3 strategies had 50 ms latency while having 24-25 Mbit/s download per class.
+
+But when the LAN client connected with Wifi to the router with 110/15 limits, "simple" lost its download speed. Latency was still low, but download speed was really low, just half of the normal. Likely the CPU power required for wifi limited the CPU available for other processing and the router choked. 
+
+At least on the tested setup, the download speed using wifi and SQM "simple" was half of that what could achieved with hfsc_lite+wifi, or simple+wired.
+
+The key message of this note is that the right setup script for you will depend on your connection, your router and your LAN clients. It pays off to test the various setup scripts.
+===== Making cake sing and dance, on a tight rope without a safety net =====
+
+**By now, we hope the SQM message has been clear: stick to the defaults and use cake.** 
+
+But cake offers new options that make it the nicest and most complete shaper for a typical home network: Per-Host Isolation in the presence of network address translation (NAT), so that all hosts' traffic shares are equal. (You can choose to isolate per-internal or per-external host IP addresses, but typically fairness by internal host IPs seems in bigger demand.)
+
+A quick aside about Network Address Translation (NAT): ISPs usually assign only one external IP address to each customer. 
+The home router assigns unique internal addresses for each computer in the home, and uses a technique called NAT (or "masquerading") to rewrite those internal IP addresses and ports to work across the single external address. 
+
+NAT works pretty well, too, but causes problems when shaping traffic. 
+Since all the traffic going to/from the ISP has the same external IP address, cake treats every traffic //flow// (or //stream// or //connection//) identically: a single Netflix stream to one internal computer gets the same bandwidth as a single BitTorrent stream to another. 
+But since a BitTorrent client can start many BitTorrent streams, the second machine can get "more than its share" of the capacity.
+
+Recent versions of cake (LEDE 17.01.0 and newer) have two options that avoid this problem: 
+
+  - Cake can now access the kernel's internal translation tables and get access to the true source and destination addresses of incoming and outgoing packets;
+  - Cake can use the information about true source and destination addresses to control traffic from/to internal external hosts by true IP address, not per-stream.
+
+Cake's original isolation mode was based on //flows//: each stream was isolated from all the others, and the link capacity was divided evenly between all active streams independent of IP addresses. More recently cake switched to triple-isolate, which will first make sure that no internal _or_ internal host will hog too much bandwidth and then will still guarantee for fairness for each host.
+In that mode, Cake mostly does the right thing.
+It would ensure that no single stream and no single host could hog all the capacity of the WAN link. 
+However, it can't prevent a BitTorrent client - with multiple connections - from monopolizing most of the capacity. And running speedtests from multiple internal hosts to the same speedtest server can give unpredictable results.
+
+Cake now uses the true source/destination address information to create Per-Host Isolation, and dynamically distributes the available bandwidth fairly between the currently-active IP addresses. So a single Netflix stream to one host ideally gets just as much capacity as all the BitTorrent traffic destined to another. 
+
+**To enable Per-Host Isolation** Add the following to the “Advanced option strings” (in the //Interfaces -> SQM-QoS// page; //Queue Discipline// tab, look for the //Dangerous Configuration// options):
+
+For ingress queueing disciplines: ''nat dual-dsthost''
+
+For egress queueing disciplines: ''nat dual-srchost''
+
+**Notes:**
+
+  * "Ingress" is the shaper instance handling traffic coming from the internet, "into" the router.
+
+  * "Egress" is the shaper instance handling traffic towards the internet, "from" the router.
+ 
+  * Enter these strings carefully and exactly. If things do not seem to work, your first troubleshooting step should be to clear these advanced option strings!
+ 
+  * At some point in time, these advanced cake options may become better integrated into luci-app-sqm, but for the time being this is the way to make cake sing and dance… 
+ 
+  * This discussion assumes SQM is instantiated on an interface that directly faces the internet/WAN. If it is not (e.g., on a LAN port) the meaning of ingress/egress flips. In that case, specify egress queueing disciplines as ''nat dual-dsthost'' and the ingress one as ''nat dual-srchost''.

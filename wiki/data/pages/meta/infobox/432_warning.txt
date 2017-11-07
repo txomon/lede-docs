@@ -1,0 +1,126 @@
+====== 4/32 warning ======
+~~NOTOC~~
+
+Every operating system requires
+  - Sufficient Flash to accommodate firmware image
+  - Sufficient RAM for stable operation
+
+**Devices with insufficient/low Flash and/or RAM have implications on usability, extensibility and supportability.**
+
+===== Usability =====
+
+**Insufficient RAM for stable operation**
+
+  * 32MB minimum; can work quite well, but can also be borderline, depending on your usecase.
+  * 64MB are more comfortable to work with, and in general the better choice.
+
+===== Extensibility =====
+
+**Barely enough Flash to accommodate LEDE firmware image**
+
+  * 4MB min (won't be able to install luci) / 8MB better (will fit luci and some other applications)
+  * 4MB can work, but are no fun to work with. >4MB will make you happier than 4MB or below.
+  * 4MB devices can't fit anything noteworthy unless you use [[docs:user-guide:imagebuilder|the Image Generator (Image Builder)]] (that requires a Linux system and some mild experience) or use [[docs:user-guide:extroot_configuration|Extroot]]. Experienced users deploying specific or custom builds may not be affected by these restrictions; novices however will likely waste hours only to see that their expectations of an extensible operating system which LEDE claims to be can not be met by their device.
+  * Especially in regards to extensibility, the advice can only be: 8MB (or more) are the better choice.
+
+
+Devices with only 4MB Flash memory will barely be able to hold the LEDE firmware image, and will have limitations in their extensibility. With low flash, do not expect too much in this regard.
+
+Most probably, you will not be able to install the following popular packages (and others) on a device with only 4MB flash:
+
+  * [[docs:user-guide:tunneling_interface_protocols|VPNs]] and any other package requiring encryption
+  * [[docs:user-guide:samba_configuration|Samba]] (shared folders)
+  * 3G/4G dongle support
+  * filesystem drivers/tools for formatting and checking a filesystem for [[docs:user-guide:extroot_configuration|Extroot]]
+
+
+===== Supportability =====
+
+It is getting harder or even impossible over time to support devices with low Flash + RAM.
+LEDE support for those devices might end somewhere in the future.
+
+
+===== Advice =====
+
+  * **new users** knowing what they want (or not), not knowing what they need, not knowing what to do -> get 8/64
+  * **experienced users** knowing what they want, need, and do -> try if 4/32 suits your needs; if not, get 8/64
+
+===== An analysis of the issue done by forum user slh =====
+As written in [[https://forum.lede-project.org/t/should-lede-support-devices-with-only-4mb-flash/1018/71| this forum post ]] by forum user **slh**.
+
+First of all, I'm not pretending to speak for the LEDE team, however looking at the plain numbers presents a quite obvious situation.
+
+Taking "[[https://forum.lede-project.org/t/solved-why-no-images-generated-for-default-d-link-dir-600a1/990| Why no images generated for default D-Link DIR-600A1?]]" as an example (yes, some other 4 MB flash devices are a bit better than this particular specimen, the trend remains to be the same though).
+
+<code>D-Link DIR-600A1:
+Backfire 10.03..............: 2293764 bytes
+Backfire 10.03.1............: 2949124 bytes
+Attitude Adjustment 12.09...: 2883588 bytes
+Barrier Breaker 14.07.......: 3276804 bytes
+Chaos Calmer 15.05..........: 3342340 bytes
+Chaos Calmer 15.05.1........: 3407876 bytes
+LEDE 17.01 release branch...: 3473412 bytes
+absolute firmware size......: 3735576 bytes
+maximum usable firmware size: 3538944 bytes</code>
+(all of these figures are for release images, including luci and a more or less identical feature set).
+
+The erase block size for this (and most other) devices is 64 KB, so you now end up with 256 KB (== 4 erase blocks) free space, compared to 320 KB (== 5 erase blocks before). While this may look comfortable at a first glance, you have to consider that free space can only be assigned in (full) block size chunks, so once you touch the overlay partition at all, you already have one erase block in use (64 KB). Therefore the firmware creation tools used by LEDE enforce at least 3 erase blocks reserve for the overlay filesystem (that's where the maximum usable firmware size comes from, compared to the total size of the firmware partition). In other words, with 17.01 you'll only have 1 erase block (64 KB) before the hard limit, while 15.05.1 still gave you 2 spare erase blocks (128 KB) for your own use. On top of this there is the file system overhead needed for formatting to jffs2 as well (jffs2 does some light compression, but its fs header and log (more or less directory entries) need some space, then there is the hard requirement to keep some free space (in erase block == 64 KB chunks) for the garbage collection to work) at all times, reducing the usable free space even further. Around 25 KB are used by the configuration overlay immediately after firstboot, before you actually get a chance to configure anything.
+
+Assuming pure statistics, what will the situation be in 12 or 24 months[1]?
+
+No one has yet raised the suggestion to actually remove the hardware support for affected devices from LEDE's source repository. If you look deeper, you can still find full support for the Linksys WRT-54GL (4 MB flash, 16 MB RAM) in the repo, although support for devices with just 16 MB RAM had already been discontinued with Attitude Adjustment 12.09 and despite the fact that actually building a working up-to-date firmware for this device today is quite challenging[2].
+
+This thread merely serves as a reminder for 'normal users', who expect to download and flash LEDE under the expectation to use it as a full featured replacement for the vendor firmware (including a webinterface, luci). Also keep in mind that luci is enabled for release builds, which means that it either fits into the firmware image (with the mandatory safety margin of at least 3 erase blocks) or no release images can be created for the affected devices[3], [4]. In my very personal opinion, this needs to be documented quite obviously, avoiding to raise false hope and expectations for (especially new) users.\\
+Advanced users will obviously be able to delay the inevitable by quite some margin - depending on their use-cases and abilities to reduce LEDE's footprint below normal system requirements.
+
+Despite the title, the RAM size is actually a much harder limit, affecting much more than just 4 MB flash devices. If you look through the commit log, you will notice quite some efforts to get opkg to use less RAM, but it's still a problem with just 32 MB RAM (even for normal operations, before touching opkg). Likewise you already are in trouble with sysupgrade and trying to flash a (larger) 6-8 MB firmware on a device with just 32 MB RAM, unless you really clean up services and loaded kernel modules manually beforehand, there is a high risk that you'll oom during the sysupgrade and brick your device for good (requiring bootloader/ tftp assistance to recover in the best case).
+
+[1] switching from mach files to device tree (post 17.01) offers a potential to free up a little space in the kernel, but this isn't a whole lot and will probably be eaten more or less completely by upgrading to kernel 4.9+ (also keep in mind that the FDT file needs to be appended to the kernel image, which might or might not compress as well as the mach files before), so don't expect a significant positive effect from this switch.
+
+[2] no webinterface, better no pppd, quite some custom configurations to get the kernel's runtime memory requirements as small as possible, disabling whatever is humanly possible (definately no IPv6, better no wireless either).
+
+[3] with LEDE's pretty new feature of device specific rootfs images, it would technically be possible to decide between installing luci or omitting it on a per device basis, e.g. based on flash sizes, but support for something like this hasn't been implemented yet and would require quite some attention (both as in source patches and tagging of device classes) from interested parties. As implemented right now, the decision is binary - either the default (release) config (including luci) fits XOR building a firmware image for the affected device fails and no firmware will be available.
+
+[4] I would expect that there already are a couple of 4 MB flash devices in the target list for which no release firmware can be built for 17.01, because of less ideal flash partitioning schemes chosen by the vendor (dropping free space below 3 erase blocks). Those are probably a minority, but given the close numbers, I'd be very suprised if there wouldn't be any affected.
+
+[[https://forum.lede-project.org/t/lede-a-bit-over-the-top-with-the-minimal-requirements/2009/4?u=tmomas|More explanations]] on this subject by forum user **slh**.
+===== The opinion of a Core LEDE developer =====
+As originally written in [[https://forum.lede-project.org/t/should-lede-support-devices-with-only-4mb-flash/1018/79|this forum post]] by jow.
+
+Just providing my rather pragmatic opinion on the topic here:\\
+I do not believe in arbitrarily dropping device support\\ 
+We usually support devices as long as it is feasible\\
+A device should be considered supported as long as\\
+  * it is possible to build bootable images
+  * small enough images can be produced to still allow configuration persistence
+  * no patches or other modifications to the source and buildroot are required
+
+Eventually we might need to think about support tiers like:
+
+  *   **Full** => allows for running gui, has working opkg and plenty of space to allow packages
+  *   **Medium** => allows for running gui, has working opkg and at least enough space for setting up extroot
+  *   **Small** => bootable images can be built when either sacrificing gui or opkg while still having configuration persistence
+  *   **Micro** => only choice are heavily tailored custom images that require special measures like pre-shipped configuration, NFS mounts, preconfigured extroot etc.
+
+
+===== Infoboxes =====
+These infoboxes can be included in other pages via the following section-includes:
+<code>
+{{section>meta:infobox:432_warning#infobox_for_dataentries&noheader&nofooter&noeditbutton}}
+{{section>meta:infobox:432_warning#infobox_for_tohs&noheader&nofooter&noeditbutton}}
+</code>
+
+==== Infobox for dataentries ====
+
+<WRAP center round box info 650px>
+**Not recommended for future use with LEDE** due to low flash/ram.\\
+Limitations in extensibility and stability of operation are to be expected.\\
+See [[432_warning]] for details.
+</WRAP>
+
+
+==== Infobox for ToHs ====
+
+<WRAP round info 100%>
+**Devices with ≤4MB flash and/or ≤32MB ram suffer from limitations in extensibility and stability of operation.** Consider this when chosing a device to buy, or when deciding to flash LEDE on your device because it is listed as supported. See [[432_warning]] for details.
+</WRAP>

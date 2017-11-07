@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: dhcpcd ======
+---- dataentry packages ----
+Name                             : dhcpcd
+Version                          : 6.4.3-1
+Description                      : DHCPv4, IPv6RS and DHCPv6 client with IPv4LL support\\ dhcpcd is a one stop network management daemon which includes\\ * RFC compliant DHCPv4 and DHCPv6 clients\\ * DHCPv6 Prefix Delegation support\\ * IPv4LL (aka ZeroConf) support\\ * ARP address conflict resolution\\ * Link carrier detection\\ * Wireless SSID profiles\\ * ARP ping profiles\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 97 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc
+Categories_pkg-categorys         : network #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 98
+License                          : BSD-2c
+Maintainer_pkg-maintainer        : Roy Marples
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/net/dhcpcd|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 6.4.3-1 # short version of the package, for display in table
+----
+

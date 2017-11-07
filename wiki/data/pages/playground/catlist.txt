@@ -1,0 +1,5 @@
+====== Index of techdata pages ======
+
+Created with -> [[https://www.dokuwiki.org/plugin:catlist]]
+
+<catlist /toh/hwdata -columns:3 -nohead -sortAscending -noAddPageButton -exclupage:"start">

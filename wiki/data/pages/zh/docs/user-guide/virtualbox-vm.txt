@@ -1,0 +1,177 @@
+====== 将 LEDE 作为VirtualBox虚拟机运行 ======
+本文描述了如何将x86-64的LEDE镜像运行在[[https://www.virtualbox.org|VirtualBox虚拟机]]，下文以VB缩写。
+
+===== 准备工作 =====
+  * 下载并安装 [[https://www.virtualbox.org/wiki/Downloads|VirtualBox虚拟机]]
+  * 下载并安装 Virtualbox Guest Additions 扩展工具 ( 因为需要usb连接等其他功能 )
+  * 从 [[http://downloads.lede-project.org/snapshots/targets/x86/64/|snapshots/targets/x86/64/]]下载 //lede-x86-64-combined-squashfs.img// 镜像。 (在 Linux系统上, 下载这个//lede-x86-64-combined-ext4.img// 镜像 )
+  * 到你下载文件的目录，打开一个终端窗口 ( 下面的功能只有命令行的界面 )
+  * 将镜像转换为原生VB格式，使用以下命令(命令在 Windows, Mac 和 Linux 上通用. ): ''VBoxManage convertfromraw %%--%%format VDI lede-x86-64-combined-squashfs.img lede-x86-64-combined-squashfs.vdi'' (在 VB 5.1.10 debian8 上测试可以用，但是//lede-x86-64-combined-squashfs.img//镜像看起来不能用，因为是只读的)
+
+如果你看到类似右边的错误：''VBoxManage: error: VD: The given disk size 19444018 is not aligned on a sector boundary (512 bytes)
+VBoxManage: error: Error code VERR_VD_INVALID_SIZE at /Users/vbox/tinderbox/5.1-mac-rel/src/VBox/Storage/VD.cpp(7002) in function int VDCreateBase(PVBOXHDD, const char *, const char *, uint64_t, unsigned int, const char *, PCVDGEOMETRY, PCVDGEOMETRY, PCRTUUID, unsigned int, PVDINTERFACE, PVDINTERFACE)
+VBoxManage: error: Cannot create the disk image "lede.vdi": VERR_VD_INVALID_SIZE''
+你可以重新整合镜像，''dd if=lede-x86-64-combined-squashfs.img of=lede.img bs=128000 conv=sync'' 整合后的镜像， 再用 VBoxManage convertfromraw 工具转换.
+
+你也可以自己编译(//Target System -> x86-64// and //Target Images -> Build VirtualBox image files//). 首先需要启用''ext4''.
+
+
+===== VirtualBox 设置 =====
+
+==== 创建虚拟机 ====
+:!: 教程和截图来自 Virtualbox 5.1.8  Linux 主机, Windows 或者 MacOS 主机上大同小异( 比如菜单栏会)同 但是 Virtualbox 界面和按键是一样的。
+
+{{:docs:user-guide:vboxstart.png?direct&70 |}} 打开VirtualBox，然后点击 //新建(New)// 来新建一个虚拟机(VM)\\
+----
+{{:docs:user-guide:vboxaddvm1.png?direct&70 |}} 给虚拟机设置 //名字(Name)//, //类型(Type)// 选择 ''Linux'' , //版本(Version)// 选择 ''Linux 2.6 / 3.x / 4.x (64-bit)'' , 点击 //下一步(Next)//.\\
+----
+{{:docs:user-guide:vboxaddvm2.png?direct&70 |}} LEDE 工作需要的内存(RAM)比推荐的少的很多，128 MiB 就已经足够. 
+----
+{{:docs:user-guide:vboxaddvm3.png?direct&70 |}} 选择 //使用已有的虚拟硬盘文件(Use an existing hard disk file)//, 点击//文件(file)// 图标来打开//虚拟介质管理器(Virtual Media Manager//, 点击//添加(Add)// 来选择你的''.vdi'' 文件. 点击 //创建(Create)//即可完成创建.\\
+----
+:!: 这里推荐，在把镜像文件添加到VirtualBox前，把镜像文件放在一个永久存储的位置。如果你之后移动了文件, VB 将不会找到，并且会在下次启动时报告这个问题。但是不用担心，VB将会告诉你如何再次链接这个虚拟硬盘文件。
+
+
+==== VM虚拟机设置 ====
+本部分将会手动设置网络配置.\\
+你将通过本教程设置:
+  * 虚拟机的**eth0** 作为 **mng** (管理) 接口, 固定ip 192.168.56.2, VirtualBox中设置 **仅主机网卡(Host-only Adapter)** 为 **vboxnet0**. 即使主机或虚拟机与任何网络断开连接，此网卡将始终可供主机使用.
+  * 虚拟机的**eth1** 作为 **wan** 接口, 动态ip地址, 在VirtualBox中设置为**NAT**. 这个接口会被用于联网，不管你的宿主机是如何联网的.
+  * //(可选) 虚拟机的**eth2** 作为**lan** 接口, 配置取决于你的本地网络, 在VirtualBox中设置为 **桥接网卡(Bridged Adapter)**. 这个网卡允许其他设备 (包括宿主机) 来连接到虚拟机，就好像他是本地网络中的真实存在的物理网卡一样. 只有本地已经有网络的情况下才能生效.//
+  * //要配置两个桥接物理网卡请查看 [[#故障排除]]. 本指南的其余部分也适用于具有2个物理卡的设置. //
+
+=== Virtualbox 设置 ===
+== 仅主机(Host-only) 网络适配器 ==
+首先我们需要确认是否有一个仅主机(Host-only) 网络适配器，并且正确配置\\
+----
+{{:docs:user-guide:vboxvmhost-only-network1.png?direct&70 |}} 点击 **文件(File)** -> **偏好设置(Preferences)** -> **网络(Network)**\\
+----
+{{:docs:user-guide:vboxvmhost-only-network2.png?direct&70 |}} 点击仅主机(Host-only)网络标签，如果没有**vboxnet0** 选项，点击 窗口右边的 **+** 图标来添加.\\
+选择 **vboxnet0** 选项, 点击右边那个螺丝刀的图标来打开设置.\\
+----
+{{:docs:user-guide:vboxvmhost-only-network3.png?direct&70 |}} **IPv4 地址(Address)** 设置为 **192.168.56.1**, **IPv4 网络掩码(Network Mask)** 设置为 **255.255.255.0**, **IPv6 地址(Address)** 为空， **IPv6 网络掩码(Network Mask)** 为 **0**\\
+----
+{{:docs:user-guide:vboxvmhost-only-network4.png?direct&70 |}} //(可选) 如果你想让虚拟机获得动态地址，可以像截图中的那样，设置 DHCP 服务器， 但是对于本教程，不需要在虚拟机本身设置静态地址//
+----
+按 OK 保存并关闭，然后再次返回 Virtualbox 管理器界面.
+
+== 网络设置 ==
+{{:docs:user-guide:vboxvmsettings1.png?direct&70 |}} 打开虚拟机的设置
+----
+{{:docs:user-guide:vboxvmsettings2.png?direct&70 |}} 点击 **网络(Network)** 标签
+----
+{{:docs:user-guide:vboxvmsettings3.png?direct&70 |}}配置 **网卡1(Adapter 1)**:\\
+    - 连接方式选择 **仅主机网络(Host-only Adapter)**
+    - 选择 vboxnet0 作为网卡 **Name**
+    - 点击 **高级(Advanced)** 并在**控制芯片(Adapter Type)** 选择 **Intel PRO/1000 MT 桌面**
+    - **混杂模式(Promiscuous mode)** 应设置为 **拒绝(Deny)** 除非你有其他原因要选择允许.\\
+
+  * 配置 **网卡2(Adapter 2)**
+    - 连接方式选择 **(网络地址转换)NAT**
+  * //(可选) 配置 **网卡3 (Adapter 3)**//
+    - //连接方式选择 **桥接网卡(Bridged Adapter)**//
+    - //在网卡名称处选择你的网卡(以太网或者是无线网络) . 在windows上是全名, 在Linux上会是代号，就像 **eth0**, **eth1** 以太网或者 **wlp2s0** 无线网.//
+    - //点击 **高级(Advanced)** ，其余和 **网卡1(Adapter 1)**中的高级配置一样//
+
+=== VM 设置 ===
+:!: 因为 LEDE 的限制, 在虚拟机的终端屏幕上，输入源设置为US，所以你的一些按键不会打印出正确的符号.\\
+同样, 由于您所看到的是一个裸机终端，而不是一个ssh程序（Putty / Kitty / whatever）或终端仿真器程序, 所以你不能往里面复制-粘贴文本.\\
+别担心, 大多数配置会在你连接到SSH(remote terminal)后进行，所以不会有不能复制粘贴的问题.\\
+{{:docs:user-guide:1280px-qwerty.png?direct&50 |}} 这是一份 US 键盘布局，你可以查看以比对出你应该在你的键盘上按的按键.
+----
+  - 启动你的虚拟机
+  - 等待4秒，GRUB程序将会自动引导系统
+  - 当启动信息停止滚动后，按下 回车键Enter 来激活命令行
+  - 查看网络配置信息\\ <code>root@lede:~# uci show network
+network.loopback=interface
+network.loopback.ifname='lo'
+network.loopback.proto='static'
+network.loopback.ipaddr='127.0.0.1'
+network.loopback.netmask='255.0.0.0'
+network.globals=globals
+network.globals.ula_prefix='fd1b:e541:8f1a::/48'
+network.lan=interface
+network.lan.type='bridge'
+network.lan.ifname='eth0'
+network.lan.proto='static'
+network.lan.netmask='255.255.255.0'
+network.lan.ip6assign='60'
+network.lan.ipaddr='192.168.56.2'
+network.wan=interface
+network.wan.ifname='eth1'
+network.wan.proto='dhcp'
+network.wan6=interface
+network.wan6.ifname='eth1'
+network.wan6.proto='dhcpv6'</code>
+  - 编辑网络配置信息，以允许SSH连接，输入以下命令并回车:
+    - **uci set network.lan.ipaddr='192.168.56.2'**
+    - **uci commit**
+    - **reboot**
+  - 现在你的虚拟机应该可以从SSH来连接, 用户名 **root** (没有密码) ip地址 **192.168.56.2**
+  - 成功登陆后, 我们可以继续配置, 复制-粘贴以下代码并回车:\\ <code>uci batch <<EOF
+set network.mng=interface
+set network.mng.type='bridge'
+set network.mng.proto='static'
+set network.mng.netmask='255.255.255.0'
+set network.mng.ifname='eth0'
+set network.mng.ipaddr='192.168.56.2'
+delete network.lan
+delete network.wan6
+set network.wan=interface
+set network.wan.ifname='eth1'
+set network.wan.proto='dhcp'
+EOF</code>
+  - 输入 **uci changes** 来确认配置是否被正确加载. 如果你看到( **network.mng** 的值和以下一样, **network.wan** 可能会稍微不一样), 那就对了\\ <code>root@lede:~# uci changes
+network.mng='interface'
+network.mng.type='bridge'
+network.mng.proto='static'
+network.mng.netmask='255.255.255.0'
+network.mng.ifname='eth0'
+network.mng.ipaddr='192.168.56.2'
+-network.lan
+-network.wan6
+network.wan='interface'</code>
+  - 如果上面的操作正确, 保存配置并重启**uci commit && reboot**, 如果没有操作好, 输入 **reboot** 来删除临时的修改，然后手动设置上面的配置.
+  - 关闭终端，当虚拟机重启好后再打开SSH终端，使用同样的连接参数 (用户 **root** and ip地址 **192.168.56.2**)
+  - 现在你的虚拟机应该接入了外网 (使用opkg软件包更新来测试 **opkg update**) 然后，你可以用过SSH客户端连接到具有静态ip的管理界面，即使你的电脑断开了外网.
+  - 可选的在 **网卡3(Adapter 3)**选择**桥接网卡(Bridged Adapter)**  并不是基本功能的关键，而是你本地网络参数中特有的. 在我自己的网络(并在大多数家庭网络)，输入以下命令生效 <code>uci batch <<EOF
+set network.lan=interface
+set network.lan.ifname='eth2'
+set network.lan.proto='dhcp'
+EOF
+uci commit</code>\\ 如果你有更多的需求，你可以阅读文档来设置, 或是通过 luci.
+  - 你现在可以像通常一样，安装软件包到镜像里面, 你也许会想要安装luci, 输入 **opkg update && opkg install luci**, 然后在你的浏览器地址栏输入192.168.56.2 你就可以访问到虚拟机的luci界面 或者[[http://192.168.56.2|点击这个链接]]. 
+
+===== 故障排除 =====
+  * 如果你修改了硬盘的文件, VirtualBox 将会报告硬盘文件的UUIDs无效
+    * 你需要在虚拟机中和//虚拟介质管理器(Virtual Media Manager)//移除硬盘文件
+    * 然后重新添加硬盘镜像文件到虚拟机
+
+  * 如果你要用一个桥接的VPN连接到LEDE，并连接到你的本地网络，你需要设置：
+    * **混杂模式(Promiscuous Mode)** 对应的 **桥接网卡(Bridged Network Adapter)** 选择为 "允许所有"，否则你的本地网络将不会正确桥接到你的vpn网络
+
+  * 你还可以设置两个物理网络接口在你的宿主操作系统上. 这样的话：
+    * 用一个网络接口作为 **WAN** 并在VirtualBox 中选择为 **桥接网卡(Bridged Adapter)** 并且 **混杂模式(Promiscuous Mode)** 设置为 **拒绝(Deny)**
+    * 用另一个网卡作为 **LAN** 并在VirtualBox 中选择为 **桥接网卡(Bridged Adapter)** 并且 **混杂模式(Promiscuous Mode)** 设置为
+      * **拒绝(Deny)** 如果你不希望暴露桥接的虚拟网络到你的物理网络中
+      * **允许所有(Allow All)** 如果你希望连接你的桥接虚拟网络到你的物理网络
+
+
+===== 在Windows操作系统的启动时自动运行Lede的virtualbox虚拟机 =====
+
+  * 按顺序将以下条目导入您的注册表或手动添加:
+    - [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]
+    - "VB-LEDE"="\"C:\\Program Files\\Oracle\\VirtualBox\\VBoxManage.exe\" startvm \"NAMEOFVBINSTANCE\" --type headless"
+
+  * 创建2个快捷方式并使用Windows任务调度程序
+    - "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" startvm LEDE --type headless
+      - 在任务调度程序中创建一个任务，通过任意用户的登录触发快捷方式
+    - "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" controlvm LEDE acpipowerbutton
+      - 在任务调度程序中创建一个任务，通过事件触发快捷方式
+        - Begin the task: On an event
+        - Basic Log: System
+        - Source: User32
+        - Event ID: 1074
+
+  * 或者查看:
+       - VB Service: https://sourceforge.net/projects/vboxvmservice/

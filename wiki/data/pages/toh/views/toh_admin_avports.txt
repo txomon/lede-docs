@@ -1,0 +1,47 @@
+====== Table of Hardware: Audio, Video, Phone ports ======
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+**Purpose:** This ToH version shows the Audio, Video, Phone port columns
+
+{{page>meta:infobox:toh_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+----
+
+**Scrolling through the table:** Click anywhere in the table, then use your cursor keys to scroll left/right, up/down.
+
+++++Filter: Audio ports|
+---- datacloud ----
+col        : audio ports_
+filter     : Model!=@@Model@@
+summarize  : 1
+----
+++++
+
+++++Filter: Video ports|
+---- datacloud ----
+col        : video ports_
+filter     : Model!=@@Model@@
+summarize  : 1
+----
+++++
+
+++++Filter: Phone ports|
+---- datacloud ----
+col        : Phone ports_
+filter     : Model!=@@Model@@
+summarize  : 1
+----
+++++
+
+----
+
+
+---- datatable ----
+cols       : Device Type, Brand, Model, Versions, LEDE Supported Current Rel, LEDE Unsupported, CPU, Audio ports_, Video ports_, Phone ports_,  OpenWrt Device Page_url, LEDE Device Page_page, Device Techdata_pageid, OWrt Forum Topic URL_url, LEDE Forum Topic URL_url, WikiDevi URL_url, OEM Device Homepage URL_url, Comments_
+dynfilters : 1
+rownumbers : 1
+filter     : Model!=@@Model@@
+sort       : Brand
+----
+

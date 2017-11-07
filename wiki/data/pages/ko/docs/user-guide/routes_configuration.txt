@@ -1,0 +1,74 @@
+
+==== IPv4 Routes ====
+
+정적 //IPv4 routes//는 ''route''세션을 사용하여 특정 인터페이스에 정의할 수 있습니다.//aliases//의 경우 여러 섹션을 인터페이스에 연결할 수 있습니다. 
+
+최소한의 예는 다음과 같습니다.
+
+<code>config 'route' 'name_your_route'
+        option 'interface' 'lan'
+        option 'target' '172.16.123.0'
+        option 'netmask' '255.255.255.0'
+        option 'gateway' '172.16.123.100'</code>
+
+  * ''lan'' 은 상위 인터페이스의 논리적 인터페이스 이름 입니다. 
+  * ''172.16.123.0'' 은 route의 네트워크 주소 입니다
+  * ''255.255.255.0'' 은 route 넷 마스크를 지정 합니다. 
+
+//IPv4 routes//법적 옵션은 다음과 같습니다. 
+
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''interface'' | string | yes | //(none)// | 이 route가 속한 부모 (또는 마스터) 인터페이스의 논리적 인터페이스 이름 을 지정 합니다. 정의 된 interface 세션 중 하나를 참조해야합니다.  |
+| ''target'' | ip address | yes | //(none)// | Network 주소|
+| ''netmask'' | netmask | no | //(none)// | route netmask. 생략하면 255.255.255.255 로 간주되어 target 호스트 주소로 지정됩니다.  |
+| ''gateway'' | ip address | no | //(none)// | 네트워크 게이트웨이. 생략하면 상위 인터페이스의 gateway 가 사용됩니다. 0.0.0.0 설정하면 route에 게이트웨이가 지정되지 않습니다.  |
+| ''metric'' | number | no | ''0'' | 사용할//route metric// 지정 |
+| ''mtu'' | number | no | //interface MTU// |  route에 대한 특정 MTU를 정의합니다.  |
+| ''table'' | routing table | no | //(none)// | route에 사용할 테이블 ID를 정의합니다. ID는 0 - 65535 범위의 숫자 표 색인이거나 / etc / iproute2 / rt_tables에 선언 된 기호 별명 일 수 있습니다. 특수 별명 local (255), main (254) 및 default (253)도 인식됩니다  |
+| ''source'' | ip address | no | //(none)// | 대상이 대상으로 보내는 경우 기본 소스 주소  |
+| ''onlink'' | boolean | no | ''0'' | 게이트웨이가 인터페이스 prefix와 일치하지 않는 경우에도 활성화 된 게이트웨이는 링크 상태에 있습니다 (Barrier Breaker 이상에만 해당)  |
+| ''type'' | string | no | ''unicast'' | 아래 라우팅 유형 표에 요약 된 유형 중 하나 (barrier breaker 이상에만 해당)  |
+
+uci 파서에서는 인식되지만 ''/etc/init.d/network'' 스크립트에서는 적용되지 않습니다. 
+
+:!: openwrt 12.09에서 게이트웨이가 이미 정의 된 주소 공간에서 게이트웨이를 사용하여 경로를 정의하면 추가되지 않습니다. LAN과 마찬가지로 게이트웨이 192.168.1.1을 가지고 있으며 인터페이스 lan 내의 192.168.1.5 게이트웨이를 통해 1.2.3.4로 이동하려고합니다. 추가되지 않습니다. 힘든 ip route 명령을 통해 추가 될 수 있습니다. 
+==== IPv6 Routes ====
+
+하나 이상의 ''route6'' 섹션을 정의하여 IPv6 경로를 지정할 수도 있습니다. 
+
+최소한의 예는 다음과 같습니다. 
+
+<code>config 'route6'
+        option 'interface' 'lan'
+        option 'target' '2001:0DB8:100:F00:BA3::1/64'
+        option 'gateway' '2001:0DB8:99::1'</code>
+
+  * ''lan'' 은 상위 인터페이스의 논리적 인터페이스 이름 입니다. 
+  * ''2001:0DB8:100:F00:BA3::1/64''는 CIDR 표기법에서 라우팅 된 IPv6 서브넷 입니다. 
+  * ''2001:0DB8:99::1'' 은 이 route에 대한 IPv6 게이트웨이 를 지정합니다. 
+
+//IPv6 routes//법적 옵션은 다음과 같습니다. 
+
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''interface'' | string | yes | //(none)// | 이 route가 속한 부모 (또는 마스터) 인터페이스의 논리적 인터페이스 이름 을 지정 합니다. 정의 된 interface 세션 중 하나를 참조해야합니다.  |
+| ''target'' | ip address | yes | //(none)// | Network 주소|
+| ''netmask'' | netmask | no | //(none)// | route netmask. 생략하면 255.255.255.255 로 간주되어 target 호스트 주소로 지정됩니다.  |
+| ''gateway'' | ip address | no | //(none)// | 네트워크 게이트웨이. 생략하면 상위 인터페이스의 gateway 가 사용됩니다. 0.0.0.0 설정하면 route에 게이트웨이가 지정되지 않습니다.  |
+| ''metric'' | number | no | ''0'' | 사용할//route metric// 지정 |
+| ''mtu'' | number | no | //interface MTU// |  route에 대한 특정 MTU를 정의합니다.  |
+| ''table'' | routing table | no | //(none)// | route에 사용할 테이블 ID를 정의합니다. ID는 0 - 65535 범위의 숫자 표 색인이거나 / etc / iproute2 / rt_tables에 선언 된 기호 별명 일 수 있습니다. 특수 별명 local (255), main (254) 및 default (253)도 인식됩니다  |
+| ''source'' | ip address | no | //(none)// | 대상이 대상으로 보내는 경우 기본 소스 주소  |
+| ''onlink'' | boolean | no | ''0'' | 게이트웨이가 인터페이스 prefix와 일치하지 않는 경우에도 활성화 된 게이트웨이는 링크 상태에 있습니다 (Barrier Breaker 이상에만 해당)  |
+| ''type'' | string | no | ''unicast'' | 아래 라우팅 유형 표에 요약 된 유형 중 하나 (barrier breaker 이상에만 해당)  |
+
+=== Routing Types ===
+
+^ Type ^ 설명^
+| ''unicast'' | route 항목은 route prefix 로 처리되는 대상에 대한 실제 route를 설명합니다.  |
+| ''local'' | 대상은이 호스트에 할당됩니다. 패킷은 루프백되어 로컬로 전달됩니다.  |
+| ''broadcast'' | 대상은 브로드 캐스트 주소입니다. 패킷은 링크 브로드 캐스트로 전송됩니다.  |
+| ''multicast'' | 멀티 캐스트 라우팅에 사용되는 특수 유형입니다. 일반 라우팅 테이블에는 존재하지 않습니다. |
+| ''unreachable'' | 이 목적지에는 도달 할 수 없습니다. 패킷은 폐기되고 ICMP 메시지 호스트에 도달 할 수 없게됩니다. 로컬 보낸 사람이 EHOSTUNREACH 오류가 발생합니다.  |
+| ''prohibit'' | 이 목적지에는 도달 할 수 없습니다. 패킷은 폐기되고 관리 상 금지 된 ICMP 메시지 통신이 생성됩니다. 로컬 보낸 사람에게 EACCES 오류가 발생합니다. |
+| ''blackhole'' | 이 목적지에는 도달 할 수 없습니다. 패킷은 자동으로 삭제됩니다. 로컬 보낸 사람에게 EINVAL 오류가 발생합니다.  |
+| ''anycast'' | 대상은 이 호스트에 할당 된 애니 캐스트 주소입니다. 한 가지 차이점을 제외하고는 주로 로컬에 해당합니다. 이러한 주소는 패킷의 원본 주소로 사용될 때 유효하지 않습니다.  |

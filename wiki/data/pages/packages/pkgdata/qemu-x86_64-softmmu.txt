@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: qemu-x86_64-softmmu ======
+---- dataentry packages ----
+Name                             : qemu-x86_64-softmmu
+Version                          : 2.6.2-3
+Description                      : This package contains the QEMU target x86_64-softmmu\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 1693 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, glib2, libpthread, zlib, uclibcxx, libncurses, libfdt, qemu-blobs
+Categories_pkg-categorys         : utilities---virtualization #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : arm_cortex-a8_vfpv3, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 1690
+License                          : GPL-2.0
+Maintainer_pkg-maintainer        : Yousong Zhou
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/utils/qemu|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 2.6.2-3 # short version of the package, for display in table
+----
+

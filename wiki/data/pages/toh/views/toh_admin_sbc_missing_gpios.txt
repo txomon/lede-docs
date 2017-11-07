@@ -1,0 +1,51 @@
+====== Table of Hardware: Single Board Computers missing GPIO info ======
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+**Purpose:** This ToH version shows devices which match the following criteria:
+
+  * Device Type = Single Board Computer
+  * GPIOs = empty
+
+Single board computers normally have some GPIOs available. Even is a device has no GPIOs available, this should be clearly marked. A completely empty GPIO field is a sign of missing information. You can help to improve the ToH by adding the missing info.
+
+
+{{page>meta:infobox:toh_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+----
+
+**Scrolling through the table:** Click anywhere in the table, then use your cursor keys to scroll left/right, up/down.
+
+
+++++Filter: LEDE Supported Current Rel|
+---- datacloud ----
+col        : LEDE Supported Current Rel
+filter     : Model!=@@Model@@
+filter     : Device Type=Single Board Computer
+summarize  : 1
+----
+++++
+
+++++Filter: Availability|
+---- datacloud ----
+col        : Availability
+filter     : Model!=@@Model@@
+filter     : Device Type=Single Board Computer
+summarize  : 1
+----
+++++
+
+----
+
+
+---- datatable ----
+cols       : Brand, Model, Versions, Availability, LEDE Supported Current Rel_releasepage, LEDE Unsupported, Target, Subtarget, CPU, CPU MHz, Flash MB, RAM MB, GPIOs_, OpenWrt Device Page_url, Device Techdata_pageid, OWrt Forum Topic URL_url, WikiDevi URL_url, OEM Device Homepage URL_url, Comments_
+align      : l,l,l,l,l,l,l,l,l,l,l,l,c,c,l,c,l,l,l,l
+dynfilters : 1
+rownumbers : 1
+filter     : Model!=@@Model@@
+filter     : Device Type=Single Board Computer
+filter     : GPIOs_=
+sort       : Brand
+----
+

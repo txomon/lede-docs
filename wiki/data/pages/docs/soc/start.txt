@@ -1,0 +1,18 @@
+====== SoC (Sytem on Chip) ======
+
+===== SoCs supported by LEDE =====
+
+---- datacloud ----
+col       : CPU
+target    : toh:views:toh_dev_instructionset
+min       : 2
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+filter    : CPU!=¿
+filter    : LEDE Supported Current Rel!=¿
+filter    : LEDE Supported Current Rel!=-
+filter    : LEDE Supported Current Rel!=EOL
+summarize : 1
+----
+
+----

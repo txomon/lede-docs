@@ -1,0 +1,126 @@
+=== QSG - LEDE Release Installation - Basic Router ===
+
+
+=== Folded Plugin Example ===  
+++++ To Configure a Router click Here  |
+
+It does not appear one can add any formatting to the above line of text, including Headers and Bold.
+
+Formatting "Folded" begins with a group of 4 (+) signs, a title and then a pipe.  Content is below and up until a closing set of 4 (+) chrs.
+
+  * Bullet lists are working
+  * **Formatting** //is working// __also__ ''(at least <del>in this</del> example)''
+  * Doesn't work with %%<code>%% tags or %%<WRAP>%% :(
+  * Doesn't work with section headings
+
+  - Ordered List Item
+  - And another one
+
+===== Do section headings work? =====
+
+No, they don't.
+
+[[https://lede-project.org/playground/hiding_content|Link to some place]]
+
+[[https://www.dokuwiki.org/plugin:folded#usage|Folded Plugin]]
+
+
+++++ 
+=== Inline Folded ===
+
+
+This is a line of text++ | with some hidden stuff here++ and some unhidden stuff at this end.
+
+
+=== Hidden Plugin Example ===  
+
+<hidden onHidden="**Open the section to install on a Travel Router**" onVisible="=== Hide the section to install on a Travel Router === " edit="Do not see what edit does, works with or with out">
+
+OK Lets play with content
+
+Can not apply color to the above text
+
+Can apply BOLD to the above text
+
+Can apply HEADERS to the above section, but the up down arrows go away
+
+[[https://www.dokuwiki.org/plugin:hidden|Hidden]]
+
+ * Bullet lists are working
+  * **Formatting** //is working// __also__ ''(at least <del>in this</del> example)''
+  * Doesn't work with section headings: Section headings and following content are always displayed.
+  * **Does work** with %%<code>%% tags and %%<WRAP>%% :)
+
+  - Ordered List Item
+  - And another one
+
+<WRAP center centeralign round info 60%>
+**This also works with wraps!**
+</WRAP>
+
+
+<code>## Booting image at 81000000 ...
+   Image Name:   MIPS OpenWrt Linux-3.3.8
+   Created:      2012-11-26  17:01:44 UTC
+   Image Type:   MIPS Linux Kernel Image (lzma compressed)
+   Data Size:    4269201 Bytes =  4.1 MB
+   Load Address: 80060000
+   Entry Point:  80060000
+   Verifying Checksum at 0x81000040 ...OK
+   Uncompressing Kernel Image ... OK
+No initrd
+## Transferring control to Linux (at address 80060000) ...
+## Giving linux memsize in bytes, 67108864,</code>
+</hidden>
+
+==== USING Hidden In Line ====
+
+
+<hidden click here if you want to know more>Since you want to know more, here is an explanation with more details […]</hidden>
+
+<hidden>Hidden text</hidden>
+
+<hiddenSwitch> 
+
+==== Outliner ====
+
+
+--> Section 1 without preview#
+
+  * List item one
+
+Some other syntax.
+
+Can not apply BOLD to the Section 1 text
+Can not apply Titles to the Section 1 text
+
+--> Nested section opened^
+
+Nested content
+
+outliner plugin -> [[https://www.dokuwiki.org/plugin:outliner]]
+
+  * Bullet lists are working
+  * **Formatting** //is working// __also__ ''(at least <del>in this</del> example)''
+  * Doesn't work with section headings: Section headings and following content are always displayed.
+  * **Does work** with %%<code>%% tags and %%<WRAP>%% :)
+
+  - Ordered List Item
+  - And another one
+
+<WRAP center centeralign round info 60%>
+**This also works with wraps!**
+</WRAP>
+
+<code>## Booting image at 81000000 ...
+   Image Name:   MIPS OpenWrt Linux-3.3.8
+   Created:      2012-11-26  17:01:44 UTC
+   Image Type:   MIPS Linux Kernel Image (lzma compressed)
+   Data Size:    4269201 Bytes =  4.1 MB
+   Load Address: 80060000</code>
+
+<--
+
+Main content continue
+
+<--

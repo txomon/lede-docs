@@ -1,0 +1,138 @@
+====== Submitting patches ======
+
+Patches can be submitted as a pull request on Github or via the mailing list.\\ 
+
+Submissions should follow the following guidelines:
+
+  * use a different git branch for each pull request (GitHub does this automatically if you edit files through the website)
+
+  * write commit subject and message in the imperative form: "add support for X", NOT "added support for X"
+
+  * **code formatting**
+    * use the same indentation you find in the file you are modifying, use only tabs or only spaces depending on what was done in the rest of the file
+    * entries in lists should be placed in alphabetical order
+
+  * **commit subject** 
+    * must have a prefix that depends from what you are doing in the commit
+      * **kernel:** for kernel and kmod (kernel module) packages 
+      * **package name:** for packages 
+      * **device architecture:** for devices (for example, **mvebu:** or **ramips: add support to example_eval board** )
+      * **tool name:** for tools
+      * **build:** for general buildsystem changes that are not targeted at something in /toolchain 
+    * must be __less than 50 characters__ long
+    * must describe what the commit changes and why the commit is necessary.\\ It is challenging to be both succinct and descriptive, but that is what a well-written summary should do
+    * don't capitalize first word after the prefix
+    * don't write a full stop at the end of the subject line
+
+  * **commit description** 
+    * must have less than 75 characters per line
+    * it will be committed to the source changelog, so __it should explain to a competent reader why you made this commit__.\\ Include symptoms of the failure you are fixing (log messages, error messages, etc.), it will be useful for\\ people searching the commit logs looking for a fix for their issue.\\ If a patch fixes a compile failure, include only the most relevant part of the failure log
+    * If you add support for new hardware: Include in your commit message a short description of the hardware and how to install LEDE on it. Have a look at the [[https://git.lede-project.org/?p=source.git&a=search&h=HEAD&st=commit&s=add+support+for|recent additions]] for some examples.
+
+
+  * **all commits must contain ''%%Signed-off-by: My Name <my@email.address>%%'' where you write your real name and real email address**, in accordance with [[http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?id=HEAD#n416|Section 11 of the Linux Kernel patches guide]].
+    * it can be done automatically by git commandline with: <code>git commit --signoff</code>
+
+  * the Author field **must** match the "Signed-off-by:" line 
+    * if you are editing files and committing through GitHub, you must write your real name in the "Name" field in GitHub settings and the email used in the "Signed-off-by:" must be your primary github email
+    * if you are editing files and committing on your local PC, set your name and email with<code>
+git config --global user.name "my name"
+git config --global user.email "my@email.address"</code>
+
+
+===== Working with Github =====
+
+There are Github mirrors of the source repository [[https://github.com/lede-project/source|here]].\\ 
+Fork the project to a public repo using Github web interface, clone the repo to your computer, create a branch for your changes, push these back to Github and submit a pull request.
+
+In case you don't know how to do that, keep reading.\\
+
+Create a Github account, this will host your public fork of LEDE source, and will be used for all interaction on Github.
+
+Install git in your PC, and make sure that your local git settings have the right name and email\\
+<code>
+git config --global user.name "my name"
+git config --global user.email "my@email.address"
+</code>
+
+You might also want to set the default text editor to your favourite editor.
+If you have a Linux system with a GUI, some choices are **geany**, **kwrite**, **pluma** and **gedit**.\\ 
+If you are using command line, **nano** is a good one. <code>git config --global core.editor "editor-name-here"</code>
+
+Then follow Github's excellent documentation to [[https://help.github.com/articles/fork-a-repo/|Fork A Repo]] and [[https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork|Create a local clone of your fork]]\\
+
+After you have set it up as described, write <code>git checkout -b my-new-branch-name</code> to create a branch for your PR ("my-new-branch-name" is just an example name, use a more descriptive name in yours).\\ 
+All commits you do after this command will be grouped in this branch. This allows to have multiple branches, one for each PR.\\
+To switch between branches you already created, use <code>git checkout my-branch-name</code>
+
+After you made your changes, write <code>git add -i</code> and use its interface to add untracked (new) files and update existing ones.\\
+
+Then write <code>git commit --signoff</code> This will open the git default editor and you can write the commit message. \\ 
+The first line is the commit subject, \\ 
+then leave an empty line \\ 
+then you write the commit description. \\
+This command will automatically add the Signed-off-by line with your name and email as set above.\\
+For example, a complete commit message might look like this:\\ 
+  The best code update.
+  
+  This is the best piece of code I have ever submitted.
+  Signed-off-by: John Doe <John.Doe@test.com>
+
+To send your local changes over to your Github repo, write <code>git push --all</code>
+You will be asked your github user and password in the process.\\
+
+After the code has been uploaded to your github repo, you can submit PR using Github web interface, see again Github's documentation about [[https://help.github.com/articles/creating-a-pull-request/|Creating a pull request]]\\
+
+
+===== Sending patches by Email =====
+
+Send an email to the [[https://lists.infradead.org/mailman/listinfo/lede-dev|development mailing list]]. All patches need to be sent in the same format as those that are listed on [[https://patchwork.ozlabs.org/project/lede/list/|patchwork]]. If the patch does not get listed in patchwork then it won't get processed.
+Using **git send-email** is warmly recommended, as email clients tend to add spaces and screw up the formatting or add non-printable characters. 
+
+===== Squashing commits =====
+Commits in a PR or sent by email should be about full changes you want to merge, not about fixing all issues the reviewers found in your original PR.\\
+
+So, there will come a time when you will need to either rewrite or squash your commits; so you end with a normal amount of true and sane commits.
+
+Work with git commandline.\\ 
+Change to your development folder.\\ 
+Look at the branches you have with: <code>git branch -a</code>
+get something like:<code>
+  best_code_update
+* master</code>
+
+Switch to the your development branch for this PR with:<code>git checkout best_code_update</code>
+
+Look at the git log, so you can count the number of commits you want to squash ( the "X" below ) with:<code>git log</code>
+
+Delete commits with:<code>git reset HEAD~X</code>
+(where X is the number of commits you want to delete, counted from the last commit), this will not change modified files, it will only delete the commits.\\
+Add the files to git tracking again with:<code>git add -i</code>
+and commit again with:<code>git commit --signoff</code>
+Send the updated branch over to github with: <code>git push -f</code> 
+and the commits in the PR will be updated automatically.
+
+==== Alternative squashing advice: ====
+
+You can use **interactive rebase** to combine, reorder and edit your commits and their commit messages, with:<code>git rebase -i HEAD~X</code>   (X = number of commits to edit)
+
+===== Patch Merging And Tree Life Cycle =====
+
+We encourage frequent committers to host their own staging trees where they aggregate patches that they feel responsible for and/or ones that they created themselves. Once the tree has been reviewed and tested it can be proposed for inclusion in the master branch.
+
+
+  - Trees will be merged into master at any time
+  - Bug fixes can be merged into master directly
+  - PRs can be sent to the patches mailing list from any source and will always be considered for inclusion if the quality of the tree is good and format of submission is correct
+  - Staging trees can be hosted as part of the projects git infrastructure, private servers, GitHub ...
+
+===== Patch Checklist =====
+  - Single commit ( multiple commits must first be squashed, as described above )
+  - Subject < 50 characters
+  - Blank line after subject
+  - Each line of description < 75 characters
+  - Description explains **what** was changed
+  - Description explains **why** it was changed  
+  - Description makes sense
+  - Signoff line includes real name
+  - Signoff line includes real email address

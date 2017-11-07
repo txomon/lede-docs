@@ -1,0 +1,16 @@
+/***********************************************************
+Although snapshots do not really belong to "release builds", it is currently needed to have the snapshots
+page in this hierarchy, because it is used this way in the ToP (Table of packages, /packages/start).
+--- //[[tmo26@gmx.de|tmomas]] 2017/02/22 18:53//
+************************************************************/
+
+
+====== Development builds / snapshots ======
+
+<WRAP center round important 60%>
+The development branch can contain experimental code that is under active development and should not be used for production environments. Snapshot images may support additional hardware; however, it is experimental, considered unstable, and sometimes won't compile.
+</WRAP>
+
+<WRAP center round important 60%>
+**Prebuilt snapshot images do not come with any web interface or GUI**. You will need to be comfortable using a command line and remote shell to install one yourself -> [[docs:user-guide:luci.essentials|How to install LuCI]]
+</WRAP>

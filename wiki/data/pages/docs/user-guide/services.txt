@@ -1,0 +1,32 @@
+===== Managing system services =====
+
+LEDE system is composed of many different programs running all the time called daemons or services.\\
+The default ones are already set up in a standard installation, but you may want to change their configuration or add new ones with packages.
+
+==== CLI Syntax ====
+
+''service'' will print a list of available services
+
+''service service_name'' will print a list of available actions for a service
+
+''service service_name action'' will execute that action on that service
+
+Technically speaking, the ''service'' command is just a wrapper for initscripts found in **/etc/init.d**.\\
+The above commands are functionally identical to the following ones (respectively), they are just shorter and easier to remember.\\
+''ls /etc/init.d/''\\
+''/etc/init.d/service_name''\\
+''/etc/init.d/service_name action''\\
+
+==== Luci web interface ====
+
+Click on **System**, then on **Startup** to land in the page listing all the available services and buttons to execute actions.
+
+==== Actions ====
+The default actions supported by most services are:
+^ Action  ^ Description ^
+| **start**  | Start the service |
+| **stop** | Stop the service |
+| **restart** | Restart the service |
+| **reload** | Reload configuration files (or restart if that fails) |
+| **enable** | Enable service autostart |
+| **disable** | Disable service autostart |

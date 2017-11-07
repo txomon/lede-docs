@@ -1,0 +1,18 @@
+~~NOTOC~~
+===== Wilfred de Kok =====
+
+Short introduction: 28 y.o. humanist, geek, gay and single from [[wp>Goes|Goes, The Netherlands]].\\
+I'm interested in information security, privacy rights, [[wp>FOSS]] and [[https://www.internetsociety.org/who-we-are/our-members|Internet Governance trough the Internet Society]].
+
+
+==== My devices with LEDE Firmware ====
+[[toh:hwdata:netgear:netgear_wndr3800|{{:media:netgear:wndr3800.jpg?50| NetGear WNDR3800}}]]
+[[toh:hwdata:netgear:netgear_wndr3700_v2|{{:media:netgear:wndr3700.jpg?50| NetGear WNDR3700v2}}]]
+
+
+==== Contact ====
+  * [[https://forum.lede-project.org/users/wilfred/summary|LEDE Forum]]
+  * [[https://keybase.io/wilfred|Keybase.io/wilfred]]
+  * [[https://developer.mozilla.org/nl/profiles/wdekok|Mozilla Developer Network]]
+
+[[https://keybase.io/wilfred|{{ https://keybase.onlineth.com/wilfred.png?400 | Keybase.io profile for wilfred }}]]

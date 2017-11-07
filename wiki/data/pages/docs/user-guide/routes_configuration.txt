@@ -1,0 +1,78 @@
+
+==== IPv4 Routes ====
+
+Static //IPv4 routes// can be defined on specific interfaces using ''route'' sections. As for //aliases//, multiple sections can be attached to an interface.
+
+A minimal example looks like this:
+
+<code>config 'route' 'name_your_route'
+        option 'interface' 'lan'
+        option 'target' '172.16.123.0'
+        option 'netmask' '255.255.255.0'
+        option 'gateway' '172.16.123.100'</code>
+
+  * ''lan'' is the //logical interface name// of the parent interface
+  * ''172.16.123.0'' is the //network address// of the route
+  * ''255.255.255.0'' specifies the //route netmask//
+
+Legal options for //IPv4 routes// are:
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''interface'' | string | yes | //(none)// | Specifies the //logical interface name// of the parent (or master) interface this route belongs to; must refer to one of the defined ''interface'' sections |
+| ''target'' | ip address | yes | //(none)// | Network address |
+| ''netmask'' | netmask | no | //(none)// | Route netmask. If omitted, ''255.255.255.255'' is assumed which makes ''target'' a //host address// |
+| ''gateway'' | ip address | no | //(none)// | Network gateway. If omitted, the ''gateway'' from the parent interface is taken; if set to ''0.0.0.0'' no gateway will be specified for the route |
+| ''metric'' | number | no | ''0'' | Specifies the //route metric// to use |
+| ''mtu'' | number | no | //interface MTU// | Defines a specific MTU for this route |
+| ''table'' | routing table | no | //(none)// | Defines the table ID to use for the route. The ID can be either a numeric table index ranging from 0 to 65535 or a symbolic alias declared in /etc/iproute2/rt_tables. The special aliases local (255), main (254) and default (253) are recognized as well |
+| ''source'' | ip address | no | //(none)// | The preferred source address when sending to destinations covered by the target |
+| ''onlink'' | boolean | no | ''0'' | When enabled gateway is on link even if the gateway does not match any interface prefix (Barrier Breaker and later only) |
+| ''type'' | string | no | ''unicast'' | One of the types outlined in the Routing Types table below (Barrier Breaker and later only) |
+
+To disable a route quickly, the option ''enabled'' is not available. Just rewrite the ''route'' config section as ''disabled_route'' like:
+<file>
+config 'disabled_route' 'name_your_route'
+        ...lines...
+</file>
+and it will be recognized by the uci parser but not applied by the ''/etc/init.d/network'' script.
+
+:!: It seems that on openwrt 12.09 if a route is defined using a gateway in an address space where a gateway is already defined, it will be not added. Like the lan has the gateway 192.168.1.1 and we want to go to 1.2.3.4 over the gateway 192.168.1.5 within the interface lan, it will not be added. Could be added through ''ip route'' commands tough.
+==== IPv6 Routes ====
+
+//IPv6 routes// can be specified as well by defining one or more ''route6'' sections.
+
+A minimal example looks like this:
+
+<code>config 'route6'
+        option 'interface' 'lan'
+        option 'target' '2001:0DB8:100:F00:BA3::1/64'
+        option 'gateway' '2001:0DB8:99::1'</code>
+
+  * ''lan'' is the //logical interface name// of the parent interface
+  * ''2001:0DB8:100:F00:BA3::1/64'' is the routed //IPv6 subnet// in CIDR notation
+  * ''2001:0DB8:99::1'' specifies the //IPv6 gateway// for this route
+
+Legal options for //IPv6 routes// are:
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''interface'' | string | yes | //(none)// | Specifies the //logical interface name// of the parent (or master) interface this route belongs to; must refer to one of the defined ''interface'' sections |
+| ''target'' | ipv6 address | yes | //(none)// | IPv6 network address |
+| ''gateway'' | ipv6 address | no | //(none)// | IPv6 gateway. If omitted, the ''gateway'' from the parent interface is taken |
+| ''metric'' | number | no | ''0'' | Specifies the //route metric// to use |
+| ''mtu'' | number | no | //interface MTU// | Defines a specific MTU for this route |
+| ''table'' | routing table | no | //(none)// | Defines the table ID to use for the route. The ID can be either a numeric table index ranging from 0 to 65535 or a symbolic alias declared in /etc/iproute2/rt_tables. The special aliases local (255), main (254) and default (253) are recognized as well |
+| ''source'' | ip address | no | //(none)// | The preferred source address when sending to destinations covered by the target |
+| ''onlink'' | boolean | no | ''0'' | When enabled gateway is on link even if the gateway does not match any interface prefix (Barrier Breaker and later only) |
+| ''type'' | string | no | ''unicast'' | One of the types outlined in the Routing Types table below (Barrier Breaker and later only) |
+
+=== Routing Types ===
+
+^ Type ^ Description ^
+| ''unicast'' | the route entry describes real paths to the destinations covered by the route prefix. |
+| ''local'' | the destinations are assigned to this host. The packets are looped back and delivered locally. |
+| ''broadcast'' | the destinations are broadcast addresses. The packets are sent as link broadcasts. |
+| ''multicast'' | a special type used for multicast routing.  It is not present in normal routing tables. |
+| ''unreachable'' | these destinations are unreachable. Packets are discarded and the ICMP message host unreachable is generated. The local senders get an EHOSTUNREACH error. |
+| ''prohibit'' | these destinations are unreachable. Packets are discarded and the ICMP message communication administratively prohibited is generated. The local senders get an EACCES error. |
+| ''blackhole'' | these destinations are unreachable. Packets are discarded silently. The local senders get an EINVAL error. |
+| ''anycast'' | the destinations are anycast addresses assigned to this host. They are mainly equivalent to local with one difference: such addresses are invalid when used as the source address of any packet. |

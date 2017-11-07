@@ -1,0 +1,75 @@
+====== OpenVPN Client ======
+Here is what I did to get OpenVPN working to my VPN provider.
+
+===== Preparation =====
+First you need to ssh into your router and then we will install some prerequisites.
+<code>
+opkg update
+opkg install openvpn-openssl luci-app-openvpn
+opkg install nano libustream-openssl ca-bundle ca-certificates
+</code>
+===== OpenVPN Config Files =====
+You will need two files from your VPN provider, namely the ovpn client config file and the ca cert file. For example:
+<code>
+cd /etc/openvpn
+wget http://www.ipvanish.com/software/configs/ca.ipvanish.com.crt
+wget https://www.ipvanish.com/software/configs/ipvanish-US-Los-Angeles-lax-a01.ovpn
+</code>
+Next we need to edit the ovpn file and make a few changes:
+<code>
+nano ipvanish-US-Los-Angeles-lax-a01.ovpn
+</code>
+Modify the line that says: auth-user-pass and make it look like this:
+<code>
+auth-user-pass /tmp/auth.conf
+</code>
+Also, add the following line somewhere to force the openvpn client to route traffic over this tunnel
+<code>
+redirect-gateway def1
+</code>
+Press “Ctrl-X” to exit, and Y to save when prompted
+
+Next we need to create the user/password file mentioned above:
+<code>
+touch /tmp/auth.conf
+echo "YOUR_VPN_USER_NAME" > /tmp/auth.conf
+echo "YOUR_VPN_PASSWORD" >> /tmp/auth.conf
+</code>
+===== Interface and Firewall Setup =====
+
+Next, I took the instructions from the following site: https://github.com/jlund/streisand/wiki/Setting-an-OpenWrt-Based-Router-as-OpenVPN-Client
+<code>
+# a new OpenVPN instance:
+uci set openvpn.provider=openvpn
+uci set openvpn.provider.enabled='1'
+uci set openvpn.provider.config='/etc/openvpn/ipvanish-US-Los-Angeles-lax-a01.ovpn  # NOTE: use whatever your file is above.
+
+# a new network interface for tun:
+uci set network.providervpn=interface
+uci set network.providervpn.proto='none' #dhcp #none
+uci set network.providervpn.ifname='tun0'
+
+# a new firewall zone (for VPN):
+uci add firewall zone
+uci set firewall.@zone[-1].name='vpn'
+uci set firewall.@zone[-1].input='REJECT'
+uci set firewall.@zone[-1].output='ACCEPT'
+uci set firewall.@zone[-1].forward='REJECT'
+uci set firewall.@zone[-1].masq='1'
+uci set firewall.@zone[-1].mtu_fix='1'
+uci add_list firewall.@zone[-1].network='providervpn'
+
+# enable forwarding from LAN to VPN:
+uci add firewall forwarding
+uci set firewall.@forwarding[-1].src='lan'
+uci set firewall.@forwarding[-1].dest='vpn'
+
+# Finally, you should commit UCI changes:
+uci commit
+</code>
+===== Validation =====
+Finally, you can now use the LuCI interface at Services -> OpenVPN to start and stop the tunnel.  NOTE: it will have “incorrect” information listed in the GUI, but that is fine as that config is all pulled in from the config file. You should see see that the tunnel has started and a reference number associated to it in brackets.
+
+Validate things are working by going to Status -> Systemlog and you should see something that says:  Initialization Sequence Completed
+
+Finally, do a "what's my ip" check to validate that your external IP has, in fact, changed.

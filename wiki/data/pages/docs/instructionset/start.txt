@@ -1,0 +1,26 @@
+~~NOTOC~~
+====== Instruction Sets ======
+
+See also [[docs:targets:start|Targets]]
+
+===== All instruction sets =====
+
+{{pagequery> * ns:docs:instructionset:;
+    sort=title;
+    display={title};
+    cols=2;
+    bullet=disc;
+    border=both;
+    hidestart;
+    hidejump;
+    fontsize=100%;
+}}
+
+
+===== Devices with certain instruction set =====
+
+---- datacloud ----
+field     : Package architecture
+summarize : 1
+page      : toh/views/toh_dev_instructionset
+----

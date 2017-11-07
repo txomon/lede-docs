@@ -1,0 +1,45 @@
+====== 关于本站 ======
+
+=====  站长是哪位? =====
+
+  * This site is from the community, and for the community. 
+  * The LEDE developers provide the facilities that make this site work, but are otherwise equal members of the community.
+  * A few of the top-level pages about the community's governing rules are on read-only pages. The majority of the site is open for registered members to edit and improve.
+
+===== Purpose =====
+
+The purpose of this site is to provide:
+  * [[toh:views:start|Hardware information]] about devices supported by LEDE
+  * [[docs:guide-quick-start:start|Installation instructions]]
+  * [[docs/howto/start|How-tos]] for e.g. VPN, WiFi, ...
+
+
+===== Editing Pages - Using the Dokuwiki Syntax =====
+
+Read [[wiki:syntax|Dokuwiki Syntax Tutorial]] for available markup commands and installed syntax plugins.
+Try them out in the [[playground:playground|Playground Page]]! 
+===== Pictures =====
+
+See [[meta:adding_images_to_lede_wiki|Adding images to the LEDE Wiki]] on how to take good pictures and upload them to the site.
+
+
+===== Maintenance =====
+The site has built-in consistency tests. These pages are automatically generated to report problems.
+  * Regular [[wiki:maintenance:start|maintenance]] helps to keep the site in good shape.
+  * Check the [[wiki:maintenance:to_do_list|To do list]] for tasks flagged as needing to be done
+
+===== Contributions are welcome! =====
+
+  * [[http://lists.infradead.org/pipermail/lede-dev/2016-September/thread.html#2807|Join the LEDE web site team!]]
+  * [[:register_yourself_in_the_wiki|Register yourself in the site]]
+
+===== 联系方式t =====
+
+Below mentioned people can be contacted **regarding questions about this website**.
+
+^ What                                             ^ Who                      ^ Contact via         ^ 
+| [[toh:views:start|Table of hardware]]            | [[user:tmomas|tmomas]]   | [[https://forum.lede-project.org/c/documentation|Forum]]  |
+| [[:start|Wiki in general]] (Usage, Syntax, ...)  | [[user:tmomas|tmomas]]   | [[https://forum.lede-project.org/c/documentation|Forum]]  |
+| [[packages:start|Package list]]                  | bobafetthotmail          | [[https://forum.lede-project.org/c/documentation|Forum]]  |
+| Infrastructure (server outages, ...)             | thess, jow               | [[https://bugs.lede-project.org/|Bug tracker]]            |
+| Other questions about lede-project.org           | Forum                    | [[https://forum.lede-project.org/c/documentation|Forum]]  |

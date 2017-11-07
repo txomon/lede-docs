@@ -1,0 +1,3 @@
+==== libc ====
+metapackage that will offload on whatever libc you have chosen.\\
+By default it is musl for most embedded targets, but glibc and others are also available.

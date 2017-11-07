@@ -1,0 +1,38 @@
+====== LEDE 개발자 가이드 ======
+
+이 페이지는 LEDE 개발에 필요한 모든 페이지가 링크되어 있습니다. 더 많은 정보가 필요하다면 Search facility를 이용하세요\\ 
+
+==== 이미지빌더 빠른시작 ===
+  * [[:docs:guide-developer:quickstart-build-images| LEDE 이미지 빌더]]
+
+==== Contribution 가이드라인 ====
+왼쪽의 메뉴 목록에서 "패치 배포"를 클릭하세요.
+
+==== 소스 코드 ====
+  * [[ko:docs:guide-developer:the-source-code| LEDE 소스 코드]]
+
+==== Toolchain 사용하기 ====
+  * [[docs:guide-developer:Compile packages for LEDE with the SDK|SDK를 통한 LEDE 패키지 컴파일 ]]
+  * [[:docs:guide-developer:build-system | 빌드 시스템]]
+    * [[:docs:guide-developer:install-buildsystem |호스트에서의 빌드 시스템 설치]]
+    * [[:docs:guide-developer:use-buildsystem| 펌웨어 이미지를 컴파일 하기 위한 빌드 시스템 사용하기]]
+    * [[:docs:guide-developer:use-patches-with-buildsystem| 빌드 시스템의 패치 사용하기]]
+
+==== 개발 관련 문서 ====
+
+
+  * [[:docs:guide-developer:uci-defaults]]
+  * [[:docs:guide-developer:adding_new_device]]
+  * [[:docs:guide-developer:mdns]]
+  * [[:docs:guide-developer:procd]]
+  * [[:docs:guide-developer:rpcd]]
+  * [[:docs:guide-developer:ubus]]
+  * [[:docs:guide-developer:netifid]]
+  * [[https://github.com/btsimonh/lede-vagrant|Vagrant-based automatic setup for a LEDE build environment in a VM]]
+  * [[:docs:guide-developer:embedding-files-in-image| Including custom files/configurations in a firmware image]]
+  * [[:docs:guide-developer:using-build-environments| Build for multiple targets from the same build tree (build environments aka config swapping)]]
+  * [[:docs:guide-developer:test-virtual-image-using-armvirt|Testing a virtual image using the armvirt target]]
+
+==== 버그 추적기 ====
+
+버그에 대한 리포트는 https://bugs.lede-project.org/로 보내주세요. 

@@ -1,0 +1,3 @@
+====== LEDE Project WiKi 에 가입 하세요 ======
+
+[[https://wiki.lede-project.org/start?do=register|LEDE WiKi 가입 페이지]].

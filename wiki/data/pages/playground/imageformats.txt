@@ -1,0 +1,63 @@
+====== Image formats ======
+
+
+===== Standard formats =====
+
+==== sysupgrade or trx images ====
+Previously know as //trx image//, //sysupgrade// is designed to be flashed from OpenWrt/LEDE itself ((https://wiki.openwrt.org/doc/faq/before.installation)).
+
+==== factory ====
+Designed to be flashed by the bootloader flasher or stock firmware flasher ((https://wiki.openwrt.org/doc/faq/before.installation))
+
+
+===== Specific formats =====
+
+==== initramfs ====
+Usually first part of a multi-stage installation, this type of firmware can be loaded from an arbitrary location and is self-contained in memory.  This is like a Linux LiveCD. ((https://forum.lede-project.org/t/toward-a-good-flashing-lede-instructions-page/52/5))
+
+==== u-boot or uImage ====
+<color #ed1c24>This is an image format designed for U-Boot loader.  Same as initramfs?</color> ((https://wiki.openwrt.org/doc/faq/before.installation)) ((https://docs.blackfin.uclinux.org/doku.php?id=bootloaders:u-boot:uimage))
+
+==== ext4 ====
+This firmware contains a regular ext4 Linux partition.  Mostly used in x86 and x86_x64 systems.
+
+==== squashfs ====
+This firmware contains a type of partition that is compressed and mounts read-only.  All modifications (file edit, new files, deleted files) are committed to an overlay.
+
+==== rootfs ====
+Only the root filesystem of LEDE
+
+==== kernel ====
+<color #ed1c24>??</color>
+
+==== ubifs ====
+<color #ed1c24>??</color>
+
+==== ubi ====
+<color #ed1c24>??</color>
+
+==== tftp ====
+<color #ed1c24>Designed to be loaded from tftp server.  Device in recovery mode?</color>
+
+
+===== Subformats =====
+
+==== bin, img, elf, dtb, chk, dlf ====
+These are raw binary data of the firmware file
+
+==== xz, gz, tar, lzma ====
+These are compressed images
+
+
+===== Developer files =====
+
+==== sdk ====
+SDK Toolchain for compiling single userspace packages ((https://we.riseup.net/lackof/openwrt-on-x86-64))
+
+==== Imagebuilder ====
+To build custom images without compiling ((https://we.riseup.net/lackof/openwrt-on-x86-64))
+
+==== vmlinux ====
+Linux kernel for build ((https://we.riseup.net/lackof/openwrt-on-x86-64))
+
+

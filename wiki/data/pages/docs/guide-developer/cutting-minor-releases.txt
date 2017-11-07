@@ -1,0 +1,49 @@
+====== Cutting minor releases ======
+
+
+<todo>Properly mark where a v-prefixed version and a non v-prefixed version is used</todo>
+
+<todo>Properly use sample version numbers everywhere</todo>
+
+<todo>Put multiple commands into multiple lines.</todo>
+
+===== Prerequisites =====
+
+For building the release, a valid GnuPG key is required. In addition two scripts are used for easy tagging and creating the changelog.
+
+  * [[https://gist.github.com/jow-/ff271e554e39aaf20a9df46bb6d088bd|maketag.sh]]
+  * [[https://gist.github.com/jow-/ee725f70577185052cf45d735deee138|make-changelog.pl]]
+
+===== Preparing the Sources =====
+
+  - Ensure your source checkout is up to date
+  - Create the signed tags''./maketag.sh -k <gpg key id> -v <new_version>''
+  - Review the changes ''git log -p -2'' ''git show <new_version>''
+  - Push the changes to the git repository ''git push origin lede-17.01; git push --follow-tags origin refs/tags/v17.01.3:refs/tags/v17.01.3''
+
+
+===== Building the Release =====
+
+To trigger a full release build, you need to
+
+  - Log in to the [[http://release-builds.lede-project.org/17.01/images/|release buildbot]]
+  - Go to "Builders"
+  - Populate the reason field (e.g. "trigger release build")
+  - Populate the first "name" field with "tag", and the "value" field with the release tag name without the v. It should show something along ''reason "Trigger release build", name[0] = tag, value[0] = 17.01.3''.
+  - Click "Force All Builds"
+
+This will take about 12 hours.
+
+In the mean time, prepare the changelog. Run
+''./make-changelog.pl <previous_release>..<new_release> > template.txt '' to generate the changelog. Verify that the changelog was generated correctl,y remove the "(WIP)" from the title and put them it [[https://lede-project.org/releases/17.01/changelog-17.01.3]].
+
+===== Announcing the Release =====
+
+Once the release build is finished an tested, it can be announced.
+
+  - Update these pages to include the new release:
+    - https://lede-project.org/start
+    - https://lede-project.org/releases/start
+    - https://lede-project.org/releases/17.01/start
+  - Send an email to [[mailto:lede-dev@lists.lede-project.org]] containing the release notes. Use [[http://lists.infradead.org/pipermail/lede-dev/2017-June/007969.html]] as template.
+  - Add a pinned [[https://forum.lede-project.org/|forum]] topic. Use [[https://forum.lede-project.org/t/lede-v17-01-2-service-release/4331]] as a template. After 4 - 8 weeks, the topic can be unpinned.

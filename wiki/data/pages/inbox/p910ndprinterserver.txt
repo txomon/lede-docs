@@ -1,0 +1,59 @@
+====== p910nd Print Server ======
+
+[[http://man.cx/p910nd|p910nd]] is a small printer daemon intended for diskless platforms that does not spool to disk but passes the job directly to the printer. Normally a lpr daemon on a spooling host connects to it with a TCP connection on port 910n (where n=0, 1, or 2 for lp0, 1 and 2 respectively). p910nd is particularly useful for diskless platforms. Common Unix Printing System (CUPS) supports this protocol, it's called the AppSocket protocol and has the scheme <code>socket://remotehost:PORT</code>
+
+Windows and Mac Os X (via CUPS) also supports this protocol.
+
+In this guide I show you how to enable printing support for HP M1120 and Canon MP480 printer.
+
+===== Install software on LEDE device =====
+
+   * SSH into device, e.g. ''ssh 192.168.1.1''
+   * Enter “root” as username and supply with password
+   * Update OpenWrt software packages:\\ <code>root@LEDE:~# opkg update</code>
+   * Install Kernel modules for USB Printer support:\\ <code>root@LEDE:~# opkg install kmod-usb-printer</code>
+   * Install printer server:\\ <code>root@LEDE:~# opkg install p910nd luci-app-p910nd</code>
+
+===== Configure print server p910nd =====
+
+  - Check if your printer is recognized:\\ <code>
+root@LEDE:~# ls /dev/usb/lp*
+/dev/usb/lp0
+</code>
+  - We can continue with configuring in **Services** -> **p910nd - Printer server**:\\ {{media:docs:howto:p910nd_01.png?600|}}\\ The screenshot speaks for itself: Check //enable//, set //Device// address and check/uncheck //Bidirectional mode//. Bidirectional mode depends on your router. On my HP printer I leave it enabled, on my Canon I must disable, else printing is not working.
+  - You can add additional printers, but don't forget to set address of the new printer and set another port:\\ {{media:docs:howto:p910nd_02.png?600|}}
+
+===== Configure clients =====
+
+==== Windows ====
+
+First, install drivers for your printer.
+
+  - Add a local printer:\\ {{media:docs:howto:p910nd_03.png?600|}}
+  - Create a new Standard TCP/IP port for the printer:\\ {{media:docs:howto:p910nd_04.png?600|}}
+  - Enter IP Address for the printer: e.g.: 192.168.1.1\\ {{media:docs:howto:p910nd_05.png?600|}}
+  - Specify additional information for the connection:\\ {{media:docs:howto:p910nd_06.png?600|}}
+  - Choose "Raw" protocol and set port number. e.g.: 9100\\ {{media:docs:howto:p910nd_07.png?600|}}
+  - Pick a suitable printer driver:\\ {{media:docs:howto:p910nd_08.png?600|}}
+  - You may try to print a test page to the printer.
+
+==== Mac OS X Sierra ====
+
+First, try configure your printer via System Preferences:
+  - Printers -> + (Add Printer) -> IP tab:\\ {{media:docs:howto:p910nd_09.png?600|}}\\ <code>Address: 192.168.1.1:9101 or socket://192.168.1.1:9101
+Protocol: HP Jetdirect - Socket
+Name: any name
+Use: Select Software... and select your printer.</code>
+  - Done. Try with a test print.
+
+ This method has worked for me with a HP M1120 printer, but it failed with my Canon MP480 (Error: unable to communicate with printer). So I added manually.
+
+==== Manual method ====
+
+  - Open Terminal and enable CUPS Web Interface: paste in 'cupsctl WebInterface=yes' and click enter.\\ {{media:docs:howto:p910nd_10.png?600|}}
+  - Now you should be able to go to http://localhost:631/:\\ {{media:docs:howto:p910nd_11.png?600|}}
+  - Click on **Adding Printers and Classes** in the center and on Add Printer. Log in with your system username/password. Select AppSocket/HP JetDirect and click on Continue.\\ {{media:docs:howto:p910nd_12.png?600|}}
+  - In the Connection field type <code>socket://yourLEDEipaddress:9100</code> (where yourLEDEipaddress is the IP address of your router and PORT is what you configured earlier). Click on Continue.\\ {{media:docs:howto:p910nd_13.png?600|}}
+  - On the next page type any printer name and click on Continue:\\ {{media:docs:howto:p910nd_14.png?600|}}
+  - On the final page select your printer's manufacturer and model. Finally, click on Add Printer.\\ {{media:docs:howto:p910nd_15.png?600|}}
+  - You are done, try it with a test print.

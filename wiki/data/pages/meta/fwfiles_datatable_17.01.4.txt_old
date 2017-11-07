@@ -1,0 +1,1644 @@
+~~NOSIDEBAR~~
+~~HIDEPAGE~~
+/* This page is automatically generated - DO NOT EDIT */
+**Release:** 17.01.4
+<datatables scroll-x="true" header-rows="1" fixed-header="true" page-length="25" buttons='[ csv ]' dom="fript" ordering="false">
+^ # ^ Available firmware files ^ Device specs ^ Firmware installation ^
+| 1 | lede-17.01.4-apm821xx-nand-WNDR4700-initramfs-kernel.bin | | |
+| 2 | lede-17.01.4-apm821xx-nand-WNDR4700-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wndr4700_v1]] | https://wiki.openwrt.org/toh/netgear/wndr4700 |
+| 3 | lede-17.01.4-apm821xx-nand-WNDR4700-squashfs-sysupgrade.tar | [[toh/hwdata/netgear/netgear_wndr4700_v1]] | https://wiki.openwrt.org/toh/netgear/wndr4700 |
+| 4 | lede-17.01.4-apm821xx-nand-mr24-initramfs-kernel.bin | | |
+| 5 | lede-17.01.4-apm821xx-nand-mr24-squashfs-sysupgrade.tar | [[toh/hwdata/meraki/meraki_mr24]] | https://wiki.openwrt.org/toh/meraki/mr24 |
+| 6 | lede-17.01.4-apm821xx-nand-mx60-initramfs-kernel.bin | | |
+| 7 | lede-17.01.4-apm821xx-nand-mx60-squashfs-sysupgrade.tar | [[toh/hwdata/meraki/meraki_mx60]] | https://wiki.openwrt.org/toh/meraki/mx60 |
+| 8 | lede-17.01.4-apm821xx-nand-mx60w-initramfs-kernel.bin | | |
+| 9 | lede-17.01.4-apm821xx-nand-mx60w-squashfs-sysupgrade.tar | [[toh/hwdata/meraki/meraki_mx60w]] | https://wiki.openwrt.org/toh/meraki/mx60w |
+| 10 | lede-17.01.4-apm821xx-sata-MyBookLiveDuo-ext4-rootfs.img.gz | [[toh/hwdata/westerndigital/westerndigital_mybook_live_duo]] | |
+| 11 | lede-17.01.4-apm821xx-sata-MyBookLiveDuo-initramfs-kernel.bin | [[toh/hwdata/westerndigital/westerndigital_mybook_live_duo]] | |
+| 12 | lede-17.01.4-apm821xx-sata-MyBookLiveSingle-ext4-rootfs.img.gz | [[toh/hwdata/westerndigital/westerndigital_mybook_live_single]] | |
+| 13 | lede-17.01.4-apm821xx-sata-MyBookLiveSingle-initramfs-kernel.bin | [[toh/hwdata/westerndigital/westerndigital_mybook_live_single]] | |
+| 14 | lede-17.01.4-ar71xx-generic-NBG6616-squashfs-sysupgrade.bin | [[toh/hwdata/zyxel/zyxel_nbg6616]] | https://wiki.openwrt.org/toh/zyxel/nbg6616 |
+| 15 | lede-17.01.4-ar71xx-generic-a02-rb-w300n-squashfs-factory.bin | [[toh/hwdata/atlantis/atlantis_a02-rb-w300n]] | |
+| 16 | lede-17.01.4-ar71xx-generic-a02-rb-w300n-squashfs-sysupgrade.bin | [[toh/hwdata/atlantis/atlantis_a02-rb-w300n]] | |
+| 17 | lede-17.01.4-ar71xx-generic-a60-squashfs-factory.bin | [[toh/hwdata/open-mesh/open-mesh_a60]] | |
+| 18 | lede-17.01.4-ar71xx-generic-a60-squashfs-sysupgrade.bin | [[toh/hwdata/open-mesh/open-mesh_a60]] | |
+| 19 | lede-17.01.4-ar71xx-generic-alfa-ap120c-squashfs-sysupgrade.bin | [[toh/hwdata/alfanetwork/alfanetwork_ap120c]] | https://wiki.openwrt.org/toh/alfa.network/ap120c |
+| 20 | lede-17.01.4-ar71xx-generic-alfa-ap96-squashfs-sysupgrade.bin | [[toh/hwdata/alfanetwork/alfanetwork_ap96]] | https://wiki.openwrt.org/toh/alfa.network/ap96 |
+| 21 | lede-17.01.4-ar71xx-generic-alfa-nx-squashfs-factory.bin | [[toh/hwdata/alfanetwork/alfanetwork_n2]] [[toh/hwdata/alfanetwork/alfanetwork_n5]] | https://wiki.openwrt.org/toh/alfa.network/n2 https://wiki.openwrt.org/toh/alfa.network/n5 |
+| 22 | lede-17.01.4-ar71xx-generic-alfa-nx-squashfs-sysupgrade.bin | [[toh/hwdata/alfanetwork/alfanetwork_n2]] [[toh/hwdata/alfanetwork/alfanetwork_n5]] | https://wiki.openwrt.org/toh/alfa.network/n2 https://wiki.openwrt.org/toh/alfa.network/n5 |
+| 23 | lede-17.01.4-ar71xx-generic-all0258n-squashfs-sysupgrade.bin | [[toh/hwdata/allnet/allnet_all0258n]] | https://wiki.openwrt.org/toh/allnet/all0258n |
+| 24 | lede-17.01.4-ar71xx-generic-all0305-kernel.bin | | |
+| 25 | lede-17.01.4-ar71xx-generic-all0305-rootfs-squashfs.bin | | |
+| 26 | lede-17.01.4-ar71xx-generic-all0305-squashfs-sysupgrade.bin | [[toh/hwdata/allnet/allnet_all0305]] | https://wiki.openwrt.org/toh/allnet/all0305 |
+| 27 | lede-17.01.4-ar71xx-generic-all0315n-squashfs-sysupgrade.bin | [[toh/hwdata/allnet/allnet_all0315n]] | |
+| 28 | lede-17.01.4-ar71xx-generic-antminer-s1-squashfs-factory.bin | | |
+| 29 | lede-17.01.4-ar71xx-generic-antminer-s1-squashfs-sysupgrade.bin | | |
+| 30 | lede-17.01.4-ar71xx-generic-antminer-s3-squashfs-factory.bin | | |
+| 31 | lede-17.01.4-ar71xx-generic-antminer-s3-squashfs-sysupgrade.bin | | |
+| 32 | lede-17.01.4-ar71xx-generic-antrouter-r1-squashfs-factory.bin | | |
+| 33 | lede-17.01.4-ar71xx-generic-antrouter-r1-squashfs-sysupgrade.bin | | |
+| 34 | lede-17.01.4-ar71xx-generic-ap121-16M-squashfs-sysupgrade.bin | | |
+| 35 | lede-17.01.4-ar71xx-generic-ap121-8M-squashfs-sysupgrade.bin | [[toh/hwdata/alfanetwork/alfanetwork_ap121]] | https://wiki.openwrt.org/toh/alfa.network/ap121 |
+| 36 | lede-17.01.4-ar71xx-generic-ap121f-squashfs-sysupgrade.bin | [[toh/hwdata/alfa_network/alfa_network_ap121f]] | |
+| 37 | lede-17.01.4-ar71xx-generic-ap132-squashfs-sysupgrade.bin | | |
+| 38 | lede-17.01.4-ar71xx-generic-ap135-020-squashfs-sysupgrade.bin | | |
+| 39 | lede-17.01.4-ar71xx-generic-ap136-010-squashfs-sysupgrade.bin | | |
+| 40 | lede-17.01.4-ar71xx-generic-ap136-020-squashfs-sysupgrade.bin | | |
+| 41 | lede-17.01.4-ar71xx-generic-ap143-16M-squashfs-sysupgrade.bin | | |
+| 42 | lede-17.01.4-ar71xx-generic-ap143-8M-squashfs-sysupgrade.bin | | |
+| 43 | lede-17.01.4-ar71xx-generic-ap147-010-squashfs-sysupgrade.bin | | |
+| 44 | lede-17.01.4-ar71xx-generic-ap152-16M-squashfs-sysupgrade.bin | | |
+| 45 | lede-17.01.4-ar71xx-generic-ap90q-squashfs-sysupgrade.bin | [[toh/hwdata/yuncore/yuncore_ap90q]] | |
+| 46 | lede-17.01.4-ar71xx-generic-archer-c5-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_archer_c5_ac1200_v1.20]] | https://wiki.openwrt.org/toh/tp-link/archer-c5-c7-wdr7500 |
+| 47 | lede-17.01.4-ar71xx-generic-archer-c5-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_archer_c5_ac1200_v1.20]] | https://wiki.openwrt.org/toh/tp-link/archer-c5-c7-wdr7500 |
+| 48 | lede-17.01.4-ar71xx-generic-archer-c7-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_archer_c7_ac1750_v1]] | https://wiki.openwrt.org/toh/tp-link/archer-c5-c7-wdr7500 |
+| 49 | lede-17.01.4-ar71xx-generic-archer-c7-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_archer_c7_ac1750_v1]] | https://wiki.openwrt.org/toh/tp-link/archer-c5-c7-wdr7500 |
+| 50 | lede-17.01.4-ar71xx-generic-archer-c7-v2-il-squashfs-factory.bin | | |
+| 51 | lede-17.01.4-ar71xx-generic-archer-c7-v2-il-squashfs-sysupgrade.bin | | |
+| 52 | lede-17.01.4-ar71xx-generic-archer-c7-v2-squashfs-factory-eu.bin | | |
+| 53 | lede-17.01.4-ar71xx-generic-archer-c7-v2-squashfs-factory-us.bin | | |
+| 54 | lede-17.01.4-ar71xx-generic-archer-c7-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_archer_c7_ac1750_v2.0]] | https://wiki.openwrt.org/toh/tp-link/archer-c5-c7-wdr7500 |
+| 55 | lede-17.01.4-ar71xx-generic-archer-c7-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_archer_c7_ac1750_v2.0]] | https://wiki.openwrt.org/toh/tp-link/archer-c5-c7-wdr7500 |
+| 56 | lede-17.01.4-ar71xx-generic-bhr-4grv2-squashfs-factory.bin | [[toh/hwdata/buffalo/buffalo_bhr-4grv2]] | |
+| 57 | lede-17.01.4-ar71xx-generic-bhr-4grv2-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_bhr-4grv2]] | |
+| 58 | lede-17.01.4-ar71xx-generic-bsb-squashfs-sysupgrade.bin | | |
+| 59 | lede-17.01.4-ar71xx-generic-bxu2000n-2-a1-squashfs-sysupgrade.bin | | |
+| 60 | lede-17.01.4-ar71xx-generic-c-55-squashfs-sysupgrade.bin | [[toh/hwdata/airtight/airtight_c-55]] | |
+| 61 | lede-17.01.4-ar71xx-generic-cap324-nocloud-squashfs-sysupgrade.bin | | |
+| 62 | lede-17.01.4-ar71xx-generic-cap324-squashfs-sysupgrade.bin | | |
+| 63 | lede-17.01.4-ar71xx-generic-cap4200ag-squashfs-sysupgrade.bin | [[toh/hwdata/senao/senao_cap4200ag]] | |
+| 64 | lede-17.01.4-ar71xx-generic-carambola2-squashfs-sysupgrade.bin | [[toh/hwdata/8devices/8devices_carambola2]] | https://wiki.openwrt.org/toh/8devices/carambola2 |
+| 65 | lede-17.01.4-ar71xx-generic-cf-e316n-v2-squashfs-sysupgrade.bin | [[toh/hwdata/comfast/comfast_cf-e316n_v2]] | |
+| 66 | lede-17.01.4-ar71xx-generic-cf-e320n-v2-squashfs-sysupgrade.bin | [[toh/hwdata/comfast/comfast_cf-e320n_v2]] | |
+| 67 | lede-17.01.4-ar71xx-generic-cf-e380ac-v1-squashfs-sysupgrade.bin | [[toh/hwdata/comfast/comfast_cf-e380ac_v1]] | |
+| 68 | lede-17.01.4-ar71xx-generic-cf-e380ac-v2-squashfs-sysupgrade.bin | [[toh/hwdata/comfast/comfast_cf-e380ac_v2]] | |
+| 69 | lede-17.01.4-ar71xx-generic-cf-e520n-squashfs-sysupgrade.bin | [[toh/hwdata/comfast/comfast_cf-e520n]] | |
+| 70 | lede-17.01.4-ar71xx-generic-cf-e530n-squashfs-sysupgrade.bin | [[toh/hwdata/comfast/comfast_cf-e530n]] | |
+| 71 | lede-17.01.4-ar71xx-generic-cpe210-220-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-cpe210_1]] | https://wiki.openwrt.org/toh/tp-link/tl-cpe210 |
+| 72 | lede-17.01.4-ar71xx-generic-cpe210-220-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-cpe210_1]] | https://wiki.openwrt.org/toh/tp-link/tl-cpe210 |
+| 73 | lede-17.01.4-ar71xx-generic-cpe510-520-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-cpe510_1]] | https://wiki.openwrt.org/toh/tp-link/tl-cpe510 |
+| 74 | lede-17.01.4-ar71xx-generic-cpe510-520-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-cpe510_1]] | https://wiki.openwrt.org/toh/tp-link/tl-cpe510 |
+| 75 | lede-17.01.4-ar71xx-generic-cpe830-squashfs-sysupgrade.bin | [[toh/hwdata/yuncore/yuncore_cpe830]] | |
+| 76 | lede-17.01.4-ar71xx-generic-cpe870-squashfs-sysupgrade.bin | [[toh/hwdata/yuncore/yuncore_cpe870]] | |
+| 77 | lede-17.01.4-ar71xx-generic-cr3000-nocloud-squashfs-sysupgrade.bin | | |
+| 78 | lede-17.01.4-ar71xx-generic-cr3000-squashfs-sysupgrade.bin | | |
+| 79 | lede-17.01.4-ar71xx-generic-cr5000-nocloud-squashfs-sysupgrade.bin | | |
+| 80 | lede-17.01.4-ar71xx-generic-cr5000-squashfs-sysupgrade.bin | | |
+| 81 | lede-17.01.4-ar71xx-generic-dap-2695-a1-squashfs-factory.img | [[toh/hwdata/d-link/d-link_dap-2695_a1]] | https://wiki.openwrt.org/toh/d-link/dap-2695 |
+| 82 | lede-17.01.4-ar71xx-generic-dap-2695-a1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dap-2695_a1]] | https://wiki.openwrt.org/toh/d-link/dap-2695 |
+| 83 | lede-17.01.4-ar71xx-generic-db120-squashfs-sysupgrade.bin | | |
+| 84 | lede-17.01.4-ar71xx-generic-dgl-5500-a1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dgl-5500_a1]] | https://wiki.openwrt.org/toh/d-link/dgl-5500 |
+| 85 | lede-17.01.4-ar71xx-generic-dgl-5500-a1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dgl-5500_a1]] | https://wiki.openwrt.org/toh/d-link/dgl-5500 |
+| 86 | lede-17.01.4-ar71xx-generic-dhp-1565-a1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dhp-1565]] | https://wiki.openwrt.org/toh/d-link/dhp-1565 |
+| 87 | lede-17.01.4-ar71xx-generic-dhp-1565-a1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dhp-1565]] | https://wiki.openwrt.org/toh/d-link/dhp-1565 |
+| 88 | lede-17.01.4-ar71xx-generic-dir-505-a1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-505]] | https://wiki.openwrt.org/toh/d-link/dir-505 |
+| 89 | lede-17.01.4-ar71xx-generic-dir-505-a1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-505]] | https://wiki.openwrt.org/toh/d-link/dir-505 |
+| 90 | lede-17.01.4-ar71xx-generic-dir-615-c1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-615_c1]] | https://wiki.openwrt.org/toh/d-link/dir-615 |
+| 91 | lede-17.01.4-ar71xx-generic-dir-615-c1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-615_c1]] | https://wiki.openwrt.org/toh/d-link/dir-615 |
+| 92 | lede-17.01.4-ar71xx-generic-dir-825-b1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-825]] | https://wiki.openwrt.org/toh/d-link/dir-825 |
+| 93 | lede-17.01.4-ar71xx-generic-dir-825-b1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-825]] | https://wiki.openwrt.org/toh/d-link/dir-825 |
+| 94 | lede-17.01.4-ar71xx-generic-dir-825-c1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-825_c1]] | https://wiki.openwrt.org/toh/d-link/dir-825 |
+| 95 | lede-17.01.4-ar71xx-generic-dir-825-c1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-825_c1]] | https://wiki.openwrt.org/toh/d-link/dir-825 |
+| 96 | lede-17.01.4-ar71xx-generic-dir-835-a1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-835_a1]] | https://wiki.openwrt.org/toh/d-link/dir-835 |
+| 97 | lede-17.01.4-ar71xx-generic-dir-835-a1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-835_a1]] | https://wiki.openwrt.org/toh/d-link/dir-835 |
+| 98 | lede-17.01.4-ar71xx-generic-dir-869-a1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-869_a1]] | |
+| 99 | lede-17.01.4-ar71xx-generic-dir-869-a1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-869_a1]] | |
+| 100 | lede-17.01.4-ar71xx-generic-dlan-hotspot-squashfs-sysupgrade.bin | [[toh/hwdata/devolo/devolo_dlan_hotspot]] | |
+| 101 | lede-17.01.4-ar71xx-generic-dlan-pro-1200-ac-squashfs-sysupgrade.bin | [[toh/hwdata/devolo/devolo_dlan_pro_1200_wifi_ac]] | https://wiki.openwrt.org/toh/devolo/devolo_dlan_pro_1200_wifi_ac |
+| 102 | lede-17.01.4-ar71xx-generic-dlan-pro-500-wp-squashfs-sysupgrade.bin | [[toh/hwdata/devolo/devolo_dlan_pro_wireless_500_plus]] | https://wiki.openwrt.org/toh/devolo/devolo_dlan_pro_wireless_500_plus |
+| 103 | lede-17.01.4-ar71xx-generic-dlrtdev01-squashfs-factory.bin | | |
+| 104 | lede-17.01.4-ar71xx-generic-dlrtdev01-squashfs-sysupgrade.bin | | |
+| 105 | lede-17.01.4-ar71xx-generic-dr344-squashfs-sysupgrade.bin | [[toh/hwdata/wallys/wallys_dr344-nas27]] | https://wiki.openwrt.org/toh/wallys/wallys_dr344-nas27 |
+| 106 | lede-17.01.4-ar71xx-generic-dr531-squashfs-sysupgrade.bin | | |
+| 107 | lede-17.01.4-ar71xx-generic-dragino2-squashfs-sysupgrade.bin | [[toh/hwdata/dragino/dragino_ms14]] | https://wiki.openwrt.org/toh/dragino/ms14 |
+| 108 | lede-17.01.4-ar71xx-generic-eap120-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_eap120]] | |
+| 109 | lede-17.01.4-ar71xx-generic-eap120-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_eap120]] | |
+| 110 | lede-17.01.4-ar71xx-generic-eap300v2-squashfs-factory.bin | [[toh/hwdata/engenius/engenius_eap300_v2]] | |
+| 111 | lede-17.01.4-ar71xx-generic-eap300v2-squashfs-sysupgrade.bin | [[toh/hwdata/engenius/engenius_eap300_v2]] | |
+| 112 | lede-17.01.4-ar71xx-generic-eap7660d-kernel.bin | | |
+| 113 | lede-17.01.4-ar71xx-generic-eap7660d-rootfs-squashfs.bin | | |
+| 114 | lede-17.01.4-ar71xx-generic-eap7660d-squashfs-sysupgrade.bin | [[toh/hwdata/senao/senao_eap7660d]] | |
+| 115 | lede-17.01.4-ar71xx-generic-el-m150-squashfs-factory.bin | [[toh/hwdata/easylink/easylink_m-150]] | https://wiki.openwrt.org/toh/easylink/el-m150 |
+| 116 | lede-17.01.4-ar71xx-generic-el-m150-squashfs-sysupgrade.bin | [[toh/hwdata/easylink/easylink_m-150]] | https://wiki.openwrt.org/toh/easylink/el-m150 |
+| 117 | lede-17.01.4-ar71xx-generic-el-mini-squashfs-factory.bin | [[toh/hwdata/easylink/easylink_m-mini]] | https://wiki.openwrt.org/toh/easylink/el-m-mini |
+| 118 | lede-17.01.4-ar71xx-generic-el-mini-squashfs-sysupgrade.bin | [[toh/hwdata/easylink/easylink_m-mini]] | https://wiki.openwrt.org/toh/easylink/el-m-mini |
+| 119 | lede-17.01.4-ar71xx-generic-epg5000-squashfs-factory.dlf | [[toh/hwdata/engenius/engenius_epg5000_v100]] | https://wiki.openwrt.org/toh/engenius/epg5000 |
+| 120 | lede-17.01.4-ar71xx-generic-epg5000-squashfs-sysupgrade.bin | [[toh/hwdata/engenius/engenius_epg5000_v100]] | https://wiki.openwrt.org/toh/engenius/epg5000 |
+| 121 | lede-17.01.4-ar71xx-generic-esr1750-squashfs-factory.dlf | [[toh/hwdata/engenius/engenius_esr1750_v110]] | https://wiki.openwrt.org/toh/engenius/esr1750 |
+| 122 | lede-17.01.4-ar71xx-generic-esr1750-squashfs-sysupgrade.bin | [[toh/hwdata/engenius/engenius_esr1750_v110]] | https://wiki.openwrt.org/toh/engenius/esr1750 |
+| 123 | lede-17.01.4-ar71xx-generic-esr900-squashfs-factory.dlf | [[toh/hwdata/engenius/engenius_esr900_v100]] | https://wiki.openwrt.org/toh/engenius/esr900 |
+| 124 | lede-17.01.4-ar71xx-generic-esr900-squashfs-sysupgrade.bin | [[toh/hwdata/engenius/engenius_esr900_v100]] | https://wiki.openwrt.org/toh/engenius/esr900 |
+| 125 | lede-17.01.4-ar71xx-generic-ew-dorin-16M-squashfs-sysupgrade.bin | | |
+| 126 | lede-17.01.4-ar71xx-generic-ew-dorin-router-squashfs-sysupgrade.bin | | |
+| 127 | lede-17.01.4-ar71xx-generic-ew-dorin-squashfs-sysupgrade.bin | | |
+| 128 | lede-17.01.4-ar71xx-generic-f9k1115v2-squashfs-factory.bin | [[toh/hwdata/belkin/belkin_f9k1115v2_v2]] | https://wiki.openwrt.org/toh/belkin/f9k1115v2 |
+| 129 | lede-17.01.4-ar71xx-generic-f9k1115v2-squashfs-sysupgrade.bin | [[toh/hwdata/belkin/belkin_f9k1115v2_v2]] | https://wiki.openwrt.org/toh/belkin/f9k1115v2 |
+| 130 | lede-17.01.4-ar71xx-generic-gl-ar150-squashfs-sysupgrade.bin | [[toh/hwdata/gl.inet/gl.inet_gl-ar150]] | https://wiki.openwrt.org/toh/gl-inet/gl-ar150 |
+| 131 | lede-17.01.4-ar71xx-generic-gl-ar300-squashfs-sysupgrade.bin | [[toh/hwdata/gl.inet/gl.inet_gl-ar300]] | https://wiki.openwrt.org/toh/gl-inet/gl-ar300 |
+| 132 | lede-17.01.4-ar71xx-generic-gl-ar300m-squashfs-sysupgrade.bin | [[toh/hwdata/gl.inet/gl.inet_gl-ar300m]] | |
+| 133 | lede-17.01.4-ar71xx-generic-gl-domino-squashfs-sysupgrade.bin | [[toh/hwdata/domino/domino_core]] | |
+| 134 | lede-17.01.4-ar71xx-generic-gl-inet-6408A-v1-squashfs-factory.bin | [[toh/hwdata/gl.inet/gl.inet_6408a]] | https://wiki.openwrt.org/toh/gl-inet/gl-inet_64xx |
+| 135 | lede-17.01.4-ar71xx-generic-gl-inet-6408A-v1-squashfs-sysupgrade.bin | [[toh/hwdata/gl.inet/gl.inet_6408a]] | https://wiki.openwrt.org/toh/gl-inet/gl-inet_64xx |
+| 136 | lede-17.01.4-ar71xx-generic-gl-inet-6416A-v1-squashfs-factory.bin | [[toh/hwdata/gl.inet/gl.inet_6416a]] | https://wiki.openwrt.org/toh/gl-inet/gl-inet_64xx |
+| 137 | lede-17.01.4-ar71xx-generic-gl-inet-6416A-v1-squashfs-sysupgrade.bin | [[toh/hwdata/gl.inet/gl.inet_6416a]] | https://wiki.openwrt.org/toh/gl-inet/gl-inet_64xx |
+| 138 | lede-17.01.4-ar71xx-generic-gl-mifi-squashfs-sysupgrade.bin | [[toh/hwdata/gl.inet/gl-mifi]] | |
+| 139 | lede-17.01.4-ar71xx-generic-hiwifi-hc6361-squashfs-sysupgrade.bin | [[toh/hwdata/hiwifi/hiwifi_hc6361]] | https://wiki.openwrt.org/toh/hiwifi/hc6361 |
+| 140 | lede-17.01.4-ar71xx-generic-hornet-ub-squashfs-factory.bin | [[toh/hwdata/alfanetwork/alfanetwork_hornetub]] | https://wiki.openwrt.org/toh/alfa.network/hornet-ub |
+| 141 | lede-17.01.4-ar71xx-generic-hornet-ub-squashfs-sysupgrade.bin | [[toh/hwdata/alfanetwork/alfanetwork_hornetub]] | https://wiki.openwrt.org/toh/alfa.network/hornet-ub |
+| 142 | lede-17.01.4-ar71xx-generic-hornet-ub-x2-squashfs-sysupgrade.bin | | |
+| 143 | lede-17.01.4-ar71xx-generic-ja76pf-kernel.bin | | |
+| 144 | lede-17.01.4-ar71xx-generic-ja76pf-rootfs-squashfs.bin | | |
+| 145 | lede-17.01.4-ar71xx-generic-ja76pf-squashfs-sysupgrade.bin | | |
+| 146 | lede-17.01.4-ar71xx-generic-ja76pf2-kernel.bin | | |
+| 147 | lede-17.01.4-ar71xx-generic-ja76pf2-rootfs-squashfs.bin | | |
+| 148 | lede-17.01.4-ar71xx-generic-ja76pf2-squashfs-sysupgrade.bin | [[toh/hwdata/jjplus/jjplus_ja76pf2]] | https://wiki.openwrt.org/toh/jjplus/ja76pf2 |
+| 149 | lede-17.01.4-ar71xx-generic-jwap003-kernel.bin | | |
+| 150 | lede-17.01.4-ar71xx-generic-jwap003-rootfs-squashfs.bin | | |
+| 151 | lede-17.01.4-ar71xx-generic-jwap003-squashfs-sysupgrade.bin | [[toh/hwdata/jjplus/jjplus_jwap003]] | |
+| 152 | lede-17.01.4-ar71xx-generic-jwap230-squashfs-sysupgrade.bin | [[toh/hwdata/jjplus/jjplus_jwap230]] | |
+| 153 | lede-17.01.4-ar71xx-generic-mc-mac1200r-squashfs-factory.bin | [[toh/hwdata/mercury/mercury_mac1200r_v11]] | https://wiki.openwrt.org/toh/mercury/mac1200r |
+| 154 | lede-17.01.4-ar71xx-generic-mc-mac1200r-squashfs-sysupgrade.bin | [[toh/hwdata/mercury/mercury_mac1200r_v11]] | https://wiki.openwrt.org/toh/mercury/mac1200r |
+| 155 | lede-17.01.4-ar71xx-generic-minibox-v1-squashfs-factory.bin | [[toh/hwdata/gainstrong/gainstrong_minibox_v1.0]] | |
+| 156 | lede-17.01.4-ar71xx-generic-minibox-v1-squashfs-sysupgrade.bin | [[toh/hwdata/gainstrong/gainstrong_minibox_v1.0]] | |
+| 157 | lede-17.01.4-ar71xx-generic-mr12-squashfs-kernel.bin | | |
+| 158 | lede-17.01.4-ar71xx-generic-mr12-squashfs-rootfs.bin | | |
+| 159 | lede-17.01.4-ar71xx-generic-mr12-squashfs-sysupgrade.bin | [[toh/hwdata/meraki/meraki_mr12]] | https://wiki.openwrt.org/toh/meraki/mr12 |
+| 160 | lede-17.01.4-ar71xx-generic-mr16-squashfs-kernel.bin | | |
+| 161 | lede-17.01.4-ar71xx-generic-mr16-squashfs-rootfs.bin | | |
+| 162 | lede-17.01.4-ar71xx-generic-mr16-squashfs-sysupgrade.bin | [[toh/hwdata/meraki/meraki_mr16]] | https://wiki.openwrt.org/toh/meraki/mr16 |
+| 163 | lede-17.01.4-ar71xx-generic-mr1750-squashfs-factory.bin | [[toh/hwdata/open-mesh/open-mesh_mr1750]] | |
+| 164 | lede-17.01.4-ar71xx-generic-mr1750-squashfs-sysupgrade.bin | [[toh/hwdata/open-mesh/open-mesh_mr1750]] | |
+| 165 | lede-17.01.4-ar71xx-generic-mr600-squashfs-factory.bin | [[toh/hwdata/open-mesh/open-mesh_mr600]] | |
+| 166 | lede-17.01.4-ar71xx-generic-mr600-squashfs-sysupgrade.bin | [[toh/hwdata/open-mesh/open-mesh_mr600]] | |
+| 167 | lede-17.01.4-ar71xx-generic-mr900-squashfs-factory.bin | [[toh/hwdata/open-mesh/open-mesh_mr900_v1]] | |
+| 168 | lede-17.01.4-ar71xx-generic-mr900-squashfs-sysupgrade.bin | [[toh/hwdata/open-mesh/open-mesh_mr900_v1]] | |
+| 169 | lede-17.01.4-ar71xx-generic-mw4530r-v1-squashfs-factory.bin | [[toh/hwdata/mercury/mercury_mw4530r_v1]] | https://wiki.openwrt.org/toh/mercury/mw4530r |
+| 170 | lede-17.01.4-ar71xx-generic-mw4530r-v1-squashfs-sysupgrade.bin | [[toh/hwdata/mercury/mercury_mw4530r_v1]] | https://wiki.openwrt.org/toh/mercury/mw4530r |
+| 171 | lede-17.01.4-ar71xx-generic-mynet-n600-squashfs-factory.bin | [[toh/hwdata/westerndigital/westerndigital_mynetn600]] | https://wiki.openwrt.org/toh/wd/n600 |
+| 172 | lede-17.01.4-ar71xx-generic-mynet-n600-squashfs-sysupgrade.bin | [[toh/hwdata/westerndigital/westerndigital_mynetn600]] | https://wiki.openwrt.org/toh/wd/n600 |
+| 173 | lede-17.01.4-ar71xx-generic-mynet-n750-squashfs-factory.bin | [[toh/hwdata/westerndigital/westerndigital_mynetn750]] | https://wiki.openwrt.org/toh/wd/n750 |
+| 174 | lede-17.01.4-ar71xx-generic-mynet-n750-squashfs-sysupgrade.bin | [[toh/hwdata/westerndigital/westerndigital_mynetn750]] | https://wiki.openwrt.org/toh/wd/n750 |
+| 175 | lede-17.01.4-ar71xx-generic-mynet-rext-squashfs-factory.bin | [[toh/hwdata/westerndigital/westerndigital_mynetwi-fi_rangeextender]] | https://wiki.openwrt.org/toh/wd/rext |
+| 176 | lede-17.01.4-ar71xx-generic-mynet-rext-squashfs-sysupgrade.bin | [[toh/hwdata/westerndigital/westerndigital_mynetwi-fi_rangeextender]] | https://wiki.openwrt.org/toh/wd/rext |
+| 177 | lede-17.01.4-ar71xx-generic-mzk-w04nu-squashfs-factory.bin | [[toh/hwdata/planex/planex_mzk-w04nu]] | https://wiki.openwrt.org/toh/planex/mzk-w04nu |
+| 178 | lede-17.01.4-ar71xx-generic-mzk-w04nu-squashfs-sysupgrade.bin | [[toh/hwdata/planex/planex_mzk-w04nu]] | https://wiki.openwrt.org/toh/planex/mzk-w04nu |
+| 179 | lede-17.01.4-ar71xx-generic-mzk-w300nh-squashfs-factory.bin | [[toh/hwdata/planex/planex_mzk-w300nh]] | https://wiki.openwrt.org/toh/planex/mzk-w300nh |
+| 180 | lede-17.01.4-ar71xx-generic-mzk-w300nh-squashfs-sysupgrade.bin | [[toh/hwdata/planex/planex_mzk-w300nh]] | https://wiki.openwrt.org/toh/planex/mzk-w300nh |
+| 181 | lede-17.01.4-ar71xx-generic-n150r-squashfs-factory.img | [[toh/hwdata/onnetworks/onnetworks_n150r]] | https://wiki.openwrt.org/toh/netgear/wnr612v2 |
+| 182 | lede-17.01.4-ar71xx-generic-n150r-squashfs-sysupgrade.bin | [[toh/hwdata/onnetworks/onnetworks_n150r]] | https://wiki.openwrt.org/toh/netgear/wnr612v2 |
+| 183 | lede-17.01.4-ar71xx-generic-om2p-squashfs-factory.bin | [[toh/hwdata/open-mesh/open-mesh_om2p]] | https://wiki.openwrt.org/toh/openmesh/om2p |
+| 184 | lede-17.01.4-ar71xx-generic-om2p-squashfs-sysupgrade.bin | [[toh/hwdata/open-mesh/open-mesh_om2p]] | https://wiki.openwrt.org/toh/openmesh/om2p |
+| 185 | lede-17.01.4-ar71xx-generic-om5p-squashfs-factory.bin | [[toh/hwdata/open-mesh/open-mesh_om5p]] | |
+| 186 | lede-17.01.4-ar71xx-generic-om5p-squashfs-sysupgrade.bin | [[toh/hwdata/open-mesh/open-mesh_om5p]] | |
+| 187 | lede-17.01.4-ar71xx-generic-om5pac-squashfs-factory.bin | [[toh/hwdata/open-mesh/open-mesh_om5p-ac]] | |
+| 188 | lede-17.01.4-ar71xx-generic-om5pac-squashfs-sysupgrade.bin | [[toh/hwdata/open-mesh/open-mesh_om5p-ac]] | |
+| 189 | lede-17.01.4-ar71xx-generic-omy-g1-squashfs-factory.bin | [[toh/hwdata/omylink/omylink_omy-g1]] | https://wiki.openwrt.org/toh/omylink/omy-g1 |
+| 190 | lede-17.01.4-ar71xx-generic-omy-g1-squashfs-sysupgrade.bin | [[toh/hwdata/omylink/omylink_omy-g1]] | https://wiki.openwrt.org/toh/omylink/omy-g1 |
+| 191 | lede-17.01.4-ar71xx-generic-omy-x1-squashfs-factory.bin | [[toh/hwdata/omylink/omylink_omy-x1]] | https://wiki.openwrt.org/toh/omylink/omy-x1 |
+| 192 | lede-17.01.4-ar71xx-generic-omy-x1-squashfs-sysupgrade.bin | [[toh/hwdata/omylink/omylink_omy-x1]] | https://wiki.openwrt.org/toh/omylink/omy-x1 |
+| 193 | lede-17.01.4-ar71xx-generic-onion-omega-squashfs-factory.bin | [[toh/hwdata/onion/onion_omega]] | |
+| 194 | lede-17.01.4-ar71xx-generic-onion-omega-squashfs-sysupgrade.bin | [[toh/hwdata/onion/onion_omega]] | |
+| 195 | lede-17.01.4-ar71xx-generic-oolite-squashfs-factory.bin | [[toh/hwdata/other/other_oolitev1_v10]] | https://wiki.openwrt.org/toh/oolite/oolitev1 |
+| 196 | lede-17.01.4-ar71xx-generic-oolite-squashfs-sysupgrade.bin | [[toh/hwdata/other/other_oolitev1_v10]] | https://wiki.openwrt.org/toh/oolite/oolitev1 |
+| 197 | lede-17.01.4-ar71xx-generic-pb42-kernel.bin | | |
+| 198 | lede-17.01.4-ar71xx-generic-pb42-rootfs-squashfs.bin | | |
+| 199 | lede-17.01.4-ar71xx-generic-pb42-squashfs-sysupgrade.bin | | |
+| 200 | lede-17.01.4-ar71xx-generic-pb44-kernel.bin | | |
+| 201 | lede-17.01.4-ar71xx-generic-pb44-rootfs-squashfs.bin | | |
+| 202 | lede-17.01.4-ar71xx-generic-pb44-squashfs-sysupgrade.bin | [[toh/hwdata/other/other_atherospb44]] | https://wiki.openwrt.org/toh/evaluation.boards/pb44 |
+| 203 | lede-17.01.4-ar71xx-generic-qihoo-c301-squashfs-factory.bin | [[toh/hwdata/qihoohardware/qihoohardware_c301]] | https://wiki.openwrt.org/toh/qihoo/c301 |
+| 204 | lede-17.01.4-ar71xx-generic-qihoo-c301-squashfs-sysupgrade.bin | [[toh/hwdata/qihoohardware/qihoohardware_c301]] | https://wiki.openwrt.org/toh/qihoo/c301 |
+| 205 | lede-17.01.4-ar71xx-generic-re450-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_re450]] | https://wiki.openwrt.org/toh/tp-link/tp-link_re450 |
+| 206 | lede-17.01.4-ar71xx-generic-re450-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_re450]] | https://wiki.openwrt.org/toh/tp-link/tp-link_re450 |
+| 207 | lede-17.01.4-ar71xx-generic-rnx-n360rt-squashfs-factory.bin | [[toh/hwdata/rosewill/rosewill_rnx-n360rt]] | https://wiki.openwrt.org/toh/rosewill/rnx-n360rt |
+| 208 | lede-17.01.4-ar71xx-generic-rnx-n360rt-squashfs-sysupgrade.bin | [[toh/hwdata/rosewill/rosewill_rnx-n360rt]] | https://wiki.openwrt.org/toh/rosewill/rnx-n360rt |
+| 209 | lede-17.01.4-ar71xx-generic-root.squashfs | | |
+| 210 | lede-17.01.4-ar71xx-generic-rw2458n-squashfs-factory.bin | [[toh/hwdata/redwave/redwave_rw2458naeromax5]] | https://wiki.openwrt.org/toh/redwave/rw2458n |
+| 211 | lede-17.01.4-ar71xx-generic-rw2458n-squashfs-sysupgrade.bin | [[toh/hwdata/redwave/redwave_rw2458naeromax5]] | https://wiki.openwrt.org/toh/redwave/rw2458n |
+| 212 | lede-17.01.4-ar71xx-generic-smart-300-squashfs-factory.bin | | |
+| 213 | lede-17.01.4-ar71xx-generic-smart-300-squashfs-sysupgrade.bin | | |
+| 214 | lede-17.01.4-ar71xx-generic-som9331-squashfs-factory.bin | [[toh/hwdata/openembed/openembed_som9331_v1]] | https://wiki.openwrt.org/toh/openembed/openembed_som9331_v1 |
+| 215 | lede-17.01.4-ar71xx-generic-som9331-squashfs-sysupgrade.bin | [[toh/hwdata/openembed/openembed_som9331_v1]] | https://wiki.openwrt.org/toh/openembed/openembed_som9331_v1 |
+| 216 | lede-17.01.4-ar71xx-generic-sr3200-squashfs-sysupgrade.bin | [[toh/hwdata/yuncore/yuncore_sr3200]] | |
+| 217 | lede-17.01.4-ar71xx-generic-tellstick-znet-lite-squashfs-factory.bin | | |
+| 218 | lede-17.01.4-ar71xx-generic-tellstick-znet-lite-squashfs-sysupgrade.bin | | |
+| 219 | lede-17.01.4-ar71xx-generic-tew-632brp-squashfs-factory.bin | [[toh/hwdata/trendnet/trendnet_tew-632brp]] | https://wiki.openwrt.org/toh/trendnet/tew632brp |
+| 220 | lede-17.01.4-ar71xx-generic-tew-632brp-squashfs-sysupgrade.bin | [[toh/hwdata/trendnet/trendnet_tew-632brp]] | https://wiki.openwrt.org/toh/trendnet/tew632brp |
+| 221 | lede-17.01.4-ar71xx-generic-tew-652brp-recovery-squashfs-factory.bin | | |
+| 222 | lede-17.01.4-ar71xx-generic-tew-652brp-recovery-squashfs-sysupgrade.bin | | |
+| 223 | lede-17.01.4-ar71xx-generic-tew-652brp-squashfs-factory.bin | [[toh/hwdata/trendnet/trendnet_tew-652brp]] | https://wiki.openwrt.org/toh/trendnet/tew632brp |
+| 224 | lede-17.01.4-ar71xx-generic-tew-652brp-squashfs-sysupgrade.bin | [[toh/hwdata/trendnet/trendnet_tew-652brp]] | https://wiki.openwrt.org/toh/trendnet/tew632brp |
+| 225 | lede-17.01.4-ar71xx-generic-tew-673gru-squashfs-factory.bin | [[toh/hwdata/trendnet/trendnet_tew-673gru_10r]] | https://wiki.openwrt.org/toh/trendnet/tew-673gru |
+| 226 | lede-17.01.4-ar71xx-generic-tew-673gru-squashfs-sysupgrade.bin | [[toh/hwdata/trendnet/trendnet_tew-673gru_10r]] | https://wiki.openwrt.org/toh/trendnet/tew-673gru |
+| 227 | lede-17.01.4-ar71xx-generic-tew-732br-squashfs-factory.bin | [[toh/hwdata/trendnet/trendnet_tew-732br_10r]] | https://wiki.openwrt.org/toh/trendnet/tew-732br |
+| 228 | lede-17.01.4-ar71xx-generic-tew-732br-squashfs-sysupgrade.bin | [[toh/hwdata/trendnet/trendnet_tew-732br_10r]] | https://wiki.openwrt.org/toh/trendnet/tew-732br |
+| 229 | lede-17.01.4-ar71xx-generic-tew-823dru-squashfs-factory.bin | [[toh/hwdata/trendnet/trendnet_tew-823dru]] | https://wiki.openwrt.org/toh/trendnet/tew-823dru |
+| 230 | lede-17.01.4-ar71xx-generic-tew-823dru-squashfs-sysupgrade.bin | [[toh/hwdata/trendnet/trendnet_tew-823dru]] | https://wiki.openwrt.org/toh/trendnet/tew-823dru |
+| 231 | lede-17.01.4-ar71xx-generic-tl-mr10u-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-mr10u_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr10u |
+| 232 | lede-17.01.4-ar71xx-generic-tl-mr10u-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-mr10u_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr10u |
+| 233 | lede-17.01.4-ar71xx-generic-tl-mr11u-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-mr11u_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr11u |
+| 234 | lede-17.01.4-ar71xx-generic-tl-mr11u-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-mr11u_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr11u |
+| 235 | lede-17.01.4-ar71xx-generic-tl-mr11u-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-mr11u_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-mr11u |
+| 236 | lede-17.01.4-ar71xx-generic-tl-mr11u-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-mr11u_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-mr11u |
+| 237 | lede-17.01.4-ar71xx-generic-tl-mr12u-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-mr12u_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr12u |
+| 238 | lede-17.01.4-ar71xx-generic-tl-mr12u-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-mr12u_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr12u |
+| 239 | lede-17.01.4-ar71xx-generic-tl-mr13u-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-mr13u_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr13u |
+| 240 | lede-17.01.4-ar71xx-generic-tl-mr13u-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-mr13u_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr13u |
+| 241 | lede-17.01.4-ar71xx-generic-tl-mr3020-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3020_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr3020 |
+| 242 | lede-17.01.4-ar71xx-generic-tl-mr3020-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3020_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr3020 |
+| 243 | lede-17.01.4-ar71xx-generic-tl-mr3040-v1-squashfs-factory.bin | [[toh/hwdata/mercury/mercury_m301_1]] [[toh/hwdata/tp-link/tp-link_tl-mr3040_v1]] | https://wiki.openwrt.org/toh/mercury/m301 https://wiki.openwrt.org/toh/tp-link/tl-mr3040 |
+| 244 | lede-17.01.4-ar71xx-generic-tl-mr3040-v1-squashfs-sysupgrade.bin | [[toh/hwdata/mercury/mercury_m301_1]] [[toh/hwdata/tp-link/tp-link_tl-mr3040_v1]] | https://wiki.openwrt.org/toh/mercury/m301 https://wiki.openwrt.org/toh/tp-link/tl-mr3040 |
+| 245 | lede-17.01.4-ar71xx-generic-tl-mr3040-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3040_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-mr3040 |
+| 246 | lede-17.01.4-ar71xx-generic-tl-mr3040-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3040_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-mr3040 |
+| 247 | lede-17.01.4-ar71xx-generic-tl-mr3220-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3220_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr3220 |
+| 248 | lede-17.01.4-ar71xx-generic-tl-mr3220-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3220_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr3220 |
+| 249 | lede-17.01.4-ar71xx-generic-tl-mr3220-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3220_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-mr3220 |
+| 250 | lede-17.01.4-ar71xx-generic-tl-mr3220-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3220_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-mr3220 |
+| 251 | lede-17.01.4-ar71xx-generic-tl-mr3420-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3420_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr3420 |
+| 252 | lede-17.01.4-ar71xx-generic-tl-mr3420-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3420_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-mr3420 |
+| 253 | lede-17.01.4-ar71xx-generic-tl-mr3420-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3420_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-ap121 |
+| 254 | lede-17.01.4-ar71xx-generic-tl-mr3420-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-mr3420_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-ap121 |
+| 255 | lede-17.01.4-ar71xx-generic-tl-wa701nd-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa701nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa701nd |
+| 256 | lede-17.01.4-ar71xx-generic-tl-wa701nd-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa701nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa701nd |
+| 257 | lede-17.01.4-ar71xx-generic-tl-wa701nd-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa701nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wa701nd |
+| 258 | lede-17.01.4-ar71xx-generic-tl-wa701nd-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa701nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wa701nd |
+| 259 | lede-17.01.4-ar71xx-generic-tl-wa7210n-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa7210n_v2]] | |
+| 260 | lede-17.01.4-ar71xx-generic-tl-wa7210n-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa7210n_v2]] | |
+| 261 | lede-17.01.4-ar71xx-generic-tl-wa730re-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa730re_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa730re |
+| 262 | lede-17.01.4-ar71xx-generic-tl-wa730re-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa730re_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa730re |
+| 263 | lede-17.01.4-ar71xx-generic-tl-wa750re-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa750re_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa850re |
+| 264 | lede-17.01.4-ar71xx-generic-tl-wa750re-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa750re_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa850re |
+| 265 | lede-17.01.4-ar71xx-generic-tl-wa7510n-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa7510n_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa7510n |
+| 266 | lede-17.01.4-ar71xx-generic-tl-wa7510n-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa7510n_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa7510n |
+| 267 | lede-17.01.4-ar71xx-generic-tl-wa801nd-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa801nd_v1]] | |
+| 268 | lede-17.01.4-ar71xx-generic-tl-wa801nd-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa801nd_v1]] | |
+| 269 | lede-17.01.4-ar71xx-generic-tl-wa801nd-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa801nd_v2]] | |
+| 270 | lede-17.01.4-ar71xx-generic-tl-wa801nd-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa801nd_v2]] | |
+| 271 | lede-17.01.4-ar71xx-generic-tl-wa801nd-v3-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa801nd_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wa801nd |
+| 272 | lede-17.01.4-ar71xx-generic-tl-wa801nd-v3-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa801nd_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wa801nd |
+| 273 | lede-17.01.4-ar71xx-generic-tl-wa830re-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa830re_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa830re |
+| 274 | lede-17.01.4-ar71xx-generic-tl-wa830re-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa830re_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa830re |
+| 275 | lede-17.01.4-ar71xx-generic-tl-wa830re-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa830re_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wa830re |
+| 276 | lede-17.01.4-ar71xx-generic-tl-wa830re-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa830re_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wa830re |
+| 277 | lede-17.01.4-ar71xx-generic-tl-wa850re-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa850re_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa850re |
+| 278 | lede-17.01.4-ar71xx-generic-tl-wa850re-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa850re_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa850re |
+| 279 | lede-17.01.4-ar71xx-generic-tl-wa860re-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa860re_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa850re |
+| 280 | lede-17.01.4-ar71xx-generic-tl-wa860re-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa860re_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa850re |
+| 281 | lede-17.01.4-ar71xx-generic-tl-wa901nd-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa901nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa901nd |
+| 282 | lede-17.01.4-ar71xx-generic-tl-wa901nd-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa901nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wa901nd |
+| 283 | lede-17.01.4-ar71xx-generic-tl-wa901nd-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa901nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wa901nd |
+| 284 | lede-17.01.4-ar71xx-generic-tl-wa901nd-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa901nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wa901nd |
+| 285 | lede-17.01.4-ar71xx-generic-tl-wa901nd-v3-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa901nd_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wa901nd |
+| 286 | lede-17.01.4-ar71xx-generic-tl-wa901nd-v3-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa901nd_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wa901nd |
+| 287 | lede-17.01.4-ar71xx-generic-tl-wa901nd-v4-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wa901nd_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wa901nd |
+| 288 | lede-17.01.4-ar71xx-generic-tl-wa901nd-v4-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wa901nd_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wa901nd |
+| 289 | lede-17.01.4-ar71xx-generic-tl-wdr3320-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr3320_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr3320 |
+| 290 | lede-17.01.4-ar71xx-generic-tl-wdr3320-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr3320_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr3320 |
+| 291 | lede-17.01.4-ar71xx-generic-tl-wdr3500-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr3500_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr3500 |
+| 292 | lede-17.01.4-ar71xx-generic-tl-wdr3500-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr3500_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr3500 |
+| 293 | lede-17.01.4-ar71xx-generic-tl-wdr3600-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr3600_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr3600 |
+| 294 | lede-17.01.4-ar71xx-generic-tl-wdr3600-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr3600_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr3600 |
+| 295 | lede-17.01.4-ar71xx-generic-tl-wdr4300-v1-il-squashfs-factory.bin | | |
+| 296 | lede-17.01.4-ar71xx-generic-tl-wdr4300-v1-il-squashfs-sysupgrade.bin | | |
+| 297 | lede-17.01.4-ar71xx-generic-tl-wdr4300-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr4300]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr4300 |
+| 298 | lede-17.01.4-ar71xx-generic-tl-wdr4300-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr4300]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr4300 |
+| 299 | lede-17.01.4-ar71xx-generic-tl-wdr4310-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr4310_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr4310 |
+| 300 | lede-17.01.4-ar71xx-generic-tl-wdr4310-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr4310_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr4310 |
+| 301 | lede-17.01.4-ar71xx-generic-tl-wdr4900-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr4900_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr4900 |
+| 302 | lede-17.01.4-ar71xx-generic-tl-wdr4900-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr4900_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr4900 |
+| 303 | lede-17.01.4-ar71xx-generic-tl-wdr6500-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr6500_v2]] | https://wiki.openwrt.org/toh/tp-link/tp-link_tl-wdr6500_v2 |
+| 304 | lede-17.01.4-ar71xx-generic-tl-wdr6500-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr6500_v2]] | https://wiki.openwrt.org/toh/tp-link/tp-link_tl-wdr6500_v2 |
+| 305 | lede-17.01.4-ar71xx-generic-tl-wdr7500-v3-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_archer_c7r_wdr7500_v3_cn]] | https://wiki.openwrt.org/toh/tp-link/archer-c5-c7-wdr7500 |
+| 306 | lede-17.01.4-ar71xx-generic-tl-wdr7500-v3-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_archer_c7r_wdr7500_v3_cn]] | https://wiki.openwrt.org/toh/tp-link/archer-c5-c7-wdr7500 |
+| 307 | lede-17.01.4-ar71xx-generic-tl-wpa8630-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wpa8630]] | |
+| 308 | lede-17.01.4-ar71xx-generic-tl-wpa8630-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wpa8630]] | |
+| 309 | lede-17.01.4-ar71xx-generic-tl-wr1041n-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr1041n_v2]] [[toh/hwdata/tp-link/tp-link_tl-wr1041nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wr1041n https://wiki.openwrt.org/toh/tp-link/tl-wr1041nd |
+| 310 | lede-17.01.4-ar71xx-generic-tl-wr1041n-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr1041n_v2]] [[toh/hwdata/tp-link/tp-link_tl-wr1041nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wr1041n https://wiki.openwrt.org/toh/tp-link/tl-wr1041nd |
+| 311 | lede-17.01.4-ar71xx-generic-tl-wr1043nd-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr1043nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd |
+| 312 | lede-17.01.4-ar71xx-generic-tl-wr1043nd-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr1043nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd |
+| 313 | lede-17.01.4-ar71xx-generic-tl-wr1043nd-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr1043nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd |
+| 314 | lede-17.01.4-ar71xx-generic-tl-wr1043nd-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr1043nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd |
+| 315 | lede-17.01.4-ar71xx-generic-tl-wr1043nd-v3-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr1043nd_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd |
+| 316 | lede-17.01.4-ar71xx-generic-tl-wr1043nd-v3-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr1043nd_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd |
+| 317 | lede-17.01.4-ar71xx-generic-tl-wr1043nd-v4-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr1043nd_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd |
+| 318 | lede-17.01.4-ar71xx-generic-tl-wr1043nd-v4-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr1043nd_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wr1043nd |
+| 319 | lede-17.01.4-ar71xx-generic-tl-wr2543-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr2543nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr2543nd |
+| 320 | lede-17.01.4-ar71xx-generic-tl-wr2543-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr2543nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr2543nd |
+| 321 | lede-17.01.4-ar71xx-generic-tl-wr703n-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr703n_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr703n |
+| 322 | lede-17.01.4-ar71xx-generic-tl-wr703n-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr703n_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr703n |
+| 323 | lede-17.01.4-ar71xx-generic-tl-wr710n-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr710n_v1.1_eu]] [[toh/hwdata/tp-link/tp-link_tl-wr710n_v1.2_eu]] | https://wiki.openwrt.org/toh/tp-link/tl-wr710n |
+| 324 | lede-17.01.4-ar71xx-generic-tl-wr710n-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr710n_v1.1_eu]] [[toh/hwdata/tp-link/tp-link_tl-wr710n_v1.2_eu]] | https://wiki.openwrt.org/toh/tp-link/tl-wr710n |
+| 325 | lede-17.01.4-ar71xx-generic-tl-wr710n-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr710n_v2.0]] | https://wiki.openwrt.org/toh/tp-link/tl-wr710n |
+| 326 | lede-17.01.4-ar71xx-generic-tl-wr710n-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr710n_v2.0]] | https://wiki.openwrt.org/toh/tp-link/tl-wr710n |
+| 327 | lede-17.01.4-ar71xx-generic-tl-wr710n-v2.1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr710n_v2.1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr710n |
+| 328 | lede-17.01.4-ar71xx-generic-tl-wr710n-v2.1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr710n_v2.1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr710n |
+| 329 | lede-17.01.4-ar71xx-generic-tl-wr720n-v3-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr720n_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr720n |
+| 330 | lede-17.01.4-ar71xx-generic-tl-wr720n-v3-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr720n_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr720n |
+| 331 | lede-17.01.4-ar71xx-generic-tl-wr720n-v4-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr720n_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wr720n |
+| 332 | lede-17.01.4-ar71xx-generic-tl-wr720n-v4-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr720n_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wr720n |
+| 333 | lede-17.01.4-ar71xx-generic-tl-wr740n-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr740n_br_2.1]] [[toh/hwdata/tp-link/tp-link_tl-wr740n_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr740n |
+| 334 | lede-17.01.4-ar71xx-generic-tl-wr740n-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr740n_br_2.1]] [[toh/hwdata/tp-link/tp-link_tl-wr740n_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr740n |
+| 335 | lede-17.01.4-ar71xx-generic-tl-wr740n-v3-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr740n_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr740n |
+| 336 | lede-17.01.4-ar71xx-generic-tl-wr740n-v3-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr740n_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr740n |
+| 337 | lede-17.01.4-ar71xx-generic-tl-wr740n-v4-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20]] [[toh/hwdata/tp-link/tp-link_tl-wr740n_v4.23]] | https://wiki.openwrt.org/toh/tp-link/tl-wr740n |
+| 338 | lede-17.01.4-ar71xx-generic-tl-wr740n-v4-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr740n_v4.20]] [[toh/hwdata/tp-link/tp-link_tl-wr740n_v4.23]] | https://wiki.openwrt.org/toh/tp-link/tl-wr740n |
+| 339 | lede-17.01.4-ar71xx-generic-tl-wr740n-v5-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr740n_v5_eu]] | https://wiki.openwrt.org/toh/tp-link/tl-wr740n |
+| 340 | lede-17.01.4-ar71xx-generic-tl-wr740n-v5-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr740n_v5_eu]] | https://wiki.openwrt.org/toh/tp-link/tl-wr740n |
+| 341 | lede-17.01.4-ar71xx-generic-tl-wr740n-v6-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr740n_v6]] | https://wiki.openwrt.org/toh/tp-link/tl-wr740n |
+| 342 | lede-17.01.4-ar71xx-generic-tl-wr740n-v6-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr740n_v6]] | https://wiki.openwrt.org/toh/tp-link/tl-wr740n |
+| 343 | lede-17.01.4-ar71xx-generic-tl-wr741nd-v1-squashfs-factory.bin | [[toh/hwdata/rosewill/rosewill_rnx-n150rt]] [[toh/hwdata/tp-link/tp-link_tl-wr741nd_1]] | https://wiki.openwrt.org/toh/rosewill/rnx-n150rt https://wiki.openwrt.org/toh/tp-link/tl-wr741nd |
+| 344 | lede-17.01.4-ar71xx-generic-tl-wr741nd-v1-squashfs-sysupgrade.bin | [[toh/hwdata/rosewill/rosewill_rnx-n150rt]] [[toh/hwdata/tp-link/tp-link_tl-wr741nd_1]] | https://wiki.openwrt.org/toh/rosewill/rnx-n150rt https://wiki.openwrt.org/toh/tp-link/tl-wr741nd |
+| 345 | lede-17.01.4-ar71xx-generic-tl-wr741nd-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr741nd_v2]] | |
+| 346 | lede-17.01.4-ar71xx-generic-tl-wr741nd-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr741nd_v2]] | |
+| 347 | lede-17.01.4-ar71xx-generic-tl-wr741nd-v4-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr741nd_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wr741nd |
+| 348 | lede-17.01.4-ar71xx-generic-tl-wr741nd-v4-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr741nd_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wr741nd |
+| 349 | lede-17.01.4-ar71xx-generic-tl-wr741nd-v5-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr741nd_v5]] | https://wiki.openwrt.org/toh/tp-link/tl-wr741nd |
+| 350 | lede-17.01.4-ar71xx-generic-tl-wr741nd-v5-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr741nd_v5]] | https://wiki.openwrt.org/toh/tp-link/tl-wr741nd |
+| 351 | lede-17.01.4-ar71xx-generic-tl-wr743nd-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr743nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr743nd |
+| 352 | lede-17.01.4-ar71xx-generic-tl-wr743nd-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr743nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr743nd |
+| 353 | lede-17.01.4-ar71xx-generic-tl-wr743nd-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr743nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wr743nd |
+| 354 | lede-17.01.4-ar71xx-generic-tl-wr743nd-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr743nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wr743nd |
+| 355 | lede-17.01.4-ar71xx-generic-tl-wr802n-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr802n_v1.0]] | https://wiki.openwrt.org/toh/tp-link/tl-wr802n |
+| 356 | lede-17.01.4-ar71xx-generic-tl-wr802n-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr802n_v1.0]] | https://wiki.openwrt.org/toh/tp-link/tl-wr802n |
+| 357 | lede-17.01.4-ar71xx-generic-tl-wr810n-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr810n_1.0_us]] [[toh/hwdata/tp-link/tp-link_tl-wr810n_1.1_eu]] | https://wiki.openwrt.org/toh/tp-link/tl-wr810n |
+| 358 | lede-17.01.4-ar71xx-generic-tl-wr810n-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr810n_1.0_us]] [[toh/hwdata/tp-link/tp-link_tl-wr810n_1.1_eu]] | https://wiki.openwrt.org/toh/tp-link/tl-wr810n |
+| 359 | lede-17.01.4-ar71xx-generic-tl-wr841-v1.5-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v1.5]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 360 | lede-17.01.4-ar71xx-generic-tl-wr841-v1.5-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v1.5]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 361 | lede-17.01.4-ar71xx-generic-tl-wr841-v10-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v10]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 362 | lede-17.01.4-ar71xx-generic-tl-wr841-v10-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v10]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 363 | lede-17.01.4-ar71xx-generic-tl-wr841-v11-squashfs-factory-eu.bin | | |
+| 364 | lede-17.01.4-ar71xx-generic-tl-wr841-v11-squashfs-factory-us.bin | | |
+| 365 | lede-17.01.4-ar71xx-generic-tl-wr841-v11-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v11]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 366 | lede-17.01.4-ar71xx-generic-tl-wr841-v11-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v11]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 367 | lede-17.01.4-ar71xx-generic-tl-wr841-v12-squashfs-factory-eu.bin | | |
+| 368 | lede-17.01.4-ar71xx-generic-tl-wr841-v12-squashfs-factory-us.bin | | |
+| 369 | lede-17.01.4-ar71xx-generic-tl-wr841-v12-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v12]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 370 | lede-17.01.4-ar71xx-generic-tl-wr841-v12-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v12]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 371 | lede-17.01.4-ar71xx-generic-tl-wr841-v3-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841nd_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 372 | lede-17.01.4-ar71xx-generic-tl-wr841-v3-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841nd_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 373 | lede-17.01.4-ar71xx-generic-tl-wr841-v5-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841nd_v5]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 374 | lede-17.01.4-ar71xx-generic-tl-wr841-v5-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841nd_v5]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 375 | lede-17.01.4-ar71xx-generic-tl-wr841-v7-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v7]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 376 | lede-17.01.4-ar71xx-generic-tl-wr841-v7-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v7]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 377 | lede-17.01.4-ar71xx-generic-tl-wr841-v8-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v8]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 378 | lede-17.01.4-ar71xx-generic-tl-wr841-v8-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v8]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 379 | lede-17.01.4-ar71xx-generic-tl-wr841-v9-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v9]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 380 | lede-17.01.4-ar71xx-generic-tl-wr841-v9-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr841n_v9]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 381 | lede-17.01.4-ar71xx-generic-tl-wr842n-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr842nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr842nd |
+| 382 | lede-17.01.4-ar71xx-generic-tl-wr842n-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr842nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr842nd |
+| 383 | lede-17.01.4-ar71xx-generic-tl-wr842n-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr842nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wr842nd |
+| 384 | lede-17.01.4-ar71xx-generic-tl-wr842n-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr842nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wr842nd |
+| 385 | lede-17.01.4-ar71xx-generic-tl-wr842n-v3-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr842n_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr842nd |
+| 386 | lede-17.01.4-ar71xx-generic-tl-wr842n-v3-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr842n_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr842nd |
+| 387 | lede-17.01.4-ar71xx-generic-tl-wr843nd-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr843nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr843nd |
+| 388 | lede-17.01.4-ar71xx-generic-tl-wr843nd-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr843nd_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wr843nd |
+| 389 | lede-17.01.4-ar71xx-generic-tl-wr847n-v8-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr847n_v8]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 390 | lede-17.01.4-ar71xx-generic-tl-wr847n-v8-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr847n_v8]] | https://wiki.openwrt.org/toh/tp-link/tl-wr841nd |
+| 391 | lede-17.01.4-ar71xx-generic-tl-wr940n-v4-squashfs-factory-eu.bin | | |
+| 392 | lede-17.01.4-ar71xx-generic-tl-wr940n-v4-squashfs-factory-us.bin | | |
+| 393 | lede-17.01.4-ar71xx-generic-tl-wr940n-v4-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr940n_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wr940n |
+| 394 | lede-17.01.4-ar71xx-generic-tl-wr940n-v4-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr940n_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wr940n |
+| 395 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v2-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wr941nd |
+| 396 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v2-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v2]] | https://wiki.openwrt.org/toh/tp-link/tl-wr941nd |
+| 397 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v3-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v3.2]] [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr941nd |
+| 398 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v3-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v3.2]] [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v3]] | https://wiki.openwrt.org/toh/tp-link/tl-wr941nd |
+| 399 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v4-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr940n_v1]] [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wr940n https://wiki.openwrt.org/toh/tp-link/tl-wr941nd |
+| 400 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v4-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr940n_v1]] [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v4]] | https://wiki.openwrt.org/toh/tp-link/tl-wr940n https://wiki.openwrt.org/toh/tp-link/tl-wr941nd |
+| 401 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v5-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr940n_v2]] [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v5]] | https://wiki.openwrt.org/toh/tp-link/tl-wr940n https://wiki.openwrt.org/toh/tp-link/tl-wr941nd |
+| 402 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v5-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr940n_v2]] [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v5]] | https://wiki.openwrt.org/toh/tp-link/tl-wr940n https://wiki.openwrt.org/toh/tp-link/tl-wr941nd |
+| 403 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v6-cn-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr941n_v6_cn]] | |
+| 404 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v6-cn-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr941n_v6_cn]] | |
+| 405 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v6-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wr940n_v3]] [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v6]] | https://wiki.openwrt.org/toh/tp-link/tl-wr941nd |
+| 406 | lede-17.01.4-ar71xx-generic-tl-wr941nd-v6-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wr940n_v3]] [[toh/hwdata/tp-link/tp-link_tl-wr941nd_v6]] | https://wiki.openwrt.org/toh/tp-link/tl-wr941nd |
+| 407 | lede-17.01.4-ar71xx-generic-tube2h-16M-squashfs-sysupgrade.bin | | |
+| 408 | lede-17.01.4-ar71xx-generic-tube2h-8M-squashfs-factory.bin | [[toh/hwdata/alfa_network/alfa_network_tube2h]] | |
+| 409 | lede-17.01.4-ar71xx-generic-tube2h-8M-squashfs-sysupgrade.bin | [[toh/hwdata/alfa_network/alfa_network_tube2h]] | |
+| 410 | lede-17.01.4-ar71xx-generic-uImage-lzma.bin | | |
+| 411 | lede-17.01.4-ar71xx-generic-ubdev01-squashfs-factory.bin | | |
+| 412 | lede-17.01.4-ar71xx-generic-ubdev01-squashfs-sysupgrade.bin | | |
+| 413 | lede-17.01.4-ar71xx-generic-ubnt-air-gateway-pro-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_airgateway_pro]] | |
+| 414 | lede-17.01.4-ar71xx-generic-ubnt-air-gateway-pro-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_airgateway_pro]] | |
+| 415 | lede-17.01.4-ar71xx-generic-ubnt-air-gateway-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_airgateway]] | |
+| 416 | lede-17.01.4-ar71xx-generic-ubnt-air-gateway-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_airgateway]] | |
+| 417 | lede-17.01.4-ar71xx-generic-ubnt-airrouter-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_airrouter]] | https://wiki.openwrt.org/toh/ubiquiti/airrouter |
+| 418 | lede-17.01.4-ar71xx-generic-ubnt-airrouter-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_airrouter]] | https://wiki.openwrt.org/toh/ubiquiti/airrouter |
+| 419 | lede-17.01.4-ar71xx-generic-ubnt-bullet-m-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_bullet]] [[toh/hwdata/ubiquiti/ubiquiti_picostation_m2_hp]] | https://wiki.openwrt.org/toh/ubiquiti/bullet https://wiki.openwrt.org/toh/ubiquiti/picostationm2 |
+| 420 | lede-17.01.4-ar71xx-generic-ubnt-bullet-m-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_bullet]] [[toh/hwdata/ubiquiti/ubiquiti_picostation_m2_hp]] | https://wiki.openwrt.org/toh/ubiquiti/bullet https://wiki.openwrt.org/toh/ubiquiti/picostationm2 |
+| 421 | lede-17.01.4-ar71xx-generic-ubnt-loco-m-xw-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_nanostation_loco_m5_xw]] | https://wiki.openwrt.org/toh/ubiquiti/nanostationm5 |
+| 422 | lede-17.01.4-ar71xx-generic-ubnt-loco-m-xw-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_nanostation_loco_m5_xw]] | https://wiki.openwrt.org/toh/ubiquiti/nanostationm5 |
+| 423 | lede-17.01.4-ar71xx-generic-ubnt-ls-sr71-squashfs-factory.bin | | |
+| 424 | lede-17.01.4-ar71xx-generic-ubnt-ls-sr71-squashfs-sysupgrade.bin | | |
+| 425 | lede-17.01.4-ar71xx-generic-ubnt-nano-m-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_nanostation_m2]] [[toh/hwdata/ubiquiti/ubiquiti_nanostation_m5_xm]] | https://wiki.openwrt.org/toh/ubiquiti/nanostationm2 https://wiki.openwrt.org/toh/ubiquiti/nanostationm5 |
+| 426 | lede-17.01.4-ar71xx-generic-ubnt-nano-m-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_nanostation_m2]] [[toh/hwdata/ubiquiti/ubiquiti_nanostation_m5_xm]] | https://wiki.openwrt.org/toh/ubiquiti/nanostationm2 https://wiki.openwrt.org/toh/ubiquiti/nanostationm5 |
+| 427 | lede-17.01.4-ar71xx-generic-ubnt-nano-m-xw-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_nanobeam_m5]] [[toh/hwdata/ubiquiti/ubiquiti_nanostation_m5_xw]] | https://wiki.openwrt.org/toh/ubiquiti/nanobeam https://wiki.openwrt.org/toh/ubiquiti/nanostationm5 |
+| 428 | lede-17.01.4-ar71xx-generic-ubnt-nano-m-xw-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_nanobeam_m5]] [[toh/hwdata/ubiquiti/ubiquiti_nanostation_m5_xw]] | https://wiki.openwrt.org/toh/ubiquiti/nanobeam https://wiki.openwrt.org/toh/ubiquiti/nanostationm5 |
+| 429 | lede-17.01.4-ar71xx-generic-ubnt-rocket-m-squashfs-factory.bin | | |
+| 430 | lede-17.01.4-ar71xx-generic-ubnt-rocket-m-squashfs-sysupgrade.bin | | |
+| 431 | lede-17.01.4-ar71xx-generic-ubnt-rocket-m-ti-squashfs-factory.bin | | |
+| 432 | lede-17.01.4-ar71xx-generic-ubnt-rocket-m-ti-squashfs-sysupgrade.bin | | |
+| 433 | lede-17.01.4-ar71xx-generic-ubnt-rocket-m-xw-squashfs-factory.bin | | |
+| 434 | lede-17.01.4-ar71xx-generic-ubnt-rocket-m-xw-squashfs-sysupgrade.bin | | |
+| 435 | lede-17.01.4-ar71xx-generic-ubnt-rs-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_routerstation]] | https://wiki.openwrt.org/toh/ubiquiti/routerstation |
+| 436 | lede-17.01.4-ar71xx-generic-ubnt-rs-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_routerstation]] | https://wiki.openwrt.org/toh/ubiquiti/routerstation |
+| 437 | lede-17.01.4-ar71xx-generic-ubnt-rspro-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_routerstationpro]] | https://wiki.openwrt.org/toh/ubiquiti/routerstation.pro |
+| 438 | lede-17.01.4-ar71xx-generic-ubnt-rspro-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_routerstationpro]] | https://wiki.openwrt.org/toh/ubiquiti/routerstation.pro |
+| 439 | lede-17.01.4-ar71xx-generic-ubnt-uap-pro-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_unifi_ap_pro]] | https://wiki.openwrt.org/toh/ubiquiti/unifi_appro |
+| 440 | lede-17.01.4-ar71xx-generic-ubnt-uap-pro-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_unifi_ap_pro]] | https://wiki.openwrt.org/toh/ubiquiti/unifi_appro |
+| 441 | lede-17.01.4-ar71xx-generic-ubnt-unifi-outdoor-plus-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_unifi_outdoorplus]] | https://wiki.openwrt.org/toh/ubiquiti/unifi_outdoorplus |
+| 442 | lede-17.01.4-ar71xx-generic-ubnt-unifi-outdoor-plus-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_unifi_outdoorplus]] | https://wiki.openwrt.org/toh/ubiquiti/unifi_outdoorplus |
+| 443 | lede-17.01.4-ar71xx-generic-ubnt-unifi-outdoor-squashfs-factory.bin | | |
+| 444 | lede-17.01.4-ar71xx-generic-ubnt-unifi-outdoor-squashfs-sysupgrade.bin | | |
+| 445 | lede-17.01.4-ar71xx-generic-ubnt-unifi-squashfs-factory.bin | [[toh/hwdata/ubiquiti/ubiquiti_unifi]] | https://wiki.openwrt.org/toh/ubiquiti/unifi |
+| 446 | lede-17.01.4-ar71xx-generic-ubnt-unifi-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_unifi]] | https://wiki.openwrt.org/toh/ubiquiti/unifi |
+| 447 | lede-17.01.4-ar71xx-generic-ubnt-unifiac-lite-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_unifi_apac_lite]] [[toh/hwdata/ubiquiti/ubiquiti_unifi_apac_lr]] | https://wiki.openwrt.org/toh/ubiquiti/unifiac |
+| 448 | lede-17.01.4-ar71xx-generic-ubnt-unifiac-pro-squashfs-sysupgrade.bin | [[toh/hwdata/ubiquiti/ubiquiti_unifi_apac_pro]] | https://wiki.openwrt.org/toh/ubiquiti/unifiac |
+| 449 | lede-17.01.4-ar71xx-generic-vmlinux.lzma | | |
+| 450 | lede-17.01.4-ar71xx-generic-wbs210-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_wbs210]] | |
+| 451 | lede-17.01.4-ar71xx-generic-wbs210-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_wbs210]] | |
+| 452 | lede-17.01.4-ar71xx-generic-wbs510-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_wbs510]] | |
+| 453 | lede-17.01.4-ar71xx-generic-wbs510-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_wbs510]] | |
+| 454 | lede-17.01.4-ar71xx-generic-weio-squashfs-sysupgrade.bin | | |
+| 455 | lede-17.01.4-ar71xx-generic-wlr8100-squashfs-sysupgrade.bin | [[toh/hwdata/sitecom/sitecom_wlr-8100]] | https://wiki.openwrt.org/toh/sitecom/wlr-8100 |
+| 456 | lede-17.01.4-ar71xx-generic-wndr3700-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wndr3700_v1]] | https://wiki.openwrt.org/toh/netgear/wndr3700 |
+| 457 | lede-17.01.4-ar71xx-generic-wndr3700-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wndr3700_v1]] | https://wiki.openwrt.org/toh/netgear/wndr3700 |
+| 458 | lede-17.01.4-ar71xx-generic-wndr3700v2-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wndr3700_v2]] | https://wiki.openwrt.org/toh/netgear/wndr3700 |
+| 459 | lede-17.01.4-ar71xx-generic-wndr3700v2-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wndr3700_v2]] | https://wiki.openwrt.org/toh/netgear/wndr3700 |
+| 460 | lede-17.01.4-ar71xx-generic-wndr3800-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wndr3800]] | https://wiki.openwrt.org/toh/netgear/wndr3800 |
+| 461 | lede-17.01.4-ar71xx-generic-wndr3800-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wndr3800]] | https://wiki.openwrt.org/toh/netgear/wndr3800 |
+| 462 | lede-17.01.4-ar71xx-generic-wndr3800ch-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wndr3800_ch]] | https://wiki.openwrt.org/toh/netgear/wndr3800 |
+| 463 | lede-17.01.4-ar71xx-generic-wndr3800ch-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wndr3800_ch]] | https://wiki.openwrt.org/toh/netgear/wndr3800 |
+| 464 | lede-17.01.4-ar71xx-generic-wndrmac-squashfs-factory.img | | |
+| 465 | lede-17.01.4-ar71xx-generic-wndrmac-squashfs-sysupgrade.bin | | |
+| 466 | lede-17.01.4-ar71xx-generic-wndrmacv2-squashfs-factory.img | | |
+| 467 | lede-17.01.4-ar71xx-generic-wndrmacv2-squashfs-sysupgrade.bin | | |
+| 468 | lede-17.01.4-ar71xx-generic-wnr1000v2-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wnr1000_v2]] | https://wiki.openwrt.org/toh/netgear/wnr1000 |
+| 469 | lede-17.01.4-ar71xx-generic-wnr1000v2-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wnr1000_v2]] | https://wiki.openwrt.org/toh/netgear/wnr1000 |
+| 470 | lede-17.01.4-ar71xx-generic-wnr1000v2-vc-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wnr1000_v2-vc]] | https://wiki.openwrt.org/toh/netgear/wnr1000 |
+| 471 | lede-17.01.4-ar71xx-generic-wnr1000v2-vc-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wnr1000_v2-vc]] | https://wiki.openwrt.org/toh/netgear/wnr1000 |
+| 472 | lede-17.01.4-ar71xx-generic-wnr2000-rootfs-squashfs.bin | | |
+| 473 | lede-17.01.4-ar71xx-generic-wnr2000-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wnr2000_v1]] | https://wiki.openwrt.org/toh/netgear/wnr2000 |
+| 474 | lede-17.01.4-ar71xx-generic-wnr2000-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wnr2000_v1]] | https://wiki.openwrt.org/toh/netgear/wnr2000 |
+| 475 | lede-17.01.4-ar71xx-generic-wnr2000v3-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wnr2000_v3]] | https://wiki.openwrt.org/toh/netgear/wnr2000 |
+| 476 | lede-17.01.4-ar71xx-generic-wnr2000v3-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wnr2000_v3]] | https://wiki.openwrt.org/toh/netgear/wnr2000 |
+| 477 | lede-17.01.4-ar71xx-generic-wnr2000v4-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wnr2000_v4]] | https://wiki.openwrt.org/toh/netgear/wnr2000 |
+| 478 | lede-17.01.4-ar71xx-generic-wnr2200-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wnr2200_v3]] | https://wiki.openwrt.org/toh/netgear/wnr2200 |
+| 479 | lede-17.01.4-ar71xx-generic-wnr2200-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wnr2200_v3]] | https://wiki.openwrt.org/toh/netgear/wnr2200 |
+| 480 | lede-17.01.4-ar71xx-generic-wnr612v2-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wnr612v2]] | https://wiki.openwrt.org/toh/netgear/wnr612v2 |
+| 481 | lede-17.01.4-ar71xx-generic-wnr612v2-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wnr612v2]] | https://wiki.openwrt.org/toh/netgear/wnr612v2 |
+| 482 | lede-17.01.4-ar71xx-generic-wp543-squashfs-16M-sysupgrade.bin | | |
+| 483 | lede-17.01.4-ar71xx-generic-wp543-squashfs-4M-factory.img | [[toh/hwdata/compex/compex_mmc543hv_6e03]] [[toh/hwdata/compex/compex_wp543_6e03]] | https://wiki.openwrt.org/toh/compex/mmc543hv https://wiki.openwrt.org/toh/compex/wp543 |
+| 484 | lede-17.01.4-ar71xx-generic-wp543-squashfs-4M-sysupgrade.bin | [[toh/hwdata/compex/compex_mmc543hv_6e03]] [[toh/hwdata/compex/compex_wp543_6e03]] | https://wiki.openwrt.org/toh/compex/mmc543hv https://wiki.openwrt.org/toh/compex/wp543 |
+| 485 | lede-17.01.4-ar71xx-generic-wpe72-squashfs-16M-sysupgrade.bin | | |
+| 486 | lede-17.01.4-ar71xx-generic-wpe72-squashfs-4M-factory.img | [[toh/hwdata/compex/compex_wpe72_7a07]] | https://wiki.openwrt.org/toh/compex/wpe72 |
+| 487 | lede-17.01.4-ar71xx-generic-wpe72-squashfs-4M-sysupgrade.bin | [[toh/hwdata/compex/compex_wpe72_7a07]] | https://wiki.openwrt.org/toh/compex/wpe72 |
+| 488 | lede-17.01.4-ar71xx-generic-wpj342-16M-squashfs-sysupgrade.bin | [[toh/hwdata/compex/compex_wpj342_7a05]] | https://wiki.openwrt.org/toh/compex/wpj342 |
+| 489 | lede-17.01.4-ar71xx-generic-wpj344-16M-squashfs-sysupgrade.bin | [[toh/hwdata/compex/compex_wpj344_6a06]] | https://wiki.openwrt.org/toh/compex/wpj344 |
+| 490 | lede-17.01.4-ar71xx-generic-wpj531-16M-squashfs-sysupgrade.bin | [[toh/hwdata/compex/compex_wpj531_7a03]] | https://wiki.openwrt.org/toh/compex/wpj531 |
+| 491 | lede-17.01.4-ar71xx-generic-wpj558-16M-squashfs-sysupgrade.bin | [[toh/hwdata/compex/compex_wpj558_6a06]] | https://wiki.openwrt.org/toh/compex/wpj558 |
+| 492 | lede-17.01.4-ar71xx-generic-wpn824n-squashfs-factory.img | [[toh/hwdata/netgear/netgear_wpn824n]] | https://wiki.openwrt.org/toh/netgear/wpn824n |
+| 493 | lede-17.01.4-ar71xx-generic-wpn824n-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wpn824n]] [[toh/hwdata/netgear/netgear_wpn824n_na]] | https://wiki.openwrt.org/toh/netgear/wpn824n |
+| 494 | lede-17.01.4-ar71xx-generic-wrt160nl-squashfs-factory.bin | [[toh/hwdata/linksys/linksys_wrt160nl]] | https://wiki.openwrt.org/toh/linksys/wrt160nl |
+| 495 | lede-17.01.4-ar71xx-generic-wrt160nl-squashfs-sysupgrade.bin | [[toh/hwdata/linksys/linksys_wrt160nl]] | https://wiki.openwrt.org/toh/linksys/wrt160nl |
+| 496 | lede-17.01.4-ar71xx-generic-wrt400n-squashfs-factory.bin | [[toh/hwdata/linksys/linksys_wrt400n]] | |
+| 497 | lede-17.01.4-ar71xx-generic-wrt400n-squashfs-sysupgrade.bin | [[toh/hwdata/linksys/linksys_wrt400n]] | |
+| 498 | lede-17.01.4-ar71xx-generic-wrtnode2q-squashfs-sysupgrade.bin | | |
+| 499 | lede-17.01.4-ar71xx-generic-wzr-450hp2-squashfs-factory.bin | [[toh/hwdata/buffalo/buffalo_wzr-450hp2]] | https://wiki.openwrt.org/toh/buffalo/wzr-450hp2 |
+| 500 | lede-17.01.4-ar71xx-generic-wzr-450hp2-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wzr-450hp2]] | https://wiki.openwrt.org/toh/buffalo/wzr-450hp2 |
+| 501 | lede-17.01.4-ar71xx-generic-wzr-600dhp-squashfs-factory.bin | [[toh/hwdata/buffalo/buffalo_wzr-600dhp]] | https://wiki.openwrt.org/toh/buffalo/wzr-600dhp |
+| 502 | lede-17.01.4-ar71xx-generic-wzr-600dhp-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wzr-600dhp]] | https://wiki.openwrt.org/toh/buffalo/wzr-600dhp |
+| 503 | lede-17.01.4-ar71xx-generic-wzr-hp-ag300h-squashfs-factory.bin | [[toh/hwdata/buffalo/buffalo_wzr-hp-ag300h_v1]] | https://wiki.openwrt.org/toh/buffalo/wzr-hp-ag300h |
+| 504 | lede-17.01.4-ar71xx-generic-wzr-hp-ag300h-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wzr-hp-ag300h_v1]] | https://wiki.openwrt.org/toh/buffalo/wzr-hp-ag300h |
+| 505 | lede-17.01.4-ar71xx-generic-wzr-hp-g300nh-squashfs-factory.bin | [[toh/hwdata/buffalo/buffalo_wzr-hp-g300nh_v1]] | https://wiki.openwrt.org/toh/buffalo/wzr-hp-g300h |
+| 506 | lede-17.01.4-ar71xx-generic-wzr-hp-g300nh-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wzr-hp-g300nh_v1]] | https://wiki.openwrt.org/toh/buffalo/wzr-hp-g300h |
+| 507 | lede-17.01.4-ar71xx-generic-wzr-hp-g300nh2-squashfs-factory.bin | [[toh/hwdata/buffalo/buffalo_wzr-hp-g300nh2_v2]] | https://wiki.openwrt.org/toh/buffalo/wzr-hp-g300nh2 |
+| 508 | lede-17.01.4-ar71xx-generic-wzr-hp-g300nh2-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wzr-hp-g300nh2_v2]] | https://wiki.openwrt.org/toh/buffalo/wzr-hp-g300nh2 |
+| 509 | lede-17.01.4-ar71xx-generic-wzr-hp-g450h-squashfs-factory.bin | [[toh/hwdata/buffalo/buffalo_wzr-hp-g450h_v1]] | https://wiki.openwrt.org/toh/buffalo/wzr-hp-g450h |
+| 510 | lede-17.01.4-ar71xx-generic-wzr-hp-g450h-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wzr-hp-g450h_v1]] | https://wiki.openwrt.org/toh/buffalo/wzr-hp-g450h |
+| 511 | lede-17.01.4-ar71xx-generic-xd3200-squashfs-sysupgrade.bin | [[toh/hwdata/yuncore/yuncore_xd3200]] | |
+| 512 | lede-17.01.4-ar71xx-generic-yun-16M-squashfs-sysupgrade.bin | [[toh/hwdata/arduino.cc/arduino.cc_yun]] | https://wiki.openwrt.org/toh/arduino/yun |
+| 513 | lede-17.01.4-ar71xx-generic-yun-8M-squashfs-sysupgrade.bin | | |
+| 514 | lede-17.01.4-ar71xx-generic-zbt-we1526-squashfs-sysupgrade.bin | [[toh/hwdata/zbt/zbt_we1526]] | |
+| 515 | lede-17.01.4-ar71xx-generic-zcn-1523h-2-8-squashfs-factory.img | [[toh/hwdata/zcomax/zcomax_zcn-1523h-2-8]] | |
+| 516 | lede-17.01.4-ar71xx-generic-zcn-1523h-2-8-squashfs-sysupgrade.bin | [[toh/hwdata/zcomax/zcomax_zcn-1523h-2-8]] | |
+| 517 | lede-17.01.4-ar71xx-generic-zcn-1523h-5-16-squashfs-factory.img | [[toh/hwdata/zcomax/zcomax_zcn-1523h-5-16]] | |
+| 518 | lede-17.01.4-ar71xx-generic-zcn-1523h-5-16-squashfs-sysupgrade.bin | [[toh/hwdata/zcomax/zcomax_zcn-1523h-5-16]] | |
+| 519 | lede-17.01.4-ar71xx-mikrotik-nand-64m-squashfs-sysupgrade.bin | | |
+| 520 | lede-17.01.4-ar71xx-mikrotik-nand-large-squashfs-sysupgrade.bin | [[toh/hwdata/mikrotik/mikrotik_rb435g]] [[toh/hwdata/mikrotik/mikrotik_rb450g]] | https://wiki.openwrt.org/toh/mikrotik/rb450g |
+| 521 | lede-17.01.4-ar71xx-mikrotik-root.squashfs | | |
+| 522 | lede-17.01.4-ar71xx-mikrotik-vmlinux-initramfs-lzma.elf | | |
+| 523 | lede-17.01.4-ar71xx-mikrotik-vmlinux-initramfs.bin | | |
+| 524 | lede-17.01.4-ar71xx-mikrotik-vmlinux-initramfs.elf | [[toh/hwdata/mikrotik/mikrotik_rb435g]] [[toh/hwdata/mikrotik/mikrotik_rb493]] | https://wiki.openwrt.org/toh/mikrotik/mikrotik_routerboard_rb493 |
+| 525 | lede-17.01.4-ar71xx-mikrotik-vmlinux-initramfs.lzma | | |
+| 526 | lede-17.01.4-ar71xx-mikrotik-vmlinux.lzma | | |
+| 527 | lede-17.01.4-ar71xx-nand-c-60-squashfs-sysupgrade.tar | | |
+| 528 | lede-17.01.4-ar71xx-nand-domywifi-dw33d-squashfs-sysupgrade.bin | [[toh/hwdata/domywifi/domywifi_dw33d]] | |
+| 529 | lede-17.01.4-ar71xx-nand-mr18-squashfs-sysupgrade.tar | [[toh/hwdata/meraki/meraki_mr18]] | https://wiki.openwrt.org/toh/meraki/mr18 |
+| 530 | lede-17.01.4-ar71xx-nand-nbg6716-squashfs-factory.bin | [[toh/hwdata/zyxel/zyxel_nbg6716_a01]] | https://wiki.openwrt.org/toh/zyxel/zyxel_nbg6716 |
+| 531 | lede-17.01.4-ar71xx-nand-nbg6716-squashfs-sysupgrade.tar | [[toh/hwdata/zyxel/zyxel_nbg6716_a01]] | https://wiki.openwrt.org/toh/zyxel/zyxel_nbg6716 |
+| 532 | lede-17.01.4-ar71xx-nand-r6100-squashfs-sysupgrade.tar | [[toh/hwdata/netgear/netgear_r6100]] | https://wiki.openwrt.org/toh/netgear/netgear_r6100 |
+| 533 | lede-17.01.4-ar71xx-nand-r6100-ubi-factory.img | [[toh/hwdata/netgear/netgear_r6100]] | https://wiki.openwrt.org/toh/netgear/netgear_r6100 |
+| 534 | lede-17.01.4-ar71xx-nand-root.squashfs | | |
+| 535 | lede-17.01.4-ar71xx-nand-uImage-lzma.bin | | |
+| 536 | lede-17.01.4-ar71xx-nand-vmlinux.lzma | | |
+| 537 | lede-17.01.4-ar71xx-nand-wndr3700v4-squashfs-sysupgrade.tar | [[toh/hwdata/netgear/netgear_wndr3700_v4]] | https://wiki.openwrt.org/toh/netgear/wndr3700 |
+| 538 | lede-17.01.4-ar71xx-nand-wndr3700v4-ubi-factory.img | | |
+| 539 | lede-17.01.4-ar71xx-nand-wndr4300-squashfs-sysupgrade.tar | [[toh/hwdata/netgear/netgear_wndr4300_v1]] | https://wiki.openwrt.org/toh/netgear/wndr4300 |
+| 540 | lede-17.01.4-ar71xx-nand-wndr4300-ubi-factory.img | [[toh/hwdata/netgear/netgear_wndr4300_v1]] | https://wiki.openwrt.org/toh/netgear/wndr4300 |
+| 541 | lede-17.01.4-ar71xx-nand-z1-squashfs-sysupgrade.tar | | |
+| 542 | lede-17.01.4-arc770-generic-Default-sdcard-vfat-ext4.img.gz | | |
+| 543 | lede-17.01.4-arc770-generic-nsim-initramfs.elf | | |
+| 544 | lede-17.01.4-arc770-generic-root.ext4.gz | | |
+| 545 | lede-17.01.4-arc770-generic-uImage | | |
+| 546 | lede-17.01.4-archs38-generic-Default-sdcard-vfat-ext4.img.gz | | |
+| 547 | lede-17.01.4-archs38-generic-nsim_hs-initramfs.elf | | |
+| 548 | lede-17.01.4-archs38-generic-root.ext4.gz | | |
+| 549 | lede-17.01.4-archs38-generic-uImage | | |
+| 550 | lede-17.01.4-arm64-qemu-virt-initramfs.Image | | |
+| 551 | lede-17.01.4-arm64-qemu-virt.Image | | |
+| 552 | lede-17.01.4-armvirt-default-rootfs.tar.gz | | |
+| 553 | lede-17.01.4-armvirt-root.ext4.gz | | |
+| 554 | lede-17.01.4-armvirt-root.squashfs.gz | | |
+| 555 | lede-17.01.4-armvirt-rootfs.cpio.gz | | |
+| 556 | lede-17.01.4-armvirt-zImage | | |
+| 557 | lede-17.01.4-armvirt-zImage-initramfs | | |
+| 558 | lede-17.01.4-at91-legacy-9263ek-uImage | | |
+| 559 | lede-17.01.4-at91-legacy-9g15ek-uImage | | |
+| 560 | lede-17.01.4-at91-legacy-9g25ek-uImage | | |
+| 561 | lede-17.01.4-at91-legacy-9g35ek-uImage | | |
+| 562 | lede-17.01.4-at91-legacy-9m10g45ek-uImage | | |
+| 563 | lede-17.01.4-at91-legacy-9x25ek-uImage | | |
+| 564 | lede-17.01.4-at91-legacy-9x35ek-uImage | | |
+| 565 | lede-17.01.4-at91-legacy-default-rootfs.tar.gz | | |
+| 566 | lede-17.01.4-at91-legacy-ethernut5-uImage | | |
+| 567 | lede-17.01.4-at91-legacy-lmu5000-uImage | | |
+| 568 | lede-17.01.4-at91-legacy-root.squashfs | | |
+| 569 | lede-17.01.4-at91-legacy-root.ubifs | | |
+| 570 | lede-17.01.4-at91-legacy-tny_a9260-uImage | | |
+| 571 | lede-17.01.4-at91-legacy-tny_a9263-uImage | | |
+| 572 | lede-17.01.4-at91-legacy-tny_a9g20-uImage | | |
+| 573 | lede-17.01.4-at91-legacy-uImage | | |
+| 574 | lede-17.01.4-at91-legacy-usb_a9260-uImage | | |
+| 575 | lede-17.01.4-at91-legacy-usb_a9263-uImage | | |
+| 576 | lede-17.01.4-at91-legacy-usb_a9g20-uImage | | |
+| 577 | lede-17.01.4-at91-legacy-zImage | | |
+| 578 | lede-17.01.4-at91-sama5d3-at91sama5d3xplained-rootfs.tar.gz | | |
+| 579 | lede-17.01.4-at91-sama5d3-root.squashfs | | |
+| 580 | lede-17.01.4-at91-sama5d3-root.ubifs | | |
+| 581 | lede-17.01.4-at91-sama5d3-sama5-uImage | | |
+| 582 | lede-17.01.4-at91-sama5d3-uImage | | |
+| 583 | lede-17.01.4-ath25-generic-kernel.elf | | |
+| 584 | lede-17.01.4-ath25-generic-kernel.gz | | |
+| 585 | lede-17.01.4-ath25-generic-kernel.lzma | | |
+| 586 | lede-17.01.4-ath25-generic-squashfs-rootfs.bin | | |
+| 587 | lede-17.01.4-ath25-generic-squashfs-sysupgrade.bin | | |
+| 588 | lede-17.01.4-ath25-ubnt2-pico2-squashfs-sysupgrade.bin | | |
+| 589 | lede-17.01.4-ath25-ubnt2-squashfs-sysupgrade.bin | | |
+| 590 | lede-17.01.4-ath25-ubnt5-squashfs-sysupgrade.bin | | |
+| 591 | lede-17.01.4-bcm53xx-asus-rt-ac56u-squashfs.trx | [[toh/hwdata/asus/asus_rt-ac56u]] | https://wiki.openwrt.org/toh/asus/rt-ac56u |
+| 592 | lede-17.01.4-bcm53xx-asus-rt-ac68u-squashfs.trx | [[toh/hwdata/asus/asus_rt-ac68u]] | https://wiki.openwrt.org/toh/asus/rt-ac68u |
+| 593 | lede-17.01.4-bcm53xx-asus-rt-ac87u-squashfs.trx | [[toh/hwdata/asus/asus_rt-ac87u]] | https://wiki.openwrt.org/toh/asus/rt-ac87u |
+| 594 | lede-17.01.4-bcm53xx-asus-rt-n18u-squashfs.trx | [[toh/hwdata/asus/asus_rt-n18u_a1]] | https://wiki.openwrt.org/toh/asus/rt-n18u |
+| 595 | lede-17.01.4-bcm53xx-buffalo-wxr-1900dhp-squashfs.trx | [[toh/hwdata/buffalo/buffalo_wxr-1900dhp]] | |
+| 596 | lede-17.01.4-bcm53xx-buffalo-wzr-1750dhp-squashfs.trx | [[toh/hwdata/buffalo/buffalo_wzr-1750dhp]] | https://wiki.openwrt.org/toh/buffalo/wzr-1750dhp |
+| 597 | lede-17.01.4-bcm53xx-buffalo-wzr-600dhp2-squashfs.trx | [[toh/hwdata/buffalo/buffalo_wzr-600dhp2]] | https://wiki.openwrt.org/toh/buffalo/wzr-600dhp2 |
+| 598 | lede-17.01.4-bcm53xx-buffalo-wzr-900dhp-squashfs.trx | [[toh/hwdata/buffalo/buffalo_wzr-900dhp]] | |
+| 599 | lede-17.01.4-bcm53xx-dlink-dir-885l-squashfs.bin | [[toh/hwdata/d-link/d-link_dir-885l_a1]] | |
+| 600 | lede-17.01.4-bcm53xx-netgear-r6250-squashfs.chk | [[toh/hwdata/netgear/netgear_r6250]] | https://wiki.openwrt.org/toh/netgear/r6250 |
+| 601 | lede-17.01.4-bcm53xx-netgear-r6300-v2-squashfs.chk | [[toh/hwdata/netgear/netgear_r6300_v2]] | https://wiki.openwrt.org/toh/netgear/netgear_r6300_v2 |
+| 602 | lede-17.01.4-bcm53xx-netgear-r7000-squashfs.chk | [[toh/hwdata/netgear/netgear_r7000]] | https://wiki.openwrt.org/toh/netgear/r7000 |
+| 603 | lede-17.01.4-bcm53xx-netgear-r7900-squashfs.chk | [[toh/hwdata/netgear/netgear_r7900]] | |
+| 604 | lede-17.01.4-bcm53xx-netgear-r8000-squashfs.chk | [[toh/hwdata/netgear/netgear_r8000]] | https://wiki.openwrt.org/toh/netgear/r8000 |
+| 605 | lede-17.01.4-bcm53xx-smartrg-sr400ac-squashfs.trx | | |
+| 606 | lede-17.01.4-bcm53xx-tenda-ac9-squashfs.trx | [[toh/hwdata/tenda/tenda_ac9]] | |
+| 607 | lede-17.01.4-bcm53xx-tplink-archer-c5-v2-squashfs.bin | [[toh/hwdata/tp-link/tp-link_archer_c5_ac1200_v2.0]] | https://wiki.openwrt.org/toh/tp-link/archer-c5-c7-wdr7500 |
+| 608 | lede-17.01.4-bcm53xx-tplink-archer-c9-v1-squashfs.bin | [[toh/hwdata/tp-link/tp-link_archer_c9_v1]] | https://wiki.openwrt.org/toh/tp-link/archer-c9 |
+| 609 | lede-17.01.4-brcm2708-bcm2708-rpi-ext4-sdcard.img.gz | [[toh/hwdata/raspberrypifoundation/raspberrypifoundation_raspberrypi_a]] [[toh/hwdata/raspberrypifoundation/raspberrypifoundation_raspberrypi_b]] [[toh/hwdata/raspberrypifoundation/raspberrypifoundation_raspberrypi_bplus]] | https://wiki.openwrt.org/toh/raspberry_pi_foundation/raspberry_pi |
+| 610 | lede-17.01.4-brcm2708-bcm2709-rpi-2-ext4-sdcard.img.gz | [[toh/hwdata/raspberrypifoundation/raspberrypifoundation_raspberrypi_2_b]] | https://wiki.openwrt.org/toh/raspberry_pi_foundation/raspberry_pi |
+| 611 | lede-17.01.4-brcm2708-bcm2710-rpi-3-ext4-sdcard.img.gz | [[toh/hwdata/raspberrypifoundation/raspberrypifoundation_raspberrypi_3_b]] | |
+| 612 | lede-17.01.4-brcm47xx-generic-linksys-e3000-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_e3000_v1]] | https://wiki.openwrt.org/toh/linksys/e3000 |
+| 613 | lede-17.01.4-brcm47xx-generic-linksys-wrt300n-v1.1-squashfs.bin | [[toh/hwdata/linksys/linksys_wrt300n_v1.1]] | https://wiki.openwrt.org/toh/linksys/wrt300n |
+| 614 | lede-17.01.4-brcm47xx-generic-linksys-wrt310n-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_wrt310n_v1]] | https://wiki.openwrt.org/toh/linksys/wrt310n_v1 |
+| 615 | lede-17.01.4-brcm47xx-generic-linksys-wrt350n-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_wrt350n_v1]] | https://wiki.openwrt.org/toh/linksys/wrt350nv1 |
+| 616 | lede-17.01.4-brcm47xx-generic-linksys-wrt610n-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_wrt610n_v1]] | https://wiki.openwrt.org/toh/linksys/wrt610n |
+| 617 | lede-17.01.4-brcm47xx-generic-linksys-wrt610n-v2-squashfs.bin | [[toh/hwdata/linksys/linksys_wrt610n_v2]] | https://wiki.openwrt.org/toh/linksys/wrt610n |
+| 618 | lede-17.01.4-brcm47xx-generic-standard-squashfs.trx | | |
+| 619 | lede-17.01.4-brcm47xx-legacy-asus-wl-300g-squashfs.trx | | |
+| 620 | lede-17.01.4-brcm47xx-legacy-asus-wl-320gp-squashfs.trx | [[toh/hwdata/asus/asus_wl-320gp]] | https://wiki.openwrt.org/toh/asus/wl320g |
+| 621 | lede-17.01.4-brcm47xx-legacy-asus-wl-330ge-squashfs.trx | [[toh/hwdata/asus/asus_wl-330ge]] | |
+| 622 | lede-17.01.4-brcm47xx-legacy-asus-wl-500gp-v1-squashfs.trx | [[toh/hwdata/asus/asus_wl-500gpremium_v1]] | https://wiki.openwrt.org/toh/asus/wl500gp |
+| 623 | lede-17.01.4-brcm47xx-legacy-asus-wl-500gp-v2-squashfs.trx | [[toh/hwdata/asus/asus_wl-500gpremium_v2]] | https://wiki.openwrt.org/toh/asus/wl500gp |
+| 624 | lede-17.01.4-brcm47xx-legacy-asus-wl-500w-squashfs.trx | [[toh/hwdata/asus/asus_wl-500w]] | https://wiki.openwrt.org/toh/asus/wl500w |
+| 625 | lede-17.01.4-brcm47xx-legacy-asus-wl-520gu-squashfs.trx | [[toh/hwdata/asus/asus_wl-520gu]] [[toh/hwdata/d-link/d-link_dir-330_a1]] | https://wiki.openwrt.org/toh/asus/wl520gu https://wiki.openwrt.org/toh/d-link/dir-330 |
+| 626 | lede-17.01.4-brcm47xx-legacy-asus-wl-550ge-squashfs.trx | [[toh/hwdata/asus/asus_wl-550ge]] | |
+| 627 | lede-17.01.4-brcm47xx-legacy-asus-wl-hdd25-squashfs.trx | [[toh/hwdata/asus/asus_wl-hdd25]] | https://wiki.openwrt.org/toh/asus/wlhdd2.5 |
+| 628 | lede-17.01.4-brcm47xx-legacy-dlink-dwl-3150-squashfs.bin | | |
+| 629 | lede-17.01.4-brcm47xx-legacy-edimax-ps1208-mfg-squashfs.bin | | |
+| 630 | lede-17.01.4-brcm47xx-legacy-huawei-e970-squashfs.bin | [[toh/hwdata/huawei/huawei_e970]] | https://wiki.openwrt.org/toh/huawei/e970 |
+| 631 | lede-17.01.4-brcm47xx-legacy-linksys-wrt150n-squashfs.bin | | |
+| 632 | lede-17.01.4-brcm47xx-legacy-linksys-wrt160n-v1-squashfs.bin | | |
+| 633 | lede-17.01.4-brcm47xx-legacy-linksys-wrt300n-v1-squashfs.bin | | |
+| 634 | lede-17.01.4-brcm47xx-legacy-linksys-wrt300n-v1-squashfs.trx | | |
+| 635 | lede-17.01.4-brcm47xx-legacy-linksys-wrt54g-squashfs.bin | | |
+| 636 | lede-17.01.4-brcm47xx-legacy-linksys-wrt54g3g-em-squashfs.bin | | |
+| 637 | lede-17.01.4-brcm47xx-legacy-linksys-wrt54g3g-squashfs.bin | | |
+| 638 | lede-17.01.4-brcm47xx-legacy-linksys-wrt54g3gv2-vf-squashfs.bin | | |
+| 639 | lede-17.01.4-brcm47xx-legacy-linksys-wrt54g3gv2-vf-squashfs.noheader.bin | | |
+| 640 | lede-17.01.4-brcm47xx-legacy-linksys-wrt54gs-squashfs.bin | [[toh/hwdata/linksys/linksys_wrt54gs]] | https://wiki.openwrt.org/toh/linksys/wrt54g |
+| 641 | lede-17.01.4-brcm47xx-legacy-linksys-wrt54gs-v4-squashfs.bin | | |
+| 642 | lede-17.01.4-brcm47xx-legacy-linksys-wrtsl54gs-squashfs.bin | | |
+| 643 | lede-17.01.4-brcm47xx-legacy-motorola-wa840g-squashfs.bin | | |
+| 644 | lede-17.01.4-brcm47xx-legacy-motorola-we800g-squashfs.bin | | |
+| 645 | lede-17.01.4-brcm47xx-legacy-motorola-wr850g-squashfs.bin | | |
+| 646 | lede-17.01.4-brcm47xx-legacy-netgear-wgr614-v8-squashfs.chk | | |
+| 647 | lede-17.01.4-brcm47xx-legacy-netgear-wgt634u-squashfs.bin | [[toh/hwdata/netgear/netgear_wgt634u]] | https://wiki.openwrt.org/toh/netgear/wgt634u |
+| 648 | lede-17.01.4-brcm47xx-legacy-netgear-wndr3300-v1-squashfs.chk | [[toh/hwdata/netgear/netgear_wndr3300_v1]] | https://wiki.openwrt.org/toh/netgear/wndr3300 |
+| 649 | lede-17.01.4-brcm47xx-legacy-netgear-wnr834b-v2-squashfs.chk | [[toh/hwdata/netgear/netgear_wnr834b_v2]] | https://wiki.openwrt.org/toh/netgear/wnr834b |
+| 650 | lede-17.01.4-brcm47xx-legacy-standard-noloader-gz-squashfs.trx | | |
+| 651 | lede-17.01.4-brcm47xx-legacy-standard-squashfs.trx | | |
+| 652 | lede-17.01.4-brcm47xx-legacy-usrobotics-usr5461-squashfs.bin | | |
+| 653 | lede-17.01.4-brcm47xx-mips74k-asus-rt-ac53u-squashfs.trx | [[toh/hwdata/asus/asus_rt-ac53u]] | |
+| 654 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n10-squashfs.trx | [[toh/hwdata/asus/asus_rt-n10_a1]] | |
+| 655 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n10p-squashfs.trx | [[toh/hwdata/asus/asus_rt-n10p_a1]] | https://wiki.openwrt.org/toh/asus/rt-n10p |
+| 656 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n10p-v2-squashfs.trx | [[toh/hwdata/asus/asus_rt-n10p_v2]] | |
+| 657 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n10u-b-squashfs.trx | [[toh/hwdata/asus/asus_rt-n10u_b]] | https://wiki.openwrt.org/toh/asus/rt-n10u |
+| 658 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n10u-squashfs.trx | [[toh/hwdata/asus/asus_rt-n10u]] | https://wiki.openwrt.org/toh/asus/rt-n10u |
+| 659 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n12-b1-squashfs.trx | [[toh/hwdata/asus/asus_rt-n12_b1]] | https://wiki.openwrt.org/toh/asus/rt-n12b1 |
+| 660 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n12-c1-squashfs.trx | [[toh/hwdata/asus/asus_rt-n12_c1]] | |
+| 661 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n12-d1-squashfs.trx | [[toh/hwdata/asus/asus_rt-n12_d1]] | https://wiki.openwrt.org/toh/asus/rt-n12d1 |
+| 662 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n12-squashfs.trx | [[toh/hwdata/asus/asus_rt-n12_a1]] | https://wiki.openwrt.org/toh/asus/rt-n12 |
+| 663 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n12hp-squashfs.trx | [[toh/hwdata/asus/asus_rt-n12hp]] | |
+| 664 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n14uhp-squashfs.trx | [[toh/hwdata/asus/asus_rt-n14uhp]] | |
+| 665 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n15u-squashfs.trx | [[toh/hwdata/asus/asus_rt-n15u]] | https://wiki.openwrt.org/toh/asus/rt-n15u |
+| 666 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n16-squashfs.trx | [[toh/hwdata/asus/asus_rt-n16]] | https://wiki.openwrt.org/toh/asus/rt-n16 |
+| 667 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n53-squashfs.trx | [[toh/hwdata/asus/asus_rt-n53]] | https://wiki.openwrt.org/toh/asus/rt-n53 |
+| 668 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n66u-squashfs.trx | [[toh/hwdata/asus/asus_rt-n66u_b1]] | https://wiki.openwrt.org/toh/asus/rt-n66u |
+| 669 | lede-17.01.4-brcm47xx-mips74k-asus-rt-n66w-squashfs.trx | | |
+| 670 | lede-17.01.4-brcm47xx-mips74k-linksys-e1000-v1-v2-v2.1-squashfs.bin | [[toh/hwdata/linksys/linksys_e1000_v1]] [[toh/hwdata/linksys/linksys_e1000_v2]] | https://wiki.openwrt.org/toh/linksys/e1000 |
+| 671 | lede-17.01.4-brcm47xx-mips74k-linksys-e1200-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_e1200_v1]] | |
+| 672 | lede-17.01.4-brcm47xx-mips74k-linksys-e1200-v2-squashfs.bin | [[toh/hwdata/linksys/linksys_e1200_v2]] | https://wiki.openwrt.org/toh/linksys/linksys_e1200_2 |
+| 673 | lede-17.01.4-brcm47xx-mips74k-linksys-e1500-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_e1500_v1]] | |
+| 674 | lede-17.01.4-brcm47xx-mips74k-linksys-e1550-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_e1550_v1]] | |
+| 675 | lede-17.01.4-brcm47xx-mips74k-linksys-e2000-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_e2000_v1]] | https://wiki.openwrt.org/toh/linksys/e2000 |
+| 676 | lede-17.01.4-brcm47xx-mips74k-linksys-e2500-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_e2500_v1]] | https://wiki.openwrt.org/toh/linksys/linksys_e2500_1 |
+| 677 | lede-17.01.4-brcm47xx-mips74k-linksys-e2500-v2-squashfs.bin | [[toh/hwdata/linksys/linksys_e2500_v2]] | |
+| 678 | lede-17.01.4-brcm47xx-mips74k-linksys-e2500-v2.1-squashfs.bin | | |
+| 679 | lede-17.01.4-brcm47xx-mips74k-linksys-e2500-v3-squashfs.bin | [[toh/hwdata/linksys/linksys_e2500_v3]] | |
+| 680 | lede-17.01.4-brcm47xx-mips74k-linksys-e3200-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_e3200_v1]] | https://wiki.openwrt.org/toh/linksys/e3200 |
+| 681 | lede-17.01.4-brcm47xx-mips74k-linksys-e4200-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_e4200_v1]] | |
+| 682 | lede-17.01.4-brcm47xx-mips74k-linksys-e900-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_e900_v1]] | https://wiki.openwrt.org/toh/linksys/e900 |
+| 683 | lede-17.01.4-brcm47xx-mips74k-linksys-wrt160n-v3-squashfs.bin | [[toh/hwdata/linksys/linksys_wrt160n_v3]] | https://wiki.openwrt.org/toh/linksys/wrt160n |
+| 684 | lede-17.01.4-brcm47xx-mips74k-linksys-wrt310n-v2-squashfs.bin | [[toh/hwdata/linksys/linksys_wrt310n_v2]] | https://wiki.openwrt.org/toh/linksys/wrt310n_v2 |
+| 685 | lede-17.01.4-brcm47xx-mips74k-linksys-wrt320n-v1-squashfs.bin | [[toh/hwdata/linksys/linksys_wrt320n_v1]] | https://wiki.openwrt.org/toh/linksys/wrt320n |
+| 686 | lede-17.01.4-brcm47xx-mips74k-netgear-wgr614-v10_north-america-squashfs.chk | | |
+| 687 | lede-17.01.4-brcm47xx-mips74k-netgear-wgr614-v10_other-regions-squashfs.chk | | |
+| 688 | lede-17.01.4-brcm47xx-mips74k-netgear-wn2500rp-v1-squashfs.chk | | |
+| 689 | lede-17.01.4-brcm47xx-mips74k-netgear-wn3000rp-squashfs.chk | [[toh/hwdata/netgear/netgear_wn3000rp_v1]] | |
+| 690 | lede-17.01.4-brcm47xx-mips74k-netgear-wndr3400-v1-squashfs.chk | [[toh/hwdata/netgear/netgear_wndr3400_v1]] | https://wiki.openwrt.org/toh/netgear/wndr3400 |
+| 691 | lede-17.01.4-brcm47xx-mips74k-netgear-wndr3400-v2-squashfs.chk | [[toh/hwdata/netgear/netgear_wndr3400_v2]] | https://wiki.openwrt.org/toh/netgear/wndr3400 |
+| 692 | lede-17.01.4-brcm47xx-mips74k-netgear-wndr3400-v3-squashfs.chk | [[toh/hwdata/netgear/netgear_wndr3400_v3]] | https://wiki.openwrt.org/toh/netgear/wndr3400 |
+| 693 | lede-17.01.4-brcm47xx-mips74k-netgear-wndr3700-v3-squashfs.chk | [[toh/hwdata/netgear/netgear_wndr3700_v3]] | https://wiki.openwrt.org/toh/netgear/wndr3700 |
+| 694 | lede-17.01.4-brcm47xx-mips74k-netgear-wndr4000-squashfs.chk | [[toh/hwdata/netgear/netgear_wndr4000]] | https://wiki.openwrt.org/toh/netgear/wndr4000 |
+| 695 | lede-17.01.4-brcm47xx-mips74k-netgear-wnr1000-v3-squashfs.chk | [[toh/hwdata/netgear/netgear_wnr1000_v3]] | https://wiki.openwrt.org/toh/netgear/wnr1000 |
+| 696 | lede-17.01.4-brcm47xx-mips74k-netgear-wnr2000v2-squashfs.chk | [[toh/hwdata/netgear/netgear_wnr2000_v2]] | https://wiki.openwrt.org/toh/netgear/wnr2000 |
+| 697 | lede-17.01.4-brcm47xx-mips74k-netgear-wnr3500-v2-squashfs.chk | [[toh/hwdata/netgear/netgear_wnr3500_v2]] | |
+| 698 | lede-17.01.4-brcm47xx-mips74k-netgear-wnr3500l-v1-north-america-squashfs.chk | [[toh/hwdata/netgear/netgear_wnr3500l_v1]] | https://wiki.openwrt.org/toh/netgear/wnr3500l |
+| 699 | lede-17.01.4-brcm47xx-mips74k-netgear-wnr3500l-v1-other-regions-squashfs.chk | | |
+| 700 | lede-17.01.4-brcm47xx-mips74k-netgear-wnr3500l-v2-squashfs.chk | [[toh/hwdata/netgear/netgear_wnr3500l_v2]] | https://wiki.openwrt.org/toh/netgear/wnr3500l |
+| 701 | lede-17.01.4-brcm47xx-mips74k-standard-noloader-nodictionarylzma-squashfs.trx | | |
+| 702 | lede-17.01.4-brcm47xx-mips74k-standard-squashfs.trx | | |
+| 703 | lede-17.01.4-brcm63xx-generic-963281TAN-generic-squashfs-cfe-16M.bin | | |
+| 704 | lede-17.01.4-brcm63xx-generic-963281TAN-generic-squashfs-cfe-4M.bin | | |
+| 705 | lede-17.01.4-brcm63xx-generic-963281TAN-generic-squashfs-cfe-8M.bin | | |
+| 706 | lede-17.01.4-brcm63xx-generic-96328avng-generic-squashfs-cfe-16M.bin | [[toh/hwdata/actiontec/actiontec_gt784wnv]] | https://wiki.openwrt.org/toh/actiontec/gt784wnv |
+| 707 | lede-17.01.4-brcm63xx-generic-96328avng-generic-squashfs-cfe-4M.bin | | |
+| 708 | lede-17.01.4-brcm63xx-generic-96328avng-generic-squashfs-cfe-8M.bin | [[toh/hwdata/zte/zte_zxhn_h108n_v1]] | https://wiki.openwrt.org/toh/zte/zxhnh108n |
+| 709 | lede-17.01.4-brcm63xx-generic-96338GW-generic-squashfs-cfe.bin | | |
+| 710 | lede-17.01.4-brcm63xx-generic-96338W-generic-squashfs-cfe.bin | | |
+| 711 | lede-17.01.4-brcm63xx-generic-96345GW2-generic-squashfs-cfe-bc221.bin | | |
+| 712 | lede-17.01.4-brcm63xx-generic-96345GW2-generic-squashfs-cfe.bin | | |
+| 713 | lede-17.01.4-brcm63xx-generic-96348GW-10-generic-squashfs-cfe.bin | | |
+| 714 | lede-17.01.4-brcm63xx-generic-96348GW-11-generic-squashfs-cfe.bin | | |
+| 715 | lede-17.01.4-brcm63xx-generic-96348GW-generic-squashfs-cfe-bc221.bin | | |
+| 716 | lede-17.01.4-brcm63xx-generic-96348GW-generic-squashfs-cfe.bin | | |
+| 717 | lede-17.01.4-brcm63xx-generic-96348R-generic-squashfs-cfe.bin | | |
+| 718 | lede-17.01.4-brcm63xx-generic-96358VW-generic-squashfs-cfe.bin | | |
+| 719 | lede-17.01.4-brcm63xx-generic-96358VW2-generic-squashfs-cfe.bin | [[toh/hwdata/tp-link/tp-link_td-w8960n]] | https://wiki.openwrt.org/toh/tp-link/td-w8960n |
+| 720 | lede-17.01.4-brcm63xx-generic-96368MVNgr-generic-squashfs-cfe.bin | | |
+| 721 | lede-17.01.4-brcm63xx-generic-96368MVWG-generic-squashfs-cfe.bin | | |
+| 722 | lede-17.01.4-brcm63xx-generic-A226G-squashfs-cfe.bin | | |
+| 723 | lede-17.01.4-brcm63xx-generic-A226M-FWB-squashfs-cfe.bin | | |
+| 724 | lede-17.01.4-brcm63xx-generic-A226M-squashfs-cfe.bin | [[toh/hwdata/pirelli/pirelli_fastweb_drga226m]] | https://wiki.openwrt.org/toh/pirelli/drg_a226m |
+| 725 | lede-17.01.4-brcm63xx-generic-A4001N-squashfs-cfe.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_ar7516]] [[toh/hwdata/d-link/d-link_dsl-2750b_t1]] [[toh/hwdata/technicolor/technicolor_tg582n_dant-t]] | https://wiki.openwrt.org/toh/arcadyan/ar7516 https://wiki.openwrt.org/toh/thomson/tg582n |
+| 726 | lede-17.01.4-brcm63xx-generic-A4001N1-squashfs-cfe.bin | [[toh/hwdata/adb/adb_pdga4001n1]] [[toh/hwdata/technicolor/technicolor_tg582n]] | https://wiki.openwrt.org/toh/adb/p.dg_a4001n1 https://wiki.openwrt.org/toh/thomson/tg582n |
+| 727 | lede-17.01.4-brcm63xx-generic-A4001N1-squashfs-sysupgrade.bin | [[toh/hwdata/adb/adb_pdga4001n1]] [[toh/hwdata/technicolor/technicolor_tg582n]] | https://wiki.openwrt.org/toh/adb/p.dg_a4001n1 https://wiki.openwrt.org/toh/thomson/tg582n |
+| 728 | lede-17.01.4-brcm63xx-generic-AGPF-S0-squashfs-cfe.bin | | |
+| 729 | lede-17.01.4-brcm63xx-generic-AR1004G-squashfs-cfe.bin | [[toh/hwdata/asmax/asmax_ar1004g_1]] | https://wiki.openwrt.org/toh/asmax/ar_1004g |
+| 730 | lede-17.01.4-brcm63xx-generic-AR5381u-squashfs-cfe.bin | [[toh/hwdata/comtrend/comtrend_ar-5381u]] | https://wiki.openwrt.org/toh/comtrend/ar5381u |
+| 731 | lede-17.01.4-brcm63xx-generic-AR5381u-squashfs-sysupgrade.bin | [[toh/hwdata/comtrend/comtrend_ar-5381u]] | https://wiki.openwrt.org/toh/comtrend/ar5381u |
+| 732 | lede-17.01.4-brcm63xx-generic-AR5387un-squashfs-cfe.bin | [[toh/hwdata/comtrend/comtrend_ar-5387un]] | https://wiki.openwrt.org/toh/comtrend/ar5387un |
+| 733 | lede-17.01.4-brcm63xx-generic-AR5387un-squashfs-sysupgrade.bin | [[toh/hwdata/comtrend/comtrend_ar-5387un]] | https://wiki.openwrt.org/toh/comtrend/ar5387un |
+| 734 | lede-17.01.4-brcm63xx-generic-BTV2110-squashfs-cfe.bin | | |
+| 735 | lede-17.01.4-brcm63xx-generic-BTV2500V-squashfs-cfe.bin | | |
+| 736 | lede-17.01.4-brcm63xx-generic-CPA-ZNTE60T-squashfs-cfe.bin | [[toh/hwdata/telsey/telsey_cpa-znte60t]] | https://wiki.openwrt.org/toh/telsey/cpa-znte60t |
+| 737 | lede-17.01.4-brcm63xx-generic-CT-5365-squashfs-cfe.bin | [[toh/hwdata/comtrend/comtrend_ct-5365]] | https://wiki.openwrt.org/toh/comtrend/ct5365 |
+| 738 | lede-17.01.4-brcm63xx-generic-CT-536_CT-5621-squashfs-cfe.bin | [[toh/hwdata/comtrend/comtrend_ct-5621]] | https://wiki.openwrt.org/toh/comtrend/ct5621 |
+| 739 | lede-17.01.4-brcm63xx-generic-CT-6373-squashfs-cfe.bin | [[toh/hwdata/comtrend/comtrend_ct-6373]] | https://wiki.openwrt.org/toh/comtrend/ct6373 |
+| 740 | lede-17.01.4-brcm63xx-generic-DG834GT_PN-squashfs-cfe.bin | | |
+| 741 | lede-17.01.4-brcm63xx-generic-DGND3700v1-squashfs-factory.chk | [[toh/hwdata/netgear/netgear_dgnd3700_v1]] | https://wiki.openwrt.org/toh/netgear/dgnd3700 |
+| 742 | lede-17.01.4-brcm63xx-generic-DGND3700v1-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_dgnd3700_v1]] | https://wiki.openwrt.org/toh/netgear/dgnd3700 |
+| 743 | lede-17.01.4-brcm63xx-generic-DGND3800B-squashfs-factory.chk | [[toh/hwdata/netgear/netgear_dgnd3800b]] | https://wiki.openwrt.org/toh/netgear/dgnd3700 |
+| 744 | lede-17.01.4-brcm63xx-generic-DGND3800B-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_dgnd3800b]] | https://wiki.openwrt.org/toh/netgear/dgnd3700 |
+| 745 | lede-17.01.4-brcm63xx-generic-DSL2640B-B-squashfs-cfe.bin | | |
+| 746 | lede-17.01.4-brcm63xx-generic-DSL2640U-squashfs-cfe.bin | | |
+| 747 | lede-17.01.4-brcm63xx-generic-DSL2650U-squashfs-cfe.bin | | |
+| 748 | lede-17.01.4-brcm63xx-generic-DSL274XB-C2-squashfs-cfe.bin | [[toh/hwdata/d-link/d-link_dsl-2740b1b_c2]] [[toh/hwdata/d-link/d-link_dsl-2740u_c2]] | https://wiki.openwrt.org/toh/d-link/dsl-2740b |
+| 749 | lede-17.01.4-brcm63xx-generic-DSL274XB-C3-squashfs-cfe.bin | [[toh/hwdata/d-link/d-link_dsl-2740b1b_c3]] | https://wiki.openwrt.org/toh/d-link/dsl-2740b |
+| 750 | lede-17.01.4-brcm63xx-generic-DSL274XB-F1-squashfs-cfe-AU.bin | | |
+| 751 | lede-17.01.4-brcm63xx-generic-DSL274XB-F1-squashfs-cfe-EU.bin | [[toh/hwdata/d-link/d-link_dsl-2740b1b_f1]] | https://wiki.openwrt.org/toh/d-link/dsl-2740b |
+| 752 | lede-17.01.4-brcm63xx-generic-DSL275XB-D1-squashfs-cfe.bin | [[toh/hwdata/d-link/d-link_dsl-2750b_d1]] | |
+| 753 | lede-17.01.4-brcm63xx-generic-DV-201AMR-squashfs-cfe-old.bin | [[toh/hwdata/davolink/davolink_dv-201amr]] | https://wiki.openwrt.org/toh/davolink/dv-201amr |
+| 754 | lede-17.01.4-brcm63xx-generic-DVAG3810BN-squashfs-cfe.bin | [[toh/hwdata/d-link/d-link_dva-g3810bntl_a1]] | https://wiki.openwrt.org/toh/d-link/dva-g3810bn-tl |
+| 755 | lede-17.01.4-brcm63xx-generic-EVG2000-squashfs-factory.chk | [[toh/hwdata/netgear/netgear_evg2000]] | https://wiki.openwrt.org/toh/netgear/evg2000 |
+| 756 | lede-17.01.4-brcm63xx-generic-EVG2000-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_evg2000]] | https://wiki.openwrt.org/toh/netgear/evg2000 |
+| 757 | lede-17.01.4-brcm63xx-generic-F5D7633-squashfs-cfe.bin | | |
+| 758 | lede-17.01.4-brcm63xx-generic-FAST2404-squashfs-cfe.bin | [[toh/hwdata/sagem/sagem_fast2404]] | https://wiki.openwrt.org/toh/sagem/fast2404 |
+| 759 | lede-17.01.4-brcm63xx-generic-FAST2504n-squashfs-cfe.bin | [[toh/hwdata/sagem/sagem_fast2504n_v.6]] | https://wiki.openwrt.org/toh/sagem/sagem_fast2504n_v.6 |
+| 760 | lede-17.01.4-brcm63xx-generic-FAST2604-squashfs-cfe.bin | [[toh/hwdata/sagem/sagem_fast2604]] | https://wiki.openwrt.org/toh/sagem/fast2604 |
+| 761 | lede-17.01.4-brcm63xx-generic-FAST2704N-squashfs-cfe.bin | [[toh/hwdata/tp-link/tp-link_td-w8968_v3]] | https://wiki.openwrt.org/toh/tp-link/tp-link_td-w8960n_v5 |
+| 762 | lede-17.01.4-brcm63xx-generic-FAST2704V2-squashfs-cfe.bin | [[toh/hwdata/sagem/sagem_fast2704_v2]] | https://wiki.openwrt.org/toh/sagem/fast2704 |
+| 763 | lede-17.01.4-brcm63xx-generic-GW6000-squashfs-cfe.bin | [[toh/hwdata/tecom/tecom_gw6000]] | https://wiki.openwrt.org/toh/tecom/gw6000 |
+| 764 | lede-17.01.4-brcm63xx-generic-GW6200-squashfs-cfe.bin | [[toh/hwdata/tecom/tecom_gw6200]] | |
+| 765 | lede-17.01.4-brcm63xx-generic-HG520v-squashfs-cfe.bin | [[toh/hwdata/huawei/huawei_hg520v]] | https://wiki.openwrt.org/toh/huawei/hg520v |
+| 766 | lede-17.01.4-brcm63xx-generic-HG553-squashfs-cfe.bin | [[toh/hwdata/huawei/huawei_hg553]] | https://wiki.openwrt.org/toh/huawei/hg553 |
+| 767 | lede-17.01.4-brcm63xx-generic-HG556a-A-squashfs-cfe.bin | [[toh/hwdata/huawei/huawei_hg556a_a]] | https://wiki.openwrt.org/toh/huawei/hg556a |
+| 768 | lede-17.01.4-brcm63xx-generic-HG556a-B-squashfs-cfe.bin | [[toh/hwdata/huawei/huawei_hg556a_b]] | https://wiki.openwrt.org/toh/huawei/hg556a |
+| 769 | lede-17.01.4-brcm63xx-generic-HG556a-C-squashfs-cfe.bin | [[toh/hwdata/huawei/huawei_hg556a_c]] | https://wiki.openwrt.org/toh/huawei/hg556a |
+| 770 | lede-17.01.4-brcm63xx-generic-HG622-squashfs-cfe.bin | [[toh/hwdata/huawei/huawei_hg622]] | https://wiki.openwrt.org/toh/huawei/hg622 |
+| 771 | lede-17.01.4-brcm63xx-generic-HG622-squashfs-sysupgrade.bin | [[toh/hwdata/huawei/huawei_hg622]] | https://wiki.openwrt.org/toh/huawei/hg622 |
+| 772 | lede-17.01.4-brcm63xx-generic-HG655b-squashfs-cfe.bin | [[toh/hwdata/huawei/huawei_hg655b]] | https://wiki.openwrt.org/toh/huawei/hg655d |
+| 773 | lede-17.01.4-brcm63xx-generic-HomeHub2A-squashfs-cfe.bin | [[toh/hwdata/bt/bt_homehub_2a]] | https://wiki.openwrt.org/toh/bt/homehub_v2a |
+| 774 | lede-17.01.4-brcm63xx-generic-NEUFBOX4-FXC-squashfs-cfe.bin | | |
+| 775 | lede-17.01.4-brcm63xx-generic-NEUFBOX4-SER-squashfs-cfe.bin | | |
+| 776 | lede-17.01.4-brcm63xx-generic-NEUFBOX6-squashfs-cfe.bin | [[toh/hwdata/sfr/sfr_neufbox6]] | |
+| 777 | lede-17.01.4-brcm63xx-generic-P870HW-51a_v2-squashfs-factory.bin | [[toh/hwdata/zyxel/zyxel_p-870hw-51a_v2]] | https://wiki.openwrt.org/toh/zyxel/p-870hw-51a |
+| 778 | lede-17.01.4-brcm63xx-generic-R5010UNv2-squashfs-cfe.bin | [[toh/hwdata/nucom/nucom_r5010un]] | https://wiki.openwrt.org/toh/nucom/r5010unv2 |
+| 779 | lede-17.01.4-brcm63xx-generic-R5010UNv2-squashfs-sysupgrade.bin | [[toh/hwdata/nucom/nucom_r5010un]] | https://wiki.openwrt.org/toh/nucom/r5010unv2 |
+| 780 | lede-17.01.4-brcm63xx-generic-RG100A-squashfs-cfe.bin | [[toh/hwdata/alcatel-sbell/alcatel-sbell_rg100a-aa]] | https://wiki.openwrt.org/toh/alcatel-sbell/rg100a-aa |
+| 781 | lede-17.01.4-brcm63xx-generic-RTA1025W_16-squashfs-cfe.bin | | |
+| 782 | lede-17.01.4-brcm63xx-generic-RTA1320_16M-squashfs-cfe.bin | | |
+| 783 | lede-17.01.4-brcm63xx-generic-SPW303V-squashfs-factory.bin | [[toh/hwdata/t-comtelekom/t-comtelekom_speedportw303vtypb]] | https://wiki.openwrt.org/toh/t-com/spw303v-b |
+| 784 | lede-17.01.4-brcm63xx-generic-SPW303V-squashfs-sysupgrade.bin | [[toh/hwdata/t-comtelekom/t-comtelekom_speedportw303vtypb]] | https://wiki.openwrt.org/toh/t-com/spw303v-b |
+| 785 | lede-17.01.4-brcm63xx-generic-SPW500V-squashfs-cfe.bin | [[toh/hwdata/t-comtelekom/t-comtelekom_speedportw500v]] | https://wiki.openwrt.org/toh/t-com/spw500v |
+| 786 | lede-17.01.4-brcm63xx-generic-TD-W8900GB-squashfs-cfe.bin | | |
+| 787 | lede-17.01.4-brcm63xx-generic-USR9108-squashfs-cfe.bin | [[toh/hwdata/usrobotics/usrobotics_usr9108_a]] | https://wiki.openwrt.org/toh/us.robotics/usr9108 |
+| 788 | lede-17.01.4-brcm63xx-generic-VH4032N-squashfs-cfe.bin | | |
+| 789 | lede-17.01.4-brcm63xx-generic-VH4032N-squashfs-sysupgrade.bin | | |
+| 790 | lede-17.01.4-brcm63xx-generic-VR-3025u-squashfs-cfe.bin | [[toh/hwdata/comtrend/comtrend_vr-3025u]] | https://wiki.openwrt.org/toh/comtrend/vr3025u |
+| 791 | lede-17.01.4-brcm63xx-generic-VR-3025u-squashfs-sysupgrade.bin | [[toh/hwdata/comtrend/comtrend_vr-3025u]] | https://wiki.openwrt.org/toh/comtrend/vr3025u |
+| 792 | lede-17.01.4-brcm63xx-generic-VR-3025un-squashfs-cfe.bin | [[toh/hwdata/comtrend/comtrend_vr-3025un]] | https://wiki.openwrt.org/toh/comtrend/vr3025un |
+| 793 | lede-17.01.4-brcm63xx-generic-VR-3026e-squashfs-cfe.bin | [[toh/hwdata/comtrend/comtrend_vr-3026e_v1]] | https://wiki.openwrt.org/toh/comtrend/vr3026e |
+| 794 | lede-17.01.4-brcm63xx-generic-WAP-5813n-squashfs-cfe.bin | [[toh/hwdata/comtrend/comtrend_wap-5813n]] | https://wiki.openwrt.org/toh/comtrend/ct5813 |
+| 795 | lede-17.01.4-brcm63xx-generic-livebox-root.squashfs+pkg=02f694e2 | | |
+| 796 | lede-17.01.4-brcm63xx-generic-livebox-squashfs-redboot.bin | | |
+| 797 | lede-17.01.4-brcm63xx-generic-livebox-vmlinux.gz | | |
+| 798 | lede-17.01.4-brcm63xx-smp-963281TAN-generic-squashfs-cfe-16M.bin | | |
+| 799 | lede-17.01.4-brcm63xx-smp-963281TAN-generic-squashfs-cfe-4M.bin | | |
+| 800 | lede-17.01.4-brcm63xx-smp-963281TAN-generic-squashfs-cfe-8M.bin | | |
+| 801 | lede-17.01.4-brcm63xx-smp-96328avng-generic-squashfs-cfe-16M.bin | | |
+| 802 | lede-17.01.4-brcm63xx-smp-96328avng-generic-squashfs-cfe-4M.bin | | |
+| 803 | lede-17.01.4-brcm63xx-smp-96328avng-generic-squashfs-cfe-8M.bin | | |
+| 804 | lede-17.01.4-brcm63xx-smp-96338GW-generic-squashfs-cfe.bin | | |
+| 805 | lede-17.01.4-brcm63xx-smp-96338W-generic-squashfs-cfe.bin | | |
+| 806 | lede-17.01.4-brcm63xx-smp-96345GW2-generic-squashfs-cfe-bc221.bin | | |
+| 807 | lede-17.01.4-brcm63xx-smp-96345GW2-generic-squashfs-cfe.bin | | |
+| 808 | lede-17.01.4-brcm63xx-smp-96348GW-10-generic-squashfs-cfe.bin | | |
+| 809 | lede-17.01.4-brcm63xx-smp-96348GW-11-generic-squashfs-cfe.bin | | |
+| 810 | lede-17.01.4-brcm63xx-smp-96348GW-generic-squashfs-cfe-bc221.bin | | |
+| 811 | lede-17.01.4-brcm63xx-smp-96348GW-generic-squashfs-cfe.bin | | |
+| 812 | lede-17.01.4-brcm63xx-smp-96348R-generic-squashfs-cfe.bin | | |
+| 813 | lede-17.01.4-brcm63xx-smp-96358VW-generic-squashfs-cfe.bin | [[toh/hwdata/netgear/netgear_dgn2200_v1]] | https://wiki.openwrt.org/toh/netgear/dgn2200 |
+| 814 | lede-17.01.4-brcm63xx-smp-96358VW2-generic-squashfs-cfe.bin | | |
+| 815 | lede-17.01.4-brcm63xx-smp-96368MVNgr-generic-squashfs-cfe.bin | | |
+| 816 | lede-17.01.4-brcm63xx-smp-96368MVWG-generic-squashfs-cfe.bin | [[toh/hwdata/zyxel/zyxel_p-870hn-51b_1]] [[toh/hwdata/zyxel/zyxel_p-870hn-53b_1]] | https://wiki.openwrt.org/toh/zyxel/p-870hn-51b https://wiki.openwrt.org/toh/zyxel/p-870hn-53b |
+| 817 | lede-17.01.4-brcm63xx-smp-A226G-squashfs-cfe.bin | | |
+| 818 | lede-17.01.4-brcm63xx-smp-A226M-FWB-squashfs-cfe.bin | | |
+| 819 | lede-17.01.4-brcm63xx-smp-A226M-squashfs-cfe.bin | | |
+| 820 | lede-17.01.4-brcm63xx-smp-A4001N-squashfs-cfe.bin | | |
+| 821 | lede-17.01.4-brcm63xx-smp-A4001N1-squashfs-cfe.bin | | |
+| 822 | lede-17.01.4-brcm63xx-smp-A4001N1-squashfs-sysupgrade.bin | | |
+| 823 | lede-17.01.4-brcm63xx-smp-AGPF-S0-squashfs-cfe.bin | | |
+| 824 | lede-17.01.4-brcm63xx-smp-AR1004G-squashfs-cfe.bin | | |
+| 825 | lede-17.01.4-brcm63xx-smp-AR5381u-squashfs-cfe.bin | | |
+| 826 | lede-17.01.4-brcm63xx-smp-AR5381u-squashfs-sysupgrade.bin | | |
+| 827 | lede-17.01.4-brcm63xx-smp-AR5387un-squashfs-cfe.bin | | |
+| 828 | lede-17.01.4-brcm63xx-smp-AR5387un-squashfs-sysupgrade.bin | | |
+| 829 | lede-17.01.4-brcm63xx-smp-BTV2110-squashfs-cfe.bin | | |
+| 830 | lede-17.01.4-brcm63xx-smp-BTV2500V-squashfs-cfe.bin | | |
+| 831 | lede-17.01.4-brcm63xx-smp-CPA-ZNTE60T-squashfs-cfe.bin | | |
+| 832 | lede-17.01.4-brcm63xx-smp-CT-5365-squashfs-cfe.bin | | |
+| 833 | lede-17.01.4-brcm63xx-smp-CT-536_CT-5621-squashfs-cfe.bin | | |
+| 834 | lede-17.01.4-brcm63xx-smp-CT-6373-squashfs-cfe.bin | | |
+| 835 | lede-17.01.4-brcm63xx-smp-DG834GT_PN-squashfs-cfe.bin | | |
+| 836 | lede-17.01.4-brcm63xx-smp-DGND3700v1-squashfs-factory.chk | | |
+| 837 | lede-17.01.4-brcm63xx-smp-DGND3700v1-squashfs-sysupgrade.bin | | |
+| 838 | lede-17.01.4-brcm63xx-smp-DGND3800B-squashfs-factory.chk | | |
+| 839 | lede-17.01.4-brcm63xx-smp-DGND3800B-squashfs-sysupgrade.bin | | |
+| 840 | lede-17.01.4-brcm63xx-smp-DSL2640B-B-squashfs-cfe.bin | | |
+| 841 | lede-17.01.4-brcm63xx-smp-DSL2640U-squashfs-cfe.bin | | |
+| 842 | lede-17.01.4-brcm63xx-smp-DSL2650U-squashfs-cfe.bin | | |
+| 843 | lede-17.01.4-brcm63xx-smp-DSL274XB-C2-squashfs-cfe.bin | | |
+| 844 | lede-17.01.4-brcm63xx-smp-DSL274XB-C3-squashfs-cfe.bin | | |
+| 845 | lede-17.01.4-brcm63xx-smp-DSL274XB-F1-squashfs-cfe-AU.bin | | |
+| 846 | lede-17.01.4-brcm63xx-smp-DSL274XB-F1-squashfs-cfe-EU.bin | | |
+| 847 | lede-17.01.4-brcm63xx-smp-DSL275XB-D1-squashfs-cfe.bin | | |
+| 848 | lede-17.01.4-brcm63xx-smp-DV-201AMR-squashfs-cfe-old.bin | | |
+| 849 | lede-17.01.4-brcm63xx-smp-DVAG3810BN-squashfs-cfe.bin | | |
+| 850 | lede-17.01.4-brcm63xx-smp-EVG2000-squashfs-factory.chk | | |
+| 851 | lede-17.01.4-brcm63xx-smp-EVG2000-squashfs-sysupgrade.bin | | |
+| 852 | lede-17.01.4-brcm63xx-smp-F5D7633-squashfs-cfe.bin | | |
+| 853 | lede-17.01.4-brcm63xx-smp-FAST2404-squashfs-cfe.bin | | |
+| 854 | lede-17.01.4-brcm63xx-smp-FAST2504n-squashfs-cfe.bin | | |
+| 855 | lede-17.01.4-brcm63xx-smp-FAST2604-squashfs-cfe.bin | | |
+| 856 | lede-17.01.4-brcm63xx-smp-FAST2704N-squashfs-cfe.bin | [[toh/hwdata/sagem/sagem_fast2704n_v1]] | https://wiki.openwrt.org/toh/plusnet/fast2704nv1 |
+| 857 | lede-17.01.4-brcm63xx-smp-FAST2704V2-squashfs-cfe.bin | | |
+| 858 | lede-17.01.4-brcm63xx-smp-GW6000-squashfs-cfe.bin | | |
+| 859 | lede-17.01.4-brcm63xx-smp-GW6200-squashfs-cfe.bin | | |
+| 860 | lede-17.01.4-brcm63xx-smp-HG520v-squashfs-cfe.bin | | |
+| 861 | lede-17.01.4-brcm63xx-smp-HG553-squashfs-cfe.bin | | |
+| 862 | lede-17.01.4-brcm63xx-smp-HG556a-A-squashfs-cfe.bin | | |
+| 863 | lede-17.01.4-brcm63xx-smp-HG556a-B-squashfs-cfe.bin | | |
+| 864 | lede-17.01.4-brcm63xx-smp-HG556a-C-squashfs-cfe.bin | | |
+| 865 | lede-17.01.4-brcm63xx-smp-HG622-squashfs-cfe.bin | | |
+| 866 | lede-17.01.4-brcm63xx-smp-HG622-squashfs-sysupgrade.bin | | |
+| 867 | lede-17.01.4-brcm63xx-smp-HG655b-squashfs-cfe.bin | [[toh/hwdata/huawei/huawei_hg655d]] | https://wiki.openwrt.org/toh/huawei/hg655d |
+| 868 | lede-17.01.4-brcm63xx-smp-HomeHub2A-squashfs-cfe.bin | | |
+| 869 | lede-17.01.4-brcm63xx-smp-NEUFBOX4-FXC-squashfs-cfe.bin | | |
+| 870 | lede-17.01.4-brcm63xx-smp-NEUFBOX4-SER-squashfs-cfe.bin | | |
+| 871 | lede-17.01.4-brcm63xx-smp-NEUFBOX6-squashfs-cfe.bin | | |
+| 872 | lede-17.01.4-brcm63xx-smp-P870HW-51a_v2-squashfs-factory.bin | | |
+| 873 | lede-17.01.4-brcm63xx-smp-R5010UNv2-squashfs-cfe.bin | | |
+| 874 | lede-17.01.4-brcm63xx-smp-R5010UNv2-squashfs-sysupgrade.bin | | |
+| 875 | lede-17.01.4-brcm63xx-smp-RG100A-squashfs-cfe.bin | | |
+| 876 | lede-17.01.4-brcm63xx-smp-RTA1025W_16-squashfs-cfe.bin | | |
+| 877 | lede-17.01.4-brcm63xx-smp-RTA1320_16M-squashfs-cfe.bin | | |
+| 878 | lede-17.01.4-brcm63xx-smp-SPW303V-squashfs-factory.bin | | |
+| 879 | lede-17.01.4-brcm63xx-smp-SPW303V-squashfs-sysupgrade.bin | | |
+| 880 | lede-17.01.4-brcm63xx-smp-SPW500V-squashfs-cfe.bin | | |
+| 881 | lede-17.01.4-brcm63xx-smp-TD-W8900GB-squashfs-cfe.bin | | |
+| 882 | lede-17.01.4-brcm63xx-smp-USR9108-squashfs-cfe.bin | | |
+| 883 | lede-17.01.4-brcm63xx-smp-VH4032N-squashfs-cfe.bin | [[toh/hwdata/observa/observa_vh4032n]] | https://wiki.openwrt.org/toh/observatelecom/vh4032n |
+| 884 | lede-17.01.4-brcm63xx-smp-VH4032N-squashfs-sysupgrade.bin | [[toh/hwdata/observa/observa_vh4032n]] | https://wiki.openwrt.org/toh/observatelecom/vh4032n |
+| 885 | lede-17.01.4-brcm63xx-smp-VR-3025u-squashfs-cfe.bin | | |
+| 886 | lede-17.01.4-brcm63xx-smp-VR-3025u-squashfs-sysupgrade.bin | | |
+| 887 | lede-17.01.4-brcm63xx-smp-VR-3025un-squashfs-cfe.bin | | |
+| 888 | lede-17.01.4-brcm63xx-smp-VR-3026e-squashfs-cfe.bin | | |
+| 889 | lede-17.01.4-brcm63xx-smp-WAP-5813n-squashfs-cfe.bin | | |
+| 890 | lede-17.01.4-brcm63xx-smp-livebox-root.squashfs+pkg=02f694e2 | | |
+| 891 | lede-17.01.4-brcm63xx-smp-livebox-squashfs-redboot.bin | | |
+| 892 | lede-17.01.4-brcm63xx-smp-livebox-vmlinux.gz | | |
+| 893 | lede-17.01.4-cns3xxx-squashfs-laguna_nor-legacy-sysupgrade.bin | | |
+| 894 | lede-17.01.4-cns3xxx-squashfs-laguna_spi-legacy-sysupgrade.bin | | |
+| 895 | lede-17.01.4-cns3xxx-squashfs-sysupgrade.bin | | |
+| 896 | lede-17.01.4-gemini-raidsonic-nas4220-hddapp.tgz | | |
+| 897 | lede-17.01.4-gemini-raidsonic-nas4220-rd.gz | | |
+| 898 | lede-17.01.4-gemini-raidsonic-nas4220-zImage | | |
+| 899 | lede-17.01.4-gemini-raidsonic-squashfs.img | | |
+| 900 | lede-17.01.4-gemini-raidsonic-sysupgrade-ib4220.tar.gz | | |
+| 901 | lede-17.01.4-gemini-wiligear-squashfs.img | | |
+| 902 | lede-17.01.4-gemini-wiligear-wbd111-zImage | | |
+| 903 | lede-17.01.4-gemini-wiligear-wbd222-zImage | | |
+| 904 | lede-17.01.4-imx6-rootfs.tar.gz | | |
+| 905 | lede-17.01.4-imx6-ventana-large-squashfs-nand.ubi | | |
+| 906 | lede-17.01.4-imx6-ventana-large-uImage | | |
+| 907 | lede-17.01.4-imx6-ventana-squashfs-bootfs.tar.gz | | |
+| 908 | lede-17.01.4-imx6-ventana-squashfs-nand.ubi | | |
+| 909 | lede-17.01.4-imx6-ventana-uImage | | |
+| 910 | lede-17.01.4-imx6-wandboard-uImage | | |
+| 911 | lede-17.01.4-ipq806x-AP148-legacy-squashfs-nand-factory.ubi | | |
+| 912 | lede-17.01.4-ipq806x-AP148-legacy-squashfs-nand-sysupgrade.tar | | |
+| 913 | lede-17.01.4-ipq806x-AP148-legacy-ubifs-nand-factory.ubi | | |
+| 914 | lede-17.01.4-ipq806x-AP148-legacy-ubifs-nand-sysupgrade.tar | | |
+| 915 | lede-17.01.4-ipq806x-AP148-squashfs-nand-factory.ubi | | |
+| 916 | lede-17.01.4-ipq806x-AP148-squashfs-nand-sysupgrade.tar | | |
+| 917 | lede-17.01.4-ipq806x-AP148-ubifs-nand-factory.ubi | | |
+| 918 | lede-17.01.4-ipq806x-AP148-ubifs-nand-sysupgrade.tar | | |
+| 919 | lede-17.01.4-ipq806x-C2600-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_archer_c2600]] | https://wiki.openwrt.org/toh/tp-link/tp-link_archer_c2600_v1 |
+| 920 | lede-17.01.4-ipq806x-C2600-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_archer_c2600]] | https://wiki.openwrt.org/toh/tp-link/tp-link_archer_c2600_v1 |
+| 921 | lede-17.01.4-ipq806x-D7800-squashfs-factory.img | [[toh/hwdata/netgear/netgear_d7800]] | |
+| 922 | lede-17.01.4-ipq806x-D7800-squashfs-sysupgrade.tar | [[toh/hwdata/netgear/netgear_d7800]] | |
+| 923 | lede-17.01.4-ipq806x-DB149-fit-uImage.itb | | |
+| 924 | lede-17.01.4-ipq806x-EA8500-squashfs-factory.bin | [[toh/hwdata/linksys/linksys_ea8500]] | https://wiki.openwrt.org/toh/linksys/linksys_ea8500 |
+| 925 | lede-17.01.4-ipq806x-EA8500-squashfs-sysupgrade.tar | [[toh/hwdata/linksys/linksys_ea8500]] | https://wiki.openwrt.org/toh/linksys/linksys_ea8500 |
+| 926 | lede-17.01.4-ipq806x-NBG6817-squashfs-mmcblk0p4-kernel.bin | | |
+| 927 | lede-17.01.4-ipq806x-NBG6817-squashfs-mmcblk0p5-rootfs.bin | | |
+| 928 | lede-17.01.4-ipq806x-NBG6817-squashfs-sysupgrade.tar | [[toh/hwdata/zyxel/zyxel_nbg6817]] | |
+| 929 | lede-17.01.4-ipq806x-R7500-squashfs-factory.img | [[toh/hwdata/netgear/netgear_r7500_v1]] | https://wiki.openwrt.org/toh/netgear/netgear_r7500 |
+| 930 | lede-17.01.4-ipq806x-R7500-squashfs-sysupgrade.tar | [[toh/hwdata/netgear/netgear_r7500_v1]] | https://wiki.openwrt.org/toh/netgear/netgear_r7500 |
+| 931 | lede-17.01.4-ipq806x-R7500v2-squashfs-factory.img | [[toh/hwdata/netgear/netgear_r7500_v2]] | |
+| 932 | lede-17.01.4-ipq806x-R7500v2-squashfs-sysupgrade.tar | [[toh/hwdata/netgear/netgear_r7500_v2]] | |
+| 933 | lede-17.01.4-ipq806x-R7800-squashfs-factory.img | [[toh/hwdata/netgear/netgear_r7800]] | |
+| 934 | lede-17.01.4-ipq806x-R7800-squashfs-sysupgrade.tar | [[toh/hwdata/netgear/netgear_r7800]] | |
+| 935 | lede-17.01.4-ipq806x-VR2600v-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_vr2600v]] | |
+| 936 | lede-17.01.4-ipq806x-squashfs-root.img | | |
+| 937 | lede-17.01.4-ipq806x-ubifs-root.img | | |
+| 938 | lede-17.01.4-ixp4xx-generic-ap1000-zImage | | |
+| 939 | lede-17.01.4-ixp4xx-generic-ap42x-zImage | | |
+| 940 | lede-17.01.4-ixp4xx-generic-avila-zImage | | |
+| 941 | lede-17.01.4-ixp4xx-generic-cambria-zImage | | |
+| 942 | lede-17.01.4-ixp4xx-generic-compex-zImage | | |
+| 943 | lede-17.01.4-ixp4xx-generic-dsmg600-zImage | | |
+| 944 | lede-17.01.4-ixp4xx-generic-fsg3-squashfs-webupgrade.img | | |
+| 945 | lede-17.01.4-ixp4xx-generic-fsg3-squashfs.img | | |
+| 946 | lede-17.01.4-ixp4xx-generic-fsg3-zImage | | |
+| 947 | lede-17.01.4-ixp4xx-generic-gateway7001-zImage | | |
+| 948 | lede-17.01.4-ixp4xx-generic-ixdpg425-zImage | | |
+| 949 | lede-17.01.4-ixp4xx-generic-loft-zImage | | |
+| 950 | lede-17.01.4-ixp4xx-generic-nas100d-zImage | | |
+| 951 | lede-17.01.4-ixp4xx-generic-nslu2-squashfs-16mb.bin | | |
+| 952 | lede-17.01.4-ixp4xx-generic-nslu2-squashfs.bin | [[toh/hwdata/linksys/linksys_nslu2]] | https://wiki.openwrt.org/toh/linksys/nslu2 |
+| 953 | lede-17.01.4-ixp4xx-generic-nslu2-zImage | | |
+| 954 | lede-17.01.4-ixp4xx-generic-pronghorn-zImage | [[toh/hwdata/adi_engineering/adi_engineering_pronghorn_sbc250]] | https://wiki.openwrt.org/toh/adi_engineering/adi_engineering_pronghorn_sbc250 |
+| 955 | lede-17.01.4-ixp4xx-generic-pronghornmetro-zImage | | |
+| 956 | lede-17.01.4-ixp4xx-generic-sidewinder-zImage | | |
+| 957 | lede-17.01.4-ixp4xx-generic-squashfs-sysupgrade.bin | [[toh/hwdata/gateworks/gateworks_avila_gw2342]] | https://wiki.openwrt.org/toh/gateworks/gateworks_avila_gw2342 |
+| 958 | lede-17.01.4-ixp4xx-generic-squashfs.img | | |
+| 959 | lede-17.01.4-ixp4xx-generic-tw2662-zImage | | |
+| 960 | lede-17.01.4-ixp4xx-generic-tw5334-zImage | | |
+| 961 | lede-17.01.4-ixp4xx-generic-wg302v1-zImage | | |
+| 962 | lede-17.01.4-ixp4xx-generic-wg302v2-zImage | | |
+| 963 | lede-17.01.4-ixp4xx-generic-wrt300nv2-zImage | | |
+| 964 | lede-17.01.4-ixp4xx-generic-zImage | [[toh/hwdata/actiontec/actiontec_mi424wr_a]] [[toh/hwdata/actiontec/actiontec_mi424wr_c]] | https://wiki.openwrt.org/toh/actiontec/mi424wr |
+| 965 | lede-17.01.4-ixp4xx-harddisk-ap1000-zImage | | |
+| 966 | lede-17.01.4-ixp4xx-harddisk-ap42x-zImage | | |
+| 967 | lede-17.01.4-ixp4xx-harddisk-avila-zImage | | |
+| 968 | lede-17.01.4-ixp4xx-harddisk-cambria-zImage | | |
+| 969 | lede-17.01.4-ixp4xx-harddisk-compex-zImage | | |
+| 970 | lede-17.01.4-ixp4xx-harddisk-dsmg600-zImage | | |
+| 971 | lede-17.01.4-ixp4xx-harddisk-fsg3-squashfs-webupgrade.img | | |
+| 972 | lede-17.01.4-ixp4xx-harddisk-fsg3-squashfs.img | | |
+| 973 | lede-17.01.4-ixp4xx-harddisk-fsg3-zImage | | |
+| 974 | lede-17.01.4-ixp4xx-harddisk-gateway7001-zImage | | |
+| 975 | lede-17.01.4-ixp4xx-harddisk-ixdpg425-zImage | | |
+| 976 | lede-17.01.4-ixp4xx-harddisk-loft-zImage | | |
+| 977 | lede-17.01.4-ixp4xx-harddisk-nas100d-zImage | | |
+| 978 | lede-17.01.4-ixp4xx-harddisk-nslu2-squashfs-16mb.bin | | |
+| 979 | lede-17.01.4-ixp4xx-harddisk-nslu2-squashfs.bin | | |
+| 980 | lede-17.01.4-ixp4xx-harddisk-nslu2-zImage | | |
+| 981 | lede-17.01.4-ixp4xx-harddisk-pronghorn-zImage | | |
+| 982 | lede-17.01.4-ixp4xx-harddisk-pronghornmetro-zImage | | |
+| 983 | lede-17.01.4-ixp4xx-harddisk-sidewinder-zImage | | |
+| 984 | lede-17.01.4-ixp4xx-harddisk-squashfs-sysupgrade.bin | | |
+| 985 | lede-17.01.4-ixp4xx-harddisk-squashfs.img | | |
+| 986 | lede-17.01.4-ixp4xx-harddisk-tw2662-zImage | | |
+| 987 | lede-17.01.4-ixp4xx-harddisk-tw5334-zImage | | |
+| 988 | lede-17.01.4-ixp4xx-harddisk-wg302v1-zImage | | |
+| 989 | lede-17.01.4-ixp4xx-harddisk-wg302v2-zImage | | |
+| 990 | lede-17.01.4-ixp4xx-harddisk-wrt300nv2-zImage | | |
+| 991 | lede-17.01.4-ixp4xx-harddisk-zImage | | |
+| 992 | lede-17.01.4-kirkwood-dockstar-initramfs-uImage | | |
+| 993 | lede-17.01.4-kirkwood-dockstar-squashfs-factory.bin | [[toh/hwdata/seagate/seagate_dockstar]] | https://wiki.openwrt.org/toh/seagate/dockstar |
+| 994 | lede-17.01.4-kirkwood-dockstar-squashfs-sysupgrade.tar | [[toh/hwdata/seagate/seagate_dockstar]] | https://wiki.openwrt.org/toh/seagate/dockstar |
+| 995 | lede-17.01.4-kirkwood-dockstar-uImage | | |
+| 996 | lede-17.01.4-kirkwood-goflexhome-initramfs-uImage | | |
+| 997 | lede-17.01.4-kirkwood-goflexhome-squashfs-factory.bin | [[toh/hwdata/seagate/seagate_goflexhome]] | https://wiki.openwrt.org/toh/seagate/goflexhome |
+| 998 | lede-17.01.4-kirkwood-goflexhome-squashfs-sysupgrade.tar | [[toh/hwdata/seagate/seagate_goflexhome]] | https://wiki.openwrt.org/toh/seagate/goflexhome |
+| 999 | lede-17.01.4-kirkwood-goflexhome-uImage | | |
+| 1000 | lede-17.01.4-kirkwood-goflexnet-initramfs-uImage | | |
+| 1001 | lede-17.01.4-kirkwood-goflexnet-squashfs-factory.bin | [[toh/hwdata/seagate/seagate_goflexnet]] | https://wiki.openwrt.org/toh/seagate/goflexnet |
+| 1002 | lede-17.01.4-kirkwood-goflexnet-squashfs-sysupgrade.tar | [[toh/hwdata/seagate/seagate_goflexnet]] | https://wiki.openwrt.org/toh/seagate/goflexnet |
+| 1003 | lede-17.01.4-kirkwood-goflexnet-uImage | | |
+| 1004 | lede-17.01.4-kirkwood-ib62x0-initramfs-uImage | | |
+| 1005 | lede-17.01.4-kirkwood-ib62x0-squashfs-factory.bin | | |
+| 1006 | lede-17.01.4-kirkwood-ib62x0-squashfs-sysupgrade.tar | | |
+| 1007 | lede-17.01.4-kirkwood-ib62x0-uImage | | |
+| 1008 | lede-17.01.4-kirkwood-iconnect-initramfs-uImage | | |
+| 1009 | lede-17.01.4-kirkwood-iconnect-squashfs-factory.bin | [[toh/hwdata/iomega/iomega_iconnect]] | https://wiki.openwrt.org/toh/iomega/iconnect |
+| 1010 | lede-17.01.4-kirkwood-iconnect-squashfs-sysupgrade.tar | [[toh/hwdata/iomega/iomega_iconnect]] | https://wiki.openwrt.org/toh/iomega/iconnect |
+| 1011 | lede-17.01.4-kirkwood-iconnect-uImage | | |
+| 1012 | lede-17.01.4-kirkwood-linksys-audi-initramfs-uImage | | |
+| 1013 | lede-17.01.4-kirkwood-linksys-audi-squashfs-factory.bin | [[toh/hwdata/linksys/linksys_ea3500]] | https://wiki.openwrt.org/toh/linksys/ea3500 |
+| 1014 | lede-17.01.4-kirkwood-linksys-audi-squashfs-sysupgrade.tar | [[toh/hwdata/linksys/linksys_ea3500]] | https://wiki.openwrt.org/toh/linksys/ea3500 |
+| 1015 | lede-17.01.4-kirkwood-linksys-audi-uImage | | |
+| 1016 | lede-17.01.4-kirkwood-linksys-viper-initramfs-uImage | | |
+| 1017 | lede-17.01.4-kirkwood-linksys-viper-squashfs-factory.bin | [[toh/hwdata/linksys/linksys_ea4500_v1]] [[toh/hwdata/linksys/linksys_ea4500_v2]] | https://wiki.openwrt.org/toh/linksys/ea4500 |
+| 1018 | lede-17.01.4-kirkwood-linksys-viper-squashfs-sysupgrade.tar | [[toh/hwdata/linksys/linksys_ea4500_v1]] [[toh/hwdata/linksys/linksys_ea4500_v2]] | https://wiki.openwrt.org/toh/linksys/ea4500 |
+| 1019 | lede-17.01.4-kirkwood-linksys-viper-uImage | | |
+| 1020 | lede-17.01.4-kirkwood-pogo_e02-initramfs-uImage | | |
+| 1021 | lede-17.01.4-kirkwood-pogo_e02-squashfs-factory.bin | [[toh/hwdata/pogoplug/pogoplug_pogoplug_e02]] [[toh/hwdata/pogoplug/pogoplug_pogoplugmobilev4]] | https://wiki.openwrt.org/toh/cloudengines/pogo-v4 https://wiki.openwrt.org/toh/cloudengines/pogoplug |
+| 1022 | lede-17.01.4-kirkwood-pogo_e02-squashfs-sysupgrade.tar | [[toh/hwdata/pogoplug/pogoplug_pogoplug_e02]] [[toh/hwdata/pogoplug/pogoplug_pogoplugmobilev4]] | https://wiki.openwrt.org/toh/cloudengines/pogo-v4 https://wiki.openwrt.org/toh/cloudengines/pogoplug |
+| 1023 | lede-17.01.4-kirkwood-pogo_e02-uImage | | |
+| 1024 | lede-17.01.4-lantiq-falcon-EASY88388-squashfs-sysupgrade.bin | | |
+| 1025 | lede-17.01.4-lantiq-falcon-EASY88444-squashfs-sysupgrade.bin | | |
+| 1026 | lede-17.01.4-lantiq-falcon-EASY98000NAND-squashfs-sysupgrade.bin | | |
+| 1027 | lede-17.01.4-lantiq-falcon-EASY98000NOR-squashfs-sysupgrade.bin | | |
+| 1028 | lede-17.01.4-lantiq-falcon-EASY98000SFLASH-squashfs-sysupgrade.bin | | |
+| 1029 | lede-17.01.4-lantiq-falcon-EASY98020-squashfs-sysupgrade.bin | | |
+| 1030 | lede-17.01.4-lantiq-falcon-EASY98020V18-squashfs-sysupgrade.bin | | |
+| 1031 | lede-17.01.4-lantiq-falcon-EASY98021-squashfs-sysupgrade.bin | | |
+| 1032 | lede-17.01.4-lantiq-falcon-EASY98035SYNCE-squashfs-sysupgrade.bin | | |
+| 1033 | lede-17.01.4-lantiq-falcon-EASY98035SYNCE1588-squashfs-sysupgrade.bin | | |
+| 1034 | lede-17.01.4-lantiq-falcon-FALCON-MDU-squashfs-sysupgrade.bin | | |
+| 1035 | lede-17.01.4-lantiq-falcon-FALCON-SFP-squashfs-sysupgrade.bin | | |
+| 1036 | lede-17.01.4-lantiq-xrx200-ARV7519RW22-squashfs-sysupgrade.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_arv7519rw22livebox21]] | https://wiki.openwrt.org/toh/arcadyan/arv7519 |
+| 1037 | lede-17.01.4-lantiq-xrx200-BTHOMEHUBV5A-squashfs-sysupgrade.bin | [[toh/hwdata/bt/bt_homehub_5_type_a]] | https://wiki.openwrt.org/toh/bt/homehub_v5a |
+| 1038 | lede-17.01.4-lantiq-xrx200-EASY80920NAND-squashfs-fullimage.img | | |
+| 1039 | lede-17.01.4-lantiq-xrx200-EASY80920NAND-squashfs-sysupgrade.bin | | |
+| 1040 | lede-17.01.4-lantiq-xrx200-EASY80920NOR-squashfs-sysupgrade.bin | | |
+| 1041 | lede-17.01.4-lantiq-xrx200-FRITZ3370-squashfs-sysupgrade.bin | [[toh/hwdata/avm/avm_fritz_box_wlan_3370]] | https://wiki.openwrt.org/toh/avm/fritz.box.wlan.3370 |
+| 1042 | lede-17.01.4-lantiq-xrx200-FRITZ7360SL-squashfs-sysupgrade.bin | [[toh/hwdata/avm/avm_fritz_box_7360sl]] | |
+| 1043 | lede-17.01.4-lantiq-xrx200-P2812HNUF1-squashfs-sysupgrade.bin | [[toh/hwdata/zyxel/zyxel_p-2812hnu-f1]] | https://wiki.openwrt.org/toh/zyxel/p2812hnu-f1 |
+| 1044 | lede-17.01.4-lantiq-xrx200-P2812HNUF3-squashfs-sysupgrade.bin | [[toh/hwdata/zyxel/zyxel_p-2812hnu-f3]] | https://wiki.openwrt.org/toh/zyxel/p2812hnu-f3 |
+| 1045 | lede-17.01.4-lantiq-xrx200-TDW8970-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_td-w8970_10]] | https://wiki.openwrt.org/toh/tp-link/td-w8970 |
+| 1046 | lede-17.01.4-lantiq-xrx200-TDW8980-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_td-w8980]] | https://wiki.openwrt.org/toh/tp-link/td-w8980 |
+| 1047 | lede-17.01.4-lantiq-xrx200-VG3503J-squashfs-sysupgrade.bin | [[toh/hwdata/bt/bt_vg3503j_v1]] | https://wiki.openwrt.org/toh/bt/vg3503j |
+| 1048 | lede-17.01.4-lantiq-xrx200-VGV7510KW22BRN-squashfs-factory.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_vgv7510kw22o2box6431]] | https://wiki.openwrt.org/toh/arcadyan/vgv7510kw22 |
+| 1049 | lede-17.01.4-lantiq-xrx200-VGV7510KW22NOR-squashfs-sysupgrade.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_vgv7510kw22o2box6431]] | https://wiki.openwrt.org/toh/arcadyan/vgv7510kw22 |
+| 1050 | lede-17.01.4-lantiq-xrx200-VGV7519BRN-squashfs-factory.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_vgv7519kw]] | https://wiki.openwrt.org/toh/arcadyan/vgv7519 |
+| 1051 | lede-17.01.4-lantiq-xrx200-VGV7519NOR-squashfs-sysupgrade.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_vgv7519kw]] | https://wiki.openwrt.org/toh/arcadyan/vgv7519 |
+| 1052 | lede-17.01.4-lantiq-xrx200-VR200v-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_vr200v]] | https://wiki.openwrt.org/toh/tp-link/vr200v |
+| 1053 | lede-17.01.4-lantiq-xrx200-WBMR300-squashfs-sysupgrade.bin | | |
+| 1054 | lede-17.01.4-lantiq-xway-ACMP252-initramfs-kernel.bin | [[toh/hwdata/audiocodes/audiocodes_mediapackmp-252]] | https://wiki.openwrt.org/toh/audiocodes/mp252 |
+| 1055 | lede-17.01.4-lantiq-xway-ACMP252-squashfs-sysupgrade.bin | [[toh/hwdata/audiocodes/audiocodes_mediapackmp-252]] | https://wiki.openwrt.org/toh/audiocodes/mp252 |
+| 1056 | lede-17.01.4-lantiq-xway-ARV4510PW-initramfs-kernel.bin | | |
+| 1057 | lede-17.01.4-lantiq-xway-ARV4510PW-squashfs-sysupgrade.bin | | |
+| 1058 | lede-17.01.4-lantiq-xway-ARV4519PW-initramfs-kernel.bin | | |
+| 1059 | lede-17.01.4-lantiq-xway-ARV4519PW-squashfs-sysupgrade.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_arv4519pw]] | |
+| 1060 | lede-17.01.4-lantiq-xway-ARV7506PW11-initramfs-kernel.bin | | |
+| 1061 | lede-17.01.4-lantiq-xway-ARV7506PW11-squashfs-sysupgrade.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_arv7506pw11]] | https://wiki.openwrt.org/toh/arcadyan/arv7506 |
+| 1062 | lede-17.01.4-lantiq-xway-ARV7510PW22-initramfs-kernel.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_arv7510pw22]] | https://wiki.openwrt.org/toh/astoria/arv7510pw22 |
+| 1063 | lede-17.01.4-lantiq-xway-ARV7510PW22-squashfs-sysupgrade.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_arv7510pw22]] | https://wiki.openwrt.org/toh/astoria/arv7510pw22 |
+| 1064 | lede-17.01.4-lantiq-xway-ARV7518PW-initramfs-kernel.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_arv7518pw]] | https://wiki.openwrt.org/toh/astoria/arv7518pw |
+| 1065 | lede-17.01.4-lantiq-xway-ARV7518PW-squashfs-sysupgrade.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_arv7518pw]] | https://wiki.openwrt.org/toh/astoria/arv7518pw |
+| 1066 | lede-17.01.4-lantiq-xway-ARV7519PW-initramfs-kernel.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_arv7519pw]] | https://wiki.openwrt.org/toh/arcadyan/arv7519pw |
+| 1067 | lede-17.01.4-lantiq-xway-ARV7519PW-squashfs-sysupgrade.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_arv7519pw]] | https://wiki.openwrt.org/toh/arcadyan/arv7519pw |
+| 1068 | lede-17.01.4-lantiq-xway-ARV7525PW-initramfs-kernel.bin | | |
+| 1069 | lede-17.01.4-lantiq-xway-ARV752DPW-initramfs-kernel.bin | | |
+| 1070 | lede-17.01.4-lantiq-xway-ARV752DPW-squashfs-sysupgrade.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_arv752dpw_easybox802_r01]] | https://wiki.openwrt.org/toh/arcadyan/arv752dpw |
+| 1071 | lede-17.01.4-lantiq-xway-ARV752DPW22-initramfs-kernel.bin | | |
+| 1072 | lede-17.01.4-lantiq-xway-ARV752DPW22-squashfs-sysupgrade.bin | [[toh/hwdata/arcadyanastoria/arcadyanastoria_arv752dpw22_easybox803a]] | https://wiki.openwrt.org/toh/astoria/arv752dpw22 |
+| 1073 | lede-17.01.4-lantiq-xway-ARV8539PW22-initramfs-kernel.bin | | |
+| 1074 | lede-17.01.4-lantiq-xway-ARV8539PW22-squashfs-sysupgrade.bin | [[toh/hwdata/t-comtelekom/t-comtelekom_speedportw504v]] | https://wiki.openwrt.org/toh/t-com/spw504v |
+| 1075 | lede-17.01.4-lantiq-xway-BTHOMEHUBV2B-initramfs-kernel.bin | | |
+| 1076 | lede-17.01.4-lantiq-xway-BTHOMEHUBV2B-squashfs-sysupgrade.bin | [[toh/hwdata/bt/bt_homehub_2b]] | https://wiki.openwrt.org/toh/bt/homehub_v2b |
+| 1077 | lede-17.01.4-lantiq-xway-BTHOMEHUBV3A-initramfs-kernel.bin | | |
+| 1078 | lede-17.01.4-lantiq-xway-BTHOMEHUBV3A-squashfs-sysupgrade.bin | [[toh/hwdata/bt/bt_homehub3_1]] | https://wiki.openwrt.org/toh/bt/homehub_v3a |
+| 1079 | lede-17.01.4-lantiq-xway-DGN3500-initramfs-kernel.bin | | |
+| 1080 | lede-17.01.4-lantiq-xway-DGN3500-squashfs-factory-WW.img | [[toh/hwdata/netgear/netgear_dgn3500]] | https://wiki.openwrt.org/toh/netgear/dgn3500b |
+| 1081 | lede-17.01.4-lantiq-xway-DGN3500-squashfs-sysupgrade-NA.bin | | |
+| 1082 | lede-17.01.4-lantiq-xway-DGN3500-squashfs-sysupgrade-WW.bin | [[toh/hwdata/netgear/netgear_dgn3500]] | https://wiki.openwrt.org/toh/netgear/dgn3500b |
+| 1083 | lede-17.01.4-lantiq-xway-DGN3500B-initramfs-kernel.bin | | |
+| 1084 | lede-17.01.4-lantiq-xway-DGN3500B-squashfs-factory.img | [[toh/hwdata/netgear/netgear_dgn3500b]] | https://wiki.openwrt.org/toh/netgear/dgn3500b |
+| 1085 | lede-17.01.4-lantiq-xway-DGN3500B-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_dgn3500b]] | https://wiki.openwrt.org/toh/netgear/dgn3500b |
+| 1086 | lede-17.01.4-lantiq-xway-EASY50712-initramfs-kernel.bin | | |
+| 1087 | lede-17.01.4-lantiq-xway-EASY50712-squashfs-sysupgrade.bin | | |
+| 1088 | lede-17.01.4-lantiq-xway-FRITZ7320-initramfs-kernel.bin | | |
+| 1089 | lede-17.01.4-lantiq-xway-FRITZ7320-squashfs-sysupgrade.bin | [[toh/hwdata/avm/avm_fritz_box_fon_wlan_7320]] | https://wiki.openwrt.org/toh/avm/avm_fritz_box_7320 |
+| 1090 | lede-17.01.4-lantiq-xway-GIGASX76X-initramfs-kernel.bin | [[toh/hwdata/gigaset/gigaset_sx762]] [[toh/hwdata/gigaset/gigaset_sx763]] | https://wiki.openwrt.org/toh/gigaset/sx76x |
+| 1091 | lede-17.01.4-lantiq-xway-GIGASX76X-squashfs-sysupgrade.bin | [[toh/hwdata/gigaset/gigaset_sx762]] [[toh/hwdata/gigaset/gigaset_sx763]] | https://wiki.openwrt.org/toh/gigaset/sx76x |
+| 1092 | lede-17.01.4-lantiq-xway-H201L-initramfs-kernel.bin | | |
+| 1093 | lede-17.01.4-lantiq-xway-H201L-squashfs-sysupgrade.bin | [[toh/hwdata/zte/zte_ztezxv10h201l]] | https://wiki.openwrt.org/toh/zte/zxv10h201l |
+| 1094 | lede-17.01.4-lantiq-xway-P2601HNFX-initramfs-kernel.bin | | |
+| 1095 | lede-17.01.4-lantiq-xway-P2601HNFX-squashfs-sysupgrade.bin | [[toh/hwdata/zyxel/zyxel_p-2601hn-fx]] | https://wiki.openwrt.org/toh/zyxel/zyxel_p2601hnfx |
+| 1096 | lede-17.01.4-lantiq-xway-WBMRA-initramfs-kernel.bin | | |
+| 1097 | lede-17.01.4-lantiq-xway-WBMRA-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wbmr-hp-g300h]] | https://wiki.openwrt.org/toh/buffalo/wbmr-hp-g300h |
+| 1098 | lede-17.01.4-lantiq-xway-WBMRB-initramfs-kernel.bin | | |
+| 1099 | lede-17.01.4-lantiq-xway-WBMRB-squashfs-sysupgrade.bin | | |
+| 1100 | lede-17.01.4-lantiq-xway_legacy-ARV4518PWR01-initramfs-kernel.bin | | |
+| 1101 | lede-17.01.4-lantiq-xway_legacy-ARV4518PWR01A-initramfs-kernel.bin | | |
+| 1102 | lede-17.01.4-lantiq-xway_legacy-ARV4520PW-initramfs-kernel.bin | | |
+| 1103 | lede-17.01.4-lantiq-xway_legacy-ARV4525PW-initramfs-kernel.bin | | |
+| 1104 | lede-17.01.4-lantiq-xway_legacy-ARV452CQW-initramfs-kernel.bin | | |
+| 1105 | lede-17.01.4-layerscape-32b-ls1012ardb-squashfs-firmware.bin | | |
+| 1106 | lede-17.01.4-layerscape-32b-ls1043ardb-squashfs-firmware.bin | [[toh/hwdata/nxp/nxp_ls1043ardb]] | |
+| 1107 | lede-17.01.4-layerscape-32b-ls1046ardb-squashfs-firmware.bin | [[toh/hwdata/nxp/nxp_ls1046ardb]] | |
+| 1108 | lede-17.01.4-layerscape-32b-ls1088ardb-squashfs-firmware.bin | [[toh/hwdata/nxp/nxp_ls1088ardb]] | |
+| 1109 | lede-17.01.4-layerscape-32b-ls2088ardb-squashfs-firmware.bin | [[toh/hwdata/nxp/nxp_ls2088ardb]] | |
+| 1110 | lede-17.01.4-layerscape-64b-ls1012ardb-squashfs-firmware.bin | | |
+| 1111 | lede-17.01.4-layerscape-64b-ls1043ardb-squashfs-firmware.bin | | |
+| 1112 | lede-17.01.4-layerscape-64b-ls1046ardb-squashfs-firmware.bin | | |
+| 1113 | lede-17.01.4-layerscape-64b-ls1088ardb-squashfs-firmware.bin | | |
+| 1114 | lede-17.01.4-layerscape-64b-ls2088ardb-squashfs-firmware.bin | | |
+| 1115 | lede-17.01.4-mediatek-NAND-squashfs-sysupgrade.tar | | |
+| 1116 | lede-17.01.4-mediatek-eMMC-sysupgrade.tar | | |
+| 1117 | lede-17.01.4-mediatek-root.squashfs | | |
+| 1118 | lede-17.01.4-mpc85xx-generic-root.squashfs | | |
+| 1119 | lede-17.01.4-mpc85xx-generic-tl-wdr4900-v1-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr4900_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr4900 |
+| 1120 | lede-17.01.4-mpc85xx-generic-tl-wdr4900-v1-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_tl-wdr4900_v1]] | https://wiki.openwrt.org/toh/tp-link/tl-wdr4900 |
+| 1121 | lede-17.01.4-mpc85xx-generic-zImage | | |
+| 1122 | lede-17.01.4-mpc85xx-p1020-root.squashfs | | |
+| 1123 | lede-17.01.4-mpc85xx-p1020-zImage | | |
+| 1124 | lede-17.01.4-mvebu-armada-370-db-squashfs-sysupgrade.bin | | |
+| 1125 | lede-17.01.4-mvebu-armada-370-rd-squashfs-sysupgrade.bin | [[toh/hwdata/other/other_marvellrd-a370-a1]] | |
+| 1126 | lede-17.01.4-mvebu-armada-385-db-ap-squashfs-factory.img | | |
+| 1127 | lede-17.01.4-mvebu-armada-385-db-ap-squashfs-sysupgrade.bin | | |
+| 1128 | lede-17.01.4-mvebu-armada-388-clearfog-kernel.bin | | |
+| 1129 | lede-17.01.4-mvebu-armada-388-clearfog-sdcard.img.gz | [[toh/hwdata/solidrun/solidrun_clearfog_pro]] | https://wiki.openwrt.org/toh/solidrun/clearfog |
+| 1130 | lede-17.01.4-mvebu-armada-388-rd-squashfs-firmware.bin | | |
+| 1131 | lede-17.01.4-mvebu-armada-xp-db-squashfs-sysupgrade.bin | | |
+| 1132 | lede-17.01.4-mvebu-armada-xp-gp-squashfs-sysupgrade.bin | | |
+| 1133 | lede-17.01.4-mvebu-globalscale-mirabox-squashfs-sysupgrade.bin | | |
+| 1134 | lede-17.01.4-mvebu-linksys-wrt1200ac-squashfs-factory.img | [[toh/hwdata/linksys/linksys_wrt1200ac]] | https://wiki.openwrt.org/toh/linksys/wrt1x00ac_series |
+| 1135 | lede-17.01.4-mvebu-linksys-wrt1200ac-squashfs-sysupgrade.bin | [[toh/hwdata/linksys/linksys_wrt1200ac]] | https://wiki.openwrt.org/toh/linksys/wrt1x00ac_series |
+| 1136 | lede-17.01.4-mvebu-linksys-wrt1900ac-squashfs-factory.img | [[toh/hwdata/linksys/linksys_wrt1900ac_v1]] | https://wiki.openwrt.org/toh/linksys/wrt1x00ac_series |
+| 1137 | lede-17.01.4-mvebu-linksys-wrt1900ac-squashfs-sysupgrade.bin | [[toh/hwdata/linksys/linksys_wrt1900ac_v1]] | https://wiki.openwrt.org/toh/linksys/wrt1x00ac_series |
+| 1138 | lede-17.01.4-mvebu-linksys-wrt1900acs-squashfs-factory.img | [[toh/hwdata/linksys/linksys_wrt1900acs_v1]] | https://wiki.openwrt.org/toh/linksys/wrt1x00ac_series |
+| 1139 | lede-17.01.4-mvebu-linksys-wrt1900acs-squashfs-sysupgrade.bin | [[toh/hwdata/linksys/linksys_wrt1900acs_v1]] | https://wiki.openwrt.org/toh/linksys/wrt1x00ac_series |
+| 1140 | lede-17.01.4-mvebu-linksys-wrt1900acv2-squashfs-factory.img | [[toh/hwdata/linksys/linksys_wrt1900ac_v2]] | https://wiki.openwrt.org/toh/linksys/wrt1x00ac_series |
+| 1141 | lede-17.01.4-mvebu-linksys-wrt1900acv2-squashfs-sysupgrade.bin | [[toh/hwdata/linksys/linksys_wrt1900ac_v2]] | https://wiki.openwrt.org/toh/linksys/wrt1x00ac_series |
+| 1142 | lede-17.01.4-mvebu-linksys-wrt3200acm-squashfs-factory.img | [[toh/hwdata/linksys/linksys_wrt3200acm]] | https://wiki.openwrt.org/toh/linksys/wrt_ac_series |
+| 1143 | lede-17.01.4-mvebu-linksys-wrt3200acm-squashfs-sysupgrade.bin | [[toh/hwdata/linksys/linksys_wrt3200acm]] | https://wiki.openwrt.org/toh/linksys/wrt_ac_series |
+| 1144 | lede-17.01.4-mvebu-openblocks-ax3-4-squashfs-factory.img | [[toh/hwdata/plathome/plathome_openblocks_ax3-4]] | |
+| 1145 | lede-17.01.4-mvebu-openblocks-ax3-4-squashfs-sysupgrade.bin | [[toh/hwdata/plathome/plathome_openblocks_ax3-4]] | |
+| 1146 | lede-17.01.4-mxs-duckbill-sdcard.img.gz | | |
+| 1147 | lede-17.01.4-mxs-root.ext4.gz | | |
+| 1148 | lede-17.01.4-mxs-uImage | | |
+| 1149 | lede-17.01.4-octeon-er-initramfs-kernel.bin | | |
+| 1150 | lede-17.01.4-octeon-er-squashfs-sysupgrade.tar | | |
+| 1151 | lede-17.01.4-octeon-erlite-initramfs-kernel.bin | | |
+| 1152 | lede-17.01.4-octeon-erlite-squashfs-sysupgrade.tar | [[toh/hwdata/ubiquiti/ubiquiti_edgerouter_lite]] | https://wiki.openwrt.org/toh/ubiquiti/edgerouter.lite |
+| 1153 | lede-17.01.4-octeon-generic-initramfs-kernel.bin | | |
+| 1154 | lede-17.01.4-omap-default-rootfs.tar.gz | | |
+| 1155 | lede-17.01.4-omap-zImage | | |
+| 1156 | lede-17.01.4-oxnas-akitio-squashfs-sysupgrade.tar | [[toh/hwdata/akitio/akitio_mycloud_mini]] | |
+| 1157 | lede-17.01.4-oxnas-akitio-squashfs-ubinized.bin | | |
+| 1158 | lede-17.01.4-oxnas-akitio-u-boot-initramfs.bin | | |
+| 1159 | lede-17.01.4-oxnas-akitio-uImage | | |
+| 1160 | lede-17.01.4-oxnas-akitio-ubifs-sysupgrade.tar | | |
+| 1161 | lede-17.01.4-oxnas-akitio-ubifs-ubinized.bin | | |
+| 1162 | lede-17.01.4-oxnas-kd20-factory.tar.gz | [[toh/hwdata/shuttle/shuttle_omninas_kd20]] | |
+| 1163 | lede-17.01.4-oxnas-kd20-squashfs-sysupgrade.tar | [[toh/hwdata/shuttle/shuttle_omninas_kd20]] | |
+| 1164 | lede-17.01.4-oxnas-kd20-squashfs-ubinized.bin | | |
+| 1165 | lede-17.01.4-oxnas-kd20-ubifs-sysupgrade.tar | | |
+| 1166 | lede-17.01.4-oxnas-kd20-ubifs-ubinized.bin | | |
+| 1167 | lede-17.01.4-oxnas-pogoplug-pro-squashfs-sysupgrade.tar | [[toh/hwdata/pogoplug/pogoplug_pogoplug_v3_pro]] | https://wiki.openwrt.org/toh/cloudengines/pogoplugpro |
+| 1168 | lede-17.01.4-oxnas-pogoplug-pro-squashfs-ubinized.bin | | |
+| 1169 | lede-17.01.4-oxnas-pogoplug-pro-u-boot-initramfs.bin | | |
+| 1170 | lede-17.01.4-oxnas-pogoplug-pro-uImage | | |
+| 1171 | lede-17.01.4-oxnas-pogoplug-pro-ubifs-sysupgrade.tar | | |
+| 1172 | lede-17.01.4-oxnas-pogoplug-pro-ubifs-ubinized.bin | | |
+| 1173 | lede-17.01.4-oxnas-pogoplug-v3-squashfs-sysupgrade.tar | [[toh/hwdata/pogoplug/pogoplug_pogoplug_v3]] | https://wiki.openwrt.org/toh/cloudengines/pogoplugpro |
+| 1174 | lede-17.01.4-oxnas-pogoplug-v3-squashfs-ubinized.bin | | |
+| 1175 | lede-17.01.4-oxnas-pogoplug-v3-u-boot-initramfs.bin | | |
+| 1176 | lede-17.01.4-oxnas-pogoplug-v3-uImage | | |
+| 1177 | lede-17.01.4-oxnas-pogoplug-v3-ubifs-sysupgrade.tar | | |
+| 1178 | lede-17.01.4-oxnas-pogoplug-v3-ubifs-ubinized.bin | | |
+| 1179 | lede-17.01.4-oxnas-stg212-squashfs-sysupgrade.tar | [[toh/hwdata/medion/medion_md86587_v1]] | https://wiki.openwrt.org/toh/medion/md86587 |
+| 1180 | lede-17.01.4-oxnas-stg212-squashfs-ubinized.bin | [[toh/hwdata/medion/medion_md86587_v1]] | https://wiki.openwrt.org/toh/medion/md86587 |
+| 1181 | lede-17.01.4-oxnas-stg212-u-boot-initramfs.bin | | |
+| 1182 | lede-17.01.4-oxnas-stg212-uImage | | |
+| 1183 | lede-17.01.4-oxnas-stg212-ubifs-sysupgrade.tar | | |
+| 1184 | lede-17.01.4-oxnas-stg212-ubifs-ubinized.bin | | |
+| 1185 | openwrt-oxnas-ox820-u-boot.bin | | |
+| 1186 | lede-17.01.4-ramips-mt7620-ArcherC20i-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_archer_c20i_ac750_v1]] | https://wiki.openwrt.org/toh/tp-link/archer-c20i |
+| 1187 | lede-17.01.4-ramips-mt7620-ArcherC20i-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_archer_c20i_ac750_v1]] | https://wiki.openwrt.org/toh/tp-link/archer-c20i |
+| 1188 | lede-17.01.4-ramips-mt7620-ArcherC50-squashfs-factory.bin | [[toh/hwdata/tp-link/tp-link_archer_c50_v1]] | https://wiki.openwrt.org/toh/tp-link/archer-c50 |
+| 1189 | lede-17.01.4-ramips-mt7620-ArcherC50-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_archer_c50_v1]] | https://wiki.openwrt.org/toh/tp-link/archer-c50 |
+| 1190 | lede-17.01.4-ramips-mt7620-ArcherMR200-squashfs-sysupgrade.bin | [[toh/hwdata/tp-link/tp-link_archer_mr200v1]] | https://wiki.openwrt.org/toh/tp-link/archer-mr200 |
+| 1191 | lede-17.01.4-ramips-mt7620-ai-br100-squashfs-sysupgrade.bin | [[toh/hwdata/aigale/aigale_ai-br100]] | |
+| 1192 | lede-17.01.4-ramips-mt7620-cf-wr800n-squashfs-sysupgrade.bin | [[toh/hwdata/comfast/comfast_cf-wr800n]] | https://wiki.openwrt.org/toh/comfast/cf-wr800n |
+| 1193 | lede-17.01.4-ramips-mt7620-cs-qr10-squashfs-sysupgrade.bin | [[toh/hwdata/planex/planex_cs-qr10]] | |
+| 1194 | lede-17.01.4-ramips-mt7620-d240-squashfs-sysupgrade.bin | [[toh/hwdata/sanlinking/sanlinking_d240]] | |
+| 1195 | lede-17.01.4-ramips-mt7620-db-wrt01-squashfs-sysupgrade.bin | [[toh/hwdata/planex/planex_db-wrt01]] | |
+| 1196 | lede-17.01.4-ramips-mt7620-dch-m225-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dch-m225_a1]] | |
+| 1197 | lede-17.01.4-ramips-mt7620-dch-m225-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dch-m225_a1]] | |
+| 1198 | lede-17.01.4-ramips-mt7620-dir-810l-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-810l_b1]] | https://wiki.openwrt.org/toh/d-link/dir-810l |
+| 1199 | lede-17.01.4-ramips-mt7620-e1700-squashfs-factory.bin | [[toh/hwdata/linksys/linksys_e1700]] | https://wiki.openwrt.org/toh/linksys/e1700 |
+| 1200 | lede-17.01.4-ramips-mt7620-e1700-squashfs-sysupgrade.bin | [[toh/hwdata/linksys/linksys_e1700]] | https://wiki.openwrt.org/toh/linksys/e1700 |
+| 1201 | lede-17.01.4-ramips-mt7620-ex2700-squashfs-factory.bin | [[toh/hwdata/netgear/netgear_ex2700]] | https://wiki.openwrt.org/toh/netgear/netgear_ex2700 |
+| 1202 | lede-17.01.4-ramips-mt7620-ex2700-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_ex2700]] | https://wiki.openwrt.org/toh/netgear/netgear_ex2700 |
+| 1203 | lede-17.01.4-ramips-mt7620-gl-mt300a-squashfs-sysupgrade.bin | [[toh/hwdata/gl.inet/gl.inet_gl-mt300a]] | https://wiki.openwrt.org/toh/gl-inet/gl-mt300a |
+| 1204 | lede-17.01.4-ramips-mt7620-gl-mt300n-squashfs-sysupgrade.bin | [[toh/hwdata/gl.inet/gl.inet_gl-mt300n_v1]] | https://wiki.openwrt.org/toh/gl-inet/gl.inet_gl-mt300n_v1 |
+| 1205 | lede-17.01.4-ramips-mt7620-gl-mt750-squashfs-sysupgrade.bin | [[toh/hwdata/gl.inet/gl.inet_gl-mt750]] | https://wiki.openwrt.org/toh/gl-inet/gl-mt750 |
+| 1206 | lede-17.01.4-ramips-mt7620-hc5661-squashfs-sysupgrade.bin | [[toh/hwdata/hiwifi_gee/hiwifi_gee_hc5661]] | https://wiki.openwrt.org/toh/hiwifi/gee/hiwifi_gee_hc5661 |
+| 1207 | lede-17.01.4-ramips-mt7620-hc5761-squashfs-sysupgrade.bin | [[toh/hwdata/hiwifi_gee/hiwifi_gee_hc5761]] | https://wiki.openwrt.org/toh/hiwifi/gee/hiwifi_gee_hc5661 |
+| 1208 | lede-17.01.4-ramips-mt7620-hc5861-squashfs-sysupgrade.bin | [[toh/hwdata/hiwifi_gee/hiwifi_gee_hc5861]] | https://wiki.openwrt.org/toh/hiwifi/gee/hiwifi_gee_hc5661 |
+| 1209 | lede-17.01.4-ramips-mt7620-kn_rc-squashfs-factory.bin | [[toh/hwdata/zyxel/zyxel_omni]] | |
+| 1210 | lede-17.01.4-ramips-mt7620-kn_rc-squashfs-sysupgrade.bin | [[toh/hwdata/zyxel/zyxel_omni]] | |
+| 1211 | lede-17.01.4-ramips-mt7620-kn_rf-squashfs-factory.bin | [[toh/hwdata/zyxel/zyxel_keenetic_omni_ii]] | |
+| 1212 | lede-17.01.4-ramips-mt7620-kn_rf-squashfs-sysupgrade.bin | [[toh/hwdata/zyxel/zyxel_keenetic_omni_ii]] | |
+| 1213 | lede-17.01.4-ramips-mt7620-kng_rc-squashfs-factory.bin | [[toh/hwdata/zyxel/zyxel_keenetic_viva_rev._b]] | |
+| 1214 | lede-17.01.4-ramips-mt7620-kng_rc-squashfs-sysupgrade.bin | [[toh/hwdata/zyxel/zyxel_keenetic_viva_rev._b]] | |
+| 1215 | lede-17.01.4-ramips-mt7620-microwrt-squashfs-sysupgrade.bin | [[toh/hwdata/microduino/microduino_microwrt_core]] | |
+| 1216 | lede-17.01.4-ramips-mt7620-miwifi-mini-squashfs-sysupgrade.bin | [[toh/hwdata/xiaomi/xiaomi_mini_v1]] | https://wiki.openwrt.org/toh/xiaomi/mini |
+| 1217 | lede-17.01.4-ramips-mt7620-mlw221-squashfs-sysupgrade.bin | [[toh/hwdata/kingston/kingston_mlw221]] | https://wiki.openwrt.org/toh/kingston/mlw221 |
+| 1218 | lede-17.01.4-ramips-mt7620-mlwg2-squashfs-sysupgrade.bin | [[toh/hwdata/kingston/kingston_mlwg2]] | https://wiki.openwrt.org/toh/kingston/mlwg2 |
+| 1219 | lede-17.01.4-ramips-mt7620-mt7620a-squashfs-sysupgrade.bin | | |
+| 1220 | lede-17.01.4-ramips-mt7620-mt7620a_mt7530-squashfs-sysupgrade.bin | | |
+| 1221 | lede-17.01.4-ramips-mt7620-mt7620a_mt7610e-squashfs-sysupgrade.bin | | |
+| 1222 | lede-17.01.4-ramips-mt7620-mt7620a_v22sg-squashfs-sysupgrade.bin | | |
+| 1223 | lede-17.01.4-ramips-mt7620-mzk-750dhp-squashfs-sysupgrade.bin | [[toh/hwdata/planex/planex_mzk-750dhp]] | |
+| 1224 | lede-17.01.4-ramips-mt7620-mzk-ex300np-squashfs-sysupgrade.bin | [[toh/hwdata/planex/planex_mzk-ex300np]] | |
+| 1225 | lede-17.01.4-ramips-mt7620-mzk-ex750np-squashfs-sysupgrade.bin | [[toh/hwdata/planex/planex_mzk-ex750np]] | |
+| 1226 | lede-17.01.4-ramips-mt7620-na930-squashfs-sysupgrade.bin | [[toh/hwdata/sercomm/sercomm_na930]] | |
+| 1227 | lede-17.01.4-ramips-mt7620-oy-0001-squashfs-sysupgrade.bin | | |
+| 1228 | lede-17.01.4-ramips-mt7620-psg1208-squashfs-sysupgrade.bin | [[toh/hwdata/phicomm/phicomm_psg1208]] | https://wiki.openwrt.org/toh/phicomm/psg1208 |
+| 1229 | lede-17.01.4-ramips-mt7620-psg1218-squashfs-sysupgrade.bin | [[toh/hwdata/phicomm/phicomm_k2_psg1218]] | |
+| 1230 | lede-17.01.4-ramips-mt7620-rp-n53-squashfs-sysupgrade.bin | [[toh/hwdata/asus/asus_rp-n53]] | https://wiki.openwrt.org/toh/asus/rp-n53 |
+| 1231 | lede-17.01.4-ramips-mt7620-rt-n14u-squashfs-sysupgrade.bin | [[toh/hwdata/asus/asus_rt-n14u_c1]] | https://wiki.openwrt.org/toh/asus/rt-n14u |
+| 1232 | lede-17.01.4-ramips-mt7620-tiny-ac-squashfs-sysupgrade.bin | [[toh/hwdata/dovado/dovado_tiny_ac]] | https://wiki.openwrt.org/toh/dovado/dovado_tiny_ac |
+| 1233 | lede-17.01.4-ramips-mt7620-whr-1166d-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_whr-1166d]] | https://wiki.openwrt.org/toh/buffalo/whr-1166d |
+| 1234 | lede-17.01.4-ramips-mt7620-whr-300hp2-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_whr-300hp2]] | https://wiki.openwrt.org/toh/buffalo/whr-300hp2 |
+| 1235 | lede-17.01.4-ramips-mt7620-whr-600d-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_whr-600d]] | https://wiki.openwrt.org/toh/buffalo/whr-600d |
+| 1236 | lede-17.01.4-ramips-mt7620-wmr-300-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wmr-300]] | https://wiki.openwrt.org/toh/buffalo/wmr-300 |
+| 1237 | lede-17.01.4-ramips-mt7620-wn3000rpv3-squashfs-factory.bin | [[toh/hwdata/netgear/netgear_wn3000rp_v3]] | |
+| 1238 | lede-17.01.4-ramips-mt7620-wn3000rpv3-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wn3000rp_v3]] | |
+| 1239 | lede-17.01.4-ramips-mt7620-wrh-300cr-squashfs-factory.bin | [[toh/hwdata/elecom/elecom_wrh-300cr]] | |
+| 1240 | lede-17.01.4-ramips-mt7620-wrh-300cr-squashfs-sysupgrade.bin | [[toh/hwdata/elecom/elecom_wrh-300cr]] | |
+| 1241 | lede-17.01.4-ramips-mt7620-wrtnode-squashfs-sysupgrade.bin | [[toh/hwdata/wrtnode/wrtnode_wrtnode_1]] | https://wiki.openwrt.org/toh/wrtnode/wrtnode |
+| 1242 | lede-17.01.4-ramips-mt7620-wt3020-4M-squashfs-factory.bin | [[toh/hwdata/nexx/nexx_wt3020a]] | https://wiki.openwrt.org/toh/nexx/wt3020 |
+| 1243 | lede-17.01.4-ramips-mt7620-wt3020-4M-squashfs-sysupgrade.bin | [[toh/hwdata/nexx/nexx_wt3020a]] | https://wiki.openwrt.org/toh/nexx/wt3020 |
+| 1244 | lede-17.01.4-ramips-mt7620-wt3020-8M-squashfs-factory.bin | [[toh/hwdata/nexx/nexx_wt3020ad]] [[toh/hwdata/nexx/nexx_wt3020f]] [[toh/hwdata/nexx/nexx_wt3020h]] | https://wiki.openwrt.org/toh/nexx/wt3020 |
+| 1245 | lede-17.01.4-ramips-mt7620-wt3020-8M-squashfs-sysupgrade.bin | [[toh/hwdata/nexx/nexx_wt3020ad]] [[toh/hwdata/nexx/nexx_wt3020f]] [[toh/hwdata/nexx/nexx_wt3020h]] | https://wiki.openwrt.org/toh/nexx/wt3020 |
+| 1246 | lede-17.01.4-ramips-mt7620-y1-squashfs-sysupgrade.bin | [[toh/hwdata/lenovo/lenovo_newifi_mini_y1]] | https://wiki.openwrt.org/toh/lenovo/lenovo_y1_v1 |
+| 1247 | lede-17.01.4-ramips-mt7620-y1s-squashfs-sysupgrade.bin | [[toh/hwdata/lenovo/lenovo_newifi_y1s]] | |
+| 1248 | lede-17.01.4-ramips-mt7620-youku-yk1-squashfs-sysupgrade.bin | [[toh/hwdata/youku/youku_yk1]] | |
+| 1249 | lede-17.01.4-ramips-mt7620-zbt-ape522ii-squashfs-sysupgrade.bin | [[toh/hwdata/zbt/zbt_ape522ii]] | |
+| 1250 | lede-17.01.4-ramips-mt7620-zbt-cpe102-squashfs-sysupgrade.bin | [[toh/hwdata/zbt/zbt_cpe102]] | |
+| 1251 | lede-17.01.4-ramips-mt7620-zbt-wa05-squashfs-sysupgrade.bin | [[toh/hwdata/zbt/zbt_wa-05]] | https://wiki.openwrt.org/toh/zbt/wa-05 |
+| 1252 | lede-17.01.4-ramips-mt7620-zbt-we826-squashfs-sysupgrade.bin | [[toh/hwdata/zbt/zbt_we826_16m]] | https://wiki.openwrt.org/toh/zbt/we-826 |
+| 1253 | lede-17.01.4-ramips-mt7620-zbt-wr8305rt-squashfs-sysupgrade.bin | [[toh/hwdata/zbt/zbt_wr8305rt]] | https://wiki.openwrt.org/toh/zbt/wr8305rt |
+| 1254 | lede-17.01.4-ramips-mt7620-zte-q7-squashfs-sysupgrade.bin | [[toh/hwdata/zte/zte_q7]] | |
+| 1255 | lede-17.01.4-ramips-mt7621-11acnas-initramfs-kernel.bin | | |
+| 1256 | lede-17.01.4-ramips-mt7621-11acnas-squashfs-sysupgrade.bin | | |
+| 1257 | lede-17.01.4-ramips-mt7621-ac1200pro-initramfs-kernel.bin | | |
+| 1258 | lede-17.01.4-ramips-mt7621-ac1200pro-squashfs-sysupgrade.bin | [[toh/hwdata/digineo/digineo_ac1200_pro]] | |
+| 1259 | lede-17.01.4-ramips-mt7621-dir-860l-b1-initramfs-kernel.bin | | |
+| 1260 | lede-17.01.4-ramips-mt7621-dir-860l-b1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-860l_b1]] | https://wiki.openwrt.org/toh/d-link/dir-860l |
+| 1261 | lede-17.01.4-ramips-mt7621-dir-860l-b1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-860l_b1]] | https://wiki.openwrt.org/toh/d-link/dir-860l |
+| 1262 | lede-17.01.4-ramips-mt7621-firewrt-initramfs-kernel.bin | | |
+| 1263 | lede-17.01.4-ramips-mt7621-firewrt-squashfs-sysupgrade.bin | [[toh/hwdata/firefly/firefly_firewrt]] | |
+| 1264 | lede-17.01.4-ramips-mt7621-mt7621-initramfs-kernel.bin | | |
+| 1265 | lede-17.01.4-ramips-mt7621-mt7621-squashfs-sysupgrade.bin | | |
+| 1266 | lede-17.01.4-ramips-mt7621-newifi-d1-initramfs-kernel.bin | | |
+| 1267 | lede-17.01.4-ramips-mt7621-newifi-d1-squashfs-sysupgrade.bin | [[toh/hwdata/lenovo/lenovo_newifi_d1]] | |
+| 1268 | lede-17.01.4-ramips-mt7621-pbr-m1-initramfs-kernel.bin | | |
+| 1269 | lede-17.01.4-ramips-mt7621-pbr-m1-squashfs-sysupgrade.bin | | |
+| 1270 | lede-17.01.4-ramips-mt7621-rb750gr3-initramfs-kernel.bin | | |
+| 1271 | lede-17.01.4-ramips-mt7621-rb750gr3-squashfs-sysupgrade.bin | [[toh/hwdata/mikrotik/mikrotik_rb750gr3]] | https://wiki.openwrt.org/inbox/mikrotik/mikrotik_rb750gr3 |
+| 1272 | lede-17.01.4-ramips-mt7621-re6500-initramfs-kernel.bin | | |
+| 1273 | lede-17.01.4-ramips-mt7621-re6500-squashfs-sysupgrade.bin | [[toh/hwdata/linksys/linksys_re6500]] | https://wiki.openwrt.org/toh/linksys/re6500 |
+| 1274 | lede-17.01.4-ramips-mt7621-sap-g3200u3-initramfs-kernel.bin | | |
+| 1275 | lede-17.01.4-ramips-mt7621-sap-g3200u3-squashfs-sysupgrade.bin | [[toh/hwdata/storylink/storylink_sap-g3200u3]] | https://wiki.openwrt.org/toh/storylink/sap-g3200u3 |
+| 1276 | lede-17.01.4-ramips-mt7621-sk-wb8-initramfs-kernel.bin | | |
+| 1277 | lede-17.01.4-ramips-mt7621-sk-wb8-squashfs-sysupgrade.bin | [[toh/hwdata/samknows/samknows_sk-wb8]] | https://wiki.openwrt.org/toh/samknows/sk-wb8 |
+| 1278 | lede-17.01.4-ramips-mt7621-timecloud-initramfs-kernel.bin | | |
+| 1279 | lede-17.01.4-ramips-mt7621-timecloud-squashfs-sysupgrade.bin | | |
+| 1280 | lede-17.01.4-ramips-mt7621-ubnt-erx-initramfs-kernel.bin | | |
+| 1281 | lede-17.01.4-ramips-mt7621-ubnt-erx-squashfs-sysupgrade.tar | [[toh/hwdata/ubiquiti/ubiquiti_edgerouter_x]] | https://wiki.openwrt.org/toh/ubiquiti/ubiquiti_edgerouter_x_er-x_ka |
+| 1282 | lede-17.01.4-ramips-mt7621-vr500-initramfs-kernel.bin | | |
+| 1283 | lede-17.01.4-ramips-mt7621-vr500-squashfs-sysupgrade.bin | [[toh/hwdata/planex/planex_vr500]] | |
+| 1284 | lede-17.01.4-ramips-mt7621-w2914nsv2-initramfs-kernel.bin | | |
+| 1285 | lede-17.01.4-ramips-mt7621-w2914nsv2-squashfs-sysupgrade.bin | [[toh/hwdata/wevo/wevo_w2914ns_v2]] | |
+| 1286 | lede-17.01.4-ramips-mt7621-wf-2881-initramfs-kernel.bin | | |
+| 1287 | lede-17.01.4-ramips-mt7621-wf-2881-squashfs-sysupgrade.bin | [[toh/hwdata/netis/netis_m1200ac]] [[toh/hwdata/netis/netis_wf-2881]] | https://wiki.openwrt.org/toh/netis/wf-2881 |
+| 1288 | lede-17.01.4-ramips-mt7621-witi-initramfs-kernel.bin | | |
+| 1289 | lede-17.01.4-ramips-mt7621-witi-squashfs-sysupgrade.bin | [[toh/hwdata/mqmaker/mqmaker_witi_board]] | https://wiki.openwrt.org/toh/mqmaker/witi |
+| 1290 | lede-17.01.4-ramips-mt7621-wndr3700v5-initramfs-kernel.bin | | |
+| 1291 | lede-17.01.4-ramips-mt7621-wndr3700v5-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wndr3700_v5]] | https://wiki.openwrt.org/toh/netgear/wndr3700 |
+| 1292 | lede-17.01.4-ramips-mt7621-wsr-1166-initramfs-kernel.bin | | |
+| 1293 | lede-17.01.4-ramips-mt7621-wsr-1166-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wsr-1166dhp]] | https://wiki.openwrt.org/toh/buffalo/wsr-1166dhp |
+| 1294 | lede-17.01.4-ramips-mt7621-wsr-600-initramfs-kernel.bin | | |
+| 1295 | lede-17.01.4-ramips-mt7621-wsr-600-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wsr-600dhp]] | https://wiki.openwrt.org/toh/buffalo/wsr-600dhp |
+| 1296 | lede-17.01.4-ramips-mt7621-zbt-wg2626-initramfs-kernel.bin | | |
+| 1297 | lede-17.01.4-ramips-mt7621-zbt-wg2626-squashfs-sysupgrade.bin | [[toh/hwdata/zbt/zbt_wg2626]] | https://wiki.openwrt.org/toh/zbt/wg2626 |
+| 1298 | lede-17.01.4-ramips-mt7621-zbt-wg3526-initramfs-kernel.bin | | |
+| 1299 | lede-17.01.4-ramips-mt7621-zbt-wg3526-squashfs-sysupgrade.bin | [[toh/hwdata/zbt/zbt_wg3526_16m]] | |
+| 1300 | lede-17.01.4-ramips-mt7628-duzun-dm06-squashfs-sysupgrade.bin | | |
+| 1301 | lede-17.01.4-ramips-mt7628-mac1200r-v2-squashfs-sysupgrade.bin | [[toh/hwdata/mercury/mercury_mac1200r_v2]] | |
+| 1302 | lede-17.01.4-ramips-mt7628-miwifi-nano-squashfs-sysupgrade.bin | [[toh/hwdata/xiaomi/xiaomi_miwifi_nano]] | https://wiki.openwrt.org/toh/xiaomi/nano |
+| 1303 | lede-17.01.4-ramips-mt7628-mt7628-squashfs-sysupgrade.bin | | |
+| 1304 | lede-17.01.4-ramips-mt7628-vocore2-squashfs-sysupgrade.bin | [[toh/hwdata/vocore/vocore_vocore2]] | |
+| 1305 | lede-17.01.4-ramips-mt7628-wl-wn575a3-squashfs-sysupgrade.bin | [[toh/hwdata/wavlink/wl-wn575a3]] | https://wiki.openwrt.org/toh/wavlink/wl-wn575a3 |
+| 1306 | lede-17.01.4-ramips-mt7628-wrtnode2p-squashfs-sysupgrade.bin | | |
+| 1307 | lede-17.01.4-ramips-mt7688-LinkIt7688-squashfs-sysupgrade.bin | [[toh/hwdata/mediatek/mediatek_linkit_smart_7688]] | https://wiki.openwrt.org/toh/seeed/linkit7688 |
+| 1308 | lede-17.01.4-ramips-mt7688-omega2-squashfs-sysupgrade.bin | [[toh/hwdata/onion/onion_omega2]] | |
+| 1309 | lede-17.01.4-ramips-mt7688-omega2p-squashfs-sysupgrade.bin | [[toh/hwdata/onion/onion_omega2plus]] | |
+| 1310 | lede-17.01.4-ramips-mt7688-pbr-d1-squashfs-sysupgrade.bin | [[toh/hwdata/unbranded/unbranded_pandorabox_d1]] | |
+| 1311 | lede-17.01.4-ramips-mt7688-widora-neo-squashfs-sysupgrade.bin | [[toh/hwdata/widora/widora_widora-neo]] | |
+| 1312 | lede-17.01.4-ramips-mt7688-wrtnode2r-squashfs-sysupgrade.bin | | |
+| 1313 | lede-17.01.4-ramips-rt288x-ar670w-squashfs-factory.bin | [[toh/hwdata/airlink101/airlink101_ar670w]] | https://wiki.openwrt.org/toh/airlink101/ar670w |
+| 1314 | lede-17.01.4-ramips-rt288x-ar670w-squashfs-sysupgrade.bin | [[toh/hwdata/airlink101/airlink101_ar670w]] | https://wiki.openwrt.org/toh/airlink101/ar670w |
+| 1315 | lede-17.01.4-ramips-rt288x-ar725w-squashfs-sysupgrade.bin | [[toh/hwdata/airlink101/airlink101_ar725w]] | https://wiki.openwrt.org/toh/airlink101/ar725w |
+| 1316 | lede-17.01.4-ramips-rt288x-f5d8235-v1-squashfs-sysupgrade.bin | [[toh/hwdata/belkin/belkin_f5d8235-4_v1]] | https://wiki.openwrt.org/toh/belkin/f5d8235-4 |
+| 1317 | lede-17.01.4-ramips-rt288x-rt-n15-squashfs-sysupgrade.bin | [[toh/hwdata/asus/asus_rt-n15]] | https://wiki.openwrt.org/toh/asus/rt-n15 |
+| 1318 | lede-17.01.4-ramips-rt288x-v11st-fe-squashfs-sysupgrade.bin | [[toh/hwdata/other/other_ralinkv11st-fe]] | https://wiki.openwrt.org/toh/ralink/v11st-fe |
+| 1319 | lede-17.01.4-ramips-rt288x-wli-tx4-ag300n-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wli-tx4-ag300n_v1]] | https://wiki.openwrt.org/toh/buffalo/wli-tx4-ag300n |
+| 1320 | lede-17.01.4-ramips-rt288x-wzr-agl300nh-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_wzr-agl300nh_v01]] | |
+| 1321 | lede-17.01.4-ramips-rt305x-3g-6200n-initramfs-kernel.bin | [[toh/hwdata/edimax/edimax_3g-6200n]] | https://wiki.openwrt.org/toh/edimax/3g-6200n |
+| 1322 | lede-17.01.4-ramips-rt305x-3g-6200n-squashfs-sysupgrade.bin | [[toh/hwdata/edimax/edimax_3g-6200n]] | https://wiki.openwrt.org/toh/edimax/3g-6200n |
+| 1323 | lede-17.01.4-ramips-rt305x-3g-6200nl-initramfs-kernel.bin | | |
+| 1324 | lede-17.01.4-ramips-rt305x-3g-6200nl-squashfs-sysupgrade.bin | | |
+| 1325 | lede-17.01.4-ramips-rt305x-3g150b-initramfs-kernel.bin | | |
+| 1326 | lede-17.01.4-ramips-rt305x-3g150b-squashfs-sysupgrade.bin | [[toh/hwdata/tenda/tenda_3g150b]] | |
+| 1327 | lede-17.01.4-ramips-rt305x-3g300m-initramfs-kernel.bin | | |
+| 1328 | lede-17.01.4-ramips-rt305x-3g300m-squashfs-sysupgrade.bin | [[toh/hwdata/tenda/tenda_3g300m]] | |
+| 1329 | lede-17.01.4-ramips-rt305x-a5-v11-initramfs-kernel.bin | | |
+| 1330 | lede-17.01.4-ramips-rt305x-a5-v11-squashfs-factory.bin | [[toh/hwdata/other/other_a5-v11]] | https://wiki.openwrt.org/toh/unbranded/a5-v11 |
+| 1331 | lede-17.01.4-ramips-rt305x-a5-v11-squashfs-sysupgrade.bin | [[toh/hwdata/other/other_a5-v11]] | https://wiki.openwrt.org/toh/unbranded/a5-v11 |
+| 1332 | lede-17.01.4-ramips-rt305x-air3gii-initramfs-kernel.bin | | |
+| 1333 | lede-17.01.4-ramips-rt305x-air3gii-squashfs-sysupgrade.bin | | |
+| 1334 | lede-17.01.4-ramips-rt305x-all0256n-4M-initramfs-kernel.bin | | |
+| 1335 | lede-17.01.4-ramips-rt305x-all0256n-4M-squashfs-sysupgrade.bin | | |
+| 1336 | lede-17.01.4-ramips-rt305x-all0256n-8M-initramfs-kernel.bin | [[toh/hwdata/allnet/allnet_all0256n]] | https://wiki.openwrt.org/toh/allnet/all0256n |
+| 1337 | lede-17.01.4-ramips-rt305x-all0256n-8M-squashfs-sysupgrade.bin | [[toh/hwdata/allnet/allnet_all0256n]] | https://wiki.openwrt.org/toh/allnet/all0256n |
+| 1338 | lede-17.01.4-ramips-rt305x-all5002-initramfs-kernel.bin | | |
+| 1339 | lede-17.01.4-ramips-rt305x-all5002-squashfs-sysupgrade.bin | [[toh/hwdata/allnet/allnet_all5002]] | |
+| 1340 | lede-17.01.4-ramips-rt305x-all5003-initramfs-kernel.bin | | |
+| 1341 | lede-17.01.4-ramips-rt305x-all5003-squashfs-sysupgrade.bin | [[toh/hwdata/allnet/allnet_all5003]] | |
+| 1342 | lede-17.01.4-ramips-rt305x-asl26555-16M-initramfs-kernel.bin | | |
+| 1343 | lede-17.01.4-ramips-rt305x-asl26555-16M-squashfs-sysupgrade.bin | [[toh/hwdata/alphanetworks/alphanetworks_asl-26555]] | https://wiki.openwrt.org/toh/alpha/asl26555 |
+| 1344 | lede-17.01.4-ramips-rt305x-asl26555-8M-initramfs-kernel.bin | | |
+| 1345 | lede-17.01.4-ramips-rt305x-asl26555-8M-squashfs-sysupgrade.bin | | |
+| 1346 | lede-17.01.4-ramips-rt305x-atp-52b-initramfs-kernel.bin | | |
+| 1347 | lede-17.01.4-ramips-rt305x-atp-52b-squashfs-sysupgrade.bin | | |
+| 1348 | lede-17.01.4-ramips-rt305x-awapn2403-initramfs-kernel.bin | | |
+| 1349 | lede-17.01.4-ramips-rt305x-awapn2403-squashfs-sysupgrade.bin | [[toh/hwdata/asiarf/asiarf_awapn2403]] | |
+| 1350 | lede-17.01.4-ramips-rt305x-awm002-evb-4M-initramfs-kernel.bin | | |
+| 1351 | lede-17.01.4-ramips-rt305x-awm002-evb-4M-squashfs-sysupgrade.bin | | |
+| 1352 | lede-17.01.4-ramips-rt305x-awm002-evb-8M-initramfs-kernel.bin | | |
+| 1353 | lede-17.01.4-ramips-rt305x-awm002-evb-8M-squashfs-sysupgrade.bin | [[toh/hwdata/asiarf/asiarf_awm002]] | https://wiki.openwrt.org/toh/asiarf/awm-evb |
+| 1354 | lede-17.01.4-ramips-rt305x-awm003-evb-initramfs-kernel.bin | | |
+| 1355 | lede-17.01.4-ramips-rt305x-awm003-evb-squashfs-sysupgrade.bin | [[toh/hwdata/asiarf/asiarf_awm003]] | https://wiki.openwrt.org/toh/asiarf/awm-evb |
+| 1356 | lede-17.01.4-ramips-rt305x-bc2-initramfs-kernel.bin | | |
+| 1357 | lede-17.01.4-ramips-rt305x-bc2-squashfs-sysupgrade.bin | | |
+| 1358 | lede-17.01.4-ramips-rt305x-broadway-initramfs-kernel.bin | | |
+| 1359 | lede-17.01.4-ramips-rt305x-broadway-squashfs-sysupgrade.bin | | |
+| 1360 | lede-17.01.4-ramips-rt305x-carambola-initramfs-kernel.bin | | |
+| 1361 | lede-17.01.4-ramips-rt305x-carambola-squashfs-sysupgrade.bin | [[toh/hwdata/8devices/8devices_carambola1]] | https://wiki.openwrt.org/toh/8devices/carambola |
+| 1362 | lede-17.01.4-ramips-rt305x-d105-initramfs-kernel.bin | | |
+| 1363 | lede-17.01.4-ramips-rt305x-d105-squashfs-sysupgrade.bin | | |
+| 1364 | lede-17.01.4-ramips-rt305x-dap-1350-initramfs-kernel.bin | | |
+| 1365 | lede-17.01.4-ramips-rt305x-dap-1350-squashfs-factory-NA.bin | | |
+| 1366 | lede-17.01.4-ramips-rt305x-dap-1350-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dap1350]] | https://wiki.openwrt.org/toh/d-link/dap-1350 |
+| 1367 | lede-17.01.4-ramips-rt305x-dap-1350-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dap1350]] | https://wiki.openwrt.org/toh/d-link/dap-1350 |
+| 1368 | lede-17.01.4-ramips-rt305x-dcs-930-initramfs-uImage.bin | | |
+| 1369 | lede-17.01.4-ramips-rt305x-dcs-930-squashfs-factory.bin | | |
+| 1370 | lede-17.01.4-ramips-rt305x-dcs-930-squashfs-sysupgrade.bin | | |
+| 1371 | lede-17.01.4-ramips-rt305x-dcs-930l-b1-initramfs-uImage.bin | | |
+| 1372 | lede-17.01.4-ramips-rt305x-dcs-930l-b1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dcs-93x]] | https://wiki.openwrt.org/toh/d-link/dcs-930l |
+| 1373 | lede-17.01.4-ramips-rt305x-dcs-930l-b1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dcs-93x]] | https://wiki.openwrt.org/toh/d-link/dcs-930l |
+| 1374 | lede-17.01.4-ramips-rt305x-dir-300-b1-initramfs-kernel.bin | | |
+| 1375 | lede-17.01.4-ramips-rt305x-dir-300-b1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-300_b1]] | https://wiki.openwrt.org/toh/d-link/dir-300revb |
+| 1376 | lede-17.01.4-ramips-rt305x-dir-300-b1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-300_b1]] | https://wiki.openwrt.org/toh/d-link/dir-300revb |
+| 1377 | lede-17.01.4-ramips-rt305x-dir-300-b7-initramfs-kernel.bin | [[toh/hwdata/d-link/d-link_dir-300_b5_b6_b7]] | https://wiki.openwrt.org/toh/d-link/dir-300revb |
+| 1378 | lede-17.01.4-ramips-rt305x-dir-300-b7-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-300_b5_b6_b7]] | https://wiki.openwrt.org/toh/d-link/dir-300revb |
+| 1379 | lede-17.01.4-ramips-rt305x-dir-320-b1-initramfs-kernel.bin | [[toh/hwdata/d-link/d-link_dir-320_b1]] | https://wiki.openwrt.org/toh/d-link/dir-320_revb1 |
+| 1380 | lede-17.01.4-ramips-rt305x-dir-320-b1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-320_b1]] | https://wiki.openwrt.org/toh/d-link/dir-320_revb1 |
+| 1381 | lede-17.01.4-ramips-rt305x-dir-600-b1-initramfs-kernel.bin | | |
+| 1382 | lede-17.01.4-ramips-rt305x-dir-600-b1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-600_b1]] [[toh/hwdata/d-link/d-link_dir-600_b2]] | https://wiki.openwrt.org/toh/d-link/dir-300revb |
+| 1383 | lede-17.01.4-ramips-rt305x-dir-600-b1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-600_b1]] [[toh/hwdata/d-link/d-link_dir-600_b2]] | https://wiki.openwrt.org/toh/d-link/dir-300revb |
+| 1384 | lede-17.01.4-ramips-rt305x-dir-610-a1-initramfs-kernel.bin | | |
+| 1385 | lede-17.01.4-ramips-rt305x-dir-610-a1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-600_b6_b6e]] [[toh/hwdata/d-link/d-link_dir-610_a1]] | |
+| 1386 | lede-17.01.4-ramips-rt305x-dir-610-a1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-600_b6_b6e]] [[toh/hwdata/d-link/d-link_dir-610_a1]] | |
+| 1387 | lede-17.01.4-ramips-rt305x-dir-615-d-initramfs-kernel.bin | | |
+| 1388 | lede-17.01.4-ramips-rt305x-dir-615-d-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-615_d1]] [[toh/hwdata/d-link/d-link_dir-615_d3_d4]] | https://wiki.openwrt.org/toh/d-link/dir-615 |
+| 1389 | lede-17.01.4-ramips-rt305x-dir-615-d-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-615_d1]] [[toh/hwdata/d-link/d-link_dir-615_d3_d4]] | https://wiki.openwrt.org/toh/d-link/dir-615 |
+| 1390 | lede-17.01.4-ramips-rt305x-dir-615-h1-initramfs-kernel.bin | | |
+| 1391 | lede-17.01.4-ramips-rt305x-dir-615-h1-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-615_h1]] | https://wiki.openwrt.org/toh/d-link/dir-615 |
+| 1392 | lede-17.01.4-ramips-rt305x-dir-615-h1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-615_h1]] | https://wiki.openwrt.org/toh/d-link/dir-615 |
+| 1393 | lede-17.01.4-ramips-rt305x-dir-620-a1-initramfs-kernel.bin | | |
+| 1394 | lede-17.01.4-ramips-rt305x-dir-620-a1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-620_a1]] | https://wiki.openwrt.org/toh/d-link/dir-620 |
+| 1395 | lede-17.01.4-ramips-rt305x-dir-620-d1-initramfs-kernel.bin | | |
+| 1396 | lede-17.01.4-ramips-rt305x-dir-620-d1-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-620_d1]] | https://wiki.openwrt.org/toh/d-link/dir-620 |
+| 1397 | lede-17.01.4-ramips-rt305x-dwr-512-b-initramfs-kernel.bin | | |
+| 1398 | lede-17.01.4-ramips-rt305x-dwr-512-b-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dwr-512_b]] | https://wiki.openwrt.org/toh/d-link/d-link_dwr-512_b |
+| 1399 | lede-17.01.4-ramips-rt305x-esr-9753-initramfs-kernel.bin | [[toh/hwdata/engenius/engenius_esr-6650]] [[toh/hwdata/engenius/engenius_esr-9753]] | https://wiki.openwrt.org/toh/engenius/engenius_esr9753 https://wiki.openwrt.org/toh/engenius/esr-6650 |
+| 1400 | lede-17.01.4-ramips-rt305x-esr-9753-squashfs-sysupgrade.bin | [[toh/hwdata/engenius/engenius_esr-6650]] [[toh/hwdata/engenius/engenius_esr-9753]] | https://wiki.openwrt.org/toh/engenius/engenius_esr9753 https://wiki.openwrt.org/toh/engenius/esr-6650 |
+| 1401 | lede-17.01.4-ramips-rt305x-f5d8235-v2-initramfs-kernel.bin | | |
+| 1402 | lede-17.01.4-ramips-rt305x-f5d8235-v2-squashfs-sysupgrade.bin | [[toh/hwdata/belkin/belkin_f5d8235-4_v2]] | https://wiki.openwrt.org/toh/belkin/f5d8235-4 |
+| 1403 | lede-17.01.4-ramips-rt305x-f7c027-initramfs-kernel.bin | [[toh/hwdata/belkin/belkin_f7c027]] | https://wiki.openwrt.org/toh/belkin/f7c027 |
+| 1404 | lede-17.01.4-ramips-rt305x-f7c027-squashfs-sysupgrade.bin | [[toh/hwdata/belkin/belkin_f7c027]] | https://wiki.openwrt.org/toh/belkin/f7c027 |
+| 1405 | lede-17.01.4-ramips-rt305x-fonera20n-initramfs-kernel.bin | | |
+| 1406 | lede-17.01.4-ramips-rt305x-fonera20n-squashfs-factory.bin | [[toh/hwdata/fon/fon_fonera20n_fon2303a]] | https://wiki.openwrt.org/toh/fon/fonera2.0n |
+| 1407 | lede-17.01.4-ramips-rt305x-fonera20n-squashfs-sysupgrade.bin | [[toh/hwdata/fon/fon_fonera20n_fon2303a]] | https://wiki.openwrt.org/toh/fon/fonera2.0n |
+| 1408 | lede-17.01.4-ramips-rt305x-freestation5-initramfs-kernel.bin | [[toh/hwdata/arcflex/arcflex_freestation5_v1]] | https://wiki.openwrt.org/toh/arc/freestation |
+| 1409 | lede-17.01.4-ramips-rt305x-freestation5-squashfs-sysupgrade.bin | [[toh/hwdata/arcflex/arcflex_freestation5_v1]] | https://wiki.openwrt.org/toh/arc/freestation |
+| 1410 | lede-17.01.4-ramips-rt305x-hg255d-initramfs-kernel.bin | [[toh/hwdata/huawei/huawei_hg255d]] | https://wiki.openwrt.org/toh/huawei/hg255d |
+| 1411 | lede-17.01.4-ramips-rt305x-hg255d-squashfs-sysupgrade.bin | [[toh/hwdata/huawei/huawei_hg255d]] | https://wiki.openwrt.org/toh/huawei/hg255d |
+| 1412 | lede-17.01.4-ramips-rt305x-hlk-rm04-initramfs-kernel.bin | | |
+| 1413 | lede-17.01.4-ramips-rt305x-hlk-rm04-squashfs-factory.bin | [[toh/hwdata/hi-link/hi-link_hlk-rm04_v1]] | https://wiki.openwrt.org/toh/hilink/hlk-rm04 |
+| 1414 | lede-17.01.4-ramips-rt305x-hlk-rm04-squashfs-sysupgrade.bin | [[toh/hwdata/hi-link/hi-link_hlk-rm04_v1]] [[toh/hwdata/hi-link/hi-link_hlk-rm04_v2]] | https://wiki.openwrt.org/toh/hilink/hlk-rm04 |
+| 1415 | lede-17.01.4-ramips-rt305x-ht-tm02-initramfs-kernel.bin | [[toh/hwdata/hootoo/hootoo_ht-tm01]] [[toh/hwdata/hootoo/hootoo_tripmate_elite_ht-tm04]] [[toh/hwdata/hootoo/hootoo_tripmatenano_v15]] | https://wiki.openwrt.org/toh/hootoo/tripmate-nano |
+| 1416 | lede-17.01.4-ramips-rt305x-ht-tm02-squashfs-sysupgrade.bin | [[toh/hwdata/hootoo/hootoo_ht-tm01]] [[toh/hwdata/hootoo/hootoo_tripmate_elite_ht-tm04]] [[toh/hwdata/hootoo/hootoo_tripmatenano_v15]] [[toh/hwdata/ravpower/ravpower_rp-wd02]] | https://wiki.openwrt.org/toh/hootoo/tripmate-nano https://wiki.openwrt.org/toh/ravpower/rp-wd02 |
+| 1417 | lede-17.01.4-ramips-rt305x-hw550-3g-initramfs-kernel.bin | [[toh/hwdata/aztech/aztech_hw550-3g]] | https://wiki.openwrt.org/toh/aztech/hw550-3g |
+| 1418 | lede-17.01.4-ramips-rt305x-hw550-3g-squashfs-sysupgrade.bin | [[toh/hwdata/aztech/aztech_hw550-3g]] | https://wiki.openwrt.org/toh/aztech/hw550-3g |
+| 1419 | lede-17.01.4-ramips-rt305x-ip2202-initramfs-kernel.bin | | |
+| 1420 | lede-17.01.4-ramips-rt305x-ip2202-squashfs-sysupgrade.bin | [[toh/hwdata/poray/poray_porayip2202]] | https://wiki.openwrt.org/toh/poray/ip2202 |
+| 1421 | lede-17.01.4-ramips-rt305x-jhr-n805r-initramfs-kernel.bin | | |
+| 1422 | lede-17.01.4-ramips-rt305x-jhr-n805r-squashfs-factory.bin | [[toh/hwdata/jcg/jcg_jhr-n805r]] | https://wiki.openwrt.org/toh/jcg/jhr-n805r |
+| 1423 | lede-17.01.4-ramips-rt305x-jhr-n805r-squashfs-sysupgrade.bin | [[toh/hwdata/jcg/jcg_jhr-n805r]] | https://wiki.openwrt.org/toh/jcg/jhr-n805r |
+| 1424 | lede-17.01.4-ramips-rt305x-jhr-n825r-initramfs-kernel.bin | | |
+| 1425 | lede-17.01.4-ramips-rt305x-jhr-n825r-squashfs-factory.bin | [[toh/hwdata/jcg/jcg_jhr-n825r]] | https://wiki.openwrt.org/toh/jcg/jhr-n825r |
+| 1426 | lede-17.01.4-ramips-rt305x-jhr-n825r-squashfs-sysupgrade.bin | [[toh/hwdata/jcg/jcg_jhr-n825r]] | https://wiki.openwrt.org/toh/jcg/jhr-n825r |
+| 1427 | lede-17.01.4-ramips-rt305x-jhr-n926r-initramfs-kernel.bin | | |
+| 1428 | lede-17.01.4-ramips-rt305x-jhr-n926r-squashfs-factory.bin | [[toh/hwdata/jcg/jcg_jhr-n926r]] | https://wiki.openwrt.org/toh/jcg/jhr-n926r |
+| 1429 | lede-17.01.4-ramips-rt305x-jhr-n926r-squashfs-sysupgrade.bin | [[toh/hwdata/jcg/jcg_jhr-n926r]] | https://wiki.openwrt.org/toh/jcg/jhr-n926r |
+| 1430 | lede-17.01.4-ramips-rt305x-m2m-initramfs-kernel.bin | | |
+| 1431 | lede-17.01.4-ramips-rt305x-m2m-squashfs-sysupgrade.bin | [[toh/hwdata/intenso/intenso_memory2move]] | https://wiki.openwrt.org/toh/intenso/m2m |
+| 1432 | lede-17.01.4-ramips-rt305x-m3-initramfs-kernel.bin | | |
+| 1433 | lede-17.01.4-ramips-rt305x-m3-squashfs-factory.bin | [[toh/hwdata/poray/poray_poraym3]] | https://wiki.openwrt.org/toh/poray/m3 |
+| 1434 | lede-17.01.4-ramips-rt305x-m3-squashfs-sysupgrade.bin | [[toh/hwdata/poray/poray_poraym3]] | https://wiki.openwrt.org/toh/poray/m3 |
+| 1435 | lede-17.01.4-ramips-rt305x-m4-4M-initramfs-kernel.bin | | |
+| 1436 | lede-17.01.4-ramips-rt305x-m4-4M-squashfs-factory.bin | | |
+| 1437 | lede-17.01.4-ramips-rt305x-m4-4M-squashfs-sysupgrade.bin | | |
+| 1438 | lede-17.01.4-ramips-rt305x-m4-8M-initramfs-kernel.bin | | |
+| 1439 | lede-17.01.4-ramips-rt305x-m4-8M-squashfs-factory.bin | [[toh/hwdata/poray/poray_poraym4]] | https://wiki.openwrt.org/toh/poray/m4 |
+| 1440 | lede-17.01.4-ramips-rt305x-m4-8M-squashfs-sysupgrade.bin | [[toh/hwdata/poray/poray_poraym4]] | https://wiki.openwrt.org/toh/poray/m4 |
+| 1441 | lede-17.01.4-ramips-rt305x-miniembplug-initramfs-kernel.bin | | |
+| 1442 | lede-17.01.4-ramips-rt305x-miniembplug-squashfs-sysupgrade.bin | [[toh/hwdata/omnima/omnima_miniplug]] | |
+| 1443 | lede-17.01.4-ramips-rt305x-miniembwifi-initramfs-kernel.bin | | |
+| 1444 | lede-17.01.4-ramips-rt305x-miniembwifi-squashfs-sysupgrade.bin | [[toh/hwdata/omnima/omnima_miniembwifi]] | |
+| 1445 | lede-17.01.4-ramips-rt305x-mofi3500-3gn-initramfs-kernel.bin | | |
+| 1446 | lede-17.01.4-ramips-rt305x-mofi3500-3gn-squashfs-sysupgrade.bin | | |
+| 1447 | lede-17.01.4-ramips-rt305x-mpr-a1-initramfs-kernel.bin | [[toh/hwdata/hame/hame_mpr-a1]] | https://wiki.openwrt.org/toh/hame/mpr-a1 |
+| 1448 | lede-17.01.4-ramips-rt305x-mpr-a1-squashfs-sysupgrade.bin | [[toh/hwdata/hame/hame_mpr-a1]] | https://wiki.openwrt.org/toh/hame/mpr-a1 |
+| 1449 | lede-17.01.4-ramips-rt305x-mpr-a2-initramfs-kernel.bin | [[toh/hwdata/hame/hame_mpr-a2]] | https://wiki.openwrt.org/toh/hame/mpr-a2 |
+| 1450 | lede-17.01.4-ramips-rt305x-mpr-a2-squashfs-sysupgrade.bin | [[toh/hwdata/hame/hame_mpr-a2]] | https://wiki.openwrt.org/toh/hame/mpr-a2 |
+| 1451 | lede-17.01.4-ramips-rt305x-mr-102n-initramfs-kernel.bin | | |
+| 1452 | lede-17.01.4-ramips-rt305x-mr-102n-squashfs-sysupgrade.bin | [[toh/hwdata/aximcom/aximcom_mr-102n]] | https://wiki.openwrt.org/toh/aximcom/mr-102n |
+| 1453 | lede-17.01.4-ramips-rt305x-mzk-dp150n-initramfs-kernel.bin | | |
+| 1454 | lede-17.01.4-ramips-rt305x-mzk-dp150n-squashfs-sysupgrade.bin | [[toh/hwdata/planex/planex_mzk-dp150n]] | |
+| 1455 | lede-17.01.4-ramips-rt305x-mzk-w300nh2-initramfs-kernel.bin | | |
+| 1456 | lede-17.01.4-ramips-rt305x-mzk-w300nh2-squashfs-factory.bin | [[toh/hwdata/planex/planex_mzk-w300nh2]] | |
+| 1457 | lede-17.01.4-ramips-rt305x-mzk-w300nh2-squashfs-sysupgrade.bin | [[toh/hwdata/planex/planex_mzk-w300nh2]] | |
+| 1458 | lede-17.01.4-ramips-rt305x-mzk-wdpr-initramfs-kernel.bin | | |
+| 1459 | lede-17.01.4-ramips-rt305x-mzk-wdpr-squashfs-sysupgrade.bin | [[toh/hwdata/planex/planex_mzk-wdpr]] | |
+| 1460 | lede-17.01.4-ramips-rt305x-nbg-419n-initramfs-kernel.bin | [[toh/hwdata/zyxel/zyxel_nbg-419n_v1]] [[toh/hwdata/zyxel/zyxel_wap3205_v1]] | https://wiki.openwrt.org/toh/zyxel/nbg419n |
+| 1461 | lede-17.01.4-ramips-rt305x-nbg-419n-squashfs-sysupgrade.bin | [[toh/hwdata/zyxel/zyxel_nbg-419n_v1]] [[toh/hwdata/zyxel/zyxel_wap3205_v1]] | https://wiki.openwrt.org/toh/zyxel/nbg419n |
+| 1462 | lede-17.01.4-ramips-rt305x-nbg-419n2-initramfs-kernel.bin | | |
+| 1463 | lede-17.01.4-ramips-rt305x-nbg-419n2-squashfs-sysupgrade.bin | [[toh/hwdata/zyxel/zyxel_nbg-419n_v2]] | |
+| 1464 | lede-17.01.4-ramips-rt305x-ncs601w-initramfs-kernel.bin | | |
+| 1465 | lede-17.01.4-ramips-rt305x-ncs601w-squashfs-sysupgrade.bin | | |
+| 1466 | lede-17.01.4-ramips-rt305x-nixcore-x1-16M-initramfs-kernel.bin | | |
+| 1467 | lede-17.01.4-ramips-rt305x-nixcore-x1-16M-squashfs-sysupgrade.bin | [[toh/hwdata/nixcore/nixcore_x1]] | |
+| 1468 | lede-17.01.4-ramips-rt305x-nixcore-x1-8M-initramfs-kernel.bin | | |
+| 1469 | lede-17.01.4-ramips-rt305x-nixcore-x1-8M-squashfs-sysupgrade.bin | | |
+| 1470 | lede-17.01.4-ramips-rt305x-nw718-initramfs-kernel.bin | | |
+| 1471 | lede-17.01.4-ramips-rt305x-nw718-squashfs-sysupgrade.bin | | |
+| 1472 | lede-17.01.4-ramips-rt305x-psr-680w-initramfs-kernel.bin | | |
+| 1473 | lede-17.01.4-ramips-rt305x-psr-680w-squashfs-sysupgrade.bin | [[toh/hwdata/petatel/petatel_psr-680w]] | https://wiki.openwrt.org/toh/petatel/psr-680w |
+| 1474 | lede-17.01.4-ramips-rt305x-pwh2004-initramfs-kernel.bin | | |
+| 1475 | lede-17.01.4-ramips-rt305x-pwh2004-squashfs-sysupgrade.bin | [[toh/hwdata/prolink/prolink_pwh2004]] | https://wiki.openwrt.org/toh/prolink/pwh2004 |
+| 1476 | lede-17.01.4-ramips-rt305x-px-4885-4M-initramfs-kernel.bin | | |
+| 1477 | lede-17.01.4-ramips-rt305x-px-4885-4M-squashfs-sysupgrade.bin | [[toh/hwdata/7links/7links_px-4885]] | https://wiki.openwrt.org/toh/7links/px4885 |
+| 1478 | lede-17.01.4-ramips-rt305x-px-4885-8M-initramfs-kernel.bin | | |
+| 1479 | lede-17.01.4-ramips-rt305x-px-4885-8M-squashfs-sysupgrade.bin | | |
+| 1480 | lede-17.01.4-ramips-rt305x-root.squashfs | | |
+| 1481 | lede-17.01.4-ramips-rt305x-rt-g32-b1-initramfs-kernel.bin | | |
+| 1482 | lede-17.01.4-ramips-rt305x-rt-g32-b1-squashfs-sysupgrade.bin | [[toh/hwdata/asus/asus_rt-g32_b1]] | https://wiki.openwrt.org/toh/asus/rt-g32 |
+| 1483 | lede-17.01.4-ramips-rt305x-rt-n10-plus-initramfs-kernel.bin | [[toh/hwdata/asus/asus_rt-g32_c1]] [[toh/hwdata/asus/asus_rt-n10plus_b1]] | https://wiki.openwrt.org/toh/asus/rt-g32 https://wiki.openwrt.org/toh/asus/rt-n10plus |
+| 1484 | lede-17.01.4-ramips-rt305x-rt-n10-plus-squashfs-sysupgrade.bin | [[toh/hwdata/asus/asus_rt-g32_c1]] [[toh/hwdata/asus/asus_rt-n10plus_b1]] | https://wiki.openwrt.org/toh/asus/rt-g32 https://wiki.openwrt.org/toh/asus/rt-n10plus |
+| 1485 | lede-17.01.4-ramips-rt305x-rt-n13u-initramfs-kernel.bin | [[toh/hwdata/asus/asus_rt-n13u_b1]] | https://wiki.openwrt.org/toh/asus/rt-n13u |
+| 1486 | lede-17.01.4-ramips-rt305x-rt-n13u-squashfs-sysupgrade.bin | [[toh/hwdata/asus/asus_rt-n13]] [[toh/hwdata/asus/asus_rt-n13u]] [[toh/hwdata/asus/asus_rt-n13u_b1]] | https://wiki.openwrt.org/toh/asus/rt-n13 https://wiki.openwrt.org/toh/asus/rt-n13u |
+| 1487 | lede-17.01.4-ramips-rt305x-rt5350f-olinuxino-evb-initramfs-kernel.bin | [[toh/hwdata/olimex/olimex_rt5350f-olinuxino-evb]] | https://wiki.openwrt.org/toh/olimex/rt5350f-olinuxino-evb |
+| 1488 | lede-17.01.4-ramips-rt305x-rt5350f-olinuxino-evb-squashfs-sysupgrade.bin | [[toh/hwdata/olimex/olimex_rt5350f-olinuxino-evb]] | https://wiki.openwrt.org/toh/olimex/rt5350f-olinuxino-evb |
+| 1489 | lede-17.01.4-ramips-rt305x-rt5350f-olinuxino-initramfs-kernel.bin | | |
+| 1490 | lede-17.01.4-ramips-rt305x-rt5350f-olinuxino-squashfs-sysupgrade.bin | | |
+| 1491 | lede-17.01.4-ramips-rt305x-rut5xx-initramfs-kernel.bin | | |
+| 1492 | lede-17.01.4-ramips-rt305x-rut5xx-squashfs-sysupgrade.bin | [[toh/hwdata/teltonika/teltonika_rut500]] [[toh/hwdata/teltonika/teltonika_rut5xx]] | https://wiki.openwrt.org/toh/teltonika/rut5xx |
+| 1493 | lede-17.01.4-ramips-rt305x-sl-r7205-initramfs-kernel.bin | | |
+| 1494 | lede-17.01.4-ramips-rt305x-sl-r7205-squashfs-sysupgrade.bin | [[toh/hwdata/skyline/skyline_sl-r7205]] [[toh/hwdata/widemac/widemac_sl-r7205]] | https://wiki.openwrt.org/toh/widemac/sl-r7205 |
+| 1495 | lede-17.01.4-ramips-rt305x-tew-714tru-initramfs-kernel.bin | | |
+| 1496 | lede-17.01.4-ramips-rt305x-tew-714tru-squashfs-sysupgrade.bin | [[toh/hwdata/trendnet/trendnet_tew-714tru_1.0r]] | |
+| 1497 | lede-17.01.4-ramips-rt305x-uImage-initramfs.bin | | |
+| 1498 | lede-17.01.4-ramips-rt305x-uImage.bin | | |
+| 1499 | lede-17.01.4-ramips-rt305x-ur-326n4g-initramfs-kernel.bin | | |
+| 1500 | lede-17.01.4-ramips-rt305x-ur-326n4g-squashfs-sysupgrade.bin | [[toh/hwdata/upvel/upvel_ur-326n4g]] | https://wiki.openwrt.org/toh/upvel/ur-326n4g |
+| 1501 | lede-17.01.4-ramips-rt305x-ur-336un-initramfs-kernel.bin | | |
+| 1502 | lede-17.01.4-ramips-rt305x-ur-336un-squashfs-sysupgrade.bin | [[toh/hwdata/upvel/upvel_ur-336un]] | https://wiki.openwrt.org/toh/upvel/ur336un |
+| 1503 | lede-17.01.4-ramips-rt305x-v22rw-2x2-initramfs-kernel.bin | | |
+| 1504 | lede-17.01.4-ramips-rt305x-v22rw-2x2-squashfs-sysupgrade.bin | | |
+| 1505 | lede-17.01.4-ramips-rt305x-vmlinux-initramfs.bin | | |
+| 1506 | lede-17.01.4-ramips-rt305x-vmlinux-initramfs.elf | | |
+| 1507 | lede-17.01.4-ramips-rt305x-vocore-16M-initramfs-kernel.bin | [[toh/hwdata/vocore/vocore_vocore_v1.0]] | https://wiki.openwrt.org/toh/vocore/vocore |
+| 1508 | lede-17.01.4-ramips-rt305x-vocore-16M-squashfs-sysupgrade.bin | [[toh/hwdata/vocore/vocore_vocore_v1.0]] | https://wiki.openwrt.org/toh/vocore/vocore |
+| 1509 | lede-17.01.4-ramips-rt305x-vocore-8M-initramfs-kernel.bin | | |
+| 1510 | lede-17.01.4-ramips-rt305x-vocore-8M-squashfs-sysupgrade.bin | | |
+| 1511 | lede-17.01.4-ramips-rt305x-w150m-initramfs-kernel.bin | | |
+| 1512 | lede-17.01.4-ramips-rt305x-w150m-squashfs-sysupgrade.bin | | |
+| 1513 | lede-17.01.4-ramips-rt305x-w306r-v20-initramfs-kernel.bin | | |
+| 1514 | lede-17.01.4-ramips-rt305x-w306r-v20-squashfs-sysupgrade.bin | [[toh/hwdata/tenda/tenda_w306r_v20]] | https://wiki.openwrt.org/toh/tenda/w306r |
+| 1515 | lede-17.01.4-ramips-rt305x-w502u-initramfs-kernel.bin | | |
+| 1516 | lede-17.01.4-ramips-rt305x-w502u-squashfs-sysupgrade.bin | [[toh/hwdata/alfanetwork/alfanetwork_w502u]] | https://wiki.openwrt.org/toh/alfa.network/w502u |
+| 1517 | lede-17.01.4-ramips-rt305x-wcr-150gn-initramfs-kernel.bin | | |
+| 1518 | lede-17.01.4-ramips-rt305x-wcr-150gn-squashfs-sysupgrade.bin | [[toh/hwdata/sparklan/sparklan_wcr-150gn]] | https://wiki.openwrt.org/toh/sparklan/wcr-150gn |
+| 1519 | lede-17.01.4-ramips-rt305x-whr-g300n-initramfs-uImage.bin | | |
+| 1520 | lede-17.01.4-ramips-rt305x-whr-g300n-squashfs-factory-EU.bin | [[toh/hwdata/buffalo/buffalo_whr-g300n_v1]] | https://wiki.openwrt.org/toh/buffalo/whr-g300n |
+| 1521 | lede-17.01.4-ramips-rt305x-whr-g300n-squashfs-sysupgrade.bin | [[toh/hwdata/buffalo/buffalo_whr-g300n_v1]] | https://wiki.openwrt.org/toh/buffalo/whr-g300n |
+| 1522 | lede-17.01.4-ramips-rt305x-wizard8800-initramfs-kernel.bin | | |
+| 1523 | lede-17.01.4-ramips-rt305x-wizard8800-squashfs-sysupgrade.bin | [[toh/hwdata/easyacc/easyacc_wi-stor_wizard_8800]] | https://wiki.openwrt.org/toh/easyacc/wizard8800 |
+| 1524 | lede-17.01.4-ramips-rt305x-wizfi630a-initramfs-kernel.bin | | |
+| 1525 | lede-17.01.4-ramips-rt305x-wizfi630a-squashfs-sysupgrade.bin | [[toh/hwdata/wiznet/wiznet_wizfi630a]] | https://wiki.openwrt.org/toh/wiznet/wiznet_wizfi630a |
+| 1526 | lede-17.01.4-ramips-rt305x-wl-330n-initramfs-kernel.bin | | |
+| 1527 | lede-17.01.4-ramips-rt305x-wl-330n-squashfs-sysupgrade.bin | [[toh/hwdata/asus/asus_wl-330n_a]] | https://wiki.openwrt.org/toh/asus/wl-330n |
+| 1528 | lede-17.01.4-ramips-rt305x-wl-330n3g-initramfs-kernel.bin | | |
+| 1529 | lede-17.01.4-ramips-rt305x-wl-330n3g-squashfs-sysupgrade.bin | [[toh/hwdata/asus/asus_wl-330n3g]] | https://wiki.openwrt.org/toh/asus/wl-330n3g |
+| 1530 | lede-17.01.4-ramips-rt305x-wl-341v3-initramfs-uImage.bin | | |
+| 1531 | lede-17.01.4-ramips-rt305x-wl-341v3-squashfs-sysupgrade.bin | [[toh/hwdata/sitecom/sitecom_wl-341]] | https://wiki.openwrt.org/toh/sitecom/wl-341 |
+| 1532 | lede-17.01.4-ramips-rt305x-wl-351-initramfs-kernel.bin | | |
+| 1533 | lede-17.01.4-ramips-rt305x-wl-351-squashfs-sysupgrade.bin | [[toh/hwdata/engenius/engenius_esr9850]] [[toh/hwdata/sitecom/sitecom_wl-351]] | https://wiki.openwrt.org/toh/engenius/esr9850 https://wiki.openwrt.org/toh/sitecom/wl-351 |
+| 1534 | lede-17.01.4-ramips-rt305x-wnce2001-initramfs-kernel.bin | | |
+| 1535 | lede-17.01.4-ramips-rt305x-wnce2001-squashfs-factory-NA.bin | | |
+| 1536 | lede-17.01.4-ramips-rt305x-wnce2001-squashfs-factory.bin | [[toh/hwdata/netgear/netgear_wnce2001]] | https://wiki.openwrt.org/toh/netgear/wnce2001 |
+| 1537 | lede-17.01.4-ramips-rt305x-wnce2001-squashfs-sysupgrade.bin | [[toh/hwdata/netgear/netgear_wnce2001]] | https://wiki.openwrt.org/toh/netgear/wnce2001 |
+| 1538 | lede-17.01.4-ramips-rt305x-wr512-3gn-4M-initramfs-kernel.bin | | |
+| 1539 | lede-17.01.4-ramips-rt305x-wr512-3gn-4M-squashfs-sysupgrade.bin | | |
+| 1540 | lede-17.01.4-ramips-rt305x-wr512-3gn-8M-initramfs-kernel.bin | | |
+| 1541 | lede-17.01.4-ramips-rt305x-wr512-3gn-8M-squashfs-sysupgrade.bin | | |
+| 1542 | lede-17.01.4-ramips-rt305x-wr6202-initramfs-kernel.bin | [[toh/hwdata/smc/smc_smcwbr11s-3gn]] | |
+| 1543 | lede-17.01.4-ramips-rt305x-wr6202-squashfs-sysupgrade.bin | [[toh/hwdata/accton/accton_wr6202]] [[toh/hwdata/smc/smc_smcwbr11s-3gn]] | |
+| 1544 | lede-17.01.4-ramips-rt305x-wt1520-4M-initramfs-kernel.bin | | |
+| 1545 | lede-17.01.4-ramips-rt305x-wt1520-4M-squashfs-factory.bin | [[toh/hwdata/nexx/nexx_nexxwt1520]] | https://wiki.openwrt.org/toh/nexx/wt1520 |
+| 1546 | lede-17.01.4-ramips-rt305x-wt1520-4M-squashfs-sysupgrade.bin | [[toh/hwdata/nexx/nexx_nexxwt1520]] | https://wiki.openwrt.org/toh/nexx/wt1520 |
+| 1547 | lede-17.01.4-ramips-rt305x-wt1520-8M-initramfs-kernel.bin | | |
+| 1548 | lede-17.01.4-ramips-rt305x-wt1520-8M-squashfs-factory.bin | | |
+| 1549 | lede-17.01.4-ramips-rt305x-wt1520-8M-squashfs-sysupgrade.bin | | |
+| 1550 | lede-17.01.4-ramips-rt305x-x5-initramfs-kernel.bin | | |
+| 1551 | lede-17.01.4-ramips-rt305x-x5-squashfs-factory.bin | [[toh/hwdata/poray/poray_prp-x5-x6]] | https://wiki.openwrt.org/toh/poray/prp-x5 |
+| 1552 | lede-17.01.4-ramips-rt305x-x5-squashfs-sysupgrade.bin | [[toh/hwdata/poray/poray_prp-x5-x6]] | https://wiki.openwrt.org/toh/poray/prp-x5 |
+| 1553 | lede-17.01.4-ramips-rt305x-x8-initramfs-kernel.bin | | |
+| 1554 | lede-17.01.4-ramips-rt305x-x8-squashfs-factory.bin | [[toh/hwdata/poray/poray_porayx8]] | https://wiki.openwrt.org/toh/poray/x8 |
+| 1555 | lede-17.01.4-ramips-rt305x-x8-squashfs-sysupgrade.bin | [[toh/hwdata/poray/poray_porayx8]] | https://wiki.openwrt.org/toh/poray/x8 |
+| 1556 | lede-17.01.4-ramips-rt305x-xdxrn502j-initramfs-kernel.bin | | |
+| 1557 | lede-17.01.4-ramips-rt305x-xdxrn502j-squashfs-sysupgrade.bin | [[toh/hwdata/other/other_xdx-rn502j]] | https://wiki.openwrt.org/toh/unbranded/xdx-rn502j |
+| 1558 | lede-17.01.4-ramips-rt3883-br-6475nd-squashfs-sysupgrade.bin | [[toh/hwdata/edimax/edimax_br-6475nd_a]] | https://wiki.openwrt.org/toh/edimax/br-6475nd |
+| 1559 | lede-17.01.4-ramips-rt3883-cy-swr1100-squashfs-factory.bin | [[toh/hwdata/samsung/samsung_cy-swr1100]] | |
+| 1560 | lede-17.01.4-ramips-rt3883-cy-swr1100-squashfs-sysupgrade.bin | [[toh/hwdata/samsung/samsung_cy-swr1100]] | |
+| 1561 | lede-17.01.4-ramips-rt3883-dir-645-squashfs-factory.bin | [[toh/hwdata/d-link/d-link_dir-645_a1]] | https://wiki.openwrt.org/toh/d-link/dir-645 |
+| 1562 | lede-17.01.4-ramips-rt3883-dir-645-squashfs-sysupgrade.bin | [[toh/hwdata/d-link/d-link_dir-645_a1]] | https://wiki.openwrt.org/toh/d-link/dir-645 |
+| 1563 | lede-17.01.4-ramips-rt3883-hpm-squashfs-sysupgrade.bin | | |
+| 1564 | lede-17.01.4-ramips-rt3883-rt-n56u-squashfs-factory.bin | [[toh/hwdata/asus/asus_rt-n56u_a1]] | https://wiki.openwrt.org/toh/asus/rt-n56u |
+| 1565 | lede-17.01.4-ramips-rt3883-rt-n56u-squashfs-sysupgrade.bin | [[toh/hwdata/asus/asus_rt-n56u_a1]] | https://wiki.openwrt.org/toh/asus/rt-n56u |
+| 1566 | lede-17.01.4-ramips-rt3883-tew-691gr-squashfs-factory.bin | [[toh/hwdata/trendnet/trendnet_tew-691gr_10r]] | https://wiki.openwrt.org/toh/trendnet/tew-691gr |
+| 1567 | lede-17.01.4-ramips-rt3883-tew-691gr-squashfs-sysupgrade.bin | [[toh/hwdata/trendnet/trendnet_tew-691gr_10r]] | https://wiki.openwrt.org/toh/trendnet/tew-691gr |
+| 1568 | lede-17.01.4-ramips-rt3883-tew-692gr-squashfs-factory.bin | [[toh/hwdata/trendnet/trendnet_tew-692gr_10r]] | https://wiki.openwrt.org/toh/trendnet/tew-692gr |
+| 1569 | lede-17.01.4-ramips-rt3883-tew-692gr-squashfs-sysupgrade.bin | [[toh/hwdata/trendnet/trendnet_tew-692gr_10r]] | https://wiki.openwrt.org/toh/trendnet/tew-692gr |
+| 1570 | lede-17.01.4-ramips-rt3883-wlr-6000-squashfs-factory.dlf | [[toh/hwdata/sitecom/sitecom_wlr-6000]] | https://wiki.openwrt.org/toh/sitecom/wlr-6000 |
+| 1571 | lede-17.01.4-ramips-rt3883-wlr-6000-squashfs-sysupgrade.bin | [[toh/hwdata/sitecom/sitecom_wlr-6000]] | https://wiki.openwrt.org/toh/sitecom/wlr-6000 |
+| 1572 | lede-17.01.4-rb532-combined-squashfs.bin | | |
+| 1573 | lede-17.01.4-rb532-default-rootfs.tar.gz | | |
+| 1574 | lede-17.01.4-rb532-nand-squashfs-sysupgrade.bin | | |
+| 1575 | lede-17.01.4-rb532-squashfs.kernel | | |
+| 1576 | lede-17.01.4-rb532-vmlinux-kernel | | |
+| 1577 | lede-17.01.4-sunxi-sun4i-a10-cubieboard-ext4-sdcard.img.gz | | |
+| 1578 | lede-17.01.4-sunxi-sun4i-a10-cubieboard-squashfs-sdcard.img.gz | [[toh/hwdata/cubitech/cubitech_cubieboard]] | https://wiki.openwrt.org/toh/cubietech/cubieboard |
+| 1579 | lede-17.01.4-sunxi-sun4i-a10-olinuxino-lime-ext4-sdcard.img.gz | | |
+| 1580 | lede-17.01.4-sunxi-sun4i-a10-olinuxino-lime-squashfs-sdcard.img.gz | [[toh/hwdata/olimex/olimex_a10-olinuxino-lime]] | https://wiki.openwrt.org/toh/olimex/a10-olinuxino |
+| 1581 | lede-17.01.4-sunxi-sun4i-a10-pcduino-ext4-sdcard.img.gz | | |
+| 1582 | lede-17.01.4-sunxi-sun4i-a10-pcduino-squashfs-sdcard.img.gz | [[toh/hwdata/linksprite/linksprite_pcduino1]] | https://wiki.openwrt.org/toh/pcduino/pcduino |
+| 1583 | lede-17.01.4-sunxi-sun5i-a13-olimex-som-ext4-sdcard.img.gz | | |
+| 1584 | lede-17.01.4-sunxi-sun5i-a13-olimex-som-squashfs-sdcard.img.gz | [[toh/hwdata/olimex/olimex_a13-som-512]] | https://wiki.openwrt.org/toh/olimex/a13-olinuxino-som |
+| 1585 | lede-17.01.4-sunxi-sun5i-a13-olinuxino-ext4-sdcard.img.gz | | |
+| 1586 | lede-17.01.4-sunxi-sun5i-a13-olinuxino-squashfs-sdcard.img.gz | [[toh/hwdata/olimex/olimex_a13-olinuxino-wifi]] | https://wiki.openwrt.org/toh/olimex/a13-olinuxino |
+| 1587 | lede-17.01.4-sunxi-sun6i-a31-m9-ext4-sdcard.img.gz | | |
+| 1588 | lede-17.01.4-sunxi-sun6i-a31-m9-squashfs-sdcard.img.gz | [[toh/hwdata/mele/mele_m9]] | |
+| 1589 | lede-17.01.4-sunxi-sun7i-a20-bananapi-ext4-sdcard.img.gz | | |
+| 1590 | lede-17.01.4-sunxi-sun7i-a20-bananapi-squashfs-sdcard.img.gz | [[toh/hwdata/lemaker/lemaker_bananapi]] | https://wiki.openwrt.org/toh/lemaker/bananapi |
+| 1591 | lede-17.01.4-sunxi-sun7i-a20-bananapro-ext4-sdcard.img.gz | | |
+| 1592 | lede-17.01.4-sunxi-sun7i-a20-bananapro-squashfs-sdcard.img.gz | [[toh/hwdata/lemaker/lemaker_banana_pro]] | https://wiki.openwrt.org/toh/lemaker/bananapro |
+| 1593 | lede-17.01.4-sunxi-sun7i-a20-cubieboard2-ext4-sdcard.img.gz | | |
+| 1594 | lede-17.01.4-sunxi-sun7i-a20-cubieboard2-squashfs-sdcard.img.gz | [[toh/hwdata/cubitech/cubitech_cubieboard2]] | https://wiki.openwrt.org/toh/cubietech/cubieboard2 |
+| 1595 | lede-17.01.4-sunxi-sun7i-a20-cubietruck-ext4-sdcard.img.gz | | |
+| 1596 | lede-17.01.4-sunxi-sun7i-a20-cubietruck-squashfs-sdcard.img.gz | [[toh/hwdata/cubitech/cubitech_cubietruck]] | https://wiki.openwrt.org/toh/cubietech/cubietruck |
+| 1597 | lede-17.01.4-sunxi-sun7i-a20-lamobo-r1-ext4-sdcard.img.gz | | |
+| 1598 | lede-17.01.4-sunxi-sun7i-a20-lamobo-r1-squashfs-sdcard.img.gz | [[toh/hwdata/lamobo/lamobo_bananapi_r1]] | https://wiki.openwrt.org/toh/lamobo/bananapi_r1 |
+| 1599 | lede-17.01.4-sunxi-sun7i-a20-olinuxino-lime-ext4-sdcard.img.gz | | |
+| 1600 | lede-17.01.4-sunxi-sun7i-a20-olinuxino-lime-squashfs-sdcard.img.gz | [[toh/hwdata/olimex/olimex_a20-olinuxino-lime]] | |
+| 1601 | lede-17.01.4-sunxi-sun7i-a20-olinuxino-micro-ext4-sdcard.img.gz | | |
+| 1602 | lede-17.01.4-sunxi-sun7i-a20-olinuxino-micro-squashfs-sdcard.img.gz | [[toh/hwdata/olimex/olimex_a20-olinuxino-micro]] | https://wiki.openwrt.org/toh/olimex/a20-olinuxino |
+| 1603 | lede-17.01.4-sunxi-sun7i-a20-pcduino3-ext4-sdcard.img.gz | | |
+| 1604 | lede-17.01.4-sunxi-sun7i-a20-pcduino3-squashfs-sdcard.img.gz | [[toh/hwdata/linksprite/linksprite_pcduino3]] | https://wiki.openwrt.org/toh/pcduino/pcduino3 |
+| 1605 | lede-17.01.4-sunxi-sun8i-h3-orangepi-plus-ext4-sdcard.img.gz | | |
+| 1606 | lede-17.01.4-sunxi-sun8i-h3-orangepi-plus-squashfs-sdcard.img.gz | [[toh/hwdata/xunlong/xunlong_orange_pi_plus]] | https://wiki.openwrt.org/toh/xunlong/orangepiplus |
+| 1607 | lede-17.01.4-x86-64-combined-ext4.img.gz | | |
+| 1608 | lede-17.01.4-x86-64-combined-squashfs.img | | |
+| 1609 | lede-17.01.4-x86-64-generic-rootfs.tar.gz | | |
+| 1610 | lede-17.01.4-x86-64-rootfs-ext4.img.gz | | |
+| 1611 | lede-17.01.4-x86-64-rootfs-squashfs.img | | |
+| 1612 | lede-17.01.4-x86-64-vmlinuz | | |
+| 1613 | lede-17.01.4-x86-generic-combined-ext4.img.gz | | |
+| 1614 | lede-17.01.4-x86-generic-combined-squashfs.img | | |
+| 1615 | lede-17.01.4-x86-generic-generic-rootfs.tar.gz | | |
+| 1616 | lede-17.01.4-x86-generic-rootfs-ext4.img.gz | | |
+| 1617 | lede-17.01.4-x86-generic-rootfs-squashfs.img | | |
+| 1618 | lede-17.01.4-x86-generic-vmlinuz | | |
+| 1619 | lede-17.01.4-x86-geode-combined-ext4.img.gz | [[toh/hwdata/pcengines/pcengines_alix1c]] [[toh/hwdata/pcengines/pcengines_alix1d]] [[toh/hwdata/pcengines/pcengines_alix2d0]] [[toh/hwdata/pcengines/pcengines_alix2d1]] [[toh/hwdata/pcengines/pcengines_alix2d13]] [[toh/hwdata/pcengines/pcengines_alix2d2]] [[toh/hwdata/pcengines/pcengines_alix2d3]] [[toh/hwdata/pcengines/pcengines_alix2d4]] [[toh/hwdata/pcengines/pcengines_alix2d5]] [[toh/hwdata/pcengines/pcengines_alix3d1]] [[toh/hwdata/pcengines/pcengines_alix3d2]] [[toh/hwdata/pcengines/pcengines_alix3d3]] [[toh/hwdata/pcengines/pcengines_alix6f2]] | https://wiki.openwrt.org/toh/pcengines/alix |
+| 1620 | lede-17.01.4-x86-geode-combined-squashfs.img | | |
+| 1621 | lede-17.01.4-x86-geode-rootfs-ext4.img.gz | | |
+| 1622 | lede-17.01.4-x86-geode-rootfs-squashfs.img | | |
+| 1623 | lede-17.01.4-x86-geode-vmlinuz | | |
+| 1624 | lede-17.01.4-x86-legacy-combined-ext4.img.gz | | |
+| 1625 | lede-17.01.4-x86-legacy-combined-squashfs.img | | |
+| 1626 | lede-17.01.4-x86-legacy-generic-rootfs.tar.gz | | |
+| 1627 | lede-17.01.4-x86-legacy-rootfs-ext4.img.gz | | |
+| 1628 | lede-17.01.4-x86-legacy-rootfs-squashfs.img | | |
+| 1629 | lede-17.01.4-x86-legacy-vmlinuz | | |
+| 1630 | lede-17.01.4-zynq-rootfs.tar.gz | | |
+| 1631 | lede-17.01.4-zynq-zc702-fit.itb | | |
+| 1632 | lede-17.01.4-zynq-zc702-uramdisk.image.gz | | |
+| 1633 | lede-17.01.4-zynq-zed-fit.itb | | |
+| 1634 | lede-17.01.4-zynq-zed-uramdisk.image.gz | | |
+| 1635 | lede-17.01.4-zynq-zybo-fit.itb | | |
+| 1636 | lede-17.01.4-zynq-zybo-uramdisk.image.gz | | |
+</datatables>
+Data as of 2017-10-18 21:21:47 CEST

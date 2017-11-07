@@ -1,0 +1,26 @@
+====== Table of Hardware: Phone ports ======
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+**Purpose:** This ToH version shows devices which **are supported by LEDE** and which **have Phone ports**.
+
+{{page>meta:infobox:toh_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+----
+
+**Scrolling through the table:** Click anywhere in the table, then use your cursor keys to scroll left/right, up/down.
+
+----
+
+
+---- datatable ----
+cols       : Brand, Model, Versions, LEDE Supported Current Rel, LEDE Unsupported, CPU, Phone ports_, WLAN 2.4GHz, WLAN 5.0GHz, Modem, OpenWrt Device Page_url, LEDE Device Page_page, Device Techdata_pageid, OWrt Forum Topic URL_url, LEDE Forum Topic URL_url, WikiDevi URL_url, OEM Device Homepage URL_url, Comments_
+dynfilters : 1
+rownumbers : 1
+filter     : Model!=@@Model@@
+filter     : Phone portss!=
+filter     : Phone portss!=-
+filter     : Phone portss!=¿
+filter     : LEDE Supported Current Rel!=
+sort       : Brand
+----

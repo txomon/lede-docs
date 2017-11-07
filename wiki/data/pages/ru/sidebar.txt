@@ -1,0 +1,18 @@
+  * [[ru:start|Добро пожаловать на проект LEDE]] 
+  * [[ru:supported_devices|Поддерживаемые устройства]] 
+  * [[:downloads|Загрузки ]] 
+  * [[ru:docs:start|Документация]] 
+  * [[https://forum.lede-project.org|Форум]]
+  * [[faq|FAQ ]] 
+
+----
+
+  * [[ru:about|О LEDE ]] 
+    * [[ru:rules|Правила LEDE]]
+    * [[ru:todo|Список задач LEDE]] 
+    * [[ru:infrastructure|Инфраструктура LEDE]]
+  * [[ru:wiki:start|Об этом сайте]]
+
+  * [[:contact|Контакты ]] 
+
+----

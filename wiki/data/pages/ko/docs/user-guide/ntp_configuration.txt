@@ -1,0 +1,37 @@
+====== ntp 설정 ======
+
+ntp 설정은 **system** uci 서브시스템에 있습니다.위치는 **///etc/config/system//**입니다.
+
+==== Timeserver 세션 ====
+ntp 설정은  **system** uci 서브시스템의 **timeserver** 세션에 있습니다..
+
+<code>root@lede:/# uci show system
+system.ntp=timeserver
+system.ntp.enabled='1'
+system.ntp.enable_server='0'
+system.ntp.server='0.lede.pool.ntp.org' '1.lede.pool.ntp.org' '2.lede.pool.ntp.org' '3.lede.pool.ntp.org'
+</code>
+
+<code>root@lede:/# cat /etc/config/system
+config timeserver 'ntp'
+        option enabled '1'
+        option enable_server '0'
+        list server '0.lede.pool.ntp.org'
+        list server '1.lede.pool.ntp.org'
+        list server '2.lede.pool.ntp.org'
+        list server '3.lede.pool.ntp.org'
+</code>
+
+==== Timeserver 세션 옵션 ====
+**timeserver ntp**세션에 대해 정의된 옵션은 다음과 같습니다:
+
+^이름            ^자료형             ^Required^초기값   ^설명                                                                                                                                                                                                                                                                                                                                                                       ^
+|//server//       |list of hostnames|no      |(lede ntp servers)|시간을 폴링하는 NTP 서버의 풀. 비어있는 경우 ntpd는 클라이언트 모드를 비활성화하고 시스템 시간이 자동으로 설정되지 않습니다.                                                                                                                                                                                                                                                         |
+|//enable_server//|boolean          |no      |0         |이 값을 1로 설정하면이 장치의 시간 서버가 활성화되고 ntpd는 라우터의 시간에 응답합니다. (busybox-ntpd는 기본적으로 UDP 123을 수신 대기합니다) |
+
+==== 기존 정보 ====
+///etc/config/system//에서 //busybox-rdate// (스크립트에 의해 호출됨)는 경쟁 조건을 피하고 현재NTP를 사용하기 위해 //busybox-nptd//(데몬으로 실행될 수 있음)로 변경되었습니다.\\ 
+원격시간은 ///etc/config/system//에 설정되어 있기 때문에 더 이상 ///etc/config/timeserver//에 있지 않습니다. 
+
+  * 경고: 이전 스크립트는 network 설정에 timeserver가 정의되어 있는지 먼저 확인했습니다.
+  * 경고: 사용할 수 없거나 동기화에 실패하면 timeserver에서 명시되어 있는 서버시간을 찾거나 system 설정의 global 설정을 통해 서버 시간을 검색합니다.

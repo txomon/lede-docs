@@ -1,0 +1,93 @@
+====== To do list ======
+
+===== General =====
+  * Remove discussions, since the forum is a better place to discuss stuff? (Cleanup discussions before removing plugin)
+  * Create template_device
+  * Create devicepages with installation instructions
+  * Create howto-pages as required on [[:reasons_to_use_lede#extensibility|Reasons to use LEDE]]
+  * Create "Howto track network usage per IP/MAC"
+    * Usecase: e.g. you are on a 4G network and need to keep an eye on the transfered data volume. Knowing who transfers how much data can help you to quickly find the root cause of your transfer volume problem.
+    * luci-wrtbwmon
+    * possibly with darkstat
+
+===== Plugins =====
+  * Do some more tryout with the todo plugin. If it persists to behave strangely sometimes and proves to be not as useful as expected, then delete it.
+
+===== Statistics =====
+  * create more detailed / different graphics of screen size / window size stats: https://lede-project.org/stats/#screensizes
+    * write script that gathers screen/window size info from webserver logs and creates graphics
+      * rrdtool?
+      * collectd?
+      * dokuwiki plugins (e.g. [[https://www.dokuwiki.org/plugin:gchart|gchart]] or [[https://www.dokuwiki.org/plugin:avbarchart|avbarchart]])?
+    * group by x-value, e.g. 1920x1080, 1920x1200 -> 1920
+      * 1024 |-| %
+      * 1280 |-| %
+      * 1366 |-------| %
+      * 1440 |---| %
+      * 1680 |---| %
+      * 1920 |--------------| %
+      * 2560 |--| %
+    * group by first / first two digits
+      * 400 |---| %
+      * 500 |-| %
+      * 600 |---| %
+      * 700 |--| %
+      * 800 |--| %
+      * 900 |--| %
+      * 1000 |--| %
+      * 1100 |--| %
+      * 1200 |--| %
+      * 1300 |---| %
+      * 1400 |-----| %
+      * 1500 |--| %
+      * 1600 |--| %
+      * 1700 |---| %
+      * 1800 |--| %
+      * 1900 |-----------| %
+      * 2000 |-| %
+      * 2100 |-| %
+      * 2200 |-| %
+      * 2300 |-| %
+      * 2400 |-| %
+      * 2500 |-| %
+      * 2600 |---| %
+      * >2600 |-| %
+
+
+===== Styling / CSS =====
+  * Check padding of sections (seems a bit much sometimes)
+
+===== ToH =====
+==== Datatables ====
+  * Create more admin/maintenance tables
+
+==== Dataentries ====
+  * Add datafield "Launchdate"? Pro/Contra?
+  * Add datafield "Comments Availability" or "Availability comments" or "Where available"?
+  * Change //WikiDevi URL_url// -> //WikiDevi URL_url**s**// (some devices may have more than one wikidevi link); done already in the template, yet to be done for all dataentries.
+  * Change //FCCID_url// -> //FCCID_url**s**// (some devices may have more than one fccid link); done already in the template, yet to be done for all dataentries.
+  * Commonize usage of "-" and "No" (some fields use -, some other fields use No)
+  * [[meta:template_dataentry_background|Dataentry template background]]: Explain more detailed, when to use Device Type = Modem; What is a Wifi Router with Modem? A Wifi Router or a Modem?
+    * Intention was: Everything that has a modem has //Device Type = Modem// (see [[https://forum.openwrt.org/viewtopic.php?pid=291699#p291699]])
+      * A Router with wifi + modem = //Modem//
+    * Alternative solution #1: Mark such devices as //Modem, Wifi-Router// instead of only //Modem// (multi-select i/o dropdown)
+      * A Router with wifi + modem = //Modem, Wifi-Router//
+    * Alternative solution #2: Drop //Modem// completely, since this information can be derived from the column //Modem//. **Question to answer before: Is there any pure modem (w/o wifi and w/o router functionality) in the ToH?**
+      * A Router with wifi + modem = //Wifi-Router//
+    * If someone is searching for modem capabilities -> [[toh:views:toh_modem_supported]]
+  * Fill the //Unsupported// column, depending on SoC/WiFi hardware (e.g. BCM63xx = no DSL support), see also [[inbox:unsupported_features|Unsupported features]]
+  * //Unsupported// column: make it multi entry capable, i.e. //LEDE unsupported**s**//, e.g. "WiFi 5GHz, WiFi 2.4GHz" is currently a single value, whereas it should be two values "WiFi 5GHz" and "WiFi 2.4GHz"
+  * Change firmware download links from https -> http, see https://forum.lede-project.org/t/firmware-download-links-http-or-https
+  * To be discussed: Add sha256 checksums to dataentries for each firmware download?
+    * Would make it easier to download + verify integrity of the downloaded image
+
+
+===== Todo list overview =====
+=== unassigned, uncompleted ===
+~~TODOLIST showdate:yes completed:no assigned:no~~
+
+=== assigned, uncompleted ===
+~~TODOLIST showdate:yes completed:no assigned:yes~~
+
+=== completed ===
+~~TODOLIST showdate:yes completed:yes~~

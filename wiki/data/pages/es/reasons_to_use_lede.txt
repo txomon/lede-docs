@@ -1,0 +1,64 @@
+====== Razones para usar LEDE ======
+
+Las personas instalan LEDE porque lo encuentran superior al firmware de stock de su enrutador o dispositivo embebido. Esta página muestra muchos aspectos de LEDE.
+
+===== Rendimiento y estabilidad =====
+LEDE está diseñado por profesionales de la red y otros que se preocupan por el rendimiento de su red. LEDE incorpora muchos algoritmos de investigación reciente que funcionan mucho mejor que el firmware suministrado por el proveedor.
+    * LEDE es estable y funciona confiablemente durante largos periodos de tiempo.
+    * LEDE reduce la latencia/lag y aumenta el rendimiento de la red a través de algoritmos de control bufferbloat.
+    * Las mejoras Wi-Fi soportan mayores velocidades de transmisión de datos y equidad de tiempo entre estaciones.
+    * Los dispositivos más antiguos siguen siendo compatibles con las mejoras de LEDE (siempre y cuando la RAM/Flash de su dispositivo pueda alojar las nuevas versiones) mucho después de que el fabricante deje de realizar actualizaciones.
+
+===== Seguridad =====
+LEDE es un software de código abierto. Muchos desarrolladores de todo el mundo revisan el código antes de que se publique.
+    * Sin puertas traseras ocultas dejadas por los vendedores de hardware.
+    * LEDE es resistente a vulnerabilidades comunes gracias a su sistema operativo Linux que no se ve afectado por muchos ataques comunes.
+    * LEDE se actualiza activamente para que cualquier vulnerabilidad se cierre poco después de que se descubra.
+    * La configuración predeterminada de LEDE es muy conservadora, lo que permite una completa conectividad a Internet sin exponer el enrutador o los dispositivos conectados a ataques.
+    * Muchos de los dispositivos más antiguos son compatibles con LEDE y pueden disfrutar de la seguridad que LEDE trae, mucho después de que los proveedores dejen de publicar actualizaciones de firmware.
+    * LEDE prolonga la vida del enrutador. Mientras que muchos vendedores sólo proporcionan actualizaciones para su enrutador/dispositivo hasta que un modelo más reciente es lanzado, LEDE soporta todos los [[:es/supported_devices|modelos compatibles]] mientras su RAM/Flash pueda alojar nuevas versiones.
+
+===== Extensibilidad =====
+ 
+Mientras que el firmware del proveedor para un enrutador viene con un conjunto fijo de capacidades, LEDE proporciona más de [[es:packages:start|3000 paquetes]] listos para ser instalados. Algunos de los paquetes más populares le permiten:
+    * Ejecuta [[docs:user-guide:ad-blocking]] en tu enrutador para disfrutar de una experiencia web limpia y despejada de anuncios desde cualquier dispositivo conectado.
+    * Reduce la latencia/lag (bufferbloat) incluso durante el tráfico intenso con [[docs:user-guide:sqm|Smart Queue Management]]
+    * Acceso seguro a tu red doméstica cuando estás lejos a través de [[docs:user-guide:openvpn.server|OpenVPN Server]].
+    * Asegurar tu acceso a Internet y evita que tu ISP te espíe en tu actividad de Internet (requiere servicio de terceros) [[:docs:howto:openvpn.client:OpenVPN Client]].
+    * Impedir que tu ISP espíe tus peticiones DNS a través de [[:docs:howto:dnscrypt-proxy|DNSCrypt Proxy]].
+    * Forzar a los dispositivos conectados con servidores DNS codificados en el hardware para usar el DNS de tu enrutador con [[:docs:howto:DNS-request-hijacking|DNS Request Hijacking]].
+    * Crear una red [[:docs:howto:Guest-WiFi|Wi-Fi de Invitado]] que permite el acceso a Internet, pero no a tus dispositivos locales.
+    * Controlar el acceso utilizando los [[docs:user-guide:parental-controls|límites de tiempo y controles parentales]].
+    * [[:docs:howto:webcam|Añadir una webcam]] para la vigilancia en vivo o la creación de vídeo timelapse de paisajes o impresoras 3D.
+    * [[:docs:howto:weatherstation|Conecta tu estación meteorológica]], registra [[:docs:howto:weather.statistics|estadísticas del tiempo]] y hazlos accesibles a través de [[:docs:howto:webserver|webserver]], adornado con una [[:docs:howto:webcam|imagen de webcam en vivo]].
+    * [[:docs:howto:1wire|Interactuar con dispositivos de 1-vía]] (sensores, actuadores, ...).
+    * Haga de su router una central para [[:docs:howto:home automation|domótica]].
+    * Acceda a una gama más amplia de proveedores de [[docs:user-guide:ddns.client|DNS dinámico (ddns)]] que el firmware del proveedor a través de [[packages:pkgdata:ddns-scripts|DDNS scripts]].
+
+
+===== Apoyo Comunitario =====
+
+La vibrante comunidad de desarrolladores, voluntarios y otros viejos usuarios de LEDE siempre están disponibles para ayudar a resolver un problema.
+
+  * [[https://forum.lede-project.org|foro de LEDE]] - conversaciones entre miembros sobre LEDE
+  * [[http://lists.infradead.org/mailman/listinfo/lede-dev|LEDE Developer]] y [[http://lists.infradead.org/mailman/listinfo/lede-adm|LEDE Admin]] listas de correo
+  * [[https://webchat.freenode.net/|#lede-dev]] y [[https://webchat.freenode.net/|#lede-adm]] en IRC
+  * [[:contact|Contactos]] en el sitio LEDE para obtener más información.
+
+===== Plataforma de Investigación =====
+
+Muchos equipos que están haciendo investigación de vanguardia en temas de redes utilizan LEDE como una plataforma estable para su trabajo. A medida que su trabajo se mueve desde el reino experimental hacia un código práctico de calidad de producción, está disponible en primer lugar en construcciones LEDE. Algunos equipos que utilizan LEDE incluyen:
+  * Desarrollo continuo del [[http://bufferbloat.net|fq_codel y cake algorithms]] que disminuyen bufferbloat.
+  * El equipo [[https://www.bufferbloat.net/projects/make-wifi-fast/wiki/|Make Wi-Fi Fast]] ha estado trabajando para reducir la cola y la latencia en la pila wi-fi, y están probando su -airtime fairness code- -código de equidad de tiempo en aire- usando LEDE.
+  * [[http://homewrt.org|Homenet]] proporciona la implementación del enrutamiento zeroconf IPv6 (e IPv4), asignación de prefijos y descubrimiento de servicios para una red doméstica que consiste en múltiples routers conectados a múltiples proveedores de servicios. Hay un paquete hnet-full para LEDE.
+
+===== Configuración =====
+Debido a que LEDE es un verdadero sistema basado en Linux, tienes control total sobre todas las funciones de tu enrutador/dispositivo.
+  * LEDE proporciona tanto la interfaz de línea de comandos (a través de SSH) como una interfaz de usuario basada en web para la configuración.
+  * La información de configuración se almacena en archivos de texto sin formato para facilitar la edición y/o copia.
+  * LEDE Image Builder te permite crear sus propias imágenes de firmware para tu dispositivo con cualquier personalización (contraseña predefinida, WiFi, etc).
+  * La GUI del Web te permite seleccionar [[docs:user-guide:luci.themes|temas]] que se adapten a tus necesidades/gustos. Además, la [[packages:pkgdata:luci-i18n-base-lang|traducción de la interfaz de usuario web]] está disponible a través de paquetes en más de 20 idiomas.
+  * Configura los LEDs externos y los botones/interruptores para satisfacer tus necesidades.
+
+===== Costo cero =====
+LEDE se ofrece de forma gratuita a través de su licencia GPL, y gracias a los esfuerzos de muchos colaboradores voluntarios (tanto individuos como empresas). No hay cuotas de suscripción o licencia.

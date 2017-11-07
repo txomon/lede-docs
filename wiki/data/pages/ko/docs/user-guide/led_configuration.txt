@@ -1,0 +1,210 @@
+====== Led 설정======
+Led 설정은  **system** uci subsystem에 있습니다. **///etc/config/system//**파일로 저장되어 있습니다.
+
+===== Leds 세션=====
+led 세션에는 기본 LED가 아닌 LED에 적용되는 설정이 포함되어 있습니다. 
+(기본 led는 보통 "power connected"led, "system alive"led, 이더넷 포트 활동을 보여주는 LED 및 무선 랜 상태를 보여주는 leds. 설정은 다른 곳에서 정의됩니다. 개발 가이드 참조) 
+
+이것은 USB 포트가있는 tp-link 라우터의 LED 예입니다. 
+<code>root@lede:/# uci show system
+system.led_usb=led
+system.led_usb.name='USB'
+system.led_usb.sysfs='tp-link:green:usb'
+system.led_usb.trigger='usbdev'
+system.led_usb.interval='50'
+system.led_usb.dev='1-1'
+system.led_wlan=led
+system.led_wlan.name='WLAN'
+system.led_wlan.sysfs='tp-link:green:wlan'
+system.led_wlan.trigger='phy0tpt'
+</code>
+<code>root@lede:/# cat /etc/config/system
+config led 'led_usb'
+        option name 'USB'
+        option sysfs 'tp-link:green:usb'
+        option trigger 'usbdev'
+        option interval '50'
+        option dev '1-1'
+
+config led 'led_wlan'
+        option name 'WLAN'
+        option sysfs 'tp-link:green:wlan'
+        option trigger 'phy0tpt'
+</code>
+
+===== 세션에 LED를 추가하는 방법 =====
+모든 LED는 sys 파일 시스템의 항목으로 표시됩니다. / sys / class / leds 디렉토리에서 사용 가능한 LED를 확인할 수 있습니다. 
+일반적으로 엔트리의 이름은 LED (라우터 모델)를 제공하는 하드웨어의 이름, LED의 색상 및 지정 (대개 케이스의 레이블)으로 구성됩니다. 
+일부 LED는 다른 색상을 표시 할 수 있습니다. 이 경우 색상별로 항목이 하나씩 있습니다. \\ 
+<code>root@lede:/# ls /sys/class/leds/
+tp-link:green:qss     tp-link:green:usb
+tp-link:green:system  tp-link:green:wlan
+</code>\\
+
+
+LED는 트리거 옵션으로 선택되는 시스템의 다양한 이벤트로 제어 할 수 있습니다. 트리거에 따라 추가 옵션을 지정해야합니다. 우선 무엇을 주도 할 수있는 트리거가 있는지 알아야합니다. 간단히 말해 트리거 의 트리거 파일을 살펴 보는 것입니다. 예: 
+<code>root@lede:/# cat /sys/class/leds/tp-link:green:qss/trigger
+[none] switch0 timer default-on netdev usbdev phy0rx phy0tx phy0assoc phy0radio phy0tpt 
+</code>
+
+===== Led 트리거 =====
+다음은 트리거들이 어떤 일을 하는지 설명합니다.
+
+==== None ====
+LED는 항상 기본 상태입니다. 목록에없는 LED는 기본적으로 꺼져 있으므로 항상 켜기로 LED를 선언하는 경우에만 유용합니다. 
+
+^Name       ^Type   ^Required^Default   ^Description                                                 ^
+|//default//|integer|no      |0         |LED state before trigger: //0// means OFF and //1// means ON|
+|//sysfs//  |string |yes     |//(none)//|LED device name                                             |
+|//trigger//|string |yes     |//(none)//|//none//                                                    |
+
+==== Timer ====
+LED는 구성된 on / off 주파수로 깜박입니다. 
+이미 설치되지 않은 경우 다음과 함께 설치하십시오. 
+<code>root@lede:/# opkg install kmod-ledtrig-timer</code>
+
+^Name        ^Type   ^Required^Default   ^Description                                                 ^
+|//default// |integer|no      |0         |LED state before trigger: //0// means OFF and //1// means ON|
+|//delayoff//|integer|yes     |//(none)//|How long (in milliseconds) the LED should be off.           |
+|//delayon// |integer|yes     |//(none)//|How long (in milliseconds) the LED should be on.            |
+|//sysfs//   |string |yes     |//(none)//|LED device name                                             |
+|//trigger// |string |yes     |//(none)//|//timer//                                                   |
+
+==== Default-on ====
+LED가 켜져 있습니다. Deprecated, 대신 default = 1 trigger = none을 사용하십시오.
+ 이미 설치되지 않은 경우 다음과 함께 설치하십시오. 
+<code>root@lede:/# opkg install kmod-ledtrig-default-on </code>
+
+^Name       ^Type   ^Required^Default   ^Description                                                 ^
+|//default//|integer|no      |0         |LED state before trigger: //0// means OFF and //1// means ON|
+|//sysfs//  |string |yes     |//(none)//|LED device name                                             |
+|//trigger//|string |yes     |//(none)//|//default-on//                                              |
+
+==== Heartbeat ====
+LED가 깜박 거리면서 실제 심장 박동이 쿵쾅 거리며 일시 정지 합니다. 빈도는 1 분 평균 CPU 부하에 정비례합니다.
+이미 설치되지 않은 경우 다음과 함께 설치하십시오. 
+<code>root@lede:/# opkg install kmod-ledtrig-heartbeat</code>
+
+^Name       ^Type   ^Required^Default   ^Description                                                 ^
+|//default//|integer|no      |0         |LED state before trigger: //0// means OFF and //1// means ON|
+|//sysfs//  |string |yes     |//(none)//|LED device name                                             |
+|//trigger//|string |yes     |//(none)//|//heartbeat//                                               |
+
+==== Flash Writes ====
+데이터가 플래시 메모리에 기록 될 때 LED가 깜박입니다. 
+
+^Name       ^Type   ^Required^Default   ^Description                                                 ^
+|//default//|integer|no      |0         |LED state before trigger: //0// means OFF and //1// means ON|
+|//sysfs//  |string |yes     |//(none)//|LED device name                                             |
+|//trigger//|string |yes     |//(none)//|//nand-disk//                                               |
+
+==== Network Activity ====
+LED는 링크 상태 및 / 또는 구성된 인터페이스에서의 활동 송수신으로 깜박입니다. 이미 설치되지 않은 경우 다음과 함께 설치하십시오. 
+<code>root@lede:/# opkg install kmod-ledtrig-netdev</code>
+
+^Name       ^Type   ^Required^Default   ^Description                                                    ^
+|//default//|integer|no      |0         |LED state before trigger: //0// means OFF and //1// means ON   |
+|//dev//    |string |yes     |//(none)//|Name of the network interface which status should be reflected |
+|//mode//   |string |yes     |//(none)//|One or more of //link//, //tx//, or //rx//, seperated by spaces|
+|//sysfs//  |string |yes     |//(none)//|LED device name                                                |
+|//trigger//|string |yes     |//(none)//|//netdev//                                                     |
+
+==== WiFi Activity triggers ====
+LED는 소프트웨어 네트워크 인터페이스가 아닌 실제 인터페이스에서 트리거 된 이벤트에서 깜박입니다. phy 트리거 이외에 더 많은 이벤트가있을뿐 아니라 2.4GHz 라디오 (보통 phy0 ) 및 5GHz 라디오 (보통 phy1)를 별도로 모니터링하려는 경우 정적 LED 설정이 가능합니다. netdev 는 wlan0 이 현재 네트워크 설정을 기반으로 2.4GHz 또는 5GHz 라디오를 나타낼 수 있으므로이 구분을 보장 할 수 없습니다. 
+
+^Name       ^Type   ^Required^Default   ^Description                                                        ^
+|//default//|integer|no      |0         |LED state before trigger: //0// means OFF and //1// means ON       |
+|//sysfs//  |string |yes     |//(none)//|LED device name                                                    |
+|//trigger//|string |yes     |//(none)//|//phy0rx//, //phy0tx//, //phy0assoc//, //phy0radio// or //phy0tpt//|
+
+  * **phy0rx** - flashes on reception.
+  * **phy0tx** - flashes on transmission.
+  * **phy0assoc** - flashes on client association.
+  * **phy0radio** - (unknown, this option did nothing on my tl-wr1043nd)
+  * **phy0tpt** - flashes slowly and steadily on network activity.in comparison to energetic flashes of tx and rx modes
+
+==== USB Device ====
+USB 장치가 연결되면 LED가 켜집니다. 이미 설치되지 않은 경우 다음과 함께 설치하십시오.
+<code>root@lede:/# opkg install kmod-ledtrig-usbdev </code>
+
+^Name        ^Type   ^Required^Default   ^Description                                                 ^
+|//default// |integer|no      |0         |LED state before trigger: //0// means OFF and //1// means ON|
+|//dev//     |string |yes     |//(none)//|Name of USB device to monitor (in this example //1-1//).    |
+|//interval//|integer|yes     |//(none)//|Interval in ms when device is active.                       |
+|//sysfs//   |string |yes     |//(none)//|LED device name                                             |
+|//trigger// |string |yes     |//(none)//|//usbdev//                                                  |
+
+장치 이름을 찾으려면 logread 를 사용하여 장치를 검색하거나 / sys / bus / usb / devices (이 예제의 경우 / sys / bus / usb / devices / 1-1 장치가 있음)를 검색하십시오. 
+==== Morse Code ====
+LED는 모스 부호를 사용하여 메시지를 표시합니다.
+이미 설치되지 않은 경우 다음과 함께 설치하십시오. 
+<code>root@lede:/# opkg install kmod-ledtrig-morse</code>
+
+^Name       ^Type   ^Required^Default   ^Description                                                 ^
+|//default//|integer|no      |0         |LED state before trigger: //0// means OFF and //1// means ON|
+|//delay//  |integer|no      |150       |Dit length in milliseconds                                  |
+|//dev//    |string |yes     |//(none)//|Name of USB device to monitor (in this example //1-1//).    |
+|//message//|string |no      |//(none)//|The message to signal                                       |
+|//sysfs//  |string |yes     |//(none)//|LED device name                                             |
+|//trigger//|string |yes     |//(none)//|//morse//                                                   |
+
+==== GPIO ====
+gpio 이벤트로 LED를 제어 할 수 있습니다. 이미 설치되지 않은 경우 다음과 함께 설치하십시오. 
+<code>root@lede:/# opkg install kmod-ledtrig-gpio</code>
+
+^Name       ^Type   ^Required^Default^Description                                                 ^
+|//default//|integer|no      |0      |LED state before trigger: //0// means OFF and //1// means ON|
+
+==== Net filter ====
+특정 패킷이 기기를 통과 할 때 LED가 깜박입니다. 이미 설치되지 않은 경우 다음과 함께 설치하십시오. 
+<code>root@lede:/# opkg install kmod-ledtrig-netfilter</code>
+
+예를 들어 들어오는 SSH 트래픽에 대한 LED 트리거를 생성하려면 다음과 같이하십시오. 
+<code>root@lede:/# iptables -A INPUT -p tcp --dport 22 -j LED --led-trigger-id ssh --led-delay 1000</code>
+그런 다음 새 트리거를 시스템의 LED에 연결하십시오. 
+<code>root@lede:/# echo netfilter-ssh > /sys/class/leds/<ledname>/trigger </code>
+
+^Name       ^Type   ^Required^Default^Description                                                 ^
+|//default//|integer|no      |0      |LED state before trigger: //0// means OFF and //1// means ON|
+
+===== 예제 =====
+sysfs 옵션을 라우터에 실제로있는 LED로 변경하십시오. 
+이것은 LuCI를 통해 쉽게 수행 할 수 있습니다. 다음은 / etc / config / system 파일의 예제입니다. 
+
+==== Heartbeat led ====
+<code>
+config 'led'
+	option 'sysfs'		'wrt160nl:amber:wps'
+	option 'trigger'	'heartbeat'
+</code>
+
+==== WLAN led ====
+<code>
+config 'led' 'wlan_led'
+	option 'name'           'WLAN'
+	option 'sysfs'          'tl-wr1043nd:green:wlan'
+	option 'trigger'        'netdev'
+	option 'dev'            'wlan0'
+	option 'mode'           'link tx rx'
+</code>
+
+==== 3G led ====
+USB dongle이 3G / EDGE / GPRS 네트워크에 제대로 등록되면이 LED가 켜집니다. 
+<code>
+config 'led'
+	option 'name'           '3G'
+	option 'sysfs'          'asus:blue:3g'
+	option 'trigger'        'netdev'
+	option 'dev'            '3g-wan'
+	option 'mode'           'link'
+</code>
+
+==== Timer led - 500ms ON, 2000ms OFF ====
+<code>
+config 'led'
+	option 'sysfs'		'wrt160nl:blue:wps'
+	option 'trigger'	'timer'
+	option 'delayon'	'500'
+	option 'delayoff'	'2000'
+</code>
+

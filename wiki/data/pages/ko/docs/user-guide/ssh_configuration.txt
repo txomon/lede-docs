@@ -1,0 +1,73 @@
+====== SSH 설정 ======
+
+SSH 설정은  uci의 **dropbear** 서브시스템에 의해 처리됩니다. 설정파일은 **///etc/config/dropbear//**에 있습니다..\\
+**dropbear**란 LEDE에서 SSH서비스를 책임지고 있는 기본 데몬입니다.\\
+dropbear SSH 서버 인스턴스는 각각 단일 세션 설정파일을 사용하며 여러 개의 인스턴스를 가질 수 있습니다.
+
+====기본 설정====
+<code>root@lede:~# uci show dropbear
+dropbear.@dropbear[0]=dropbear
+dropbear.@dropbear[0].RootPasswordAuth='on'
+dropbear.@dropbear[0].PasswordAuth='on'
+dropbear.@dropbear[0].Port='22'
+</code>
+<code>root@lede:~# cat /etc/config/dropbear
+config dropbear
+        option RootPasswordAuth 'on'
+	option PasswordAuth 'on'
+	option Port '22'
+	option Interface 'lan'
+</code>
+dropbear의 단일 인스턴스입니다.
+==== 사용 가능한 설정 ====
+^이름                ^Type   ^Required ^기본값   ^설명                                                                 ^
+|//enable//          |boolean|no      |1         |시스템 부팅시 dropbear의 자동 시작을 비활성화 하려면 //0// 으로 설정하세요.      |
+|//verbose//         |boolean|no      |0         |시작 스크립트로 자세한 출력을 사용하려면 //1// 로 설정하십시오.                 |
+|//BannerFile//      |string |no      |// 없음 //|사용자가 성공적으로 인증되기 전에 인쇄 할 파일의 이름입니다.                      |
+|//PasswordAuth//    |boolean|no      |1         |암호 인증을 사용하지 않으려면 //0// 으로 설정하세요.                            |
+|//Port//            |integer|no      |22        |수신 할 포트 번호                                                            |
+|//RootPasswordAuth//|boolean|no      |1         |비밀번호로 root 인증을 비활성화 하려면 //0// 으로 설정하세요.                   |
+|//RootLogin//       |boolean|no      |1         |root로 SSH 로그인을 비활성화 하려면 //0// 으로 설정하세요.                      |
+|//GatewayPorts//    |boolean|no      |0         |포워드된 포트에 원격 호스트들이 연결할 수 있게 하려면 //1// 으로 설정하세요.      |
+|//Interface//       |string |no      |// 없음 //|지정된 인터페이스로만 수신하도록 dropbear에게 지시한다.e.g. //lan//              |
+|//rsakeyfile//      |file   |no      |// 없음 //|RSA 파일 경로                                                                |
+|//dsskeyfile//      |file   |no      |// 없음 //|DSS/DSA 파일 경로                                                            |
+|//SSHKeepAlive//    |integer|no      |300       |Keep Alive                                                                  |
+|//IdleTimeout//     |integer|no      |0         |Idle Timeout                                                                |
+|//mdns//            |integer|no      |1         |[[docs:guide-developer:mdns|mDNS]]를 통해 서비스를 알릴지 여부                |
+
+==== 여러 개의 dropbear 인스턴스 ====
+
+두번째 dropbear 인스턴스를 추가하려면 dropbear 설정에 다른 세션을 추가 해야 합니다. 다음과 같이 해야 합니다.
+<code>root@lede:~# uci show dropbear
+dropbear.@dropbear[0]=dropbear
+dropbear.@dropbear[0].RootPasswordAuth='on'
+dropbear.@dropbear[0].PasswordAuth='on'
+dropbear.@dropbear[0].Port='22'
+dropbear.@dropbear[0].Interface='lan'
+dropbear.@dropbear[1]=dropbear
+dropbear.@dropbear[1].RootPasswordAuth='on'
+dropbear.@dropbear[1].PasswordAuth='on'
+dropbear.@dropbear[1].Port='2022'
+dropbear.@dropbear[1].Interface='wan'
+</code>
+<code>root@lede:~# cat /etc/config/dropbear
+config dropbear
+        option RootPasswordAuth 'on'
+	option PasswordAuth 'on'
+	option Port '22'
+	option Interface 'lan'
+
+config dropbear
+        option RootPasswordAuth 'on'
+	option PasswordAuth 'on'
+	option Interface 'wan'
+	option Port '2022'
+</code>
+
+위 예제는 두개의 dropbear 인스턴스를 보여줍니다:
+  * 첫번째 인스턴스는 lan 인터페이스를 이용하여 22번 포트로 수신 할 것입니다.(기본 내부 네트워크)
+  * 두번째 인스턴스는 wan 인터페이스를 이용하여 2022로 수신 할 것입니다.(기본 외부 네트워크)
+
+또한 wan의 포트(2022)를 사용하는 경우 접근 할 수 있도록 방화벽 DNAT(포트 포워드)를 확인하세요.
+

@@ -1,0 +1,45 @@
+====== Set up a TFTP Server ======
+
+LEDE firmware has a built-in "TFTP recovery mode" or "de-bricking mode" that may regain control of your device in the event of a bad flash or misconfiguration. You power up the router, and press a button to force the device to request a new image via TFTP. The Device Page for your model gives more details. The outline of the process is:
+
+  - Download the desired LEDE (or stock) firmware image to the designated TFTP directory on your computer
+  - Set the IP address of your computer's Ethernet interface as described in the Device Page for your model.
+  - Start the TFTP server on your computer.
+  - Power up the router and press the specified button.
+
+This page gives instructions for setting up a TFTP server on your computer that can supply the image for recovery. 
+
+===== TFTP Server on Mac OSX =====
+
+OSX provides a native tftpd server that runs the command line. However, TFTPServer.app from http://ww2.unime.it/flr/tftpserver/ provides a pleasant GUI wrapper around the native command that makes the process less error prone. This procedure was tested with TftpServer.app v 3.4.1 on OSX 10.10.5 in December 2016. 
+
+  - Download and install TftpServer.app from the URL above.
+  - Move the application to a convenient directory.
+  - In the same directory, create another folder named 'tftpfiles'. This is the 'designated TFTP directory'. //TftpServer.app and tftpfiles will be in the same directory.//
+  - Set the OSX IP address as specified in the Device Page's TFTP Recovery section.
+  - Launch TftpServer.app. The window is shown here. //You should confirm that you see the desired file named in the window.// \\ :{{:media:tftpserver-osx.png?200|}} 
+  - Click "Start TFTP" (upper left). //You should see the "Server Status:" change to "Running".//
+  - Start your router and press the button. //The file will transfer.//
+  - //Note:// TftpServer.app may give warnings about file permissions. Use the "Fix" buttons at the bottom of the window to set the permissions properly.
+  - Click "Stop TFTP" or quit the application to stop the TFTP server. 
+
+===== TFTP Server on Windows =====
+
+While there is a command line TFTP server/client feature in windows, it's easier to use a third party one that has a proper graphical interface.
+
+A simple and free TFTP application is **Tftpd32**, available [[http://tftpd32.jounin.net/tftpd32.html|here]] (Tftpd64 is the 64-bit version and will be used in this example).
+
+Download the portable version, and unzip it in a folder. You should see the manual, a license in a PDF file, a configuration file, and the application executable itself.
+
+Place the file you want to send (the firmware file usually) in the same folder where you find the **Tftpd64** program file. The folder exposed through TFTP can be changed by clicking on Browse button, but in most situations you don't need to do that.
+
+Configure your ethernet port according to your device's own recovery method as detailed in [[docs:user-guide:vendor_specific_rescue|Rescue from failed firmware upgrade]], note that in most cases you can't use that port to connect to the internet until you reconfigure it back like it was before.
+
+Double-click on the **Tftpd64** program file and you should get a Windows Firewall popup asking you to grant access. Check both options, to allow **Tftpd64** to communicate over both home/work and public networks. This is very important, if the Windows Firewall blocks your TFTP server you won't be able to access it from the device you want to recover.
+
+Click on the drop-down menu called **Server Interfaces** and select your PC's ethernet port.
+
+Now the tftp server is online and ready, and the file(s) in it can be accessed as normal.
+===== TFTP Server on Linux =====
+
+//This section needs to be written by someone who has used the procedure.//

@@ -1,0 +1,22 @@
+====== 지원 기기 ======
+~~NOTOC~~
+
+
+===== LEDE 지원을 위한 일반적인 요구사항 =====
+<WRAP 1000px>
+<columns 100% 45% ->
+  - LEDE를 지원하는 SoC / [[docs:targets:|장치]]
+  - LEDE 펌웨어 이미지를 위한 충분한 설치 공간
+    * 최소 4MB  (GUI (LuCI)를 설치하지 못함)
+    * 권장 8MB (GUI와 다른 어플리케이션 설치 가능)
+  - 안정적인 계산을 위한 충분한 RAM
+    * 최소 32MB, 권장 64MB
+
+
+
+===== 질문에 대한 표 =====
+
+  * [[toh:start|라우터가 있는데 LEDE를 지원하는지 궁금해요]]
+  * [[toh:views:toh_available_864|LEDE를 지원하는 라우터를 사고싶어요]]
+  * [[toh:views:toh_fwdownload|보유하고 있는 라우터에 어떻게 LEDE를 다운받을 수 있나요?]]
+

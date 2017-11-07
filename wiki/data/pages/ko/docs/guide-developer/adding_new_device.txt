@@ -1,0 +1,118 @@
+====== 새 장치 추가 ======
+
+가장 좋은 방법은 새 장치 추가에 대한 최근의 커밋을 보고 변경된 파일과 변경된 사항을 확인하는 것입니다. 대부분의 파일은 가능한 한 자체 설명이 가능하도록 노력하지만 대부분 열면 파일을 열면 대부분의 기능을 이해할 수 있습니다.
+
+가장 중요한 파일이있는 곳의 일반적인 형태입니다:
+
+==== /target/linux/<arch_name>/base-files/etc/… ====
+
+이 폴더에는 펌웨어의 /etc 폴더에 통합 될 파일 및 폴더가 들어 있습니다.
+
+하위 폴더 및 파일은 다음과 같습니다:
+
+  * **…board.d/** led 및 네트워크 인터페이스와 같은 장치 별 기본 하드웨어를 정의하는 스크립트
+  * **…hotplug.d/** 장치 핫 플러깅시 자동으로 수행 할 장치 별 작업을 정의하는 스크립트
+  * **…init.d/** 부팅시 자동으로 수행 할 device 별 작업을 정의하는 스크립트
+  * **…uci-defaults/** 장치 별 uci 설정 기본값을 정의하는 파일
+  * **…diag.sh** 각 보드의 오류 코드에 무엇이 사용되는지 정의
+
+==== /target/linux/<arch_name>/base-files/lib/… ====
+
+이 폴더에는 펌웨어의 /lib 폴더에 통합 될 파일과 폴더가 들어 있습니다.
+
+하위 폴더 및 파일은 다음과 같습니다:
+
+  * **…<arch_name>.sh** script-safe 보드명과 사람이 읽을 수 있는 풀 보드명
+  * **…preinit/** common <arch_name> 선작업 시작 스크립트들
+  * **…upgrade/** common <arch_name> 업그레이드 스크립트들
+
+==== /target/linux/<arch_name>/base-files/sbin ====
+
+이 폴더는 펌웨어의 /sbin 폴더에 통합되는 파일 및 폴더를 포함하며, 일반적으로 공통된 <arch_name> sbin 스크립트 및 도구입니다.
+
+==== /target/linux/<arch_name>/dts/ ====
+
+디바이스 트리 소스 파일, 또는 작은 dts(dts for short).
+
+==== /target/linux/<arch_name>/image/ ====
+
+장치 별 플래시 가능 이미지를 작성하는 데 필요한 설정.
+==== /target/linux/<arch_name>/<board_name>/ ====
+
+보드별 설정.
+
+==== /target/linux/<arch_name>/modules.mk ====
+
+menuconfig를 위한 Arch 전용 커널 모듈 config 파일
+===== 패치 =====
+모든 패치의 이름은 'NNN-lowercase_shortname.patch'이어야하며 다음과 같은 범주로 분류되어야합니다:
+
+**0xx** - upstream backports\\
+**1xx** - upstream 병합을 기다리는 코드\\
+**2xx** - 커널 build / config / header 패치\\
+**3xx** - 아키텍쳐 관련 패치\\
+**4xx** - mtd 관련 패치 (서브 시스템 및 드라이버)\\
+**5xx** - 파일 시스템 관련 패치\\
+**6xx** - 일반 네트워크 패치\\
+**7xx** - network / phy 드라이버 패치\\
+**8xx** - 다른 드라이버\\
+**9xx** - 분류되지 않은 다른 패치\\
+
+<WRAP center round tip 80%>
+모든 패치는 upstream가능한 방식으로 작성 되어야 합니다. 즉 다음을 의미합니다:
+
+- 적절한 제목을 포함해야 합니다\\
+- 변경 내용을 설명하는 적절한 커밋 메시지를 포함해야 합니다\\
+- 유효한 Signed-off-by line을 포함해야 합니다\\
+</WRAP>
+
+===== 이미지 테스트 =====
+램 디스크 이미지를 사용하여 펌웨어 이미지를 플래시에 쓰지 않고 테스트하십시오.\\
+
+**make menuconfig** 에서 **Target Images** 를 선택한 다음 **ramdisk** 옵션을 선택할 수 있습니다. \\
+
+이렇게하면 kernel + initramfs라는 이미지가 생성되며, **initramfs** 라는 이름을 갖게됩니다. 이렇게 만들어진 이미지는 부트 로더의 tftp 기능을 통해 장치에로드 될 수 있으며 플래시/파일 시스템 지원에 의존하지 않고 프롬프트로 부팅해야합니다.
+===== Tips and tricks =====
+==== 해당 장치에서 shell 얻기 ====
+새로 추가할려는 장치에 LEDE 포팅에 대한 관련 데이터를 수집하려면 shell 액세스가 필요합니다. 대부분의 장치는 telnet이나 ssh로 쉘을 얻는 방법을 제공하지 않지만.
+
+[[https://wiki.openwrt.org/toh/netgear/telnet.console|netgear-telnetenable]]을 사용하면 텔넷 액세스를 위해 많은 Netgear 장치에 접근이 가능합니다. [[https://github.com/insanid/NetgearTelnetEnable|GitHub: insanid/NetgearTelnetEnable]]도 참조하십시오.
+이러한 방법을 사용할 수 없으면 공급 업체가 게시 한 소스에서 telnetd를 활성화 하여 이미지 빌드하고 플래시하여 시도 할 수 있습니다.
+
+[[https://github.com/jclehner/nmrpflash|nmrpflash]]를 사용하면 많은 넷기어 장치를 플래쉬 할 수 있습니다. 이 도구와 호환되는 장치는 잘 브릭 되지 않습니다.(Devices that are compatible with this tool become effectively unbrickable.)
+==== 관련 데이터 수집 ====
+On [[https://wikidevi.com/wiki/Main_Page|WikiDevi]] lots of information can be found, e.g. the FCC ID is very useful when searching for documentation, datasheets and internal photo's (to be able to distinguish used chips without having to open the casing).
+
+[[https://wikidevi.com/wiki/Main_Page|WikiDevi]]에서 많은 정보를 찾을 수 있습니다. FCC ID는 문서, 데이터 시트 및 내부 사진 (케이스를 열지 않고도 사용 된 칩을 구별 할 수 있음)을 검색 할 때 매우 유용합니다.
+
+일반적으로 다음 명령을 사용할 수 있습니다:
+  dmesg                          # 로그 버퍼가 작을 수 있습니다 (주 1 참조).
+  cat /proc/cmdline
+  cat /proc/cpuinfo
+  cat /proc/meminfo
+  cat /proc/devices
+  ls /sys/devices/platform
+  cat /proc/mtd
+  cat /sys/class/mtd/mtd*/offset # Linux 4.1 이상버전 (주 2 참조).
+  ifconfig -a
+  ls /sys/class/net
+  brctl show
+  
+주 1: 대체로 로그 버퍼가 작고 'dmesg'로 검색된 정보에서 가장 오래된 메시지가 누락 될 수 있습니다.
+공급 업체가 제공하는 소스에서 이미지(stock image)를 빌드하면 커널 config 내에서보다 큰 버퍼 크기를 설정할 수 있습니다.
+
+주 2: http://lxr.free-electrons.com/source/Documentation/ABI/testing/sysfs-class-mtd
+
+LED 설정 정보를 얻기위한 또 다른 유용한 도구는 MT7620 GPIOMODE 레지스터 덤퍼(RAMIPS)[[https://github.com/jclehner/gpiodump-mt7620|gpiodump]] 일 수 있습니다.
+
+==== 장치에서 수집 된 데이터 가져 오기 ====
+Sometimes no normal means such as scp or ftp are available for retrieving files from a device. Still one could use httpd and busybox its mount command to do so. How?
+scp 또는 ftp와 같은 정상적인 수단을 사용하여 장치에서 파일을 검색 할 수없는 경우가 있습니다. httpd와 busybox를 사용하여 마운트 명령을 수행 할 수 있습니다. 방법?
+
+IP 주소가 ''192.168.0.123'' 인 장치의 관련 데이터가있는 파일이 ''/tmp'' 에 저장되고 웹 인터페이스의 페이지가 ''/www'' 에서 제공된다고 가정합니다.
+해당 장치에서 할 목록:
+  cp important-data.txt /tmp
+  mount -o bind /tmp /www
+그 후 호스트에서 해당 장치로 접속하여 데이터를 가져옵니다:
+  wget http://192.168.0.123/important-data.txt
+  

@@ -1,0 +1,28 @@
+====== LEDE Release Candidate Test Plan ======
+
+The LEDE development team is proud to present a release candidate for LEDE 17.01.0. Here is an overview of how to test the release candidates for LEDE firmware:
+
+  - Download the release candidate from http://downloads.lede-project.org/releases/17.01.0-rc1/ 
+  - Install the firmware using the [[docs:guide-quick-start:start|Quick Start Guide]]
+  - //what else?//
+
+===== Test Steps =====
+
+The development team has asked for special attention to these tests: 
+  * Ensure that there are no problems downloading and installing the firmware (especially the documentation)
+  * //what else?//
+
+
+===== Reporting Problems =====
+
+We use the [[https://bugs.lede-project.org/|Flyspray Bug Tracking system.]] If you experience any problems or confusions (even in the documentation) please write up your experience there - https://bugs.lede-project.org/
+
+When you make a report, please include the following information:
+
+  * A description of the symptoms you observed
+  * Your router vendor, type, version number
+  * The version of LEDE you installed (the full file name of the image is fine.)
+  * Boot logs/other logs
+
+
+Thanks for testing LEDE!

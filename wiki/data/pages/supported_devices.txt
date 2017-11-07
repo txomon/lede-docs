@@ -1,0 +1,25 @@
+====== Supported Devices ======
+~~NOTOC~~
+
+
+===== General requirements for LEDE support =====
+<WRAP 1000px>
+<columns 100% 45% ->
+  - SoC / [[docs:targets:|target]] supported by LEDE
+  - Sufficient Flash to accommodate LEDE firmware image
+    * 4MB min (won't be able to install GUI (LuCI))
+    * 8MB better (will fit GUI and some other applications)
+  - Sufficient RAM for stable operation
+    * 32MB min, 64MB better
+
+<newcolumn>
+{{section>meta/infobox/432_warning#infobox_for_tohs&noheader&nofooter&noeditbutton}}
+</columns>
+</WRAP>
+
+===== Tables answering your questions=====
+
+  * [[toh:start|I have a router and want to know if it is supported]] by LEDE
+  * [[toh:views:toh_available_864|I want to buy a router which is supported]] by LEDE
+  * [[toh:views:toh_fwdownload|Where can I download LEDE firmware for my router?]]
+

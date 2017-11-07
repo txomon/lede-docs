@@ -1,0 +1,89 @@
+======Guest Network for Guest WiFi ======
+This page provides a script that creates an additional separated guest network and a new guest firewall zone for your LEDE device. That is, to create a guest WiFi network, that only has Internet access but cannot access your existing LAN.
+
+The script does not need any manual customization for your device (!), as it only has one hard-coded reference to the obvious "fwd.dest=wan" zone (which will already exist on your LEDE router by default)
+
+The script does not perform the last (simple) step, to create the actual Wifi radio config (as this is a simply step and also requires some custom parameters that are better suited for manual setup in the web GUI than for a script. That final manual step is also part of this description.
+
+=====Steps by step=====
+  - Take your time, to read this whole page, before starting any configuration. Get at least a rough idea, of what below's code is configuring.
+  - Copy the whole following code block (from "//NETWORKID=guest//... including up to the final //...EOF//) **without the need for any changes or customization** into a SSH command prompt of your LEDE device and press enter. (Alternatively if you prefer: create and run it as shell script on your LEDE device).
+  - When done, open the Web GUI of your LEDE router and go to the Wireless section -> [[http://lede/cgi-bin/luci/admin/network/wireless]] and manually create an **additional** WiFi network on one of your device WiFi radios:
+    - on the "General Setup" setup tab, enter a reasonable **ESSID** for your guest WiFi
+    - then (Special attention please) **checkmark the new "guest" network** directly below it and **do not** checkmark your "LAN" network. "guest" is the new network that below's script has created and the checkmark will link your guest WiFi to the new guest network zone.
+    - on the Wireless Security tab preferably go for **encryption** WPA2-PSK
+    - preferably use **cipher** "CCMP AES" and 
+    - finally enter some good secret for your guest network in the **Key** field
+    - and you are good to go to "Save & Apply". (It could take 1-2 minutes for your WiFi to restart on slow devices)
+
+Note: Create the WiFi network as additional config on either your 2,4 or 5 GHz radio. You can even create 2 additional guest wifi's to cover both frequencies. The new guest networks will share the channel/frequency with your probably already existing LAN WiFi's.
+
+The code has been created/successfully tested with LEDE 17.01.xx
+<code>
+NETWORKID=guest;FIREWALLZONE=guestzone;\
+uci batch <<EOF
+  set network.${NETWORKID}=interface
+  set network.${NETWORKID}.ifname=${NETWORKID}
+  set network.${NETWORKID}.proto=static
+  set network.${NETWORKID}.ipaddr=192.168.3.1
+  set network.${NETWORKID}.netmask=255.255.255.0
+  set network.${NETWORKID}.ip6assign='60'
+  set dhcp.${NETWORKID}=dhcp
+  set dhcp.${NETWORKID}.interface=${NETWORKID}
+  set dhcp.${NETWORKID}.start=100
+  set dhcp.${NETWORKID}.leasetime=12h
+  set dhcp.${NETWORKID}.limit=150
+  set dhcp.${NETWORKID}.dhcpv6=server
+  set dhcp.${NETWORKID}.ra=server
+  set firewall.${FIREWALLZONE}=zone
+  set firewall.${FIREWALLZONE}.name=${FIREWALLZONE}
+  set firewall.${FIREWALLZONE}.network=${NETWORKID}
+  set firewall.${FIREWALLZONE}.forward=REJECT
+  set firewall.${FIREWALLZONE}.output=ACCEPT
+  set firewall.${FIREWALLZONE}.input=REJECT 
+  set firewall.${FIREWALLZONE}_fwd=forwarding
+  set firewall.${FIREWALLZONE}_fwd.src=${FIREWALLZONE}
+  set firewall.${FIREWALLZONE}_fwd.dest=wan
+  set firewall.${FIREWALLZONE}_dhcp=rule
+  set firewall.${FIREWALLZONE}_dhcp.name=${FIREWALLZONE}_DHCP
+  set firewall.${FIREWALLZONE}_dhcp.src=${FIREWALLZONE}
+  set firewall.${FIREWALLZONE}_dhcp.target=ACCEPT
+  set firewall.${FIREWALLZONE}_dhcp.proto=udp
+  set firewall.${FIREWALLZONE}_dhcp.dest_port=67-68
+  set firewall.${FIREWALLZONE}_dns=rule
+  set firewall.${FIREWALLZONE}_dns.name=${FIREWALLZONE}_DNS
+  set firewall.${FIREWALLZONE}_dns.src=${FIREWALLZONE}
+  set firewall.${FIREWALLZONE}_dns.target=ACCEPT
+  set firewall.${FIREWALLZONE}_dns.proto='tcp udp'
+  set firewall.${FIREWALLZONE}_dns.dest_port=53
+EOF
+</code>
+
+=====Explanation of this config code=====
+  * a guest network called "guest" is created 
+  * a dhcp configuration is created for the "guest" network (assuming that 192.168.3.1/24 is not conflicting with something else on your home network)
+  * a firewall zone called "guestzone" is created for the "guest" network
+  * a firewall zone forwarder from the "guestzone" to the "wan" zone is created (not the other direction)
+  * a firewall rule allowing your guests to access your LEDE's DHCP service is created
+  * a firewall rule allowing your guests to access your LEDE's DNS service is created
+
+(all of the customizations will be visible in the web GUI afterwards)
+
+=====Customization=====
+
+There are endless of personal customization options.
+  * Be aware that there are no special Internet firewall restrictions active for your guests in this default config.  If you want to restrict your weird guests to http(s) protocol or block UDP or do  whatever fancy restriction, you have to add some additional customized firewall rules yourself.
+  * Also you may have to find individual rules/network setups for your personal situations, e.g. if your guests would like access to your printer or need to stream stuff from their smartphones to your Smart-TV. Unfortunately there is not a single one-fits-all solution for that.
+  * You could go even further and split of a LAN-jack using a custom VLAN configuration and link that split-of LAN jack to that guest net as well, if your guests prefer a wired connection.
+
+=====Manual Rollback=====
+If you ever want to get rid of the customization created by this script, simply open your LEDE web admin GUI 
+  * Delete the "guest" interface in the Interface tab 
+  * Delete the "guestzone" firewall object in the firewall tab
+  * (All firewall rules will be deleted automatically, once the firewall zone has been deleted. The DHCP config will be autodeleted, once the guest interface is gone)
+  * Then click "Save & Apply".
+
+=====On demand usage=====
+You may not have guests hanging out in your house all week long.\\
+You do not have to delete the whole config, when your guests are leaving.
+You can just enter the LEDE web GUI and simply **enable** or **disable** the guest WiFi at will.

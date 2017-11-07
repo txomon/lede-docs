@@ -1,0 +1,47 @@
+====== LEDE 17.01.0-rc2 - Second Stable Release Candidate - February 2017 ======
+
+<code>
+     _________
+    /        /\      _    ___ ___  ___
+   /  LE    /  \    | |  | __|   \| __|
+  /    DE  /    \   | |__| _|| |) | _|
+ /________/  LE  \  |____|___|___/|___|                      lede-project.org
+ \        \   DE /
+  \    LE  \    /  -----------------------------------------------------------
+   \  DE    \  /    Reboot (17.01.0-rc2, r3131-42f3c1f)
+    \________\/    -----------------------------------------------------------
+</code>
+
+The LEDE Project (“Linux Embedded Development Environment”) is a Linux operating system emerged from the [[https://openwrt.org|OpenWrt]] project. It is a complete replacement for the vendor-supplied firmware of a wide range of wireless routers and non-network devices. See the [[https://lede-project.org/toh/start|Table of Hardware]] for supported devices. For more information about LEDE Project organization, see the [[https://lede-project.org/about|About LEDE pages.]]
+
+Get LEDE Firmware at: http://downloads.lede-project.org/releases/
+
+===== Highlights In LEDE 17.01.0-rc2 ===== 
+
+The LEDE Community is proud to announce the second release candidate of
+the upcoming LEDE 17.01 stable version series.
+
+Main scope of this RC version is backporting important fixes and
+addressing critical bugs to further refine the code base for the final
+v17.01.0 version.
+
+---
+
+Some selected highlights since the [[releases:17.01:notes-17.01.0-rc1|17.01.0-rc1]] release candidate are:
+
+  * Properly handle Curl download errors during compilation
+  * Update to musl libc version 1.1.16
+  * Update kernel to version 4.4.47
+  * Improve Mikrotik device support on ar71xx
+  * Support configuring static route protocols
+  * Prevent swconfig related kernel panics on ar83x7 switches
+  * Update tcpdump to address several security vulnerabilities
+
+For a detailed list of changes refer to [[releases:17.01:changelog-17.01.0-rc2|changelog-17.01.0-rc2]]
+
+A big thank you goes to all our active package maintainers, testers,
+documenters and supporters.
+
+Have fun!
+
+The LEDE Community

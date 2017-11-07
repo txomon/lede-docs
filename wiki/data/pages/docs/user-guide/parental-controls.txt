@@ -1,0 +1,112 @@
+====== Parental controls ======
+Parental control of internet access can be done in several ways:
+
+  * Timely restriction of internet access per IP/MAC
+  * Restrict / deny / block access to certain webpages
+
+===== Timely restriction of internet access =====
+
+**Example:** Block internet access for a certain MAC adress / IP adress on weekdays during 21:30-07:00
+
+==== via LuCI ====
+<WRAP group>
+<WRAP half column>
+  - //Network -> Firewall -> Traffic Rules -> New forward rule//
+  - Add name for your rule, e.g. "Kids weeksdays", "Kids weekend"
+  - Source zone: lan
+  - Destination zone: wan
+  - Click //Add and edit//
+  - Select //Source MAC address// or //Source address//
+  - Set //Action// to be //Reject//
+  - Extra arguments: Enter ''%%--kerneltz%%'' to be able to set the time limits in local time instead of UTC.\\ **Note:** This is only needed for firewall versions before 2017-05-09. With firewall 2017-05-09 and later, kerneltz is automatically added unless you specify UTC.
+  - Select weekdays
+  - Select start/stop time
+  - Save&apply
+</WRAP>
+
+<WRAP half column>
+{{ :media:docs:howto:firewall_-_parental_control_settings_via_luci.png?direct&0x400 |Timely restriction of internet access via LuCI}}
+</WRAP>
+</WRAP>
+
+
+
+
+==== via command line ====
+
+Add a new firewall rule with uci. Edit the following example code block to suit your needs and then copy-paste it in the command line to batch-add everything in one go.
+
+  rule_code=$(uci add firewall rule) 
+  uci batch <<EOF set firewall.$rule_code.enabled='1'
+  set firewall.$rule_code.src='lan'
+  set firewall.$rule_code.dest='wan'
+  set firewall.$rule_code.name='Kids weekdays'
+  set firewall.$rule_code.src_mac="78:BB:AA:3A:88:14"
+  set firewall.$rule_code.weekdays="mon tue wed thu fri"
+  set firewall.$rule_code.target="REJECT"
+  set firewall.$rule_code.start_time="21:30:00"
+  set firewall.$rule_code.stop_time="07:00:00"
+  EOF
+  uci commit
+
+For old firewall versions before 2017-05-09 you need also to add: 
+  
+  set firewall.$rule_code.extra '--kerneltz'
+  
+With firewall 2017-05-09 and later, kerneltz is automatically added unless you specify UTC.
+
+==== Killing already-established connections on start time ====
+
+Once the start time is reached, the default behavior works fine for denying access to the internet but it fails to stop any connections that are already established. If you look at the FORWARD chain with default behavior as shown below, you will see that the packets from already established connections hit the second rule (to accept established connections) and never make it to the time-restriction rule which is part of the zone_lan_forward chain.
+
+Default behavior:
+  root@LEDE:~# iptables -v -L FORWARD --line-numbers
+  Chain FORWARD (policy DROP 0 packets, 0 bytes)
+  num   pkts bytes target           prot opt  in        out   source     destination
+  1        7   333 forwarding_rule   all  --  any       any   anywhere   anywhere        /* !fw3: user chain for forwarding */
+  2        0     0 ACCEPT            all  --  any       any   anywhere   anywhere        ctstate RELATED,ESTABLISHED /* !fw3 */
+  3        7   333 zone_lan_forward  all  --  br-lan    any   anywhere   anywhere        /* !fw3 */
+  4        0     0 zone_wan_forward  all  --  pppoe-wan any   anywhere   anywhere        /* !fw3 */
+  5        0     0 zone_wan_forward  all  --  eth0.2    any   anywhere   anywhere        /* !fw3 */
+  6        0     0 reject            all  --  any       any   anywhere   anywhere        /* !fw3 */
+  
+The intention is to make the above look like this so that the rule to accept established connections is after the zone_lan_forward rule:
+
+  root@LEDE:~# iptables -v -L FORWARD --line-numbers
+  Chain FORWARD (policy DROP 0 packets, 0 bytes)
+  num   pkts bytes target            prot opt in        out   source     destination
+  1    17696   12M forwarding_rule   all  --  any       any   anywhere   anywhere        /* !fw3: user chain for forwarding */
+  2      145 12439 zone_lan_forward  all  --  br-lan    any   anywhere   anywhere        /* !fw3 */
+  3        1   104 zone_wan_forward  all  --  pppoe-wan any   anywhere   anywhere        /* !fw3 */
+  4        0     0 zone_wan_forward  all  --  eth0.2    any   anywhere   anywhere        /* !fw3 */
+  5        1   104 ACCEPT            all  --  any       any   anywhere   anywhere        ctstate RELATED,ESTABLISHED
+  6        0     0 reject            all  --  any       any   anywhere   anywhere        /* !fw3 */
+
+This will be accomplished using a script and a cron job. The reason a cron job is used because the reordering of the rules needs to be applied even after the firewall is restarted or reloaded.
+
+1. Create ''/etc/cronfw.sh'' and set the execute bit. Insert the following script into the file:
+
+  #!/bin/sh
+  # Insert rule for forwarding established connection traffic, just before the final rule (reject)
+  new_rule_num=$(iptables -v -L FORWARD --line-numbers | grep reject | cut -c1)
+  iptables -I FORWARD $new_rule_num -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+  
+  # Delete first rule for forwarding established connection traffic
+  old_rule_num=$(iptables -v -L FORWARD --line-numbers | grep ESTABLISHED | cut -c1 | sed -n 1p)
+  iptables -D FORWARD $old_rule_num
+  
+2. Go to //System -> Scheduled Tasks//, and insert the following line: ''*/5 * * * * /etc/cronfw.sh'' so that the script is executed every 5 minutes
+
+3. //System -> Startup// -> Restart crons service & ensure cron is enabled
+
+===== Block access to certain webpages =====
+There are several ways to block access to unwanted websites:
+
+  * [[https://nicolas314.wordpress.com/2014/12/10/parental-control-with-openwrt-and-opendns/]]
+  * Packages [[packages:pkgdata:adblock|adblock]] + [[packages:pkgdata:luci-app-adblock|luci-app-adblock]]
+  * Packages [[https://stangri.github.io/openwrt-repo/|simple-adblock + luci-app-simple-adblock]] (PR to be created shortly, i.e. Mai 2017)
+  * Package [[packages:pkgdata:banhostlist|banhostlist]]
+  * [[docs:user-guide:firewall_configuration#block_access_to_a_specific_host|/etc/config/firewall]]
+  * iptables (how?) FIXME
+  * dnsmasq (e.g. edit ''/tmp/dnsmasq.d/blocklist.reg_pl'' and add ''local=/%%www.youtube.com%%/'')
+  * hosts file (e.g. edit ''/etc/hosts'' and add ''127.0.0.1 %%www.youtube.com%%'')

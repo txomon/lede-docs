@@ -1,0 +1,43 @@
+===== Switch 설정 (VLAN) =====
+''/etc/config/network''에서 ''switch'' 세션은 동일한 하드웨어를 공유하지만 시스템의 독립 인터페이스로 나타나는 여러 VLAN 으로 스위치를 분할합니다. 
+
+이 세션은 일부 플랫폼에서는 제공되지 않을 수도 있습니다 (특정 하드웨어 지원에 따라 다름). 또한 일부 스위치는 4 비트 VLAN 만 지원합니다. 
+
+아래 예제는 일반적인 설정을 보여줍니다. 
+<code>config 'switch' 'eth0'
+        option 'reset' '1'
+        option 'enable_vlan' '1'
+
+config 'switch_vlan' 'eth0_1'
+        option 'device' 'eth0'
+        option 'vlan' '1'
+        option 'ports' '0 1 2 3 5t'
+
+config 'switch_vlan' 'eth0_2'
+        option 'device' 'eth0'
+        option 'vlan' '2'
+        option 'ports' '4 5t'</code>
+
+공통 속성은 ''switch'' 세션 내에서 정의됩니다. vlan 특정 등록 정보는 ''device'' 옵션을 통해 ''switch'' 세션에 링크 된 추가 ''switch_vlan'' 세션에 있습니다
+
+
+==== 장치 ====
+최소 장치 선언은 다음 행으로 구성됩니다. :
+
+<code>config device 'eth0.106'
+	option type '8021q'
+	option name 'eth0.106'
+	option ifname 'eth0'
+	option vid '106'</code>
+
+=== VLAN 인터페이스===
+VLAN 인터페이스는 수동으로 설정 할 수 있습니다. 그렇지 않다면, 그들은 netifd에 의해 즉시 작성됩니다. VLAN을 수동으로 정의하면 더 많은 옵션이 제공됩니다. 
+다음 옵션이 지원됩니다. 
+
+^ 이름 ^ Type ^ Required ^ 초기값 ^ 설명^
+| ''type'' | VLAN Type | no | 802.1q | VLAN 유형, 가능한 값 : 8021q 또는 8021ad |
+| ''name'' | Name | yes | //(none)// | 장치의 이름 (예 : eth0.5 또는 vlan5)  |
+| ''ifname'' | Parent interface | yes | //(none)// | 부모 / 기본 인터페이스의 이름, 즉 eth0  |
+| ''vid'' | VLAN Id | yes | //(none)// | VLAN Id |
+| ''macaddr'' | MAC | no | //(none)// | 새로운 인터페이스의 MAC  |
+

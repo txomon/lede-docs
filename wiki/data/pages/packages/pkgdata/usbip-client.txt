@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: usbip-client ======
+---- dataentry packages ----
+Name                             : usbip-client
+Version                          : 2.0-5
+Description                      : USB-over-IP (client)\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 10 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, usbip, kmod-usbip-client
+Categories_pkg-categorys         : network #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : apm821xx-nand, apm821xx-sata, ar71xx-generic, ar71xx-mikrotik, ar71xx-nand, ath25-generic, brcm47xx-generic, brcm47xx-legacy, brcm47xx-mips74k, brcm63xx-generic, brcm63xx-smp, ixp4xx-generic, ixp4xx-harddisk, lantiq-xrx200, lantiq-xway, lantiq-xway_legacy, layerscape-64b, mpc85xx-generic, mpc85xx-p1020, octeon-generic, ramips-mt7620, ramips-mt7621, ramips-mt7628, ramips-mt7688, ramips-rt288x, ramips-rt305x, ramips-rt3883, x86-64, x86-generic, x86-geode, x86-legacy,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 10
+License                          : GPL-2.0
+Maintainer_pkg-maintainer        : Nuno Goncalves
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/net/usbip|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 2.0-5 # short version of the package, for display in table
+----
+

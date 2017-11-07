@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: lighttpd-mod-trigger_b4_dl ======
+---- dataentry packages ----
+Name                             : lighttpd-mod-trigger_b4_dl
+Version                          : 1.4.42-2
+Description                      : Trigger before download module\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 1 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, lighttpd, libpcre
+Categories_pkg-categorys         : network---web-servers-proxies #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : i386_geode, i386_i486,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 2
+License                          : BSD-3c
+Maintainer_pkg-maintainer        : W. Michael Petullo
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/net/lighttpd|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1.4.42-2 # short version of the package, for display in table
+----
+

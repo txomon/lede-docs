@@ -1,0 +1,6 @@
+====== Frequently Asked Questions ======
+
+  * [[faq:general|FAQ: General]]
+  * [[faq:before_installation|FAQ: Before installation]]
+  * [[faq:after_installation|FAQ: After installation]]
+  * [[docs:guide-quick-start:starterfaq|LEDE Starter FAQ]]

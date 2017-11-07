@@ -1,0 +1,85 @@
+====== Rescue from failed firmware upgrade ======
+Some device vendors provide built-in rescue functions in their device's flash ROM boot partition that remain there, even after a LEDE firmware upgrade, so a LEDE upgrade will not overwrite this rescue function.
+
+This rescue functions can be used to recover a failed flash update (no matter if the failed flash was vendor firmware or LEDE) or recover from an otherwise dead device, as long as the device hardware and the rescue function is still intact. These rescue partitions do consume a tiny piece of the flash, but renders a device mostly unbrickable.
+
+Unfortunately such rescue functions are not available from all vendors, sometimes not for all models from a vendor and the actual rescue process is mostly vendor specific.
+This page is meant to collect the known rescue methods of different router vendors or router models.
+
+===== Check first: Device-specific firmware recovery procedures =====
+Check the "device page" of both LEDE and OpenWrt for your device (look for a link in the last columns of each project's table of hardware). The device page may describe a rescue method for your specific device.
+  * https://lede-project.org/toh/start
+  * https://wiki.openwrt.org/toh/start
+
+Some of the methods may require creating a custom RS232-serial-cable or soldering-skills, while most newer devices require just a certain software trick to remote flash the device from a PC client.
+
+===== Manufacturer-generic firmware recovery procedures =====
+
+Many devices of the following manufacturers support a recovery procedures as listed here:
+
+^  Manufacturer  ^  Procedure  ^  Links  ^
+| ASUS | TFTP-like rescue procedure with a manufacturer utility to be installed on a client PC | [[https://www.asus.com/support/faq/1000814/ |Official ASUS recovery documentation]] |
+| D-Link | Several devices have an dedicated rescue firmware partition in their flash ROM | see below |
+| Linksys | Several older devices support a remote TFTP recovery procedure.\\  Several newer devices have 2 independent firmware partitions. | - [[https://www.linksys.com/us/support-article?articleNum=137928|Official Linksys TFTP recovery documentation]]\\ - For Linksys dual firmware, see below |
+| Mikrotik | TFTP-like rescure procedure with a manufacturer utility called 'netinstall' installed on a client PC | [[https://wiki.mikrotik.com/wiki/Manual:Netinstall|Official Microtik recovery documentation]] |
+| Netgear | TFTP on a PC client can be used to rescue the firmware | [[https://kb.netgear.com/22688/How-to-upload-firmware-to-a-NETGEAR-router-using-TFTP|Official Netgear TFTP recovery documentation]] |
+| TP-Link | TFTP on a PC client can be used to rescue the firmware.\\ Several newer devices provide a rescue partition, see below. | [[http://forum.tp-link.com/showthread.php?81462-How-to-recovery-the-router-when-you-bricked-it|TP-Link forum TFTP recovery documentation]] |
+| Ubiquiti (UBNT) | TFTP on a PC client can be used to rescue the firmware | [[https://help.ubnt.com/hc/en-us/search?utf8=%E2%9C%93&query=firmware+recovery&commit=Search|Official UBNT site: site search for 'firmware recovery']] |
+| Xiaomi | Several devices with USB port support a rescue USB stick method | see below |
+| ZBT (ZBTLink) | Several devices support a rescue partition.\\ Some devices seem to support a TFTP recovery process | for recovery partition, see below |
+
+===== Recovery for disk-image-based devices (e.g. SD-cards) =====
+Examples: the different Raspberry PI's, devices of PC Engines).
+
+LEDE Devices that use a drive-installed image.gz or sdcard.img.gz are not an issue to recover. The LEDE OS is not applied to flash ROM, but installed on a removable drive, e.g. an SD-card. For recovery, mount the removable drive in a working PC and reapply the LEDE image to the removable drive according to the device-specific instructions.
+
+===== TFTP recovery mode =====
+
+In several of these recovery procedures you will need a working TFTP server on your PC, see how to install and configure it in [[docs:user-guide:tftpserver|Set up a TFTP Server]] article.
+
+===== Rescue USB stick =====
+Supported by some Xiaomi devices
+
+process for [[http://en.miui.com/thread-157895-1-1.html|Xiaomi Mi]]:
+  - Download firmware and store as miwifi.bin on an USB flash drive (must be FAT or FAT32)
+  - Plug USB flash drive into device USB port
+  - Unplug device cord
+  - Press and hold the reset button and then re-plug the power cord
+  - Release reset button, when the orange status LED starts blinking
+  - Flashing is finished, when LED turns blue
+
+===== Rescue firmware partition =====
+Supported by several devices at least of the following vendors: D-Link, TP-Link, ZBTLink
+
+This function is based on extra code in the boot partition in the flash ROM and it is still available on the device, even after the device has been flashed to LEDE. No further tools are needed, to trigger this rescue function.
+
+Procedure, to boot into rescue partition:
+  - Switch device power off (or pull the power cord).
+  - Connect a client to the device via Ethernet to LAN1
+  - Trigger the rescue function by pressing and holding the reset button of the device and then turning the device on (or plug in the power cord).
+  - You can release the reset button after a few seconds.
+  - The device will take ~15-20 seconds to boot a mini-web server, that provides only a single function: it can upload a firmware file and has a button to trigger the flash process. The web-server will usually be available under either (if in doubt, try both)
+    - http://192.168.0.1 (TP-Link and newer D-Link devices)
+    - http://192.168.1.1 (ZBT-Link and older D-Link devices)
+  - Note: You need to set your PC client to a fixed IP address beforehand, as DHCP is not supported in this rescue mode. So depending on your device, so you need to set the PC client's to a matching IP address, either:
+    - an IP of the 192.168.0.x range, e.g. 192.168.0.2 / 255.255.255.0
+    - an IP of the 192.168.1.x range, e.g. 192.168.1.2 / 255.255.255.0
+
+Notes:
+  * The rescue function provides no Internet access, WiFi or DHCP.
+  * LEDE firmware can be flashed directly using this rescue function when using a LEDE ...**factory.bin** firmware file. There is no need to first flash official D-Link firmware.
+  * Official D-Link documentation of this procedure is rare, a [[ftp://ftp.dlink.de/dir/dir-600/documentation/DIR-600_revb12_howto_de_FirmwareRecovery.pdf|german D-Link documentation for the DIR-600]] exists (with the same procedure also applying for other D-Link devices, if the device supports recovery). Inofficial documentation: [[https://wiki.openwrt.org/toh/d-link/dir-505#web_interface|OpenWrt Wiki for DIR-505]] and  [[http://forums.dlink.com/index.php?topic=44909.msg162511#msg162511|D-Link Forum]].
+  * Inofficial notes of [[https://fccid.io/2AH9TW826/Users-Manual/User-Manual-2994820|ZBTLink recovery]],
+  * Official [[http://www.tp-link.de/faq-1482.html|TP-Link rescue partition notes]]
+
+===== Dual firmware partition =====
+Supported by newer Linksys devices
+
+Most newer devices (mostly those with decent amount of flash ROM) have 2 independent firmware partitions. A usage strategy could be, to install LEDE only into one of the 2 partitions and leave the vendor firmware in the other partition. No further tools are required to toggle between the two partitions.
+
+Procedure, to manually toggle between the two firmware partitions: 
+  - Switch device power off.
+  - 3x Switch device power on for 2 seconds, then off again.
+  - Switch device power on, the device should now boot to the alternative partition.
+
+When successfully booted into any of the two partitions, a triggered firmware update will flash the other, secondary partition. The partition that is currently booted, stays untouched.

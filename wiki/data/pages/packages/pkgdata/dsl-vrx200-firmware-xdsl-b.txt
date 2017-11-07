@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: dsl-vrx200-firmware-xdsl-b ======
+---- dataentry packages ----
+Name                             : dsl-vrx200-firmware-xdsl-b
+Version                          : 05.08.01.08.01.06_05.08.00.0B.01.01_osc-1
+Description                      : VRX200 / VR9 CPE VDSL and ADSL Annex B firmware\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 551 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc
+Categories_pkg-categorys         : firmware #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : lantiq-xrx200,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 522
+License                          : 
+Maintainer_pkg-maintainer        : LEDE team
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/firmware/lantiq/dsl-vrx200-firmware-xdsl|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 05.08.01.08.01.06_05...c-1 # short version of the package, for display in table
+----
+

@@ -1,0 +1,281 @@
+~~NOTOC~~
+====== Dataentry template background ======
+
+===== What is it? =====
+
+The [[:templates:template_dataentry|dataentry template]] contains the template for so called dataentry pages.\\
+Dataentry pages contain the bare technical facts of routers (and other devices) related to LEDE, and are the datasource for the [[:toh:start|Table of hardware]].
+When a dataentry page is either read or changed, the data contained in it is fed into a sqlite database.
+
+To get the data out of this database, simply create datatables / datalists / tagclouds on a page.\\ For examples, see [[:meta:template_device]], [[toh:views:datalist-csv|datalist-csv]] or [[toh:views:dataclouds|Dataclouds]].\\
+For more information on how this works, see [[https://www.dokuwiki.org/plugin:data]]
+
+===== When to use it? =====
+
+Do create a new dataentry page IF
+  * you have the information available that is required for a new dataentry
+  * the device is not yet listed in the [[:toh:views:toh_minimal_all|Table of Hardware]]
+  * the device has versions with differing hardware, compared to an already existing device in the toh, e.g. v1 = 32MB RAM vs. v2 = 64MB RAM.
+
+===== When not to use it? =====
+
+Do not create a new dataentry page IF
+  * the version number increased, but none of the hardware listed in the dataentry has changed
+
+
+===== Usage =====
+
+==== Creating new entries ====
+  * Create new dataentries only **after you have checked** that your device is not already in the [[toh:start|Table of Hardware]]
+  * Make sure you have all information available that is required by the [[meta:criteria_for_adding_new_devices_to_the_toh|Criteria for adding devices to the ToH]]
+  * [[:meta:create_new_dataentry_page|Create new dataentry page]]
+  * See [[:meta:template_dataentry_background#conventions_for_dataentry_values|below]] for detailed description and allowed / expected values of each field.
+
+==== Editing existing entries ====
+
+On the dataentry pages, which you can find in the [[toh:start|Table of Hardware]], you can edit the values in two ways:
+    - **Preferred:** Special "edit" link below the **left** corner of the dataentry: You will see a form for easy editing the dataentry.\\ The form avoids accidentially ruining the dataentry structure and also provides dropdowns for easy filling in some values.
+    - **Deprecated:** Standard dokuwiki "edit" link on the **right** or "Edit this page" on the top: You will see the dataentry in wiki language.\\ You can accidentially ruin the dataentry structure.
+
+See [[#conventions_for_dataentry_values|below]] for detailed description and allowed values of each field.
+
+
+===== Example =====
+<file>
+====== Techdata: D-Link DIR-509 A1 ======
+~~HIDEPAGE~~
+
+{{page>meta:infobox:dataentry_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+
+/*********************************************************
+*                 >>>>>>>> ! <<<<<<<<
+* -------- >>>>>>>>  W A R N I N G  <<<<<<<<--------
+*                 >>>>>>>> ! <<<<<<<<
+*
+*   If you can read this, YOU ARE DOING IT WRONG.
+*
+*   To edit this page in the only right way, do this:
+*   1) Click "Cancel", then
+*   2) Edit this page ONLY via the lower LEFT edit button.
+*
+*   In case you disobey to the above: You break it, you pay it.
+*   Thank you for respecting the rules of this wiki.
+*
+*   --- Your wiki administration
+*********************************************************/
+
+===== Dataentry =====
+---- dataentry techdata ----
+Device Type_devicetype                         : Travel Router # If 'other' -> request new devicetype @wiki admin
+Brand                                          : (EXAMPLE) # ===>  Mandatory  <===
+Model                                          : DIR-509 # ===>  Mandatory  <===
+Versions                                       : A1 # List versions comma separated: v1, v1.1, v1.5, v2, v2.5
+FCCID_url                                      : # link-scheme: https://fcc.io/yourFCCid
+Availability_availability                      : Available 2017 #
+OWrt Supported Since Rev_hidden                : https://dev.openwrt.org/changeset/12345 # https://dev.openwrt.org/changeset/xxxxx
+OWrt Supported Since Rel_hidden                : 14.07 # First official release (i.e. not trunk)
+OWrt Supported Current Rel_hidden              : 15.05.1 # Current official release (i.e. not trunk)
+OWrt Unsupported_hidden                        :  # e.g. '5GHz wifi'; Describe what is not supported
+LEDE Supported Since Commit_git                : https://git.lede-project.org/?p=source.git;a=commit;h=42914b0b0e47237400a825a54189d707abd86693 # https://git.lede-project.org/?p=source.git;a=commit;h=<commithash>
+LEDE Supported Since Rel_releasesince-lede     :  # First official release (i.e. not trunk)
+LEDE Supported Current Rel_releasecurrent-lede : snapshot # Current official release (i.e. not trunk)
+LEDE Unsupported                               :  # Describe what is not supported, e.g. '5GHz wifi'
+Target_target                                  : ar71xx # https://wiki.lede-project.org/docs/targets
+Subtarget                                      : generic # https://wiki.lede-project.org/docs/targets
+Instruction Set_hidden                         : MIPS32 # https://en.wikipedia.org/wiki/List_of_instruction_sets
+Sub Instruction Set_hidden                     : MIPS32 24K/E series # --------> Description goes here
+Package architecture_pkg-arch                  : mips_24kc # https://wiki.lede-project.org/docs/instructionset
+Packages download_pkg-dl                       : mips_24kc|Download # https://wiki.lede-project.org/docs/instructionset
+Bootloader_bootloader                          : U-Boot # https://wiki.lede-project.org/doc/techref/bootloader
+CPU                                            : Atheros AR1311 # Main CPU/SoC, e.g. Atheros AR9331; Broadcom BCM6361
+CPU Cores_numcores_                            : 1 # Number of CPU cores
+CPU MHz                                        : 400 # pure number without 'MHz'
+Flash MB_mbflashs                              : 8 # CTRL+click for multiselect
+RAM MB_mbram                                   : 64 #
+Ethernet 100M ports_numethport                 : 1 # Number of 100Mbit ethernet ports
+Ethernet GBit ports_numethport                 : - # Number of Gbit ethernet ports
+Switch                                         :  # e.g. Atheros AR8236
+Modem_modem                                    : No # Select type of modem
+Comments network ports_                        :  # Comments on Ethernet, Fibre and Modem
+VLAN_yesno                                     : ¿ #
+WLAN Hardwares                                 : ¿ Atheros AR9285 (onboard) # e.g. Atheros AR5416; separate multiple by comma; add '#x (mini-)PCI(e)' if necessary
+WLAN 2.4GHz_wlan24                             : b/g/n #
+WLAN 5.0GHz_wlan50                             : - #
+WLAN Comments_                                 :  # MIMO and other WIFI information
+Detachable Antennas_numdetachantenna           : - # Number of detachable antennas
+Bluetooth_bluetooth                            :  # Bluetooth version, e.g. 4.1
+USB ports_port-usbs                            : 1x 2.0 # Number of USB2.0 & 3.0 ports; CTRL+click for multiselect
+SATA ports_numsataport                         : - # Number of SATA or eSATA ports
+Comments USB SATA ports_                       :  # Comments on USB, SATA and eSATA ports
+Video port_port-video                          : # Kind of video port, e.g. LVDS, HDMI, Composite, ...
+Audio port_port-audio                          : # Kind of audio port, e.g. Line out, phone jack, ...
+Phone ports_port-phone                         : # Number or kind of phone ports
+Comments AV ports_                             : # Comments on Audio, Video, Phone ports
+Serial_yesno                                   : Yes #
+Serial connection parameters_serialparam       : # e.g. 115200 / 8N1
+JTAG_yesno                                     : No #
+LED count_numled                               : 2 # Number of (user configurable) LEDs
+Button count_numbutton                         : 2 # Number of (user configurable) buttons/switches (other than Power)
+GPIOs_numgpio                                  : # Number of accessible GPIOs
+Power Supply                                   : 100-240 VAC, 50/60 Hz, 0.3 A # Specifications of Power Supply (Volt, Amp) or Battery (Volt, mAh)
+OpenWrt Device Page_hidden                     : https://wiki.openwrt.org/toh/d-link/dir-505 # https://wiki.openwrt.org/toh/brand/brand_model_version
+LEDE Device Page_page                          :  # toh/brand/brand_model_version
+Device Techdata_hidden                         : View/Edit data # ===> Mandatory, must be "View/Edit data" <===
+OWrt Forum Topic URL_hidden                    : https://forum.openwrt.org/viewtopic.php?id=38742 # forum.openwrt.org/viewtopic.php?id=xxxxx
+LEDE Forum Topic URL_url                       :  # forum.lede-project.org/...
+WikiDevi URL_url                               : https://wikidevi.com/wiki/D-Link_DIR-505_rev_A1 # wikidevi.com/wiki/yourdevice
+OEM Device Homepage URL_url                    : http://www.dlink.com/uk/en/home-solutions/connect/portable-routers/dir-505-shareport-mobile-companion # yourbrand.com/yourdevice
+Firmware OEM Stock URL_url                     : http://www.dlink.com/uk/en/support/product/dir-505-shareport-mobile-companion # yourbrand.com/yourdevice/stockfirmware
+Firmware OWrt Install URL_hidden               : https://downloads.openwrt.org/chaos_calmer/15.05.1/ar71xx/generic/openwrt-15.05.1-ar71xx-generic-dir-505-a1-squashfs-factory.bin # downloads.openwrt.org/latest/...factory.bin; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware OWrt Upgrade URL_hidden               : https://downloads.openwrt.org/chaos_calmer/15.05.1/ar71xx/generic/openwrt-15.05.1-ar71xx-generic-dir-505-a1-squashfs-sysupgrade.bin # downloads.openwrt.org/latest/...sysupgrade.bin; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware LEDE Install URL_url                  : https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/lede-ar71xx-generic-dir-505-a1-squashfs-factory.bin # downloads.lede-project.org/snapshots/targets/...; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware LEDE Upgrade URL_url                  : https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/lede-ar71xx-generic-dir-505-a1-squashfs-sysupgrade.bin # downloads.lede-project.org/snapshots/targets/...; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Picture_img100s                                :  media:example:genericrouter1.png # media:brand:model_general_view.jpg; Single general picture to identify the device; detail pictures to be provided on device page. How to add images: http://wiki.lede-project.org/meta/adding_images_to_lede_wiki
+Comments_                                      : Additional to reset and WPA buttons it also has a 3 state mode switch AP/Repeater/HS # Anything that is worth mentioning
+----
+
+{{section>:meta:template_dataentry_background#conventions_for_dataentry_values&nofooter&noeditbtn}}
+
+</file>
+
+===== Conventions for dataentry values =====
+
+=== General nomenclature ===
+++++Details|
+<file>
+¿         : unknown (ALT+168; used for filtering reasons. Please avoid '?' and use '¿' instead)
+¿ xxx     : unknown, xxx is a qualified guess (only for non-dropdown fields)
+-         : not applicable / hardware not present
+8, 16, 32 : different configurations available (',' = OR; use space after ',' to allow linebreaking)
+</file>
+++++
+
+=== Conventions per characteristic ===
+++++Details|
+**__underlined__** characteristic = mandatory
+
+^ Characteristic ^ Description ^ Example ^ Datatype ^ Datatype alias ^ Convention / allowed values ^
+| ||||||
+^  **General**  ||||||
+| **Device Type** | Device Type | Wireless router | select (dropdown) | _devicetype | WiFi AP, WiFi Router, Router, Travel Router, Travel Router - Battery powered, Range Extender, Single Board Computer, Modem, NAS, unknown, other\\ If 'other' -> request new devicetype @wiki admin |
+| **__Brand__** | Brand of the device | D-Link | select (dropdown) | _brand | Too many to show here. If 'other' -> request new Brand @wiki admin |
+| **__Model__** | Exact Model | DIR-509 | textbox| | no restrictions, anything is possible |
+| **Version** | HW revision | v0.99 | textbox | | empty (default) / v1 / v1, v2 / ... (no restrictions, anything is possible)\\ Multiple entries (comma separated) allowed if same hardware specs. If hardware different (e.g. v1=32MB RAM; v2=64MB RAM) -> add new dataentry-page. |
+| **FCCid** | FCC id | https://fcc.io/KA2/IR505A1 | _url | | link-scheme: https://fcc.io/yourFCCid |
+| **Availability** | Availability / Discontinuation of the device | Available 2017 | select (dropdown) | _availability | Actual availability, i.e. you have checked if this device is available in 2017 -> Available 2017; Make sure to check multiple sites over the globe!\\ unknown 2017, Available 2017, Available 2016?, Available 2016, Available 2015, Discontinued 2017, Discontinued 2016, Discontinued 2015, Discontinued 2014, Discontinued 2013, Discontinued 2012, Discontinued 2011, Discontinued 2010, Discontinued |
+^  **LEDE Support**  ||||||
+| **Supported since commit** | LEDE git commit, which provided first ever support for this device; //"Birthpoint"// of support | [[https://git.lede-project.org/?p=source.git;a=commit;h=42914b0b0e47237400a825a54189d707abd86693]] | textbox | _url | empty (default) / Link scheme: %%https://git.lede-project.org/?p=source.git;a=commit;h=<commithash>%%\\ Find commit via the search on [[https://git.lede-project.org/?p=source.git;a=summary]] |
+| **Supported since release** | First **official** release (no snapshot) | 17.01 | select (dropdown) | _releasesince | ¿, 17.01, 17.07, 18.01 |
+| **Supported current release** | Current **official** release | 17.01 | select (dropdown) | _releasecurrent | ¿, 17.01, snapshot \\ "snapshot" for devices that don't have major release yet.\\ If device no longer supported, then 'Current support' means 'Last support'. |
+| **Unsupported** | Describe what is not supported | 5GHz wifi, ADSL, FXS | textbox | | |
+^  **Hardware**  ||||||
+| **Target** | Target | ar71xx | select (dropdown) | _target | Only existing targets allowed, i.e. only what can be found here: [[http://downloads.openwrt.org/snapshots/trunk/]] or here [[https://lede-project.org/docs/targets/]]\\ (¿=unknown, -=architecture not supported) | 
+| **Instruction Set** | Instruction Set | ARM | select (dropdown) | _instructionset | ¿, AVR32, ARM, MIPS32, MIPS64, MIPS IV, PPC, x86, x86_64, other\\ (subset of [[http://en.wikipedia.org/wiki/List_of_instruction_sets]]) |
+| **Sub-instruction-set**  | Sub-instruction-set | ARMv5 | select (dropdown) | _subinstructionset | ¿, ARMv4, ARMv5, ARMv6, ARMv7, ARMv7-A, MIPS32 4K/E series, MIPS32 24K/E series, MIPS32 34K series, MIPS32 74K series, MIPS32 1004K series, MIPS32 1074K series, other\\ [[http://en.wikipedia.org/wiki/List_of_instruction_sets]]\\ [[http://en.wikipedia.org/wiki/List_of_ARM_microarchitectures]] |
+| **Package architecture** | | mips_24kc | select (dropdown) | _pkg-arch | https://lede-project.org/docs/instructionset/start |
+| **Packages download** | | %%mips_24kc|Download%% | select (dropdown) | _pkg-dl | https://lede-project.org/docs/instructionset/start |
+| **Bootloader** | Bootloader | U-Boot 1.1.4 | select (dropdown) | _bootloader | If 'other' -> request new bootloader @wiki admin |
+| **CPU** | Platform | Atheros AR9331 | textbox | select (dropdown) | see [[https://lede-project.org/docs/soc/]] |
+| **CPU cores** | Number of CPU cores | 2 | | numcores_ | ¿, 1, 2, 4, 6, 8, 10, 12, 14, 16, more than 16 |
+| **CPU MHz** | the obvious | 400 | textbox | | numerical values w/o MHz or GHz |
+| **Flash MB**  | the obvious | 8 | select (dropdown) | _mbflashs | Multiple values allowed; CTRL-click for multiselect; ¿, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 64NAND, 128NAND, 256NAND, 512NAND, 1024NAND, 2048NAND, 4096NAND, 8192NAND, more than 8GB, more than 8GB NAND, SD, microSD, microSDHC, CF, mSATA |
+| **RAM MB** | the obvious| 64 | select (dropdown) | _mbram | ¿, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, more than 4GB |
+^  **Network**  ||||||
+| **Ethernet 100M ports** | Number of 100Mbit ethernet ports| 1 | select (dropdown) | _numethport | ¿, -, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, more than 20 |
+| **Ethernet GBit ports** | Number of Gbit ethernet ports| 1 | select (dropdown) | _numethport | ¿, -, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, more than 20 |
+| **Modem** | Type of integrated modem | xDSL | select (dropdown) | _modem | ¿, Yes, No, ADSL, ADSL2+, ADSL2+ Annex A, ADSL2+ Annex B, xDSL, DOCSIS, Powerline, Mobile Wireless/Cellular network\\ http://wiki.openwrt.org/meta/template_device#info |
+| **VLAN** | VLAN capability | Yes | select (dropdown) | _yesno | ¿, Yes, No |
+^  **Wireless**  ||||||
+| **WLAN Hardware** | | Broadcom BCM43225 | textbox | | "Manufacturer Model# [(onboard/integrated/(mini-)PCI(e))]" / "#x (mini-)PCI(e)" |
+| **WLAN 2.4GHz** | Wireless standard(s) the device is capable of | b/g/n | select (dropdown) | _wlan24 | ¿, -, b, b/g, b/g/n |
+| **WLAN 5.0GHz** | Wireless standard(s) the device is capable of | a/n/ac | select (dropdown) | _wlan50 | ¿, -, a, a/n, a/n/ac |
+| **Detachable Ant** | # of detacheable antennas | 3 | select (dropdown) | _numdetachantenna | ¿, -, Yes, No, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, more than 10 |
+| **Bluetooth** | Bluetooth version | 4.2 | select (dropdown) | _bluetooth | ¿, -, 4.0, 4.1, 4.2, 5.0, BLE, other |
+^  **Other interfaces**  ||||||
+| **USB ports** | # of USB 2.0 + USB 3.0 ports | 1x 2.0, 2x 3.0 | multiselect | _usbmultiselect | ¿, -, Yes, 1x 1.1, 1x 1.1 Device, 1x 2.0, 1x 2.0 Device, 2x 2.0, 3x 2.0, 4x 2.0, 5x 2.0, 6x 2.0, more than 6x 2.0, 1x 3.0, 2x 3.0, 3x 3.0, 4x 3.0, 5x 3.0, 6x 3.0, more than 6x 3.0, Mod, 1x Device, 1x Header, 1x OTG, 1x µUSB (charging), 1x Power only\\ **Notes:**\\ - Device = Slave = Client (= everything that's not a host); Device preferred over the others.\\ - use "Host" only when needed\\ - if "mod" -> provide URL to Howto/Forum |
+| **SATA ports** | # of SATA or eSATA ports | 2 | select (dropdown) | _numsataport | ¿, -, 1, 2, 3, 4, 5, 6, more than 6 |
+| **Comments USB SATA ports_** | the obvious | ? | textbox | | |
+| **Video ports** | Kind of video port | HDMI | select (dropdown) | _port-videos | Multiple possible; CTRL-click for multiselect; ¿, -, Composite, DP, mDP, HDMI, LVDS, VGA, other |
+| **Audio ports** | Kind of audio port | Line out | select (dropdown) | _port-audios | Multiple possible; CTRL-click for multiselect; ¿, -, Line, Headphone jack, HDMI, S/PDIF, other |
+| **Phone ports** | | 2 | select (dropdown) | _port-phones | Multiple possible; CTRL-click for multiselect; ¿, -, 1, 2, 3, 4, 5, 6, more than 6, POTS, DECT |
+| **Serial** | Availability of serial access | Yes | select (dropdown) | _yesno | ¿, Yes, No |
+| **Serial connection parameters** | the obvious | 115200 / 8N1 | select (dropdown) | _serialparam | ¿, 19200 / 8N1, 38400 / 8N1, 57600 / 8N1, 115200 / 8N1 |
+| **JTAG** | Availability of JTAG access | Yes | select (dropdown) | _yesno | ¿, Yes, No |
+| **Other interfaces** | Other wired interfaces | ? | textbox | | gpios, uext, phone sockets, BDM, IDE, mPCI, mPCI-e |
+^  **Other hardware**  ||||||
+| **LED Count** | # of LEDs | 5 | select (dropdown) | _numled | ¿, -, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, more than 20 -> relevancy?\\ see https://forum.openwrt.org/viewtopic.php?pid=275491#p275491 |
+| **Buttons** | Button/switch types available | WPS | select (dropdown) | _numbutton | ¿, -, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, more than 20 -> relevancy?\\ see also https://forum.openwrt.org/viewtopic.php?pid=275491#p275491 |
+| **GPIOs** | Number of readily accessible GPIOs (e.g. via pinheader) | 17 | select (dropdown) | _numgpio | ¿, -, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, more than 20 |
+| **Power supply** | Specifications of Power Supply (Volt, Amp, PoE) or Battery (Volt, mAh) | 12 VDC, 1.2 A, PoE 802.3af | textbox |  | If PoE capable: PoE <PoE spec>, e.g. //PoE 802.3af// |
+^  **Links**  ||||||
+| **Device Page** | Link to Wiki-page | toh:d-link:dir-509 | [[https://www.dokuwiki.org/plugin:data#data_entry_input|page]] | | toh:brand:model |
+| **Device Techdata** | How the link to the dataentry page will be named (not the link itself) | Techdata | _hidden / _pageid | | Techdata (__fixed setting__ for all devices, not to be edited)\\ Mandatory usage of types:\\ ''_hidden'' = in the dataentry -> will not be shown \\ ''_pageid'' = in datatables / datalists -> shows up as link |
+| **Forum Topic URL** | Link(s) to forum thread(s) | [[https://forum.lede-project.org/t/mikrotik-rb492ah-success/785/2]] | _url | | %%https://forum.lede-project.org/xxxxxx%% |
+| **WikiDevi URL** | Link to wikidevi | https://wikidevi.com/wiki/D-Link_DIR-515 | _url | | [[https://wikidevi.com/wiki/Main_Page|https://wikidevi.com/wiki/...]] |
+| **OEM device homepage** | Link to manufacturers device page | http://us.dlink.com/products/connect/shareport-mobile-companion/ | _url | | %%https://...%% |
+| **Firmware OEM Stock** | Link to original OEM firmware | http://support.dlink.com/ProductInfo.aspx?m=DIR-505L | _url | | %%https://...%% |
+| **Firmware OpenWrt Install** | Link to OpenWrt factory image | https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/lede-ar71xx-generic-dir-505-a1-squashfs-factory.bin | _url | | [[https://downloads.lede-project.org/|https://downloads.lede-project.org/...factory.bin]] |
+| **Firmware OpenWrt Upgrade** | Link to OpenWrt sysupgrade image | https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/lede-ar71xx-generic-dir-505-a1-squashfs-sysupgrade.bin | _url | | [[https://downloads.lede-project.org/|https://downloads.lede-project.org/...sysupgrade.bin]] |
+| **Picture** | Single general picture (outside/case) to identify the device; Put more detail pictures (inside/PCB) on device page | {{media:dlink:dir-505_general_view.jpeg?direct&100|media:toh:dlink:dlink_dir-509_general_view.jpg}} | _img100s | | **1) Get picture** from OEM website\\ (min 640x480; max 1280x720, max 1MB)\\  **2) Store it** in the OpenWrt wiki via the [[start?do=media&ns=media:toh|media-manager]]: ''media:toh:brand:brand_model_general_view.jpg''\\ **3) Get link to picture:** Find picture in media manager, click on it, scroll down, copy the link\\ **4) Add link** to the dataentry. Do not link to OEM website, because that link may change. |
+^  **Misc**  ||||||
+| **Comments** | Anything that's worth mentioning | Nice colour! :-D\\ Small formfactor (wallwart-sized) | textarea | | no restrictions, anything is possible |
+++++
+
+
+===== Technical background =====
+
+  * **Why this template?**
+    * Automated toh creation with comfortable filtering option through usage of [[https://www.dokuwiki.org/plugin:data|Structured data plugin]] for Dokuwiki
+  * **Mode of operation (How does this work?)**
+    * required: Dokuwiki [[https://www.dokuwiki.org/plugin:data|Structured data plugin]]
+    * required: Dokuwiki [[https://www.dokuwiki.org/plugin:sqlite|sqlite plugin]] (for structured data plugin)
+    * required: Dokuwiki [[https://www.dokuwiki.org/plugin:include|Include plugin]] (for including permanote, see below)
+    * required: Dokuwiki server: php5-sqlite
+    * required: dataentry (see above) on device page or on separate technical data page
+    * required: data pages with ''<nowiki>{{page>meta:infobox:dataentry_permanote&noheader&nofooter&noeditbtn}}</nowiki>'' (this will include an infobox regarding usage of the dataentry in each of the dataentry pages)
+    * required: page/infobox ''dataentry_permanote'', which contains the permanent usage notes to be included in the data page (see above)
+    * required: wiki page containing a datatable section -> see [[https://www.dokuwiki.org/plugin:data#data_table_output]] for details
+  * **Why the '_' at the end of 'Status_' and other characteristics ending in 's'?\\ Why 'ss' where 's' would be the correct spelling?**
+    * [[https://www.dokuwiki.org/plugin:data#plugin_syntax]]
+    * [[https://forum.openwrt.org/viewtopic.php?pid=279754#p279754]]
+  * **Why separate technical data pages? Why not include the technical data in the device pages?**
+    * In general, dataentries can be placed either
+      * on the device page: Anywhere, at the beginning, at the end, in the middle... it doesn't matter. OR
+      * on separate dataentry page (one dataentry page per device / per device version)
+    * For **different versions** of a device, **different dataentry** files must be created anyways ([[https://forum.openwrt.org/viewtopic.php?pid=272242#p272242|only one dataentry section per page allowed]]). This means:
+      * Separate the technical data (dataentry) from the device page
+      * **Put dataentry pages in separate namespace ''techdata'' (one dataentry page per device / per differing device version)**
+    * Multiple dataentries on the same page are possible, but do not lead to the desired result, see footnote #1: [[https://www.dokuwiki.org/plugin:data#fn__1]]\\ //"any additional dataentry on the same page would overwrite any preceding dataentry on this page and so - while many dataentry blocks on one page may be displayed - only the values of the last one would be stored in the SQLite database and could be retrieved as an output by e.g. a datatable"// \\ -> Any HW version with different technical data needs separate dataentry page, in order for the automatedly created toh to work correctly.
+  * **Why the Datatype aliases? What do these aliases do, how do they work?**
+    * By adding a datatype alias like ''_modem'', ''_yesno'', ''_brand'', ''_target'', etc., you can define valid values for the respective field, which finally leads to the dataentry editor displaying drop down fields instead of simple textboxes. -> User can click and select instead of typing in the value -> no different spelling, no need to enter ''¿'' manually ;-)
+    * Aliases and the valid values are defined in ''admin / Data Plugin: Field aliases''
+
+
+==== Multiple ToHs ====
+
+Since it is so easy to create a toh, it's no problem to create multiple tables with different content (columns).\\ 
+The general LEDE user may only be interested in the columns as shown above, while other users may whish to have other columns (e.g. what flash chip / RAM chip is used). Whatever the user wants to see in this table: Take a subset of characteristics out of the template, put them in a new wiki page, and you're done. It can't be much easier, can it?
+
+==== Permanent note ====
+Users need to be kept from doing silly things, that could break the functionality of the data plugin. Therefore, a permanent note 
+shall be included in every dataentry page. In order to define and later on edit the permanent note in only one place, we need an infobox:
+
+Content of ''meta:infobox:dataentry_topnote''
+<file>
+
+===== Usage =====
+  * Edit the dataentry via the **LEFT** edit button below the box
+  * For adding new dropdown values, contact the wiki admin.
+  * For conventions / allowed values, see below
+  * For general usage help, see [[:meta:template_dataentry_background|Dataentry template background]]
+</file>
+
+To include the infobox in the dataentry pages, simply add this: ''<nowiki>{{page>meta:infobox:dataentry_topnote&noheader&nofooter&noeditbtn}}</nowiki>''
+
+
+==== Including help for column values into datapages ====
+
+To include detailed help regarding allowed values and formatting etc. in the dataentry pages, simply add this below the dataentry: ''<nowiki>{{page>:meta:template_dataentry_background#conventions_for_dataentry_values&nofooter&noeditbtn}}</nowiki>''
+
+This is the same way as with including the permanent note above and has the advantage, that you can include this big section in each datapage by adding minimal code, and if something needs to be changed, you only need to change one page, which then is automatically included in all available device- and datapages.

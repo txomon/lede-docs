@@ -1,0 +1,6 @@
+====== Frequently Asked Questions: 30-30-30 reset ======
+
+**There is no 30/30/30 reset in Openwrt/LEDE.**\\
+That advice is generally from ancient times with dd-wrt etc. for routers that had “shortable” nvram memory modules (instead of modern flash, where all settings are normal files).
+
+Source: [[https://forum.lede-project.org/t/linksys-e3000-reboot-loop/7771/2]]

@@ -1,0 +1,24 @@
+====== 支持的设备 ======
+~~NOTOC~~
+
+
+===== LEDE所支持设备的一般要求 =====
+<WRAP 1000px>
+<columns 100% 45% ->
+  - SoC / [[docs:targets:|target]] 受 LEDE 支持
+  - 有足够的闪存来储存 LEDE 固件镜像
+    * 最少 4MB （无法安装GUI(LUCI)）
+    * 推荐 8MB 或以上（能安装GUI和其他应用程序）
+  - 有足够的内存(RAM)来支持稳定运行
+    * 最少 32MB，推荐 64MB 或以上
+
+<newcolumn>
+{{section>meta/infobox/432_warning#infobox_for_tohs&noheader&nofooter&noeditbutton}}
+</columns>
+</WRAP>
+
+===== 常见疑难解答 =====
+
+  * [[toh:start|我的路由器是否受支持 LEDE]]
+  * [[toh:views:toh_available_864|我要买支持 LEDE 的路由器]]
+  * [[toh:views:toh_fwdownload|从哪里可以下载路由器的 LEDE 固件？]]

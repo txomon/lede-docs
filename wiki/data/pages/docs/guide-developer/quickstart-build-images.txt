@@ -1,0 +1,58 @@
+====== Quick Image Building Guide ======
+
+This is a very short guide on how to compile your first LEDE **snapshot** firmware.
+It does not cover any pitfalls, but provides a quick way if everything goes well.
+
+{{page>releases:snapshot&noheader&nofooter&noeditbtn&firstseconly}}
+
+First we need to make sure the dependencies are installed (for Debian/Ubuntu):
+
+<code>
+sudo apt-get install subversion g++ zlib1g-dev build-essential git python rsync man-db
+sudo apt-get install libncurses5-dev gawk gettext unzip file libssl-dev wget
+</code>
+
+Get the LEDE source code:
+
+<code>
+git clone https://git.lede-project.org/source.git lede
+cd lede
+
+./scripts/feeds update -a
+./scripts/feeds install -a
+
+make defconfig
+make menuconfig
+</code>
+
+The last command will open a menu.
+
+If you want to build images for the "TL-WR841N v11" Wifi-Router, select:
+
+  * "Target System" => "Atheros AR7xxx/AR9xxx"
+  * "Target Profile" => "TP-LINK TL-WR841N/ND v11"
+
+Select exit and save your settings.
+Now build images. That may take some time:
+
+<code>
+make
+</code>
+
+If you are compiling using a multi-core computer, you may speed-up compilation using several CPU cores:
+<code>
+make -j N
+</code>
+where N is your number of CPU cores + 1. Avoid in production as it may lead to strange and hard-to-detect errors. Use the '-j' option only if you are familiar with the build system.
+
+Afterwards, the images can be found in ./bin/targets/ar71xx/generic/ - done. 8-)
+
+The *-factory.bin images are for the first installation.
+The *-sysupgrade.bin images are for the updating existing LEDE installations.
+
+Notes:
+
+  * For recompiling the images, just execute make again.
+  * This will now be much faster as well.
+  * Change settings with //make menuconfig// and compile again.
+  * Files placed into a directory called files, will be placed into the root file system of the images. E.g. files/etc/config/my_config.

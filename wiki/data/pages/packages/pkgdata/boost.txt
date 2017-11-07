@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: boost ======
+---- dataentry packages ----
+Name                             : boost
+Version                          : 1.63.0-1
+Description                      : This package provides the Boost v1.63 libraries.\\ Boost is a set of free, peer-reviewed, portable C++ source libraries.\\  \\ ----------------------------------------------------------------------------- \\ | Warning |\\ | In order to build all of the Boost Libraries, it is necessary |\\ | to use, at least, GCC version 5 (C++14 support) and, it is necessary to |\\ | compile the kernel with Full Language Support. |\\ | Without these requirerements, the following libs will not be available: |\\ | - Boost.Locale |\\ | - Boost.Coroutine2 |\\ | - Boost.Fiber |\\ ----------------------------------------------------------------------------- \\  \\ This package provides the following run-time libraries:\\ - atomic\\ - chrono\\ - container\\ - context\\ - coroutine (Deprecated - use Coroutine2)\\ - - coroutine2 (Requires GCC v5 and up)\\ - date_time\\ - exception\\ - filesystem\\ - fiber (Requires GCC v5 and up)\\ - graph\\ - - graph-parallel\\ - iostreams\\ - locale (Requires kernel being compiled with full language support)\\ - log\\ - math\\ - program_options\\ - python\\ - python3\\ - random\\ - regex\\ - serialization\\ - signals\\ - system\\ - thread\\ - timer\\ - wave\\  \\ There are many more header-only libraries supported by Boost.\\ See more at http://www.boost.org/doc/libs/1_63_0/\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 0 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libstdcpp, libpthread, librt
+Categories_pkg-categorys         : libraries #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arm_arm1176jzf-s_vfp, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_mpcore, arm_mpcore_vfp, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips_24kc, mipsel_24kc, mipsel_74kc, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 1
+License                          : Boost Software License
+Maintainer_pkg-maintainer        : Carlos M. Ferreira
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/libs/boost|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1.63.0-1 # short version of the package, for display in table
+----
+

@@ -1,0 +1,21 @@
+====== i386_pentium4 ======
+
+Equivalent to i686 arch of most linux distros, (actually has a slightly more recent instruction set, as i686 is Pentium III), this is likely the older x86 hardware you might want to use.
+
+===== Download Packages =====
+
+/* Link to packages download goes here. */
+
+| HTTP   | [[https://downloads.lede-project.org/releases/packages-17.01/i386_pentium4/]]      |
+| FTP    | [[ftp://ftp.halifax.rwth-aachen.de/lede/releases/packages-17.01/i386_pentium4/]]   |
+
+See [[/downloads#mirrors|Mirrors]] for more download sites.
+
+===== Devices with this instructionset =====
+
+---- datatable ----
+cols   : Package architecture, Target, Subtarget, Brand, Model_pageid, Version
+filter : Package architecture=i386_pentium4
+filter : Brand!=(EXAMPLE)
+sort   : Brand
+----

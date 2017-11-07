@@ -1,0 +1,37 @@
+====== Packages (maintainer mode) ======
+~~NOTOC~~
+~~NOSIDEBAR~~
+
+  * To see only normal fields (standard view) go [[packages:start|here]]
+LEDE provides several thousand packages to extend the capabilities of your device.
+
+===== Package Index =====
+A quick overview to all available packages can be seen in the **[[packages:index:start|Package Index]]**.
+
+===== Package categories =====
+Clicking on a package category filters the **Table of Packages** below accordingly, but you can of course filter it manually by yourself.\\
+++++Filter by category|
+---- datacloud ----
+col        : Categoriess
+filter     : %class%=packages
+summarize  : 1
+----
+++++
+===== Table of packages =====
+The table below shows 50 packages per page due to performance reasons.\\
+
+  * Click on "next page" or "previous page" links in the bottom left to show next or previous 50 packages.
+  * **Columns can be sorted** by clicking on the column header
+  * Enter your filter criteria in the <color black/white>'' white fields ''</color>
+
+If you click on the package's name in the table below, you will be brought to the package's own page with its documentation, if there is none, feel free to add it.
+
+---- datatable ----
+cols       : Categoriess, Name_pkg-page, Version-short, Dependencies_pkg-dependencies, Description_wiki, LEDE releases_lede-release, File size_pkg-filesize, Installed size_pkg-filesize, License, Maintainer_pkg-maintainer, Bug report_wiki, Source code_wiki, Packagedata_pageid
+header     : Category, Name, Version, Dependencies, ...........................................Description..........................................., LEDE release, File size, Installed size, License, Maintainer, Bug report, Source code, Packagedata
+align      : l,l,l,l,l,l,l,l,l,l,l,c,c,c
+filter     : %class%=packages
+max        : 50
+dynfilters : 1
+sort       : Name
+----

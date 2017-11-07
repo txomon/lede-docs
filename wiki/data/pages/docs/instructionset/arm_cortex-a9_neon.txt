@@ -1,0 +1,35 @@
+====== arm_cortex-a9_neon ======
+
+The ARM® Cortex®-A9 processor is a popular general purpose choice for low-power or thermally constrained, cost-sensitive 32-bit devices.
+
+The Cortex-A9 processor is proven in a wide range of devices and is one of ARM's most widely deployed and mature applications processors. Cortex-A9 processor offers an overall performance enhancement over 25% higher than Cortex-A8 per core, plus the ability to implement multi-core designs that further scale the performance increase.
+
+The Cortex-A9 implements the widely supported ARMv7-A architecture with an efficient microarchitecture: 
+
+  * High-efficiency, dual-issue superscalar, out-of-order, dynamic length pipeline (8 – 11 stages)
+  * Highly configurable L1 caches, and optional NEON and Floating-point extensions
+  * Available as a Single processor configuration, or a scalable multi-core configuration with up to 4 coherent cores
+
+For the most high-end 32-bit devices, Cortex-A17 delivers more performance and efficiency in a similar footprint than it’s predecessor, the Cortex-A9. They are based of a similar pipeline, with Cortex-A17 extending the capabilities in single thread performance and adding big.LITTLE support and virtualization that were not in the original Cortex-A9 offering. 
+
+[[http://www.arm.com/products/processors/cortex-a/cortex-a9.php|source]]
+
+This architecture is for cortex a9 processors with NEON instructions.
+
+===== Download Packages =====
+
+/* Link to packages download goes here. */
+
+| HTTP   | [[https://downloads.lede-project.org/releases/packages-17.01/arm_cortex-a9_neon/]]      |
+| FTP    | [[ftp://ftp.halifax.rwth-aachen.de/lede/releases/packages-17.01/arm_cortex-a9_neon/]]   |
+
+See [[/downloads#mirrors|Mirrors]] for more download sites.
+
+===== Devices with this instructionset =====
+
+---- datatable ----
+cols   : Package architecture, Target, Subtarget, Brand, Model_pageid, Version
+filter : Package architecture=arm_cortex-a9_neon
+filter : Brand!=(EXAMPLE)
+sort   : Brand
+----

@@ -1,0 +1,33 @@
+====== Missing dataentries ======
+
+This table lists devices for which firmware images are available, but dataentry is missing.
+
+  * If - and only if - you have hardware specs available, [[meta:create_new_dataentry_page|create a new dataentry]]. Do not create mostly empty dataentries!
+  * If there is no wikidevi page available for a device, consider [[https://wikidevi.com/wiki/Main_Page|creating one]]
+
+<datatables>
+^ Brand       ^ Model                        ^ git-commit                                                                                       ^ wikidevi                                              ^ Devicepage   ^ Comment                       ^
+| D-Link      | DSL-2650U                    | https://git.lede-project.org/?p=source.git;a=commit;h=ae90aa4efd1efff1a4f02e9993dc6bd6393a8dc2   |                           -                           |     Yes      | Same as DSL-2650U/BRU/D ???   |
+| DuZun       | DM06                         | https://git.lede-project.org/?p=source.git;a=commit;h=9a4935687d6d79e0eeae37204794fc68e17c8b68   |                           -                           |      -       |                               |
+| Huawei      | D105                         | https://git.lede-project.org/?p=source.git;a=commit;h=910b705155f90c1e345c614c1212ee26a46117d6   |                           -                           |      -       |                               |
+| MoFi        | MOFI3500-3GN                 | https://git.lede-project.org/?p=source.git;a=commit;h=d5a7e2f5c1d63e81771617940ac6f92b31a05583   | https://wikidevi.com/wiki/MoFi_Network_MoFi3500-3GN   |      -       |                               |
+| Netcore     | NW718                        | https://git.lede-project.org/?p=source.git;a=commit;h=ea211c4d907574d0a8b3b4667fd7ac9a013fe4d9   |                           -                           |      -       |                               |
+| NexAira     | BC2                          | https://git.lede-project.org/?p=source.git;a=commit;h=ee8077f0feac7de4476b990bd462cc2b13fe63c0   |                           -                           |      -       |                               |
+| Raidsonic   | ICY BOX IB-NAS62x0 (Rev B)   | https://git.lede-project.org/?p=source.git;a=commit;h=213cbf42976441e5b2181303bcaa2c80e60e8586   |                           -                           |      -       |                               |
+| SmartRG     | SR400ac                      | https://git.lede-project.org/?p=source.git;a=commit;h=3dd92743328e3ec956cf243b74e43eaf5167dc92   | https://wikidevi.com/wiki/SmartRG_SR400ac             |      -       |                               |
+| Thunder     | Timecloud                    | https://git.lede-project.org/?p=source.git;a=commit;h=0f73801f4ff49cf9601e8f13c11f7d7928c1186b   |                           -                           |      -       |                               |
+| Ubiquiti    | LS-SR71                      | https://git.lede-project.org/?p=source.git;a=commit;h=40b538d6d24b583f671fa82d99cb819d7c8516ba   |                           -                           |      -       |                               |
+| Wansview    | NCS601W                      | https://git.lede-project.org/?p=source.git;a=commit;h=3d81a4ef822d9261d89338b6090558b0a370c853   |                           -                           |      -       |                               |
+| Ralink      | AP-RT3052-V22RW-2X2          | https://git.lede-project.org/?p=source.git;a=commit;h=09677bf748b8ca263f5e3a23ade16982da8541c4   |                           -                           |      -       |                               |
+| WRTnode     | WRTnode2p/2r                 | https://git.lede-project.org/?p=source.git;a=commit;h=de7dce21a331dfe0fc63efd16f0d00e0a226de9b   |                           ?                           |      -       |                               |
+</datatables>
+
+===== Low flash / RAM - do not create dataentries for these devices =====
+ 
+<datatables>
+^ Brand    ^ Model         ^ git-commit                                                                                       ^ wikidevi                                           ^ Devicepage   ^ Comment         ^
+| Belkin   | F5D7633       | https://git.lede-project.org/?p=source.git;a=commit;h=218582e8ea112ecd95730f6d342fb38956d34896   | https://wikidevi.com/wiki/Belkin_F5D7633-4         |      -       | 16MB RAM only   |
+| D-Link   | DSL-2640B-B   | https://git.lede-project.org/?p=source.git;a=commit;h=6c8387fe1565127b5e366fd89d00350441ba7cd4   | https://wikidevi.com/wiki/D-Link_DSL-2640_series   |     Yes      | 16MB RAM only   |
+| D-Link   | DSL-2640U     | https://git.lede-project.org/?p=source.git;a=commit;h=30a579c6744eab2184689b680424be49369d7ad6   | https://wikidevi.com/wiki/D-Link_DSL-2640_series   |     Yes      | 16MB RAM only   |
+| Tenda    | W150M         | https://git.lede-project.org/?p=source.git;a=commit;h=93899a1329f66ffa7550a75b8af3bb40e6a3c67a   | https://wikidevi.com/wiki/Tenda_W150M              |     Yes      | 2/16MB only     |
+</datatables>

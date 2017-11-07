@@ -1,0 +1,143 @@
+===== LEDE 설정 방법 =====
+
+**LEDE** 는 UCI(Unified Configuration Interface) 를 사용하여 모든 설정을 저장하고 조작합니다.
+
+LEDE 시스템을 설정할 때 UCI의 커맨드 라인을 사용하는 것을 추천합니다.\\ 
+이 방법을 사용할 때 설정 파일의 문법이나 어디에 있어야 하는지 걱정하지 않아도 됩니다. \\ 
+CLI를 사용하여 값을 수정할 때, 모든 변경 사항은 바로 저장되지 않습니다. 그렇기 때문에 설정후에는 변경 사항을 저장해야 합니다. \\ 
+
+==== UCI 설정 내부구조 ==== 
+설정은 서브시스템으로 나누어 집니다. 또한 각각의 서브시스템은 세션들로 나누어집니다. 세션은 리스트의 키 = ‘값’ 으로 이루어져 있습니다. \\
+사용 가능한 서브시스템으로 **dnsmasq**, **dropbear**, **firewall**, **fstab**, **net**, **qos**, **samba**, **system**, **wireless** 들이 있습니다.\\
+
+모든 UCI설정은 다음과 같은 구조로 저장됩니다. \\
+**<config>.<section>.<option>=<string>**\\
+여기서<option>은 필수는 아닙니다.\\
+
+다음은 UCI의 CLI를 사용하여 “system”의 두개 세션을 보는 예제 입니다. :
+<code>root@lede:~# uci show system
+system.@system[0]=system
+system.@system[0].hostname='lede'
+system.@system[0].timezone='UTC'
+system.ntp=timeserver
+system.ntp.server='0.lede.pool.ntp.org' '1.lede.pool.ntp.org' '2.lede.pool.ntp.org' '3.lede.pool.ntp.org'
+system.ntp.enabled='1'
+system.ntp.enable_server='0'
+</code>\\
+
+이것은 실제 설정 파일 내에서 동일한 두 세션을 보는 방법입니다;\\
+
+<code>root@LEDE:~# cat /etc/config/system 
+config system
+        option hostname 'lede'
+        option timezone 'UTC'
+
+config timeserver 'ntp'
+        list server '0.lede.pool.ntp.org'
+        list server '1.lede.pool.ntp.org'
+        list server '2.lede.pool.ntp.org'
+        list server '3.lede.pool.ntp.org'
+        option enabled '1'
+        option enable_server '0'
+</code>
+
+
+==== UCI 커맨드 라인 도움말 ==== 
+<code>
+Usage: uci [<options>] <command> [<arguments>]
+
+Commands:
+        batch
+        export     [<config>]
+        import     [<config>]
+        changes    [<config>]
+        commit     [<config>]
+        add        <config> <section-type>
+        add_list   <config>.<section>.<option>=<string>
+        del_list   <config>.<section>.<option>=<string>
+        show       [<config>[.<section>[.<option>]]]
+        get        <config>.<section>[.<option>]
+        set        <config>.<section>[.<option>]=<value>
+        delete     <config>[.<section>[[.<option>][=<id>]]]
+        rename     <config>.<section>[.<option>]=<name>
+        revert     <config>[.<section>[.<option>]]
+        reorder    <config>.<section>=<position>
+
+Options:
+        -c <path>  set the search path for config files (default: /etc/config)
+        -d <str>   set the delimiter for list values in uci show
+        -f <file>  use <file> as input instead of stdin
+        -m         when importing, merge data into an existing package
+        -n         name unnamed sections on export (default)
+        -N         don't name unnamed sections
+        -p <path>  add a search path for config change files
+        -P <path>  add a search path for config change files and use as default
+        -q         quiet mode (don't print error messages)
+        -s         force strict mode (stop on parser errors, default)
+        -S         disable strict mode
+        -X         do not use extended syntax on 'show'
+</code>\\
+
+==== 현재 전체 설정 보기  ====
+<code> root@lede:/# uci show </code> \\
+
+==== 현재 서브시스템 설정 보기 ====
+<code> root@lede:/# uci show SUBSYSTEM_NAME</code>
+사용 가능한 서브시스템으로 **defaults**, **dnsmasq**, **dropbear**, **firewall**, **fstab**, **net**, **qos**, **samba**, **system**, **wireless** 이 있습니다.\\
+예를 들면 다음과 같습니다.:
+<code>
+root@lede:/# uci show system 
+system.@system[0]=system 
+system.@system[0].hostname='lede' 
+system.@system[0].timezone='UTC' 
+system.ntp=timeserver 
+system.ntp.server='0.openwrt.pool.ntp.org' '1.openwrt.pool.ntp.org' '2.openwrt.pool.ntp.org' '3.openwrt.pool.ntp.org' 
+system.ntp.enabled='1' 
+system.ntp.enable_server='0'
+</code>\\
+
+==== 단일 옵션 값 설정하기 ====
+<code>root@lede:/# uci set key='value'</code>
+예제:
+<code>root@lede:/# uci set system.@system[0].hostname='foo' </code>\\
+==== 옵션에 목록 추가 혹은 삭제 ====
+<code>root@lede:/# uci add_list key='value'
+root@lede:/# uci delete_list key='value'</code>
+위의 system.ntp.server키를 조작하려면 이 작업을 수행해야 합니다.\\
+-\\
+
+==== 서브시스템 설정에 새 세션 추가 ====
+<code>root@lede:/# uci add SECTION_NAME SUBSYSTEM_NAME</code>\\
+SECTION_NAME 이라는 서브시스템에 SECTION_NAME이라는 새 세션을 생성합니다. 
+후에 세션에 키를 수가 할 수 있습니다.
+
+==== 아직 저장되지 않은 수정 값 보기 ====
+<code>root@lede:/# uci changes</code>\\
+
+==== 단일 서브시스템의 수정 값 저장 ====
+<code>root@lede:/# uci commit SUBSYSTEM_NAME 
+root@lede:/# reload_config </code>\\
+
+==== 모든 수정된 값 저장 ====
+<code>root@lede:/# uci commit
+root@lede:/# reload_config </code>\\
+
+==== 수동으로 설정 파일들 편집하기 ====
+모든 설정 파일은 /etc/config/폴더에 저장되며 사람이 읽을 수 있지만 딱딱한 방식으로 작성된 텍스트 파일 입니다.\\ 
+각각의 파일은 UCI 서브시스템이며 많은 옵션들을 갖고 있습니다. 옵션들은 단일 값 또는 여러 개의 값일 수 있습니다. \\ 
+파일들을 수동으로 편집할 수 있습니다. 하지만 **사소한 문법 오류**로 인해 전체적인 설정을 읽을 수 없게 할 수 있습니다. 위의 설명과 같이 UCI의 CLI를 사용하는 것이 좋습니다.
+<code>
+root@lede:/# cat etc/config/system
+config system 
+  option hostname lede 
+  option timezone UTC
+
+config timeserver ntp 
+  list server   0.openwrt.pool.ntp.org 
+  list server   1.openwrt.pool.ntp.org 
+  list server   2.openwrt.pool.ntp.org 
+  list server   3.openwrt.pool.ntp.org 
+  option enabled 1 
+  option enable_server 0
+</code>
+ 

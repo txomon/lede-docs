@@ -1,0 +1,32 @@
+====== ppc44x ======
+
+  * [[https://git.lede-project.org/?p=source.git;a=commit;h=06c76e41d7a0c936f5e4b6f43f331860e3b99d70|Marked as broken]]
+
+===== Devices with this target =====
+<hidden onHidden="Show devices with this target" onVisible="Hide devices with this target">
+++++Filter: Subtarget|
+---- datacloud ----
+col        : subtarget
+filter     : Target=ppc44x
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+++++Filter: LEDE Instructionset|
+---- datacloud ----
+col        : lede instructionset
+filter     : Target=ppc44x
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+---- datatable ----
+cols       : Target, Subtarget, Lede Instructionset_lede-instset, Brand, Model, Version, LEDE Device Page_page
+filter     : Target=ppc44x
+filter     : Brand!=(EXAMPLE)
+sort       : Brand
+rownumbers : 1
+----
+</hidden>

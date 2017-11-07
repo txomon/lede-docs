@@ -1,0 +1,16 @@
+====== Dataentry top note ======
+
+===== Usage =====
+
+  * **IMPORTANT :** Edit this page only via the **LEFT** edit button below the box
+  * After editing, please enter a short summary of your edit:
+    * Which field has been changed? (e.g. //Ethernet 100M ports//)
+    * What have you done? (e.g. //added / updated / deleted / ...//)
+    * Why has it been changed? / What is your datasource? (//acc. devicepage / wikidevi / forum ...//)
+    * Example summary: //Ethernet 100M ports updated according wikidevi//
+  * For adding new dropdown values, [[wiki:start#contact|Contact a LEDE wiki admin]] (tmomas)
+  * For conventions / allowed values, see [[#Conventions for dataentry values|below]]
+  * For general usage help, see [[:meta:template_dataentry_background|Dataentry template background]]
+
+  * Searching for **pure technical facts?** See table below.
+  * Searching for **installation instructions, bootlogs, other info?** See link to //Device Page// below.

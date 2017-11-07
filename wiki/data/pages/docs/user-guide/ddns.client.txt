@@ -1,0 +1,752 @@
+====== DDNS Client ======
+If you want to set up a DDNS Server instead, please see [[doc:howto:ddns.server]].\\
+See also [[https://wiki.openwrt.org/doc/howto/ddns.client]]
+
+===== Introduction =====
+
+DDNS stands for [[wp>Dynamic_DNS|Dynamic DNS]]. Simply put, using this service gives a name to your IP. So if you're hosting something on your line, people would not have to bother typing your IP. They can just type in your domain name! It also helps when your IP changes. Users won't need to discover what your new IP is, they can simply type your domain name. 
+
+This guide will help you configure your DDNS service, so that your router auto-updates your IP to your DDNS provider. The simplest method possible would be through LuCI (the default webUI for OpenWrt).
+
+OpenWrt uses [[packages:pkgdata:ddns-scripts|ddns-scripts]] which are [[wp>Bourne_shell|Bourne shell]] scripts.\\
+There are other scripts and programs available in the web, also some DDNS providers offer their own programs. All of them are currently not ported and tested on OpenWrt.
+
+
+===== Requirements =====
+
+First of all, you'll need to pick and register a DNS name with a compatible DynamicDNS service provider.\\
+For a list of DDNS providers, see:
+  * https://www.google.de/search?q=dynamic+dns+provider+list
+  * http://www.opendirectoryproject.org/Computers/Internet/Protocols/DNS/Service_Providers/Dynamic_DNS
+  * http://dnslookup.me/dynamic-dns/
+
+^ //ddns-scripts// support the following Dynamic DNS service provider out of the box:  ^^^^
+| [[http://3322.org/|3322.org]]  | [[http://afraid.org/|afraid.org]] <sup>6)</sup>  | [[http://changeip.com/|changeip.com]]  | [[http://cloudflare.com/|cloudflare.com]] <sup>2) 5) 6)</sup>  |
+| [[http://core-networks.de/|core-networks.de]] <sup>6)</sup>  | [[http://ddnss.de/|ddnss.de]] <sup>6)</sup>  | [[http://dhis.org/|dhis.org]] <sup>6)</sup>  | [[http://dnsdynamic.org/|dnsdynamic.org]]  |
+| [[http://dnsexit.com/|dnsexit.com]]  | [[http://dnshome.de/|dnshome.de]] <sup>6)</sup>  | [[http://dnsmax.com/|dnsmax.com]]  | [[http://dnsomatic.com/|dnsomatic.com]]  |
+| [[http://dnspark.com/|dnspark.com]]  | [[http://do.de/|do.de]] <sup>6)</sup>  | [[http://dtdns.com/|dtdns.com]]  | [[http://duckdns.org/|duckdns.org]] <sup>6)</sup>  |
+| [[http://duiadns.net/|duiadns.net]] <sup>6)</sup>  | [[http://dy.fi/|dy.fi]]  | [[http://dyndns.org/|dyndns.org]] <sup>6)</sup> (dyn.com)  | [[http://dyndnss.net/|dyndnss.net]]  |
+| dyns.net  | dynsip.org  | [[http://dynu.com/|dynu.com]]  | [[http://dynv6.com/|dynv6.com]] <sup>6)</sup>  |
+| [[http://easydns.com/|easydns.com]]  | [[http://editdns.net/|editdns.net]]  | [[http://goip.de/|goip.de]] <sup>6)</sup>  | [[http://domains.google.com/|google.com]] <sup>5) 6)</sup>  |
+| [[http://dns.he.net/|he.net]] <sup>6)</sup>  | [[http://joker.com/|joker.com]]  | [[http://loopia.se/|loopia.se]] <sup>6)</sup> ([[http://loopia.com/|loopia.com]])  | [[http://mydns.jp/|mydns.jp]] <sup>6)</sup>  |
+| [[http://myonlineportal.net/|myonlineportal.net]] <sup>6)</sup>  | [[http://mythic-beasts.com/|mythic-beasts.com]] <sup>6)</sup>  | [[http://namecheap.com/|namecheap.com]]  | [[http://nettica.com/|nettica.com]]  |
+| [[http://no-ip.com/|no-ip.com]] <sup>1)</sup> (noip.com)  | [[http://no-ip.pl/|no-ip.pl]] <sup>6)</sup>  | [[http://nsupdate.info/|nsupdate.info]] <sup>6)</sup>  | [[http://nubem.com/|nubem.com]]  |
+| [[http://ovh.com/|ovh.com]]  | [[http://regfish.de/|regfish.de]] <sup>6)</sup>  | [[http://schokokeks.org/|schokokeks.org]]  | [[http://selfhost.de/|selfhost.de]]  |
+| [[http://sitelutions.com/|sitelutions.com]]  | [[http://spdyn.de/|spdyn.de]] <sup>6)</sup> (spdns.de)  | [[http://strato.com/|strato.com]]  | [[http://system-ns.com/|system-ns.com]]  |
+| [[http://thatip.com/|thatip.com]]  | [[http://twodns.de/|twodns.de]]  | [[http://variomedia.de/|variomedia.de]] <sup>6)</sup>  | [[http://zerigo.com/|zerigo.com]] <sup>6)</sup>  |
+| [[http://zoneedit.com/|zoneedit.com]] <sup>5)</sup>  | [[http://www.zzzz.io/|zzzz.io]] <sup>5) 6)</sup>  | | BIND nsupdate <sup>3) 4) 6)</sup>  |
+
+<sup>1)</sup> requires additional package //ddns-scripts_no-ip_com// to be installed.\\
+<sup>2)</sup> needs additional package //ddns-scripts_cloudflare// to be installed.\\
+<sup>3)</sup> directly updates a PowerDNS (or maybe bind server) via nsupdate.\\
+<sup>4)</sup> needs additional package //ddns-scripts_nsupdate// and ''bind-client'' to be installed.\\
+<sup>5)</sup> SSL support required.\\
+<sup>6)</sup> support IPv6
+
+If you have picked a DDNS service provider and create your host/domain name you need to note additional your username and password.\\
+Now you need to decide if you want to use secure communication with your DDNS provider or not.\\
+Some provider require secure ([[wp>HTTPS|HTTPS]]) communication. Read their help pages for details and also read provider specific informations below.
+
+
+===== Support =====
+If you need support, found an issue or only want to request a new extension for the next release, please post your questions/issues/requests here: **(Don't forget to post informations about your used software versions.)**
+   * [[https://forum.openwrt.org/|OpenWrt Forum]]
+   * [[https://forum.lede-project.org/|LEDE forum]]
+   * [[https://github.com/openwrt/packages/issues|Github-OpenWrt-Packages]] for //ddns-scripts//
+   * [[https://github.com/openwrt/luci/issues|Github-OpenWrt-LuCI]] for //luci-app-ddns//
+
+A full list of supported settings (some not supported by LuCI webUI):
+   * UCI documentation -> [[doc:uci:ddns|Dynamic DNS Client configuration]]
+
+The source code is available at GitHub:
+|  CC 15.05  | [[https://github.com/openwrt/packages/tree/for-15.05/net/ddns-scripts|ddns-scripts_2.4.3-1]]  | [[https://github.com/openwrt/luci/tree/for-15.05/applications/luci-app-ddns| luci-app-ddns_2.2.4-1]]  |
+|  trunk  | [[https://github.com/openwrt/packages/tree/master/net/ddns-scripts|ddns-scripts]]  | [[https://github.com/openwrt/luci/tree/master/applications/luci-app-ddns|luci-app-ddns]]  |
+
+===== Installation =====
+==== using LuCI ====
+  * Login into your router through your browser.
+  * From the menu select '''System''' -> '''Software'''
+  * Press button [Update Lists] to update internal lists of available packages.
+  * Filter for //ddns// and install //luci-app-ddns// package. Installing the package //luci-app-ddns// will automatically install the package //ddns-scripts//.
+  * You might need to install provider specific packages //ddns-scripts_xxxxx// and LuCI language packages //luci-i18n-ddns-xx//.
+  * After //luci-app-ddns// (and other packages) are installed, just press any other menu entry on the LuCI webUI, and the page will refresh itself and it will appear in the menu under '''Services''' -> '''%%Dynamic DNS%%'''.
+
+==== via console ====
+To install //ddns-scripts// use the [[doc:techref:opkg|OPKG Package Manager]]\\
+You might need to install provider specific packages //ddns-scripts_xxxxx//
+<code|root@OpenWrt:/#>
+opkg update
+opkg install ddns-scripts
+opkg install ddns-scripts_xxxxx
+</code>
+
+==== SSL support ====
+
+By default //ddns-scripts// uses BusyBox built-in '''wget''' for DDNS updates over http, which does not support https (SSL). \\ 
+To perform DDNS updates over https (SSL), you will need to install the '''wget''' or '''curl''' package, and add the appropriate root certificate for your ddns provider.
+
+If both '''wget''' and '''curl''' are installed you can configure which one to prefer. Default is '''wget'''.
+
+You can install either via LuCI (from the menu select 'System' → 'Software') and search for '''wget''' or '''curl'''\\
+or install via console using following commands:
+<code|root@OpenWrt:/#>
+opkg update
+opkg install wget     # normally you only need
+opkg install curl     # either wget or curl
+opkg install ca-certificates
+</code>
+
+:!: If you, also for other software, need all certificates in one file or you want to update CA certificates regulary, then do **NOT** install '''ca-certificates''' package.\\
+'''ca-certificate''' package is not always backported to older OpenWrt versions.
+Install latest CA certificates (in one file) using console:
+<code|root@OpenWrt:/#>
+mkdir -p -m0755 /etc/ssl/certs
+curl -o /etc/ssl/certs/ca-certificates.crt http://curl.haxx.se/ca/cacert.pem   # using curl
+wget  --no-check-certificate -O /etc/ssl/certs/ca-certificates.crt http://curl.haxx.se/ca/cacert.pem   # using wget
+</code>
+
+==== other functions ====
+FIXME //This does not belong to the Installation section. Move it to where it better fits the context.//  --- //[[tmo26@gmx.de|tmomas]] 2017/04/24 01:05//
+
+//ddns-scripts// support other special communication functions to be used:
+  * Run once (useful for usage with ''crond'')
+  * Set proxy with/without authenfication for http/https requests
+  * Set DNS server to use other than system default
+  * Binding to specific network if ''wget'' or to specific interface if ''curl'' installed.
+  * Force the usage of either IPv4 or IPv6 communication only. Require either ''wget'' or ''curl'' AND ''bind-host'' !
+  * DNS requests via TCP. Require either ''wget'' or ''curl'' AND ''bind-host'' !
+
+===== Configuration =====
+==== Basics ====
+ddns-scripts are designed to update one host per configuration/section. To update multiple hosts or providers or IPv4 and IPv6 for the same host you need to define separate configurations/sections. Some providers offer to update multiple host within one update request. A possible solution for this option is to use ''--custom--'' service name settings. Have a look at [[#provider_specifics|Provider specifics]].
+
+The main settings you need to set are (all other normally work fine with the defaults):\\
+|  Service name | the DDNS service provider to use  |
+|  Host/Domain | your [[wp>Fully_qualified_domain_name|FQDN]] you want to update (used by //ddns-scripts// using nslookup to check if update has happen)  |
+|  Username | username or other parameter to use as username (send urlencoded)  |
+|  Password | password or other parameter to use as password (send urlencoded)\\ :!: **__including BB 14.07__** Ensure this password does not have "$1" or $ with any number following in it, as this breaks the script.  |
+|  Interface | network name (i.e. wan, wan6) used by OpenWrt hotplug event system to start //ddns-scripts//  |
+
+:!: **__since DD (trunk)__** the following main settings need to be set:\\
+|  Service name | the DDNS service provider to use  |
+|  Lookup Host | ONE of your defined [[wp>Fully_qualified_domain_name|FQDN]] you want to update (used by //ddns-scripts// using nslookup to check if update has happen)  |
+|  Host/Domain | mostly same as '''Lookup Host''', but now can also be used as "normal" parameter. i.e. as list of hosts to be updated  |
+|  Username | username or other parameter to use as username (send urlencoded)  |
+|  Password | password or other parameter to use as password (send urlencoded)  |
+|  Interface | network name (i.e. wan, wan6) used by OpenWrt hotplug event system to start //ddns-scripts//  |
+
+After fresh installation a configuration/section '''myddns''' and '''myddns_ipv4''' and '''myddns_ipv6''' exists ready to be modified for your needs.\\
+You could delete them and define your own.\\
+
+{{:meta:icons:tango:dialog-warning.png?nolink&32x32}}  **Please heed the following important hints:**
+  *** It is NOT allowed to use ''dash''-sign "-" inside configuration/section names.**
+  ***A full list of supported settings (some not supported by LuCI webUI) you will find in [[doc:uci:ddns|UCI documentation]]!**
+  ***Always keep in mind the [[#provider_specifics|Provider specific]] settings if there are any!**
+  ***Don't forget to enable your configuration/section!**
+  ***You need minimum one enabled configuration/section for //ddns// service to start!**
+  ***You need to enable //ddns// service to enable updates being sent on reboot and hotplug events!**
+  ***__//Although described elsewhere, it is not recommended to change the files '''/usr/lib/ddns/services''' or '''/usr/lib/ddns/services_ipv6''' because they will be overwritten during system and package updates!//__**
+
+==== using LuCI ====
+  * Login into your router through your browser.
+  * From the menu select '''Services''' -> '''%%Dynamic DNS%%'''.
+  * Navigate to the configuration/section you like to change.
+  * Modify the fields you need to change.
+  * Don't forget to check the '''Enabled''' option!
+  * Click [Save & Apply] button to save changes.
+
+To add a new configuration/section:\\
+  * Type the new name into the text entry box at the bottom of the page next to [Add] button.\\ :!: **Do not use a ''dash'' character "-" in configuration/section name!**
+  * Click [Add] button.
+  * Modify the fields you need to change.
+  * Don't forget to check the '''Enabled''' option!
+  * Click [Save & Apply] button to save changes.
+
+'''Username''' and '''Password''' fields are required fields. If your provider does not require one or both of them, simply put in a character of your choice.
+
+:!: **You need to enable ddns service!**\\
+From the menu select '''System''' -> '''Startup'''.\\
+Set //ddns// service to enabled.
+
+=== SSL Support ===
+Options to configure HTTPS communication are only available if ''wget'' or ''curl'' package is installed. (See ''Hints'' if shown.)
+
+  * Check '''Use HTTP Secure''' option. Additional field '''Path to CA-Certificate''' is shown with it's default setting.
+    * If you have installed ''ca-certificates'' package leave the shown default! (''/etc/ssl/certs'')
+    * If you have installed CA certificates in one file from [[#ssl_support|above]] set the value to: ''/etc/ssl/certs/ca-certificates.crt''
+    * If you like to use other certificate you need to set here the full path to the certificate including file name. (''/path/to/file.crt'')
+    * If your certificates are stored in a different path, set here the path where your certificates are located. (''/path/to/files'')
+  * Click [Save & Apply] button to save changes.
+
+=== Custom Service ===
+If you want to use a DDNS provider currently not listed or you want to update multiple hosts within one configuration/section then you should do the following:
+  * Choose '''--custom--''' as service. Additional field '''%%Custom update-URL%%''' is shown.
+  * Fill in the URL you like to use. :!: Please read URL syntax description [[#custom_service1|below]]. Also have a look at [[#provider_specifics|Provider specifics]].
+  * Click [Save & Apply] button to save changes.
+
+:!: **If you found a DDNS provider not listed or with additional IPv6 support or with changed update URL please open an issue at [[https://github.com/openwrt/packages|Github-OpenWrt-Packages]] so it can be included with the next release.**
+
+==== via console ====
+The easiest way to configure //ddns-scripts// via console is to edit the file ''/etc/config/ddns'' directly using build-in [[wp>Vi|vi editor]] or any other editor you prefer. Other editors as ''vi'' needs to be installed separately.
+
+A configuration/section looks like:
+<code|/etc/config/ddns>
+config 'service' 'myddns'
+	option 'service_name'	'example.org'
+	option 'enabled'	'1'
+	option 'domain'		'yourhost.example.org'
+	option 'username'	'your_username'
+	option 'password'	'your_password'
+	option 'interface'	'wan'
+	option 'ip_source'	'network'
+	option 'ip_network'	'wan'
+</code>
+
+Alternatively you can use [[doc:uci#command_line_utility|UCI command line interface]].\\
+Example input:
+<code|root@OpenWrt:/#>
+uci set ddns.myddns.service_name="ddnsprovider.com"	# only use names listed in /usr/lib/ddns/services 
+							# or /usr/lib/ddns/services_ipv6 (since CC 15.05)
+uci set ddns.myddns.domain="host.yourdomain.net"
+uci set ddns.myddns.username="your_user_name"
+uci set ddns.myddns.password="p@ssw0rd"
+uci set ddns.myddns.interface="wan"	# network interface that should start this configuration/section
+uci set ddns.myddns.enabled="1"
+uci commit ddns				# don't forget this, otherwise data not written to configuration file
+</code>
+
+''ddns.myddns.enabled="1"'' means:
+  * '''ddns''' is the configuration file to change (here ''/etc/config/ddns'')
+  * '''myddns''' is the configuration/section to change
+  * '''enabled''' is the option to set/change
+  * behind the ''equal''-sign is the value to set. :!: Set ''single''- or ''double''-quotes around the value and no space or whitespace around the ''equal''-sign.
+
+Example to create/add a new configuration/section "newddns":
+<code|root@OpenWrt:/#>
+uci set ddns.newddns="service"
+uci set ddns.newddns.service_name="ddnsprovider.com"	# only use names listed in /usr/lib/ddns/services
+							# or /usr/lib/ddns/services_ipv6 (since CC 15.05)
+uci set ddns.newddns.domain="host.yourdomain.net"
+uci set ddns.newddns.username="your_user_name"
+uci set ddns.newddns.password="p@ssw0rd"
+uci set ddns.newddns.interface="wan"	# network interface that should start this configuration/section
+uci set ddns.newddns.enabled="1"
+uci commit ddns				# don't forget this, otherwise data not written to configuration file
+</code>
+
+:!: **You need to enable //ddns// service by:**
+<code|root@OpenWrt:/#>
+/etc/init.d/ddns enable
+</code>
+
+=== SSL Support ===
+
+You need to add the following entries to the desired section in '''/etc/config/ddns''' file:\\
+using '''ca-certificates''' package:
+<code|/etc/config/ddns>
+config 'service' 'myddns'
+	...
+	option 'use_https'	'1'
+	option 'cacert'		'/etc/ssl/certs'
+</code>
+using single file (ie. as descriped [[#ssl_support|above]]):
+<code|/etc/config/ddns>
+config 'service' 'myddns'
+	...
+	option 'use_https'	'1'
+	option 'cacert'		'/etc/ssl/certs/ca-certificates.crt'
+#	option 'cacert'		'/full/path/to/file.crt'
+</code>
+
+Above options can also be set via LuCI webUI.\\
+The options are only shown if '''wget''' or '''curl''' package is installed!
+
+=== Custom Service ===
+Following changes need to be done if you use a DDNS provider currently not listed or to update multiple hosts within one configuration/section.\\
+Edit '''/etc/config/ddns'''
+<code|/etc/config/ddns>
+config 'service' 'myddns'
+	...
+#	option 'service_name'	'example.org'		# comment out "#" or delete
+	option 'update_url'	'http://your.update.url...[USERNAME]...[PASSWORD]...[DOMAIN]...[IP]'
+</code>
+or use UCI command line interface
+<code|root@OpenWrt:/#>
+uci delete ddns.myddns.service_name
+uci set ddns.myddns.update_url="http://your.update.url...[USERNAME]...[PASSWORD]...[DOMAIN]...[IP]"
+uci commit ddns		# don't forget this, otherwise data not written to configuration file
+</code>
+
+== URL Syntax ==
+:!: It's not needful to set '''https:%%//%%'''. If SSL support is activated '''http:%%//%%''' is replaced automatically.\\
+:!: The entries [USERNAME] [PASSWORD] [DOMAIN] [IP] are replaced by //ddns-scripts// just before update.\\
+[USERNAME] is replaced by content of '''option username''' from configuration file.\\
+[PASSWORD] is replaced by content of '''option password''' from configuration file.\\
+[DOMAIN] is replaced by content of '''option domain''' from configuration file.\\
+[IP] is replaced by the current IP address of your OpenWrt system.
+
+:!: carefully set '''option domain''' in your configuration. This option is also used to detect if the update was successfully done.\\ :!: This entry is the DNS name your OpenWrt system will be reachable from the internet.\\
+:!: Have a look at [[#provider_specifics|Provider specifics]] for samples.\\
+
+:!: **If you found a DDNS provider not listed or with additional IPv6 support or with changed update URL please open an issue at [[https://github.com/openwrt/packages|Github-OpenWrt-Packages]] so it can be included with the next release.**
+
+==== Detecting local IP ====
+
+Here a list (without preferences) of url's to detect your current public ip used by your system:
+^ Dual-Stack  ^ IPv4-only  ^ IPv6-only  ^ Server Location  ^
+| http://checkip.dns.he.net/         | —  | —  | US  |
+| http://checkip.freedyn.org/        | —  | —  | DE  |
+| http://bot.whatismyipaddress.com/  | —  | —  | US  |
+| http://whatismyip.org/             | —  | —  | US  |
+| http://myexternalip.com/raw        | —  | —  | DE  |
+| http://wtfismyip.com/text          | —  | —  | US  |
+| http://domains.google.com/checkip  | —  | —  | part of Google  |
+| http://icanhazip.com/              | http://ipv4.icanhazip.com/  | http://ipv6.icanhazip.com/  | US  |
+| http://checkip.feste-ip.net/       | http://v4.checkip.feste-ip.net/  | http://v6.checkip.feste-ip.net/  | DE  |
+| http://ident.me/                   | http://ipv4.ident.me/  | http://ipv6.ident.me/  | UK  |
+| http://ddnss.de/meineip.php        | http://ip4.ddnss.de/meineip.php  | http://ip6.ddnss.de/meineip.php  | DE  |
+| http://checkip.spdyn.de/           | http://checkip4.spdyn.de/  | http://checkip6.spdyn.de/  | DE  |
+| http://ifcfg.me/ip                 | http://4.ifcfg.me/ip  | http://6.ifcfg.me/ip  | FR  |
+| http://nsupdate.info/myip          | http://ipv4.nsupdate.info/myip  | http://ipv6.nsupdate.info/myip  | DE  |
+| http://checkip.zerigo.com          | http://checkip4.zerigo.com/  | http://checkip6.zerigo.com/  | US  |
+| —  | http://checkip.dyndns.com/ <sup>1)</sup>  | http://checkipv6.dyndns.com/ <sup>1)</sup>  | US + UK  |
+| —  | http://checkip.dyndns.com:8245/           | http://checkipv6.dyndns.com:8245/  | US + UK  |
+| —  | http://checkip.dyn.com/ <sup>1) 2)</sup>  | http://checkipv6.dyn.com/ <sup>1) 2)</sup>  | US + UK  |
+| —  | http://ipv4.myip.dk/api/info/IPv4Address  | http://ipv6.myip.dk/api/info/IPv6Address  | US  |
+| —  | http://ipv4.ipogre.com/linux.php          | http://ipv6.ipogre.com/linux.php  | US  |
+| —  | http://v4.ipv6-test.com/api/myip.php      | http://v6.ipv6-test.com/api/myip.php  | FR  |
+| —  | http://ipecho.net/plain  | —  | NL  |
+| —  | http://ipinfo.io/ip      | —  | part of Amazon AWS  |
+| —  | http://ifconfig.me/ip    | —  | JP  |
+| —  | http://checkip.amazonaws.com  | —  | part of Amazon AWS  |
+| —  | http://myip.dtdns.com    | —  | US  |
+| —  | http://ip.changeip.com   | —  | US  |
+| —  | http://freedns.afraid.org/dynamic/check.php  | —  | ?  |
+| —  | http://freedns.afraid.org:8080/dynamic/check.php  | —  | ?  |
+
+ <sup>1)</sup> users reported timeout problems, use links in the line below (...:8245)\\
+ <sup>2)</sup> alias of *.dyndns.com
+
+
+===== Operation =====
+
+|  {{:meta:icons:tango:48px-emblem-important.svg.png?nolink&32x32}}  | **Enable minimum one configuration/section!\\ You need to enable ddns service!**  |
+
+==== Basics ====
+Normally no user actions are required because //ddns-scripts// starts when hotplug ''ifup'' event happens. This will happen automatically at system startup when the named interface comes up. Event ''ifup'' also happens when a dialup network comes up.\\
+//ddns-scripts// regularly check if there is a difference between your IP address at DNS and your interface. If different an update request is sent to DDNS provider.
+
+  * Whenever you [Save & Apply] an ''Enabled'' configuration/section __from LuCI webUI__ the corresponding script is automatically restarted.
+  * If you modify '''/etc/config/ddns''' configuration file __from console__, you need to restart //ddns-scripts// (see below) to apply changes.
+
+To check if //ddns-scripts// are running you could check inside LuCI via '''Status''' -> '''Processes'''\\ or via console running <code|root@OpenWrt:/#>ps -w | grep dynami[c]</code>
+You should find something like '''... /bin/sh /usr/lib/ddns/dynamic_dns_updater.sh **myddns** 0'''\\
+for every configuration/section you configured and enabled, where **myddns** shows your configuration/section name.
+
+Inside LuCI also exists a section '''Dynamic DNS''' at '''Status''' -> '''Overview''' page showing the current status of your DDNS configurations.
+
+==== Run manually ====
+=== using LuCI ===
+To **check** running //ddns-scripts// processes from the menu goto '''Status''' -> '''Processes'''.\\
+Look for something like '''/bin/sh /usr/lib/ddns/dynamic_dns_updater.sh **myddns** 0'''.\\
+To **stop** a desired process press the [Terminate] or [Kill] button.\\
+The process should remove from the list.
+
+You can enable/disable and start/stop //ddns-scripts// from '''System''' -> '''Startup''' menu.\\
+Look for service '''ddns''' and press the button for the desired action.
+
+You can additionaly enable/disable and start/stop individual configuration/section from '''Overview'''-page at '''Services''' -> '''%%Dynamic DNS%%'''.
+
+
+=== via console ===
+From console command line you could create an '''ifup''' hotplug event for the desired network interface. This will start all enabled ddns configurations/sections monitoring this interface.\\
+:!: Keep in mind that also other service processes (i.e. firewall) might be (re-)started via '''ifup''' hotplug event!\\
+For INTERFACE, type the specified //ddns-scripts// interface name (the interface name from /etc/config/network, usually 'wan')
+<code|root@OpenWrt:/#>
+ACTION=ifup INTERFACE=wan /sbin/hotplug-call iface
+</code>
+To **start** only one //ddns-scripts// configuration/section (here '''myddns'''):
+<code|root@OpenWrt:/#>
+/usr/lib/ddns/dynamic_dns_updater.sh myddns 0 &
+</code>
+To **start** all //ddns-scripts// configurations configured for one interface (the interface name from /etc/config/network, usually 'wan'):
+<code|root@OpenWrt:/#>
+sh
+. /usr/lib/ddns/dynamic_dns_functions.sh	# note the leading period followed by a space
+start_daemon_for_all_ddns_sections "wan"
+exit
+</code>
+To **stop** one configuration/section you need to list running ddns processes with:
+<code|root@OpenWrt:/#>
+ps -w | grep dynami[c]
+</code>
+you will get something like:
+<code|root@OpenWrt:/#>
+2493 root      1440 R    {dynamic_dns_upd} /bin/sh /usr/lib/ddns/dynamic_dns_updater.sh myddns_1 0
+2494 root      1440 R    {dynamic_dns_upd} /bin/sh /usr/lib/ddns/dynamic_dns_updater.sh myddns_2 0
+</code>
+now you need to kill every running process:
+<code|root@OpenWrt:/#>
+kill 2493		# to kill one process
+kill 2493 2494		# to kill multiple processes
+</code>
+To **stop** all running processes at once ('''killall''' might not be available on all systems):
+<code|root@OpenWrt:/#>
+killall dynamic_dns_updater.sh				# if killall is available
+ps | grep dynami[c] | awk '{print $1}' | xargs kill	# or if not available
+</code>
+**__Since BB 14.07__** you could ''enable/disable'' and ''start/stop/restart'' all enabled ddns configuration/section like every other service:
+<code|root@OpenWrt:/#>
+/etc/init.d/ddns disable
+/etc/init.d/ddns enable
+/etc/init.d/ddns start
+/etc/init.d/ddns stop
+/etc/init.d/ddns restart
+</code>
+
+
+=== using scheduler ===
+Each configuration/section of //ddns-scripts// can be configured to run once including retry on error so it is garanted that the update is sent to the provider.
+
+To configure your configuration/section to run once you need to set '''option force_interval''' to '''0'''. Setting of '''option force_unit''' is ignored.\\
+Inside LuCI set '''Force Interval''' in [Timer Settings]-tab of your desired configuration\\
+or edit '''/etc/config/ddns''' on console.
+<code|/etc/config/ddns>
+config 'service' 'myddns'
+	...
+	option 'force_interval'	'0'
+</code>
+
+If you set //ddns// service to ''enable'' then all configurations/sections are started during interface '''ifup'''.\\
+The configuration/section configured to run once will stop after successful update.\\
+To garant that your configurations only run once not looking for an interface event you need to disable //ddns// service.\\
+To start your configuration via [[doc:howto:notuci.config?#etccrontabsroot_cronjob_aka_crontab|build in crond]] use the following entry as ''command'' inside crontab configuration (replace '''myddns''' with the name of your configuration/section):
+<code|root@OpenWrt:/#>
+/usr/lib/ddns/dynamic_dns_updater.sh myddns 0 &
+</code>
+
+==== Monitoring ====
+
+=== Syslog ===
+The '''option use_syslog''' (also in LuCI) allows to define the level of events logged to syslog:
+^  Value  ^ Reporting  ^
+|  0  | disable  |
+|  1  | info, notice, warning, errors  |
+|  2  | notice, warning, errors  |
+|  3  | warning, errors  |
+|  4  | errors  |
+|  :!: Critical errors forcing //ddns-scripts// to break (stop) are always logged to syslog. :!:  ||
+
+
+=== Logfile ===
+//ddns-scripts// have built-in logfile support.\\
+Logfiles are automatically truncated to a settable number of lines (default 250 lines).
+
+Inside LuCI you could enable logfile in [Advanced Settings]-tab of desired configuration/section.\\
+From console you need to edit '''/etc/config/ddns''' file:
+<code|/etc/config/ddns>
+config 'service' 'myddns'
+	...
+	option 'use_logfile'	'1'
+</code>
+
+To view logfile content from LuCI select the [Log File Viewer]-tab of desired configuration/section and press the [Read / Reread log file]-button.
+From console you should change to the ddns log directory (default '''/var/log/ddns''').\\
+You will find a logfile for every configuration/section.
+<code|root@OpenWrt:/#>
+cd /var/log/ddns
+ls -la
+cat myddns_ipv4.log
+cat myddns_ipv6.log
+</code>
+
+==== Debugging ====
+
+To debug what's going on, you can run //ddns-scripts// in verbose mode.\\ Following verbose level are defined:
+^ Level ^ Description ^
+|  0  | Non verbose - No output  |
+|  1  | Output to console (default)  |
+|  2  | Output to console and logfile.\\ Run once WITHOUT retry on error.  |
+|  3  | Output to console and logfile.\\ Run once WITHOUT retry on error.\\ Sending NO update to DDNS service.  |
+
+Before starting debugging stop all running //ddns-scripts// processes:\\
+<code|root@OpenWrt:/#>
+/etc/init.d/ddns stop
+/etc/init.d/ddns disable
+</code>
+validate that no //ddns-scripts// processes running:
+<code|root@OpenWrt:/#>ps | grep dynami[c]</code>
+
+Now you can start one configuration/section for debugging. To stop/break running script press [CTRL]+C.\\
+Replace '''myddns''' with your desired configuration/section name and '''level''' with the desired verbose level.
+<code|root@OpenWrt:/#>
+/usr/lib/ddns/dynamic_dns_updater.sh myddns level
+</code>
+
+You will get full description of errors and the output of programs like wget, nslookup etc. used by //ddns-scripts//\\
+
+==== Common errors ====
+
+=== Network and name resolution problems ===
+
+Check your communication settings with the following commands:
+<code|root@OpenWrt:/#>
+nslookup google-public-dns-a.google.com
+
+ping -c 5 google-public-dns-a.google.com
+ping -c 5 -4 google-public-dns-a.google.com	# (-4) force IPv4 communication
+ping -c 5 -6 google-public-dns-a.google.com	# (-6) force IPv6 communication if installed
+
+wget -O- http://checkip.dyndns.com		# for IPv4
+wget -d -O- http://checkipv6.dyndns.com		# for IPv6 needs wget package and IPv6 to be installed
+curl -v http://checkipv6.dyndns.com		# for IPv6 needs curl package and IPv6 to be installed
+</code>
+
+=== HTTPS/SSL problems ===
+
+Check if your DDNS provider ONLY supports secure requests and enable HTTPS (''option use_https'') in your configuration.\\
+Packages '''wget''' or '''curl''' not installed to support secure communication.\\
+'''wget'/'curl''' could not access/validate SSL certificates.\\
+Check certificate installation and run '''wget''' or '''curl''' in verbose/debug mode:
+<code|root@OpenWrt:/#>
+ls -la /etc/ssl
+ls -la /etc/ssl/certs
+
+wget -d -O /tmp/wget.out https://www.google.com --ca-certificate=/etc/ssl/certs/ca-certificates.crt	# single certificate file
+wget -d -O /tmp/wget.out https://www.google.com --ca-directory=/etc/ssl/certs		# certificate directory
+wget -d -O /tmp/wget.out https://www.google.com --no-check-certificate			# ignore certificate !!! INSECURE !!!
+
+curl -v -o /tmp/curl.out https://www.google.com --cacert /etc/ssl/certs/ca-certificates.crt	# single certificate file
+curl -v -o /tmp/curl.out https://www.google.com --capath /etc/ssl/certs		# certificate directory
+curl -v -o /tmp/curl.out https://www.google.com --insecure			# ignore certificate !!! INSECURE !!!
+</code>
+
+
+===== Provider specifics =====
+
+==== Overview ====
+Remember to read how to [[#custom_service1|configure a custom service]].\\
+At provider specific settings, only parameters that needs to be changed are described.\\
+The relevant parameters to use together with a custom settings are:
+^ UCI option  ^ LuCI description  ^ Explanatory note  ^
+| service_name  | DDNS Service provider  | Inside LuCI set to '''--custom--''' or delete from '''/etc/config/ddns''' if you need to use custom update URL.  |
+| update_url  | Custom update-URL  | Copy from description below, if necessary.  |
+| domain  | Hostname/Domain  | The already registered name at your DDNS provider.\\ :!: **Must be your public FQDN** because used by nslookup command to check if the send IP update was recognized by your provider and published around World Wide DNS.  |
+| username  | Username  | Normally your username but possibly used with different settings.  |
+| password  | Password  | Normally your password but possibly used with different settings.  |
+
+If you find a FIXME at a provider description below, please support the [[packages:pkgdata:ddns-scripts|ddns-scripts]] maintainer to test and update this page.\\
+Please post a [[#support]] request if something is not working as described or needs to be updated.\\
+**Thanks!**
+
+If you find problem **"Failed writing HTTP request: Bad file descriptor"** in some server / wget version (see: https://bugzilla.redhat.com/show_bug.cgi?id=912358), it is worth to try changing the ''update_url'' in ''/etc/config/ddns'' from
+  "http://[USERNAME]:[PASSWORD]path_to_your_provider_and_other_things"
+to
+  "--user=[USERNAME] --password:[PASSWORD] http://path_to_your_provider_and_other_things"
+AND change one line in ''/usr/lib/ddns/dynamic_dns_updater.sh'' from
+  update_output=$( $retrieve_prog "$final_url" )
+to
+  update_output=$( $retrieve_prog $final_url )
+
+==== dnsomatic.com ====
+Last updated: 2015-07-28\\
+[[https://www.dnsomatic.com/|Homepage]] -- [[https://www.dnsomatic.com/wiki/|Documentation]]
+
+The default is to use '''domain''' together with '''service_name''' set to '''dnsomatic.com'''.\\
+'''domain''' needs to be set to FQDN to update/verify. :!: NEVER use 'all.dnsomatic.com'!
+
+To update all services registered with DNS-O-Matic in one configuration/section use the following settings:
+<code>
+service_name	delete / --custom--
+update_url	http://[USERNAME]:[PASSWORD]@updates.dnsomatic.com/nic/update?hostname=all.dnsomatic.com&myip=[IP]&wildcard=NOCHG&mx=NOCHG&backmx=NOCHG
+domain		[Only ONE of your defined hostnames to verify update was send]
+username	[Your username]
+password	[Your password]
+</code>
+
+==== duckdns.org ====
+Last updated: 2015-07-14\\
+[[http://www.duckdns.org/|Homepage]] -- [[http://www.duckdns.org/install.jsp|Installation instructions]] -- [[http://www.duckdns.org/faqs.jsp|FAQ]]
+
+FIXME There is another [[doc:howto:ddns.client:duckdns|description]] here. I take over the link during rewriting this wiki page. DELETEME
+
+Inside LuCI web UI select **--custom--** and fill in the other options accordingly.\\
+:!: Be sure you install ssl support.\\
+Additional use update_url and settings from below:\\
+<code>
+update_url	http://www.duckdns.org/update?domains=[USERNAME]&token=[PASSWORD]&ip=[IP]
+domain		[Your FQDN]
+username	[Your Host without ".duckdns.org"]
+password	[Your token]
+use_https	1
+cacert		[path to certificate file or directory]
+</code>
+
+==== freedns.afraid.org ====
+Last updated: 2015-07-15\\
+[[http://freedns.afraid.org/|Homepage]] -- [[http://freedns.afraid.org/faq/|FAQ]]\\
+
+Option 1: FIXME
+<code>
+service_name	freedns.afraid.org
+domain		[Your FQDN]
+username	[NOT used. Set to a character of your choice, because LuCI does not accept empty field]
+password	[Your authorisation token, NOT your account password]
+</code>
+To find your authorisation token, go to http://freedns.afraid.org/dynamic/, login, click "Direct URL".\\
+On the location bar of your browser, copy the authorisation token,\\
+which is the part after %%http://freedns.afraid.org/dynamic/update.php?%% url\\
+and paste it in the password field.
+
+Option 2: FIXME ([[https://dev.openwrt.org/ticket/10192|Taken from here.]])
+<code>
+service_name	delete / --custom--
+update_url	[Your direct URL updater from your freedns.afraid.org account]
+domain		[Your FQDN]
+username	[NOT used. Set to a character of your choice, because LuCI does not accept empty field]
+password	[NOT used because already part of direct URL. Set to a character of your choice, because LuCI does not accept empty field]
+</code>
+
+==== gratisdns.dk ====
+Last updated: 2015-07-20\\
+[[http://web.gratisdns.dk/|Homepage]] (Danish only)
+
+Taken from [[https://forum.openwrt.org/viewtopic.php?pid=281262|OpenWrt forum]]
+
+GratisDNS.dk is only supported by //ddns-scripts// using custom service settings.\\
+GratisDNS.dk require to [[#ssl_support|install]] and configure SSL support.
+<code>
+service_name	delete / --custom--
+update_url	http://ssl.gratisdns.dk/ddns.phtml?u=[USERNAME]&p=[PASSWORD]&d=Mydomain&h=[DOMAIN]&i=[IP]
+		!!! replace "Mydomain" in this url with domain part of your FQDN.
+		Sample: your FQDN: host.example.com -> "Mydomain" set to example.com
+		Sample: http://ssl.gratisdns.dk/ddns.phtml?u=[USERNAME]&p=[PASSWORD]&d=example.com&h=[DOMAIN]&i=[IP]
+domain		[Your FQDN]
+username	[Your username]
+password	[Your password]
+</code>
+
+==== he.net ====
+Last updated: 2015-07-15\\
+[[https://dns.he.net/|Homepage]]
+
+FIXME There is another [[doc:howto:ddns.client:hurricaneelectricfreedns|description]] here. I take over the link during rewriting this wiki page. DELETEME
+
+Use the following settings:
+<code>
+service_name	he.net
+domain		[Your FQDN]
+username	[Your FQDN]
+password	[Your password]
+</code>
+
+==== mythic-beasts.com ====
+Last updated: 2015-07-20\\
+[[http://mythic-beasts.com/|Homepage]] -- [[https://www.mythic-beasts.com/support|Support]]
+
+FIXME\\
+Looking on description at "[[https://www.mythic-beasts.com/support/domains/dynamic/openwrt|Use Mythic Beasts Dynamic DNS with your OpenWRT router]]" and on the existing source code I found out that there must be issues updating Dynamic DNS.\\
+I have gone in contact with support of mythic-beasts.com. I will update as soon a solution is available.\\
+
+==== namecheap.com ====
+Last updated: 2015-07-21\\
+[[https://www.namecheap.com/|Homepage]] -- [[https://www.namecheap.com/support/knowledgebase.aspx|Knowledgebase]]
+
+Note that with the namecheap protocol, the username option is translated to the host argument in the update request.\\
+Therefore, it should be the host-part on the DNS record, not the username that you use to log into the namecheap.com site.\\
+To update multiple hosts you might need to define separate configuration/section for each host.\\
+To get your password, log into the namecheap.com site, enter the management console for the domain, and click the Dynamic DNS menu option.\\
+
+:!: Currently //ddns-scripts// only supports the case where your dynamic subdomain has the same IP address as for your unqualified domain. Otherwise you will send updates to namecheap.com every "option check_interval" 10 minutes (default) because your FQDN is not validated.  [[https://github.com/openwrt/packages/issues/2348|Proposed solution here, which you can easily implement yourself]].  (This may only be an issue for ddns-scripts 2.4).
+
+Let assume you define two FQDN at your domain "example.com": "%%www.example.com%%" and "%%ftp.example.com%%"\\
+To update only your domain record "example.com":
+<code>
+service_name	namecheap.com
+domain		[Your domain, here: example.com]
+username	@
+password	[Your password]
+</code>
+To update for example only your "%%ftp.example.com%%" host:
+<code>
+service_name	namecheap.com
+domain		[Your domain, here: example.com]
+username	ftp
+password	[Your password]
+</code>
+To update all to the same IP address:
+<code>
+service_name	namecheap.com
+domain		[Your domain, here: example.com]
+username	@ -a www -a ftp
+		!!! @ stands for your domain, www for www.example.com, ftp for ftp.example.com
+password	[Your password]
+</code>
+
+==== noip.com ====
+Last updated: 2015-07-21\\
+[[http://www.noip.com/|Homepage]] -- [[http://www.noip.com/support/|SupportCenter]]
+
+:!: **Starting CC 15.05** do not forget to additional install //ddns-scripts_no-ip_com// package.
+
+The default is to use your '''username''' and '''password''' as normal inside //ddns-scripts// together with '''service_name' 'no-ip.com''' or '''noip.com'''.
+
+If you want to update multiple hosts inside one configuration/section you need the following settings:
+<code>
+service_name	delete / --custom--
+update_url	http://[USERNAME]:[PASSWORD]@dynupdate.no-ip.com/nic/update?myip=[IP]&hostname=
+
+		!!! After the 'hostname=' fill in a comma separated list of hosts to update.
+		Sample: host1.example.com,host2.example.com,host3.example.com without any spaces in between.
+		Sample: http://[USERNAME]:[PASSWORD]@dynupdate.no-ip.com/nic/update?myip=[IP]&hostname=host1.example.com,host2.example.com,host3.example.com
+
+domain		[Only ONE of your defined hostnames, i.e. host1.example.com]
+username	[Your username]
+password	[Your password]
+</code>
+
+==== spdyn.de (old spdns.de) ====
+Last updated: 2016-08-02\\
+[[http://spdyn.de/|Homepage]] -- [[http://wiki.securepoint.de/index.php/SPDNS_FAQ|Wiki/FAQ]] (German only)
+
+The web-pages of //spdns.de// are now reachable at //spdyn.de//.\\
+Currently updates send to //update.spdns.de// pages are still handled but produce warnings in DDNS update log at the provder.\\
+Created accounts and domains at //spdns.de// are still working without any problems.
+
+The default is to use your '''username''' and '''password''' as normal inside //ddns-scripts// together with '''service_name' 'spdyn.de'''.\\
+If you want to use Update-Token, keep in mind that this token can only update the host it is generated for.\\
+Use this settings:
+<code>
+service_name	spdyn.de
+domain		[Your defined hostname at spdyn.de]
+username	[Your defined hostname at spdyn.de]
+password	[The token generated for this hostname]
+</code>
+If you want to update multiple hosts inside one configuration/section you need the following settings (Update-Token doesn't work):
+<code>
+service_name	delete / --custom--
+update_url	http://[USERNAME]:[PASSWORD]@update.spdyn.de/nic/update?myip=[IP]&hostname=
+
+		!!! After the 'hostname=' fill in a comma separated list of hosts (max. 20) to update.
+		Sample: host1.spdyn.de,host2.spdyn.de,host3.spdyn.de without any spaces in between.
+		Sample: http://[USERNAME]:[PASSWORD]@update.spdyn.de/nic/update?myip=[IP]&hostname=host1.spdyn.de,host2.spdyn.de,host3.spdyn.de
+
+domain		[Only ONE of your defined hostnames i.e. host3.spdyn.de]
+username	[Your username at spdyn.de]
+password	[Your password at spdyn.de]
+</code>
+
+==== domains.google.com ====
+Last updated: 2016-04-20\\
+
+Google Domains allows for dynamic names to be set up in the section called Synthetic Records. To access it, log in to https://domains.google.com and go to Configure DNS for the domain in question, then scroll down to Synthetic Records and add a new one. It will issue a specific username and password for this hostname. Google requires HTTPS for updates, so be sure to also install package wget or curl in order to allow this.
+Use the following settings:
+<code>
+service_name	--custom--
+update_url	http://[USERNAME]:[PASSWORD]@domains.google.com/nic/update?hostname=[DOMAIN]&myip=[IP]
+domain		[Your defined hostname]
+username	[assigned username for hostname]
+password	[assigned password for hostname]
+http_secure	Enabled
+ca_path		Set to "IGNORE" or download certs and provide path
+</code>

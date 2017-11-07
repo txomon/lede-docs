@@ -1,0 +1,10 @@
+====== Packages ======
+LEDE provides several thousand packages to extend the functionality of your device.\\
+
+The browsable package lists in this wiki will always show packages available in the latest LEDE 17.01 update.
+
+===== Package Index =====
+A quick overview to all available packages, sorted by type, can be seen in the **[[packages:index:start|Package Index]]**.
+
+===== Package Table =====
+A more comprehensive verbose package table can be found at **[[packages:table:start|Package Table]]**.

@@ -1,0 +1,60 @@
+====== Table of Hardware: Availability column ======
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+{{page>meta:infobox:tohstyles&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+<columns 100% 40% 5% ->
+===== Purpose =====
+
+Special view for regular updating of availability status.
+
+===== Task =====
+
+Check regularly (1x per year) "**Available 20xx**" and "**unknown 20xx**" for availability / EOL status.
+
+===== Usage =====
+
+  * **<color red>Columns can be sorted</color>** by clicking on the column header
+  * Enter your filter criteria in the <color black/white>'' white fields ''</color>, or click any of the values shown in below datacloud
+  * Update availability by clicking on //"View/Edit data"// in the last column, then follow instructions on the dataentry page
+
+<newcolumn>
+
+<newcolumn>
+===== Before updating availability status =====
+
+  * First, try to find [[wiki:maintenance:eol_devices|official EOL information at the OEM]] (only few OEMs have good data on this subject).
+  * If that's not available, try to find the device at different major suppliers in different countries
+    * google model-name of the device and see if some well known supplier pops up
+    * amazon [[https://www.amazon.de/|de]] / [[https://www.amazon.co.uk/|uk]] / [[https://www.amazon.com/|com]]
+  * If that leads to no result, try
+    * ebay [[http://www.ebay.de/|de]] [[http://www.ebay.com/|com]] / [[http://www.banggood.com/|banggood]] / [[https://www.aliexpress.com/|aliexpress]] / [[http://www.dx.com/|dx.com]]
+    * .de: [[https://www.conrad.de/|conrad]] / [[https://www.voelkner.de/|völkner]] / [[http://www.reichelt.de/|reichelt]] / [[http://www.pollin.de/shop/index.html|pollin]]
+    * other local well known suppliers.
+
+  * Don't care about "sold only in US/EU/CN/...". If the device is available $somewhere, it is available.
+  * If a device is available in 2017 at any of the above suppliers (or any other supplier found via simple google search) in quantities and in new condition, i.e. not a single used one on ebay, then it is "Available 2017".
+  * If it is available, please state in the //Edit summary// where  (only domain, not the full url), e.g. "Available 2017 at amazon.com".
+  * If you can't buy it "new", then it might be EOL / Discontinued. If you don't know when it was discontinued, set availability to "Discontinued", otherwise e.g. "Discontinued 2017".
+</columns>
+
+----
+
+---- datacloud ----
+col       : Availability
+min       : 1
+filter    : Model!=@@Model@@
+summarize : 1
+----
+
+----
+
+---- datatable ----
+cols       : Availability, %lastmod%, Device Type, Brand, Model, Versions, LEDE Supported Current Rel_release, OEM Device Homepage URL_url, OpenWrt Device Page_url, OWrt Forum Topic URL_url, LEDE Forum Topic URL_url, Device Techdata_pageid
+headers    : Availability, Last modified, Device Type, Brand, Model, Versions, LEDE Supported Current Rel, OEM Device Homepage, OpenWrt Device Page, OpenWrt Forum, LEDE Forum, Device Techdata
+dynfilters : 1
+rownumbers : 1
+filter     : Model!=@@Model@@
+sort       : Brand
+----

@@ -1,0 +1,52 @@
+====== LEDE 사용자 가이드 ======
+아래에 LEDE의 모든 문서들이 링크되어 있습니다. 검색기능을 사용하여 더 많은 정보를 찾으세요.\\ 
+====빠른 시작 튜토리얼====
+  * [[ko:docs:guide-quick-start:start| 기본 설치 및 설정 튜토리얼 ]]
+
+====기본 설정====
+  * [[ko:docs:user-guide:introduction_to_lede_configuration| LEDE설정 소개]]
+  * [[ko:docs:user-guide:ssh_configuration| SSH 서버 설정]]
+  * [[ko:docs:user-guide:fstab_configuration| fstab 설정 (additional partitions mounter)]]
+  * [[ko:docs:user-guide:system_configuration| System 설정 (hostname, logging)]]
+  * [[ko:docs:user-guide:ntp_configuration| ntp 설정 (automatic update of system time)]]
+  * [[ko:docs:user-guide:network_configuration| Network 설정 ]]
+    * [[ko:docs:user-guide:basic-ipv4-configuration| 기본 IPv4 설정 (static, dhcp client)]]
+    * [[ko:docs:user-guide:basic-ipv6-configuration| 기본 IPv6 설정 (static, dhcp client)]]
+    * [[ko:docs:user-guide:ipv6_ipv4_transitioning| IPv4-IPv6 변환 기술]]
+    * [[ko:docs:user-guide:wan_interface_protocols| WAN 인터페이스 프로토콜 (ppp/pppoA/pppoE, 3G/4G, DSL/VDSL, others )]]
+    * [[ko:docs:user-guide:tunneling_interface_protocols| Tunneling 인터페이스 프로토콜 (through vpn)]]
+    * [[ko:docs:user-guide:network_interface_alias| 인터페이스 alias]]
+    * [[ko:docs:user-guide:switch_configuration| Switch 설정 (VLAN)]]
+    * [[ko:docs:user-guide:routes_configuration| 네트워크 라우팅 설정 (static routes)]]
+    * [[ko:docs:user-guide:traffic_shaping| Traffic shaping (QoS) ]]
+  * [[ko:docs:user-guide:firewall_configuration| 방화벽 설정 ]]
+  * [[ko:docs:user-guide:dhcp_configuration| DHCP 서버 설정 ]]
+  * [[ko:docs:user-guide:dns_configuration| DNS 서버 설정 ]]
+  * [[ko:docs:user-guide:led_configuration| Led 설정 (when to light up non-default leds)]]
+  * [[ko:docs:user-guide:wifi_configuration| Wifi 설정 ]]
+
+====네트워크에 LEDE네트워크 장비 통합 시키기====
+  * [[docs:user-guide:integrating-lede-introduction|소개]] (why you can't just daisy-chain routers)
+  * [[:docs:user-guide:bridge-mode|Bridge 모드]] (how it's supposed to be done)
+  * [[:docs:user-guide:DMZ-based-bridge-mode|Poor Man's Bridge Mode]] (if all else fails)
+====기능 확장하기====
+  * [[:docs:user-guide:opkg| 새 패키지 설치하기 ]]
+  * [[:docs:user-guide:extroot_configuration| 여유 저장공간에 패키지 설치하기. (extroot configuration)]]
+  * [[:docs:user-guide:services| system services 관리하기 ]]
+  * [[:docs:user-guide:drives| Using storage devices ]]
+  * [[:docs:user-guide:samba_configuration| Samba share configuration ]]
+  * [[docs:user-guide:hncp_configuration| The Homenet Control Protocol (HNCP) 설정]]
+  * [[:docs:user-guide:imagebuilder| 패키지들과 함께 이미지로 만들기 (imagebuilder) ]]
+
+====Troubleshooting and mainteneance====
+  * [[docs:user-guide:sysupgrade.cli| LEDE 펌웨어 업그레이드 ]]
+  * [[:docs:user-guide:failsafe_and_factory_reset| Failsafe and factory reset ]]
+
+====VM에서 LEDE구동 하기====
+  * [[:docs:user-guide:virtualbox-vm| VitualBox를 이용하여 가상머신에 구동하기 ]]
+
+
+====LEDE signatures====
+  * [[:docs:user-guide:release_signatures| Release signatures and how to check them ]]
+  * [[:docs:user-guide:signatures| LEDE public keys]]
+  * [[:docs:user-guide:keygen| Generating keys ]]

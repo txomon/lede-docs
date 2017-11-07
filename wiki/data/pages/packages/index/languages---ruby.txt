@@ -1,0 +1,17 @@
+~~NOSIDEBAR~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+{{pagequery>@packages:pkgdata (": languages---ruby," | ", languages---ruby," | "languages---ruby #");
+    fulltext;
+    sort=pagename;
+    cols=4;
+    bullet=disc;
+    border=both;
+    underline;
+    showcount;
+    hidejump;
+    layout=table;
+    fontsize=120%;
+    label=Packages in languages---ruby category;
+}}
+

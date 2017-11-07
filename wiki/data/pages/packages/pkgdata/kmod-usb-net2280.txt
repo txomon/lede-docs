@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: kmod-usb-net2280 ======
+---- dataentry packages ----
+Name                             : kmod-usb-net2280
+Version                          : see kernel for details
+Description                      : Kernel support for NetChip 228x / PLX USB338x PCI USB peripheral controller.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 14 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : kernel, kmod-usb-gadget, kmod-usb-core
+Categories_pkg-categorys         : kernel-modules---usb-support #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : brcm63xx-generic, brcm63xx-smp, cns3xxx-generic, imx6-generic, zynq-generic,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 15
+License                          : GPLv2
+Maintainer_pkg-maintainer        : LEDE team
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/kernel/linux|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : see kernel for details # short version of the package, for display in table
+----
+

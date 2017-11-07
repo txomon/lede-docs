@@ -1,0 +1,23 @@
+====== ToH Topnote ======
+~~NOTOC~~
+{{page>meta:infobox:tohstyles&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+----
+
+<columns 100% 400px ->
+==== Usar la Tabla de Hardware (ToH)====
+  * **Ordena las columnas** haciendo clic en el encabezado de columna
+  * **Introduce tus criterios de filtro** en los **<color black/white>''campos vacios ''</color> **\\ Puedes filtrar para coincidencias parciales, ej.
+    * D-Li, D-Lin, D-Link, Net, Netg, ...
+    * DIR-6, TL-WR, 3700, 43, 430, 4300, ...
+
+<newcolumn>
+==== Otros recursos ====
+  * **Si tu dispositivo es compatible:**\\ [[docs:guide-quick-start:start|Aprende a instalar LEDE en tu enrutador.]]
+  * **¿Buscas otras maneras de ver la Tabla de Hardware?**\\ [[es:toh:start?dataflt%5B0%5D=LEDE supported%20current%20rel_%3D17.01.2|Dispositivos soportados por el actual lanzamiento LEDE]], [[es:toh:views:toh_extended_all|Todos los detalles]], [[toh:views:dataclouds|Dataclouds]],  [[es:toh:views:start|Todas las vistas]]
+  * **Ayuda para mantener esta página:**\\ [[supported_devices:adding_to_toh|Agregar un dispositivo a la ToH]] o [[supported_devices:adding_to_toh##editing_a_device_s_info_in_the_table_of_hardware|editar un dispositivo en la ToH]]
+</columns>
+
+----
+
+{{section>es:meta:infobox:432_warning#infobox_para_tohs&noheader&nofooter&noeditbutton}}

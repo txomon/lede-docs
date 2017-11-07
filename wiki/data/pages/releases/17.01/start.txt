@@ -1,0 +1,71 @@
+====== LEDE 17.01 "Reboot" ======
+
+The LEDE Community is proud to present the current LEDE 17.01 stable version series. It incorporates thousands of commits over the last nine months of effort. With this release, the LEDE development team closes out an intense effort to modernize many parts of OpenWrt and incorporate many new modules, packages, and technologies.
+
+The LEDE 17.01 series has the goals of creating LEDE's first stable build for production use, and establishing a baseline for future development and releases.
+
+**Current Release - LEDE 17.01.4**
+
+The most recent version is LEDE 17.01.4, the fourth service release of the LEDE 17.01 series.
+
+  * **[[https://downloads.lede-project.org/releases/17.01.4/targets/|Download Firmware]]**
+  * [[https://git.lede-project.org/?p=source.git;a=shortlog;h=refs/tags/v17.01.4|Browse Source]]
+  * [[releases:17.01:notes-17.01.4|Release Notes]]
+  * [[releases:17.01:changelog-17.01.4|Detailed Changelog]]
+
+===== Signature =====
+
+The 17.01 release is signed by the following key:
+
+=== LEDE 17.01 "Reboot" public GPG key ===
+
+  * User ID: **LEDE Release Builder** <lede-dev@lists.lede-project.org>
+  * Public Key: **0xD52BBB6B** (4096 Bit RSA, created 2017-01-16, expires 2019-01-16)
+  * Fingerprint: ''B09B E781 AE8A 0CD4 702F  DCD3 833C 6010 D52B BB6B''
+    <wrap lo>[[https://git.lede-project.org/?p=keyring.git;a=history;f=gpg/D52BBB6B.asc|Last change: 2017-01-20 10:06:22 +0100]] |
+    [[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=gpg/D52BBB6B.asc|Download]]</wrap>
+
+---
+
+=== LEDE 17.01 "Reboot" public usign key ===
+
+  * Key-ID: ''792d9d9b39f180dc''
+  * Key-Data: ''RWR5LZ2bOfGA3FGliZosEDhodiAKDOISmQs/mmjo4rhcbFtqkibJqMzo''
+
+<wrap lo>[[https://git.lede-project.org/?p=keyring.git;a=history;f=usign/792d9d9b39f180dc|Last change: 2017-01-20 09:59:11 +0100]] | 
+[[https://git.lede-project.org/?p=keyring.git;a=blob_plain;f=usign/792d9d9b39f180dc|Download]]</wrap>
+
+---
+
+Refer to [[docs:user-guide:release_signatures|Release Signing]] for instructions on how to validate downloads.
+===== Roadmap =====
+
+Below is a preliminary schedule for the evolution of the 17.01 release. The dates are subject to change.
+
+  * **22 Feb 2017** - Final Release binaries available for v17.01.0
+  * **March 2017** - Start preparations for v17.01.1, the first service release for the 17.01 series
+  * **May 2017** - Start preparations for v17.01.2, the second service release for the 17.01 series
+  * **July 2017** - Start preparations for v17.01.3, the third service release for the 17.01 series
+  * <del>**June 2017** - Start v17.06 release cycle</del>
+  * <del>**July 2017** - End support for v17.01</del>
+
+===== History =====
+  * **18 Oct 2017** - Binary [[https://downloads.lede-project.org/releases/17.01.4/targets/|v17.01.4 images]] are ready.
+  * **18 Oct 2017** - The [[https://git.lede-project.org/?p=source.git;a=commit;h=444add156f2a6d92fc15005c5ade2208a978966c|v17.01.4]] tag has been created.
+  * **04 Oct 2017** - Binary [[https://downloads.lede-project.org/releases/17.01.3/targets/|v17.01.3 images]] are ready.
+  * **03 Oct 2017** - The [[https://git.lede-project.org/?p=source.git;a=commit;h=df54a8f583a9afad356fb99a575d75b69c8c0dd4|v17.01.3]] tag has been created.
+  * **12 Jun 2017** - Binary [[https://downloads.lede-project.org/releases/17.01.2/targets/|v17.01.2 images]] are ready.
+  * **10 Jun 2017** - The [[https://git.lede-project.org/?p=source.git;a=commit;h=2da512ecf4631cd7812283f0931cf6bbf842a313|v17.01.2]] tag has been created.
+  * **04 Jun 2017** - Service release 17.01.2 postponed by a week
+  * **19 Apr 2017** - Binary [[https://downloads.lede-project.org/releases/17.01.1/targets/|v17.01.1 images]] are ready.
+  * **17 Apr 2017** - The [[https://git.lede-project.org/?p=source.git;a=commit;h=48461b5abc382b26edd0d2637f0f7b952bed90ba|v17.01.1]] tag has been created.
+  * **22 Feb 2017** - Binary [[https://downloads.lede-project.org/releases/17.01.0/targets/|v17.01.0 images]] are ready.
+  * **20 Feb 2017** - The [[https://git.lede-project.org/?p=source.git;a=commit;h=ac733df99c78f54b4cf9a8710f70a506f73e66fc|v17.01.0]] tag has been created.
+  * **15 Feb 2017** - Final release postponed by a week
+  * **08 Feb 2017** - Binary [[https://downloads.lede-project.org/releases/17.01.0-rc2/targets/|v17.01.0-rc2 images]] are ready.
+  * **06 Feb 2017** - The [[https://git.lede-project.org/?p=source.git;a=commit;h=28b7d7f1dac725157c19236b8899e1c97f19cee9|v17.01.0-rc2]] tag has been created.
+  * **31 Jan 2017** - Binary [[https://downloads.lede-project.org/releases/17.01.0-rc1/targets/|v17.01.0-rc1 images]] are ready.
+  * **29 Jan 2017** - The [[https://git.lede-project.org/?p=source.git;a=commit;h=68a04dbb4271e98c4622e6471c0d600cb57fe75f|v17.01.0-rc1]] tag has been created.
+  * **16 Jan 2017** -The [[https://git.lede-project.org/?p=source.git;a=shortlog;h=refs/heads/lede-17.01|lede-17.01]] branch has been created.
+
+

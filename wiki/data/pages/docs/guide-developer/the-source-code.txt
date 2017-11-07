@@ -1,0 +1,105 @@
+====== The LEDE Source Code ======
+
+The LEDE project source code starts off with OpenWrt revision r49258. The code is stored inside a git tree which contains all branches and releases ever made by OpenWrt. While importing the sources the tree was normalised and some minor tweaks were made to committer names and mail addresses.
+
+All repositories can be browsed online through:
+
+  - [[https://git.lede-project.org/|Gitweb]] - the master Git repository for LEDE
+  - [[https://github.com/lede-project|Github]] - a continually-updated mirror of Gitweb
+
+
+===== LEDE Source Code Repositories =====
+
+Any //LEDE// development happens in the main ''%%source.git%%'' repository which is accessible via both HTTP and HTTPS:
+
+<code>
+git clone https://git.lede-project.org/source.git
+</code>
+
+You can find a mirror of the repository on Github:
+
+<code>
+git clone https://github.com/lede-project/source.git
+</code>
+
+==== General source structure ====
+
+These are the folders you can find in the project’s git:
+
+  * **/config** : configuration files for menuconfig
+  * **/include** : makefile configuration files
+  * **/package** : packages makefile and configuration
+  * **/scripts** : miscellaneous scripts used throughout the build process
+  * **/target** : makefile and configuration for building imagebuilder, kernel, sdk and the toolchain built by buildroot.
+  * **/toolchain** : makefile and configuration for building the toolchain
+  * **/tools** : miscellaneous tools used throughout the build process
+
+===== Releases =====
+
+Generating Releases has already been vastly automated. The remaining parts of the process need to also be automated before the first //LEDE// release. We will introduce a TESTERS file that is formatted similarly to the MAINTAINERS file of the kernel. Community members can list themselves as testers for a target/profile/device. Once a release has been generated testers should receive an email informing them of the requirement for images to be tested. It needs to be decided if only tested images should be included in the binary release.
+
+Releases should:
+
+  - Happen at least once a year
+  - Have at least one maintenance update
+  - Provide CVE/critical/… fixes for at least one year after the release
+  - Only include maintained targets
+  - Only include targets that have seen on device testing
+  - Be ready when they are ready
+
+See the TODO page for more info.
+
+===== Staging Trees =====
+
+To create yourself a staging tree on git.lede-project.org (does not apply to regular users): 
+
+<code>
+ssh <git@git.lede-project.org> "create lede/yournick/staging" 
+ssh <git@git.lede-project.org> "desc lede/yournick/staging Staging tree of Your Name"
+</code>
+
+To get your staging tree visible at https://git.lede-project.org:
+
+<code>
+ssh <git@git.lede-project.org> "perms lede/yournick/staging + READERS gitweb"
+</code>
+
+To get your staging tree read accessible to everyone:
+
+<code>
+ssh <git@git.lede-project.org> "perms lede/yournick/staging + READERS @all "
+</code>
+
+==== Kernel updates ====
+
+It has proven impractical and a waste of time to always be on the very latest kernel within 2 days of its release. It has caused the following:
+
+  - diversification of kernel versions
+  - pressure on maintainers to constantly upgrade rather than stabilize
+  - huge effort invested to upgrade 3-4 times between releases
+  - huge workload to maintain kmod-* packaging
+  - Upgrade to kernels that might not be fully tested
+
+Obviously, this doesn't excuse old, dusty kernels. A balanced path between the 2 should be taken that gives the community recent kernels without causing unnecessary workload and stability issues.
+
+There should be a max of three concurrent kernel versions. Having only two concurrent versions is better than three.
+
+In Short - stability should be valued higher than bleeding edge.  Bleeding edge is important -- but not as a trade-off to stability.
+
+===== Adding a New Device =====
+
+**[[docs:guide-developer:adding_new_device|Adding a new device]]** General information about adding a new device
+
+===== OpenWrt Source Code =====
+
+We keep the original OpenWrt source code up to [[https://git.lede-project.org/?p=openwrt/source.git;a=commit;h=ee53a240ac902dc83209008a2671e7fdcf55957a|r49258]] available, mostly as reference and for historic interest.
+
+The original OpenWrt Subversion repository has been split up into several Git repositories mapping the various SVN directories and tags to proper Git branches.
+
+<code>
+git clone https://git.lede-project.org/openwrt/source.git 
+git clone https://git.lede-project.org/openwrt/packages.git 
+git clone https://git.lede-project.org/openwrt/feeds.git 
+git clone https://git.lede-project.org/openwrt/docs.git
+</code>
+

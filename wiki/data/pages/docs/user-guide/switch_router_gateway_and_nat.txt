@@ -1,0 +1,232 @@
+===== Router vs Switch vs Gateway and why NAT influences this decision =====
+The following is meant as roundup 
+  * such that you can decide if you want to configure your LEDE device as either switch, as router or as gateway
+  * such that you can decide how you want to deal with the IPv4 double NAT problem in your individual home network situation.
+
+===== LEDE network device: Switch vs Router vs Gateway =====
+
+LEDE network devices can operate in 3 different modes:
+
+**as client/switch device**\\
+If you want to connect your device to an existing network to provide additional functions (for example, you just want to use the Wi-Fi network it provides, or the device is a NAS serving files over the network, or a mini-server offering whatever other service).
+
+**as router device**\\
+If you want to run LEDE in its default router configuration, where LEDE routes between several LAN devices connected to the LEDE LAN ports and your Internet on the LEDE WAN port.
+Unfortunately several network integration variants exist for usage as router, when having to deal with IPv4.
+
+**as gateway device**\\
+Your device also behaves as router. But in contrast to the 'as router device' mode, in this mode your LEDE device either uses an integrated modem to connect to the Internet or has an external modem attached on its WAN port that needs one of the following protocols for proper operation: WAN interface protocols.
+
+===== LEDE as router, double NAT problem with IPv4 or mixed IPv4/IPv6 =====
+
+<WRAP center round todo 90%>
+You are a LEDE newbee? scared of this page with lots of technical network stuff? don't know how to do monumental decisions now?\\ 
+-> just stop reading anywhere you like and go for default configuration right now (which is using LEDE as a router in a cascaded double NAT scenario): LEDE is configured like this by default, so you don't have to do anyting.\\
+-> get familiar with LEDE first, come back later and decide later
+</WRAP>
+
+[[docs:user-guide:integrating-lede-introduction|Double NAT]] is issue that exists solely with IPv4. In a few decades, when the whole world is fully IPv6 enabled, this won't be a problem anymore, as IPv6 strictly forbids NAT, in the meantime for IPv4, act according to this how-to.
+
+Problem of IPv4 is: If you simply add an additional IPv4 router to an existing router of your ISP (internet service provider), you will face a problem called "double NAT": your newly added router does NAT and the existing router also does NAT, resulting in your client data traffic being NATed twice, before it reaches the internet.
+
+This double NAT scenario won't cause problems on basic tasks like browsing the internet or reading mails.
+But it can cause problems, when you are trying to host servers at home that you want to be reachable from the internet or when doing peer-to-peer online gaming (which often uses UDP protocol and does some funny firewall stuff called "UDP-hole punching")
+
+To deal with this double NAT problem and use IPv4 as flawlessly as possible, you need to choose between several options, how LEDE gets connected on its upstream side
+  * upstream = the connection from the LEDE device to your network infrastructure
+  * downstream = your home client devices connecting to your lede device
+
+You basically have the following options to connect the upstream side of LEDE to your existing home network:
+Each option tries to work around the double NAT problem with different technical tricks or configuation.
+
+^NAT ^ Usage variant ^ Visualization ^
+| double | LEDE as router acting in default cascaded router double-NAT configuration | clients <-> LEDE router with NAT <-> ISP router with NAT <-> Internet |
+| single | LEDE as router and having an internet ISP device configured as modem-bridge | clients <-> LEDE router with NAT <-> ISP bridge (no NAT) <-> Internet |
+| double | LEDE as router in double-NAT configuration with Dualstack Lite on ISP side | clients <-> LEDE router with NAT <-> ISP router with DS-Lite NAT <-> Internet |
+| single | LEDE as router with disabled NAT, additional routing rules in both routers | clients <-> LEDE router (no NAT) <-> routing rules <-> ISP router with NAT <-> Internet |
+| single | LEDE as router, LEDE router being "exposed host" in the ISP router | clients <-> LEDE router with NAT <-> ISP router with NAT + "exposed host" feature <-> Internet |
+| 0 | look-out: LEDE as router in IPv6 only configuration + ISP router | clients <-> LEDE router (no NAT) <-> ISP router (no NAT) <-> Internet |
+| single | LEDE as gateway using either LEDE-device-built-in or external modem | clients <-> LEDE as gateway with NAT <-> built-in/external modem (no NAT) <-> Internet |
+| single | LEDE as switch (connected by wire or access point or as wifi repeater) | clients <-> LEDE as switch (no NAT) <-> ISP router (with NAT) <-> Internet |
+	
+Note that for all of these upstream connection variants apllies
+
+  * all variants allow to handle both wireless and wired clients on your downstream side (=your client devices connected to your local network)
+  * all variants allow to host software services for both downstream and upstream side (like NAS shares).
+
+
+===== LEDE as cascaded router behind another router (double NAT) =====
+
+This is the default (and easiest) option for your LEDE device, right after the LEDE installation for off-the-shelf devices sold as "router", that have 1 Ethernet-WAN port and some Ethernet-LAN ports, because for this scenario you simply connect the LEDE WAN port to an unused LAN port of your existing ISP router.
+  * usually the ISP router has its firewall on and NAT on and provides DHCP on the downstream side (which is the upstream side of your LEDE)
+  * LEDE also has it's firewall on and NAT on and it provides DHCP aswell on the downstream (which is the upstream side of your connecting clients)
+
+So whats the problem?
+Some traffic scenarios may not work, line hosting servers for the internet or playing online games.
+
+The problem isn't so much IPv4 NAT (=Network address translation), it's a combination of 
+  - NAT usage
+  - how homerouter firewalls treat UDP-traffic: The firewall treats UDP data traffic statefull. That means if a sourceIP:sourcePort -> targetIP:targetPort package goes out, it will lower the firewall in the reverse direction for a short time, such that the target can answer with the same combination of address and ports: sourceIP:sourcePort <- targetIP:targetPort. 
+  - and how mostly online games use tricks to get peer-to-peer data traffic of other players through your firewall(s) to your game client.
+
+Unfortunately the firewall details aren't a fully standardized behavior. And unfortunately the NAT behavior that happens in parallel isn't predictable either: every router may decide a little bit differently how it maps addresses and ports on outgoing traffic.
+Most games and game consoles report this as "NAT status" of your router, using 4 different high level categories "open, moderate, strict, blocked", which aren't standardized either - each game vendor may use them for slightly different technical details.
+
+So should you use this double NAT scenario and be happy with it?
+It highly depends on your equipment and your usage scenario. Double NAT is not automatically bad.
+- if you just do browsing and mailing, you don't have to care (your internet browsing will not even be slowed down by double NAT).
+- check if you want to run servers at home that you want to expose to the internet (e.g. a VPN or web server) - such hosting will definitely not work over double NAT 
+- check, if your usual online games work flawlessly.
+
+Now most online games use weird UDP tricks to temporarily bypass your router firewall (without opening your firewall to the whole world), to get less-lagging UDP packets to your game client. Usually those tricks can only bypass a single NATed home router, but not 2 of them. You will find out, if you either cannot connect at all to online sessions or if there is noticably more game lag than usual (more lag happens, because most games will first try to fallback from UDP to TCP, before giving up, if the so called "UDP hole punching" through your 2 firewalls/NATs won't work. This TCP-fallback will sometimes be noticable). Most online games report this as "NAT status" in the game settings. Your aim usually will be to either have this status "open" or "moderate". If your game engine reports anything else, it is usually failing on your 2 firewalls+double NAT and it will then fallback to the slower TCP and can even fail completely to connect to a game session (and i guess you should be able to notice that, if you are left alone in an Online game session).
+
+The next few sections explain what you can do to bypass these problems, while keeping both routers and firewalls enabled
+Just keep in mind: don't try to fix problems that you do not have.
+
+===== LEDE as router, internet ISP device as modem-bridge =====
+Mostly for Cable internet, you can often choose to reconfigure your ISP cable router into 1 of 2 operation modes:
+  - router mode
+  - bridge mode
+
+Sometimes you have to configure this in in nested online portal menus of your ISP (and not on your ISP router GUI).
+
+When set to bridge mode, the ISP router starts behaving like a pass through device: it will only authenticate you as a legitimate customer, but will otherwise just passthrough the IPv4 traffic unchanged to your LEDE router. The firewall and NAT and DHCP of the ISP device will simply be disabled, when set to bridge mode.
+
+[[docs:user-guide:bridge-mode|Bridge Mode - how its supposed to be done]]
+
+===== LEDE as double-NAT router with Dualstack Lite =====
+
+Often you do not have a choice, whether your ISP gives you a real IPv4 address or an often discredited dual stack lite IPv4 address.
+(please research the full story e.g. on wikipedia, if you want to understand what Dualstack Lite is, in contrast to dual stack)
+
+Very often dual stack lite is offered as default package by TVcable- or fiber-based Internet providers.
+A key feature of DS-Lite is, that it has so called carrier-grade NAT happening in some network equipment several blocks away from your home at your ISP's site, not in your ISP router at home. 
+
+Now it is important, to mention that dual stack lite and this carrier-grade NAT isn't really implemented in a standardized way.
+It can have slightly different implementation behaviour, depending on the actual equipment that the ISP has bought and depending on how this equipment is configured.
+
+Sadly this won't help you, to expose any home services over IPv4 on the internet - This won't be possible with dual stack lite in any case.
+
+But if online gaming over DS-Lite is your only concern, you might want to check if your double NAT on IPv4 is at all a problem in your favorite online games.
+Nowadays, often the carrier grade NAT of DS Lite is configured very online game-friedly, resulting in a "moderate" NAT rating in the game engine even when having the additional LEDE NAT cascaded in front of it and even when running with default firewall rules.
+
+So if gaming (and game related UDP-peer-to-peer traffic handling) is your only concern regarding the double-NAT problem, you may just want to check your favorite games first and their reported NAT status, before investing extensive time in solving a double NAT problem that maybe does not even cause a problem for you.
+
+===== LEDE as router with disabled NAT, additional routing rules =====
+Using this scenario depends on, whether your ISP router supports custom routing rules.
+
+This requires that your ISP router allows to define forward routing rules (often ISP routers are functional restricted in function and do not allow this).
+
+The idea is of this solution is
+  * to disable NAT on the LEDE router, but keep it's routing (and firewall) on.
+  * so both your LEDE and the ISP router have routing enabled
+  * you have to define non overlapping separate IP ranges and static IP addresses for the LEDE router and the ISP router
+  * as LEDE's NAT is disabled, you need to manually set static routes, such that clients on both routers can send traffic to the other router
+  * you need to add a static routing on the LEDE router, forwarding all Internet-address ranges to the ISP router
+  * you need to add a static routing on the ISP router, forwarding the address range managed by LEDE to the LEDE router
+
+
+===== LEDE as router as "exposed host" in the ISP router =====
+
+This is an optional feature of your ISP router (so it could be that your ISP router may not support this).
+Sometimes this feature is called "DMZ for single server", "exposed host" or "poor man bridge mode" (there is no standardized name) 
+
+The feature enables your ISP router to define a single one of its downstream ports to be a so called "exposed host".
+The ISP router will then forward all incoming Internet traffic from its upstream side to this "exposed host".
+
+This effectively disables NAT on the ISP router only for a single connected device on the ISP router downstream side: For obvious reasons, we will be connecting our LEDE router as this exposed host. So in the end, we have achieved single NAT solely in the network chain towards the LEDE router.
+
+(Remeber you still need to define usual port forwarding rules in your LEDE router, if you want to expose LEDE-connected-servers to the Internet)
+
+Drawbacks of this method are:
+- the feature may not be supported by your ISP router, you'll have to find out if it does
+- the LEDE upstream port is exposed to the Internet, so be sure that you have not added any non-needed careless extra rules to the default LEDE firewall rule set
+- one of your ISP router ports is now without firewall protection. So be careful with this one downstream ISP router port now, in case you ever connect something else to this port.
+
+[[docs:user-guide:DMZ-based-bridge-mode|"Exposed host" a.k.a "Poor Man's Bridge Mode"]]
+
+===== LEDE router in an ideal IPv6 only configuration =====
+Obviously this ideal world does not yet exist. Its just a look-out for much later.\\
+Once this happens, the previous chapters of this howto can be ignored\\
+This will then be the default (and easiest) and only router option required for your IPv6 LEDE device, as you it will just work out of the box for all business cases.\\
+There will be no NAT issues, there is no longer a discussion whether to switch the ISP router to bridged or routed and no more discussion whether a "exposed host" config is needed.
+
+  * You will be choosing to run LEDE as router (without variants), if you want to have an extra firewall active inside your home network (in addition to the firewall of your ISP router)
+  * You will be choosing to run LEDE as switch instead (see below), if you don't want the extra bit of routing and firewall inside your home network
+  * You will be choosing to run LEDE as gateway instead (also see below), if you need to connect to Internet via a special modem protocol
+
+
+
+===== LEDE as a gateway, with modem between LEDE and the Internet =====
+This is a rather special scenario that may not apply for a lot of devices, as LEDE primarily aims for classic router devices:
+Gateway means that some custom protocol has to be active on the WAN side, the LEDE router is not just routing packets between different subnets, instead it has to convert data to some other protocol type on the WAN side.
+
+Why you might be reading this section:
+The previous cascaded-router-scenario will not work out of the box, if your LEDE device is a special piece of hardware that either
+- has no WAN port at all out of the box
+- has a built-in modem with something like a VDSL-phone port on the WAN side
+- has a WAN port using some proprietary protocol for an external modem
+
+If these specifics do not apply for your device (because you have a real IP-based WAN port ouf of the box or don't want to know anything about gateways), skip further reading of this section.
+
+So LEDE on your gateway hardware only has local network without Internet access out-of-the-box.
+To gain access to another network (or access to the Internet) you will either have to
+  * enable and configure the built-in modem (if there is one built-in and if LEDE supports it). There is no generic how-to available, as this heavily depends on specifics of your LEDE device features.
+  * go through one of the more complicated WAN setups to enable an externally connected modem that uses "PPP over something". There is no generic how-to available, as this heavily depends on your external modem that you may need to connect. There is some further config lists for such Gateway configuration.
+
+If neither of these primary two options are suitable for you, you should first question yourself, why you are insisting on using such an exotic device for LEDE (as there are better suited devices available). When done with questioning, decide if the following fallback option is suitable for you:
+
+A fallback option, to now deal with this situation, is to not use the built-in modem or built-in WAN port at all and instead modify the VLAN-configuration of your device, with the goal of redefining one of the existing LAN ports to become an IP-based WAN port. This will allow to enable routing between WAN and LAN zone, downgrading your gateway to become a classic router.
+"Changing the VLAN" means that you virtually detach one of the existing LAN-ports, which disables layer-2 switching between the detached port and the remaining LAN ports.
+A separate routing and firewall rule will then have to be applied, to dispatch between this new WAN port and the remaining LAN ports on OSI layer 4.
+
+This results in 1 real WAN port and remaining n-1 LAN ports. Most of devices (even rather old ones) with more than 1 LAN port allow to reconfigure the VLAN configuration.
+As soon as you do this, you will no longer be using the LEDE device as a gateway, instead it will behave like any of the router scenario described in the previous sections.
+
+To do:  link a technical how-to here, describing how to properly reconfigure the VLAN configuration to achieve this and how to assign the detached port to the WAN zone. Required zone definitions, default forwarding rules and default firewall config most probably already exist.
+
+
+===== LEDE as wireless repeater (wifi<->wifi switch) =====
+If your LEDE device does not have LAN ports or if you don't want to connect any other devices using RJ45 LAN cables, then most probably you want to use the LEDE device as a WiFi repeater in your existing network.
+
+LEDE as a wireless repeater (also called wireless range extender) takes an existing signal from a wireless router or wireless access point and rebroadcasts it to create a second network.
+  * the other wifi network provides Internet access
+  * LEDEs upstream side (the other wifi network it will connect to) will be a wireless connection to another access point. LEDE acts as a client of this existing other network.
+  * LEDEs downstream side (the wifi network that LEDE will provide) will be an access point for your wireless clients.
+  * the existing network on the wireless upstream side provides the DHCP service (LEDE's own DHCP will be off)
+  * usually some other network device of the connected wifi has a firewall and NAT on and provides DHCP
+  * LEDEs firewall and NAT will be off (As LEDE will operate in switch mode which cannot use NAT)
+  * as long as you do not purposely disable the LAN downstram ports, LEDE will also act as a wire-to-wifi switch  
+  * summed up, LEDE acts as a wifi-to-wifi switch
+  * Note that LEDE will no longer listen on the typical default router address of your subnet (e.g. ip-address 192.168.1.1), but will get a custom address (either by DHCP from your other router or you have manually set a static address of the subnet of the other wifi)
+  
+[[docs:user-guide:relay_configuration|Wifi Extender or Repeater or Bridge Configuration]]
+
+
+Note: In case you are interested in creating a so called "wireless mesh" instead of a wireless repeater, you will have to refer to other projects like libremesh.org at this time.
+
+
+===== LEDE as wireless access point (wifi<->wire switch)=====
+As a wireless access point, LEDE connects to the existing network by wire. LEDE then acts as a networking device that allows your Wi-Fi devices to connect to the wired network over LEDE. 
+  * the wired network provides Internet access
+  * LEDEs upstream side (the other wired network it will connect to) will be a wireless connection to another access point. So LEDE acts as a client of this existing other network.
+  * LEDEs downstream side (the wifi network that LEDE will provide) will be an access point for your wireless clients
+  * the existing router on the wired upstream side provides the DHCP service (LEDE's own DHCP will be off)
+  * some other network device on your network will have a firewall and NAT on and provides DHCP
+  * LEDEs firewall and NAT will be off (As LEDE will operate in switch mode which cannot use NAT)
+  * summed up, LEDE acts as a wifi-to-wired switch
+  * as long as you do not purposely disable the LAN downstream ports, LEDE will also act as a wire-to-wire switch
+  * Note that LEDE will no longer listen on the typical default router address of your subnet (e.g. ip-address 192.168.1.1), but will get a custom address (either by DHCP from your other router or you have manually set a static address of the subnet of the other wifi)
+  
+[[docs:user-guide:wifi_configuration|Wifi Access Point]]
+
+
+===== LEDE as a wire-to-wire switch =====
+This scenario has already been covered in the previous described access point scenario, as the downstream LAN ports in LEDE are active by default, providing switching: All your wired and wireless clients connected to either LEDE or your other network switches can talk to each other without restrictions, as no firewall is active on the LEDE device.
+  * so just follow the wireless access point description - just with the difference: if you only need a wire-to-wire-switch, then just do not enable the downstream wifi
+  * LEDE will then act as a wire-to-wire switch between the different LEDE-attached downstream devices and between the downstream <-> upstream ports
+  * in switch mode, LEDE cannot use NAT
+  * Note that LEDE will no longer listen on the typical default router address of your subnet (e.g. ip-address 192.168.1.1), but will get a custom address (either by DHCP from your other router or you have manually set a static address of the subnet of the other wifi)
+  * bonus: you might be able to modify the VLAN configuration of your LEDE to redefine the WAN port to obtain an extra n+1 LAN port, to be able to connect more LAN devices
+  
+To do: link to a technical how-to for the bonus option, describing how to properly reconfigure the VLAN configuration to achieve this and how to reassign the former WAN port to the LAN zone. 

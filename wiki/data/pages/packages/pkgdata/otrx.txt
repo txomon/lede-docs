@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: otrx ======
+---- dataentry packages ----
+Name                             : otrx
+Version                          : 1
+Description                      : This package contains an utility that allows validating TRX images.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 4 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc
+Categories_pkg-categorys         : base-system #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : bcm53xx-generic, brcm47xx-generic, brcm47xx-legacy, brcm47xx-mips74k,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 5
+License                          : 
+Maintainer_pkg-maintainer        : Rafał Miłecki
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/utils/otrx|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1 # short version of the package, for display in table
+----
+

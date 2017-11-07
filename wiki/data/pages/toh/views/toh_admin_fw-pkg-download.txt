@@ -1,0 +1,42 @@
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *                                                                                                         * 
+ * THIS PAGE IS AUTOMATICALLY GENERATED, AND SHOULD NOT BE MODIFIED.                                       *
+ *                                                                                                         * 
+ * WANT TO ADD A DEVICE TO THIS PAGE? Read this link: http://wiki.lede-project.org/doc/howto/adding_to_toh *
+ *                                                                                                         * 
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+====== Table of Hardware: Firmware + package downloads ======
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+This table shows firmware download urls and links for package download for all devices listed in the Table of Hardware.\\
+It is mainly thought for administrative purposes, for crosschecking LEDE support, package architecture, package download and firmware download urls.
+
+/* If viewed on small screensizes, the table might not fit in the window and need scrolling. */
+/* The more narrow tables below should fit into 1280px wide screens. */
+**Similar but more narrow views:** [[toh:views:toh_fwdownload|Table of Hardware: Firmware downloads]] and [[toh:views:toh_packagedownload|Table of Hardware: Package downloads]]
+
+{{page>meta:infobox:toh_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+----
+
+++++Filter: Target|
+---- datacloud ----
+col       : target
+summarize : 1
+----
+++++
+
+**Scrolling through the table:** Click anywhere in the table, then use your cursor keys to scroll left/right, up/down.
+
+---- datatable ----
+cols       : Brand, Model, Versions, OWrt Supported Current Rel, LEDE Supported Current Rel, CPU, Target_target, Subtarget, Package architecture_pkg-arch, Packages download_pkg-dl, Device Techdata_pageid, Firmware LEDE Install URL_url, Firmware LEDE Upgrade URL_url
+align      : l,l,l,l,l,l,l,l,l,c,c,l,l,l,l,c
+dynfilters : 1
+rownumbers : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+sort       : Platform
+----

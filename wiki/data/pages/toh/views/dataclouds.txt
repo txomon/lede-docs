@@ -1,0 +1,494 @@
+====== ToH Dataclouds ======
+~~NOTOC~~
+
+This page shows clouds of all available data in the ToH.
+
+===== Usage =====
+
+  * Click on a value and you will be taken to a table filtered accordingly.
+
+/* Note: The numbers (in parentheses) show the count of the respective item. They can be useful to spot fields with no value, which otherwise would not be shown at all. */
+
+----
+
+===== Availability =====
+
+---- datacloud ----
+col       : Availability
+min       : 1
+target    : toh:views:toh_admin_available
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Bootloader =====
+
+---- datacloud ----
+col       : Bootloader
+min       : 1
+limit     : 20
+target    : toh:views:toh_admin_bootloader
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Brand =====
+
+---- datacloud ----
+col       : Brand
+min       : 3
+limit     : 200
+target    : toh:start
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+----
+
+----
+
+===== Device type =====
+
+---- datacloud ----
+col       : Device Type
+min       : 3
+limit     : 20
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Supported Since Rel =====
+
+---- datacloud ----
+col       : LEDE Supported Since Rel
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Supported Current Rel =====
+
+---- datacloud ----
+col       : LEDE Supported Current Rel
+target    : toh:start
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Unsupported =====
+
+---- datacloud ----
+col       : LEDE Unsupported
+min       : 1
+limit     : 50
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== CPU =====
+
+---- datacloud ----
+col       : CPU
+min       : 3
+limit     : 100
+target    : toh:views:toh_dev_arch-target-cpu
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+----
+
+----
+
+===== Target =====
+
+---- datacloud ----
+col       : Target
+min       : 1
+limit     : 50
+target    : toh:views:toh_dev_arch-target-cpu
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Instructionset =====
+
+---- datacloud ----
+col       : Instruction Set
+min       : 1
+limit     : 100
+target    : toh:views:toh_dev_arch-target-cpu
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Sub Instructionset =====
+
+---- datacloud ----
+col       : Sub Instruction Set
+min       : 1
+limit     : 100
+target    : toh:views:toh_dev_arch-target-cpu
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Package architecture =====
+
+---- datacloud ----
+col       : Package architecture
+min       : 1
+limit     : 100
+target    : toh:views:toh_dev_arch-target-cpu
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+===== CPU MHz =====
+
+---- datacloud ----
+col       : CPU MHz
+min       : 2
+limit     : 50
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== CPU cores =====
+
+---- datacloud ----
+col       : CPU cores_
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Flash MBs =====
+
+---- datacloud ----
+col       : Flash MBs
+min       : 3
+limit     : 50
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== RAM MBs =====
+
+---- datacloud ----
+col       : RAM MBs
+min       : 3
+limit     : 50
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Wired Ports 100M =====
+
+---- datacloud ----
+col       : Ethernet 100M ports_
+min       : 3
+limit     : 50
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Wired Ports Gbit =====
+
+---- datacloud ----
+col       : Ethernet Gbit ports_
+min       : 3
+limit     : 50
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Modem =====
+
+---- datacloud ----
+col       : Modem
+min       : 1
+limit     : 20
+target    : toh:views:toh_admin_modem_wlan
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Switch =====
+
+---- datacloud ----
+col       : Switch
+min       : 1
+limit     : 100
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== VLAN =====
+
+---- datacloud ----
+col       : VLAN
+min       : 1
+target    : toh:views:toh_admin_vlan
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== WLAN Hardware =====
+
+---- datacloud ----
+col       : WLAN Hardwares
+min       : 3
+limit     : 50
+target    : toh:views:toh_admin_modem_wlan
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== WLAN 2.4GHz =====
+
+---- datacloud ----
+col       : WLAN 2.4GHz
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== WLAN 5.0GHz =====
+
+---- datacloud ----
+col       : WLAN 5.0GHz
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Detachable Antennas =====
+
+---- datacloud ----
+col       : Detachable Antennas_
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Bluetooth =====
+
+---- datacloud ----
+col       : Bluetooth
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== USB ports =====
+
+---- datacloud ----
+col       : USB portss
+min       : 3
+limit     : 50
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+
+===== SATA ports =====
+
+---- datacloud ----
+col       : SATA portss
+min       : 3
+limit     : 50
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Serial =====
+
+---- datacloud ----
+col       : Serial
+min       : 1
+limit     : 100
+target    : toh:views:toh_admin_serial
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Serial connection parameters =====
+
+---- datacloud ----
+col       : Serial connection parameters_
+min       : 1
+limit     : 100
+target    : toh:views:toh_admin_serial
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+===== JTAG =====
+
+---- datacloud ----
+col       : JTAG
+min       : 1
+limit     : 100
+target    : toh:views:toh_standard_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Audio port =====
+
+---- datacloud ----
+col       : Audio ports_
+min       : 1
+limit     : 100
+target    : toh:views:toh_admin_avports
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Video port =====
+
+---- datacloud ----
+col       : Video ports_
+min       : 1
+limit     : 100
+target    : toh:views:toh_admin_avports
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Phone ports =====
+
+---- datacloud ----
+col       : Phone ports_
+min       : 1
+limit     : 100
+target    : toh:views:toh_admin_avports
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== GPIOs =====
+
+---- datacloud ----
+col       : GPIOs_
+min       : 1
+limit     : 100
+target    : toh:views:toh_extended_all
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----
+
+----
+
+===== Power supply =====
+
+---- datacloud ----
+col       : Power supply
+min       : 1
+target    : toh:views:toh_admin_powersupply
+filter    : Model!=@@Model@@
+filter    : Model!=(EXAMPLE)
+summarize : 1
+----

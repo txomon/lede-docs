@@ -1,0 +1,34 @@
+====== au1000 ======
+
+  * Images for this target are not available in 17.01, since it has been marked as "source only", due to being stuck at 3.18 kernel, see [[https://git.lede-project.org/?p=source.git;a=commitdiff;h=982dd01ac37f64892deb4003f4e53d3bc7a114c4]]
+
+  * [[https://git.lede-project.org/?p=source.git&a=search&h=HEAD&st=commit&s=au1000:|Latest git commits for this target]]
+
+===== Devices with this target =====
+<hidden onHidden="Show devices with this target" onVisible="Hide devices with this target">
+++++Filter: Subtarget|
+---- datacloud ----
+col        : subtarget
+filter     : Target=au1000
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+++++Filter: LEDE Instructionset|
+---- datacloud ----
+col        : lede instructionset
+filter     : Target=au1000
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+---- datatable ----
+cols       : Target, Subtarget, Lede Instructionset_lede-instset, Brand, Model, Version, LEDE Device Page_page
+filter     : Target=au1000
+filter     : Brand!=(EXAMPLE)
+sort       : Brand
+rownumbers : 1
+----
+</hidden>

@@ -1,0 +1,23 @@
+~~NOCACHE~~
+
+  * [[:zh:start|欢迎来到LEDE项目]]
+  * [[:zh:supported_devices|支持的设备]]
+  * [[packages:start|软件包]]
+  * [[:zh:downloads|下载]]
+  * [[:zh:docs:start|文档]]
+  * [[:submitting-patches|提交补丁]]
+  * [[:bugs|报告漏洞]]
+  * [[https://forum.lede-project.org|论坛]]
+  * [[:faq|FAQ]] 
+
+----
+
+  * [[:about|关于LEDE]] 
+    * [[:rules|LEDE准则]]
+    * [[:todo|LEDE To-Do]] 
+    * [[:infrastructure|LEDE基础设施]]
+  * [[:wiki:start|关于本站]]
+
+  * [[:contact|联系我们]] 
+
+----

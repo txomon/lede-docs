@@ -1,0 +1,16 @@
+/*****
+  Place interesting news items here for inclusion on the Home Page
+  The home page layout allows three to five (3-5) bullets that should have the format:
+  
+  * //Month Year:// Some text - no more than two lines' worth, and a "more..." link to more info
+
+  In the summary, note the item(s) you added, and which you removed.
+*****/
+
+<WRAP 40% right>
+**News from the LEDE Project** 
+  * //January 2017:// LEDE creates branch for its first stable release that could be used in production. [[http://lists.infradead.org/pipermail/lede-dev/2017-January/005404.html|more...]] 
+  * //December 2016:// First cut of LEDE Release Planning document published. [[http://lists.infradead.org/pipermail/lede-dev/2016-December/004790.html|more...]] 
+  * //December 2016:// LEDE is progressing well, but may not be stable enough for production use. [[:start|more...]] 
+  * //May 2016:// LEDE forks from OpenWrt. //[[:about|more...]]//
+</WRAP>

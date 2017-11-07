@@ -1,0 +1,343 @@
+===== Tunnelling interface protocols =====
+
+This page describes all available tunnelling protocol usable in ''/etc/config/network'' and their options.
+Some example configurations are provided at the end of the page.
+
+Note that, for most protocols, installing a opkg package is required for protocol support.
+
+==== Protocol "pptp" (Point-to-Point Tunneling Protocol) ====
+:!: The package ''pptp'' must be installed to use PPtP. You need to have another section to configure the "parent" device, and you might need to add "<vpn>" to your "wan" zone in the firewall (<vpn> being the "logical interface name" of this section).
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''server'' | ip address | yes | //(none)// | Remote PPtP server |
+| ''username'' | string | no(?) | //(none)// | Username for PAP/CHAP authentication |
+| ''password'' | string | no(?) | //(none)// | Password for PAP/CHAP authentication |
+| ''buffering'' | boolean | no | ''1'' | <del>Enables buffering and reordering of packets, ''0'' disables it (''--nobuffer'')</del> pptp buffering option removed in r32482 |
+| ''keepalive'' | integer | no | ? | Number of attempts to reconnect |
+| ''defaultroute'' | boolean | no | ''1'' | Whether to create a default route over the tunnel  |
+| ''peerdns'' | boolean | no | ''1'' |Use PPTP-provided DNS server(s) |
+| ''delegate'' | boolean | no | ?  |Use builtin IPv6-management |
+| ''iface'' | string | no(?) | ''pptp-<vpn>'' | Name of the physical interface. Defaults to ''pptp-<vpn>'' no matter what you use |
+
+
+==== Protocol "aiccu" (Automatic IPv6 Connectivity Client Utility) ====
+:!: The package ''aiccu'' must be installed to use this protocol. This utility is not meant to be operated in a headless mode. Do not use it if you have some other option. Only AYIYA tunnel type has been tested. For static or heartbeat tunnels, use native 6in4 tunnel instead, perhaps with the he.net Tunnel Broker.
+
+:!: This protocol is available for Barrier Breaker and newer versions only.
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''username'' | string | yes | //(none)// | Server username |
+| ''password'' | string | yes | //(none)// | Server password |
+| ''protocol'' | string | no | //(none)// | Tunnel setup protocol to use (''tic'', ''tsp'', ''l2tp'')  |
+| ''server'' | string | no | ''tic.sixxs.net'' | Tunnel setup server to use |
+| ''ip6addr'' | IPv6 address (CIDR) | no | //(none)// | Local IPv6 address delegated to the tunnel endpoint (not necessary) |
+| ''ntpsynctimeout'' | integer | no | ''90'' | Wait for NTP sync that many seconds ([[https://github.com/openwrt/packages/pull/579|available since aiccu 20070115-12]])  |
+| ''tunnelid'' | integer | no | //(none)// | TIC server tunnel ID |
+| ''ip6prefix'' | IPv6 prefix | no | //(none)// | Routed IPv6 prefix for downstream interfaces |
+| ''defaultroute'' | boolean | no | ''1'' | Whether to create an IPv6 default route over the tunnel |
+| ''sourcerouting'' | boolean | no | ''1'' | Whether to route only packets from delegated prefixes |
+| ''tunnelid'' | integer | no | //(none)// | TIC server tunnel ID |
+| ''requiretls'' | boolean | no | ''0'' | Require TLS connection to TIC server|
+| ''nat'' | boolean | no | ''1'' | Notify the user that a NAT-kind network is detected|
+| ''heartbeat'' | boolean | no | ''1'' | Make heartbeats |
+| ''verbose'' | boolean | no | ''0'' | Verbose logging to system log|
+
+**Note:** This protocol type does not need an ''ifname'' option set in the interface section. The interface name is derived from the section name, e.g. ''config interface sixbone'' would result in an interface named ''aiccu-sixbone''.
+
+
+
+==== Protocol "relay" (Relayd Pseudo Bridge) ====
+:!: The package ''relayd'' must be installed to use this protocol.
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''network'' | list of //logical interface names// | yes | //(none)// | Specifies the networks between which traffic is relayed |
+| ''gateway'' | IPv4 address | no | //(network default)// | Override the gateway address sent to clients within DHCP responses |
+| ''expiry'' | integer | no | ''30'' | Host expiry timeout in seconds |
+| ''retry'' | integer | no | ''5'' | Number of ARP ping retries before a host is considered dead |
+| ''table'' | integer | no | ''16800'' | Table ID for automatically added routes |
+| ''forward_bcast'' | boolean | no | ''1'' | Enables forwarding of broadcast traffic, ''0'' disables it |
+| ''forward_dhcp'' | boolean | no | ''1'' | Enables forwarding of DHCP requests and responses, ''0'' disables it |
+
+
+==== Common options for GRE protocols ====
+:!: The package ''gre'' must be installed to use GRE. Additionally, you need ''kmod-gre'' and/or ''kmod-gre6''.
+
+GRE support has been introduced in Barrier Breaker.  Four protocols are defined ("gre", "gretap", grev6", and "grev6tap"), which will generate GRE interfaces named:
+
+^ Protocol ^ GRE type ^ Interface name ^
+| gre | ''IPv4 GRE'' | gre4-<logical interface name> |
+| gretap | ''GRE-TAP IPv4'' | gre4t-<logical interface name> |
+| grev6 | ''GRE IPv6'' | gre6-<logical interface name> |
+| grev6tap | ''GRE-TAP IPv6'' | gre6t-<logical interface name> |
+
+All four protocols accept the following common options:
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''mtu'' | integer | no | 1280 | MTU |
+| ''ttl'' | integer | no | 64 | TTL of the encapsulating packets |
+| ''tunlink'' | logical interface name | no | //(none)// | Bind the tunnel to this interface (''dev'' option of "ip tunnel") |
+| ''zone'' | zone name | no | "wan" | Firewall zone to which the interface will be added |
+| ''tos'' | string | no | //(none)// | Type of Service (IPv4), Traffic Class (IPv6): either "inherit" (the outer header inherits the value of the inner header) or an hexadecimal value (Chaos Calmer and later only) | 
+| ''ikey'' | integer | no | 0 | key for incoming packets |
+| ''okey'' | integer | no | 0 | key for outgoing packets |
+| ''icsum'' | boolean | no | false | require incoming checksum |
+| ''ocsum'' | boolean | no | false | compute outgoing checksum |
+| ''iseqno'' | boolean | no | false | require incoming packets serialisation |
+| ''oseqno'' | boolean | no | false | perform outgoing packets serialisation |
+
+==== Protocol "gre" (GRE tunnel over IPv4) ====
+The following options are supported, in addition to all common options above:
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''ipaddr'' | IPv4 address | no | WAN IP | Local endpoint |
+| ''peeraddr'' | IPv4 address | yes | //(none)// | Remote endpoint |
+| ''df'' | boolean | no | true | Set "Don't Fragment" flag on encapsulating packets |
+
+==== Protocol "gretap" (Ethernet GRE tunnel over IPv4) ====
+The following options are supported, in addition to all common options above:
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''ipaddr'' | IPv4 address | no | WAN IP | Local endpoint |
+| ''peeraddr'' | IPv4 address | yes | //(none)// | Remote endpoint |
+| ''df'' | boolean | no | true | Set "Don't Fragment" flag on encapsulating packets |
+| ''network'' | logical interface name | no | //(none)// | Logical network to which the tunnel will be added (bridged) |
+
+==== Protocol "grev6" (GRE tunnel over IPv6) ====
+The following options are supported, in addition to all common options above:
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''ip6addr'' | IPv6 address | no | WAN IP | Local endpoint |
+| ''peer6addr'' | IPv6 address | yes | //(none)// | Remote endpoint |
+| ''weakif'' | logical interface name | no | ''lan'' | Logical network from which to select the local endpoint if ip6addr parameter is empty and no WAN IP is available |
+
+==== Protocol "grev6tap" (Ethernet GRE tunnel over IPv6) ====
+The following options are supported, in addition to all common options above:
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''ip6addr'' | IPv6 address | no | WAN IP | Local endpoint |
+| ''peer6addr'' | IPv6 address | yes | //(none)// | Remote endpoint |
+| ''weakif'' | logical interface name | no | ''lan'' | Logical network from which to select the local endpoint if ip6addr is empty and no WAN IP is available |
+| ''network'' | logical interface name | no | //(none)// | Logical network to which the tunnel will be added (bridged) |
+
+==== Protocol "vti" (VTI tunnel over IPv4) ====
+VTI Tunnels are IPsec policies with a fwmark set. The traffic is redirected to the matching VTI interface.
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''ipaddr'' | IPv4 address | no | WAN IP | Local endpoint |
+| ''peeraddr'' | IPv4 address | yes | //(none)// | Remote endpoint |
+| ''mtu'' | integer | no | 1280 | MTU |
+| ''tunlink'' | logical interface name | no | //(none)// | Bind the tunnel to this interface (''dev'' option of "ip tunnel") |
+| ''zone'' | zone name | no | "wan" | Firewall zone to which the interface will be added |
+| ''ikey'' | integer | no | 0 | key/fwmark for incoming packets |
+| ''okey'' | integer | no | 0 | key/fwmark for outgoing packets |
+
+==== Protocol "vtiv6" (VTI tunnel over IPv6) ====
+The following options are supported, in addition to all common options above:
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''ip6addr'' | IPv6 address | no | WAN IP | Local endpoint |
+| ''peer6addr'' | IPv6 address | yes | //(none)// | Remote endpoint |
+| ''mtu'' | integer | no | 1280 | MTU |
+| ''tunlink'' | logical interface name | no | //(none)// | Bind the tunnel to this interface (''dev'' option of "ip tunnel") |
+| ''zone'' | zone name | no | "wan" | Firewall zone to which the interface will be added |
+| ''ikey'' | integer | no | 0 | key/fwmark for incoming packets |
+| ''okey'' | integer | no | 0 | key/fwmark for outgoing packets |
+
+==== Protocol "wireguard" (Wireguard VPN) ====
+:!: The packages ''wireguard-tools'' and ''kmod-wireguard'' must be installed to use wireguard.
+
+Each wireguard interface is configured in two parts:
+
+  * the configuration relative to the interface itself (private key, MTU, UDP port to bind to, etc)
+  * configuration relative to each peer (public key, IP address, etc)
+
+Interface configuration (using ''proto wireguard''):
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''private_key'' | string | yes | //(none)// | Wireguard private key, generated with ''wg genkey'' |
+| ''listen_port'' | int | no | //wireguard-specific// | UDP port used for outgoing and incoming packets |
+| ''mtu'' | integer | no | //wireguard-specific// | Interface MTU |
+| ''preshared_key'' | string | no | //(none)// | Optional shared secret, to provide an additional layer of symmetric-key cryptography for post-quantum resistance |
+
+The name of the network interface will be the name of the configuration section.
+
+Peer configuration, for each peer:
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''public_key'' | string | yes | //(none)// | Public key of the peer |
+| ''allowed_ips'' | list of prefixes | yes | //(none)// | IP addresses and prefixes that this peer is allowed to use inside the tunnel, also used for Wireguard's internal routing table. Works for both IPv4 and IPv6 |
+| ''route_allowed_ips'' | boolean | no | false | Automatically create a route for each Allowed IPs for this peer |
+| ''endpoint_host'' | string | no | //(none)// | IP address or hostname of the peer.  If not specified, Wireguard will wait for connections from the peer |
+| ''endpoint_port'' | int | no | 51820 | UDP port of the peer |
+| ''persistent_keepalive'' | int | no | 0 | Number of second between keepalive messages, 0 means disabled |
+
+The name of a peer section must be ''wireguard_XX'' where ''XX'' is the name of the wireguard interface section.
+
+
+
+===== Examples =====
+Below are a few examples for special, non-standard interface configurations.
+
+==== listing an interface created by software on the router, like vpn ====
+For example, a vpn interface is normally "tun0". To list it in the uci config files (and therefore in luci):
+<code>
+config interface 'tun0'
+        option ifname 'tun0'
+        option proto 'none'
+</code>
+==== Static IPv6-in-IPv4 tunnel ====
+The example below illustrates a static tunnel configuration in ''/etc/config/network'' file for the Hurricane Electric (he.net) broker.
+Option ''ipaddr'' specifies the local IPv4 address, ''peeraddr'' is the broker IPv4 address and ''ip6addr'' the local IPv6 address routed via the tunnel.
+
+<code>config 'interface' 'henet'
+        option 'proto'     '6in4'
+        option 'ipaddr'    '178.24.115.19'
+        option 'peeraddr'  '216.66.80.30'
+        option 'ip6addr'   '2001:0DB8:1f0a:1359::2/64'</code>
+
+:!: You should also add an address from your routed IPv6 network to the "lan" interface.
+
+:!: To apply IPv6 firewall rules to the tunnel interface, add it to the "wan" zone in ''/etc/config/firewall'':
+
+<code>config 'zone'
+        option 'name'      'wan'
+        option 'network'   'wan henet'  # Important
+        option 'input'     'REJECT'
+        option 'forward'   'REJECT'
+        option 'output'    'ACCEPT'
+        option 'masq'      '1'</code>
+
+:!: If you define a new, dedicated [[docs:user-guide:firewall_configuration#zones|zone]] just for the tunnel interface,
+make sure to set ''option conntrack 1'' in order to [[docs:user-guide:firewall_configuration#note.on.connection.tracking.notrack|force enabling connection tracking]],
+otherwise [[docs:user-guide:firewall_configuration#forwardings|unidirectional forwarding rules]] will not work.
+
+:!: Don't forget to set up [[docs:user-guide:firewall_configuration#forwarding.ipv6.tunnel.traffic|forwarding rules]] between the LAN and the tunnel if you want to route IPv6 traffic between them.
+
+=== Setup behind one-to-one NAT ===
+If [[http://checkip.dyndns.org/|your public IP]], e.g. ''178.24.115.19'', is not matching the IP address on your WAN interface, your ISP is probably using [[http://shorewall.net/NAT.htm#One-to-one|one-to-one NAT]] (aka [[http://en.wikipedia.org/wiki/Network_address_translation#Methods_of_Port_translation|full-cone NAT]]) and you won't be able to establish static [[docs:user-guide:ipv6_ipv4_transitioning#6in4.tunnel |IPv6-in-IPv4 tunnel]]. IP address of your WAN interface can be obtained with the following command:
+
+<code>. /lib/functions/network.sh; network_get_ipaddr ip wan; echo $ip</code>
+
+If this is your case you should fill the WAN IP address into ''ipaddr'' option instead of your actual public IP that might have been provided to [[http://he.net/|Hurricane Electric]] during tunnel creation.((You should always use your public IP while creating Hurricane Electric tunnel, so don't change it just because you are behind one-to-one NAT.)) Or you may completely omit the [[docs:user-guide:ipv6_ipv4_transitioning#6in4.tunnel |optional]] ''ipaddr'' option and the current WAN IPv4 address IP will be used automatically.\\ 
+That would be preferred solution if your WAN IP is dynamic (i.e. obtained via DHCP) or you are not sure.\\ 
+
+Example of ''/etc/config/network'' entry:
+
+<code>
+config 'interface' 'henet'
+        option 'proto'     '6in4'
+        option 'peeraddr'  '216.66.80.30'
+        option 'ip6addr'   '2001:0DB8:1f0a:1359::2/64'
+</code>
+
+==== Dynamic IPv6-in-IPv4 tunnel (HE.net only) ====
+The example below illustrates a dynamic tunnel configuration for the Hurricane Electric (he.net) broker with enabled IP update.
+The local IPv4 address is automatically determined and tunnelid, username and password are provided for IP update.
+
+<code>config 'interface' 'henet'
+        option 'proto'     '6in4'
+        option 'peeraddr'  '216.66.80.30'
+        option 'ip6addr'   '2001:0DB8:1f0a:1359::2/64'
+        option 'tunnelid'  '12345'
+        option 'username'  'myusername'
+        option 'password'  '098f6bcd4621d373cade4e832627b4f6'</code>
+
+:!: You should also add an address from your routed IPv6 network to the "lan" interface.
+
+:!: To apply IPv6 firewall rules to the tunnel interface, add it to the "wan" firewall zone, see example above for details.
+
+:!: The password entered above should be the md5sum of the password you use to log in to tunnelbroker.net.
+
+==== L2TPv3 Pseudowire bridged to LAN ====
+This example establishes a Pseudowire Tunnel and bridges it to the LAN ports. The existing lan interface is reused with protocol ''l2tp'' instead of ''static''.
+
+<code>config 'interface' 'lan'
+        option 'proto'     'l2tp'
+        option 'type'      'bridge'
+        option 'ifname'    'eth0'
+        option 'ipaddr'    '192.168.1.1'
+        option 'netmask'   '255.255.255.0'
+        option 'localaddr' '178.24.154.19'
+        option 'peeraddr'  '89.44.33.61'
+        option 'encap'     'udp'
+        option 'sport'     '4000'
+        option 'dport'     '5410'</code>
+        
+==== Relay between LAN and Wireless Station ====
+This example sets up a ''relayd'' pseudo bridge between a wireless client network and LAN, so that it works similarly to the Broadcom Bridged Client mode.
+
+Wireless configuration (excerpt):
+<code>config wifi-iface
+        option 'device'     'radio0'
+        option 'mode'       'sta'
+        option 'ssid'       'Some Wireless Network'
+        option 'encryption' 'psk2'
+        option 'key'        '12345678'
+        option 'network'    'wwan'</code>
+
+Network configuration (excerpt):\\
+:!: Note that the LAN subnet must be different from the one used by wireless network's DHCP.
+<code>config 'interface' 'lan'
+        option 'ifname'     'eth0.1'
+        option 'proto'      'static'
+        option 'ipaddr'     '192.168.1.1'
+        option 'netmask'    '255.255.255.0'
+
+config 'interface' 'wwan'
+        option 'proto'      'dhcp'
+
+config 'interface' 'stabridge'
+        option 'proto'      'relay'
+        option 'network'    'lan wwan'</code>
+
+In contrast to true bridging, traffic forwarded in this manner is affected by firewall rules, therefore both the wireless client network and the lan network should be covered by the same LAN firewall zone with forward policy set to ''accept'' to allow traffic flow between both interfaces:
+
+<code>config 'zone'
+        option 'name'        'lan'
+        option 'network'     'lan wwan'  # Important
+        option 'input'       'ACCEPT'
+        option 'forward'     'ACCEPT'    # Important
+        option 'output'      'ACCEPT'</code>
+
+==== Static addressing of a GRE tunnel ====
+Create a GRE tunnel with static address 10.42.0.253/30, adding it to an existing firewall zone called ''tunnels'':
+
+<code>
+config interface mytunnel
+        option proto    gre
+        option zone     tunnels
+        option peeraddr 198.51.100.42
+
+config interface mytunnel_addr
+        option proto    static
+        option ifname   @mytunnel
+        option ipaddr   10.42.0.253
+        option netmask  255.255.255.252
+        # Fixes IPv6 multicast (long-standing bug in kernel).
+        # Useful if you run Babel or OSPFv3.
+        option ip6addr  'fe80::42/64'
+</code>
+
+
+==== Static addressing of WireGuard tunnel ====
+Create a WireGuard tunnel interface named ''foo'' that connects to one peer (VPN server at vpn.example.com) and allows another peer (e.g. road warrior) to connect.
+Peer configurations are managed via one or more ''wireguard_<ifname>'' sections.
+
+<code>
+config interface 'foo'
+	option proto 'wireguard'
+	option private_key 'qLvQnx5CpXPDo6oplzdIvXLNqkbgpXip3Yv4ouHWZ0Q='
+	list addresses 'fd00:13:37:ffff::1/64'
+
+config wireguard_foo
+	option public_key '9mD+mTiOp7SGIkB4t3ZfWAcfp5iA/WwQRdVypKKwrjY='
+	option route_allowed_ips '1'
+	list allowed_ips 'fd00:13:37::/64'
+	option endpoint_host 'vpn.example.com'
+	option persistent_keepalive '25'
+
+config wireguard_foo
+	option public_key '4mLeSytW6/y4UcOT6rNorw1Ae9nXSxhXUjxsdzMWkUA='
+	option preshared_key 'M1IbkkDVwXsQbFbURiMXiVe/iUCjC5TKHCmemVs+oLQ='
+	list allowed_ips 'fd00:13:37:ffff::2'
+</code>

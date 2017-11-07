@@ -1,0 +1,10 @@
+====== Luci themes ======
+
+---- datatable ----
+cols       : Name_pkg-page, Version-short, Description, LEDE releases_lede-release, File size_pkg-filesize, Installed size_pkg-filesize, License, Bug report_wiki, Source code_wiki, Packagedata_pageid
+header     : Name, Version, Description, LEDE release, File size, Installed size, License, Bug report, Source code, Packagedata
+align      : l,l,l,l,l,l,l,c,c,c
+filter     : %class%=packages
+filter     : name*~luci-theme
+sort       : Name
+----

@@ -1,0 +1,16 @@
+====== Resources for technical information ======
+
+This page lists resources for technical data which are needed for filling ToH dataentries.
+
+^ Resource                                                              ^ Description                                                                         ^
+| [[https://wikidevi.com/|wikidevi]]                                    | **THE** source for in depth hardware information                                    |
+| [[http://techinfodepot.info|techinfodepot]]                           | wikidevi clone; slow and sometimes unavailable                                      |
+| [[http://www.speedguide.net/broadband-search.php|speedguide.net]]     | Basic info regarding ports, DSL, Wifi                                               |
+| [[https://router-faq.de|router-faq.de]]                               | [[https://www.router-faq.de/?id=hardware_dsl|which modem does a devices have?]]     |
+| :::                                                                   | [[https://www.router-faq.de/?id=wlan|which wlan protocol(s) does a device have?]]   |
+| :::                                                                   | [[https://www.router-faq.de/?id=anschluss|Connectors (Number of ports etc.)]]       |
+| :::                                                                   | [[https://www.router-faq.de/?id=ebinfo|Easybox Overview]]                           |
+| :::                                                                   | [[https://www.router-faq.de/?id=spinfo|Speedport Overview]]                         |
+| :::                                                                   | [[https://www.router-faq.de/?id=fbinfo|Fritzbox Overview]]                          |
+| [[http://www.wehavemorefun.de/fritzbox/Main_Page|wehavemorefun.de]]   | Everything around Fritz!Box and derivatives                                         |
+| [[wiki:maintenance:eol_devices|EoL devices]]                          | Is a device EoL / discontinued?                                                     |

@@ -1,0 +1,384 @@
+====== Using storage devices ======
+
+Many supported devices have ports to connect storage devices, most common are USB, or Sata.\\
+This article will describe how to configure your device to use such storage devices for storage or for sharing. If you want to expand your firmware's space (to install more packages) please read the article about [[docs:user-guide:extroot_configuration|Extroot configuration]].
+
+===== Verifying that storage drivers are active =====
+Most firmware images already have USB or SATA support integrated in the default profile/image, so it should not be necessary to install additional packages.\\
+To check, if USB support in included and if connected USB devices get detected:\\
+1. Execute ''dmesg'' in the terminal, note its output. These are "driver messages", events related to hardware being connected/started or disconnected/shut-down.\\ 
+2. Now connect your external storage device, wait a few seconds and then execute ''dmesg'' on the terminal again.\\
+3. If USB drivers are active and your device has successfully been recognized, you will notice that additional log output has been added at the end. 
+
+Here is an example of the dmesg text about an USB device being connected and properly recognized. 
+<code>[   96.603945] usb 1-1: new high-speed USB device number 2 using ehci-pci
+[   96.812362] usb-storage 1-1:1.0: USB Mass Storage device detected
+[   96.842945] scsi host4: usb-storage 1-1:1.0
+[   98.242956] scsi 4:0:0:0: Direct-Access     JetFlash Transcend 8GB    1100 PQ: 0 ANSI: 4
+[   98.415163] sd 4:0:0:0: [sdb] 15826944 512-byte logical blocks: (8.10 GB/7.55 GiB)
+[   98.443523] sd 4:0:0:0: [sdb] Write Protect is off
+[   98.732241] sd 4:0:0:0: [sdb] Mode Sense: 43 00 00 00
+[   98.738043] sd 4:0:0:0: [sdb] No Caching mode page found
+[   98.752681] sd 4:0:0:0: [sdb] Assuming drive cache: write through
+[   98.893168]  sdb: sdb1 sdb2
+[   98.951053] sd 4:0:0:0: [sdb] Attached SCSI disk</code>
+
+If your log output does not show USB-related output like this, please take a look at the Legacy information paragraph below that explains how to manually install USB drivers.
+
+
+If needed, further diagnostics information about connected USB drives can be obtained, when installing the optional 'usbutils' package:
+<code>
+opkg update && opkg install usbutils
+</code>
+This package installs the ''lsusb'' command that will output information of the router-built in USB-hub and connected USB-devices. The following example was run on a router with a single USB port. 
+lsusb has recognized USB 2.0 and 3.0 support on this port and a connected device consisting of an USB-to-SATA-disk-bridge from ASMedia. Since this device is listed with the same bus-ID as the 3.0 hub, the USB-harddisk obviously is connected via the USB 3.0 protocol:
+<code>
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 002: ID 174c:1153 ASMedia Technology Inc. ASM2115 SATA 6Gb/s bridge
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+</code>
+
+The command ''lsusb -t'' reveals, if your personal combination of device, LEDE firmware and external USB drive supports the newer and slightly faster USB 3.0 UASP Extension (USB Attached SCSI Protocol) or the older USB 3.0 block driver:
+<code>
+...
+/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci_hcd/6p, 5000M
+    |__ Port 2: Dev 3, If 0, Class=Mass Storage, Driver=uas, 5000M
+    |__ Port 4: Dev 5, If 0, Class=Mass Storage, Driver=usb-storage, 5000M
+...
+</code>
+In this example, device 3 ("Driver=uas") is UASP-capable, while device 5 ("Driver=usb-storage") is not.
+
+===== Filesystems =====
+A filesystem is "how data is written in a partition of the storage device".\\ 
+Windows, macOS/OSX and LEDE (Linux) use different default filesystems, and not all filesystems can be read by all equally well (if at all).\\
+LEDE is a Linux-based system, so it can read and write data written in Windows and macOS filesystems, it will be slower, more limited and less reliable than when reading/writing data from native linux filesystems. So if you want to transfer data they may be good enough, but for a storage device permanently attached to your LEDE device, using a native Linux filesystem is recommended.\\
+In case you wonder, the reason for this lack of performance/reliability is patents, trade secrets and other ways to impede the adoption of Windows or Apple filesystems by other parties.
+
+==== Currently supported filesystems ====
+To see what filesystems can be read by the firmware currently installed, write ''cat /proc/filesystems''.\\ 
+This is an example output from a LEDE x86 Virtual Machine, it can read many filesystems as space is not an issue.
+For most devices, you will have to choose what filesystems you need to be able to access, and install the package with the filesystem driver for it.
+<code>nodev   sysfs
+nodev   rootfs
+nodev   ramfs
+nodev   bdev
+nodev   proc
+nodev   tmpfs
+nodev   binfmt_misc
+nodev   debugfs
+nodev   sockfs
+nodev   bpf
+nodev   pipefs
+nodev   devpts
+        ext3
+        ext2
+        ext4
+        squashfs
+nodev   overlay
+        btrfs
+        f2fs
+        xfs
+        vfat</code>
+
+==== LEDE/Linux filesystems ====
+There are 2 main filesystems you are going to be interested in, [[wp>ext4]] and [[wp>f2fs]].\\ 
+In short:\\
+  * ext4 is best suited for hard drives
+  * f2fs is best suited for flash drives (SSDs and usb thumbdrives)
+
+Choose the one most suited to your storage device and proceed.\\
+
+<WRAP center round todo 90%>
+WARNING: **fsck.f2fs** from **f2fstools** 1.7.0 is broken on **ar71xx** (mips32 big endian) platform.
+**fsck.f2fs** corrupts valid f2fs partitions. Current **f2fstools** version in LEDE 17.01.1 (released mid-April) is version 1.8.0, which does not have this issue, check versions and upgrade at once.
+</WRAP>
+
+=== Setup ext4 ===
+This command will download the tools needed to create and fix ext4 (and older versions)\\
+''opkg install e2fsprogs''
+
+If in the list of supported filesystems in your device you don't see ext4, you must install also the driver itself\\
+''opkg install kmod-fs-ext4''
+
+=== Setup f2fs ===
+This command will download the tools needed to create and fix f2fs\\
+''opkg install f2fs-tools''
+
+If in the list of supported filesystems in your device you don't see f2fs, you must install also the driver itself\\
+''opkg install kmod-fs-f2fs''
+
+==== Other Linux filesystems (for advanced users) ====
+a full list of supported linux filesystems can be obtained by writing\\ 
+''opkg update && opkg list | grep kmod-fs''
+
+the tools for the filesystem of your choosing can be found by writing\\
+''opkg list | grep FILESYSTEM_NAME''
+
+As of this writing (2017) LEDE has drivers and filesystem tools for ext2/3/4, f2fs, xfs and btrfs, and drivers for most other filesystems supported by Linux.
+
+==== Multiplatform filesystems ====
+The only filesystem that is recommended for drives you will use for multiplatform usage is [[wp>FAT32]]. It will be read by Windows, macOS/OSX, Linux, and any other device you might have (smartTV, tablets, car sound systems with usb port...).
+Its main drawback (for a data drive) is that it cannot store a file bigger than 3.9 GiB even if the drive itself is bigger than that.
+It is also prone to corruption if the device is disconnected while still writing, which can lead to data loss if the device is written again without running a filesystem check.
+
+=== Setup FAT32 ===
+this command will download the tools needed to create and fix FAT32 (and older versions)\\
+''opkg install dosfstools'' (The dosfstools package includes the [[https://linux.die.net/man/8/mkfs.vfat|mkfs.fat]] and [[https://linux.die.net/man/8/fsck.vfat|fsck.fat]] utilities, which respectively make and check MS-DOS FAT filesystems. Also stated above.)
+
+If in the list of supported filesystems in your device you don't see **vfat**, you must install also the driver itself\\
+''opkg install kmod-fs-vfat''
+
+=== Available NLS files ===
+
+For some filesystems, like for VFAT, you need to additionally install language packages (codepages / charsets) to handle the filenames.  If your mount fails, look in dmesg - a message like\\
+''FAT: codepage cp437 not found''\\
+means that you need NLS codepage 437, and a message like\\
+''FAT: IO charset iso8859-1 not found''\\
+means that you need NLS ISO 8859-1.
+
+Available NLS files and their packages can be listed by writing ''opkg update; opkg list "kmod-nls*"''.
+
+^ Name                ^ Description  ^
+| kmod-nls-cp1250     | Kernel module for NLS Codepage 1250 (Eastern Europe)       |
+| kmod-nls-cp1251     | Kernel module for NLS Codepage 1251 (Russian)              |
+| kmod-nls-cp437      | Kernel module for NLS Codepage 437 (United States, Canada) |
+| kmod-nls-cp775      | Kernel module for NLS Codepage 775 (Baltic Rim)            |
+| kmod-nls-cp850      | Kernel module for NLS Codepage 850 (Europe)                |
+| kmod-nls-cp852      | Kernel module for NLS Codepage 852 (Europe)                |
+| kmod-nls-cp866      | Kernel module for NLS Codepage 866 (Cyrillic)              |
+| kmod-nls-iso8859-1  | Kernel module for NLS ISO 8859-1 (Latin 1)                 |
+| kmod-nls-iso8859-13 | Kernel module for NLS ISO 8859-13 (Latin 7; Baltic)        |
+| kmod-nls-iso8859-15 | Kernel module for NLS ISO 8859-15 (Latin 9)                |
+| kmod-nls-iso8859-2  | Kernel module for NLS ISO 8859-2 (Latin 2)                 |
+| kmod-nls-koi8r      | Kernel module for NLS KOI8-R (Russian)                     |
+| kmod-nls-utf8       | Kernel module for NLS UTF-8                                |
+
+==== Windows filesystems ====
+The only filesystem used on Windows PC is [[wp>NTFS]], on LEDE (Linux) it is available but it's performance is low, avoid it if you can.\\
+Another filesystem that is used on newer SD cards bigger than 32 GiB is [[wp>exFAT]], which is also available and has better performance and reliability than NTFS on LEDE. It is recommended to simply format these SD cards with FAT32, if the limitations aren't an issue for you.
+
+=== Setup NTFS ===
+This command will download the tools needed to create and fix NTFS\\ 
+''opkg install ntfsprogs_ntfs-3g''
+
+If in the list of supported filesystems in your device you don't see **ntfs**, you must install also the driver itself\\
+''opkg install ntfs-3g''
+
+=== Setup exFAT ===
+This command will download the driver to read exfat filesystems, there are no tools available to format and check exfat in LEDE (as of 2017).\\
+''opkg install kmod-fs-exfat''
+
+''opkg install libblkid''
+
+==== Apple filesystems ====
+In Apple land you have [[wp>HFS]], [[wp>HFS+]] and [[wp>APFS]]. Same as with Windows filesystems, there is a driver available for HFS and HFS+ but it has low performance and does not support all features.\\
+APFS is too new (as of 2017) and there is no support at all for it in LEDE (nor in Linux)
+
+=== Setup HFS and HFS+ ===
+This command will download the tools needed to create and fix HFS and HFS+\\
+''opkg install hfsfsck''
+
+If in the list of supported filesystems in your device you don't see **hfs** and **hfsplus**, you must install also the drivers\\
+''opkg install kmod-fs-hfs kmod-fs-hfsplus''
+
+
+===== Partitions =====
+A partition is a way to divide the storage space of a single device into independent blocks to be used by different filesystems. By default most storage devices will have a single partition, used by a single filesystem, we need to find out how it is called because we will need to work on it.
+
+Install the tool to detect partitions (that we will also use later to auto-generate the uci fstab configuration file).
+
+''opkg install block-mount''
+
+Then write ''block info'', and you should see similar output
+<code>/dev/mtdblock2: UUID="9fd43c61-c3f2c38f-13440ce7-53f0d42d" VERSION="4.0" MOUNT="/rom" TYPE="squashfs"
+/dev/mtdblock3: MOUNT="/overlay" TYPE="jffs2"
+/dev/sda1: UUID="fdacc9f1-0e0e-45ab-acee-9cb9cc8d7d49" VERSION="1.4" TYPE="vfat"</code>
+The **/dev/mtdblock** entries are about partitions of the internal flash memory.\\
+The **/dev/sda** entry is the one we are looking for, our storage device.\\
+In this case it shows only **/dev/sda1** so the whole space of this device is grouped in a single partition (by default most drives have a single partition).\\
+If it was split in multiple partitions we would have **/dev/sda1**, **/dev/sda2** ,**/dev/sda3** and so on.\\
+If we had connected more than one storage device we would have also a **/dev/sdb1** (first partition of second device), **/dev/sdc1** (first partition of third device) and so on.
+
+==== Formatting the drive ====
+Assuming that you are not using a FAT32 flash drive, that can be formatted from any PC and many embedded devices too, you will probably need to reformat the drive to use a native Linux filesystem (ext4 or f2fs).
+
+<WRAP center round important 80%>
+**WARNING: formatting a drive DELETES the data on it, so please move all your files out of it first!!**
+</WRAP>
+
+Write ''block info'' to identify the partition you want to format (see above for details about partitions).
+<code>/dev/sda1: UUID="fdacc9f1-0e0e-45ab-acee-9cb9cc8d7d49" VERSION="1.4" TYPE="vfat"</code>
+Taking the line we are interested about from the output in example above.
+
+The partition we want to format is on /dev/sda1.\\
+This is the command for ext4\\
+<code>mkfs.ext4 /dev/sda1</code>
+
+This is the command for f2fs\\
+<code>mkfs.f2fs /dev/sda1</code>
+
+Available advanced options can be seen by writing just ''mkfs.ext4'' or ''mkfs.f2fs'', but are not needed for most setups.
+
+Most filesystem formatting tools have a name that begins with "mkfs.", so just write ''mkfs.'' and press Tab key to get a list of the available ones.
+
+
+==== Setting partition mounts ====
+
+To be available to the system, a partition must be "mounted", bound to a folder of the device firmware's filesystem.
+
+This is set in the uci **fstab** subsystem configuration file. This file isn't included in a typical firmware, but it can be automatically generated by writing ''block detect > /etc/config/fstab''
+
+Afterwards we can use ''uci show fstab'' to see something like this:
+<code>fstab.@global[0]=global
+fstab.@global[0].anon_swap='0'
+fstab.@global[0].anon_mount='0'
+fstab.@global[0].auto_swap='1'
+fstab.@global[0].auto_mount='1'
+fstab.@global[0].check_fs='0'
+fstab.@global[0].delay_root='5'
+fstab.@mount[0]=mount
+fstab.@mount[0].target='/mnt/sda1'
+fstab.@mount[0].uuid='49c35b1f-a503-45b1-a953-56707bb84968'
+fstab.@mount[0].enabled='0'</code>
+
+Note the second block, in **fstab.@mount[0]**. That defines the information needed to mount one partition at boot.
+
+**fstab.@mount[0].target='/mnt/sda1'** tells you that your storage device will be available inside this folder, so if you want to share it with Samba, the share path will be **/mnt/sda1**
+
+**fstab.@mount[0].uuid='49c35b1f-a503-45b1-a953-56707bb84968'** shows the unique numerical id of the partition. This allows the system to find and mount the right partition. If you reformat or change device, you will have to change this number to fit the one of the new storage device's partition. It is shown by writing ''block info''.
+
+**fstab.@mount[0].enabled='0'** Is the enabled status of this mount point. By default, all partitions are not enabled, so they will not be mounted even if they are detected in the system.
+
+Additional mount options and more explanations of the fstab uci subsystem options can be found in the [[docs:user-guide:fstab_configuration|Fstab Configuration]] article.
+
+To enable this partition, write ''uci set fstab.@mount[0].enabled='1''' and ''uci commit'' to save the change.
+
+If you have a FAT32 partition mounted this way, but also good for other filesystems too, is writing ''uci set fstab.@global[0].check_fs='1''' and ''uci commit'' so the filesystem will be auto-checked (and fixed if needed) each time the device powers up.
+
+Now mount your drive by writing ''block mount''. It will be remounted automatically on device power up.
+
+This is the output of ''mount'' issued afterwards, note the last line with the new mount point.
+<code>proc on /proc type proc (rw,nosuid,nodev,noexec,noatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,noatime)
+tmpfs on /tmp type tmpfs (rw,nosuid,nodev,noatime)
+overlayfs:/overlay on / type overlay (rw,noatime,lowerdir=/,upperdir=/overlay/upper,workdir=/overlay/work)
+tmpfs on /dev type tmpfs (rw,nosuid,relatime,size=512k,mode=755)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,mode=600)
+debugfs on /sys/kernel/debug type debugfs (rw,noatime)
+/dev/sda1 on /mnt/sda1 type ext4 (rw,relatime,data=ordered)</code>
+
+----
+
+===== Optional: Idle spindown timeout on disks for NAS usage =====
+(Use this on your own risk. Make a data backup before, if in doubt)\\
+Obviously the following only applies for harddisks, not for SSDs.\\
+
+If you want to use LEDE as a permanent NAS, you might want to spin down the harddisk motor during times of inactivity. Either because you want to have it quiet in your room during nighttime or to increase lifetime of the harddisk (e.g. when using a home-edition harddisk (instead of a 24x7-datacenter edition).
+
+There are different options, to automatically spin down the motor of the attached harddisk after a certain time of inactivity. Both require installing optional packages on LEDE.
+
+1. Preferred option: hdparm\\
+This tool permanently saves a spindown timer on the harddisk itself, using standardized SATA disk commands (the harddisk will then remember that spindown-timer value, even if turned off, even after a restart and even if attached to a different device). 
+Its actually just a command line interface for a built-in harddisk function.
+So no LEDE service has to be run in the background for this and 'hdparm' could even be uninstalled after setting this parameter. Unfortunately many older USB2.0-PATA/SATA-adapters do not support the required SATA command, although even decade-old harddisks do support it. But fortunately most USB3.0-SATA-cases seem to support the required SATA command.
+To install the package
+<code>
+opkg update && opkg install hdparm
+</code>
+E.g. to set a reasonable idle timeout of 20 minutes on the harddisk, use:
+<code>
+hdparm -S 240 /dev/sda2
+</code>
+  * if the command failed with an error message, your USB-SATA-casing sadly does not support it and you won't be able to use 'hdparm' for disk spindown as long as you use this USB-casing.
+  * for all details of allowed codes see https://linux.die.net/man/8/hdparm at "-S" parameter
+    * 0 means "idle timeout disabled"
+    * 1 to 240 specify multiples of 5 seconds, for timeouts from 5 seconds to 20 minutes.   
+    * 241 to 251 specify from 1 to 11 units of 30 minutes, for timeouts from 30 minutes to 5.5 hours.
+Of course you can always change the timeout or disable auto-spindown again later on. You should just understand that the value gets save on the harddisk and that the harddisk itself will from then on manage the spindown, not a LEDE service.
+
+
+2. Option: hd-idle\\
+if for any reason your USB-SATA-bridge does not support "hdparm", you can try [[http://hd-idle.sourceforge.net|hd-idle]] as alternative.
+This is a service than runs in the background of the LEDE device and maintains its own idletimeout counter. Once the defined timeout counter reaches 0, it will send a "live" spindow SATA command to the disk. Unlike the permanent spindown command from hdparm, a lot more USB2.0-SATA cases seem to support this "spindown-now" SATA command.
+To install the package
+<code>
+opkg update && opkg install hd-idle
+</code>
+To use 'hd-idle' to spin down the harddisk after 20 min (=1200seconds) of idle timeout:
+<code>
+hd-idle -i 1200
+</code>
+Avoid to start it more than once, as the program does not seem to be able to detect that its already running, otherwise you will be wasting RAM. If needed, check with ''ps | grep hd-idle'' if its already running.
+If 'hd-idle' works for you (and if hdparm won't), add it to a startup script of your LEDE, otherwise you will have to start it manually again everytime you reboot your LEDE device.
+
+===== 2.4 GHz wireless problems when using USB 3.0 drives on LEDE WiFi devices =====
+Unfortunately USB 3.0 and Wireless in the 2.4 GHz interfere in the same frequency spectrum, which often causes problems.
+See [[http://uk.pcmag.com/networking-reviews-ratings-comparisons/13179/opinion/wireless-witch-the-truth-about-usb-30-and-wi-fi-interference|PC Mag Article about USB3.0 and 2.4 GHz wireless issues]].
+
+The problems caused by these interferences do not affect the drive activity, but can seriously impact your 2.4 WiFi, if there is an USB3.0 storage device attached to your LEDE wifi device:
+  * 2.4 WiFi clients may be unable to connect to your 2.4 GHz WiFi radio
+  * Already connected 2.4 WiFi clients experience connection timeouts or seriously stalling or interrupted data transfers
+These problems will most likely also appear, while the drive is idle.
+
+Workarounds may vary for your situation, you may try:
+  * Use 5 GHz WiFi for your WiFi client devices, as this problem only affects 2.4 WiFi.
+  * Use an USB2.0 drive casing instead of a USB3.0, as USB2.0 does not interfere in the 2.4 GHz spectrum or disable the USB3 driver to force fallback to USB2.0. Many current LEDE devices aren't even noticably faster on USB3.0 data transfers compared to 2.0.
+  * If your USB3.0 storage device is an external USB3 harddrive drive, you could try a different casing that hopefully has better shielding.
+  * You could try a different USB3.0 cable, it could be that the vendor-provided cable included with your USB3.0 device might have bad shielding. But unfortunately several USB casing vendors use cables with proprietary USB connectors on the drive side that aren't easy to get in a better shielded variant on the market.
+  * You could try to reposition your USB3.0 storage device further away from your LEDE WiFi device.
+  * You could try a custom improvised shielding for your USB3.0 storage device or the USB3.0 cable, if you are technically gifted. 
+  * It could even be that the power cable or a network cable connected to your LEDE WiFi device has bad shielding.
+  * You could try, if using a different and fixed channel for your 2.4 GHz radio slightly improves the issue: try channels 1, 6 and 11 and try WiFi channel width 20 (if you were using 40 before).
+===== Legacy information about USB Support =====
+If you are reading this, the firmware image you have installed on your device does not have USB support integrated out of the box. This part will explain how to install USB support manually. Below is a list of packages for basic USB support. Background information about the different host controller interfaces (OHCI, UHCO, EHCI) is given in a [[wp>Host controller interface|Wikipedia article]]. Please refer to you platform documentation to find out what you need, for the recent devices it's likely EHCI.
+
+^ Name                    ^  Required  ^ Desciption                                        ^
+| ''kmod-usb-core''       |    yes     | Kernel support for USB.                           |
+| ''kmod-usb-storage''    |    yes     | Kernel support for USB Mass Storage devices.      |
+| ''block-mount''         |recommended | Scripts used to mount and check block devices     |
+| ''kmod-usb-ohci''       |  specific  | Kernel support for USB **O**HCI controllers.      |
+| ''kmod-usb-uhci''       |  specific  | Kernel support for USB **U**HCI controllers.      |
+| ''kmod-usb2''           |  specific  | Kernel support for USB2 (**E**HCI) controllers.   |
+| ''kmod-usb-ohci-pci''   |  specific  | Kernel support for PCI OHCI controllers.          |
+| ''kmod-usb2-pci''       |  specific  | Kernel support for PCI USB2 (EHCI) controllers.   |
+| ''kmod-usb3''           |  specific  | Kernel support for USB3 (XHCI) controllers.       |
+
+There are also a few device-specific usb drivers modules.
+
+==== Modules for USB 1.1 ====
+An USB 1.1 chips either has an UHC or an OHC interface. If you don't know what is supported (very likely), you can just try them out and see what works.
+
+For USB 1.1, try installing the UHCI drivers first and test them:
+<code>opkg update
+opkg install kmod-usb-uhci
+insmod usbcore
+insmod uhci</code>
+
+If you see the message ''uhci: No such device'' then your hardware is not an UHCI device. Remove the package and try installing the alternative OHCI.
+
+<code>opkg update
+opkg install kmod-usb-ohci
+insmod usb-ohci</code>
+
+If you see the message ''usb-ohci: No such device'' then your hardware is not an OHCI device. Remove the package.
+
+**NOTE:** You may need the kmod-usb2 module, even if you have only an USB 1.1 controller (this is the case for the Asus WL-500g router, brcm47xx)
+
+**NOTE:** On some devices like NLSU2 you will also need to install the following packages: ''kmod-usb-ohci-pci'' & ''kmod-usb2-pci''
+
+==== Modules for USB 2.0 ====
+Usually you can install both, uhci or ohci and usb2.
+
+<code>
+opkg update
+opkg install kmod-usb2
+insmod ehci-hcd
+</code>
+
+If you see messages like ''unresolved symbol usb_calc_bus_time'' try loading ''usbcore'' and then try ''ehci-hcd'' again:
+
+<code>
+opkg update
+insmod usbcore
+insmod ehci-hcd
+</code>

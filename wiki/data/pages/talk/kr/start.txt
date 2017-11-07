@@ -1,0 +1,7 @@
+====== TODO ======
+~~NOTOC~~
+
+  * Introduction of LEDE in Korean
+  * Installation
+  * LEDE Korea Community(OpenWrt and wireless developer community)
+  * TBD

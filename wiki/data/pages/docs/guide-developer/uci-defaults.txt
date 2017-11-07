@@ -1,0 +1,33 @@
+====== UCI defaults ======
+
+===== UCI Defaults =====
+
+//LEDE// relies on UCI, the //Unified Configuration Interface//, to configure its core services. UCI Defaults provides a way to preconfigure your images, using UCI.
+
+==== Integrating custom settings ====
+
+You can preload custom settings by adding batch scripts containing UCI commands into the ''/files/etc/uci-defaults'' directory. The path is identical for the buildroot and the image generator. The scripts will be run **after** the flashing process - in case of upgrading, that also includes appending the existing configuration to the JFFS2 partition (mounted as ''/overlay'').Scripts should not be executable. To ensure your scripts are not interfering with any other scripts, make sure they get executed last by giving them a high prefix (e.g. //zzzz_customisations//). A basic script could look like this:
+
+<code>
+$ cat zzzz_customisations
+#!/bin/sh
+
+uci -q batch <<-EOT
+  add dhcp host
+  set dhcp.@host[0].name='bellerophon'
+  set network.@host[0].ip='192.168.2.100'
+  set network.@host[0].mac='a1:b2:c3:d4:e5:f6'
+    EOT
+</code>
+
+Once the script has run successfully and exited cleanly (exit status 0), it will be removed from ''etc/uci-defaults''. You can still consult the original in ''/rom/etc/uci-defaults'' if needed.
+
+==== Ensuring scripts don’t overwrite custom settings: implementing checks ====
+
+Scripts in ''/etc/uci-defaults'' will get executed at every first boot (i.e. after a clean install or an upgrade), possibly overwriting already existing values. If this behaviour is undesired, we recommend you implement a test at the top of your script - e.g. probe for a custom setting your script would normally configure:
+
+<code>
+[ "$(uci -q get system.@system[0].zonename)" = "America/New York" ] && exit 0
+</code>
+
+This will make sure, when the key has the correct value set, that the script exits cleanly and gets removed from ''/etc/uci-defaults'' as explained above.

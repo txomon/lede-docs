@@ -1,0 +1,29 @@
+====== brcm47xx ======
+
+Description of this target goes here.
+
+===== Devices with this target =====
+
+++++Filter: Subtarget|
+---- datacloud ----
+col        : subtarget
+filter     : Target=brcm47xx
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+++++Filter: LEDE Instructionset|
+---- datacloud ----
+col        : lede instructionset
+filter     : Target=brcm47xx
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+
+---- datatable ----
+cols   : Target, Subtarget, Package architecture_pkg-arch, Brand, Model, Version
+filter : Target=brcm47xx
+----

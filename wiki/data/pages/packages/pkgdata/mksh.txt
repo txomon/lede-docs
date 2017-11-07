@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: mksh ======
+---- dataentry packages ----
+Name                             : mksh
+Version                          : 52c-1
+Description                      : mksh is the MirBSD enhanced version of the Public Domain Korn\\ shell (pdksh), a Bourne-compatible shell which is largely si-\\ milar to the original AT&T Korn shell; mksh is the only pdksh\\ derivate currently being actively developed. It includes bug\\ fixes and feature improvements, in order to produce a modern,\\ robust shell good for interactive and especially script use.\\ mksh has UTF-8 support (in substring operations and the Emacs\\ editing mode) and - while R50 corresponds to OpenBSD 5.5-cur-\\ rent ksh (without GNU bash-like PS1 and fancy character clas-\\ ses) - adheres to SUSv4 and is much more robust. The code has\\ been cleaned up and simplified, bugs fixed, standards compli-\\ ance added, and several enhancements (for extended compatibi-\\ lity to other modern shells - as well as a couple of its own)\\ are available. It has sensible defaults as usual with BSD.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 91 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libssp
+Categories_pkg-categorys         : base-system #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arc_arc700, arc_archs, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 92
+License                          : MirOS
+Maintainer_pkg-maintainer        : Thorsten Glaser
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/utils/mksh|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 52c-1 # short version of the package, for display in table
+----
+

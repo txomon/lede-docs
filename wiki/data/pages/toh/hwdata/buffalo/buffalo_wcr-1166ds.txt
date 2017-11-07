@@ -1,0 +1,98 @@
+====== Techdata: Buffalo WCR-1166DS  ======
+~~HIDEPAGE~~
+~~NOTOC~~
+
+{{page>meta:infobox:dataentry_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+
+/*********************************************************
+*                 >>>>>>>> ! <<<<<<<<
+* -------- >>>>>>>>  W A R N I N G  <<<<<<<<--------
+*                 >>>>>>>> ! <<<<<<<<
+*
+*   If you can read this, YOU ARE DOING IT WRONG.
+*
+*   To edit this page in the only right way, do this:
+*   1) Click "Cancel", then
+*   2) Edit this page ONLY via the lower LEFT edit button.
+*
+*   In case you disobey to the above: You break it, you pay it.
+*   Thank you for respecting the rules of this wiki.
+*
+*   --- Your wiki administration
+*********************************************************/
+
+===== Dataentry =====
+---- dataentry techdata ----
+Device Type_devicetype                         : WiFi Router # If 'other' -> request new devicetype @wiki admin
+Brand                                          : Buffalo # ===>  Mandatory  <===
+Model                                          : WCR-1166DS # ===>  Mandatory  <===
+Versions                                       :  # List versions comma separated: v1, v1.1, v1.5, v2, v2.5
+FCCID_urls                                     :  # link-scheme: https://fcc.io/yourFCCid
+Availability_availability                      : unknown 2017 # 
+OWrt Supported Since Rev_hidden                :  # https://dev.openwrt.org/changeset/xxxxx
+OWrt Supported Since Rel_hidden                :  # First official release (i.e. not trunk)
+OWrt Supported Current Rel_hidden              :  # Current official release (i.e. not trunk)
+OWrt Unsupported_hidden                        :  # e.g. '5GHz wifi'; Describe what is not supported
+LEDE Supported Since Commit_git                : https://git.lede-project.org/?p=source.git;a=commit;h=6b0b526a4fc11d3b1b588d5b3b789da0c66adce9 # https://git.lede-project.org/?p=source.git;a=commit;h=<commithash>
+LEDE Supported Since Rel_releasesince-lede     :  # First official release (i.e. not trunk)
+LEDE Supported Current Rel_releasecurrent-lede : snapshot # Current official release (i.e. not trunk)
+LEDE Unsupported                               :  # Describe what is not supported, e.g. '5GHz wifi'
+Target_target                                  : ramips # https://wiki.lede-project.org/docs/targets
+Subtarget                                      : mt7628 # https://wiki.lede-project.org/docs/targets
+Instruction Set_hidden                         :  # https://en.wikipedia.org/wiki/List_of_instruction_sets
+Sub Instruction Set_hidden                     :  # --------> Description goes here
+Package architecture_pkg-arch                  : mipsel_24kc # https://wiki.lede-project.org/docs/instructionset
+Packages download_pkg-dl                       : mipsel_24kc|Download # https://wiki.lede-project.org/docs/instructionset
+Bootloader_bootloader                          : ¿ # https://wiki.lede-project.org/doc/techref/bootloader
+CPU                                            : MediaTek MT7628AN # Main CPU/SoC, e.g. Atheros AR9331; Broadcom BCM6361
+CPU Cores_numcores_                            : 1 # Number of CPU cores
+CPU MHz                                        : 580 # pure number without 'MHz'
+Flash MB_mbflashs                              : 16 # CTRL+click for multiselect
+RAM MB_mbram                                   : 64 # 
+Ethernet 100M ports_numethport                 : 2 # Number of 100Mbit ethernet ports
+Ethernet GBit ports_numethport                 : - # Number of Gbit ethernet ports
+Switch                                         : ¿ # e.g. Atheros AR8236
+Modem_modem                                    : No # Select type of modem
+Comments network ports_                        :  # Comments on Ethernet, Fibre and Modem
+VLAN_yesno                                     : ¿ # 
+WLAN Hardwares                                 : MT7628AN + MT7612E # e.g. Atheros AR5416; separate multiple by comma; add '#x (mini-)PCI(e)' if necessary
+WLAN 2.4GHz_wlan24                             : b/g/n # 
+WLAN 5.0GHz_wlan50                             : a/n/ac # 
+WLAN Comments_                                 :  # MIMO and other WIFI information
+Detachable Antennas_numdetachantenna           : ¿ # Number of detachable antennas
+Bluetooth_bluetooth                            : - # Bluetooth version, e.g. 4.1
+USB ports_port-usbs                            : - # Number of USB2.0 & 3.0 ports; CTRL+click for multiselect
+SATA ports_numsataport                         : - # Number of SATA or eSATA ports
+Comments USB SATA ports_                       :  # Comments on USB, SATA and eSATA ports
+Video ports_port-videos                        : - # CTRL+click for multiselect
+Audio ports_port-audios                        : - # CTRL+click for multiselect
+Phone ports_port-phones                        : - # Number or kind of phone ports
+Comments AV ports_                             :  # Comments on Audio, Video, Phone ports
+Serial_yesno                                   : Yes # 
+Serial connection parameters_serialparam       : ¿ # e.g. 115200 / 8N1
+JTAG_yesno                                     : ¿ # 
+LED count_numled                               : 8 # Number of (user configurable) LEDs
+Button count_numbutton                         : 3 # Number of (user configurable) buttons/switches (other than Power)
+GPIOs_numgpio                                  : - # Number of accessible GPIOs
+Power Supply                                   : ¿ # Specifications of Power Supply (Volt, Amp) or Battery (Volt, mAh)
+OpenWrt Device Page_hidden                     :  # https://wiki.openwrt.org/toh/brand/brand_model_version
+LEDE Device Page_page                          :  # toh/brand/brand_model_version
+Device Techdata_hidden                         : View/Edit data # ===> Mandatory, must be "View/Edit data" <===
+OWrt Forum Topic URL_hidden                    :  # forum.openwrt.org/viewtopic.php?id=xxxxx
+LEDE Forum Topic URL_urls                      : http://¿ # forum.lede-project.org/...
+WikiDevi URL_urls                              :  # wikidevi.com/wiki/yourdevice
+OEM Device Homepage URL_url                    : http://buffalo.jp/product/wireless-lan/ap/wcr-1166ds/ # yourbrand.com/yourdevice
+Firmware OEM Stock URL_url                     : http://¿ # yourbrand.com/yourdevice/stockfirmware
+Firmware OWrt Install URL_hidden               :  # downloads.openwrt.org/latest/...factory.bin; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware OWrt Upgrade URL_hidden               :  # downloads.openwrt.org/latest/...sysupgrade.bin; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware LEDE Install URL_urls                 : https://downloads.lede-project.org/snapshots/targets/ramips/mt76x8/lede-ramips-mt76x8-wcr-1166ds-squashfs-factory.bin # downloads.lede-project.org/releases/<release>/targets/...; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware LEDE Upgrade URL_urls                 : https://downloads.lede-project.org/snapshots/targets/ramips/mt76x8/lede-ramips-mt76x8-wcr-1166ds-squashfs-sysupgrade.bin # downloads.lede-project.org/releases/<release>/targets/...; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Picture_img100s                                : media:example:genericrouter1.png # media:brand:model_general_view.jpg; Single general picture to identify the device; detail pictures to be provided on device page. How to add images: http://wiki.lede-project.org/meta/adding_images_to_lede_wiki
+Comments_                                      : Due to the "dual image" function in the bootloader, the second half of the SPI flash ("firmware2" partition) cannot be used as a part of the file system. # Anything that is worth mentioning
+----
+
+
+
+
+{{section>:meta:template_dataentry_background#conventions_for_dataentry_values&nofooter&noeditbtn}}

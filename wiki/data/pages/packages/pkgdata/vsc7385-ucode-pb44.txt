@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: vsc7385-ucode-pb44 ======
+---- dataentry packages ----
+Name                             : vsc7385-ucode-pb44
+Version                          : 1
+Description                      : This package contains the Atheros PB44 board specific microcode for\\ the Vitesse VSC7385 ethernet switch.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 6 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc
+Categories_pkg-categorys         : network #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : ar71xx-generic,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 6
+License                          : 
+Maintainer_pkg-maintainer        : LEDE team
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/firmware/vsc73x5-ucode|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1 # short version of the package, for display in table
+----
+

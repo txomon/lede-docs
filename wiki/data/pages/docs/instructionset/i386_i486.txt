@@ -1,0 +1,21 @@
+====== i386_i486 ======
+
+Most utterly obsolete 32bit PC hardware falls into this arch/category, it is as back in time as the linux kernel can go on x86 support.
+
+===== Download Packages =====
+
+/* Link to packages download goes here. */
+
+| HTTP   | [[https://downloads.lede-project.org/releases/packages-17.01/i386_i486/]]      |
+| FTP    | [[ftp://ftp.halifax.rwth-aachen.de/lede/releases/packages-17.01/i386_i486/]]   |
+
+See [[/downloads#mirrors|Mirrors]] for more download sites.
+
+===== Devices with this instructionset =====
+
+---- datatable ----
+cols   : Package architecture, Target, Subtarget, Brand, Model_pageid, Version
+filter : Package architecture=i386_i486
+filter : Brand!=(EXAMPLE)
+sort   : Brand
+----

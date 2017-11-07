@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: freeswitch-mod-alsa ======
+---- dataentry packages ----
+Name                             : freeswitch-mod-alsa
+Version                          : 1.7.0-cc0a062
+Description                      : FS Alsa Endpoint module\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 15 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, freeswitch, alsa-lib
+Categories_pkg-categorys         : network---telephony #
+Repositories_pkg-repository      : telephony
+Architectures_pkg-archs          : arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a5, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 16
+License                          : MPL-1.1
+Maintainer_pkg-maintainer        : Mazi Lo
+Bug report_wiki                  : [[https://github.com/openwrt/telephony/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/telephony/tree/lede-17.01/net/freeswitch|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1.7.0-cc0a062 # short version of the package, for display in table
+----
+

@@ -1,0 +1,15 @@
+====== How to use fwBuilder to generate firewalling rules for LEDE ======
+
+LEDE is a versatile platform base on GNU/Linux, offering state-of-the art solutions relying on GNU/Linux iptables to filter and inspect packets. Fwbuilder is Free Software allowing to generate complex firewalling rules for iptables, including detailed logging and much more. A detailed feature list of fwBuilder can be found on [[http://www.fwbuilder.org|fwBuilder]] home page.
+
+This HOWTO explains how to use fwBuilder as an alternative firewalling generator for LEDE, in conjunction with UCI/LuCI firewall.
+
+This article is being written, you are invited to participate if you wish.
+===== Installation of fwBuilder =====
+
+fwBuilder GUI is available under the GPL licence under all platforms: GNU/Linux, FreeBSD, Mac OS X and Windows. 
+
+Under Debian GNU/Linux, install fwBuilder using these commands:
+<code>sudo apt-get install fwbuilder</code>
+
+Do no work on a production firewall while learning fwBuilder.

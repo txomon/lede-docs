@@ -1,0 +1,147 @@
+====== Adding a new device ======
+
+A good all-round advice would be to start by looking at recent commits about adding a new device, to see what files where changed and how. Many files try to be as self-explanatory as possible, most of the times just opening them will be enough to understand their function.
+
+===== Learn by example =====
+
+A good method is learn by example, so you can do: 
+
+grep -lri mt300a target/
+
+The result is minimal list of files required to add a new board:
+
+target/linux/ramips/base-files/etc/board.d/01_leds
+
+target/linux/ramips/base-files/etc/board.d/02_network
+
+target/linux/ramips/base-files/lib/upgrade/platform.sh
+
+target/linux/ramips/base-files/lib/ramips.sh
+
+target/linux/ramips/dts/GL-MT300A.dts
+
+target/linux/ramips/image/mt7620.mk
+
+===== Important files =====
+
+This is a general map of where most important files are located:
+
+==== /target/linux/<arch_name>/base-files/etc/… ====
+
+This folder contains files and folders that will be integrated in the firmware’s /etc folder.
+
+These are its subfolders and files:
+
+  * **…board.d/** scripts for defining device-specific default hardware, like leds and network interfaces.
+  * **…hotplug.d/** scripts for defining device-specific actions to be done automatically on hotplugging of devices
+  * **…init.d/** scripts for defining device-specific actions to be done automatically on boot
+  * **…uci-defaults/** files for defining device-specific uci configuration defaults
+  * **…diag.sh** defines what is the led to use for error codes for each board
+
+==== /target/linux/<arch_name>/base-files/lib/… ====
+
+This folder contains files and folders that will be integrated in the firmware’s /lib folder.
+
+These are its subfolders and files:
+
+  * **…<arch_name>.sh** human-readable full board name associated to script-safe board name
+  * **…preinit/** common <arch_name> preinit startup scripts
+  * **…upgrade/** common <arch_name> upgrade scripts
+
+==== /target/linux/<arch_name>/base-files/sbin ====
+
+This folder contains files and folders that will be integrated in the firmware’s /sbin folder, usually common <arch_name> sbin scripts and tools.
+
+==== /target/linux/<arch_name>/dts/ ====
+
+Device tree source files, or dts for short.
+
+==== /target/linux/<arch_name>/image/ ====
+
+Configuration needed to build device-specific flashable images.
+
+==== /target/linux/<arch_name>/<board_name>/ ====
+
+Board-specific configuration.
+
+==== /target/linux/<arch_name>/modules.mk ====
+
+Arch-specific kernel module config file for menuconfig
+
+
+==== Making new device appear in make menuconfig ====
+
+After edit the files above, you need to touch the makefiles
+
+touch target/linux/*/Makefile
+
+===== Patches =====
+The patches-* subdirectories contain the kernel patches applied for every target.\\ 
+All patches should be named 'NNN-lowercase_shortname.patch' and sorted into the following categories:
+
+**0xx** - upstream backports\\
+**1xx** - code awaiting upstream merge\\
+**2xx** - kernel build / config / header patches\\
+**3xx** - architecture specific patches\\
+**4xx** - mtd related patches (subsystem and drivers)\\
+**5xx** - filesystem related patches\\
+**6xx** - generic network patches\\
+**7xx** - network / phy driver patches\\
+**8xx** - other drivers\\
+**9xx** - uncategorized other patches\\
+
+<WRAP center round tip 80%>
+All patches must be written in a way that they are potentially upstreamable, meaning:
+
+- they must contain a proper subject\\
+- they must contain a proper commit message explaining what they change\\
+- they must contain a valid Signed-off-by line\\
+</WRAP>
+
+===== Testing images =====
+Test firmware images without writing them to flash by using ramdisk images.\\
+
+In **make menuconfig** select **Target Images** and then you can select the **ramdisk** option.\\
+
+This will create an image with kernel + initramfs, that will have **initramfs** in the name. The resulting image can be loaded in the device through the bootloader's tftp function and should boot to a prompt without relying on flash/filesystem support.
+
+===== Tips and tricks =====
+==== Getting a shell on the target device ====
+In order to collect relevant data for a port of LEDE to the device of interest one wants shell access. Most devices though do not offer a way to get a shell with telnet or ssh.
+
+With [[https://wiki.openwrt.org/toh/netgear/telnet.console|netgear-telnetenable]] many Netgear devices can be opened up for telnet access. Also see [[https://github.com/insanid/NetgearTelnetEnable|GitHub: insanid/NetgearTelnetEnable]].
+When such means cannot be used, one could try to flash an image build from the sources published by the vendor with telnetd enabled.
+
+With [[https://github.com/jclehner/nmrpflash|nmrpflash]] many Netgear devices can be flashed. Devices that are compatible with this tool become effectively unbrickable.
+
+==== Collecting relevant data ====
+On [[https://wikidevi.com/wiki/Main_Page|WikiDevi]] lots of information can be found, e.g. the FCC ID is very useful when searching for documentation, datasheets and internal photo's (to be able to distinguish used chips without having to open the casing).
+
+Typically one can use the following commands:
+  dmesg                          # log buffer might be to small, see note 1.
+  cat /proc/cmdline
+  cat /proc/cpuinfo
+  cat /proc/meminfo
+  cat /proc/devices
+  ls /sys/devices/platform
+  cat /proc/mtd
+  cat /sys/class/mtd/mtd*/offset # Linux 4.1 and newer, see note 2.
+  ifconfig -a
+  ls /sys/class/net
+  brctl show
+  
+Note 1: Often the log buffer is to small and the earliest messages may be missing from the information retrieved with ''dmesg''. If one build a stock image from the sources the vendor has published, a larger buffer size can be set within the kernel config.
+
+Note 2: http://lxr.free-electrons.com/source/Documentation/ABI/testing/sysfs-class-mtd
+
+Another useful tool for getting information for setting LEDs might be [[https://github.com/jclehner/gpiodump-mt7620|gpiodump]], a MT7620 GPIOMODE register dumper (RAMIPS).
+
+==== Getting collected data from a device ====
+Sometimes no normal means such as scp or ftp are available for retrieving files from a device. Still one could use httpd and busybox its mount command to do so. How?
+Assume the files with relevant data on the device with IP address ''192.168.0.123'' are stored under ''/tmp'' and pages of the web interface are served from ''/www''.
+On the device do:
+  cp important-data.txt /tmp
+  mount -o bind /tmp /www
+After that the data on the host connected to the device do:
+  wget http://192.168.0.123/important-data.txt
+  

@@ -1,0 +1,127 @@
+====== LEDE User Guide ======
+This page has links to all user-relevant pages of the LEDE documentation.\\ 
+Recommendation: Use the Search box (at the top right of this page), to quickly find things.
+
+=====Newbee Section=====
+  * [[docs:guide-quick-start:factory_installation|Factory install: First-time installation of LEDE on a device]]
+  * [[docs:guide-quick-start:sysupgrade.luci|Sysupgrading an existing LEDE device from the web admin GUI]]
+  * [[docs:guide-quick-start:starterfaq| Starter FAQ]]. When you are done installing the firmware and need some first answers
+  * [[docs:guide-quick-start:webadmingui| Admin-access to your LEDE device: Web GUI]]
+  * [[docs:guide-quick-start:sshadministration| Admin-access to your LEDE device: SSH command line]] (howto for yet Linux-inexperienced Windows users)
+
+=====General Information for Using LEDE =====
+  * [[docs:user-guide:switch_router_gateway_and_nat| Switch vs. Router vs. Gateway]]. Find out, how you want to run your LEDE device and how IPv4 NAT affects this decision.
+  * [[docs:user-guide:wifi_countrycode| WiFi regulation information and the country code for LEDE's WiFi operation]]. Some background information about country-specific WiFi limits
+  * [[docs:user-guide:lede_security| Security and hardening]]. General things about LEDE security, patching, hardening and responsibilities of a LEDE admin
+
+=====Basic configuration=====
+  * [[docs:user-guide:introduction_to_lede_configuration| Introduction to LEDE configuration]]
+  * [[docs:user-guide:system_configuration| System configuration (hostname, logging)]]
+  * [[docs:user-guide:network_configuration| Network configuration ]]
+    * [[docs:user-guide:basic-ipv4-configuration| Basic IPv4 configuration (static, dhcp client)]]
+    * [[docs:user-guide:basic-ipv6-configuration| Basic IPv6 configuration (static, dhcp client)]]
+    * [[docs:user-guide:ipv6_ipv4_transitioning | IPv4-IPv6 transitioning technologies]]
+    * [[docs:user-guide:wan_interface_protocols| WAN interface protocols (ppp/pppoA/pppoE, 3G/4G, DSL/VDSL, others )]]
+    * [[docs:user-guide:tunneling_interface_protocols| Tunneling interface protocols (through VPN)]]
+    * [[docs:user-guide:network_interface_alias| Interface alias]]
+    * [[docs:user-guide:switch_configuration| Switch configuration (VLAN)]]
+      * [[docs:user-guide:switch_untaggedvlan_howto| HowTo: Adding an additional untagged VLAN switch on a LEDE device]]
+    * [[docs:user-guide:routes_configuration| Network routes configuration (static routes)]]
+    * [[docs:user-guide:traffic_shaping| Traffic shaping (QoS) ]]
+  * [[docs:user-guide:firewall_configuration| Firewall configuration ]]
+  * [[docs:user-guide:dhcp_configuration| DHCP server configuration ]]
+  * [[docs:user-guide:dns_configuration| DNS server configuration ]]
+
+=====WiFi configuration=====
+  * [[docs:user-guide:wifi_configuration| WiFi configuration ]]
+  * [[docs:user-guide:relay_configuration| WiFi Repeater/Bridge configuration ]]
+  * [[docs:user-guide:guestwifi_configuration| Guest WiFi network configuration ]]
+  * [[drives#ghz_wireless_problems_when_using_usb_30_drives_on_lede_wifi_devices|2.4 GHz WiFi issues when connecting USB3.0 devices to a LEDE WiFi access point]]
+  * [[docs:user-guide:wifi_toggle| configuring WiFi on/off buttons ]]
+
+=====Advanced configuration=====
+  * [[docs:user-guide:ssh_configuration| SSH server configuration]]
+  * [[docs:user-guide:ntp_configuration| NTP configuration (automatic update of system time)]]
+  * [[docs:user-guide:fstab_configuration| fstab configuration (additional partitions mounter)]]
+  * [[docs:user-guide:led_configuration| LED configuration (when to light up non-default leds)]]
+  * [[docs:user-guide:hotplug_lede| Hotplug in LEDE (programmed reactions to various device/network-related events)]]
+  * [[docs:user-guide:hncp_configuration| The Homenet Control Protocol (HNCP) configuration ]]
+  * [[docs:user-guide:smartphone-usb-tether|Smartphone tethering]]
+  * [[docs:user-guide:sqm|Smart Queue Management (SQM) - Minimizing Bufferbloat]] or how to improve WAN speed in congested networks
+  * [[docs:user-guide:getting-rid-of-luci-https-certificate-warnings|How to get rid of LuCi https certificate warnings]]
+  * [[docs:user-guide:capture-filter-inspect-packets|How to capture, filter and inspect packets]]
+  * [[docs:user-guide:isp-configurations|Internet service provider configurations]]
+
+=====Installing additional software=====
+  * [[docs:user-guide:opkg| Installing new packages ]]
+  * [[docs:user-guide:extroot_configuration| Installing new packages on an external storage device (extroot configuration). ]]
+  * [[docs:user-guide:show_upgradable_packages_after_ssh_login| Show available package upgrades after SSH login. ]]
+  * [[docs:user-guide:imagebuilder| Integrate packages in a flashable image (imagebuilder) ]]
+
+=====Hardware-specific configuration=====
+  * [[docs:user-guide:usb_gadget|Using a device with USB guest functionality]] (also called "usb gadget" in the linux kernel)
+
+
+
+=====Additional Services=====
+
+**Alternate NTP servers:**
+  * [[docs:user-guide:ntp.gps|Stratum 1 NTP server using USB GPS]]
+
+**Adblocking services:**
+  * [[docs:user-guide:ad-blocking|Ad blocking]]
+
+**DDNS services:** 
+  * [[docs:user-guide:ddns.client|DDNS Client]] to connect to an external DDNS provider
+
+**Media Services:**
+  * [[docs:user-guide:dlna| DLNA Server]] - Your Smart-TVs can stream Music, Video, Pictures from your LEDE device (recommended: device with >8MB Flash)
+
+**NAS services (network attached storage):**
+To serve files from your LEDE device, you have to first setup an external storage drive
+  * [[docs:user-guide:drives| Setting up storage devices ]]
+You can expose this drive in the local network via AFP (for Apple clients), SMB (for Windows clients) and/or NFS (for Linux clients):
+  * [[docs:user-guide:netatalk_configuration| AFP Netatalk share configuration (aka Apple Time Machine). ]]
+  * [[docs:user-guide:samba_configuration| SMB Samba share configuration (aka Windows file sharing). ]]
+  * [[docs:user-guide:nfs_configuration| NFS Network File System share configuration (aka Linux/Unix file sharing). ]]
+
+**VPN services:**
+  * [[docs:user-guide:openvpn.server|OpenVPN Server]] setting up a VPN server inside your LEDE device
+  * [[docs:user-guide:openvpn.client|OpenVPN Client]] setting up a VPN client inside your LEDE device
+
+**Parental Controls:** 
+  * [[docs:user-guide:parental-controls|Parental controls]]
+
+
+=====Troubleshooting and maintenance=====
+  * [[docs:user-guide:services| Managing system services ]]
+  * [[docs:user-guide:sysupgrade.cli| LEDE firmware upgrade ]]
+  * [[docs:user-guide:failsafe_and_factory_reset| Failsafe and factory reset ]]
+  * [[docs:user-guide:recovering_from_clientmode| Recovering access to a LEDE device that has been set to client mode ]]
+  * [[docs:user-guide:root_password_reset| Resetting a forgotten root password ]]
+  * [[docs:user-guide:vendor_specific_rescue| Rescuing a failed LEDE update or bricked device with vendor specific rescue methods ]]
+  * [[docs:user-guide:backingup|Backing up your configuration]]
+  * [[docs:user-guide:tftpserver|Set up a TFTP Server]] how to set up a TFTP server on your PC to use your device's recovery mode
+
+=====Running LEDE in a VM=====
+  * [[docs:user-guide:virtualbox-vm| Run LEDE as a Virtualbox virtual machine ]]
+  * [[docs:guide-developer:test-virtual-image-using-armvirt|Testing LEDE on QEMU with a virtual image using the armvirt target]]
+
+
+=====LEDE signatures=====
+  * [[docs:user-guide:release_signatures| Release signatures and how to check them ]]
+  * [[docs:user-guide:signatures| LEDE public keys ]]
+  * [[docs:user-guide:keygen| Generating keys ]]
+
+===== Legacy documentation: OpenWrt ===== 
+LEDE is based on [[https://wiki.openwrt.org/doc/start|OpenWrt]]. A lot of the operational aspects of the two projects are identical.\\ 
+Several former OpenWrt documentation content has not yet been added to this site.\\
+If you can't find answers on this LEDE documentation for some of your questions, try a peek on the [[https://wiki.openwrt.org|OpenWrt wiki]] as well.
+
+=====Work-in-progress documentation pages=====
+  * [[docs:user-guide:luci.essentials]]
+  * [[docs:user-guide:security-guide-for-the-paradoid|Security Guide for the Paranoid]]
+  * [[docs:user-guide:use_fwbuilder_with_lede|How to use fwBuilder to generate firewalling rules for LEDE]]
+  * [[docs:user-guide:luci_firewall|Firewall configuration]]
+  * [[docs:user-guide:adv_xdsl_tweaks|Advanced xDSL tweaks]]
+  * [[docs:user-guide:security-features|LEDE security features]]

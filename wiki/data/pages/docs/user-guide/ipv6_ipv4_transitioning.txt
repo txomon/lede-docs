@@ -1,0 +1,278 @@
+===== IPv4-IPv6 Transitioning Technologies =====
+Transitioning technologies can be installed using the packages with the same names.\\
+Setup and management of IPv6-in-IPv4 tunnels: ''6rd'', ''6to4'', ''6in4''.\\ 
+Setup and management of IPv4-in-IPv6 tunnels: ''ds-lite''\\ 
+
+==== 6in4 tunnel (HEnet tunnelbroker, SixXS static tunnel, ...) ====
+6in4 tunnels are usually provided by external tunnel providers like HE.net or SixXS. You can use the following example configuration as a basis.
+
+:!: The package ''6in4'' must be installed to use 6in4-tunnels.
+
+''/etc/config/network''
+<code>
+config 'interface' 'wan6'
+        option 'proto' '6in4'
+        option 'mtu' '1424'                          # the IPv6 tunnel MTU (optional)
+        option 'peeraddr' '62.12.34.56'              # the IPv4 tunnel endpoint at the tunnel provider
+        option 'ip6addr' '2001:DB8:2222:EFGH::2/64'  # the IPv6 tunnel
+        option 'ip6prefix' '2001:DB8:1234:ABCD::/64' # Your routed prefix (required!)
+        # configuration options below are only valid for HEnet tunnels. ignore them for other tunnel providers.
+        option tunnelid '123456' # HE.net tunnel id
+        option username 'username' # HE.net username used to login into tunnelbroker, not the User ID shown after login in.
+        option password 'password' # HE.net password if there is no updatekey for tunnel
+        option updatekey 'updatekey' # HE.net updatekey instead of password, default for new tunnels
+
+config 'interface' 'lan'
+        option 'proto' 'static'
+        option ip6assign 60
+...
+</code>
+
+In a typical tunnel configuration (e.g. HEnet or SixXS) you get two different ipv6 addresses/prefixes from the tunnel provider:
+  * ip6addr: The tunnel endpoint address is like '2001:DB8:2222:EFGH::2/64'. This ...::2 address is only used for the tunnel interface endpoint. It is not a routable address and it can't be used for anything else than connecting to the other end of the tunnel, typically ...::1 .
+  * ip6prefix: The tunnel provider gives you also a routable prefix, typically either /48 or /64, for example '2001:DB8:1234:ABCD::/64'. In a correctly configured system, your LAN clients will get addresses from that prefix. 
+  * 
+:!: If you choose a name for your tunnel-interface that is different from 'wan6' make sure to add that name to the network-option of the firewall-zone 'wan' in /etc/config/firewall.
+
+:!: Note that HE.net assigns an "updatekey" by default for new tunnels since February 2014. If updatekey exists (visible in tunnel's advanced info page at the he.net site), it needs to be used instead of the password. Old tunnels without updatekey will continue to work with password.
+
+:!: To allow 6in4 traffic to always reach your tunnel endpoint, it may be necessary to pass IPv4 protocol 41 traffic with the following firewall configuration stanza:
+
+<code>config rule
+        option name 'Allow-protocol 41'
+        option src      wan
+        option proto    41
+        option target   ACCEPT
+</code>
+
+HE.Net users also report use of protocol 59, which should be allowed but limited to length of 40 bytes:
+
+<code>config rule
+    option name 'Allow-protocol 59'
+    option src 'wan'
+    option proto '59'
+    option target 'ACCEPT'
+    option extra '-m length --length 40' 
+</code>
+
+See below for advanced configuration options.
+
+=== Protocol "6in4" (IPv6-in-IPv4 Tunnel) ===
+:!: The package ''6in4'' must be installed to use this protocol.
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''ipaddr'' | IPv4 address | no | Current WAN IPv4 address | Local IPv4 endpoint address |
+| ''peeraddr'' | IPv4 address | yes | //(none)// | Remote IPv4 endpoint address |
+| ''ip6addr'' | IPv6 address (CIDR) | yes | //(none)// | Local IPv6 address delegated to the tunnel endpoint |
+| ''ip6prefix'' | IPv6 prefix | no | //(none)// | Routed IPv6 prefix for downstream interfaces (Barrier Breaker and later only) |
+| ''sourcerouting'' | boolean | no | ''1'' | Whether to route only packets from delegated prefixes (Barrier Breaker and later only) |
+| ''defaultroute'' | boolean | no | ''1'' | Whether to create an IPv6 default route over the tunnel |
+| ''ttl'' | integer | no | ''64'' | TTL used for the tunnel interface |
+| ''tos'' | string | no | //(none)// | Type Of Service : either "inherit" (the outer header inherits the value of the inner header) or an hexadecimal value. Also known as DSCP. (Chaos Calmer and later only) |
+| ''mtu'' | integer | no | ''1280'' | MTU used for the tunnel interface |
+| ''tunnelid'' | integer | no | //(none)// | HE.net global tunnel ID (used for endpoint update) |
+| ''username'' | string | no | //(none)// | HE.net username which you use to login into tunnelbroker, not the User ID shows after you have login int  (used for endpoint update) |
+| ''password'' | string | no | //(none)// | <del>md5sum of</del> HE.net password (used for endpoint update) |
+| ''updatekey'' | string | no | //(none)// | HE.net updatekey, overrides password (used for endpoint update) |
+| ''metric'' | integer | no | ''0'' | Specifies the default route metric to use |
+
+:!: This protocol type does not need an ''ifname'' option set in the interface section. The interface name is derived from the section name, e.g. ''config interface sixbone'' would result in an interface named ''6in4-sixbone''.
+
+:!: HE.net has introduced updatekey as default for new tunnels in February 2014.
+
+:!: **username**, **password** and **updatekey** are all plaintext entries.
+
+:!: although ip6prefix isn't required, sourcerouting, enabled by default, will prevent forwarding of packets unless ip6prefix is specified.
+
+==== 6rd tunnel (ISP-provided IPv6 transition) ====
+6rd is a tunnel mechanism based on 6to4. Unlike other tunneling mechanisms, 6rd is usually provided by the ISP itself. 
+
+:!: The package ''6rd'' must be installed to use this protocol.
+
+:!: The configuration of 6rd is usually auto-detected and manual configuration is not needed, simply installing the 6rd package (and rebooting) is usually enough.
+
+:!: To automatically configure 6rd from dhcp you need to create an interface with ''option auto 0'' and put its name as the 'iface6rd' parameter. In addition you also need to add its name to a suitable firewall zone in /etc/config/firewall.
+
+Below configuration options are only needed for hardcoding the tunnel.
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''peeraddr'' | IPv4 address | yes | no | 6rd - Gateway  |
+| ''ipaddr'' | IPv4 address | no | Current WAN IPv4 address | Local IPv4 endpoint address |
+| ''ip6prefix'' | IPv6 prefix (without length) | yes | no | 6rd-IPv6 Prefix |
+| ''ip6prefixlen'' | IPv6 prefix length | yes | no | 6rd-IPv6 Prefix length |
+| ''ip4prefixlen'' | IPv6 prefix length | no | 0 | IPv4 common prefix |
+| ''defaultroute'' | boolean | no | ''1'' | Whether to create an IPv6 default route over the tunnel |
+| ''ttl'' | integer | no | ''64'' | TTL used for the tunnel interface |
+| ''tos'' | string | no | //(none)// | Type Of Service : either "inherit" (the outer header inherits the value of the inner header) or an hexadecimal value (Chaos Calmer and later only) |
+| ''mtu'' | integer | no | ''1280'' | MTU used for the tunnel interface |
+| ''iface6rd'' | logical interface | no | //(none)// | Logical interface template for auto-configuration of 6rd |
+| ''mtu6rd'' | integer | no | //system default// | MTU of the 6rd interface |
+| ''zone6rd'' | firewall zone | no | //system default// | Firewall zone to which the 6rd interface should be added |
+
+
+:!: This protocol type does not need an ''ifname'' option set in the interface section. The interface name is derived from the section name, e.g. ''config interface wan6'' would result in an interface named ''6rd-wan6''.
+
+:!: Some ISP's give you the number of bytes you should use from your WAN IP to calculate your IPv6 address. ip4prefixlen expects the //prefix// bytes of your WAN IP to calculate the IPv6 address. So if your ISP gives you 14 bytes to calculate, enter 18 (32 - 14).
+
+To debug 6rd via DHCP, first check if the parameters are sent. Create a ''/etc/udhcpc.user'' file with the following content:
+
+<code>
+#!/bin/sh
+env >> /tmp/udhcpc.log
+</code>
+
+Reboot the router and check the log file ''/tmp/udhcpc.log'' for the following line:
+
+<code>
+ip6rd=16 40 2001:0838:ad00:0000:0000:0000:0000:0000 77.174.0.2
+</code>
+
+If this line isn't present, you need to obtain the correct values for peeraddr, ip6prefix, ip6prefixlen and ip4prefixlen from your ISP. The above ip6rd or the obtained values can be used to hardcode the 6RD tunnel. Remove or comment out the iface6rd line in the wan section.
+
+''/etc/config/network''
+<code>
+config interface 'wan6'
+        option proto '6rd'
+        option peeraddr '77.174.0.2'
+        option ip6prefix '2001:838:ad00::'
+        option ip6prefixlen '40'
+        option ip4prefixlen '16'
+</code>
+
+:!: If you choose a name for your tunnel-interface that is different from 'wan6' make sure to add that name to the network-option of the firewall-zone 'wan' in /etc/config/firewall.
+
+
+==== 6pe, L2TP tunnel(ISP-provided IPv6 transition) ====
+This is another transitional mechanism for IPv6 used by some ISPs,  it relies on a L2TPv2 tunnel.
+
+:!: The package ''xl2tpd'' must be installed to use this protocol.
+
+The high-level description of the tunneling is the following:
+
+  - a L2TP tunnel is created, encapsulated in UDP packets over IPv4
+  - a PPP session is established inside the tunnel
+  - IPv6CP (see [[http://tools.ietf.org/html/rfc5072|RFC 5072]]) is used to negotiate link-local IPv6 addresses 
+  - an IPv6 prefix is obtained thanks to DHCPv6
+
+This howto is derived from an experience with SFR, in France (FTTH residential access). It might apply to other ISPs as well.\\ 
+In the case of SFR, steps 1 and 2 require an authentication. Fortunately, the L2TP password is hardcoded. The PPP password is not, but it's sent as cleartext, so a simple sniffing is enough to recover it.
+
+=== Setup ===
+You need to install ''xl2tpd'', which will handle the L2TP tunnel and PPP session.
+
+=== Configuration ===
+''/etc/config/network''
+<code>
+config interface 6pe
+        option proto l2tpv2
+        option server <LNS address>
+        option username '<PPP username>'
+        option password '<PPP password>'
+        option keepalive '6'
+        option ipv6 '1'
+
+config interface 'wan6'
+        option ifname '@6pe'
+        option proto 'dhcpv6'
+</code>
+
+If you need authentication at the L2TP level (before PPP), configure it in ''/etc/xl2tpd/xl2tp-secrets'':
+<code>
+* * my_l2tp_password
+</code>
+
+At this point, running "/etc/init.d/network reload" or simply running ''ifup wan6'' should give you a fully working IPv6 setup.\\ 
+To debug, look at the logs (''logread'') and the interfaces status (''ifstatus 6pe'' and ''ifstatus wan6'').
+
+Advanced options for this protocol are below.
+
+=== Protocol "l2tp" (PPP over L2TP Tunnel) ===
+Most options are similar to protocol "ppp".
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''server'' | string | yes | //(none)// | L2TP server to connect to.  Acceptable datatypes are hostname or IP address, with optional port separated by colon '':''.  Note that specifying port is only supported recently and should appear in DD release |
+| ''username'' | string | no | //(none)// | Username for PAP/CHAP authentication |
+| ''password'' | string | yes if ''username'' is provided | //(none)// | Password for PAP/CHAP authentication |
+| ''ipv6'' | bool | no | 0 | Enable IPv6 on the PPP link (IPv6CP) |
+| ''mtu'' | int | no | ''pppd'' default | Maximum Transmit/Receive Unit, in bytes |
+| ''keepalive'' | string | no | //(none)// | Number of unanswered echo requests before considering the peer dead. The interval between echo requests is 5 seconds. |
+| ''checkup_interval'' | int | no | //(none)// | Number of seconds to pass before checking if the interface is not up since the last setup attempt and retry the connection otherwise.  Set it to a value sufficient for a successful L2TP connection for you.  It's mainly for the case that netifd sent the connect request yet xl2tpd failed to complete it without the notice of netifd |
+| ''pppd_options'' | string | no | //(none)// | Additional options to pass to ''pppd'' |
+
+The name of the physical interface will be "l2tp-<logical interface name>".
+
+
+==== 6to4 tunnel ====
+6to4 is the simplest IPv6 tunneling mechanism and relies on publicly available gateways.
+
+:!: The package ''6to4'' must be installed to use 6to4 tunnels. 
+
+''/etc/config/network''
+<code>
+config 'interface' 'wan6'
+        option 'proto' '6to4'
+
+config 'interface' 'lan'
+        option 'proto' 'static'
+        option ip6assign 60
+...
+</code>
+
+:!: If you choose a name for your tunnel-interface that is different from 'wan6' make sure to add that name to the network-option of the firewall-zone 'wan' in /etc/config/firewall.
+
+See below for advanved configuration options.
+
+=== Protocol "6to4" (IPv6-in-IPv4 Tunnel) ===
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''ipaddr'' | IPv4 address | no | Current WAN IPv4 address | Local IPv4 endpoint address |
+| ''defaultroute'' | boolean | no | ''1'' | Whether to create an IPv6 default route over the tunnel |
+| ''ttl'' | integer | no | ''64'' | TTL used for the tunnel interface |
+| ''tos'' | string | no | //(none)// | Type Of Service : either "inherit" (the outer header inherits the value of the inner header) or an hexadecimal value |
+| ''mtu'' | integer | no | ''1280'' | MTU used for the tunnel interface |
+| ''metric'' | integer | no | ''0'' | Specifies the default route metric to use |
+| <del>''adv_interface''</del> | <del>string</del> | <del>no</del> | <del>''lan''</del> | **deprecated** <del>The //logical interface name// of the network the subnet should be advertised on. Multiple interface names can be given.</del> |
+| <del>''adv_subnet''</del> | <del>hex number</del> | <del>no</del> | <del>''1''</del> | **deprecated** <del>A subnet ID between ''1'' and ''FFFF'' which selects the advertised /64 prefix from the mapped 6to4 space. The subnet ID is incremented by 1 for every interface specified in ''adv_interface''.</del>  |
+| <del>''adv_valid_lifetime''</del> |<del> integer</del> | <del>no</del> | <del>''300''</del> | **deprecated** <del>Overrides the advertised valid prefix lifetime, in seconds (used with radvd)</del> |
+| <del>''adv_preferred_lifetime''</del> | <del>integer</del> | <del>no</del> | <del>''120''</del> | **deprecated** <del>Overrides the advertised preferred prefix lifetime, in seconds (used with radvd)</del> |
+
+:!: This protocol type does not need an ''ifname'' option set in the interface section. The interface name is derived from the section name, e.g. ''config interface wan6'' would result in an interface named ''6to4-wan6''. \\
+
+:!: <del>If radvd is installed and enabled, the 6to4 scripts will add a temporary prefix and interface declaration to the //radvd// uci configuration and perform a daemon restart if required. </del> (**deprecated**)
+
+==== Dual-Stack Lite tunnel (ds-lite IPv4 in IPv6) ====
+ds-lite is a transitioning-mechanism which is used by ISPs to support legacy IPv4-connectivity over a native IPv6 connection.
+
+:!: The package ''ds-lite'' must be installed to use this protocol.
+
+:!: The configuration is usually auto-detected and manual configuration is not needed, simply installing the ds-lite package (and restarting the network interfaces like when changing the configuration) is usually enough.
+
+''/etc/config/network''
+<code>config 'interface' 'wan6'
+        option 'ifname' 'eth1'
+        option 'proto' 'dhcpv6'
+
+config 'interface' 'wan'
+        option 'proto' 'dslite'
+        option 'peeraddr' '2001:db80::1' # Your ISP's DS-Lite AFTR
+</code>
+
+:!: If you choose a name for your tunnel-interface that is different from 'wan' make sure to add that name to the network-option of the firewall-zone 'wan' in /etc/config/firewall.
+
+:!: The package ''ds-lite'' must be installed to use ds-lite-tunnels. 
+
+See below for advanced configuration options.
+
+=== Protocol "dslite" (Dual-Stack Lite) ===
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''peeraddr'' | IPv6 address | yes | no | DS-Lite AFTR address  |
+| ''ip6addr'' | IPv6 address | no | Current WAN IPv6 address | Local IPv6 endpoint address |
+| ''tunlink'' | Logical Interface | no | Current WAN interface | Tunnel base interface |
+| ''defaultroute'' | boolean | no | ''1'' | Whether to create an IPv6 default route over the tunnel |
+| ''ttl'' | integer | no | ''64'' | TTL used for the tunnel interface |
+| ''mtu'' | integer | no | ''1280'' | MTU used for the tunnel interface |
+
+:!: ds-lite operation requires that IPv4 NAT is disabled. You should adjust your settings in /etc/config/firewall accordingly.
+
+:!: This protocol type does not need an ''ifname'' option set in the interface section. The interface name is derived from the section name, e.g. ''config interface wan'' would result in an interface named ''dslite-wan''.

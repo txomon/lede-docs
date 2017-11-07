@@ -1,0 +1,80 @@
+====== ToH admin: Modem, WLAN ======
+~~NOTOC~~
+~~NOSIDEBAR~~
+
+<columns>
+===== Purpose =====
+
+  * Focus on Modem, WLAN and unsupported columns
+  * **Fill unsupported column** depending on SoC, WLAN , Modem
+
+<newcolumn>
+===== Rules =====
+
+  * If ''WLAN hardware'' = BCM.... -> Unsupported = WiFi 5GHz
+  * If ''SoC'' = BCM.... AND ''Modem'' = DSL -> Unsupported = DSL modem
+  * ...
+</columns>
+
+----
+++++Filter: VLAN|
+---- datacloud ----
+col       : VLAN
+filter     : Model!=@@Model@@
+summarize : 1
+----
+++++
+
+
+++++Filter: WLAN Hardware|
+---- datacloud ----
+col       : WLAN Hardware
+filter     : Model!=@@Model@@
+summarize : 1
+----
+++++
+
+++++Filter: Modem|
+---- datacloud ----
+col       : Modem
+min       : 1
+filter     : Model!=@@Model@@
+summarize : 1
+----
+++++
+
+++++Filter: Switch|
+---- datacloud ----
+col       : Switch
+min       : 1
+filter     : Model!=@@Model@@
+summarize : 1
+----
+++++
+
+++++Filter: Supported Current Release|
+---- datacloud ----
+col       : LEDE Supported Current Rel
+filter     : Model!=@@Model@@
+summarize : 1
+----
+++++
+
+++++Filter: Unsupported|
+---- datacloud ----
+col       : LEDE unsupported
+filter     : Model!=@@Model@@
+summarize : 1
+----
+++++
+----
+
+**Scrolling through the table:** Click anywhere in the table, then use your cursor keys to scroll left/right, up/down.
+
+---- datatable ----
+cols       : Brand, Model, Versions, LEDE Supported Current Rel, LEDE Unsupported, CPU, WLAN Hardware, WLAN 2.4GHz, WLAN 5.0GHz, Switch, VLAN, Modem, Device Techdata_pageid, OpenWrt Device Page_url, WikiDevi URL_url, OEM Device Homepage URL_url
+dynfilters : 1
+rownumbers : 1
+filter     : Model!=@@Model@@
+sort       : Brand
+----

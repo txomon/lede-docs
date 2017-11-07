@@ -1,0 +1,56 @@
+====== Descarga el Firmware LEDE actual ======
+
+El software LEDE tiene dos ramas distintas: una versión **Liberada** estable que es adecuada para uso en producción, y una versión **Desarrollo** que contiene un conjunto de mejoras en constante evolución.
+
+^  [[https://downloads.lede-project.org/releases/|Versión Liberada estable]]  ^  [[https://downloads.lede-project.org/snapshots/targets/|Instántanea Versión Desarrollo]]  ^
+| Las compilaciones **Liberadas** han sufrido pruebas significativas. Utilízalas para producción, o para tu hogar donde tu familia dependerá de un enrutador que funcione. [[:releases:start|Mas...]] | Obtén lo último con una compilación de **Desarrollo**. Estas contienen la última tecnología, pero pueden no funcionar bien, o en absoluto. Estate preparado para suministrar informes de errores, etc. [[:releases:snapshot|Mas...]] |
+
+===== Más acerca de las descargas =====
+
+[[toh:views:toh_fwdownload|Averigüa qué firmware descargar para tu dispositivo]].
+
+Consulta [[docs:user-guide:release_signatures|la documentación de firma de archivos]] para aprender cómo verificar la integridad de las descargas de firmware.
+
+===== Obtener paquetes =====
+
+Los paquetes por instrucciones se pueden encontrar aquí: [[https://downloads.lede-project.org/releases/]]
+
+[[toh:views:toh_packagedownload|Averigua qué instrucciones tiene tu dispositivo]]
+===== Actividad de los Buildbot =====
+
+LEDE tiene una serie de computadoras buildbot que construyen las versiones. Puedes encontrar la actividad Buildbot en los siguientes enlaces:
+
+  * Fase 1: [[http://phase1.builds.lede-project.org/builders|target/subtargets]]
+  * Fase 2: [[http://phase2.builds.lede-project.org/builders|packages]]
+
+===== Código fuente - Repositorios Git =====
+
+Los repositorios de código fuente principal LEDE residen en el git del servidor de LEDE Project: https://git.lede-project.org/
+
+===== Código fuente - Espejos Github =====
+
+El Proyecto LEDE mantiene un espejo del repositorio maestro en Github en: https://github.com/lede-project
+===== Espejos =====
+
+El contenido del servidor de descargas también está disponible en varios espejos. Por favor, consulta la lista a continuación para ubicaciones alternativas.
+
+| **Country** | **HTTP** | **HTTPS** | **FTP** | **RSYNC** | **Sponsor** |
+| **Germany** | [[http://ftp.halifax.rwth-aachen.de/lede/|HTTP]] | - | [[ftp://ftp.halifax.rwth-aachen.de/lede/|FTP]] |[[rsync://ftp.halifax.rwth-aachen.de/lede/]] |Sponsored by [[http://www.rwth-aachen.de/|RWTH Aachen]] | 
+| **Romania**  | [[http://mirrors.linux.ro/lede/downloads/|HTTP]]  | - | [[ftp://mirrors.linux.ro/lede/downloads/|FTP]]| [[rsync://mirrors.linux.ro/lede/downloads/]] |Sponsored by [[http://www.rcs-rds.ro|RCS&RDS]] | 
+| **France**  | [[http://lede-project.tetaneutral.net/|HTTP]]  | - | - |[[rsync://lede-project.tetaneutral.net/downloads/]] |Sponsored by [[http://tetaneutral.net/|tetaneutral.net]] | 
+| **Netherlands**  | [[http://ftp.snt.utwente.nl/pub/software/lede/|HTTP]] | - | [[ftp://ftp.snt.utwente.nl/pub/software/lede/|FTP]] | [[rsync://ftp.snt.utwente.nl/lede/]]|Sponsored by the [[http://www.snt.utwente.nl/|SNT, University of Twente]] | 
+| **Washington State, US**  | [[http://mirror.mediaarchitectu.re/lede/|HTTP]]  | [[https://mirror.mediaarchitectu.re/lede/|HTTPS]] | - | - |Sponsored by [[http://mediaarchitectu.re/|mediaarchitectu.re]] | 
+| **Singapore**  | [[http://mirror.0x.sg/lede/|HTTP]]  | [[https://mirror.0x.sg/lede/|HTTPS]]  | [[ftp://mirror.0x.sg/lede/|FTP]]  | [[rsync://mirror.0x.sg/lede/]]|Sponsored by Andrew Yong | 
+
+==== How to espejos ====
+
+Utiliza ''%%rsync://downloads.lede-project.org/downloads%%'' para obtener una copia del repositorio de descargas.
+
+Sincronizar la compartición de las descargas cada 12 a 24 horas es ideal. Una vez que se ha configurado un espejo, no dudes en anunciarlo en ''%%lede-adm@lists.lede-project.org%%'' para que pueda publicarse en esta página.
+
+El volumen de datos de las instantáneas es de aproximadamente 35 GB, esperamos que crezca en 30-40 GB con cada versión. Debido a las restricciones de ancho de banda actuales, te rogamos que utilices algo como ''%%rsync --bwlimit 8000%%'' al extraer inicialmente los datos.
+
+==== Fuentes ====
+
+<del>Cualquier archivo de código fuente obtenido por los buildbots durante el proceso de compilación está disponible en http://sources.lede-project.org/
+</del>

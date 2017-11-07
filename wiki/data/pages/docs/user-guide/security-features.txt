@@ -1,0 +1,77 @@
+====== LEDE security features ======
+This page should give an overview of the current features used to secure LEDE.
+
+===== build system =====
+==== package signing =====
+The list of available packages which a user can later install is digitally signed by default. This way a LEDE instance can verify the integrity of the package list. This package list contains the SHA256 hash values of all available packages. 
+The build key used for the LEDE binary releases is signed by many LEDE committers.
+In private builds the build system automatically generates a private and public key to sign the package list.
+
+===== build hardening =====
+==== RELRO protection ====
+Link-time protection known as RELRO (Relocation Read Only) which helps to protect from certain type of exploitation techniques altering the content of some ELF sections. "Partial" RELRO makes the .dynamic section not writable after initialization, introducing almost no performance penalty, while "full" RELRO also marks the GOT as read-only at the cost of initializing all of it at startup.
+Full is used by default.
+
+==== buffer-overflows detection (FORTIFY_SOURCE) ====
+The _FORTIFY_SOURCE macro which introduces additional checks to detect buffer-overflows in the following standard library functions: memcpy, mempcpy, memmove, memset, strcpy, stpcpy, strncpy, strcat, strncat, sprintf, vsprintf, snprintf, vsnprintf, gets.  "Conservative" (_FORTIFY_SOURCE set to 1) only introduces checks that shouldn't change the behavior of conforming programs, while "aggressive" (_FORTIFY_SOURCES set to 2) some more checking is added, but some conforming programs might fail.
+Conservative is used by default.
+
+==== Kernel space Stack-Smashing Protection ====
+GCC Stack-Smashing Protection (SSP) for the kernel
+Regular is used by default
+
+==== User space Stack-Smashing Protection ====
+GCC Stack Smashing Protection (SSP) for user space applications
+Regular is used by default
+
+==== gcc format-security ====
+Add -Wformat -Werror=format-security to the CFLAGS.  You can disable this per package by adding PKG_CHECK_FORMAT_SECURITY:=0 in the package Makefile.
+
+
+===== separation =====
+==== separate users for processes ====
+procd can start a process under a different user, this account is automatically created by the build system. 
+When someone attacks this application the attacker does not gain root privileges immediately.
+
+==== procd jail ====
+In addition to running processes under different users, it is possible to put them into a own chroot environment where they can only access a limited number of resources which are needed by this daemon.
+
+===== incident handling =====
+Like every Linux distribution LEDE ships a lot of different components and researcher constantly find security problem in them. For example between January and June 2017 over 300 security issues where found and fixed in the Linux kernel. The projects behind openssl, samba, mbedtls and many other applications and libraries shipping versions which are fixing severe security problems multiple times a year which have to get addressed by the LEDE project.
+
+==== user space applications ====
+When we get informed by a security problem in some third party application, like from the press, for form some announcement mail or form the upstream project, we try to integrate the fix into the LEDE master code based and also backport it to the latest release branch. Sometimes only the minimal patch which fixes the problem gets backported, sometime the next minor version of the application is used.
+
+In addition we use this uscan tool which checks if new versions of some application are available and the maintainer of such an application gets a mail notification. Then the maintainer should check if this new version contains important updates. uscan is also able to check for CVE numbers, but this does not work very reliable. 
+https://sdwalker.github.io/uscan 
+
+For our released version all the shared user space applications (e.g. openssl, samba, mbedtls) are rebuild after someone pushed an update to the repository. After they are rebuild they are automatically getting shipped to the user who can install them on their devices with opkg.
+
+TODO: extend opkg
+
+==== kernel ====
+Update of the Linux kernel is not so easy on most device supported by LEDE, because the kernel is stored directly n some partition on flash and the root file system is directly append to the kernel image. Security updates to the Linux kernel and its modules are only shipped with a next minor release version which is created every 1 to 3 months.
+This update requires a complete LEDE upgrade using sysupgrade. 
+Before a new minor release is done the kernel is upgraded to the latests stable kernel version e.g. from 4.4.61 to 4.4.71 on all targets.
+
+===== remote access =====
+
+By default login via encrypted ssh is support. telnet access is not supported.
+When LUCI is installed login with unencrypted HTTP is supported.
+When LUCI and SSL package is installed in addition login over TLS encrypted HTTP is supported in addition.
+The Server keys for SSH and TLS are generated at first boot and are self singed. This way each device uses an individual and unpredictable private key.
+There is only one account (root) that can be used to log by default.
+
+The UART allows passwordless root login all the time, but to access it physical access to the device is needed. This helps for recovery and for debugging. An attacker with physical access could also directly read and write from the flash chip without using the main application processor.
+
+==== initial setup ====
+By default LEDE uses password less SSH provide access. 
+LEDE does not use an individual default password because LEDE is not installed by the vendor onto the device who can do an individual provisioning of the device. 
+When an image with an Web UI was installed it also allows passwordless login there.
+
+A warning message that encourages to set a individual password is shown when no password was is set.
+
+==== after initial configuration ====
+
+An individual root password should be set by the user, then password less login is not possible any more.
+It is also possible to use SSH private public keys for authentication.

@@ -1,0 +1,23 @@
+====== arm_fa526 ======
+
+The FA526 (Faraday 526) is a version of the ARMv4 compatible processor with Branch Target Buffer, Unified TLB and cache line size 16.
+
+Found nearly exclusively in aging devices with Cortina Gemini processors, it appears to have been removed from mainline in 2013.
+
+===== Download Packages =====
+
+/* Link to packages download goes here. */
+
+| HTTP   | [[https://downloads.lede-project.org/releases/packages-17.01/arm_fa526/]]      |
+| FTP    | [[ftp://ftp.halifax.rwth-aachen.de/lede/releases/packages-17.01/arm_fa526/]]   |
+
+See [[/downloads#mirrors|Mirrors]] for more download sites.
+
+===== Devices with this instructionset =====
+
+---- datatable ----
+cols   : Package architecture, Target, Subtarget, Brand, Model_pageid, Version
+filter : Package architecture=arm_fa526
+filter : Brand!=(EXAMPLE)
+sort   : Brand
+----

@@ -1,0 +1,80 @@
+====== Package: @FILE@ ======
+
+/********************    Remove this comment after page creation    ******************************/
+/*                                                                                               */
+/* @USER@, don't be afraid, this is just the prefilled template for package description pages. */
+/* After you have filled content into this page, you can safely remove this comment.             */
+/* It's sole purpose is to give you an idea why there is already text on a newly created page.   */
+/*                                                                                               */
+/********************    Remove this comment after page creation    ******************************/
+
+
+/**********************    Keep this comment for later editors    ********************************/
+/*                                                                                               */
+/* Please keep the structure of this page intact, i.e. the naming and the order of the           */
+/* section headings.                                                                             */
+/*                                                                                               */
+/* In case of questions regarding this template, please contact a wiki admin.                    */
+/* Have fun! --- tmomas                                                                          */
+/*                                                                                               */
+/*************************************************************************************************/
+
+
+/*****************    Keep this comment for later editors    *************************/
+/*   The following datatable contains script generated data which can not be edited. */
+/*   Leave the datatable syntax as-is, do not edit it.                               */
+/*************************************************************************************/
+---- datatable ----
+cols       : Categoriess, Name, Version-short, Dependencies_pkg-dependencies, Description, LEDE releases_lede-release, File size_pkg-filesize, Installed size_pkg-filesize, License, Maintainer_pkg-maintainer, Bug report_wiki, Source code_wiki, Packagedata_pageid
+header     : Categories, Name, Version, Dependencies, Description, LEDE release, File size, Installed size, License, Maintainer, Bug report, Source code, Packagedata
+align      : l,l,l,l,l,l,l,l,l,l,l,c,c,c
+filter     : name=@FILE@
+----
+
+----
+
+
+/*****************    Keep this comment for later editors    *************************/
+/*   Freestyle area: Keep the naming and order of the headings intact,               */
+/*                   otherwise add useful content as needed.                         */
+/*************************************************************************************/
+
+===== Package description =====
+
+//The description in the table above often does not contain much information.//\\
+//You can use this section to describe the package: What does it do? What is it good for?//
+
+
+===== Package installation =====
+
+//Describe package installation and possible prerequisites.//
+
+==== via LuCI ==== 
+
+==== via CLI ====
+
+
+===== Package configuration =====
+
+//Describe any necessary configuration steps.//
+
+==== via LuCI ==== 
+
+==== via CLI ====
+
+
+===== Troubleshooting =====
+
+  * //Describe which issues can arise and, more importantly, how to solve them.//
+  * //Add a new section (lower than this one, i.e. 4x '=') for each new issue to be solved.//
+  * //Use the issue as section heading. This will make it appear automatically in the Table of Contents of this page.\\ Example: ''<nowiki>==== Foobar doesn't work ====</nowiki>''//
+
+===== Links =====
+
+// Add links to other ressources which provide more info on the package itself, it's installation or configuration, it's usage and troubleshooting. //
+
+  * Link to LEDE forum
+  * Link to OpenWrt forum
+  * Links to other LEDE wiki pages
+  * Links to other web resources
+  * ...

@@ -1,0 +1,5 @@
+====== Discussions in the LEDE wiki ======
+You can start a discussion on any page in this wiki via the two bubbles below the edit button.
+
+===== Overview of all discussions =====
+{{threads>:}}

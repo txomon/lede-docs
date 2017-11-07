@@ -1,0 +1,1081 @@
+====== LEDE v17.01.3 Changelog ======
+
+This changelog lists all commits done in LEDE since the [[releases:17.01:changelog-17.01.2|v17.01.2 tag]], grouped by subsystem.
+The changes are chronologically ordered from top to bottom and cover the Git repository history until the tagging of the final 17.01.3 release. 
+
+==== Build System / Buildroot (4 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=27da508749e038479ceb19435cf2ca548cd5aef8|27da508]]'' **<nowiki>build:</nowiki>** <nowiki>fix kmod package build on non-GNU systems</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f6907dcc7968a81ebbe75b630dde919468cc8025|f6907dc]]'' **<nowiki>image:</nowiki>** <nowiki>fix ar71xx legacy images</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=d33f7905dfb39458ff2127237be22a54e806bdc9|d33f790]]'' **<nowiki>treewide:</nowiki>** <nowiki>fix shellscript syntax errors/typos</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>,</color><color #f00>-11</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=df54a8f583a9afad356fb99a575d75b69c8c0dd4|df54a8f]]'' <nowiki>LEDE v17.01.3: adjust config defaults</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+
+==== Build System / Feeds (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=df54a8f583a9afad356fb99a575d75b69c8c0dd4|df54a8f]]'' <nowiki>LEDE v17.01.3: adjust config defaults</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+
+==== Build System / Host Utilities (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=6c03b293bb2ba86f22ea6e20dd0266892932f585|6c03b29]]'' **<nowiki>firmware-utils:</nowiki>** <nowiki>fix dgn3500sum compiler warnings</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-4</color><color #ccc>)</color>//\\
+
+==== Kernel (11 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c03d4317a6bc891cb4a5e89cbdd77f37c23aff86|c03d431]]'' **<nowiki>kernel:</nowiki>** <nowiki>backport Broadcom thermal drivers</nowiki> //<color #ccc>(</color><color #282>+801</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=8d3d7f6b52f5dd43866f0674bf32800a8233c358|8d3d7f6]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.74</nowiki> //<color #ccc>(</color><color #282>+31</color><color #ccc>,</color><color #f00>-31</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=823d35f2fdf552d654a91d07ff48a629f730e50b|823d35f]]'' **<nowiki>kernel:</nowiki>** <nowiki>netfilter: fix nf-nathelper(-extra) description</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4a1b87aba448fae648bf17830379fde11060927b|4a1b87a]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.83</nowiki> //<color #ccc>(</color><color #282>+44</color><color #ccc>,</color><color #f00>-62</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=86722ab0bba39a540e1690745fbb574240b3fa12|86722ab]]'' **<nowiki>kernel:</nowiki>** <nowiki>fix of_node handling in LEDs core code</nowiki> //<color #ccc>(</color><color #282>+316</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=dc8392f6a1ca1ec50306af390576d4a19e9a9290|dc8392f]]'' **<nowiki>kernel:</nowiki>** <nowiki>backport usbport LED trigger driver support for DT</nowiki> //<color #ccc>(</color><color #282>+106</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ca53effdd6478f32948f6755bb65b34505203e59|ca53eff]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.86</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ab305e147ed7f950e8b34d0de23797c8dbb6a27f|ab305e1]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.87</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=720b0e2e2d2240b5bed33478ac4bbbf570d04560|720b0e2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.89</nowiki> //<color #ccc>(</color><color #282>+35</color><color #ccc>,</color><color #f00>-35</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=37e1bd27d0e8a5dbc4074aa8c8d2dde26b77fb0d|37e1bd2]]'' **<nowiki>generic:</nowiki>** <nowiki>drop 704-phy-no-genphy-soft-reset.patch</nowiki> //<color #ccc>(</color><color #f00>-11</color><color #ccc>)</color>//\\
+
+==== Packages / Boot Loaders (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=671fc88c914e72b5bd17efb980f02823d82d5570|671fc88]]'' **<nowiki>uboot-envtools:</nowiki>** <nowiki>add support for ALFA Network AP121F</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+
+==== Packages / Common (30 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c16326cfedf7d6fb46804b0a99a7fbe21251dec0|c16326c]]'' **<nowiki>dropbear:</nowiki>** <nowiki>fix service trigger syntax error</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=73e81a8318d1038cbcb2ad788bf8d956f338f587|73e81a8]]'' **<nowiki>mbedtls:</nowiki>** <nowiki>update to 2.5.1</nowiki> //<color #ccc>(</color><color #282>+27</color><color #ccc>,</color><color #f00>-27</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=57289ae6403d9d03a419337f266194d3ae6909d0|57289ae]]'' **<nowiki>openvpn:</nowiki>** <nowiki>update to 2.4.3</nowiki> //<color #ccc>(</color><color #282>+14</color><color #ccc>,</color><color #f00>-13</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=73a4568f19381ee762816d66b69c0f0b7d1c1c98|73a4568]]'' **<nowiki>ca-certificates:</nowiki>** <nowiki>Update to version 20161130+nmu1</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=91d41b630585df9832c9b070230d9e8660903bfc|91d41b6]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>backport tweak ICMP ping logic for DHCPv4</nowiki> //<color #ccc>(</color><color #282>+26</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=74d5c3e019599d0c2464671dc785d3445548d0dc|74d5c3e]]'' **<nowiki>mtd-utils:</nowiki>** <nowiki>use source package name for lzo in PKG_BUILD_DEPENDS</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=699e3127c57ed037b63ad931da75905b010628b2|699e312]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>backport patch fixing DNS failover (FS#841)</nowiki> //<color #ccc>(</color><color #282>+31</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=7ab8bf126ef64f0f8e3bca8385742a0d45185e8f|7ab8bf1]]'' **<nowiki>curl:</nowiki>** <nowiki>fix CVE-2017-7407 and CVE-2017-7468</nowiki> //<color #ccc>(</color><color #282>+430</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=b67b316dd18f8aca13dd90613b64190470678567|b67b316]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>backport remove ping check of configured dhcp address</nowiki> //<color #ccc>(</color><color #282>+29</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=3e35eb13ada3b87e87cd108f9d459b9484446e9c|3e35eb1]]'' **<nowiki>mbedtls:</nowiki>** <nowiki>Re-allow SHA1-signed certificates</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ae3c55666d7fcb72eee149237076ebc4f57a3ca7|ae3c556]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>Update to 4.9.1</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a006b48c04543947e1e924972a9026824bdc3d29|a006b48]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>forward.c: fix CVE-2017-13704</nowiki> //<color #ccc>(</color><color #282>+38</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=bd29aa1ba1f2c72c3ad9f6a1d3379e04991c1537|bd29aa1]]'' **<nowiki>f2fs-tools:</nowiki>** <nowiki>Switch to gz tarball</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=707a4b459d2a05f309691166c6f1fc4f6e58a6c8|707a4b4]]'' **<nowiki>f2fs-tools:</nowiki>** <nowiki>drop patch in favour of CONFIGURE_VARS</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-19</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c3bddb49ff7a947bd934871a3d350be4998c96d1|c3bddb4]]'' **<nowiki>f2fs-tools:</nowiki>** <nowiki>drop musl compat patch</nowiki> //<color #ccc>(</color><color #f00>-10</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f62a31d0e98f125a5c4d5bc8c0b33bb8de53938b|f62a31d]]'' **<nowiki>f2fs-tools:</nowiki>** <nowiki>fix mkfs.f2fs on big-endian systems</nowiki> //<color #ccc>(</color><color #282>+67</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a7506c0e2b2cc9c25c3c95523d21edcb8c710ed2|a7506c0]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>backport official fix for CVE-2017-13704</nowiki> //<color #ccc>(</color><color #282>+95</color><color #ccc>,</color><color #f00>-38</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1d15a03050d857b2240d380dc691aeeeb5af227c|1d15a03]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>backport arcount edns0 fix</nowiki> //<color #ccc>(</color><color #282>+45</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=082e6215b7cc5c823d6b0254de45420209ad68b1|082e621]]'' **<nowiki>hostapd:</nowiki>** <nowiki>fix iapp_interface option</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=d33f7905dfb39458ff2127237be22a54e806bdc9|d33f790]]'' **<nowiki>treewide:</nowiki>** <nowiki>fix shellscript syntax errors/typos</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>,</color><color #f00>-11</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a131f7cb69ae0c1e7b468bc914fd2b46a0dd3b69|a131f7c]]'' **<nowiki>utils/tcpdump:</nowiki>** <nowiki>Rework URLs</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f66c6e1d8ace0f2d4cdb1c319d542946cf0bf4e3|f66c6e1]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>bump to 4.9.2</nowiki> //<color #ccc>(</color><color #282>+41</color><color #ccc>,</color><color #f00>-37</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=86f0e8b0914ee29e0d283e07e79adfa8318a1bf9|86f0e8b]]'' **<nowiki>openvpn:</nowiki>** <nowiki>add "extra-certs" option</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=39e5cd95565ee981553fe7e51328703be5016a53|39e5cd9]]'' **<nowiki>ltq-vdsl:</nowiki>** <nowiki>fix PM thread suspend and resume handling</nowiki> //<color #ccc>(</color><color #282>+108</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=b428f45c062dc8ca8c2f35f491fa467dc5b85519|b428f45]]'' **<nowiki>ltq-vdsl-mei:</nowiki>** <nowiki>disable optimized firmware download</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=e232c6754d6e0cbde3892aa1fa243f4707d7ad5e|e232c67]]'' **<nowiki>mbedtls:</nowiki>** <nowiki>update to 2.6.0 CVE-2017-14032</nowiki> //<color #ccc>(</color><color #282>+30</color><color #ccc>,</color><color #f00>-30</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f483a35f08741ff0ca373236e6ad1d93edb1ba75|f483a35]]'' **<nowiki>curl:</nowiki>** <nowiki>fix security problems</nowiki> //<color #ccc>(</color><color #282>+75</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a881323cb2e78c9f25935f6ae90feaaf5606969e|a881323]]'' **<nowiki>ltq-vdsl-mei:</nowiki>** <nowiki>revert disable optimized firmware download</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4b4a4af814e1602f7ef12c5d07ff15c4fa2570ca|4b4a4af]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>bump to v2.78</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-226</color><color #ccc>)</color>//\\
+
+==== Packages / LEDE base files (5 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=761e6087ed6d2c41a51f4bc5b91539857e324ac7|761e608]]'' **<nowiki>base-files:</nowiki>** <nowiki>fix PKG_CONFIG_DEPENDS to include version.mk entries</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=889638c8bf3c88d0acae2b756aa97d6160579b35|889638c]]'' **<nowiki>base-files:</nowiki>** <nowiki>don't setup network in preinit if failsafe is disabled</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=7f1359c14e60009a511f74a2f62d34b96deba417|7f1359c]]'' **<nowiki>base-files:</nowiki>** <nowiki>fix wan6 interface config generation for pppoe</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-6</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=b8357e87d7cbc73e19073b4b8cd749e46e6b7fc2|b8357e8]]'' **<nowiki>base-files:</nowiki>** <nowiki>create /etc/config/ directory</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=df54a8f583a9afad356fb99a575d75b69c8c0dd4|df54a8f]]'' <nowiki>LEDE v17.01.3: adjust config defaults</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+
+==== Packages / LEDE network userland (5 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=cca765f64c5577b911f1a04a3cef60cf7a745d4b|cca765f]]'' **<nowiki>dhcpv6:</nowiki>** <nowiki>add missing dollar sign in dhcpv6 script (FS#874)</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=bb6a8b2cbf55759ef383e52216aa96dfef377f76|bb6a8b2]]'' **<nowiki>uclient:</nowiki>** <nowiki>update to 2017-09-06</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/uclient.git;a=commitdiff;h=83ce236dab867842cdba88a57db50aae0fd9a4ce|83ce236]]'' **<nowiki>uclient-fetch:</nowiki>** <nowiki>read_data_cb: fix a potential buffer overflow</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/uclient.git;a=commitdiff;h=24d6eded73dec427fc4a3a20cc73c94227f59c31|24d6ede]]'' **<nowiki>uclient-http:</nowiki>** <nowiki>fix Host: header for literal IPv6 addresses</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=d33f7905dfb39458ff2127237be22a54e806bdc9|d33f790]]'' **<nowiki>treewide:</nowiki>** <nowiki>fix shellscript syntax errors/typos</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>,</color><color #f00>-11</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c92c1894a53e034661bd4790328ca2ae764581e2|c92c189]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>backport fixes from master branch (FS#402, FS#524)</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=336212cf315374ded98cd3865ea5927e783b6780|336212c]]'' **<nowiki>dhcpv6:</nowiki>** <nowiki>assign all viable DHCPv6 addresses by default (FS#402, FS#524)</nowiki> //<color #ccc>(</color><color #282>+62</color><color #ccc>,</color><color #f00>-50</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=c6f3d5d4ea5154e5971fa0b1b1e9a9c07119429f|c6f3d5d]]'' **<nowiki>config:</nowiki>** <nowiki>fix dhcpv4 server being started</nowiki> //<color #ccc>(</color><color #282>+17</color><color #ccc>,</color><color #f00>-6</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=783465d783b17a66b37e6dd7db732244e30e6913|783465d]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>don't enable server mode on non-static lan port</nowiki> //<color #ccc>(</color><color #282>+18</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+
+==== Packages / LEDE system userland (6 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=eff34695104da2d3e960841ff79b1cd590021acd|eff3469]]'' **<nowiki>procd:</nowiki>** <nowiki>backport fixes from master branch</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=271622810ee2b2c6bf6127660f395c53f5f87b1c|2716228]]'' **<nowiki>procd:</nowiki>** <nowiki>service gets deleted when its last instance is freed</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=889442c237218416d3bb3f633472e1ec3b8c09b5|889442c]]'' **<nowiki>procd:</nowiki>** <nowiki>Add missing \n in debug message</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=225b18d22d9f1e47ff99632d038d7777e0763104|225b18d]]'' **<nowiki>procd:</nowiki>** <nowiki>Don't use syslog before its initialization</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=5131bec446415a4dd3acb28cf41dec482fe02e24|5131bec]]'' **<nowiki>procd:</nowiki>** <nowiki>Log initscript output prefixed with script name</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=cd5225d98cf6b94c15402077cddbc857c70ded90|cd5225d]]'' **<nowiki>procd/rcS:</nowiki>** <nowiki>Use /dev/null as stdin</nowiki> //<color #ccc>(</color><color #282>+6</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=6e8ea8bd3397937188a3931c471d9f3a931b4cb8|6e8ea8b]]'' **<nowiki>rcS:</nowiki>** <nowiki>add missing fcntl.h include</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=22f89e1839c98912827bfd8e01d2390ef1053281|22f89e1]]'' **<nowiki>upgraded:</nowiki>** <nowiki>define __GNU_SOURCE</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=558ffb5cc462b144947b7aa7e78adf062ab4f100|558ffb5]]'' **<nowiki>service/service_stopped():</nowiki>** <nowiki>fix a use-after-free</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=6b0da203c0ad0e91e281bdcf271a37ad93ca5b13|6b0da20]]'' **<nowiki>hotplug:</nowiki>** <nowiki>fix a memory leak in handle_button_complete()</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=8fd57dd387d30d2e31731fc921e8997bb6f2f5e6|8fd57dd]]'' **<nowiki>upgraded:</nowiki>** <nowiki>cmake: Find and include uloop.h</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=8297c384f1f34f1e77649fabf93be87782fc6063|8297c38]]'' **<nowiki>preinit:</nowiki>** <nowiki>define _GNU_SOURCE</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=89918c8cb78e651ee0922f13a96b7f25fc2f285a|89918c8]]'' **<nowiki>system:</nowiki>** <nowiki>introduce new attribute board_name</nowiki> //<color #ccc>(</color><color #282>+34</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=7896d7b81499b9edc6a6fd2ce1a1e3585992a2fe|7896d7b]]'' **<nowiki>fstools:</nowiki>** <nowiki>backport fixes from master branch</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-60</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/fstools.git;a=commitdiff;h=34d36c29b9d599b0748d49aca8dab2c122633d35|34d36c2]]'' <nowiki>add missing includes</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/fstools.git;a=commitdiff;h=be5004c60e8c5f3b98c1e854d36d7798438ae56c|be5004c]]'' **<nowiki>libfstools:</nowiki>** <nowiki>add basic documentation of mount functions</nowiki> //<color #ccc>(</color><color #282>+15</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/fstools.git;a=commitdiff;h=cddc8306443b4d3941283402a8dba36808fbfa89|cddc830]]'' **<nowiki>libfstools:</nowiki>** <nowiki>silence mkfs.{ext4,f2fs}</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/fstools.git;a=commitdiff;h=d36192325756cfada19cccf5f05a94720ec36262|d361923]]'' **<nowiki>build:</nowiki>** <nowiki>disable the format-truncation warning error to fix gcc 7 build errors</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/fstools.git;a=commitdiff;h=45c2a6ff74d4d26a29ed2e79f0d65b13a0caee20|45c2a6f]]'' **<nowiki>libfstools:</nowiki>** <nowiki>fix multiple volume_identify usages with the same volume</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/fstools.git;a=commitdiff;h=ef2d4387ee99219f1ead6b4c4c19731d436de44b|ef2d438]]'' **<nowiki>fstools:</nowiki>** <nowiki>use -Wno-format-truncation instead of -Wno-error=format-truncation</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/fstools.git;a=commitdiff;h=bdcb075fafdac0bfe3207c23f64acd58432bad86|bdcb075]]'' **<nowiki>libfstools:</nowiki>** <nowiki>fix matching device name</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=82b20d74cbdde4065a8a991696e56c7c0ea120e1|82b20d7]]'' **<nowiki>procd:</nowiki>** <nowiki>backport kernel watchdog start/stop support</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=4dbf57a63b99f7bcaaf40679140995f80d864004|4dbf57a]]'' **<nowiki>watchdog:</nowiki>** <nowiki>add support for starting/stopping kernel watchdog</nowiki> //<color #ccc>(</color><color #282>+74</color><color #ccc>,</color><color #f00>-18</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=66b071fa095ef25a234235228b52a18be92fe1aa|66b071f]]'' **<nowiki>procd:</nowiki>** <nowiki>update to latest git HEAD</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=3e68cdfdc5221d2a9268e9b30fbd474ea20b92f8|3e68cdf]]'' **<nowiki>procd:</nowiki>** <nowiki>Do not leak pipe file descriptors to children</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4503d8b297bc91dc45ee1f2fa52e297a78e74084|4503d8b]]'' **<nowiki>procd:</nowiki>** <nowiki>update to the latest git HEAD</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=66be6a23d71fcc068d6b813f0e0be2f8f0b6aa88|66be6a2]]'' **<nowiki>watchdog:</nowiki>** <nowiki>fix inline watchdog_get_magicclose function prototype</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=d0bf257c46aae0b0d2567c10d6c28c3b2d857f08|d0bf257]]'' **<nowiki>uhttp:</nowiki>** <nowiki>update to latest version</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/uhttpd.git;a=commitdiff;h=e6cfc911811b904494776938a480e0b77a14124a|e6cfc91]]'' **<nowiki>lua:</nowiki>** <nowiki>ensure that PATH_INFO starts with a slash</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/uhttpd.git;a=commitdiff;h=a8bf9c00842224edb394e79909053f7628ee6a82|a8bf9c0]]'' **<nowiki>uhttpd:</nowiki>** <nowiki>Add TCP_FASTOPEN support</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/uhttpd.git;a=commitdiff;h=fa51d7fbc67aa27b423c50c77b817514de6def09|fa51d7f]]'' **<nowiki>proc:</nowiki>** <nowiki>do not declare empty process variables</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/uhttpd.git;a=commitdiff;h=ad93be7632963da1bd5b67d71021d1d63ecfd909|ad93be7]]'' **<nowiki>auth:</nowiki>** <nowiki>store parsed username and password</nowiki> //<color #ccc>(</color><color #282>+31</color><color #ccc>,</color><color #f00>-11</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/uhttpd.git;a=commitdiff;h=c0a569de53db4a6cafa736386fd6feade4cd09f7|c0a569d]]'' **<nowiki>proc:</nowiki>** <nowiki>expose HTTP_AUTH_USER and HTTP_AUTH_PASS</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/uhttpd.git;a=commitdiff;h=99957f6c6ff429f17d6d6002fef4d4ef7de8844a|99957f6]]'' **<nowiki>file:</nowiki>** <nowiki>remove unused "auth" member from struct path_info</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-4</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/uhttpd.git;a=commitdiff;h=88c0b4b6d00152c54a0f1367ae839c71547281e1|88c0b4b]]'' **<nowiki>file:</nowiki>** <nowiki>fix basic auth regression</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-8</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/uhttpd.git;a=commitdiff;h=3fd58e9b6da7d9e1a4710dbeefc2d289baea09fb|3fd58e9]]'' **<nowiki>uhttpd:</nowiki>** <nowiki>add manifest support</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+
+==== Target / apm821xx (2 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=8d3d7f6b52f5dd43866f0674bf32800a8233c358|8d3d7f6]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.74</nowiki> //<color #ccc>(</color><color #282>+31</color><color #ccc>,</color><color #f00>-31</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ca53effdd6478f32948f6755bb65b34505203e59|ca53eff]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.86</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+
+==== Target / ar7 (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1807a0ef835aa358789dbd2328157ddb94f8c07a|1807a0e]]'' **<nowiki>ar7:</nowiki>** <nowiki>add NULL clock fix send upstream</nowiki> //<color #ccc>(</color><color #282>+90</color><color #ccc>)</color>//\\
+
+==== Target / ar71xx (7 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=d71ffb9639564b91b92355fe35a72e0ed7cd2298|d71ffb9]]'' **<nowiki>ar71xx:</nowiki>** <nowiki>Fix UBIFS work on Mikrotik RB95x devices</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=d0ec502510c6f2618213fb9cab8e8046156ae72c|d0ec502]]'' **<nowiki>ar71xx:</nowiki>** <nowiki>set US region code for TP-Link TL-WR710N v1 image</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=3959110c5b8b7b9f757d547dc01bf226f2bd1e34|3959110]]'' **<nowiki>ar71xx:</nowiki>** <nowiki>add support for ALFA Network AP121F</nowiki> //<color #ccc>(</color><color #282>+143</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=870ca0da7a55d35718f7218f80b7cdb3696ae35b|870ca0d]]'' **<nowiki>ar71xx:</nowiki>** <nowiki>fix switch port mapping for TP-Link TL-WR74xN/D series</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ca53effdd6478f32948f6755bb65b34505203e59|ca53eff]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.86</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=415175246eec0c59351e575ce6f3769b70772b09|4151752]]'' **<nowiki>ar71xx:</nowiki>** <nowiki>fix MAC addresses on TP-Link TL-WR1043ND v4</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+
+==== Target / bcm53xx (4 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5b0b27eb4853c27f2428745535094aef9a8fd234|5b0b27e]]'' **<nowiki>bcm53xx:</nowiki>** <nowiki>enable Northstar thermal driver</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f197a2a4c92499f13697f6c40136bad08b7b157c|f197a2a]]'' **<nowiki>bcm53xx:</nowiki>** <nowiki>include wpad-mini only on devices with (supported) wireless</nowiki> //<color #ccc>(</color><color #282>+15</color><color #ccc>,</color><color #f00>-13</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=cae20f64b555cfb76f74eb115b2d01fcb22ca462|cae20f6]]'' **<nowiki>bcm53xx:</nowiki>** <nowiki>backport DTS commits that setup USB LEDs</nowiki> //<color #ccc>(</color><color #282>+214</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+
+==== Target / brcm2708 (5 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=8d3d7f6b52f5dd43866f0674bf32800a8233c358|8d3d7f6]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.74</nowiki> //<color #ccc>(</color><color #282>+31</color><color #ccc>,</color><color #f00>-31</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4a1b87aba448fae648bf17830379fde11060927b|4a1b87a]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.83</nowiki> //<color #ccc>(</color><color #282>+44</color><color #ccc>,</color><color #f00>-62</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ca53effdd6478f32948f6755bb65b34505203e59|ca53eff]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.86</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=720b0e2e2d2240b5bed33478ac4bbbf570d04560|720b0e2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.89</nowiki> //<color #ccc>(</color><color #282>+35</color><color #ccc>,</color><color #f00>-35</color><color #ccc>)</color>//\\
+
+==== Target / brcm47xx (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1100bbf8337f83b4eecd1dff890c36fbed2956d5|1100bbf]]'' **<nowiki>brcm47xx:</nowiki>** <nowiki>refresh Linux 4.4 config</nowiki> //<color #ccc>(</color><color #282>+8</color><color #ccc>,</color><color #f00>-8</color><color #ccc>)</color>//\\
+
+==== Target / brcm63xx (2 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5e87b01275e20226a08538d447ca7714e824cc2c|5e87b01]]'' **<nowiki>brcm63xx:</nowiki>** <nowiki>add NULL clock fix send upstream</nowiki> //<color #ccc>(</color><color #282>+53</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+
+==== Target / imx6 (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=8fbef4b11b790e3f4cb41f3182015b5a3bb6b89f|8fbef4b]]'' **<nowiki>imx6:</nowiki>** <nowiki>fix DualLite/Solo GW551X board detection</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+
+==== Target / ipq806x (3 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=53eba6f58f791f5b585da6d2fe9316e579db915c|53eba6f]]'' **<nowiki>ipq806x:</nowiki>** <nowiki>fixup thermal patches</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-249</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=97ebdf93a330ef1d7ff1cf6989cfb92ac2f5a386|97ebdf9]]'' **<nowiki>ipq806x:</nowiki>** <nowiki>Archer C2600: fix switch ports numbering</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+
+==== Target / ixp4xx (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ca53effdd6478f32948f6755bb65b34505203e59|ca53eff]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.86</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+
+==== Target / lantiq (4 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=52617669c2467ba9964a153827aad1acad99f890|5261766]]'' **<nowiki>lantiq:</nowiki>** <nowiki>use img file extension for DGN3500 factory images</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4a1b87aba448fae648bf17830379fde11060927b|4a1b87a]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.83</nowiki> //<color #ccc>(</color><color #282>+44</color><color #ccc>,</color><color #f00>-62</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=af802bc68703e79a071a4d8e81eb3935bf453e8c|af802bc]]'' **<nowiki>lantiq:</nowiki>** <nowiki>fix missing otg_cap on danube platform</nowiki> //<color #ccc>(</color><color #282>+54</color><color #ccc>,</color><color #f00>-24</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=720b0e2e2d2240b5bed33478ac4bbbf570d04560|720b0e2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.89</nowiki> //<color #ccc>(</color><color #282>+35</color><color #ccc>,</color><color #f00>-35</color><color #ccc>)</color>//\\
+
+==== Target / layerscape (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+
+==== Target / mediatek (3 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4a1b87aba448fae648bf17830379fde11060927b|4a1b87a]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.83</nowiki> //<color #ccc>(</color><color #282>+44</color><color #ccc>,</color><color #f00>-62</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=720b0e2e2d2240b5bed33478ac4bbbf570d04560|720b0e2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.89</nowiki> //<color #ccc>(</color><color #282>+35</color><color #ccc>,</color><color #f00>-35</color><color #ccc>)</color>//\\
+
+==== Target / mvebu (3 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4a1b87aba448fae648bf17830379fde11060927b|4a1b87a]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.83</nowiki> //<color #ccc>(</color><color #282>+44</color><color #ccc>,</color><color #f00>-62</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=720b0e2e2d2240b5bed33478ac4bbbf570d04560|720b0e2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.89</nowiki> //<color #ccc>(</color><color #282>+35</color><color #ccc>,</color><color #f00>-35</color><color #ccc>)</color>//\\
+
+==== Target / oxnas (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+
+==== Target / ramips (20 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2e206c79ccbc1bd4289654673b4db64a26380fb6|2e206c7]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix Phicomm K1S(PSG1208) pinmux</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=3214e174a07f5b333ae6f3fe5a857c8324e9ae27|3214e17]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix Xiaomi MiWiFi Nano firmware partition size</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ece85e2e49e021cea0455e19182c67854bbb9eb8|ece85e2]]'' **<nowiki>ramips:</nowiki>** <nowiki>DTS: VoCore2 improvements/fixes</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-22</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=e08b8255ec41946ed80f77dd551e93af9de01cb9|e08b825]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix wps button gpio for DWR-512</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a5822dbd0f12054d04d1415a98ae995f5438ccd8|a5822db]]'' **<nowiki>ramips:</nowiki>** <nowiki>DIR-860L-B1 fix switch port numbering</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2247af82df2174829eb5a37076ead0520d3ab580|2247af8]]'' **<nowiki>ramips:</nowiki>** <nowiki>add NULL clock fix send upstream</nowiki> //<color #ccc>(</color><color #282>+43</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5e409f0e69ce77186f4e70dd9068e43dfc36a9bc|5e409f0]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix Mercury MAC1200R v2.0 board name</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a9439344e71287cb172cf73880f800dc374fc5b7|a943934]]'' **<nowiki>ramips:</nowiki>** <nowiki>Archer C50v1: fix LEDs active levels</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=8e67c358e775377c47a716ea0eda96d5ca0f7c66|8e67c35]]'' **<nowiki>ramips:</nowiki>** <nowiki>Archer C50v1: fix switch port numbering</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c407e6c2f29b96fe589370125595004e856f78d5|c407e6c]]'' **<nowiki>ramips:</nowiki>** <nowiki>Archer C50v1: fix power led</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=6f4a903533361a2906a4d94ac6f597cd9c6c47bc|6f4a903]]'' **<nowiki>ralink:</nowiki>** <nowiki>fix rcu_sched stalls on mt7621</nowiki> //<color #ccc>(</color><color #282>+98</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=57a8f36ac486f310fc9bdc7d394f36c11e083511|57a8f36]]'' **<nowiki>ramips:</nowiki>** <nowiki>add missing partitions</nowiki> //<color #ccc>(</color><color #282>+57</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1a050c83ac25b4c65b68f704fd70c9f90f4c25ed|1a050c8]]'' **<nowiki>ramips:</nowiki>** <nowiki>build HuaWei HG255D image</nowiki> //<color #ccc>(</color><color #282>+7</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=48798af6d224ae5c2e567be5b4ff88283ab9c208|48798af]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix Omnima MiniEMBWiFi image</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=982612dba26f042f8b9a524996b0774d3c8e747a|982612d]]'' **<nowiki>ramips:</nowiki>** <nowiki>ArcherC50v1: fix wlan2g MAC address</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ff414fb575a43ada264186fe74e57fb605f20b7f|ff414fb]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix WHR-1166D WAN port</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4a1b87aba448fae648bf17830379fde11060927b|4a1b87a]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.83</nowiki> //<color #ccc>(</color><color #282>+44</color><color #ccc>,</color><color #f00>-62</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4f162ac3ce3c37fa15561cc3de6a044ff3ace2bc|4f162ac]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix hg255d LED status support</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=720b0e2e2d2240b5bed33478ac4bbbf570d04560|720b0e2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.89</nowiki> //<color #ccc>(</color><color #282>+35</color><color #ccc>,</color><color #f00>-35</color><color #ccc>)</color>//\\
+
+==== Target / rb532 (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=69acb2533ab3adc4136b151dc9a286dccf523142|69acb25]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to version 4.4.79</nowiki> //<color #ccc>(</color><color #282>+112</color><color #ccc>,</color><color #f00>-935</color><color #ccc>)</color>//\\
+
+==== Target / sunxi (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=3350137bd3db25a24ebba62835333a456cc448b2|3350137]]'' **<nowiki>sunxi:</nowiki>** <nowiki>clean up modules definitions</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-45</color><color #ccc>)</color>//\\
+
+==== Target / x86 (2 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=05643bd64d7a44632858b86da2761821e48f44d2|05643bd]]'' **<nowiki>x86:</nowiki>** <nowiki>enable ACPI support for the Geode subtarget</nowiki> //<color #ccc>(</color><color #282>+60</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c047c344c696c1e62a09d4dfd319477556356534|c047c34]]'' **<nowiki>x86:</nowiki>** <nowiki>add missing kernel config symbols to Geode target</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>)</color>//\\
+
+==== Wireless / Common (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=d33f7905dfb39458ff2127237be22a54e806bdc9|d33f790]]'' **<nowiki>treewide:</nowiki>** <nowiki>fix shellscript syntax errors/typos</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>,</color><color #f00>-11</color><color #ccc>)</color>//\\
+
+===== Addressed bugs =====
+=== #402 ===
+**Description:** <nowiki>odhcpd: assign all viable DHCPv6 address in stateful+stateless mode</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=402]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c92c1894a53e034661bd4790328ca2ae764581e2|c92c189]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>backport fixes from master branch (FS#402, FS#524)</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=336212cf315374ded98cd3865ea5927e783b6780|336212c]]'' **<nowiki>dhcpv6:</nowiki>** <nowiki>assign all viable DHCPv6 addresses by default (FS#402, FS#524)</nowiki> //<color #ccc>(</color><color #282>+62</color><color #ccc>,</color><color #f00>-50</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=c6f3d5d4ea5154e5971fa0b1b1e9a9c07119429f|c6f3d5d]]'' **<nowiki>config:</nowiki>** <nowiki>fix dhcpv4 server being started</nowiki> //<color #ccc>(</color><color #282>+17</color><color #ccc>,</color><color #f00>-6</color><color #ccc>)</color>//\\
+\\
+=== #524 ===
+**Description:** <nowiki>odhcpd: stateful+stateless sends M flag in RA for prefix that will not DHCPv6</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=524]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c92c1894a53e034661bd4790328ca2ae764581e2|c92c189]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>backport fixes from master branch (FS#402, FS#524)</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=336212cf315374ded98cd3865ea5927e783b6780|336212c]]'' **<nowiki>dhcpv6:</nowiki>** <nowiki>assign all viable DHCPv6 addresses by default (FS#402, FS#524)</nowiki> //<color #ccc>(</color><color #282>+62</color><color #ccc>,</color><color #f00>-50</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=c6f3d5d4ea5154e5971fa0b1b1e9a9c07119429f|c6f3d5d]]'' **<nowiki>config:</nowiki>** <nowiki>fix dhcpv4 server being started</nowiki> //<color #ccc>(</color><color #282>+17</color><color #ccc>,</color><color #f00>-6</color><color #ccc>)</color>//\\
+\\
+=== #577 ===
+**Description:** <nowiki>Poweroff command hand Geode system instead of switch off.</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=577]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=05643bd64d7a44632858b86da2761821e48f44d2|05643bd]]'' **<nowiki>x86:</nowiki>** <nowiki>enable ACPI support for the Geode subtarget</nowiki> //<color #ccc>(</color><color #282>+60</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+\\
+=== #622 ===
+**Description:** <nowiki>Xiaomi nano can not use 16M flash</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=622]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=3214e174a07f5b333ae6f3fe5a857c8324e9ae27|3214e17]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix Xiaomi MiWiFi Nano firmware partition size</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== #670 ===
+**Description:** <nowiki>whr-1166d gigabit port not working</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=670]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ff414fb575a43ada264186fe74e57fb605f20b7f|ff414fb]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix WHR-1166D WAN port</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== #735 ===
+**Description:** <nowiki>LEDE 17.01.1 boot loop on Asus RT-N56U ramips, rt3883</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=735]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2247af82df2174829eb5a37076ead0520d3ab580|2247af8]]'' **<nowiki>ramips:</nowiki>** <nowiki>add NULL clock fix send upstream</nowiki> //<color #ccc>(</color><color #282>+43</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5e87b01275e20226a08538d447ca7714e824cc2c|5e87b01]]'' **<nowiki>brcm63xx:</nowiki>** <nowiki>add NULL clock fix send upstream</nowiki> //<color #ccc>(</color><color #282>+53</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+\\
+=== #749 ===
+**Description:** <nowiki>EdgeRouter Lite (octeon) f2fs WARNING in segment.c</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=749]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f62a31d0e98f125a5c4d5bc8c0b33bb8de53938b|f62a31d]]'' **<nowiki>f2fs-tools:</nowiki>** <nowiki>fix mkfs.f2fs on big-endian systems</nowiki> //<color #ccc>(</color><color #282>+67</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== #755 ===
+**Description:** <nowiki>[SUNXI] ImageBuilder fails because of kmod-eeprom-sunxi</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=755]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=3350137bd3db25a24ebba62835333a456cc448b2|3350137]]'' **<nowiki>sunxi:</nowiki>** <nowiki>clean up modules definitions</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-45</color><color #ccc>)</color>//\\
+\\
+=== #841 ===
+**Description:** <nowiki>dnsmasq cannot resolve domain name if the first upstream dns server reply code is REFUSED</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=841]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=699e3127c57ed037b63ad931da75905b010628b2|699e312]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>backport patch fixing DNS failover (FS#841)</nowiki> //<color #ccc>(</color><color #282>+31</color><color #ccc>)</color>//\\
+\\
+=== #843 ===
+**Description:** <nowiki>Switch port order reversed on TL-WR740N (v2.5)</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=843]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=870ca0da7a55d35718f7218f80b7cdb3696ae35b|870ca0d]]'' **<nowiki>ar71xx:</nowiki>** <nowiki>fix switch port mapping for TP-Link TL-WR74xN/D series</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== #874 ===
+**Description:** <nowiki>odhcpc6  script typo, so /etc/odhcp6c.user is called with incorrect parameter</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=874]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=cca765f64c5577b911f1a04a3cef60cf7a745d4b|cca765f]]'' **<nowiki>dhcpv6:</nowiki>** <nowiki>add missing dollar sign in dhcpv6 script (FS#874)</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+\\
+=== #904 ===
+**Description:** <nowiki>Allnet ALL0315N crashes when updating from OpenWRT to LEDE</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=904]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f6907dcc7968a81ebbe75b630dde919468cc8025|f6907dc]]'' **<nowiki>image:</nowiki>** <nowiki>fix ar71xx legacy images</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+\\
+=== #942 ===
+**Description:** <nowiki>openvpn-mbedtls no longer accepts SHA1 certificates</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=942]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=3e35eb13ada3b87e87cd108f9d459b9484446e9c|3e35eb1]]'' **<nowiki>mbedtls:</nowiki>** <nowiki>Re-allow SHA1-signed certificates</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+
+===== Security fixes ====
+=== CVE-2017-7407 ===
+**Description:** <nowiki>The ourWriteOut function in tool_writeout.c in curl 7.53.1 might allow physically proximate attackers to obtain sensitive information from process memory in opportunistic circumstances by reading a workstation screen during use of a --write-out argument ending in a '%' character, which leads to a heap-based buffer over-read.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7407]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=7ab8bf126ef64f0f8e3bca8385742a0d45185e8f|7ab8bf1]]'' **<nowiki>curl:</nowiki>** <nowiki>fix CVE-2017-7407 and CVE-2017-7468</nowiki> //<color #ccc>(</color><color #282>+430</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-7468 ===
+**Description:** <nowiki>** RESERVED ** This candidate has been reserved by an organization or individual that will use it when announcing a new security problem.  When the candidate has been publicized, the details for this candidate will be provided.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7468]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=7ab8bf126ef64f0f8e3bca8385742a0d45185e8f|7ab8bf1]]'' **<nowiki>curl:</nowiki>** <nowiki>fix CVE-2017-7407 and CVE-2017-7468</nowiki> //<color #ccc>(</color><color #282>+430</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-7508 ===
+**Description:** <nowiki>OpenVPN versions before 2.4.3 and before 2.3.17 are vulnerable to remote denial-of-service when receiving malformed IPv6 packet.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7508]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=57289ae6403d9d03a419337f266194d3ae6909d0|57289ae]]'' **<nowiki>openvpn:</nowiki>** <nowiki>update to 2.4.3</nowiki> //<color #ccc>(</color><color #282>+14</color><color #ccc>,</color><color #f00>-13</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-7512 ===
+**Description:** <nowiki>Red Hat 3scale (aka RH-3scale) API Management Platform (AMP) before 2.0.0 would permit creation of an access token without a client secret. An attacker could use this flaw to circumvent authentication controls and gain access to restricted APIs. NOTE: some sources have a typo in which CVE-2017-7512 maps to an OpenVPN vulnerability. The proper CVE ID for that OpenVPN vulnerability is CVE-2017-7521. Specifically, CVE-2017-7521 is the correct CVE ID for TWO closely related findings in OpenVPN. Any source that lists BOTH CVE-2017-7512 and CVE-2017-7521 for OpenVPN should have listed ONLY CVE-2017-7521.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7512]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=57289ae6403d9d03a419337f266194d3ae6909d0|57289ae]]'' **<nowiki>openvpn:</nowiki>** <nowiki>update to 2.4.3</nowiki> //<color #ccc>(</color><color #282>+14</color><color #ccc>,</color><color #f00>-13</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-7520 ===
+**Description:** <nowiki>OpenVPN versions before 2.4.3 and before 2.3.17 are vulnerable to denial-of-service and/or possibly sensitive memory leak triggered by man-in-the-middle attacker.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7520]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=57289ae6403d9d03a419337f266194d3ae6909d0|57289ae]]'' **<nowiki>openvpn:</nowiki>** <nowiki>update to 2.4.3</nowiki> //<color #ccc>(</color><color #282>+14</color><color #ccc>,</color><color #f00>-13</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-7521 ===
+**Description:** <nowiki>OpenVPN versions before 2.4.3 and before 2.3.17 are vulnerable to remote denial-of-service due to memory exhaustion caused by memory leaks and double-free issue in extract_x509_extension().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7521]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=57289ae6403d9d03a419337f266194d3ae6909d0|57289ae]]'' **<nowiki>openvpn:</nowiki>** <nowiki>update to 2.4.3</nowiki> //<color #ccc>(</color><color #282>+14</color><color #ccc>,</color><color #f00>-13</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-7522 ===
+**Description:** <nowiki>OpenVPN versions before 2.4.3 and before 2.3.17 are vulnerable to denial-of-service by authenticated remote attacker via sending a certificate with an embedded NULL character.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7522]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=57289ae6403d9d03a419337f266194d3ae6909d0|57289ae]]'' **<nowiki>openvpn:</nowiki>** <nowiki>update to 2.4.3</nowiki> //<color #ccc>(</color><color #282>+14</color><color #ccc>,</color><color #f00>-13</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-7533 ===
+**Description:** <nowiki>Race condition in the fsnotify implementation in the Linux kernel through 4.12.4 allows local users to gain privileges or cause a denial of service (memory corruption) via a crafted application that leverages simultaneous execution of the inotify_handle_event and vfs_rename functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-7533]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4a1b87aba448fae648bf17830379fde11060927b|4a1b87a]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.83</nowiki> //<color #ccc>(</color><color #282>+44</color><color #ccc>,</color><color #f00>-62</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-11108 ===
+**Description:** <nowiki>tcpdump 4.9.0 allows remote attackers to cause a denial of service (heap-based buffer over-read and application crash) via crafted packet data. The crash occurs in the EXTRACT_16BITS function, called from the stp_print function for the Spanning Tree Protocol.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-11108]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ae3c55666d7fcb72eee149237076ebc4f57a3ca7|ae3c556]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>Update to 4.9.1</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-11541 ===
+**Description:** <nowiki>tcpdump 4.9.0 has a heap-based buffer over-read in the lldp_print function in print-lldp.c, related to util-print.c.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-11541]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-11542 ===
+**Description:** <nowiki>tcpdump 4.9.0 has a heap-based buffer over-read in the pimv1_print function in print-pim.c.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-11542]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-11543 ===
+**Description:** <nowiki>tcpdump 4.9.0 has a buffer overflow in the sliplink_print function in print-sl.c.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-11543]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-11600 ===
+**Description:** <nowiki>net/xfrm/xfrm_policy.c in the Linux kernel through 4.12.3, when CONFIG_XFRM_MIGRATE is enabled, does not ensure that the dir value of xfrm_userpolicy_id is XFRM_POLICY_MAX or less, which allows local users to cause a denial of service (out-of-bounds access) or possibly have unspecified other impact via an XFRM_MSG_MIGRATE xfrm Netlink message.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-11600]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ab305e147ed7f950e8b34d0de23797c8dbb6a27f|ab305e1]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.87</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12893 ===
+**Description:** <nowiki>The SMB/CIFS parser in tcpdump before 4.9.2 has a buffer over-read in smbutil.c:name_len().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12893]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12894 ===
+**Description:** <nowiki>Several protocol parsers in tcpdump before 4.9.2 could cause a buffer over-read in addrtoname.c:lookup_bytestring().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12894]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12895 ===
+**Description:** <nowiki>The ICMP parser in tcpdump before 4.9.2 has a buffer over-read in print-icmp.c:icmp_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12895]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12896 ===
+**Description:** <nowiki>The ISAKMP parser in tcpdump before 4.9.2 has a buffer over-read in print-isakmp.c:isakmp_rfc3948_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12896]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12897 ===
+**Description:** <nowiki>The ISO CLNS parser in tcpdump before 4.9.2 has a buffer over-read in print-isoclns.c:isoclns_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12897]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12898 ===
+**Description:** <nowiki>The NFS parser in tcpdump before 4.9.2 has a buffer over-read in print-nfs.c:interp_reply().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12898]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12899 ===
+**Description:** <nowiki>The DECnet parser in tcpdump before 4.9.2 has a buffer over-read in print-decnet.c:decnet_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12899]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12900 ===
+**Description:** <nowiki>Several protocol parsers in tcpdump before 4.9.2 could cause a buffer over-read in util-print.c:tok2strbuf().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12900]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12901 ===
+**Description:** <nowiki>The EIGRP parser in tcpdump before 4.9.2 has a buffer over-read in print-eigrp.c:eigrp_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12901]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12902 ===
+**Description:** <nowiki>The Zephyr parser in tcpdump before 4.9.2 has a buffer over-read in print-zephyr.c, several functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12902]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12985 ===
+**Description:** <nowiki>The IPv6 parser in tcpdump before 4.9.2 has a buffer over-read in print-ip6.c:ip6_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12985]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12986 ===
+**Description:** <nowiki>The IPv6 routing header parser in tcpdump before 4.9.2 has a buffer over-read in print-rt6.c:rt6_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12986]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12987 ===
+**Description:** <nowiki>The IEEE 802.11 parser in tcpdump before 4.9.2 has a buffer over-read in print-802_11.c:parse_elements().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12987]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12988 ===
+**Description:** <nowiki>The telnet parser in tcpdump before 4.9.2 has a buffer over-read in print-telnet.c:telnet_parse().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12988]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12989 ===
+**Description:** <nowiki>The RESP parser in tcpdump before 4.9.2 could enter an infinite loop due to a bug in print-resp.c:resp_get_length().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12989]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12990 ===
+**Description:** <nowiki>The ISAKMP parser in tcpdump before 4.9.2 could enter an infinite loop due to bugs in print-isakmp.c, several functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12990]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12991 ===
+**Description:** <nowiki>The BGP parser in tcpdump before 4.9.2 has a buffer over-read in print-bgp.c:bgp_attr_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12991]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12992 ===
+**Description:** <nowiki>The RIPng parser in tcpdump before 4.9.2 has a buffer over-read in print-ripng.c:ripng_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12992]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12993 ===
+**Description:** <nowiki>The Juniper protocols parser in tcpdump before 4.9.2 has a buffer over-read in print-juniper.c, several functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12993]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12994 ===
+**Description:** <nowiki>The BGP parser in tcpdump before 4.9.2 has a buffer over-read in print-bgp.c:bgp_attr_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12994]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12995 ===
+**Description:** <nowiki>The DNS parser in tcpdump before 4.9.2 could enter an infinite loop due to a bug in print-domain.c:ns_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12995]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12996 ===
+**Description:** <nowiki>The PIMv2 parser in tcpdump before 4.9.2 has a buffer over-read in print-pim.c:pimv2_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12996]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12997 ===
+**Description:** <nowiki>The LLDP parser in tcpdump before 4.9.2 could enter an infinite loop due to a bug in print-lldp.c:lldp_private_8021_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12997]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12998 ===
+**Description:** <nowiki>The IS-IS parser in tcpdump before 4.9.2 has a buffer over-read in print-isoclns.c:isis_print_extd_ip_reach().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12998]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-12999 ===
+**Description:** <nowiki>The IS-IS parser in tcpdump before 4.9.2 has a buffer over-read in print-isoclns.c:isis_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-12999]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13000 ===
+**Description:** <nowiki>The IEEE 802.15.4 parser in tcpdump before 4.9.2 has a buffer over-read in print-802_15_4.c:ieee802_15_4_if_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13000]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13001 ===
+**Description:** <nowiki>The NFS parser in tcpdump before 4.9.2 has a buffer over-read in print-nfs.c:nfs_printfh().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13001]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13002 ===
+**Description:** <nowiki>The AODV parser in tcpdump before 4.9.2 has a buffer over-read in print-aodv.c:aodv_extension().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13002]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13003 ===
+**Description:** <nowiki>The LMP parser in tcpdump before 4.9.2 has a buffer over-read in print-lmp.c:lmp_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13003]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13004 ===
+**Description:** <nowiki>The Juniper protocols parser in tcpdump before 4.9.2 has a buffer over-read in print-juniper.c:juniper_parse_header().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13004]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13005 ===
+**Description:** <nowiki>The NFS parser in tcpdump before 4.9.2 has a buffer over-read in print-nfs.c:xid_map_enter().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13005]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13006 ===
+**Description:** <nowiki>The L2TP parser in tcpdump before 4.9.2 has a buffer over-read in print-l2tp.c, several functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13006]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13007 ===
+**Description:** <nowiki>The Apple PKTAP parser in tcpdump before 4.9.2 has a buffer over-read in print-pktap.c:pktap_if_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13007]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13008 ===
+**Description:** <nowiki>The IEEE 802.11 parser in tcpdump before 4.9.2 has a buffer over-read in print-802_11.c:parse_elements().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13008]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13009 ===
+**Description:** <nowiki>The IPv6 mobility parser in tcpdump before 4.9.2 has a buffer over-read in print-mobility.c:mobility_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13009]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13010 ===
+**Description:** <nowiki>The BEEP parser in tcpdump before 4.9.2 has a buffer over-read in print-beep.c:l_strnstart().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13010]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13011 ===
+**Description:** <nowiki>Several protocol parsers in tcpdump before 4.9.2 could cause a buffer overflow in util-print.c:bittok2str_internal().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13011]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13012 ===
+**Description:** <nowiki>The ICMP parser in tcpdump before 4.9.2 has a buffer over-read in print-icmp.c:icmp_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13012]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13013 ===
+**Description:** <nowiki>The ARP parser in tcpdump before 4.9.2 has a buffer over-read in print-arp.c, several functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13013]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13014 ===
+**Description:** <nowiki>The White Board protocol parser in tcpdump before 4.9.2 has a buffer over-read in print-wb.c:wb_prep(), several functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13014]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13015 ===
+**Description:** <nowiki>The EAP parser in tcpdump before 4.9.2 has a buffer over-read in print-eap.c:eap_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13015]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13016 ===
+**Description:** <nowiki>The ISO ES-IS parser in tcpdump before 4.9.2 has a buffer over-read in print-isoclns.c:esis_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13016]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13017 ===
+**Description:** <nowiki>The DHCPv6 parser in tcpdump before 4.9.2 has a buffer over-read in print-dhcp6.c:dhcp6opt_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13017]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13018 ===
+**Description:** <nowiki>The PGM parser in tcpdump before 4.9.2 has a buffer over-read in print-pgm.c:pgm_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13018]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13019 ===
+**Description:** <nowiki>The PGM parser in tcpdump before 4.9.2 has a buffer over-read in print-pgm.c:pgm_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13019]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13020 ===
+**Description:** <nowiki>The VTP parser in tcpdump before 4.9.2 has a buffer over-read in print-vtp.c:vtp_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13020]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13021 ===
+**Description:** <nowiki>The ICMPv6 parser in tcpdump before 4.9.2 has a buffer over-read in print-icmp6.c:icmp6_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13021]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13022 ===
+**Description:** <nowiki>The IP parser in tcpdump before 4.9.2 has a buffer over-read in print-ip.c:ip_printroute().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13022]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13023 ===
+**Description:** <nowiki>The IPv6 mobility parser in tcpdump before 4.9.2 has a buffer over-read in print-mobility.c:mobility_opt_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13023]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13024 ===
+**Description:** <nowiki>The IPv6 mobility parser in tcpdump before 4.9.2 has a buffer over-read in print-mobility.c:mobility_opt_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13024]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13025 ===
+**Description:** <nowiki>The IPv6 mobility parser in tcpdump before 4.9.2 has a buffer over-read in print-mobility.c:mobility_opt_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13025]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13026 ===
+**Description:** <nowiki>The ISO IS-IS parser in tcpdump before 4.9.2 has a buffer over-read in print-isoclns.c, several functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13026]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13027 ===
+**Description:** <nowiki>The LLDP parser in tcpdump before 4.9.2 has a buffer over-read in print-lldp.c:lldp_mgmt_addr_tlv_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13027]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13028 ===
+**Description:** <nowiki>The BOOTP parser in tcpdump before 4.9.2 has a buffer over-read in print-bootp.c:bootp_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13028]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13029 ===
+**Description:** <nowiki>The PPP parser in tcpdump before 4.9.2 has a buffer over-read in print-ppp.c:print_ccp_config_options().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13029]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13030 ===
+**Description:** <nowiki>The PIM parser in tcpdump before 4.9.2 has a buffer over-read in print-pim.c, several functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13030]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13031 ===
+**Description:** <nowiki>The IPv6 fragmentation header parser in tcpdump before 4.9.2 has a buffer over-read in print-frag6.c:frag6_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13031]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13032 ===
+**Description:** <nowiki>The RADIUS parser in tcpdump before 4.9.2 has a buffer over-read in print-radius.c:print_attr_string().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13032]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13033 ===
+**Description:** <nowiki>The VTP parser in tcpdump before 4.9.2 has a buffer over-read in print-vtp.c:vtp_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13033]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13034 ===
+**Description:** <nowiki>The PGM parser in tcpdump before 4.9.2 has a buffer over-read in print-pgm.c:pgm_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13034]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13035 ===
+**Description:** <nowiki>The ISO IS-IS parser in tcpdump before 4.9.2 has a buffer over-read in print-isoclns.c:isis_print_id().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13035]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13036 ===
+**Description:** <nowiki>The OSPFv3 parser in tcpdump before 4.9.2 has a buffer over-read in print-ospf6.c:ospf6_decode_v3().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13036]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13037 ===
+**Description:** <nowiki>The IP parser in tcpdump before 4.9.2 has a buffer over-read in print-ip.c:ip_printts().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13037]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13038 ===
+**Description:** <nowiki>The PPP parser in tcpdump before 4.9.2 has a buffer over-read in print-ppp.c:handle_mlppp().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13038]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13039 ===
+**Description:** <nowiki>The ISAKMP parser in tcpdump before 4.9.2 has a buffer over-read in print-isakmp.c, several functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13039]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13040 ===
+**Description:** <nowiki>The MPTCP parser in tcpdump before 4.9.2 has a buffer over-read in print-mptcp.c, several functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13040]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13041 ===
+**Description:** <nowiki>The ICMPv6 parser in tcpdump before 4.9.2 has a buffer over-read in print-icmp6.c:icmp6_nodeinfo_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13041]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13042 ===
+**Description:** <nowiki>The HNCP parser in tcpdump before 4.9.2 has a buffer over-read in print-hncp.c:dhcpv6_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13042]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13043 ===
+**Description:** <nowiki>The BGP parser in tcpdump before 4.9.2 has a buffer over-read in print-bgp.c:decode_multicast_vpn().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13043]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13044 ===
+**Description:** <nowiki>The HNCP parser in tcpdump before 4.9.2 has a buffer over-read in print-hncp.c:dhcpv4_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13044]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13045 ===
+**Description:** <nowiki>The VQP parser in tcpdump before 4.9.2 has a buffer over-read in print-vqp.c:vqp_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13045]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13046 ===
+**Description:** <nowiki>The BGP parser in tcpdump before 4.9.2 has a buffer over-read in print-bgp.c:bgp_attr_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13046]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13047 ===
+**Description:** <nowiki>The ISO ES-IS parser in tcpdump before 4.9.2 has a buffer over-read in print-isoclns.c:esis_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13047]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13048 ===
+**Description:** <nowiki>The RSVP parser in tcpdump before 4.9.2 has a buffer over-read in print-rsvp.c:rsvp_obj_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13048]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13049 ===
+**Description:** <nowiki>The Rx protocol parser in tcpdump before 4.9.2 has a buffer over-read in print-rx.c:ubik_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13049]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13050 ===
+**Description:** <nowiki>The RPKI-Router parser in tcpdump before 4.9.2 has a buffer over-read in print-rpki-rtr.c:rpki_rtr_pdu_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13050]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13051 ===
+**Description:** <nowiki>The RSVP parser in tcpdump before 4.9.2 has a buffer over-read in print-rsvp.c:rsvp_obj_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13051]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13052 ===
+**Description:** <nowiki>The CFM parser in tcpdump before 4.9.2 has a buffer over-read in print-cfm.c:cfm_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13052]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13053 ===
+**Description:** <nowiki>The BGP parser in tcpdump before 4.9.2 has a buffer over-read in print-bgp.c:decode_rt_routing_info().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13053]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13054 ===
+**Description:** <nowiki>The LLDP parser in tcpdump before 4.9.2 has a buffer over-read in print-lldp.c:lldp_private_8023_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13054]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13055 ===
+**Description:** <nowiki>The ISO IS-IS parser in tcpdump before 4.9.2 has a buffer over-read in print-isoclns.c:isis_print_is_reach_subtlv().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13055]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13687 ===
+**Description:** <nowiki>The Cisco HDLC parser in tcpdump before 4.9.2 has a buffer over-read in print-chdlc.c:chdlc_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13687]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13688 ===
+**Description:** <nowiki>The OLSR parser in tcpdump before 4.9.2 has a buffer over-read in print-olsr.c:olsr_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13688]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13689 ===
+**Description:** <nowiki>The IKEv1 parser in tcpdump before 4.9.2 has a buffer over-read in print-isakmp.c:ikev1_id_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13689]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13690 ===
+**Description:** <nowiki>The IKEv2 parser in tcpdump before 4.9.2 has a buffer over-read in print-isakmp.c, several functions.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13690]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13704 ===
+**Description:** <nowiki>In dnsmasq before 2.78, if the DNS packet size does not match the expected size, the size parameter in a memset call gets a negative value. As it is an unsigned value, memset ends up writing up to 0xffffffff zero's (0xffffffffffffffff in 64 bit platforms), making dnsmasq crash.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13704]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a006b48c04543947e1e924972a9026824bdc3d29|a006b48]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>forward.c: fix CVE-2017-13704</nowiki> //<color #ccc>(</color><color #282>+38</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a7506c0e2b2cc9c25c3c95523d21edcb8c710ed2|a7506c0]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>backport official fix for CVE-2017-13704</nowiki> //<color #ccc>(</color><color #282>+95</color><color #ccc>,</color><color #f00>-38</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-13725 ===
+**Description:** <nowiki>The IPv6 routing header parser in tcpdump before 4.9.2 has a buffer over-read in print-rt6.c:rt6_print().</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-13725]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=12a0da6315e66045be68270b6e564316c14a3347|12a0da6]]'' **<nowiki>tcpdump:</nowiki>** <nowiki>noop commit to refer CVEs fixed in 4.9.2</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-14032 ===
+**Description:** <nowiki>ARM mbed TLS before 1.3.21 and 2.x before 2.1.9, if optional authentication is configured, allows remote attackers to bypass peer authentication via an X.509 certificate chain with many intermediates. NOTE: although mbed TLS was formerly known as PolarSSL, the releases shipped with the PolarSSL name are not affected.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-14032]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=e232c6754d6e0cbde3892aa1fa243f4707d7ad5e|e232c67]]'' **<nowiki>mbedtls:</nowiki>** <nowiki>update to 2.6.0 CVE-2017-14032</nowiki> //<color #ccc>(</color><color #282>+30</color><color #ccc>,</color><color #f00>-30</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-14491 ===
+**Description:** <nowiki>Heap-based buffer overflow in dnsmasq before 2.78 allows remote attackers to cause a denial of service (crash) or execute arbitrary code via a crafted DNS response.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-14491]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4b4a4af814e1602f7ef12c5d07ff15c4fa2570ca|4b4a4af]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>bump to v2.78</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-226</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-14492 ===
+**Description:** <nowiki>Heap-based buffer overflow in dnsmasq before 2.78 allows remote attackers to cause a denial of service (crash) or execute arbitrary code via a crafted IPv6 router advertisement request.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-14492]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4b4a4af814e1602f7ef12c5d07ff15c4fa2570ca|4b4a4af]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>bump to v2.78</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-226</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-14493 ===
+**Description:** <nowiki>Stack-based buffer overflow in dnsmasq before 2.78 allows remote attackers to cause a denial of service (crash) or execute arbitrary code via a crafted DHCPv6 request.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-14493]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4b4a4af814e1602f7ef12c5d07ff15c4fa2570ca|4b4a4af]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>bump to v2.78</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-226</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-14494 ===
+**Description:** <nowiki>dnsmasq before 2.78, when configured as a relay, allows remote attackers to obtain sensitive memory information via vectors involving handling DHCPv6 forwarded requests.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-14494]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4b4a4af814e1602f7ef12c5d07ff15c4fa2570ca|4b4a4af]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>bump to v2.78</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-226</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-14495 ===
+**Description:** <nowiki>Memory leak in dnsmasq before 2.78, when the --add-mac, --add-cpe-id or --add-subnet option is specified, allows remote attackers to cause a denial of service (memory consumption) via vectors involving DNS response creation.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-14495]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4b4a4af814e1602f7ef12c5d07ff15c4fa2570ca|4b4a4af]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>bump to v2.78</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-226</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-14496 ===
+**Description:** <nowiki>Integer underflow in the add_pseudoheader function in dnsmasq before 2.78 , when the --add-mac, --add-cpe-id or --add-subnet option is specified, allows remote attackers to cause a denial of service via a crafted DNS request.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-14496]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4b4a4af814e1602f7ef12c5d07ff15c4fa2570ca|4b4a4af]]'' **<nowiki>dnsmasq:</nowiki>** <nowiki>bump to v2.78</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-226</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-1000100 ===
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-1000100]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f483a35f08741ff0ca373236e6ad1d93edb1ba75|f483a35]]'' **<nowiki>curl:</nowiki>** <nowiki>fix security problems</nowiki> //<color #ccc>(</color><color #282>+75</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-1000101 ===
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-1000101]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f483a35f08741ff0ca373236e6ad1d93edb1ba75|f483a35]]'' **<nowiki>curl:</nowiki>** <nowiki>fix security problems</nowiki> //<color #ccc>(</color><color #282>+75</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-1000111 ===
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-1000111]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4a1b87aba448fae648bf17830379fde11060927b|4a1b87a]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.83</nowiki> //<color #ccc>(</color><color #282>+44</color><color #ccc>,</color><color #f00>-62</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-1000112 ===
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-1000112]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4a1b87aba448fae648bf17830379fde11060927b|4a1b87a]]'' **<nowiki>kernel:</nowiki>** <nowiki>update 4.4 to 4.4.83</nowiki> //<color #ccc>(</color><color #282>+44</color><color #ccc>,</color><color #f00>-62</color><color #ccc>)</color>//\\
+\\

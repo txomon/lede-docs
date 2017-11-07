@@ -1,0 +1,135 @@
+====== Table of Hardware: Ideal for LEDE + 802.11ac supported ======
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+In order to list devices you'll have the best experience with, here we filter for devices that...
+  * are either **'Available'** (are commercially available, i.e. you can buy them today) or **'unknown'** (if 'unknown' -> search the net for availability first, then please update the data here)
+  * have **>4MB Flash** (4M can work, but are no fun to work with. >4M will make you happier than 4M or below.)
+  * have **>32MB RAM** (32M can work quite well, but >=64M are more comfortable to work with, depending on your use case.)
+
+Additional filter criteria:
+  * WiFi 802.11ac supported
+
+**Special notes:**
+  * Devices with Broadcom WiFi chipsets have limited LEDE supportability (due to limited FLOSS driver availability for Broadcom chips)
+  * A few devices do not support the standard factory/sysupgrade LEDE image type, instead requiring a more complex custom LEDE installation procedure. Background info about that custom process may for some older devices only be available on OpenWRT site at this time.
+  * Some devices have a built-in firmware rescue function (making the device less likely to brick on flash failures), while others do no have this. Several device stat pages may be incomplete about this at this time.
+  * When planning to buy a device that supports USB3.0, to connect USB3.0 storage devices and use 2.4 GHz WiFi at the same time, you may experience 2.4 WiFi problems (see [[docs:user-guide:drives#ghz_wireless_problems_when_using_usb_30_drives_on_lede_wifi_devices|2.4 GHz WiFi issues with USB3.0]]). It could be that some devices are less likely, to run into such problem. At this time no further data for device selection is available.
+
+{{page>meta:infobox:toh_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+----
+
+++++Show Filter: Availability|
+---- datacloud ----
+col        : Availability
+summarize  : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+filter     : Availability!~Discontinued*
+filter     : Flash MB!=1
+filter     : Flash MB!=2
+filter     : Flash MB!=4
+filter     : RAM MB!=8
+filter     : RAM MB!=16
+filter     : RAM MB!=32
+filter     : LEDE Supported Current Rel!=''
+filter     : LEDE Supported Current Rel!=¿
+filter     : LEDE Supported Current Rel!=-
+filter     : LEDE Supported Current Rel!=EOL
+filter     : WLAN 5.0GHz*~ac
+filter     : LEDE Unsupported!~*WiFi 5GHz*
+----
+++++
+
+++++Show Filter: Device Type|
+---- datacloud ----
+col       : Device Type
+summarize : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+filter     : Availability!~Discontinued*
+filter     : Flash MB!=1
+filter     : Flash MB!=2
+filter     : Flash MB!=4
+filter     : RAM MB!=8
+filter     : RAM MB!=16
+filter     : RAM MB!=32
+filter     : LEDE Supported Current Rel!=''
+filter     : LEDE Supported Current Rel!=¿
+filter     : LEDE Supported Current Rel!=-
+filter     : LEDE Supported Current Rel!=EOL
+filter     : WLAN 5.0GHz*~ac
+filter     : LEDE Unsupported!~*WiFi 5GHz*
+----
+++++
+
+++++Show Filter: Modem|
+---- datacloud ----
+col       : Modem
+summarize : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+filter     : Availability!~Discontinued*
+filter     : Flash MB!=1
+filter     : Flash MB!=2
+filter     : Flash MB!=4
+filter     : RAM MB!=8
+filter     : RAM MB!=16
+filter     : RAM MB!=32
+filter     : LEDE Supported Current Rel!=''
+filter     : LEDE Supported Current Rel!=¿
+filter     : LEDE Supported Current Rel!=-
+filter     : LEDE Supported Current Rel!=EOL
+filter     : WLAN 5.0GHz*~ac
+filter     : LEDE Unsupported!~*WiFi 5GHz*
+----
+++++
+
+++++Show Filter: LEDE Current Supported Release|
+---- datacloud ----
+col       : LEDE Supported current rel
+summarize : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+filter     : Availability!~Discontinued*
+filter     : Flash MB!=1
+filter     : Flash MB!=2
+filter     : Flash MB!=4
+filter     : RAM MB!=8
+filter     : RAM MB!=16
+filter     : RAM MB!=32
+filter     : LEDE Supported Current Rel!=''
+filter     : LEDE Supported Current Rel!=¿
+filter     : LEDE Supported Current Rel!=-
+filter     : LEDE Supported Current Rel!=EOL
+filter     : WLAN 5.0GHz*~ac
+filter     : LEDE Unsupported!~*WiFi 5GHz*
+----
+++++
+
+----
+
+---- datatable ----
+cols       : Device Type, Brand, Model, Versions, Availability, LEDE Supported Current Rel_releasepage, LEDE Unsupported, CPU MHz, CPU cores_, Flash MB, RAM MB, Ethernet 100M ports_, Ethernet GBit ports_, WLAN 2.4GHz, WLAN 5.0GHz, WLAN Comments_, WLAN Hardware, Modem, OEM Device Homepage URL_url, OpenWrt Device Page_url, LEDE Device Page_page, OWrt Forum Topic URL_url, LEDE Forum Topic URL_url, Device Techdata_pageid
+headers    : Device Type, Brand, Model, Versions, Availability, LEDE Supported Current Rel, LEDE Unsupported, CPU MHz, CPU cores, Flash MB, RAM MB, 100M ports, Gbit ports, WLAN 2.4GHz, WLAN 5.0GHz, WLAN Comments, WLAN Hardware, Modem, OEM Device Homepage, OpenWrt Device Page, LEDE Device Page, OpenWrt Forum Topic URL, LEDE Forum Topic URL, Device Techdata
+align      : l,l,l,l,l,l,l,l,l,c,l,c,c,c,l,l,l,l,l,l,l
+dynfilters : 1
+rownumbers : 1
+filter     : Model!=@@Model@@
+filter     : Model!=(EXAMPLE)
+filter     : Availability!~Discontinued*
+filter     : Flash MB!=1
+filter     : Flash MB!=2
+filter     : Flash MB!=4
+filter     : RAM MB!=8
+filter     : RAM MB!=16
+filter     : RAM MB!=32
+filter     : LEDE Supported Current Rel!=''
+filter     : LEDE Supported Current Rel!=¿
+filter     : LEDE Supported Current Rel!=-
+filter     : LEDE Supported Current Rel!=EOL
+filter     : WLAN 5.0GHz*~ac
+filter     : LEDE Unsupported!~*WiFi 5GHz*
+sort       : Brand
+----

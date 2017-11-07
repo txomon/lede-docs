@@ -1,0 +1,149 @@
+====== Show available package upgrades after SSH login ======
+
+If you would like a simple way to view packages with available upgrades when you login via ssh (this will have no effect when you login to LuCI), you can achieve this with two simple steps:
+
+  - Create a user profile script that checks the package list for upgradable packages
+  - Schedule "opkg update" with crontab to keep the package lists up-to-date, 
+
+Or simply integrate the update check in the user profile script so everything is run on login.
+
+When this is running, you will see the following when you login via ssh:
+
+
+  BusyBox v1.25.1 () built-in shell (ash)
+  
+       _________
+      /        /\      _    ___ ___  ___
+     /  LE    /  \    | |  | __|   \| __|
+    /    DE  /    \   | |__| _|| |) | _|
+   /________/  LE  \  |____|___|___/|___|                      lede-project.org
+   \        \   DE /
+    \    LE  \    /  -----------------------------------------------------------
+     \  DE    \  /    Reboot (17.01.1, r3316-7eb58cf109)
+      \________\/    -----------------------------------------------------------
+  
+  151 packages are installed.
+  4 packages can be upgraded.
+  
+  root@LEDE:~#
+
+You may then choose to upgrade one or several packages, or all packages in one command.
+
+===== Create user profile script =====
+
+To create the user profile script, you need to be logged-in as root via SSH. This example uses nano as the text editor (since it is a bit easier to use as the system default text editor ''vim''), but you can of course create the script with the editor of your choice.
+
+
+  nano ~/.profile
+
+  #!/bin/sh
+  
+  opkgInstalled="$(opkg list-installed 2> /dev/null | wc -l)" #silencing error output
+  opkgUpgradable="$(opkg list-upgradable 2> /dev/null | wc -l)" #silencing error output
+  
+  echo "$opkgInstalled packages are installed." && echo "$opkgUpgradable packages can be upgraded." && echo
+===== Automate package updates =====
+
+For the above script to work, the package lists must be available and up-to-date at login time. Updating the packages list can be automated in three ways:
+
+  - in regular intervalls -> crontab
+  - at each startup / booting -> startup script
+  - on login -> using the same profile script 
+
+==== via crontab ====
+
+:!: Keep in mind that this will occupy precious RAM space on low memory devices (16+32MB). See the third method for a low-ram-friendly script.
+
+Schedule crontab to "opkg update" once per week, either via LuCI or via commandline.
+
+  * via LuCI: Add below lines via //LuCi > System > Scheduled Tasks//
+  * via command line: ''crontab -e'' -> add below lines
+
+  1 0 * * 0 /bin/opkg update # Update list of available packages every Sunday 00:01
+  # crontab and fstab must end with the last line a space or comment
+
+You can change the interval as you like, but keep in mind that every interval below 24h is a waste of resources, since release packages do not get compiled that often.
+
+==== via startup script ====
+
+:!: This method only works if you frequently reboot your hardware. Keep in mind that this will occupy precious RAM space on low memory devices (16+32MB). See the third method for a low-ram-friendly script.
+
+If you prefer to run "opkg list" only once at startup, rather than in regular intervals as shown above, you can do so by means of the startup script ''rc.local''.
+
+  * via LuCI: Add below lines via //LuCi > System > Startup > Local Startup//
+  * via commandline: edit ''etc/rc.local'' and add below lines
+
+  /bin/opkg update # Update list of available packages
+  exit 0
+
+Now everytime you login with Dropbear (SSH) you will see the number of total packages installed and how many packages can be upgraded.
+
+
+==== via the same profile script ====
+
+You can place the updating commands in the same profile file, as that script is executed each time the user logs in with ssh or serial console. 
+
+The main drawback is that the user will have to wait a few seconds for the update to finish before he can start writing commands, which if all goes well is just a few seconds. It will be quite a bit more if there is no internet access, as opkg will take a while to figure out that there is no internet connection. So a check for internet connectivity is included. If no internet is detected the update is skipped.\\
+For the sake of being low-RAM friendly, there is a check that deletes automatically the package lists if the device has less then 32 MiB of free RAM.\\
+
+This is the whole .profile script:
+
+  nano ~/.profile
+
+<code>
+#!/bin/sh
+
+if wget -q --spider https://lede-project.org/start; then  # if LEDE website/wiki is available we update
+  echo "You are connected to the internet. Checking for updates, please wait..." && echo
+  opkg update > /dev/null 2>&1 #silenced standard output and error output
+
+  opkgInstalled="$(opkg list-installed 2> /dev/null | wc -l)" #silencing error output
+  opkgUpgradable="$(opkg list-upgradable 2> /dev/null | wc -l)" #silencing error output
+
+  echo "$opkgInstalled packages are installed." && echo "$opkgUpgradable packages can be upgraded." && echo
+  
+  memLimit=32000 # in bytes
+  if [ "$(grep MemFree /proc/meminfo | awk '{print$2}')" -lt $memLimit ]; then
+    for opkg_package_lists in /var/opkg-lists/*
+    do
+      if [ -f "$opkg_package_lists" ]; then #prevent error if opkg update fails
+        rm -r /var/opkg-lists/*
+        echo "Warning: Memory limit $memLimit bytes. Removed downloaded package lists to save memory."
+        echo #only remove when free RAM is less than set memory limit (default 32 MiB)
+      fi
+    done
+  fi
+  else
+  echo "You are not connected to the internet. Unable to check for updates." && echo
+fi
+
+</code>
+
+==== Preserving your script on firmware upgrade ====
+
+By default, firmware upgrade procedure does not back up ''/root/.profile'' so we need to add it to the list of custom files to back up.
+
+  echo  '/root/.profile #my profile with update script '  >> /etc/sysupgrade.conf
+
+Other files created or modified by this tutorial (chrontabs and /etc/rc.local) are already in the whitelist of files preserved.
+
+For more information, please check the [[docs:user-guide:sysupgrade.cli|Upgrading LEDE from the Command Line]]
+
+===== Upgrading LEDE packages in one command =====
+
+'opkg upgrade package_name' allow upgrading one package.
+
+To upgrade all packages, run:
+
+  opkg update
+  eval $(opkg list_installed | sed 's/ - .*//' | sed 's/^/opkg upgrade /')
+
+Please be warned that package upgrades are processed without order. Please make sure to have sufficient space on your device.
+
+Automating LEDE package upgrades is strongly discouraged, unless you manage a central repository and push upgrades from there.
+
+==== Closing thoughts ====
+
+If you have a better way of doing this, please update this user guide. You can also add the above script to "/etc/profile" which is the system default, but you are better off keeping that untouched as to prevent issues.
+
+Enjoy!

@@ -1,0 +1,452 @@
+====== Quick Start guide - LEDE Installation ======
+
+=== Thank you for choosing LEDE as your device firmware. ===
+
+This "Quick Start Guide" will help you replace the factory firmware on your device, or upgrade your existing LEDE\OpenWrt firmware, with a version of LEDE firmware.  The Release versions of LEDE includes the LuCi GUI for easier use.  The "Development" version of LEDE does not include a GUI interface.  We strongly suggest using the latest Release version of firmware for your device.  If you have a brand new device that is not supported by the latest Release, only then should you consider using the development version.
+
+LEDE is based on [[https://wiki.openwrt.org/doc/start|OpenWrt]] most of the operational aspects of the two projects are identical. If you have questions, you can search this site, search the LEDE Forum, or look at the pages of the OpenWrt wiki.
+
+**Installation Overview**
+  - Understand Your Current Hardware, Firmware And LAN IP.
+  - Identify And Download The Correct Firmware For Your Device
+  - Go "Offline", Install And Perform Basic Configuration For Your New LEDE Router.
+  - Reconfigure Your Network With Your New LEDE Router.
+
+**Usage Scenarios**
+
+These instructions are designed to cover a variety of usage scenarios.  Please review the scenarios below and decide which best applies to your environment.  You will be offered choices as you proceed through this guide.  Please select the chose that matches your usage scenario.
+
+  * ISP Modem => **LEDE Router** - You have a WAN connection form your ISP and will connect this to a Router to offer access to Wired and Wireless connections.
+  * ISP Modem\Router => **LEDE Dumb AP** - You have a LAN connection from your ISP and will add a device to create an additional Access Point, connected with an Ethernet cable, offering Wireless and\or Wired connections.
+  * ISP Modem\Router => **LEDE Repeater Bridge** - You have a Wireless connection from your ISP and will add a device to create an additional Access Point, connected via Wireless, offering Wireless and\or Wired connections.
+  * WISP\Hotspot => **LEDE Travel Router** - You have a "Portable" device and would like to be able to connect this to a WIFI connection and hare the connection with one or more devices.
+  * Cellular Network => **3G\4G Modem** attached to LEDE Router - You have a LEDE Router and wish to connect it to the internet via 3G\4G.
+
+This guide will take you through the major elements to obtain a working network device.  These instructions are not intended to be an exhaustive configuration guide for all optional features.  Please see the [[docs/user-guide/start|User Guides]] and WIKIs for installing USB, VPN, and other features you may wish to include.
+
+===== Prerequisites for these instructions =====
+
+If your situation doesn't match the criteria below, follow the links for more information:
+
+  * Your device is supported in the LEDE Table of Hardware (What if I do not see my device in the ToH?)
+  * Your router has at least 8 MBytes of Flash and 64 MBytes of RAM (Why is this important?)
+  * Your device has a WebGui interface. If the web interface is not installed, use the [[docs:user-guide:sysupgrade.cli|Installing LEDE from Command Line]] instructions.
+    
+If your device or desired landscape is other than a typical router, follow the links for more information:
+ 
+  * My device uses some type of external media (hard drive, sd Card, USB, etc) , __//please read this//__.
+
+If you have any questions about this process, or want to flash LEDE on another kind of device besides a standard router, please ask for help on the [[https://forum.lede-project.org/c/general|Installing and Using LEDE category]] of the forum before beginning this procedure.
+
+===== LEDE Installation Guide =====
+
+==== 1 - Understand Your Current Hardware, Firmware And LAN IP ====
+
+We first need to understand the hardware we have, which will determine the feasible usage scenarios.  You will most likely have at least two "boxes".  
+
+The first device will be some type of "Gateway" device, generally supplied by your ISP.  While there are many types of devices, we are mostly concerned with whether they have a WAN or LAN connections.  
+  * If your device has a "WAN" connection (typically blue) then your device is a "Modem" and we can use this to support a "**Router**".  
+  * If your device has "LAN" connections (typically Yellow) then your device is a combination "Modem\Router" and we can use this to support either an "**Access Point**" or "**Wireless Bridge**".
+  * If you are not connecting through a traditional ISP you will not have one of these devices.
+
+The second device will be the new LEDE device.  We want to determine if the current firmware is the original vendor supplied firmware (often called "stock", "factory", or "vendor" firmware), LEDE firmware,  OpenWrt firmware or some other 3rd party firmware.  Some routers may include versions of OpenWrt. 
+
+  * If you have a new device, connect a Client PC directly to the Router and Login to the device, and check the "Branding" of the devices main page.  Consult your user manual or the bottom of the device for your login IP and credentials.
+  * If your device is already in service, Login to the device, and check the "Branding" of the devices main page.  
+
+  * If your device is running LEDE or OpenWrt you will see this in the header or footer of the main web page.  If you device is using LEDE or OpenWrt you will be performing a "**Sysupgrade Installation**" below.
+  * If your device is running "original" firmware, you should see some indications of the Brand name of your hardware on this page.  If your device has original firmware installed, you will be performing a "**Factory Upgrade Installation**"
+  * If you see any other names, including DD-WRT, Tomatoe, or Of Modems and Men //__read this__//.
+  * If you're not sure what you have, please ask on the Installing and Using LEDE category of the forum. Be sure to include the brand, model, and version of your router and other information about the device.
+The main page of your router should display basic information about your devices status and connections.  We want to identify the default Gateway IP or LAN IP address.  Record this value, which is typically a number like 192.168.1.1.
+
+==== 2 - Identify And Download The Correct Firmware For Your Device ====
+
+The LEDE [[toh/start|Table Of Hardware]] is a useful tool for finding information about your router. For each device in the table is a corresponding "Device Techdata" page with more detailed information on the hardware. This page includes links to the firmware for your device. To find your device, either scroll through the table or use the filters to more quickly find your device. Enter a value followed by the "enter" key.
+
+The last column is for "Device Techdata". Open the link "View/edit data". Please "Bookmark" the page - it has lots of good information about your router. 
+
+Check the "LEDE Supported Current Rel" to determine the version of firmware available for your device.  Most devices will have a numeric value (Currently 17.01) which indicates a "**Release**" version of firmware.  For some newer devices there will not yet be a Release version, in which case the value will be "**Snapshot**" 
+
+Next we will download the firmware from the Device Techdata page to your Client PC.  At the bottom of the page you will find two links: Firmware LEDE Install URL and Firmware LEDE Upgrade URL.  You should save the file to a local folder on your PC. 
+  * If you will be performing a "**Factory Upgrade Installation**", choose "**Firmware LEDE Factory URL**" link to download your firmware.  
+  * If you will be performing a "**Sysupgrade Installation**", choose the "**Firmware LEDE Sysupgrade URL**" link to download your firmware.
+
+**Note:** If you would like to validate the integrity of the firmware you have downloaded, please see this page //__Firmware Validation using HASH Values__//
+
+**Note:** If you don't find the information you need in the ToH or Device Pages/Techdata pages, see [[docs/guide-quick-start/alternate-directory-search|Alternative ways to find LEDE firmware images]].
+
+==== 3 - Go "Offline", Install And Perform Basic Configuration For Your New LEDE Router. ====
+
+At this point we suggest you go "Offline" and connect your Client PC via Ethernet to your router's LAN port.  This is important so as to minimize any issues transferring the file to the router.  In addition, once flashed, LEDE wireless is disabled by default so you will not have wireless access to the device.
+
+  - Turn off the Client PC and Router.
+  - Connect the Client PC to the Router's LAN port (typically yellow) with an Ethernet cable.
+  - Power on the router.
+  - After the routers lights stop flashing, power on the Client PC.  This step assures the PC will properly obtain an IP address.
+
+=== Choose your firmware and installation type ===
+--> Release Firmware#
+--> Factory Upgrade Installation#
+
+  - Log into the device's web interface.
+  - Locate the page for installing new firmware. 
+  - Follow the manufacturer's instructions for transferring/uploading/sending the image file (from Step 2) to the router.
+  - Wait while the router accepts the firmware image, burns it into its flash memory, and then reboots. This can take several minutes.  The progress indicators will vary from brand to brand.  The device may or may not state an expected time for this process. 
+  - If you do not see any confirmation after several minutes the router may have a new IP address.  If the IP address you determined earlier is NOT 192.168.1.1 then you may need to again reboot your PC or obtain a new IP address from the router. After refreshing the Client PC's IP address again try accessing the web GUI at 192.168.1.1.  If this still does not work, reboot both devices in the order noted at the beginning of this section.
+
+Congratulations! The new firmware has been installed.  
+
+Continue by selecting the appropriate Usage Scenario in the next section.
+
+If you still are unable to access the GUI post a comment to the [[https://forum.lede-project.org/c/general|Installing and Using LEDE]] section of the forum.
+<--
+
+--> Sysupgrade Installation#
+
+NOTE: If you have installed packages to your current LEDE or OpenWrt installation, these will be lost.  See this //__page__// for information on determining the packages you have installed and how to reinstall them after your upgrade.
+
+  - Log into the device's web interface. 
+  - Navigate to the **System => Backup\Flash Firmware** page
+  - Optional, but highly recommended: This is a good time to make a backup of the settings. It makes it easier to revert to the previous state. Click **“Generate Archive”** to save them on your computer.  The file will be saved with the name in the format "backup-LEDE-YYYY-MM-DD.tar.gz".
+  - Decide whether to **"Keep settings"** or start with a default configuration.  **NOTE**: LEDE offers you the option to retain your settings during an upgrade.  Please read this page if you are thinking about retaining your settings during the upgrade: //__Notes on "Keep Setting" link__//
+  - In the **"Flash new firmware image"** section, click **"Browse"** to select the image file (from Step 2). 
+  - Click **"Flash image..."** to begin the flashing process
+  - You will see a “Flash Firmware - Verify“ page which includes information about the image file you are about to install including Checksum values.  If you wish to verify your images integrity before proceeding, please see this page //__Firmware Validation using HASH Values__// 
+  - Click **“Proceed”**.
+  - You will see “System - Flashing …” along with a spinning wheel and “Waiting for changes to be applied…” It can take several minutes while the router accepts the firmware image, burns it into its flash memory, and then reboots. After the Flash process is complete, you should be taken to the LEDE Login Page.
+  - If you do not see any confirmation after several minutes the router may have a new IP address.  If the IP address you determined earlier is NOT 192.168.1.1 then you may need to again reboot your PC or obtain a new IP address from the router. After refreshing the Client PC's IP address again try accessing the web GUI at 192.168.1.1.  If this still does not work, reboot both devices in the order noted at the beginning of this section.
+
+Congratulations! The new firmware has been installed.  
+
+Continue by selecting the appropriate Usage Scenario in the next section.
+
+If you still are unable to access the GUI post a comment to the [[https://forum.lede-project.org/c/general|Installing and Using LEDE]] section of the forum.
+<--
+<--
+--> Snapshot Firmware#
+--> Factory Upgrade Installation#
+__**Requires Testing**__
+You will need to use an SSH client to complete the following instructions.  Linux distributions typically will include this tool, however Windows users may need to download the [[http://www.putty.org/|Putty]] client or other similar tool.
+  - Log into the device's web interface.
+  - Locate the page for installing new firmware. 
+  - Follow the manufacturer's instructions for transferring/uploading/sending the image file (from Step 2) to the router.
+  - Wait while the router accepts the firmware image, burns it into its flash memory, and then reboots. This can take several minutes.  The progress indicators will vary from brand to brand.  The device may or may not state an expected time for this process. 
+  - There will not be a clear indication that the firmware flash process is complete or successful as the Snapshot firmware does not have a web gui to reload.  One indicator that the process is complete is that the devices LEDs have stopped flashing.  
+  - The router may have a new IP address.  If the IP address you determined earlier is NOT 192.168.1.1 then you may need to again reboot your PC or obtain a new IP address from the router. If this still does not work, reboot both devices in the order noted at the beginning of this section.
+  - Use an SSH client and login to your router at **192.168.1.1** (user:root)
+  - Set a new password for your device by issuing the command **passwd** and follow the prompts on screen to set a password.  For your security we advocate configuring a strong password. 
+  - Collect the latest list of packages from the LEDE repository with the command **opkg update**
+  - Install the GUI (LuCi) with the command **opkg install luci**
+  - In your web browser, navigate to:  192.168.1.1
+  - At the login prompt, enter the password you set above.
+
+Congratulations! The new firmware has been installed and you have installed the LuCi GUI.  You are now at a functional equivalent of the LEDE Release firmware, however we suggest you read this //__Information on Packages for your Development Release Version of Firmware__//
+
+Continue by selecting the appropriate Usage Scenario in the next section.
+
+If you still are unable to access the GUI post a comment to the [[https://forum.lede-project.org/c/general|Installing and Using LEDE]] section of the forum.
+<--
+--> Sysupgrade Installation#
+__**Requires Testing**__
+You will need to use an SSH client to complete the following instructions.  Linux distributions typically will include this tool, however Windows users may need to download the [[http://www.putty.org/|Putty]] client or other similar tool.
+  - Log into the device's web interface. 
+  - Navigate to the **System => Backup\Flash Firmware** page
+  - Optional, but highly recommended: This is a good time to make a backup of the settings. It makes it easier to revert to the previous state. Click **“Generate Archive”** to save them on your computer.  The file will be saved with the name in the format "backup-LEDE-YYYY-MM-DD.tar.gz".
+  - Decide whether to **"Keep settings"** or start with a default configuration.  **NOTE**: LEDE offers you the option to retain your settings during an upgrade.  Please read this page if you are thinking about retaining your settings during the upgrade: //__Notes on "Keep Setting" link__//
+  - In the **"Flash new firmware image"** section, click **"Browse"** to select the image file (from Step 2). 
+  - Click **"Flash image..."** to begin the flashing process
+  - You will see a “Flash Firmware - Verify“ page which includes information about the image file you are about to install including Checksum values.  If you wish to verify your images integrity before proceeding, please see this page //__Firmware Validation using HASH Values__// 
+  - Click **“Proceed”**.
+  - You will see “System - Flashing …” along with a spinning wheel and “Waiting for changes to be applied…” It can take several minutes while the router accepts the firmware image, burns it into its flash memory, and then reboots. 
+  - There will not be a clear indication that the firmware flash process is complete or successful as the Snapshot firmware does not have a web gui to reload.  One indicator that the process is complete is that the devices LEDs have stopped flashing.  
+  - The router may have a new IP address.  If the IP address you determined earlier is NOT 192.168.1.1 then you may need to again reboot your PC or obtain a new IP address from the router. If this still does not work, reboot both devices in the order noted at the beginning of this section.
+  - Use an SSH client and login to your router at **192.168.1.1** (user:root)
+  - Set a new password for your device by issuing the command **passwd** and follow the prompts on screen to set a password.  For your security we advocate configuring a strong password. 
+  - Collect the latest list of packages from the LEDE repository with the command **opkg update**
+  - Install the GUI (LuCi) with the command **opkg install luci**
+  - In your web browser, navigate to:  **192.168.1.1**
+  - At the login prompt, enter the password you set above.
+
+Congratulations! The new firmware has been installed and you have installed the LuCi GUI.  You are now at a functional equivalent of the LEDE Release firmware, however we suggest you read this //__Information on Packages for your Development Release Version of Firmware__//
+<--
+
+=== Choose your Usage Scenario ===
+
+--> LEDE Router#
+
+Before putting your new LEDE router into service, there are a few settings you should configure.  
+
+
+**Password**
+You will be prompted at the Login Screen to set a password.  
+
+**NOTE:** Clear the existing content from the first Password box before entering your new password.
+  - Click the **"Login"** button to be taken to Status screen.
+  - Click the **"Go to password configuration..."** link to be taken to the **System => Administration** page to set your password.
+  - Enter your password in the **"Password"** box and again in the **"Confirmation"** box.
+  - Select the **"Save & Apply"** button.
+
+For your security we advocate configuring a strong password.  
+https://en.wikipedia.org/wiki/Password_strength#Guidelines_for_strong_passwords
+
+**TimeZone** Set the time Zone for your router to see the local time correctly.
+
+  -   Follow the path **"System => System"**  In the **General Settings tab** use the **"Timezone"** Dropdown
+  -   Select a Time Zone
+  -   Select the **"Save & Apply"** button.
+
+**Default LAN IP Address:**  The default LAN Ip address is 192.168.1.1.  This IP address is used by may manufactures as the default IP address for their device.  While in most cases it is safe to use this for at home, it is good practice to change this to another subnet.  This makes it more difficult for hackers to access your network.  For users of travel devices, this will reduce potential conflicts with other networks.
+
+  - Follow the path **"Network => Interfaces"**.
+  - Select the Green LAN interface's **"Edit"** button. 
+  - In the section **Common Configuration**, on the **General Setup tab** you will find the **IPv4 address** field .
+  - Enter your new **IP address** and if needed **subnet mask**.
+  - Select the **"Save & Apply"** button.
+
+**NOTE:** If you change your IP address you should receive some type of failed connection message.  The browser's URL is no longer valid.  Enter the new IP Address in your browser and try again.
+
+For help in choosing a valid IP address see this [[https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces|article]].
+
+
+**Configure your Wireless AP (Optional):** Your devices Wireless, if included, is disabled by default.  When enabled, there is no security on the default SSID.  The default SSID is LEDE and is Mode: Master.  
+
+  - Follow the path **"Network => Wireless"**. 
+  - Select the **"Edit"** button next to the **LEDE SSID**
+  - In the **Device Configuration => General Setup tab**, Select the Green **"Enable"** button next to the **"Wireless network is disabled"** text to enable the devices wireless connections.
+  - In the **Interface Configuration tab => General Setup** update the **ESSID** field with the name for your Wireless AP connection (WLAN side)
+  - Select the **Wireless Security Tab** and select your desired Encryption method (NOTE: WEP is not recommended).  Enter a Key value of at least 8 characters.
+  - Select the **"Save & Apply"** button.
+
+You have now completed the minimum suggested configuration for your device to be safely connected to the internet, but lets test things first.
+
+**Reboot your router.**
+
+    - System => Reboot
+  -  Select the "Perform Reboot" button.
+
+NOTE: If you changed the default IP address of your router you will need to refresh the IP of your Client PC to be able to connect after rebooting.
+
+Login to your Router at your IP Address.  You will be brought to the System => Status page after logging in.  The Network Section will verify your current network settings.  
+
+Navigate to your Wireless configuration 
+
+  * Network => Wireless
+
+Now attempt to connect to your new AP with a wireless client.
+
+**NOTE:** You should see indications of the wireless connection functioning on this page in both the "Wireless Overview's" signal strength indicator and an entry in the "Associated Stations" section. You will not have internet access, but should have LAN access.
+
+Congratulations, it's now time to "Go Live".
+
+**4 - Replace Your Existing Hardware With Your New LEDE Router.**
+
+It's now time to reconfigure your new network.
+**NOTE:** Power cycling your hardware is the easiest way to assure you get an appropriate IP from the router.
+
+  - Turn off your hardware and reconnect your LEDE Router to your ISP's hardware.
+  - Connect the ISP's modem to the WAN port of your new LEDE Router (Typically Blue).  
+  - Connect your clients to the LAN ports (Typically Yellow).
+  - Reboot the router and wait for the LEDs to stop flashing, typically 1-2 minutes.
+  - Reboot your client PCs and other network devices.
+
+If all is well you should have internet access.  Otherwise post a question to the [[https://forum.lede-project.org/c/general|Installing and Using LEDE]] section of the forum.
+
+Congratulations! Your device is now a fully operational LEDE Router!
+
+For more advance configuration you can goto the [[docs/user-guide/start|LEDE User Guide]].
+<--
+
+
+--> LEDE Dumb AP#
+__**Requires Testing**__
+This configuration guide will help you configure your LEDE device as a Wired or Dumb Access Point (AP).  The term "Dumb" refers to the fact that we will be disabling much of the "router" functionality.  This functionality will be performed by your primary device, which is probably a ISP supplied Modem-Router unit.  You may see about 4 yellow LAN ports on the devices back panel.
+
+If you have not already done so, we need to determine your devices IP address.  This is the IP address one typically enters into the browser.  You may be able to find this on the bottom of the devcie, from the user manual or from your ISP.  If you connect to your device with some type of "friendly name" like http:\\myrouter.com, then you will need to login to your device.  You can usually find this information on the device main page.  It is frequently 192.168.1.1 or very similar.
+
+Please note that your starting point for this guide has your Client PC connected to the LAN port of your freshly flashed LEDE Router.
+
+Login to your LEDE router at 192.168.1.1
+
+Before putting your new LEDE wired AP into service, there are some configuration changes and settings to configure.  
+
+**Password**
+You will be prompted at the Login Screen to set a password.  
+
+**NOTE:** Clear the existing content from the first Password box before entering your new password.
+  - Click the **"Login"** button to be taken to Status screen.
+  - Click the **"Go to password configuration..."** link to be taken to the **System => Administration** page to set your password.
+  - Enter your password in the **"Password"** box and again in the **"Confirmation"** box.
+  - Select the **"Save & Apply"** button.
+
+For your security we advocate configuring a strong password.  
+https://en.wikipedia.org/wiki/Password_strength#Guidelines_for_strong_passwords
+
+**TimeZone** Set the time Zone for your router to see the local time correctly.
+
+  -   Follow the path **"System => System"**  In the **General Settings tab** use the **"Timezone"** Dropdown
+  -   Select a Time Zone
+  -   Select the **"Save & Apply"** button.
+
+**Default LAN IP Address:**  We need to change the default address of your device to one that is in the same subnet as that of your primary device.  If your primary device has an IP address of 192.168.1.1 then we will suggest that you make your AP 192.168.1.2, an increment of 1 over that of the primary device. The exact value is not important as long as it is in the same subnet, different than the primary device and no higher than 254.
+
+  - Follow the path **"Network => Interfaces"**.
+  - Select the Green LAN interface's **"Edit"** button. 
+  - In the section **Common Configuration**, on the **General Setup tab** you will find the **IPv4 address** field .
+  - Enter your new **IP address** and if needed **subnet mask** which is usually 255.255.255.0.
+  - In the same section, **"IPv4 gateway"**, enter the IP address for your primary device (from above 192.168.1.1).
+  - In the same section, **"Use custom DNS servers"**, enter the IP address for your primary device (from above 192.168.1.1).
+  - Select the **"Save & Apply"** button.
+
+**NOTE:** If you change your IP address you should receive some type of failed connection message.  The browser's URL is no longer valid.  Enter the new IP Address in your browser and try again.
+
+For help in choosing a valid IP address see this [[https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces|article]].
+
+**Disable DHCP and the Firewall:** In this section we will make your device "Dumb".
+
+  - Follow the path **"System => Reboot"** and select the **"Perform Reboot" button to reboot the AP.
+  - Log back in to your AP at the new IP address and using the password you created above
+  - Follow the path **"Network => Interfaces"**.
+  - Select the Green LAN interface's **"Edit"** button. 
+  - In the **"DHCP Server"** section, **"General Setup"**, check the box **"Ignore Interface"**
+  - Select the **"Save & Apply"** button.
+  - Follow the path **"System => Startup"**.
+  - Locate the entry for the **"Firewall"** and clcik the **"Enabled"** button to set the Firewall to Disabled.
+  - Follow the path **"System => Reboot"** and select the **"Perform Reboot" button to reboot the AP.
+  - Log back in to your AP at the new IP address and using the password you created above
+  - Follow the path **"Network => Interfaces"** and confirm your settings.
+  - Follow the path **"System => Startup"** and confirm your Firewall settings.
+  - Power off your AP and connect one of the AP's LAN ports to one of your primary devices LAN ports.
+  - Power on your AP
+  - Test that you can access the internet with a wired client
+
+**Configure your Wireless AP :** Your devices Wireless, if included, is disabled by default.  When enabled, there is no security on the default SSID.  The default SSID is LEDE and is Mode: Master.  
+
+  - Follow the path **"Network => Wireless"**. 
+  - Select the **"Edit"** button next to the **LEDE SSID**
+  - In the **Device Configuration => General Setup tab**, Select the Green **"Enable"** button next to the **"Wireless network is disabled"** text to enable the devices wireless connections.
+  - In the **Interface Configuration tab => General Setup** update the **ESSID** field with the name for your Wireless AP connection (WLAN side)
+  - Select the **Wireless Security Tab** and select your desired Encryption method (NOTE: WEP is not recommended).  Enter a Key value of at least 8 characters.
+  - Select the **"Save & Apply"** button.
+
+You should now be able to connect a wireless client to your new AP and access the internet.
+<--
+--> LEDE Repeater Bridge#
+Future Content
+<--
+--> LEDE Travel Router#
+__**Requires Testing**__
+Before putting your new LEDE router into service, there are a few settings you should configure.  
+
+
+
+Travel Routers typically come with either one or two Ethernet ports.  The instructions below are focused on those with a single Ethernet port, however should also work similarly for two port devices. Single port devices will only have a LAN interface configured.  Dual port devices will have both LAN and WAN interfaces configured.  For both types of devices you will want to configure a WISP\Hotspot connection often referred to as a Station to gain wireless internet access.  Dual port devices will also function by connecting an Ethernet cable between the WAN port and a LAN port.  as noted below, please change your devices default IP address to one less likely to cause a conflict with your host network.
+
+**Password**
+You will be prompted at the Login Screen to set a password.  
+
+**NOTE:** Clear the existing content from the first Password box before entering your new password.
+  - Click the **"Login"** button to be taken to Status screen.
+  - Click the **"Go to password configuration..."** link to be taken to the **System => Administration** page to set your password.
+  - Enter your password in the **"Password"** box and again in the **"Confirmation"** box.
+  - Select the **"Save & Apply"** button.
+
+For your security we advocate configuring a strong password.  
+https://en.wikipedia.org/wiki/Password_strength#Guidelines_for_strong_passwords
+
+**TimeZone** Set the time Zone for your router to see the local time correctly.
+
+  -   Follow the path **"System => System"**  In the **General Settings tab** use the **"Timezone"** Dropdown
+  -   Select a Time Zone
+  -   Select the **"Save & Apply"** button.
+
+**Default LAN IP Address:**  The default LAN Ip address is 192.168.1.1.  This IP address is used by may manufactures as the default IP address for their device.  While in most cases it is safe to use this for at home, it is good practice to change this to another subnet.  This makes it more difficult for hackers to access your network.  For users of travel devices, this will reduce potential conflicts with other networks.
+
+  - Follow the path **"Network => Interfaces"**.
+  - Select the Green LAN interface's **"Edit"** button. 
+  - In the section **Common Configuration**, on the **General Setup tab** you will find the **IPv4 address** field .
+  - Enter your new **IP address** and if needed **subnet mask**.
+  - Select the **"Save & Apply"** button.
+
+**NOTE:** If you change your IP address you should receive some type of failed connection message.  The browser's URL is no longer valid.  Enter the new IP Address in your browser and try again.
+
+For help in choosing a valid IP address see this [[https://en.wikipedia.org/wiki/Private_network#Private_IPv4_address_spaces|article]].
+
+**Configure your Wireless AP (Optional):** Your devices Wireless, if included, is disabled by default.  When enabled, there is no security on the default SSID.  The default SSID is LEDE and is Mode: Master.  
+
+  - Follow the path **"Network => Wireless"**. 
+  - Select the **"Edit"** button next to the **LEDE SSID**
+  - In the **Device Configuration => General Setup tab**, Select the Green **"Enable"** button next to the **"Wireless network is disabled"** text to enable the devices wireless connections.
+  - In the **Interface Configuration tab => General Setup** update the **ESSID** field with the name for your Wireless AP connection (WLAN side)
+  - Select the **Wireless Security Tab** and select your desired Encryption method (NOTE: WEP is not recommended).  Enter a Key value of at least 8 characters.
+  - Select the **"Save & Apply"** button.
+  - You will be returned to the "Wireless Overview" window.  
+
+**Configure a WWAN connection to a WISP\Hotspot for Internet Access:**
+  - Follow the path **"Network=> Wireless => Scan"**
+  - Select the **"Join Network"** button for the desired WWAN side connection
+  - **IMPORTANT:** Make sure that the **"Replace wireless configuration"** Checkbox is unchecked (OFF)
+  - Enter the passphrase for the connection in the **"WPA passphrase"** box
+  - The system will offer to create a new "wan" network (interface) and assign it to the "wan" firewall zone.  Accept this by clicking the **"Submit"** button.
+  - You will be taken to a second screen for the device configuration.  All the important parameters, other than the passphrase which you have just entered, were imported for you when you selected the "Join Network" button.  No other changes should be required.
+  - Select the **"Save & Apply"** button to finish creating your WWAN connection.
+  - You will be returned to the "Wireless Overview" window.  Here you should now see both a Master (your WLAN AP) and a Client (your WWAN WISP).
+
+Confirm internet connectivity: Go to any web page, such as https://google.com - it should work as expected.
+
+If you cannot connect to the internet, review the steps at Troubleshooting Internet Connectivity.
+
+You have now completed the minimum suggested configuration for your device to be safely connected to the internet, but lets test things first.
+
+**Reboot your router.**
+
+    - System => Reboot
+  -  Select the "Perform Reboot" button.
+
+NOTE: If you changed the default IP address of your router you will need to refresh the IP of your Client PC to be able to connect after rebooting.
+
+Login to your Router at your IP Address.  You will be brought to the System => Status page after logging in.  The Network Section will verify your current network settings.  
+
+Navigate to your Wireless configuration 
+
+  * Network => Wireless
+
+Now attempt to connect to your new AP with a wireless client.
+
+**NOTE:** You should see indications of the wireless connection functioning on this page in both the "Wireless Overview's" signal strength indicator and an entry in the "Associated Stations" section. You will not have internet access, but should have LAN access.
+
+Congratulations, you should now be on the internet.
+
+For more advance configuration you can goto the [[docs/user-guide/start|LEDE User Guide]].
+<--
+--> 3G\4G Modem#
+Future Content
+<--
+
+==== 4 - Replace Your Existing Hardware With Your New LEDE Router. ====
+NOTE: This section has been moved inside the section above for Router where it is config specific.
+Unfortunately the expand\collapse tools do not support Headers and the sizing of fonts is poor.  Also does not support HTML tags.
+This section should be removed, but is left for formatting help.
+
+==== Optional Next Steps ====
+
+
+
+Once the device is working, you can look through the User Guide for ways to customize the device, or use any of these tips:
+
+Install USB for access to your USB devices and use extroot
+Install VPN tools for secure communications
+Install SQM Software for managing bufferfloat
+Install other packages from the System → Software page. Useful packages are snmpd, netperf, and any of your favorites.
+See the [[docs/user-guide/start|User Guide]] for more information and help
+
+==== Why We Require 8 MBytes of Flash ====
+
+
+This procedure is designed to work every time and create a fully-functional router, with GUI and a standard set of packages/capabilities. Routers with 4 MBytes (or less) of Flash work, but usually require a firmware rebuild to include any additional packages you need. Those instructions are outside the scope of this procedure.
+
+If you are purchasing a new router to use with LEDE, we strongly recommend getting one with at least 8 MBytes of Flash memory, and 64 MBytes of RAM to ease installation, and to provide some measure of ability to expand in the future.
+
+If you wish to install LEDE on a device with less than 8/64 MBytes Flash/RAM, please ask for help on the [[https://forum.lede-project.org/c/general|Installing and Using LEDE]] category of the forum.
+
+

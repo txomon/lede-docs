@@ -1,0 +1,39 @@
+====== 패키지 ======
+~~NOTOC~~
+~~NOSIDEBAR~~
+
+LEDE는 장치의 기능을 확장하기 위해 수천개의 패키지를 제공합니다. \\
+
+이 페이지는 LEDE 17.01에서 사용 가능한 패키지들의 목록입니다.
+
+===== 패키지 목차 =====
+사용 가능한 패키지의 간략한 개요는 **[[packages:index:start|패키지 목차]]**에서 확인할 수 있습니다.
+
+===== 패키지 분류 =====
+패키지 분류를 클릭하면 **패키지 테이블**이 필터링되지만 직접 수동으로 필터링 할 수도 있습니다.\\
+
+++++Filter by category|
+---- datacloud ----
+col        : Categoriess
+filter     : %class%=packages
+summarize  : 1
+----
+++++
+===== 패키지 테이블 =====
+아래 표는 성능상의 이유로 한 페이지에 50개의 패키지만 출력합니다.\\
+
+  * 왼쪽 밑에 있는 "next page" 또는 "previous page"를 클릭하면 다음 또는 이전의 50개의 패키지를 출력합니다.
+  * 테이블 제일 위의 열 명을 클릭하면 **그 열을 기준으로 정렬됩니다.** 
+  *  <color black/white>'' 흰색 창''</color>에 필터 기준을 입력하세요.
+
+아래 표에서 패키지 이름을 클릭하면 해당 패키지의 문서가 있는 페이지로 이동합니다. 없는 경우 자유롭게 추가할 수 있습니다.
+---- datatable ----
+cols       : Categoriess, Name_pkg-page, Version-short, Dependencies_pkg-dependencies, Description_wiki, LEDE releases_lede-release, File size_pkg-filesize, Installed size_pkg-filesize, License, Maintainer_pkg-maintainer, Bug report_wiki, Source code_wiki
+header     : Category, Name, Version, Dependencies, ...........................................Description..........................................., LEDE release, File size, Installed size, License, Maintainer, Bug report, Source code
+align      : l,l,l,l,l,l,l,l,l,l,l,c,c
+filter     : %class%=packages
+max        : 50
+dynfilters : 1
+sort       : Name
+----
+

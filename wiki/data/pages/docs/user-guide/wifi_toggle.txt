@@ -1,0 +1,60 @@
+===== Wifi on/off buttons =====
+
+Quite a bit of devices come with at least one button (apart from the omnipresent reset/recovery button, which isn't convenient to press), which in the stock firmware is used for WPS, toggling wifi, or whatever, and on LEDE is not usually connected to any function.\\
+
+In this article we will install and configure a package called **wifitoggle**, which allows us to configure one of such buttons as a wifi on/off (toggle) button.
+
+==== Setup steps ====
+  * This package lacks a graphical interface so for the setup we will need to connect to the LEDE device using SSH (remote terminal).
+  * Install **wifitoggle** package with ''opkg update && opkg install wifitoggle''
+  * see the new uci configuration for it ''uci show wifitoggle'', you will see something like this 
+<code>root@LEDE:~# uci show wifitoggle
+wifitoggle.@wifitoggle[0]=wifitoggle
+wifitoggle.@wifitoggle[0].button='wps'
+wifitoggle.@wifitoggle[0].timer='600'
+wifitoggle.@wifitoggle[0].persistent='0'
+wifitoggle.@wifitoggle[0].led_enable_trigger='timer'
+wifitoggle.@wifitoggle[0].led_enable_delayon='500'
+wifitoggle.@wifitoggle[0].led_enable_delayoff='500'
+wifitoggle.@wifitoggle[0].led_disable_default='0'
+</code>
+  * Do any customizations to the configuration and then save the changes with ''uci commit''
+
+==== Wifitoggle uci section ====
+The ''wifitoggle'' section contains these settings:
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''button'' | String | yes | wps | internal name of the button to use. Usually the internal name is similar to what the button did in stock firmware. See notes below this table. |
+| ''persistent'' | Boolean | yes | 0 | Commit changes to wireless config file, persistent after reset. Always 0 if Timer enabled |
+| ''timer'' | Integer | yes | 600 | Seconds for wifi to be turned off, 0 for no timer |
+| ''led_sysfs'' | String | no | none | Led to use, see [[docs:user-guide:led_configuration|Led configuration]] for possible values |
+| ''led_enable_trigger'' | String | yes | timer | led trigger name, see [[docs:user-guide:led_configuration|Led configuration]] for other possible led trigger names |
+| ''led_enable_delayon'' | Integer | yes | 500 | Milliseconds to turn led on after button pressed |
+| ''led_enable_delayoff'' | Integer | yes | 500 | Milliseconds to turn led off after button pressed |
+| ''led_disable_default'' | Boolean | yes | 0 | Led state for wifi disabled, 1 to turn it off if wifi is off |
+
+:!: Common internal names for button (by searching through the source code) are: 
+  * **wps** = wifi protected service, most likely to be free in LEDE and also default in wifitoggle
+  * **wlan** = used for buttons that toggle wifi on/off in stock firmware 
+  * **rfkill** = also used for buttons that toggle wifi on/off in stock firmware
+  * **wifi** = also used for buttons that toggle wifi on/off in stock firmware, yes there is a bit of creativity going on.
+  * **power** = used to power up some devices, may be bound already to system shutdown function
+  * **help** = unknown, but I see it in the source code of some devices
+  * **phone** = unknown, but I see it in the source code of some devices
+  * **BTN_0** = unknown, but I see it in the source code of some devices
+  * **BTN_1** = unknown, but I see it in the source code of some devices
+  * **ses** = cisco services button
+  * **reset** = the reset button, usually already bound to system restart function
+
+:!: [[docs:user-guide:hotplug_lede#finding_the_internal_name_of_hardware_buttons|Here's]] a way to identify the internal name of your button if just trying the above list blindly does not work.
+
+==== Wifi disable after boot ====
+If you like to have wifi disabled after power on, set it disabled by default and then set wifitoggle to NOT save wifi state changes to permanent memory (so that whatever the state was on reboot it would reset to disabled) with the following line:\\
+''uci set wireless.@wifi-device[0].disabled=1 && uci set wifitoggle.@wifitoggle[0].persistent=0''
+
+Or add this line to **/etc/rc.local** or in Startup (Luci System - Startup): 
+''uci set wireless.@wifi-device[0].disabled=1 && wifi''
+
+==== Behind-the-scenes info for additional tweaking ==== 
+This package drops a script called **50-wifitoggle** into **/etc/hotplug.d/button** and this script relies on the LEDE [[docs:user-guide:hotplug_lede|Hotplug]] infrastructure to be called when you press the button.\\
+The other component of its package is the uci configuration file to integrate it with the uci system.
+See the source [[https://github.com/openwrt/packages/tree/master/utils/wifitoggle|here]]

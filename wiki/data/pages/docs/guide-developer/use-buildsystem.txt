@@ -1,0 +1,293 @@
+====== Build system – Usage ======
+:!: Do everything as normal user, don't use root user or sudo!\\ 
+:!: Do not build in a directory that has spaces in its full path\\ 
+write all command line commands for build system commands in a terminal window opened in the ''<buildsystem root>'' directory, e.g. ''~/source/'' if you wrote the **git clone** command in your home folder (default terminal location)\\ 
+
+  - Update the sources.
+  - Update and install package feeds.
+  - Configure the firmware image you want to obtain.
+  - Start the build. (automatically compile toolchain, cross-compile sources, package packages, and generate an image ready to be flashed).
+  - Proceed with the firmware flashing instructions: [[docs:guide-quick-start:factory_installation|Factory install]] or [[docs:guide-quick-start:sysupgrade.luci|Sysupgrade]]
+===== Updating Sources with Git =====
+:!: Sources in development branch change frequently. It is recommended that you work with the latest sources.
+
+<code>
+git pull
+</code>
+
+===== Updating Feeds =====
+:!: //Installing// in context of ''./scripts/feeds'' script means "making package available in ''make menuconfig''" rather than really installing or compiling package.\\ 
+Also, after you have been developing for a while, and your copy of the repository is getting behind, running "feeds update -a" will pull the latest updates for the feeds.
+
+  - Update feeds: <code>./scripts/feeds update -a</code>
+  - Make downloaded package/packages available in ''make menuconfig'':
+    * single package:<code>./scripts/feeds install <PACKAGENAME></code>
+    * all packages:<code>./scripts/feeds install -a</code>
+
+
+===== Image Configuration =====
+
+Typical actions:
+  - run ''make menuconfig'' and set target;
+  - run ''make defconfig'' to set default config for build system and device;
+  - run ''make menuconfig'' and modify set of package;
+  - run ''scripts/diffconfig.sh >mydiffconfig'' (save your changes in the text file ''mydiffconfig'');
+
+==== Make menuconfig ====
+The **build system configuration interface** handles the selection of the target platform, packages to be compiled, packages to be included in the firmware file, some kernel options, etc. \\ 
+Start the build system configuration interface by writing the following command:\\
+<code>
+make menuconfig
+</code>
+
+This will update the dependencies of your existing configuration automatically, and you can now proceed to build your updated images. 
+
+You will see a list of options.  This list is really the top of a tree.  You can select a list item, and descend into its tree.
+
+To search for the package or feature in the tree, you can type the "/" key, and search for a string.  This will give you its locations within the tree.
+
+For most packages and features, you have three options:
+''y'', ''m'', ''n'' which are represented as follows:
+  * pressing ''**y**'' sets the ''**<*>**'' built-in label\\ This package will be compiled and included in the firmware image file.
+  * pressing ''**m**'' sets the ''**<M>**'' package label\\ This package will be compiled, but **not** included in the firmware image file. (E.g. to be installed with ''[[docs:techref:opkg]]'' after [[docs:howto:generic.flashing|flashing]] the firmware image file to the device.)
+  * pressing ''**n**'' sets the ''**< >**'' excluded label\\ The source code will not be processed.
+
+When you save your configuration, the file **''<buildroot dir>/.config''** will be created according to your configuration.
+
+
+When you open ''menuconfig'' you will need to set the build settings in this order (also shown in this order in ''menuconfig'''s interface):
+
+  - Target system (general category of similar devices)
+  - Subtarget (subcategory of Target system, grouping similar devices)
+  - Target profile (each specific device)
+  - Package selection
+  - Build system settings
+  - Kernel modules
+
+Select your device's **Target system** first, then select the right **Subtarget**, then you can find your device in the **Target profile**'s list of supported platforms.\\ 
+
+==== Kernel configuration (optional)====
+Note that ''make kernel_menuconfig'' modifies the Kernel configuration templates of the build tree and clearing the build_dir will not revert them:
+
+While you won't typically need to do this, you can do it:
+<code>
+make kernel_menuconfig CONFIG_TARGET=subtarget
+</code>
+CONFIG_TARGET allows you to select which config you want to edit. possible options: target, subtarget, env.
+
+The changes can be reviewed with
+<code>
+git diff target/linux/
+</code>
+and reverted with 
+<code>
+git checkout target/linux/
+</code>
+
+
+=== Source Mirrors ===
+The 'Build system settings' include some efficient options for changing package locations which makes it easy to handle a local package set:
+
+  - Local mirror for source packages
+  - Download folder
+
+In the case of the first option, you simply enter a full URL to the HTTP or FTP server on which the package sources are hosted. Download folder would in the same way be the path to a local folder on the build system (or network). If you have a web/ftp-server hosting the tarballs, the build system will try this one before trying to download from the location(s) mentioned in the Makefiles . Similar if a local 'download folder', residing on the build system, has been specified. 
+
+The 'Kernel modules' option is required if you need specific (non-standard) drivers and so forth – this would typically be things like modules for USB or particular network interface drivers etc.
+
+==== Configure using config diff file ====
+Beside ''make menuconfig'' another way to configure is using a configuration diff file. This file includes only the changes compared to the default configuration. A benefit is that this file can be version-controlled in your downstream project. It's also less affected by upstream updates, because it only contains the changes. 
+
+=== Creating diff file ===
+This file is created using the ''./scripts/diffconfig.sh'' script. 
+<code>
+./scripts/diffconfig.sh > diffconfig # write the changes to diffconfig
+</code>
+
+Note: Since r2752 LEDE firmware make process automatically creates the configuration diff file ''config.seed'' file to the target image directory.
+
+=== Using diff file ===
+These changes can form the basis of a config file (''<buildroot dir>/.config''). By running ''make defconfig'' these changes will be expanded into a full config. 
+<code>
+cp diffconfig .config   # write changes to .config
+make defconfig   # expand to full config
+</code>
+
+These changes can also be added to the bottom of the config file (''<buildroot dir>/.config''), by running ''make defconfig'' these changes will override the existing configuration.
+<code>
+cat diffconfig >> .config   # append changes to bottom of .config
+make defconfig   # apply changes
+</code>
+
+==== Patches ====
+The build system integrates //[[wp>Quilt (software)|quilt]]// for easy patch management:\\
+
+==== Custom files ====
+In case you want to include some custom configuration files, the correct place to put them is:
+  * **''<buildroot dir>/files/''**
+
+For example, let's say that you want an image with a custom **''/etc/config/firewall''** or a custom **''etc/sysctl.conf''**, then create this files as:
+  * ''**<buildroot dir>/files/**etc/config/firewall''
+  * ''**<buildroot dir>/files/**etc/sysctl.conf''
+
+E.g. if your <buildroot dir> is ''~/source'' and you want some files to be copied into firmware image's ''/etc/config'' directory, the correct place to put them is ''~/source/files/etc/config'' . 
+
+==== Defconfig ====
+<code>
+make defconfig
+</code>
+will produce a default configuration of the target device and build system, including a check of dependencies and prerequisites for the build environment.
+ 
+===== Building Images =====
+Everything is now ready for building the image(s), which is done with one single command:
+
+<code>
+make
+</code>
+
+==== Make Tips ====
+
+''make -j''**X** will speed up compilation by using up to **X** cores or hardware threads to speed up compilation, ''make -j9'' fully uses 8 cores or hardware threads.
+
+=== Building in the background ===
+If you intend to use your system while building, you can have the build process use only idle I/O and CPU capacity like this (dualcore CPU):
+
+<code>
+ionice -c 3 nice -n19 make -j2
+</code>
+
+=== Building single Packages ===
+When developing or packaging software, it is convenient to be able to build only the package in question (e.g. with package ''cups''):
+
+<code>
+make package/cups/compile V=s
+</code>
+
+For a rebuild:
+<code>
+make package/cups/{clean,compile,install} V=s
+</code>
+
+It doesn't matter what feed the package is located in, this same syntax works for any installed package.
+
+=== Spotting build errors ===
+If for some reason the build fails, the easiest way to spot the error is to do:
+
+<code>
+make V=s 2>&1 | tee build.log | grep -i error
+</code>
+
+The above saves a full verbose copy of the build output (with stdout piped to stderr) in ''~/source/build.log'' and only shows errors on the screen.
+
+Another example:
+
+<code>
+ionice -c 3 nice -n 20 make -j 2 V=s CONFIG_DEBUG_SECTION_MISMATCH=y 2>&1 | tee build.log | egrep -i '(warn|error)'
+</code>
+
+The above saves a full verbose copy of the build output (with stdout piped to stderr) in build.log and outputs only warnings and errors while building using only background resources on a dual core CPU.
+
+Yet another way to focus on the problem without having to wade through tons of output from Make as described above is to check the corresponding log in 'logs' folder.
+i.e.: if the build fails at "make[3] -C package/kernel/mac80211 compile", then you can go to <buildroot>/logs/package/kernel/mac80211 and view the compile.txt found there.
+
+=== Getting beep notification ===
+Depending on your CPU, the process will take a while, or while longer. If you want an acoustic notification, you could use ''echo -e '\a''':
+
+<code>
+make V=s ; echo -e '\a'
+</code>
+
+=== Skipping failed packages ===
+If you are building everything (not just the packages to make a flashable image), you will probably want to keep building all packages even if some have compile errors and won't be built. 
+<code>
+IGNORE_ERRORS=1 make <make options>
+</code>
+===== Locating Images =====
+After a successful build, the freshly built image(s) can be found below the newly created ''<buildroot_dir>/bin'' directory. The compiled files are additionally classified by the target platform and subtarget, so e.g. a ''generic'' firmware built for an ''ar71xx'' device will be located in ''<buildroot_dir>/bin/targets/ar71xx/generic'' directory (and the package files are below ''<buildroot_dir>/bin/packages/mips_24kc'').
+
+E.g. if your <buildroot_dir> is ''~/source'', the binaries are in ''~/source/bin/targets/ar71xx/generic'' and ''~/source/bin/packages/mips_24kc''.
+
+===== Cleaning Up =====
+You might need to clean your //build environment// every now and then. The following ''make''-targets are useful for that job:
+
+==== Clean ====
+<code>
+make clean
+</code>
+
+deletes contents of the directories ''/bin'' and ''/build_dir''.
+make clean does not remove the toolchain,
+it also avoids cleaning architectures/targets other than the one you have selected in your ''.config''
+
+==== Dirclean ====
+<code>
+make dirclean
+</code>
+
+deletes contents of the directories ''/bin'' and ''/build_dir'' and additionally ''/staging_dir'' and ''/toolchain'' (=the cross-compile tools), ''/tmp'' (e.g data about packages) and ''/logs''. 'Dirclean' is your basic "Full clean" operation.
+
+
+==== Distclean ====
+<code>
+make distclean
+</code>
+
+nukes everything you have compiled or configured and also deletes all downloaded feeds contents and package sources.
+
+
+**CAUTION**: In addition to all else, this will **erase your build configuration (''<buildroot_dir>/.config'')**. Use only if you need a "factory reset" of the build system!
+
+There are numerous other functionalities in the build system, but the above should have covered some of the fundamentals.
+
+==== Clean less ====
+In more time, you may not want to clean so many objects, then you can use some of the commands below to do it.
+
+Clean linux objects.
+<code>
+make target/linux/clean
+</code>
+
+Clean package base-files objects.
+<code>
+make package/base-files/clean
+</code>
+
+Clean luci.
+<code>
+make package/luci/clean
+</code>
+
+===== Examples =====
+  * https://forum.openwrt.org/viewtopic.php?pid=129319#p129319
+  * https://forum.openwrt.org/viewtopic.php?id=28267
+
+
+===== Troubleshooting =====
+
+  * Beware of unusual environment variables such as
+     * ''GREP_OPTIONS'' which should not have ''--initial-tab'' or other options affecting its output
+     * **''SED'' should not be set.  If it is, run `unset SED` before compiling.** (See [[https://dev.openwrt.org/ticket/10612|Ticket 10612]].)
+
+  * First get more information on the problem using the make option ''"make V=sc"'' or enable logging.
+
+:!: Read more about make options: [[docs:techref:buildroot|Buildroot Techref]]
+
+==== Missing source code file, due to download problems ====
+First check if the URL path in the make file contains a trailing slash, then try with it removed (helped several times).
+Otherwise try to download the source code manually and put it into "dl" directory.
+
+==== Compilation errors ====
+Try to update the main source and all the feeds (Warning! May result in other problems).
+Check for a related bug in the bugtracker (depends from the feed the package comes from).
+Otherwise report the problem there, by mentioning the package, the target data (CPU, image, etc.) and the code revisions (main & package).
+
+==== WARNING: skipping <package> -- package not selected ====
+Run ''make menuconfig'' and enable compilation for your package. It should be labeled with ''<*>'' or ''<M>'' to work correctly. 
+
+==== Flashable images for my device are not generated ====
+When you execute ''make'' to build a flashable image for your device, both a sysupgrade and a factory image should be generated for every board that is linked to the device profile that you have selected via ''make config'' or ''make menuconfig''. 
+
+If running ''make'' does //not// yield images for one (or even all) of the boards linked to the device profile that you have selected, than you probably have selected/enabled too much options or packages, and the image was too big to be flashed onto your device.\\ 
+
+===== Notes =====
+  * [[https://forum.openwrt.org/viewtopic.php?id=35323|Compiler Optimization Tweaks]]

@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: sstp-client ======
+---- dataentry packages ----
+Name                             : sstp-client
+Version                          : 1.0.11-1
+Description                      : The advantage of SSTP compared to other vpn protocols like PPTP and L2TP is that it cannot be easily blocked by firewalls since the traffic is transmitted over HTTPS on port 443.\\ This software has a similar commandline and configuration to the standard linux pptp-client software.\\  \\ Features: \\ - Connect to Microsoft RAS network using SSTP\\ - Use HTTPS with strong encryption over port 443\\ - Asynchronous HDLC frame support\\ - Integration with pon/poff\\  \\  \\ # max. 1kB
+Installed size_pkg-filesize      : 31 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libevent2, libopenssl, ppp
+Categories_pkg-categorys         : network---vpn #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arc_arc700, arc_archs, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 32
+License                          : GPLv2
+Maintainer_pkg-maintainer        : Federico Di Marco
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/net/sstp-client|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1.0.11-1 # short version of the package, for display in table
+----
+

@@ -1,0 +1,5 @@
+====== 자주 묻는 질문 ======
+
+  * [[ko:faq:general|자주 묻는 질문: 일반적인 문제]]
+  * [[ko:faq:before_installation|자주 묻는 질문: 설치 전]]
+  * [[ko:faq:after_installation|자주 묻는 질문: 설치 후]]

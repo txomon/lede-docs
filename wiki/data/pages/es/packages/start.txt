@@ -1,0 +1,39 @@
+====== Paquetes ======
+~~NOTOC~~
+~~NOSIDEBAR~~
+
+LEDE proporciona varios miles de paquetes para ampliar las funcionalidades de tu dispositivo.\\
+
+Esta página enumera los paquetes disponibles en LEDE 17.01.
+
+===== Índice de paquetes =====
+Se puede ver una vista general rápida de todos los paquetes disponibles en el **[[es:packages:index:start|Índice de paquetes]]**.
+
+===== Categorías de paquetes =====
+Haciendo clic en una categoría de paquetes se filtra la **Tabla de paquetes** de forma correspondiente, pero naturalmente puedes filtrarla manualmente.\\
+++++Filtrar por categoría|
+---- datacloud ----
+col        : Categoriess
+filter     : %class%=packages
+summarize  : 1
+----
+++++
+===== Tabla de paquetes =====
+La tabla siguiente muestra 50 paquetes por página debido a razones de rendimiento.\\
+
+  * Haz clic en los enlaces "Next page" o "Previous page" en la parte inferior izquierda para mostrar los 50 paquetes siguientes o anteriores.
+  * **Las columnas se pueden clasificar** haciendo clic en el encabezado de la columna
+  *Introduce los criterios de filtro en los <color black/white>'' campos vacios ''</color>
+
+Si haces clic en el nombre del paquete en la tabla siguiente, te llevará a la página del paquete con su documentación, si no la hay, no dudes en agregarla.
+
+---- datatable ----
+cols       : Categoriess, Name_pkg-dependencies, Version-short, Dependencies_pkg-dependencies, Description_wiki, File size_pkg-filesize, Installed size_pkg-filesize, License, Maintainer_pkg-maintainer, Bug report_wiki, Source code_wiki
+header     : Category, Name, Version, Dependencies, ...........................................Description..........................................., File size, Installed size, License, Maintainer, Bug report, Source code
+align      : l,l,l,l,l,l,l,l,l,l,c,c
+filter     : %class%=packages
+max        : 50
+dynfilters : 1
+sort       : Name
+----
+

@@ -1,0 +1,34 @@
+====== arm_mpcore_vfp ======
+
+The Cortex-A9 MPCore processor consists of: 
+  * From one to four Cortex-A9 processors in a cluster and a Snoop Control Unit (SCU) that can be used to ensure coherency within the cluster. 
+  * A set of private memory-mapped peripherals, including a global timer, and a watchdog and private timer for each Cortex-A9 processor present in the cluster. 
+  * An integrated Interrupt Controller that is an implementation of the Generic Interrupt Controller architecture. The integrated Interrupt Controller registers sit beside the timers and watchdog control registers in the private memory region of the Cortex-A9 MPCore. 
+
+Individual Cortex-A9 processors in the Cortex-A9 MPCore cluster can be implemented with their own hardware configurations. See the Cortex-A9 Technical Reference Manual for additional information on possible Cortex-A9 processor configurations. ARM recommends you implement symmetric configurations for software ease of use.\\ 
+There are other configuration options that impact Cortex-A9 MPCore system integration. The major options are: 
+  * One or two AXI master port interfaces, with address filtering capabilities 
+  * An optional Accelerator Coherency Port (ACP) suitable for coherent memory transfers 
+  * A configurable number of interrupt lines.
+
+[[http://infocenter.arm.com/help/topic/com.arm.doc.ddi0407e/DDI0407E_cortex_a9_mpcore_r2p0_trm.pdf|source (technical reference manual)]]
+
+This arch is for mpcore processors that have a VFP
+
+===== Download Packages =====
+
+/* Link to packages download goes here. */
+
+| HTTP   | [[https://downloads.lede-project.org/releases/packages-17.01/arm_mpcore_vfp/]]      |
+| FTP    | [[ftp://ftp.halifax.rwth-aachen.de/lede/releases/packages-17.01/arm_mpcore_vfp/]]   |
+
+See [[/downloads#mirrors|Mirrors]] for more download sites.
+
+===== Devices with this instructionset =====
+
+---- datatable ----
+cols   : Package architecture, Target, Subtarget, Brand, Model_pageid, Version
+filter : Package architecture=arm_mpcore_vfp
+filter : Brand!=(EXAMPLE)
+sort   : Brand
+----

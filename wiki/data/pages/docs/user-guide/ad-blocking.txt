@@ -1,0 +1,7 @@
+====== Ad blocking ======
+
+Ad blocking can be done in several ways:
+
+  * Packages [[packages:pkgdata:adblock|adblock]] + [[packages:pkgdata:luci-app-adblock|luci-app-adblock]]. The latest adblock online documentation can be found here: [[https://github.com/openwrt/packages/blob/master/net/adblock/files/README.md]]
+  * Packages [[https://stangri.github.io/openwrt-repo/|simple-adblock + luci-app-simple-adblock]] (PR to be created shortly, i.e. Mai 2017)
+  * Package [[packages:pkgdata:banhostlist|banhostlist]]

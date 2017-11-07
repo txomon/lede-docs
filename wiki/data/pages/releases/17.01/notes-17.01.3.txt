@@ -1,0 +1,38 @@
+====== LEDE 17.01.3 - Third Service Release - October 2017 ======
+
+<code>
+     _________
+    /        /\      _    ___ ___  ___
+   /  LE    /  \    | |  | __|   \| __|
+  /    DE  /    \   | |__| _|| |) | _|
+ /________/  LE  \  |____|___|___/|___|                      lede-project.org
+ \        \   DE /
+  \    LE  \    /  -----------------------------------------------------------
+   \  DE    \  /    Reboot (17.01.3, r3534-df54a8f583)
+    \________\/    -----------------------------------------------------------
+</code>
+
+The LEDE Project (“Linux Embedded Development Environment”) is a Linux operating system emerged from the [[https://openwrt.org|OpenWrt]] project. It is a complete replacement for the vendor-supplied firmware of a wide range of wireless routers and non-network devices. See the [[https://lede-project.org/toh/start|Table of Hardware]] for supported devices. For more information about LEDE Project organization, see the [[https://lede-project.org/about|About LEDE pages.]]
+
+Get LEDE Firmware at: http://downloads.lede-project.org/releases/
+
+===== Highlights In LEDE 17.01.3 ===== 
+
+The LEDE Community is proud to announce the third service release of
+stable LEDE 17.01 series.
+
+LEDE 17.01.3 "Reboot" incorporates a fair number of fixes back ported
+from the development branch during the last sixteen weeks.
+
+Some selected highlights of the service release are:
+
+
+  * Linux kernel updated to version 4.4.89 (from 4.4.71 in v17.01.2)
+  * Numerous [[releases:17.01:changelog-17.01.3#security_fixes|security fixes]] to //curl//, //dnsmasq//, //mbedtls//, //tcpdump// and the //Linux kernel//
+  * Assorted platform fixes for //ar7//, //ar71xx//, //bcm53xx//, //brcm63xx//, //imx6//, //ipq806x//, //lantiq//, //ramips//, //sunxi// and //x86//
+
+As always, a big thank you goes to all our active package maintainers, testers, documenters, and supporters.
+
+Have fun!
+    
+The LEDE Community

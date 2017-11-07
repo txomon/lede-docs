@@ -1,0 +1,21 @@
+====== @FILE@ ======
+
+//Description of this instructionset goes here.//
+
+===== Download Packages =====
+
+/* Link to packages download goes here. */
+
+| HTTP   | [[https://downloads.lede-project.org/snapshots/packages/@FILE@/]]      |
+| FTP    | [[ftp://ftp.halifax.rwth-aachen.de/lede/snapshots/packages/@FILE@/]]   |
+
+See [[/downloads#mirrors|Mirrors]] for more download sites.
+
+===== Devices with this instructionset =====
+
+---- datatable ----
+cols   : Lede Instructionset, Target, Subtarget, Brand, Model, Version
+filter : LEDE Instructionset_lede-instset=@FILE@
+filter : Brand!=(EXAMPLE)
+sort   : Brand
+----

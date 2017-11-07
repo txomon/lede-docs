@@ -1,0 +1,84 @@
+======  LEDE project について======
+
+===== OpenWrt コミュニティの「リブート」=====
+
+LEDE Project は OpenWrt Project のスピンオフとして結成され、同じゴールを目指しています。
+私たちは開発者、システム管理者、Linuxファン達が組み込み機器、特に無線LANルータ向けソフトウェア開発、カスタマイズが容易な組み込み機器向けLinuxディストリビューションを開発しています。//LEDE// は //Linux Embedded Development Environment// の略称です。
+
+Members of the project already include a significant share of the most active members of the OpenWrt community. We intend to bring new life to Embedded Linux development by creating a community with a strong focus on transparency, collaboration and decentralisation.
+
+LEDE’s stated goals are:
+
+  * Build a great embedded Linux distribution with focus on stability and functionality.
+  * Make regular, predictable release cycles coupled with community provided device testing feedback.
+  * Establish transparent decision processes with broad community participation and public meetings.
+
+We decided to create this new project because of long standing issues that we were unable to fix from within the OpenWrt project/community:
+
+  - Number of active core developers at an all time low, no process for getting more new people involved.
+  - Unreliable infrastructure, fixes prevented by internal disagreements and single points of failure.
+  - Lack of communication, transparency and coordination in the OpenWrt project, both inside the core team and between the core team and the rest of the community.
+  - Not enough people with commit access to handle the incoming flow of patches, too little attention to testing and regular builds.
+  - Lack of focus on stability and documentation.
+
+To address these issues we set up the LEDE project in a different way compared to OpenWrt:
+
+  - All our communication channels are public, some read-only to non-members to maintain a good signal-to-noise ratio.
+  - Our decision making process is more open, with an approximate 50/50 mix of developers and power users with voting rights.
+  - Our infrastructure is simplified a lot, to ensure that it creates less maintenance work for us.
+  - We have made our merge policy more liberal, based on our experience with the OpenWrt package github feed.
+  - We have a strong focus on automated testing combined with a simplified release process.
+
+===== Name =====
+
+| {{wiki:logo.png|The LEDE logo}} | The name //LEDE// is an abbreviation for Linux Embedded Development Environment, a reference to its flexibility and embedded buildroot origins, making it a solid choice for embedded Linux applications far beyond the wireless router and network appliance realm.|
+
+===== Project Meetings =====
+
+We attempt to have regular IRC meetings to discuss and decide project matters.
+
+==== Next Meeting ====
+
+The next meeting date is yet to be decided.
+
+For the agenda of the upcoming meeting refer to the [[http://piratepad.net/ep/pad/view/ro.UdKV08dIlKx/latest|agenda pad]].
+
+===== Meeting Logs =====
+
+All meeting logs can be viewed [[http://meetings.lede-project.org/lede-adm/|here]].
+
+===== People =====
+
+Here you can find an alphabetically ordered list of the current people involved in //LEDE// Project:
+
+<WRAP column>
+^ Developers               ^ Nickname    ^
+| Alexander Couzens        | lynxis      |
+| Álvaro Fernández Rojas   | noltari     |
+| Daniel Golle             | dangole     |
+| Felix Fietkau            | nbd         |
+| Florian Fainelli         | [florian]   |
+| Hans Dedecker            | dedeckeh    |
+| Hauke Mehrtens           | hauke       |
+| Jo-Philipp Wich          | jow         |
+| John Crispin             | blogic      |
+| Jonas Gorski             | jogo        |
+| Luka Perkov              |             |
+| Mathias Kresin           | mkresin     |
+| Matthias Schiffer        | neoraider   |
+| Mirko Vogt               | mirko       |
+| Piotr Dymacz             | pepe2k      |
+| Rafał Miłecki            | rmilecki    |
+| Steven Barth             | cyrus       |
+| Stijn Tintel             | stintel     |
+| Ted Hess                 | thess       |
+| Yousong Zhou             |             |
+</WRAP>
+
+<WRAP column>
+^ Wiki Documentation   ^ Nickname                 ^
+| Thomas Endt          | [[user:tmomas|tmomas]]   |
+| Rich Brown           | richb-hanover            |
+| Alberto Bursi        | bobafetthotmail          |
+</WRAP>
+

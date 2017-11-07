@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: libneon ======
+---- dataentry packages ----
+Name                             : libneon
+Version                          : 0.30.2-1
+Description                      : neon is an HTTP and WebDAV client library, with a C interface. Features:\\  \\ - High-level wrappers for common HTTP and WebDAV operations (GET, MOVE, DELETE, etc)\\ - Low-level interface to the HTTP request/response engine, allowing the use of arbitrary HTTP methods, headers, etc.\\ - Authentication support including Basic and Digest support, along with GSSAPI-based Negotiate on Unix, and\\ SSPI-based Negotiate/NTLM on Win32\\ - SSL/TLS support using OpenSSL or GnuTLS; exposing an abstraction layer for verifying server certificates, handling client\\ certificates, and examining certificate properties. Smartcard-based client certificates are also supported via a\\ PKCS11 wrapper interface.\\ - Abstract interface to parsing XML using libxml2 or expat, and wrappers for simplifying handling XML HTTP response bodies\\ - WebDAV metadata support; wrappers for PROPFIND and PROPPATCH to simplify property manipulation.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 50 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libssp, libopenssl, libexpat, zlib
+Categories_pkg-categorys         : libraries #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arc_arc700, arc_archs, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 51
+License                          : 
+Maintainer_pkg-maintainer        : Federico Di Marco
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/libs/neon|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 0.30.2-1 # short version of the package, for display in table
+----
+

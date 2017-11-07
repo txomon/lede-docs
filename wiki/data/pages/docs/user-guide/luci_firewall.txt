@@ -1,0 +1,64 @@
+====== Firewall configuration ======
+
+<WRAP center round info 60%>
+This page is work in progress. You can help to improve this page by adding missing information. Before adding images to the wiki, please take a look at [[meta:adding_images_to_lede_wiki|Adding images to the LEDE Wiki]].
+</WRAP>
+
+
+This page describes firewall configuration via [[..:luci:start|LuCI]]. For configuration via command line / UCI, see  [[docs:user-guide:firewall_configuration|Firewall configuration via UCI]].
+
+===== Examples =====
+
+Examples taken over from [[docs:user-guide:firewall_configuration]]
+
+==== Opening ports ====
+FIXME
+==== Opening ports for selected subnet/host ====
+FIXME
+==== Port forwarding for IPv4 (Destination NAT/DNAT) ====
+Port forwarding is a type of network address translation (NAT) that sends data from an Internet-facing router to a private computer. Here is how to set up port forwarding in the LuCI.
+  - Point at //Network// and click //Firewall//.
+  - Click //Port Forwards//.
+  - Fill out the form and click //Save & Apply//.
+==== Stateful firewall without NAT ====
+FIXME
+==== DNAT/SNAT redirects and forwarding combination ====
+FIXME
+==== Masquerading on lan ====
+FIXME
+==== Port accept for IPv6 ====
+FIXME
+==== Source NAT (SNAT) ====
+FIXME
+==== True destination port forwarding ====
+FIXME
+==== Block access to a specific host ====
+FIXME
+==== Block access to the Internet using MAC ====
+FIXME
+==== Block access to the Internet for specific IP on certain times ====
+FIXME
+==== Restricted forwarding rule ====
+FIXME
+==== Simple output rule ====
+FIXME
+==== Transparent proxy rule (same host) ====
+FIXME
+==== Transparent proxy rule (external) ====
+FIXME
+==== Simple DMZ rule ====
+FIXME
+==== IPSec passthrough ====
+FIXME
+==== Using ipsets ====
+FIXME
+==== Zone declaration for semi non-UCI interfaces, manually listed in the network config, and forwardings ====
+FIXME
+==== Zone declaration for non-UCI interfaces ====
+FIXME
+==== Zone declaration for a specific subnet and protocol ====
+FIXME
+==== Zone declaration for a specific protocol and port ====
+FIXME
+==== Forwarding IPv6 tunnel traffic ====
+

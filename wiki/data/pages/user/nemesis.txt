@@ -1,0 +1,7 @@
+[[http://ninux.org|Ninux.org]] Contributor and [[http://openwisp.org/|OpenWISP]] core developer, also involved in [[http://netjson.org|NetJSON]] and [[http://battlemesh.org|Battlemesh]].
+
+Other resources:
+
+  * [[http://nemesisdesign.net/blog|Blog]]
+  * [[https://github.com/nemesisdesign|Github]]
+  * [[http://twitter.com/nemesisdesign|Twitter]]

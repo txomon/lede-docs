@@ -1,0 +1,29 @@
+====== ToH admin: WIP ======
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+**WIP definition:** 'Unsupported' column = 'WIP'
+
+**Task:** Check if WIP is still true.
+
+<WRAP box center round 80%> {{:meta:icons:tango:48px-emblem-question.svg.png }} **1.** If you can **confirm** that LEDE is running on one of these devices (i.e. you or someone else has **tested** it), please update the data accordingly. -> Click //View/Edit data// -> follow instructions for editing -> update //Supported Since Rev, Supported Current Rel, Unsupported//\\
+\\
+**2.** If you know of a forum thread where we can read about the status of WIP, please update the data accordingly. -> Click //View/Edit data// -> follow instructions for editing -> update //Forum Topic URL//</WRAP>
+
+===== Usage =====
+
+  * **Columns can be sorted** by clicking on the column header
+  * Enter your filter criteria in the <color black/white>'' white fields ''</color>
+  * Click somewhere in the table, then **move left/right/up/down with arrow keys** on your keyboard
+
+
+---- datatable ----
+cols       : Device Type, Brand, Model, Versions, LEDE Supported Since Commit_url, LEDE Supported Current Rel, LEDE Unsupported, CPU, Target, OWrt Forum Topic URL_url, OpenWrt Device Page_url, Device Techdata_pageid
+align      : l,l,l,l,l,l,c,c,l,l,l,l,c
+dynfilters : 1
+rownumbers : 1
+filter     : Brand!=@@Brand@@
+filter     : Model!=(EXAMPLE)
+filter     : LEDE Unsupported*~WIP
+sort       : Brand
+----

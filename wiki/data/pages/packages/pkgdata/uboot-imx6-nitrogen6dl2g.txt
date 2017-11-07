@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: uboot-imx6-nitrogen6dl2g ======
+---- dataentry packages ----
+Name                             : uboot-imx6-nitrogen6dl2g
+Version                          : 2014.04-1
+Description                      : U-Boot for Nitrogen6x i.MX6Dual-Lite 2GB board\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 0 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc
+Categories_pkg-categorys         : boot-loaders #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : arm_cortex-a9_neon,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 0
+License                          : 
+Maintainer_pkg-maintainer        : Luka Perkov
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/boot/uboot-imx6|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 2014.04-1 # short version of the package, for display in table
+----
+

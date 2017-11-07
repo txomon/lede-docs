@@ -1,0 +1,14 @@
+====== LEDE 帮助文档 ======
+~~NOTOC~~
+
+LEDE是一个为嵌入式设备（通常是无线路由器）开发的高扩展度的GNU/Linux发行版。LEDE基于OpenWrt项目。与许多其他路由器的发行版不同的是，LEDE从根本上构建成为一个易于修改的操作系统，以发挥设备的所有功能。 在实际使用中，这意味着你可以拥有一个轻量的，由现代Linux内核驱动的嵌入式设备操作系统。
+
+===== LEDE 指南 =====
+^  [[zh:docs:guide-quick-start:start|快速开始]]        ^  [[docs:user-guide:start|使用者指南]]      ^  [[docs:guide-developer:start|开发者指南]]         ^
+| 如果这是您第一次接触LEDE，就从这里开始吧！了解如何将您的路由器固件升级到LEDE并且让您的家庭网络更好地运行 //[[zh:docs:guide-quick-start:start|阅读更多...]]//| 如果您已经开始使用LEDE，请从这里开始。LEDE拥有上百个可选的扩展软件包用以实现VPN、VLAN、以及其他各种惊艳的功能！ //[[zh:docs:user-guide:start|阅读更多...]]//| 如果您希望使用LEDE编译自己的发行版，或者希望在开发上做出贡献，这里有大量的工具使得开发过程变得简单 //[[docs:guide-developer:the-source-code|阅读更多...]]//|
+
+===== 我在哪儿可以了解更多? =====
+以上三种文档（新手, 使用者, 以及开发者指南）包含了关于LEDE的几乎所有的信息。
+您还可以使用任何Wiki页面中的搜索功能，或者参阅以下所示的文档页面。
+
+{{pagequery>@:docs: *;sort=ns,title;group;cols=2;label=Documentation pages by namespace;hidestart;hidejump;display={title};}}

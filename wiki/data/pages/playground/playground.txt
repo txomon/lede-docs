@@ -1,0 +1,39 @@
+====== PlayGround ======
+~~NOTOC~~
+
+The playground is for experimenting. Play around as you like!\\
+Add your content below the line and leave this note in place.
+
+==== Playing with DITAA ====
+The [[https://www.dokuwiki.org/plugin:ditaa|ditaa plugin]] renders ascii graphics (and seems to be quite picky).
+
+<ditaa>
+                                                                +------------------------+
+                                                                |                        |
+                                                             +----------+   +----------+ |
+                                                             | Wifi c090+---+          | |
+                                                             +----------+   |          | |
+                                                                |           |          | |
+                                              +-----------+  +----------+   |          | |
+                                              | Port0 cFF0+--+ eth1 cFF0+---+ OpenWrt/ | |
+                                              +-----------+  +----------+   | LEDE     | |
+                                                                |           |          | |
+                                              +-----------+  +----------+   |          | |
+                                              | Port6 c588+--+ eth0 c588+---+          | |
+                                              +-----------+  +----------+   +----------+ |
+                                                                |                        |
+                                                                +------------------------+
+</ditaa>
+
+
+<ditaa>
++-----+   +------+   +------+   +------+   +------+
+|Port1|   |Port2 |   |Port3 |   |Port4 |   |Port5 |
+|c588 |   | cFF0 |   | cFF0 |   | cFF0 |   | cFF0 |
++--+--+   +--+---+   +--+---+   +--+---+   +--+---+
+   |         |          |          |          |
++--+--+   +--+---+   +--+---+   +--+---+   +--+---+
+| WAN |   | LAN1 |   | LAN2 |   | LAN3 |   | LAN4 |
+|c588 |   |cFF0  |   | cFF0 |   | cFF0 |   | cFF0 |
++-----+   +------+   +------+   +------+   +------+
+</ditaa>

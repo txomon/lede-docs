@@ -1,0 +1,101 @@
+====== DNS 설정======
+dns 설정은 ''/etc/config/dhcp'' 있으며 장치의 DNS 및 DHCP 서버 옵션을 모두 제어합니다 (DHCP 및 DNS 서비스는 모두 dnsmasq 를 사용하여 구현됩니다). 
+
+기본 설정에서 이 파일에는 DNS 및 데몬 관련 옵션을 지정하는 하나의 공통 세션 과 네트워크 인터페이스에서 DHCP 제공을 정의하는 하나 이상의 DHCP 풀이 있습니다 . 
+
+===== 세션 =====
+''dhcp'' 설정 파일의 가능한 섹션 유형은 아래에 정의되어 있습니다. 모든 유형이 파일에 나타날 수있는 것은 아니며 대부분의 경우 특수 설정에만 필요합니다. 일반적인 옵션 은 Common Options , DHCP Pools 및 Static Leases 입니다. 
+
+==== 공통 옵션 ====
+config 섹션 유형 ''dnsmasq'' 는 dnsmasq의 전체 작업과 관련된 값과 옵션 및 제공된 모든 인터페이스의 DHCP 옵션을 결정합니다. 다음 표는 사용 가능한 모든 옵션과 해당 기본값뿐만 아니라 해당 dnsmasq 명령 행 옵션을 나열합니다. [[http://www.thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html|the dnsmasq 메뉴얼]]을 참조하세요
+
+공통 옵션의 기본 설정은 다음과 같습니다. 
+
+<code>config 'dnsmasq'
+	option domainneeded	 1
+	option boguspriv	 1
+	option filterwin2k	 0
+	option localise_queries	 1
+	option rebind_protection 1
+	option rebind_localhost  0
+	option local        	 '/lan/'
+	option domain	         'lan'
+	option expandhosts	 1
+	option nonegcache	 0
+	option authoritative	 1
+	option readethers        1
+	option leasefile	 '/tmp/dhcp.leases'
+	option resolvfile	 '/tmp/resolv.conf.auto'
+</code>
+  * ''local'' 및 ''domain'' 옵션을 사용하면 dnsmasq 가 ''/etc/hosts'' 에 항목을 제공 할뿐만 아니라 DHCP 클라이언트의 이름을 lan DNS 도메인에 입력 한 것처럼 사용할 수 있습니다. 
+  * ''domainneeded'' , ''boguspriv'' , ''localise_queries'', ''expandhosts'' 옵션은 이러한 로컬 호스트 이름에 대한 요청 (역방향 조회)이 upstream DNS 서버로 전달되지 않도록합니다. 
+  * 옵션 ''authoritative'' 는 라우터가 이 네트워크의 유일한 DHCP 서버가되게합니다. 클라이언트는 IP 임대를 빨리 수행합니다. 
+  * 옵션 ''leasefile'' 은 임대를 파일에 저장하므로 dnsmasq 을 다시 시작하면 다시 임대 할 수 있습니다. 
+  * 옵션 ''resolvfile'' 은 dnsmasq 에게 이 파일을 사용하여 upstream name server 찾는 것을 지시합니다. WAN DHCP 클라이언트 또는 PPP 클라이언트에 의해 생성됩니다. 
+  * "enable_tftp"및 "tftp_root"옵션은 TFTP 서버를 켜고 tftp_root에서 파일을 제공합니다. 클라이언트에서 서버의 IP를 설정해야 할 수도 있습니다. 클라이언트에서 "serverip"을 설정하여 변경하십시오 (예 : "setenv serverip 192.168.1.10"). 
+
+==== 모든 옵션 ====
+
+^ Name ^ Type ^ Default ^ Option ^ Description ^
+| ''add_local_domain'' | boolean | ''1'' | | Add the local domain as search directive in resolv.conf. |
+| ''add_local_hostname'' | boolean | ''1'' | | Add A, AAAA, and PTR records for this router only on DHCP served LAN. \\ :!: enhanced function available on Trunk with option ''add_local_fqdn'' |
+| ''add_local_fqdn'' | integer | ''1'' | | Add A, AAAA, and PTR records for this router only on DHCP served LAN. 0 - Disable. 1 - Hostname on Primary Address. 2 - Hostname on All Addresses. 3 - FDQN on All Addresses. 4 - ''iface.host.domain'' on All Addresses. \\ :!: ''add_local_fqdn'' on Trunk but not 17.01.0 |
+| ''add_wan_fqdn'' | integer | ''0'' | | Labels WAN interfaces like ''add_local_fqdn'' instead of your ISP assigned default which may be obscure. WAN is inferred from ''config dhcp'' sections with ''option ignore 1'' set, so they do not need to be named //WAN// \\ :!: ''add_wan_fqdn'' on Trunk but not 17.01.0 | 
+| ''addnhosts'' | list of file paths | //(none)// | ''-H'' | Additional host files to read for serving DNS responses |
+| ''authoritative'' | boolean | ''1'' | ''-K'' | Force //dnsmasq// into authoritative mode. This speeds up DHCP leasing. Used if this is the only server on the network |
+| ''bogusnxdomain'' | list of IP addresses | //(none)// | ''-B'' | IP addresses to convert into NXDOMAIN responses (to counteract "helpful" upstream DNS servers that never return NXDOMAIN). |
+| ''boguspriv'' | boolean | ''0'' | ''-b'' | Reject reverse lookups to private IP ranges where no corresponding entry exists in ''/etc/hosts'' |
+| ''cachelocal'' | boolean | ''1'' | | When set to ''0'', use each network interface's ''dns'' address in the local ''/etc/resolv.conf''. Normally, only the loopback address is used, and all queries go through //dnsmasq//. |
+| ''cachesize'' | integer | ''150'' | ''-c'' | Size of //dnsmasq// query cache. |
+| ''dbus'' | boolean | ''0'' | ''-1'' | Enable DBus messaging for //dnsmasq//.\\ :!: Standard builds of //dnsmasq// on OpenWRT do not include DBus support. |
+| ''dhcp_boot'' | string | //(none)// |<code>--dhcp-boot</code>| Specifies BOOTP options, in most cases just the file name. You can also use: "''file name'', ''tftp server name'', ''tftp ip address''"|
+| ''dhcphostsfile'' | file path | //(none)// | <code>--dhcp-hostsfile</code> | Specify an external file with per host DHCP options |
+| ''dhcpleasemax'' | integer | ''150'' | ''-X'' | Maximum number of DHCP leases |
+| ''dnsforwardmax'' | integer | ''150'' | ''-0'' (zero) | Maximum number of concurrent connections |
+| ''domain'' | domain name | //(none)// | ''-s'' | DNS domain handed out to DHCP clients |
+| ''domainneeded'' | boolean | ''1'' | ''-D'' | Tells //dnsmasq// never to forward queries for plain names, without dots or domain parts, to upstream nameservers. If the name is not known from /etc/hosts or DHCP then a "not found" answer is returned |
+| ''dnssec'' | boolean | ''0'' | <code>--dnssec</code> | Validate DNS replies and cache DNSSEC data.\\ :!: Requires the //dnsmasq-full// package. |
+| ''dnsseccheckunsigned'' | boolean | ''0'' | <code>--dnssec-check-unsigned</code> | Check the zones of unsigned replies to ensure that unsigned replies are allowed in those zones. This protects against an attacker forging unsigned replies for signed DNS zones, but is slower and requires that the nameservers upstream of //dnsmasq// are DNSSEC-capable.\\ :!: Requires the //dnsmasq-full// package.\\ :!: Caution: If you use this option on a device that doesn't have a hardware clock, dns resolution may break after a reboot of the device due to an incorrect system time. |
+| ''ednspacket_max'' | integer | ''1280'' | ''-P'' | Specify the largest EDNS.0 UDP packet which is supported by the DNS forwarder |
+| ''enable_tftp'' | boolean | ''0'' | <code>--enable-tftp</code> | Enable the builtin TFTP server |
+| ''expandhosts'' | boolean | ''1'' | ''-E'' | Add the local domain part to names found in ''/etc/hosts'' |
+| ''filterwin2k'' | boolean | ''0'' | ''-f'' | Do not forward requests that cannot be answered by public name servers |
+| ''fqdn'' | boolean | ''0'' | <code>--dhcp-fqdn</code> | Do not resolve unqualifed local hostnames. Needs ''domain'' to be set. |
+| ''interface'' | list of interface names | //(all interfaces)// | ''-i'' | List of interfaces to listen on. If unspecified, //dnsmasq// will listen to all interfaces except those listed in ''notinterface''. Note that //dnsmasq// listens on loopback by default. |
+| ''leasefile'' | file path | //(none)// | ''-l'' (ell) | Store DHCP leases in this file |
+| ''local'' | string | //(none)// | ''-S'' | Look up DNS entries for this domain from ''/etc/hosts''. This follows the same syntax as ''server'' entries, see the man page. |
+| ''localise_queries'' | boolean | ''0'' | ''-y'' | Choose IP address to match the incoming interface if multiple addresses are assigned to a host name in ''/etc/hosts''. :!: Note well the spelling of this option. |
+| ''localservice'' | boolean | ''1'' | <code>--local-service</code> | Accept DNS queries only from hosts whose address is on a local subnet, ie a subnet for which an interface exists on the server. |
+| ''logqueries'' | boolean | ''0'' | ''-q'' | Log the results of DNS queries, dump cache on SIGUSR1 |
+| ''nodaemon'' | boolean | ''0'' | ''-d'' | Don't daemonize the //dnsmasq// process |
+| ''nohosts'' | boolean | ''0'' | ''-h'' | Don't read DNS names from ''/etc/hosts'' |
+| ''nonegcache'' | boolean | ''0'' | ''-N'' | Disable caching of negative "no such domain" responses |
+| ''noresolv'' | boolean | ''0'' | ''-R'' | Don't read upstream servers from ''/etc/resolv.conf'' |
+| ''notinterface'' | list of interface names |  //(none)// | ''-I'' (eye) | Interfaces //dnsmasq// should not listen on. |
+| ''nonwildcard'' | boolean | ''0'' | ''-z'' | Bind only configured interface addresses, instead of the wildcard address.  |
+| ''port'' | port number | ''53'' | ''-p'' | Listening port for DNS queries, disables DNS server functionality if set to ''0'' |
+| ''queryport'' | integer | //(none)// | ''-Q'' | Use a fixed port for outbound DNS queries |
+| ''readethers'' | boolean | ''0'' | ''-Z'' | Read static lease entries from ''/etc/ethers'', re-read on SIGHUP |
+| ''rebind_protection'' | boolean | ''1'' | <code>--stop-dns-rebind</code> | Enables DNS rebind attack protection by discarding upstream RFC1918 responses |
+| ''rebind_localhost'' | boolean | ''0'' | <code>--rebind-localhost-ok</code> | Allows upstream 127.0.0.0/8 responses, required for DNS based blacklist services, only takes effect if rebind protection is enabled |
+| ''rebind_domain'' | list of domain names | //(none)// | <code>--rebind-domain-ok</code> | List of domains to allow RFC1918 responses for, only takes effect if rebind protection is enabled |
+| ''resolvfile'' | file path | ''/etc/resolv.conf'' | ''-r'' | Specifies an alternative resolv file |
+| ''server'' | list of strings | //(none)// | ''-S'' | List of DNS servers to forward requests to. See the //dnsmasq// man page for syntax details. |
+| ''strictorder'' | boolean | ''0'' | ''-o'' | Obey order of DNS servers in ''/etc/resolv.conf'' |
+| ''tftp_root'' | directory path | //(none)// | <code>--tftp-root</code> | Specifies the TFTP root directory |
+
+
+===== plain dnsmasq.conf 사용 =====
+전통적인 ''/etc/dnsmasq.conf'' 설정 파일을 ''/etc/config/dhcp'' 에있는 옵션과 함께 사용할 수 있습니다. 
+
+''dnsmasq.conf'' 파일은 기본적으로 존재하지 않지만 시작시 dnsmasq 에 의해 처리됩니다 (있는 경우). ''/etc/config/dhcp'' 옵션은 명령 줄 인수로 변환되므로 dnsmasq.conf보다 우선합니다. 
+
+''dnsmasq'' 가 모든 작업에서 스크립트를 실행할 수 있도록 설정할 수 있습니다. 
+
+<code>dhcp-script=/sbin/action.sh</code>
+
+==== DNS 포트====
+DNS는 TCP and UDP 방화벽 53번포트를 열어야 합니다.  자세한 내용은 http://wiki.openwrt.org/doc/recipes/guest-wlan 와 http://www.thekelleys.org.uk/dnsmasq/docs/dnsmasq-man.html (viz "--dhcp-alternate-port") 을 참조하세요
+
+===== 예제들 =====
+[[docs:user-guide:dns_configuration|여기]]를 참조하세요.

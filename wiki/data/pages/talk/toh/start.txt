@@ -1,0 +1,22 @@
+====== Discussion + Todos regarding LEDE Table of Hardware ======
+
+/* NOTE: If this page has just been newly created, JUST SAVE IT
+and a discussion editor will appear (not visible in the preview) */
+
+  * If you want to reply on a comment, use the **''Reply''** button, then type your comment in the discussion editor.
+  * If you want to create a new comment (not a reply), just type your comment in the discussion editor
+  * If you want to get notified when someone replies to your comment, check **''Subscribe to comments''**
+
+===== Todo's =====
+==== Dataentries ====
+
+
+==== Adapt styling (CSS) ====
+
+
+==== Datastructure ====
+
+  * <todo #james:2017-03-26>ToH Datatables: Shorten full firmware download urls</todo> to "Installation image", "Upgrade image", or simply "Download"
+
+===== Discussion =====
+~~DISCUSSION~~

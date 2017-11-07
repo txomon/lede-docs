@@ -1,0 +1,70 @@
+====== The build system – About ======
+
+The **build system** is a set of [[wp>Make_(software)#Makefiles|Makefiles]] and [[wp>Patch_(computing)|patches ]]that allows users to easily generate both a [[wp>Cross_compiler|cross-compilation]] [[wp>Toolchain|toolchain]] and a [[http://gnulinux.in/forum/what-root-file-system|root filesystem]] for [[wp>Embedded_system|embedded systems]]. The cross-compilation toolchain uses [[wp>musl|musl]], a tiny [[wp>C_standard_library|C standard library]].
+
+A compilation toolchain is the set of tools used to compile code for your system. 
+It consists of:
+  * a compiler (in our case, ''[[wp>GNU Compiler Collection|gcc]]'' )
+  * binary utils like assembler and linker (in our case, ''[[wp>GNU Binutils|binutils]]'' ) 
+  * a [[wp>C standard library]] (for example GNU Libc, musl-libc, uClibc or dietlibc). 
+
+A compilation toolchain generates code for the same processor's instruction set architecture (ISA) it runs on (in the case of most PCs and servers, for an [[wp>x86]] processor).\\ 
+On most Linux systems, the compilation toolchain uses the [[wp>GNU_C_Library|GNU libc]] as C standard library. This is called the "host compilation toolchain", and the machine it is running on is called the "host system". The host compilation toolchain is provided by the Linux distribution running on the host system, and has nothing to do with the actual build system.
+
+
+Embedded systems use a different processor and require a cross-compilation toolchain - a compilation toolchain that runs on a host system but that generates code for a target system (and target processor's instruction set architecture (ISA)). For example, if your host system uses x86 and your target system uses MIPS32, the cross-compilation toolchain runs on x86 but generates code for MIPS32.
+
+While it is possible to manually configure and compile your own software, this is complex and does not guarantee reproducible builds. LEDE's build system automates this process and provides a 100% reproducible build.
+
+While the build system was designed for developers, inexperienced users can also use it to easily build their own custom firmware!
+
+The build system's Makefiles have their own syntax, different from the conventional Makefiles of Linux make tool.\\ 
+The Makefiles define the meta information of the package, where to download the package, how to compile, where to install the compiled binaries, etc. 
+
+===== Build system – Features =====
+  * Makes it easy to port software
+  * Uses kconfig (Linux Kernel menuconfig) for configuration of features
+  * Provides integrated cross-compiler toolchain (gcc, ld, ...)
+  * Provides abstraction for autotools (automake, autoconf), cmake, scons
+  * Handles standard download, patch, configure, compile and packaging workflow
+  * Provides a number of common fixups for badly behaving packages
+
+===== Build system – Make Targets =====
+  * Offers a number of high level make targets for standard package workflows
+  * Targets always in the format "component/name/action", e.g. "toolchain/gdb/compile" or "package/mtd/install"
+  * Prepare a package source tree: **package/foo/prepare**
+  * Compile a package: **package/foo/compile**
+  * Clean a package: **package/foo/clean**
+
+===== Build system – Build sequence =====
+  - ''tools'' – automake, autoconf, sed, cmake
+  - ''toolchain/binutils'' – as, ld, ...
+  - ''toolchain/gcc'' – gcc, g++, cpp, ...
+  - ''target/linux'' – kernel modules
+  - ''package'' – core and feed packages
+  - ''target/linux'' – kernel image
+  - ''target/linux/image'' – firmware image file generation
+
+===== Patch management =====
+  * Many packages will not work as-is and need patches to work on the target or to even compile
+  * the build system integrates [[wp>Quilt (software)|quilt]] for easy patch management
+  * Turn package patches into quilt series: **make package/foo/prepare QUILT=1**
+  * Update patches from modified series: **make package/foo/update**
+  * Automatically rebase patches after an update: **make package/foo/refresh**
+
+===== Packaging considerations =====
+  * Main objective is small memory and size footprint
+  * Features that make no sense on embedded systems are disabled through configure or patched out
+  * Packages must be compilable regardless of the host system, they should be self contained
+  * Shipped "configure" scripts are often faulty or unusable in a cross-compile setting, autoreconf or patching is often needed
+  * Build variants and kconfig includes allow for configurable compile-time settings
+  * There is no standard way for porting software, in many cases it "just works" but often the package build process needs tweaks
+===== Documentation =====
+  * [[docs:guide-developer:install-buildsystem | Install the build system on the host]]
+  * [[docs:guide-developer:use-buildsystem| Use the build system to compile a firmware image]]
+  * [[docs:guide-developer:use-patches-with-buildsystem| Work with patches in the build system]]
+
+
+===== History =====
+  * [[https://dev.openwrt.org/search?changeset=on&q=buildroot-ng|commits concerning OpenWrt build system]]
+  * [[https://forum.openwrt.org/viewtopic.php?pid=31794#p31794|OpenWrt Forums: An introduction to OpenWrt Buildroot]]

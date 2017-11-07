@@ -1,0 +1,41 @@
+====== LEDE's Infrastructure ======
+The LEDE Project relies on the considerable efforts of its volunteer developers, the core documentation team, the forum moderators, and the host of people who're actively using and testing the products.
+
+The LEDE team has also provisioned many physical and virtual servers that "make the LEDE Project go."
+
+===== Resources =====
+
+We run the following resources and services to support the LEDE Project.
+
+  * The main [[:start|LEDE Site]] and [[:docs:start|LEDE Documentation]] run on a Dokuwiki platform so that they are easy to update.
+
+  * The [[https://forum.lede-project.org/|LEDE Forum]] (using the Discourse platform) provides a place for people to ask and answer questions about using LEDE, developing it, and other topics.
+
+  * [[https://git.lede-project.org/|Git servers]] are the primary source code repositories for the firmware. These are cloned to [[https://github.com/lede-project|Github servers]] for redundancy.
+
+  * [[https://bugs.lede-project.org/|Bug trackers]] are the place where bugs and feature requests are tracked
+
+  * The [[:downloads|Download site]] hosts all the current and released images, sorted by architecture, vendor, and model.
+
+  * Mailing lists: [[http://lists.infradead.org/mailman/listinfo/lede-adm|lede-adm]] and [[http://lists.infradead.org/mailman/listinfo/lede-dev|lede-dev]] handle the lion's share of communication for developers and the core administrative team that doesn't go through the forum.
+
+  * Buildbot machines ([[http://phase1.builds.lede-project.org/|Phase 1]] and [[http://phase2.builds.lede-project.org/|Phase 2]]) ( LEDE-17.01: [[http://release-builds.lede-project.org/17.01/images/|LEDE - 17.01 - Images]] and [[http://release-builds.lede-project.org/17.01/packages/|LEDE - 17.01 - Packages]]) detect updates to the source and kick off the build process for each supported device.
+===== Servers =====
+
+All these services run on machines devoted to the LEDE Project. 
+
+  * We currently employ three powerful servers ([[https://www.hetzner.de/hosting/produkte_rootserver/ex40|Hetzner]]) to run the buildbot process, and host the downloads, Git, and mail services. 
+
+  * [[https://github.com/tessel/project/issues/169|Digital Ocean]] has graciously provided servers for our Documentation/wiki and Forum as part of their support for open source projects.
+
+  * In the near future (by the first quarter of 2017) it will be important to have two more of the Hetzner servers, as we will have more buildbots and need more disk space.
+
+===== Finances =====
+  * Each of the Hetzner servers costs about 50 Euros per month, for a total of 150 Euros/month. 
+
+  * There is a small annual charge (20-40 Euros) for registering the domain names, etc. 
+
+  * As of late 2016, two core team members are personally covering the costs of the Hetzner servers while another core team member picks up the other fees. So far, no one has stepped up to fund the new servers that will be required in the coming months.
+
+There is a private discussion about possibilities of some sort of crowdfunding to allow the community to pay back the core team for their expenses, and fund the project going forward, but there is no public news yet.
+

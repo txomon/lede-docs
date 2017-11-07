@@ -1,0 +1,190 @@
+===== Wifi Extender or Repeater or Bridge Configuration =====
+
+In this article you will see how to configure your device to become a WiFi Extender/Repeater/Bridge.\\
+Since opensource wireless drivers used in LEDE do not support bridging in client mode, the traffic between LAN and the wireless client must be joined by routing it.\\ The **relayd** package implements a bridge-like behavior complete with DHCP and Broadcast relaying. This configuration can be done through SSH (remote terminal) or through Luci GUI.\\ For the sake of simplicity, I'll call the device we are working on "wifi extender" from now on.
+
+{{ :docs:user-guide:wifirepeater_802.11-routed-relay.png?direct&700 |}}
+
+This image shows an example setup. **LAN** interface of the wifi extender device MUST be on a different subnet for relayd to work (since it is routing traffic, it expects 2 different subnets).
+
+Since both ethernet ports and Access Point WiFi network are on the same **LAN** interface, all clients connecting to the Ethernet ports and to the Access Point Wifi network of the WiFi extender device will be routed by **relayd** and will be connected to your main network.
+
+The **LAN** interface subnet will be used only as a "management" interface, as devices connecting to the wifi repeater will be on the main network's subnet instead. You will have to set your PC with a static address in the same subnet as the **LAN** interface (like 192.168.2.10 for our example) to connect again to the wifi repeater's Luci GUI or SSH.\\
+
+==== Required packages ====
+You must install **relayd** package if you want to do what is discussed in this article.
+If you want to use Luci GUI to set up your wifi extender, install **luci-proto-relay** package too.
+
+==== Setup with Luci GUI ====
+As shown in the image above, the **LAN** interface must be set in a different subnet than the wifi network you are connecting to.
+
+Begin by configuring and enabling the normal WiFi network and configure it as you want it.\\
+If you are making a simple WiFi Repeater (a device that extends the same wifi network's coverage) it's a good choice to set this WiFi network to be the same as the one of your main router, same name, encryption, password, and so on. This way, devices connected to your (wider) network will automatically stay connected to the best WiFi network.\\
+But you can also choose to have a different name/encryption/password if you prefer to.\\
+Setting up a WiFi network at this stage is not necessary if you want a "WiFi bridge", a device designed to connect ethernet-only devices to your existing WiFi network.
+
+{{:docs:user-guide:wifirepeater_interfaces_lan.png?direct&70 |}}\\ Set LAN as static address 192.168.2.1 and disable DHCP for the **LAN** interface (as it does prevent **relayd** from working). Apply the setting change.\\
+
+----
+
+Set your PC's ethernet or wifi settings at static IP 192.168.2.10 and default gateway 192.168.2.1, then connect again to the wifi repeater (through ethernet or wifi).
+
+We will now set up the client wifi network, the configuration needed to connect to another wifi network.\\ Once you are connected again to the wifi extender, go in the wireless networks page, and click on **Scan** button.
+
+{{:docs:user-guide:wifirepeater_joinnetwork_wifi_scan.png?direct&70 |}} Choose the wifi network you want to connect to from the page and click "Join Network".\\ 
+
+----
+
+{{:docs:user-guide:wifirepeater_joinnetwork_settings.png?direct&70 |}}Enter the wifi password, leave the "name of new network" as "wwan" and select **lan** firewall zone. Click Save.\\
+
+----
+
+----
+
+{{:docs:user-guide:wifirepeater_clientwifi_settings.png?direct&70 |}} You will land in the client wifi settings page, set other things as needed.\\ The most important settings are on the **Operating Frequency** line.\\ Set the **Mode** to **Legacy** if you are connecting to a wifi g network (like in my example) or **N** if you are connecting to a wifi n (and so on).\\ Set the **Width** to the same value that you set on the wifi you are connecting to (to avoid bottlenecking the connection for no reason).
+
+----
+
+----
+
+Go in the **Interfaces** page, we will now add the relayd interface that will join the **lan** and **wwan** interfaces.\\
+Click on **Add New Interface**.
+
+{{:docs:user-guide:wifirepeater_newinterface.png?direct&70 |}}  Write a name for it (**repeater_bridge** is the name I used in the example), and then choose **Relay bridge** in the **Protocol of the new interface** field. Click **Submit**.
+
+----
+
+{{:docs:user-guide:wifirepeater_relaybridge1.png?direct&70 |}} In this new interface's setting page, select both **lan** and **wwan** in the **Relay between networks** list.
+
+----
+
+----
+
+{{:docs:user-guide:wifirepeater_relaybridge2.png?direct&70 |}}Move to the Firewall tab of this interface settings page and select **lan**. Click on **Save and Apply**.
+
+----
+
+----
+
+After you have done this, it might be necessary to reboot the wifi extender.
+
+{{:docs:user-guide:wifirepeater_final_result.png?direct&70 |}}This is the final result. Note how the client network has a ? instead of a IP address.
+
+----
+
+----
+
+:!: The following part of the configuration should not be necessary (already default options or changed automatically), in case something isn't working check this too. 
+
+{{:docs:user-guide:wifirepeater_firewall.png?direct&70 |}} Under the **Network** tab, click on the **Firewall** tab. Under **Zones**, change the forwarding for **lan** and **wwan** to **accept**
+
+----
+
+----
+
+:!: if you are doing this with a device that has a single radio, both wifi networks will stay on the same channel, and total bandwith will be halved as the same radio is used for 2 different wifi networks.
+
+
+
+==== Setup with CLI ====
+
+Before doing any actual configuration, the wifi interface must be enabled in order to be able to scan for networks in the vincinity:
+
+<code>uci set wireless.@wifi-device[0].disabled=0
+uci commit wireless
+wifi</code>
+
+  * Set the disabled option to 0 (to enable wireless)
+  * Save changed configuration file
+  * Start wireless using the //wifi// command
+
+Now we can list networks in range using ''iw dev wlan0 scan'', substituting your actual wireless interface for //wlan0// if different (''ifconfig'' lists all available interfaces to find how your wlan is called)
+
+''iw dev wlan0 scan'' output example:\\
+
+<code>root@LEDE:/# iw dev wlan0 scan
+BSS c8:d5:fe:c8:61:b0(on wlan0) -- associated
+        TSF: 24324848870 usec (0d, 06:45:24)
+        freq: 2412
+        beacon interval: 100 TUs
+        capability: ESS (0x0411)
+        signal: -72.00 dBm
+        last seen: 140 ms ago
+        Information elements from Probe Response frame:
+        SSID: Violetta
+        RSN:     * Version: 1
+                 * Group cipher: CCMP
+                 * Pairwise ciphers: CCMP
+                 * Authentication suites: PSK
+                 * Capabilities: 1-PTKSA-RC 1-GTKSA-RC (0x0000)
+BSS f8:35:dd:eb:20:f8(on wlan0)
+        TSF: 24225790925 usec (0d, 06:43:45)
+        freq: 2457
+        beacon interval: 100 TUs
+        capability: ESS (0x0431)
+        signal: -90.00 dBm
+        last seen: 1450 ms ago
+        Information elements from Probe Response frame:
+        SSID: GOinternet_EB20FB
+        HT capabilities:
+                Capabilities: 0x11ee
+                        HT20/HT40
+                        SM Power Save disabled
+                        RX HT20 SGI
+                        RX HT40 SGI
+                        TX STBC
+                        RX STBC 1-stream
+                        Max AMSDU length: 3839 bytes
+                        DSSS/CCK HT40
+                Maximum RX AMPDU length 65535 bytes (exponent: 0x003)
+                Minimum RX AMPDU time spacing: 4 usec (0x05)
+                HT RX MCS rate indexes supported: 0-15, 32
+                HT TX MCS rate indexes are undefined
+        HT operation:
+                 * primary channel: 10
+                 * secondary channel offset: below
+                 * STA channel width: any
+        RSN:     * Version: 1
+                 * Group cipher: TKIP
+                 * Pairwise ciphers: TKIP CCMP
+                 * Authentication suites: PSK
+                 * Capabilities: 1-PTKSA-RC 1-GTKSA-RC (0x0000) </code>
+
+In the example, there are two networks, a Wifi g one called Violetta and a Wifi n one called GOinternet_EB20FB.
+The device was configured to connect to the one called Violetta.
+
+These are the uci values that were added or changed by the configuration procedure.\\
+For SSID, BSSID, and encryption you must use the info you got from the wifi scan above.\\
+For an explanation of why these values were changed, please read the luci tutorial above.\\
+
+<code>network.lan.ipaddr='192.168.2.1'
+network.repeater_bridge=interface
+network.repeater_bridge.proto='relay'
+network.repeater_bridge.network='lan' 'wwan'
+network.wwan=interface
+network.wwan.proto='dhcp'
+firewall.@zone[0].network='lan repeater_bridge wwan'
+dhcp.lan.ignore='1'
+wireless.radio0.hwmode='11g'
+wireless.radio0.country='00'
+wireless.radio0.channel='1'
+wireless.radio0.disabled='0'
+wireless.@wifi-iface[0]=wifi-iface
+wireless.@wifi-iface[0].device='radio0'
+wireless.@wifi-iface[0].mode='ap'
+wireless.@wifi-iface[0].encryption='none'
+wireless.@wifi-iface[0].ssid='LEDE'
+wireless.@wifi-iface[0].network='lan'
+wireless.@wifi-iface[1]=wifi-iface
+wireless.@wifi-iface[1].network='wwan'
+wireless.@wifi-iface[1].ssid='Violetta'
+wireless.@wifi-iface[1].encryption='psk2'
+wireless.@wifi-iface[1].device='radio0'
+wireless.@wifi-iface[1].mode='sta'
+wireless.@wifi-iface[1].bssid='C8:D5:FE:C8:61:B0'
+wireless.@wifi-iface[1].key='myWifiPasswordHere'
+</code>
+
+Please note that the wifi network generated by the device in this example (the one called LEDE) has no password nor encryption.\\
+This was done because the focus of this article was getting the relay bridge up and running.\\
+You will likely want to set up your device's wifi network in a more secure way, as explained in the WiFi setup page [[docs:user-guide:wifi_configuration|here]].

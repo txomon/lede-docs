@@ -1,0 +1,275 @@
+====== Extroot configuration ======
+
+How to use a storage device (usb or sata or sdcard or whatever) to expand your LEDE device's space in root filesystem, to install freely all the packages you need.
+
+===== Some background information =====
+In most supported devices, the LEDE firmware splits the internal storage in two partitions, a highly-compressed read-only partition which is the actual root filesystem (/), the second partition is writable, called "overlay" (/overlay).\\
+The overlay partition is merged with the root filesystem using the [[https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/filesystems/overlayfs.txt|overlayfs feature of linux kernel]], showing a single "whole" read-write filesystem to applications.\\
+This way LEDE fits even in tiny amounts of internal storage (as low as 4 MiB), but still allows to write settings and install some packages in the writable partition without changing all linux programs used.\\
+Extroot works by setting another overlay partition in the external storage device, and during boot this new overlay partition will be mounted over the internal storage's overlay partition.
+This approach allows easy fallback in case the external storage device is removed, as your LEDE device will still have its own overlay partition and thus will load all configuration from there.\\
+Which means that it will behave exactly the same as just before you set up extroot.
+
+===== First stage for devices with 4 MiB of internal space =====
+In the default LEDE firmware images there are no tools to make extroot, as the build system currently makes only barebone images.\\
+The only way to go for these devices is to rebuild a firmware image with the right packages using the Image Builder.\\
+The Image Builder can run only in a 64bit Linux operating system, so if you don't have a linux system on hand, look up a tutorial to install Ubuntu 64bit in VirtualBox.\\
+Then go in the same download page where you can download the firmware for your device and scroll down until you find a file starting with "**lede-imagebuilder**".\\
+Download it and extract it in a folder in the Linux system.\\
+
+Open a terminal in that folder, and write:\\
+<code>make info</code>
+This will write on screen all the possible profile names for the devices supported by that Image Builder, so we can build the image for the right device.
+Each entry will look like this:
+<code>tl-wr1043nd-v1:
+    TP-LINK TL-WR1043N/ND v1
+    Packages: kmod-usb-core kmod-usb2 kmod-ledtrig-usbdev
+</code>
+First line is the profile name, the second line is a full descriptive name of your device, third line is a list of default packages for that device, and should list some packages about USB or Sata or whatever other storage device.
+
+In my case I have a TP-LINK TL-WR1043N/ND v1, so the profile name for my device is **tl-wr1043nd-v1**
+Now you need to write the command to start building the image (note how the name after the **PROFILE=** is my device's profile name, please use the profile name for yours):
+<code>make image PROFILE=tl-wr1043nd-v1 PACKAGES="block-mount kmod-fs-f2fs kmod-usb-storage mkf2fs f2fsck kmod-usb-ohci kmod-usb-uhci"</code>
+
+This will build a firmware image that is able to create and check/fix a partition with f2fs filesystem.\\
+F2fs is designed to be used on flash drives (USB thumbdrives or SSDs), it will also work for hard drives, but won't be as good.
+ <WRAP center round todo 90%>
+Sadly the package **e2fsprogs** with the tools for ext4 filesystem (better suited for hard drives) is too large to fit in 4 MiB devices.
+If someone can split the mke2fs and the filesystem checker tool from it, we can adjust this tutorial to use ext4.
+</WRAP>
+<WRAP center round todo 90%>
+WARNING: fsck.f2fs from f2fstools 1.7.0 is broken on ar71xx (mips32 big endian) platform.
+fsck.f2fs corrupts valid f2fs partitions. Current f2fstools version in LEDE 17.01.1 (released mid-April) is version 1.8.0, which does not have this issue, check versions and upgrade at once.
+</WRAP>
+Afterwards, open the folder **bin** inside the Image Builder folder, then open the **target** folder, then the folder you find in it (it has a device-type-specific name), and then inside a folder called **generic** and you should reach the flashable images.
+Choose the right image (factory or sysupgrade) and install it.
+
+===== First stage for devices with 8 MiB or more internal space =====
+These devices should have enough space to install the packages we need.
+Remove all packages you have installed to add functionality, as they are only wasting space now. After you make the extroot you will have all space you need.
+
+From the command line interface write (on a single line):
+<code>opkg update && opkg install block-mount  kmod-fs-f2fs kmod-usb-storage mkf2fs f2fsck kmod-usb-ohci kmod-usb-uhci fdisk</code>
+
+<WRAP center round todo 90%>
+On TL-1043ND v2 due to errors on F2FS extroot, router started freezing up. Running fsck.f2fs from f2fstools 1.7.0 on ar71xx corrupts valid f2fs partitions.
+For ar71xx with 8MiB or more flash, use ext4 for extroot instead.
+<code>opkg update && opkg install block-mount kmod-fs-ext4 kmod-usb-storage e2fsprogs kmod-usb-ohci kmod-usb-uhci fdisk</code>
+</WRAP>
+===== Common second stage =====
+Connect with ssh to the device.\\
+
+See what partitions you have:
+<code>root@lede:/# block info 
+/dev/mtdblock2: UUID="9fd43c61-c3f2c38f-13440ce7-53f0d42d" VERSION="4.0" MOUNT="/rom" TYPE="squashfs"
+/dev/mtdblock3: MOUNT="/overlay" TYPE="jffs2"
+/dev/sda1: UUID="fdacc9f1-0e0e-45ab-acee-9cb9cc8d7d49" VERSION="1.4" TYPE="f2fs"</code>
+here we see **mtdblock** devices (partitions in internal flash memory), and a partition on /dev/sda1 that is on a usb flash drive (in the example it is already formatted as f2fs)
+
+We now first format the external drive as f2fs or ext4.
+
+For f2fs:
+<code>root@lede:/# mkfs.f2fs /dev/sda1</code>
+For ext4:
+<code>root@lede:/# mkfs.ext4 /dev/sda1</code>
+
+Then we transfer the content of the current overlay inside the external drive
+<code>root@lede:/# mount /dev/sda1 /mnt ; tar -C /overlay -cvf - . | tar -C /mnt -xf - ; umount /mnt</code>
+
+===== Automated fstab generation =====
+Now we create automatically the fstab uci subsystem and fill it with the right configuration to have /dev/sda1 as new overlay
+<code>root@lede:/# block detect > /etc/config/fstab; \
+   sed -i s/option$'\t'enabled$'\t'\'0\'/option$'\t'enabled$'\t'\'1\'/ /etc/config/fstab; \
+   sed -i s#/mnt/sda1#/overlay# /etc/config/fstab; \
+   cat /etc/config/fstab;
+ </code>
+
+If you have a swap partition it will also get recognized and added automatically.
+
+===== Manual fstab generation =====
+If you want to do it manually, this command will create automatically a generic fstab uci subsystem
+<code>root@lede:/# block detect > /etc/config/fstab  </code>
+now open it
+<code>root@lede:/# vi /etc/config/fstab</code>
+this is an example of fstab configured to automount /overlay /data and swap partitions.\\
+<code>config 'global'
+        option  anon_swap       '0'
+        option  anon_mount      '0'
+        option  auto_swap       '1'
+        option  auto_mount      '1'
+        option  delay_root      '5'
+        option  check_fs        '0'
+
+config 'mount'
+        option  target  '/overlay'
+        option  uuid    'c91232a0-c50a-4eae-adb9-14b4d3ce3de1'
+        option  fstype  'ext4'
+        option  enabled '1'
+
+config 'swap'
+        option  uuid    '08b4f0a3-f7ab-4ee1-bde9-55fc2481f355'
+        option  enabled '1'
+
+config 'mount'
+        option  target  '/data'
+        option  uuid    'c1068d91-863b-42e2-bcb2-b35a241b0fe2'
+        option  enabled '1'
+</code>
+as you see, most options are self-explaining. 
+
+
+===== Check if overlay is mountable =====
+let's try manually mounting to see if everything is OK
+<code>root@lede:/# mount /dev/sda1 /overlay </code>
+
+now we see mount point sizes:
+<code>root@lede:/# df </code>
+this is an example output:
+<code>Filesystem           1K-blocks      Used Available Use% Mounted on
+rootfs                     896       244       652  27% /
+/dev/root                 2048      2048         0 100% /rom
+tmpfs                    14708        64     14644   0% /tmp
+/dev/mtdblock6         7759872    477328   7221104   6% /overlay
+overlayfs:/overlay         896       244       652  27% /
+tmpfs                      512         0       512   0% /dev
+/dev/sda1              7759872    477328   7221104   6% /overlay
+</code> 
+Note that only ''/overlay'' has grown but not the ''/''
+
+===== Final steps =====
+  - Reboot the router
+  - Verify that the partitions were mounted properly:
+    * via LuCI
+      * //System - Software// should show free space of overlay partition
+      * //System - Mount Points// should show USB partition mounted as ''overlay''
+    * via CLI
+      * ''mount'' should show USB partition mounted as ''/overlay''\\ 
+<code>root@lede:~# mount
+/dev/root           on /rom               type squashfs (ro,relatime)
+proc                on /proc              type proc     (rw,noatime)
+sysfs               on /sys               type sysfs    (rw,noatime)
+tmpfs               on /tmp               type tmpfs    (rw,nosuid,nodev,noatime)
+/dev/mtdblock6      on /overlay           type jffs2    (rw,noatime)
+overlayfs:/overlay  on /                  type overlay  (rw,noatime,lowerdir=/,upperdir=/overlay/upper,workdir=/overlay/work)
+tmpfs               on /dev               type tmpfs    (rw,relatime,size=512k,mode=755)
+devpts              on /dev/pts           type devpts   (rw,relatime,mode=600)
+/dev/sda1           on /overlay           type ext4     (rw,relatime,data=ordered)
+/dev/sda3           on /data              type ext4     (rw,relatime,data=ordered)
+debugfs             on /sys/kernel/debug  type debugfs  (rw,noatime)
+</code>
+      * ''df'' should show free space available on your ''/overlay'' and ''/'' partition, all the storages mounted to ''/overlay'' and ''/'' (the ''rootfs'' in the first place) should look the same increased capacity:\\ 
+<code>root@lede:~# df
+Filesystem           1K-blocks      Used Available Use% Mounted on
+rootfs                 7759872    477328   7221104   6% /
+/dev/root                 2048      2048         0 100% /rom
+tmpfs                    14708        64     14644   0% /tmp
+/dev/mtdblock6         7759872    477328   7221104   6% /overlay
+overlayfs:/overlay     7759872    477328   7221104   6% /
+tmpfs                      512         0       512   0% /dev
+/dev/sda1              7759872    477328   7221104   6% /overlay
+/dev/sda3            242846048    163864 230323224   0% /data
+</code>
+
+
+===== Troubleshooting =====
+  * FIXME: **might be outdated** Add option ''force_space'' in ''/etc/opkg.conf'' to allow installation of packets bigger than your ''/rom'' partitions free space: <code>echo option force_space >> /etc/opkg.conf</code>
+  * Do not use vfat (FAT/FAT32); it does not work. If you have a FAT preformatted USB drive, you cannot use it for extroot without reformatting. Use e.g. ext4 (install e2fsprogs, then format your FAT formatted USB drive using ''mkfs.ext4 /dev/sda1'' as per the example).
+  * If the partition containing your extroot isn't mounted during boot, but you can mount it without problems from a shell, you should try to increase ''config 'global' / option delay_root''.  On my system I had to set it to 15 seconds to get extroot working. Another hint to this being the culprit is having a working swap or other partitions mounted after booting, but not your extroot.
+  * Another possibility to consider and try is to include in ''/etc/rc.local'' the commands: ''export PREINIT = 1'';''mount_root'', as described in [[https://dev.openwrt.org/ticket/14946|14946]] ticket, which in the case of running Chaos Calmer r44266 in the Comtrend AR-5387un, has been the only thing that allowed me to achieve extroot.
+  * If after successful extroot mount, swap isn't enabled and other partitions aren't mounted, check your ''/etc/config/fstab'' in the overlay partition. If your ''/etc/config/fstab'' in the overlay partition only contains a ''global'' section, you may need to add the following from the example:\\ <code>
+config 'swap'
+        option  uuid    '08b4f0a3-f7ab-4ee1-bde9-55fc2481f355'
+        option  enabled '1'
+
+config 'mount'
+        option  target  '/data'
+        option  uuid    'c1068d91-863b-42e2-bcb2-b35a241b0fe2'
+        option  enabled '1'
+</code>
+  * If you are putting the extroot on a non-USB device such as a mmc card all modules needed acccess the device should be in appropriate file in /etc/modules-boot.d. For example using a sdhci card on a mt7688/mt7628 device /etc/modules-boot.d/mmc needs have two lines added:<code>
+mmc_core
+mmc_block
+sdhci
+mtk_sd
+</code>
+  * If you receive a "block: extroot: UUID mismatch" error in your logs after upgrading, remove /etc/.extroot-uuid on the target volume.
+
+===== Notes =====
+==== Extroot to a card in a slot of an USB-dongle ====
+It's a good idea to include the ''usb-modeswitch'' tool in the image.\\ There is a caveat: if the ''/overlay'' points to a memory card sitting in a slot of the dongle - the otherwise working ''pivot overlay'' set-up will break in the later stages of OS boot. This is because the ''usb-modeswitch'' (while disabling the CDROM and enabling the modem) would also intermittently affect the card-reader in the dongle thus hurting the file system.\\
+To avoid this you need a dongle that can be pre-configured to enable its' modem or network adapter (and the card-reader as well) on the power-up, without the need to do it with the ''usb-modeswitch'' on the router.
+
+Insert your dongle in a desktop and use a terminal to send the necessary AT-commands.\\
+Check your dongle's initial configuration:\\
+<code>
+at^setport?
+^SETPORT:A1,A2;1,3,2,A1,A2
+OK
+</code>
+The meaning of the above report can be understood with the following command:\\
+<code>
+at^setport=?
+^SETPORT:A1: CDROM
+^SETPORT:A2: SD
+^SETPORT:A: BLUE TOOTH
+^SETPORT:B: FINGER PRINT
+^SETPORT:D: MMS
+^SETPORT:E: PC VOICE
+^SETPORT:1: MODEM
+^SETPORT:2: PCUI
+^SETPORT:3: DIAG
+^SETPORT:4: PCSC
+^SETPORT:5: GPS
+^SETPORT:6: GPS CONTROL
+^SETPORT:16: NCM
+OK
+</code>
+So, in the example above we have a dongle with CDROM and card-reader available in the first configuration (to the left of the '';'' character), and with modem, control and diagnostic interfaces, and card-reader available in the other configuration. It is between these configurations the ''usb-modeswitch'' switches the dongle on the router.\\
+\\
+Your goal is to disable the CDROM and enable the modem (the ''1'' above) or the network adapter (the ''16'' above) while leaving the card-reader enabled (the ''A2'' above).\\
+**NOTE: Never disable the PCUI** (the ''2'' above) - this will lock you out from your dongle!\\
+\\
+Some dongles accept a 'disable all' operand (the ''FF'' below).\\
+Place the list of all the functions you need on your dongle by default to the right of the '';'' character according to their codes from the dongle's answer above:\\
+<code>
+at^setport="ff;1,2,3,a2"
+OK
+
+at^reset
+OK
+
+at^setport?
+^SETPORT:;1,2,3,A2
+OK
+</code>
+This sequence has disabled the CDROM and made the modem, control and diagnostic interfaces and the card-reader available by default - without any ''usb-modeswitch'' interaction. Thus only one configuration exists now in the dongle - see the '';'' character, there is nothing to the left of it now.
+
+=== Dongles known to support the pre-configuration ===
+  * Huawei E3131s-2 f/w v21.158.47.00.1094
+==== Remote File Systems ====
+  * Forum: [[https://forum.openwrt.org/viewtopic.php?id=32812|Fstab not mounting cifs at boot or through CLI]]
+
+==== System Upgrade ====
+
+This section applies to LEDE trunk, but not to LEDE releases, as the kernel-related packages (and the packages requiring them) in releases will only receive fixes and security patches.
+
+=== Recommended by extroot maintainer ===
+I recommend that you DO NOT try to do upgrades using ''opkg upgrade''. You will likely end up with an inconsistent state and soft-bricked router that way:
+  * The main reason is that the uClibc ABI (Application Binary Interface) is unstable and changes from revision to revision, so binaries for one version of uClibc may be incompatible with versions from another.
+  * Another problem that can arise is if you try to upgrade the kernel packages, then flash and reboot, but your operation is interrupted in any way, then you will have a kernel and module mismatch and likely a brick.
+  * Finally, if you upgrade all packages but the kernel and the kernel modules, some packages like ''iptables'' will be broken.
+
+==== Accessing original root ====
+
+Sometimes you may need to access the original root overlay, for example to change your extroot settings.  A convenient way of doing this is to configure ''/etc/config/fstab'' on your extroot partition to mount the original root overlay in another directory, like this:<code>
+config mount
+	option target	/overlay-boot
+	option device	/dev/mtdblock3
+	option fstype	jffs2
+	option options	rw,sync
+	option enabled	1
+	option enabled_fsck 0
+</code>
+This assumes the original, internal overlay was on ''/dev/mtdblock3'' - check your router's page on this wiki and look at the flash map to confirm what MTD block it is for you. Or run ''$ cat /proc/mtd'' and search the partition named ''rootfs_data'' to know where is your overlay.
+
+If you then create ''/overlay-boot'' on the extroot partition, this directory will contain the original root overlay, which is used as the main root overlay until the extroot is up and running.  So you can then for example edit ''/overlay-boot/etc/config/fstab'' to change your extroot configuration (or temporarily disable it) should you ever need to.

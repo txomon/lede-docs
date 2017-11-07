@@ -1,0 +1,51 @@
+====== Использование генератора прошивок (Image Builder) ======
+Это среда разработки подходит для создания пользовательских сборок без необходимости компиляции из исходных кодов.\\
+Она загружает предварительно скомпилированные пакеты и интегрирует их в единую прошивку.\\
+Это может быть полезно, если:
+  * Вы хотите разместить больше пакетов во флеш-память маленького размера
+  * Вы хотите использовать сборки разработчиков
+  * Ваше устройство имеет 32MB или меньше оперативной памяти и opkg не работает должным образом
+  * Вы хотите массово прошить десятки устройств и вам потребуется особая настройка встроенного программного обеспечения
+===== Необходимая подготовка =====
+:!: Генератор прошивок (image Generator) работает только в 64-битных Linux. Однако вы можете запустить 64-битный Linux в виртуальной машине (такой как VirtualBox) даже из 32-битной системы windows.\\
+:!: Генератор прошивок имеет некоторые зависимости пакетов что и система сборки.[[docs:guide-developer:install-buildsystem|Build system – Installation]].\\
+Пример разрешения зависимостей для наиболие популярных дистрибутивов:
+<WRAP>Debian/Ubuntu<code>apt-get install subversion build-essential libncurses5-dev zlib1g-dev gawk git ccache gettext libssl-dev xsltproc wget</code></WRAP>
+
+<WRAP>CentOS/RHEL<code>yum install subversion git gawk gettext ncurses-devel zlib-devel openssl-devel libxslt wget
+yum group install "Development Tools"</code></WRAP>
+
+===== Получение Image Builder =====
+Вы можете загрузить архив, который содержит генератор прошивок(**Image Builder**), он обычно находится на той же странице, откуда вы загружали образ прошивки для вашего устройства.\\
+Например, эта страница, на которой вы можете скачать все образа прошивок для **ar71xx/generic** устройств.\\ 
+https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/\\
+там же вы найдете архив **lede-imagebuilder-ar71xx-generic.Linux-x86_64.tar.xz**, внутри архива содержится генератор прошивок(image builder).
+
+Как правило, генератор прошивок всегда создается системой сборки, поскольку он необходим для создания файла образа прошивки. Если опция "**Build the LEDE Image Builder**" включена, генератор прошивок будет создан в той же папке что и образ прошивки \\ ( source/bin/targets/xxx ) , и вы можете использовать его для создания других прошивок состоящих из пакетов полученых во время компиляции. 
+
+===== Настройка репозиториев пакетов =====
+Генератор прошивок(**Image Generator**) который вы можете загрузить с сайта LEDE уже настроен для загрузки не стандартных пакетов из официальных репозиториев.
+Исходные коды пакетов настраиваются в ''repositories.conf'' файле в указанном каталоге. Источники указаны в //opkg// родном формате конфигурации. Это может быть как официальные репозитории пакетов так и созданные пользователем репозитории.
+
+пример содержимого ''repositories.conf'' из **lede-imagebuilder-ar71xx-generic.Linux-x86_64.tar.xz** :
+
+<code>## Place your custom repositories here, they must match the architecture and version.
+# src/gz reboot http://downloads.lede-project.org/snapshots
+# src custom file:///usr/src/lede/bin/ramips/packages
+
+## Remote package repositories
+src/gz reboot_core http://downloads.lede-project.org/snapshots/targets/ramips/mt7620/packages
+src/gz reboot_base http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/base
+src/gz reboot_telephony http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/telephony
+src/gz reboot_packages http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/packages
+src/gz reboot_routing http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/routing
+src/gz reboot_luci http://downloads.lede-project.org/snapshots/packages/mipsel_24kc/luci
+
+## This is the local package repository, do not remove!
+src imagebuilder file:packages
+</code>
+
+The ''repositories.conf'' in an imagebuilder you compile from source will lack the “Remote package repositories” links. 
+
+Если вы хотите добавить пользовательский локальный репозиторий, просто скопируйте <code>src custom file:///usr/src/lede/bin/ramips/packages</code> строку и измените её так, чтобы она указывала на локальную папку содержащую ваши пакеты и списки пакетов.\\
+Если у вас есть собственные репозитории в Интернете, то скопируйте и изменяйте следующую строку. \\ <code>src/gz reboot http://downloads.lede-project.org/snapshots</code> 

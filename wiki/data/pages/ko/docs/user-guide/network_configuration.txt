@@ -1,0 +1,197 @@
+====== Network 설정 ======
+중앙 network설정은 uci **network** 서브시스템으로 처리되며 ''/etc/config/network''파일에 저장됩니다. 이 uci 서브시스템은 //switch VLANs//, //interface configurations//, //network routes//를 정의합니다.\\ 
+network 설정을 변경(uci 혹은 다른 어떤것으로)한 후에느 다음의 코드를 입력하여 netfid 데몬에서 network 설정을 다시 로드해야 합니다.:\\
+<code>root@lede:/# service network reload</code> 
+[[docs:guide-developer:netifid|netifd]] (Network Interface Daemon)덕분에 변경된 인터페이스가 자동으로 다시 시작되어 변경 사항을 실시간으로 적용합니다. \\
+라우터를 재부팅 할 필요는 없지만 강제로 설정을 다시 로드하는 또 다른 방법중의 하나 입니다.
+
+다음은 TL-WR1043ND에 대한 기본 설정을 network uci 서브시스템으로 보는 예입니다.
+<code>root@lede:/# uci show network
+network.loopback=interface
+network.loopback.ifname='lo'
+network.loopback.proto='static'
+network.loopback.ipaddr='127.0.0.1'
+network.loopback.netmask='255.0.0.0'
+network.globals=globals
+network.globals.ula_prefix='fd27:70fa:5c1d::/48'
+network.lan=interface
+network.lan.type='bridge'
+network.lan.ifname='eth0.1'
+network.lan.proto='static'
+network.lan.netmask='255.255.255.0'
+network.lan.ip6assign='60'
+network.lan.ipaddr='192.168.1.1'
+network.wan=interface
+network.wan.ifname='eth0.2'
+network.wan.proto='dhcp'
+network.wan6=interface
+network.wan6.ifname='eth0.2'
+network.wan6.proto='dhcpv6'
+network.@switch[0]=switch
+network.@switch[0].name='switch0'
+network.@switch[0].reset='1'
+network.@switch[0].enable_vlan='1'
+network.@switch_vlan[0]=switch_vlan
+network.@switch_vlan[0].device='switch0'
+network.@switch_vlan[0].vlan='1'
+network.@switch_vlan[0].ports='1 2 3 4 5t'
+network.@switch_vlan[1]=switch_vlan
+network.@switch_vlan[1].device='switch0'
+network.@switch_vlan[1].vlan='2'
+network.@switch_vlan[1].ports='0 5t'
+</code>
+
+위에 보이는 것과 ''/etc/config/network''에 쓰여진 것과 같은 설정입니다.
+
+<code>root@lede:/# cat /etc/config/network
+
+config interface 'loopback'
+        option ifname 'lo'
+        option proto 'static'
+        option ipaddr '127.0.0.1'
+        option netmask '255.0.0.0'
+
+config globals 'globals'
+        option ula_prefix 'fd27:70fa:5c1d::/48'
+
+config interface 'lan'
+        option type 'bridge'
+        option ifname 'eth0.1'
+        option proto 'static'
+        option netmask '255.255.255.0'
+        option ip6assign '60'
+        option ipaddr '192.168.1.1'
+
+config interface 'wan'
+        option ifname 'eth0.2'
+        option proto 'dhcp'
+
+config interface 'wan6'
+        option ifname 'eth0.2'
+        option proto 'dhcpv6'
+
+config switch
+        option name 'switch0'
+        option reset '1'
+        option enable_vlan '1'
+
+config switch_vlan
+        option device 'switch0'
+        option vlan '1'
+        option ports '1 2 3 4 5t'
+
+config switch_vlan
+        option device 'switch0'
+        option vlan '2'
+        option ports '0 5t'
+</code>
+
+인터페이스 목록을 보려면 다음코드를 입력하세요. 
+<code>root@lede:/# ubus list network.interface.*</code>\\ 
+특정 인터페이스(물리적 인터페이스가 아닌 uci 이름)에 대한 모든 정보를 보려면 ifstatus <interface_name>를 입력하세요
+<code>root@lede:/# ifstatus lan</code>
+
+===== 세션 =====
+라우터의 최소 네트워크 설정은 일반적으로 적어도 두개의 //interface// (''lan''과''wan'')와 //switch// 세션으로 구성되어 있습니다.
+
+===== Globals =====
+''globals'' 세션에는 일반적으로 네트워크 설정에 영향을 주는 독립전인 인터페이스 옵션이 있습니다.
+
+^ 이름 ^ Type ^ Required ^ 초기값 ^ 설명 ^
+| ''ula_prefix'' | IPv6-prefix | no | //(none)// | IPv6 [[wp>Unique local address|ULA]]-Prefix for this device |
+
+===== Interfaces =====
+세션들중  ''interface'' 세션은 IP주소 설정, [[docs:user-guide:network_interface_alias|별명]], [[docs:user-guide:routes_configuration|routes]], 물리적 인터페이스 이름,[[docs:user-guide:firewall_configuration|방화벽]]을 정의합니다. interface는 LEDE 설정에서 핵심적인 역할을 합니다.
+
+최소 인터페이스 선언은 다음과 같이 구성됩니다:
+
+**uci:** 
+<code>network.wan=interface
+network.wan.ifname='eth0.2'
+network.wan.proto='dhcp'</code>
+
+**config file:**
+<code>config 'interface' 'wan'
+        option 'proto' 'dhcp'
+        option 'ifname' 'eth0.2'</code>
+
+  * ''wan'' 은 고유한 //논리적 인터페이스 이름//입니다.
+  * ''dhcp''은 //인터페이스 프로토콜//을 지정합니다.예시는 DHCP로 지정하였습니다.
+  * ''eth0.2'' 이 세션과 관련되 있는 //물리적 인터페이스//입니다.
+
+:!:  시스템은 접두어를 포함한//물리적인 인터페이스 이름//의 길이를 15자로 제한합니다.접두어로 일부 프로토콜(예:"6in4-", "pppoa-", "pppoe-") 또는 브리지 상태 ("br-")로 인해 추가 된 것을 말합니다.\\ 
+프로토콜의 유형에 따라 //논리 인터페이스 이름//은 9자로 제한 될 수 있습니다.예를들어 'abcde67890' 은 dhcp를 사용하는 가능한 일반 인터페이스의 이름이지만 최종적으로 'pppoe-abcde67890'이 되는 pppoe 인터페이스의 경우 15자가 넘기 때문에 가능하지 않습니다.\\ 
+너무 긴 이름을 사용하면 네트워크, 방화면, dhcp등의 설정이 적용되지 않은 상태로 남아 있을 수 있으므로 오류가 발생할 수 있습니다.
+
+//인터페이스 프로토콜//은 다음 중 하나 일 수 있습니다.
+
+^ 프로토콜 ^ 설명 ^ 프로그램^
+| ''static'' | 고정 주소 및 넷 마스크를 사용한 정적 설정 |  ''ip''/''ifconfig''  |
+| ''dhcp'' |주소와 넷 마스크는 DHCP에 의해 할당됩니다.  |  ''udhcpc'' (Busybox)  |
+| ''dhcpv6'' | 주소와 넷 마스크는 DHCPv6에 의해 할당됩니다.  |  ''odhcpc6c''  |
+| ''ppp'' | PPP 프로토콜 - 전화 접속 모뎀 연결  |  ''pppd''  |
+| ''pppoe'' | 이더넷을 통한 PPP - DSL 광대역 연결  |  ''pppd'' + ''plugin rp-pppoe.so''  |
+| ''pppoa'' | PPP over ATM - 내장 모뎀을 사용한 DSL 연결  |  ''pppd'' + plugin ...  |
+| ''3g'' | AT 스타일 3G 모뎀을 사용하는 CDMA, UMTS 또는 GPRS 연결  |  ''comgt''  |
+| ''qmi'' | QMI 프로토콜을 사용하는 USB 모뎀|  ''uqmi''  |
+| ''ncm'' | NCM 프로토콜을 사용하는 USB 모뎀 |  ''comgt-ncm'' + ?  |
+| ''wwan'' | 프로토콜 자동 감지 기능이있는 USB 모뎀  |  ''wwan''  |
+| ''hnet'' | 자체 관리 홈 네트워크 (HNCP)  |  ''hnet-full''  |
+| ''pptp'' | PPtP VPN을 통한 연결 |  ?  |
+| ''6in4'' | HE.net과 같은 터널 중개인과 함께 사용하기위한 IPv6-in-IPv4 터널  |  ?  |
+| ''aiccu'' | 무엇이든 있는 터널  |  ''aiccu''  |
+| ''6to4'' | IPv4 전송에 대한 무국적 IPv6  |  ?  |
+| ''6rd'' | IPv6 신속한 배포  |  ''6rd''  |
+| ''dslite'' | 듀얼 스택 라이트 |  ''ds-lite''  |
+| ''l2tp'' | L2TP 유사 회선 터널을 통한 PPP  |  ''xl2tpd''  |
+| ''relay'' | 중계 의사 브리지  |  ''relayd''  |
+| ''gre'', ''gretap'' | IPv4를 통해 GRE  |  ''gre'' + ''kmod-gre''  |
+| ''grev6'', ''grev6tap'' |  IPv6를 통한 GRE  |  ''gre'' + ''kmod-gre6''  |
+| ''vti'' | IPv4를 통한 VTI  |  ''vti'' + ''kmod-ip_vti''  |
+| ''vtiv6'' | IPv6를 통한 VTI |  ''vti'' + ''kmod-ip6_vti''  |
+| ''none'' | 지정되지 않은 프로토콜이므로 다른 모든 인터페이스 설정은 무시됩니다 (예 : 구성 비활성화).  |  -  |
+
+//인터페이스 프로토콜//에 완벽한 정의를 위해 몇가지 옵션들이 필요 할 수 있습니다.
+각 프로토콜에 해당되는 옵션들은 아래에 정리되어 있습니다.해당 프로토콜을 사용하는 경우 반드시 "필수"인 경우 정의해야 하며, 아닌 경우 생략 해도 됩니다.
+
+:!: 인터페이스 세션에 정의된 프로토콜이 없다면 (''none''이 아니라) 다른 설정도 완전히 무시됩니다.인터페이스 세션이 물리적 네트워크 인터페이스를 언급하는 경우 (예: eth0), 케이블이 연결되어 있어도 다운됩니다.( proto 'none'인터페이스가 작동중).
+
+==== 사용 가능한 프로토콜 옵션 ====
+
+^ 이름 ^ Type ^ Required ^ 초기값 ^ 설명 ^
+| ''ifname'' | interface name(s) | yes(*) | //(none)// |이 섹션에 할당 할 실제 인터페이스 이름, 유형 브리지가 설정된 경우 인터페이스 목록. (*) 무선 인터페이스 만이 네트워크를 참조하거나 프로토콜 유형이'' pptp'' , ''pppoa'' 또는 ''6in4'' 옵션은 비어 있거나 누락 될 수 있습니다.|
+| ''type'' | string | no | //(none)// |"bridge"로 설정하면 주어진 ifnames 를 포함하는 브리지가 생성됩니다. [[https://forum.openwrt.org/viewtopic.php?pid=203784#p203784|Wlan 인터페이스 이름은 예측할 수 없기 때문에 네트워크 구성에서 직접 참조 할 수 없습니다. ]] |
+| ''stp'' | boolean | no | ''0'' | "브리지"에 대해서만 유효하며, 스패닝 트리 프로토콜  |
+| ''bridge_empty'' | boolean | no | ''0'' | bridge"에만 유효하며 빈 브리지를 만들 수 있습니다.  |
+| ''igmp_snooping'' | boolean | no | ''1'' | "bridge"에만 유효하며, bridge에 대한 multicast_snooping 커널 설정을 설정합니다.  |
+| ''macaddr'' | mac address | no | //(none)// | 이 인터페이스의 MAC 주소 재정의  |
+| ''mtu'' | number | no | //(none)// |  인터페이스에서 기본 MTU 무시  |
+| ''auto'' | boolean | no | ''0'' for proto ''none'', else ''1'' | 부팅 할 때 인터페이스를 불러올 지 여부를 지정합니다.  |
+| ''ipv6'' | boolean | no | ''1'' | 이 인터페이스에서 IPv6을 활성화 (1) 또는 비활성화 (0)할지 지정합니다 (Barrier Breaker 이상).  |
+| <del>''accept_ra''</del> | <del>boolean</del> | <del>no</del> | <del>''1'' for protocol ''dhcp'', else ''0''</del> | <del>Specifies whether to accept IPv6 Router Advertisements on this interface</del> **deprecated:** |
+| <del>''send_rs''</del> | <del>boolean</del> | <del>no</del> | <del>''1'' for protocol ''static'', else ''0''</del> |  <del>Specifies whether to send Router Solicitations on this interface</del> **deprecated:** |
+| ''force_link'' | boolean | no | ''1'' for protocol ''static'', else ''0'' | 활성화 된 링크 ( '1') 또는 링크가 활성화 된 후에 ( '0')에만 인터페이스에 IP 주소, 경로 및 선택적으로 게이트웨이를 할당할지 여부를 지정합니다. '1'로 설정하면 캐리어 감지 이벤트가 핫 플러그 ​​처리기를 호출하지 않습니다.  |
+| ''enabled'' | boolean | no | ''1''  | 인터페이스 섹션을 활성화 또는 비활성화합니다.  |
+| ''ip4table'' | string | no | //(none)//  |(ipv4)이 인터페이스의 라우트에 대한 라우팅 테이블. 예를 들어 proto = dhcp 일 경우 dhcp 클라이언트는 해당 테이블에 경로를 추가합니다 |
+| ''ip6table'' | string | no | //(none)//  | (ipv6)이 인터페이스의 라우트에 대한 라우팅 테이블. 예를 들어 proto = dhcp6 일 때 dhcp6 클라이언트는 해당 테이블에 경로를 추가합니다  |
+
+
+===== 네트워크 관리 =====
+
+네트워크 설정은 ''/etc/init.d/network restart''을 실행하여 적용 할 수 있습니다.\\
+각각의 인터페이스들은 ''ifup //name//''을 통해 가져올 수 있으며 또는 ''ifdown //name//''을 통해 다운 할 수 있습니다.여기서 //name//은 해당 ''config interface''세션의 //논리 인터페이스 이름//에 해당됩니다.''ifup'' 은 ''ifdown''을 의미하므로 인터페이스를 다시 로드할 때 호출 할 필요가 없습니다.
+
+주의: 무선 인터페이스는 외부에서 관리되며 ''ifup'' 은 기존 브리지 관계를 깰 수 있습니다.. 이 경우 브리지 연결을 다시 설정하기 위해 ''ifup'' 후 ''wifi up''을 실행 해야 합니다.
+
+
+===== 스크립트 친화적인 인터페이스 =====
+네트워크 관련 정보를 얻으려는 스크립트의 경우 ''/lib/functions/network.sh''에 있는 LEDE 펌웨어의 기능을 사용할 수 있습니다. 사용 가능한 기능과 호출 방법에 대한 자세한 정보는 해당 파일의 소스 및 주석을 참조하십시오.
+
+간단한 예:
+<code>root@lede:/# source /lib/functions/network.sh ; if network_get_ipaddr addr "lan"; then echo "IP is $addr"; fi
+IP is 192.168.1.1
+</code>
+
+''wan''과 같은 논리 네트워크 이름에서 ''eht1''과 같은 linux 인터페이스 이름을 얻으려면 다음 예제와 같이 할 수 있습니다.
+<code>root@lede:/# uci get network.wan.ifname
+eth0.2</code>

@@ -1,0 +1,10 @@
+<columns 100% 50% ->
+^  Links  ^^
+^ Forum Topic URL                                       | @@forum topic url@@                |
+^ WikiDevi URL                                          | @@wikidevi url@@                   |
+^ OEM device homepage URL                               | @@oem device homepage url@@        |
+^ OEM Stock Firmware URL                                | @@firmware oem stock url@@         |
+^ OpenWrt Install Firmware URL                          | @@firmware openwrt install url@@   |
+^ OpenWrt Upgrade Firmware URL                          | @@firmware openwrt upgrade url@@   |
+^ Edit the underlying data                              | @@device techdata@@                |
+</columns>

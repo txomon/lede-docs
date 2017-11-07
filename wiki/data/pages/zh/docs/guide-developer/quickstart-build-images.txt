@@ -1,0 +1,50 @@
+====== 敏捷编译指引 ======
+
+This is a very short guide on how to compile your first firmware.
+It does not cover any pitfalls, but provides a quick way if everything goes well.
+
+First we need to make sure the dependencies are installed (for Debian/Ubuntu):
+
+<code>
+sudo apt-get install subversion g++ zlib1g-dev build-essential git python rsync man-db
+sudo apt-get install libncurses5-dev gawk gettext unzip file libssl-dev wget
+</code>
+
+拉取 LEDE 源代码命令:
+
+<code>
+git clone https://git.lede-project.org/source.git lede
+cd lede
+
+./scripts/feeds update -a
+./scripts/feeds install -a
+
+make defconfig
+make menuconfig
+</code>
+
+The last command will open a menu.
+
+If you want to build images for the "TL-WR841N v11" Wifi-Router, select:
+
+  * "Target System" => "Atheros AR7xxx/AR9xxx"
+  * "Target Profile" => "TP-LINK TL-WR841N/ND v11"
+
+Select exit and save your settings.
+Now build images. That may take some time:
+
+<code>
+make
+</code>
+
+Afterwards, the images can be found in ./bin/targets/ar71xx/generic/ - done. 8-)
+
+The *-factory.bin images are for the first installation.
+The *-sysupgrade.bin images are for the updating existing LEDE installations.
+
+注意:
+
+  * For recompiling the images, just execute make again.
+  * This will now be much faster as well.
+  * Change settings with //make menuconfig// and compile again.
+  * Files placed into a directory called files, will be placed into the root file system of the images. E.g. files/etc/config/my_config.

@@ -1,0 +1,40 @@
+====== LEDE's Infrastructure ======
+Проект Lede опирается на значительные усилия своих добровольцев разработчиков, команду составителей документации, администраторов форума и людей, которые активно используют или участвуют в тестирование продуктов.
+
+Команда Lede также обеспечила физическими и виртуальными серверами, которые работают над "make the LEDE Project go."
+===== Ресурсы =====
+
+Мы проводим следующие мероприятия и услуги для поддержки проекта Lede.
+
+  * Самое главное это [[:start|LEDE Сайт]] и [[:docs:start|LEDE Документация]] запущенные на платформе Dokuwiki таким образом, чтобы они легко обновлялись.
+
+  * Это и[[https://forum.lede-project.org/|LEDE Форум]] (используя дискуссионную платформу) где можно спросить или ответить на вопросы по использованию LEDE, и другие темы.
+  * [[https://git.lede-project.org/|Git servers]] являются основным источником кода хранилищами прошивки. Они клонирован[[https://github.com/lede-project|Github servers]] для надежности.
+
+  * [[https://bugs.lede-project.org/|Bug trackers]] являются местом, где ошибки и пожелания отслеживаются.
+
+  * [[:downloads|Страница Загрузки]] где все текущие и выпущенные образы, отсортированные по архитектуре, производителя и модель.
+
+  * Списки расылок: [[http://lists.infradead.org/mailman/listinfo/lede-adm|lede-adm]] и  [[http://lists.infradead.org/mailman/listinfo/lede-dev|lede-dev]] обрабатывается львиная долю общений для разработчиков и основной управленческой команды, которая не проходит через форум.
+
+  * BuildBot машины ([[http://phase1.builds.lede-project.org/|Сервер 1]] and [[http://phase2.builds.lede-project.org/|Сервер 2]]) следящие за изменениями в исходном коде и выполняют процесс сборки для каждого поддерживаемого устройства.
+
+===== Сервера =====
+
+Все эти службы работают на машинах, пренадлежащие проекту Lede.
+
+  * We currently employ three powerful servers ([[https://www.hetzner.de/hosting/produkte_rootserver/ex40|Hetzner]]) to run the buildbot process, and host the downloads, Git, and mail services. 
+
+  * [[https://github.com/tessel/project/issues/169|Digital Ocean]] has graciously provided servers for our Documentation/wiki and Forum as part of their support for open source projects.
+
+  * In the near future (by the first quarter of 2017) it will be important to have two more of the Hetzner servers, as we will have more buildbots and need more disk space.
+
+===== Finances =====
+  * Each of the Hetzner servers costs about 50 Euros per month, for a total of 150 Euros/month. 
+
+  * There is a small annual charge (20-40 Euros) for registering the domain names, etc. 
+
+  * As of late 2016, two core team members are personally covering the costs of the Hetzner servers while another core team member picks up the other fees. So far, no one has stepped up to fund the new servers that will be required in the coming months.
+
+There is a private discussion about possibilities of some sort of crowdfunding to allow the community to pay back the core team for their expenses, and fund the project going forward, but there is no public news yet.
+

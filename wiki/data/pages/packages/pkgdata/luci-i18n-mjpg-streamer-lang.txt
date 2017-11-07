@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: luci-i18n-mjpg-streamer ======
+---- dataentry packages ----
+Name                             : luci-i18n-mjpg-streamer
+Version                          : git-17.294.22464-0ed8086-1
+Description                      : Translation for luci-app-mjpg-streamer - ja [ 日本語 (Japanese) ] - pt-br [ Português do Brasil (Brazialian Portuguese) ] - zh-cn [ 中文 (Chinese) ] # max. 1kB
+Installed size_pkg-filesize      : 1 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, luci-app-mjpg-streamer
+Categories_pkg-categorys         :  #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : 
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 2
+License                          : 
+Maintainer_pkg-maintainer        : 
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/feeds/luci/applications/luci-app-mjpg-streamer|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             :  # short version of the package, for display in table
+----
+

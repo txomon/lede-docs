@@ -1,0 +1,42 @@
+====== LEDE 17.01.2 - Second Service Release - June 2017 ======
+
+<code>
+     _________
+    /        /\      _    ___ ___  ___
+   /  LE    /  \    | |  | __|   \| __|
+  /    DE  /    \   | |__| _|| |) | _|
+ /________/  LE  \  |____|___|___/|___|                      lede-project.org
+ \        \   DE /
+  \    LE  \    /  -----------------------------------------------------------
+   \  DE    \  /    Reboot (17.01.2, r3435-65eec8bd5f)
+    \________\/    -----------------------------------------------------------
+</code>
+
+The LEDE Project (“Linux Embedded Development Environment”) is a Linux operating system emerged from the [[https://openwrt.org|OpenWrt]] project. It is a complete replacement for the vendor-supplied firmware of a wide range of wireless routers and non-network devices. See the [[https://lede-project.org/toh/start|Table of Hardware]] for supported devices. For more information about LEDE Project organization, see the [[https://lede-project.org/about|About LEDE pages.]]
+
+Get LEDE Firmware at: http://downloads.lede-project.org/releases/
+
+===== Highlights In LEDE 17.01.2 ===== 
+
+The LEDE Community is proud to announce the second service release of
+stable LEDE 17.01 series.
+
+LEDE 17.01.2 "Reboot" incorporates a fair number of fixes back ported
+from the development branch during the last seven weeks.
+
+Some selected highlights of the service release are:
+
+
+  * Linux kernel updated to version 4.4.71 (from 4.4.61 in v17.01.1)
+  * Fixed TX power limit handling of //ath9k//
+  * Various fixes to the //rt2x00// wireless driver
+  * Various fixes to //odhcpd//
+  * Various fixes to //firewall//
+  * Security fixes to vulnerabilities in //Samba//, //Dropbear//, //OpenVPN// and Linux kernel
+  * Assorted platform fixes for //ar71xx//, //bcm53xx//, //brcm63xx//, //ipq806x//, //lantiq//, //ramips// and //x86//
+
+As always, a big thank you goes to all our active package maintainers, testers, documenters, and supporters.
+
+Have fun!
+    
+The LEDE Community

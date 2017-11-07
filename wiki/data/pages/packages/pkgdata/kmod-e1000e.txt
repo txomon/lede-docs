@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: kmod-e1000e ======
+---- dataentry packages ----
+Name                             : kmod-e1000e
+Version                          : see kernel for details
+Description                      : Kernel modules for Intel(R) PRO/1000 PCIe Ethernet adapters.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 69 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : kernel, kmod-ptp
+Categories_pkg-categorys         : kernel-modules---network-devices #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : apm821xx-nand, apm821xx-sata, bcm53xx-generic, brcm63xx-generic, brcm63xx-smp, cns3xxx-generic, imx6-generic, ipq806x-generic, layerscape-32b, layerscape-64b, mpc85xx-generic, mpc85xx-p1020, mvebu-generic, oxnas-generic, x86-64, x86-generic, x86-legacy,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 70
+License                          : GPLv2
+Maintainer_pkg-maintainer        : LEDE team
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/kernel/linux|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : see kernel for details # short version of the package, for display in table
+----
+

@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: kmod-pcmcia-nozomi ======
+---- dataentry packages ----
+Name                             : kmod-pcmcia-nozomi
+Version                          : see kernel for details
+Description                      : Kernel support for Option Fusion+ card\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 12 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : kernel, kmod-pcmcia-rsrc, kmod-pcmcia-core
+Categories_pkg-categorys         : kernel-modules---pcmcia-support #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : brcm47xx-generic, brcm47xx-legacy, brcm63xx-generic, brcm63xx-smp, x86-64, x86-generic, x86-legacy,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 13
+License                          : GPLv2
+Maintainer_pkg-maintainer        : LEDE team
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/kernel/linux|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : see kernel for details # short version of the package, for display in table
+----
+

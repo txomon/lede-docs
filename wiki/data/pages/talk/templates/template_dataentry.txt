@@ -1,0 +1,39 @@
+====== Discussion about template dataentry ======
+
+/* NOTE: If this page has just been newly created, JUST SAVE IT
+and a discussion editor will appear (not visible in the preview) */
+
+  * If you want to reply on a comment, use the **''Reply''** button, then type your comment in the discussion editor.
+  * If you want to create a new comment (not a reply), just type your comment in the discussion editor
+  * If you want to get notified when someone replies to your comment, check **''Subscribe to comments''**
+
+===== To do's =====
+
+<todo @tmomas start:2016-10-16>review datafields in forum</todo> -> [[https://forum.lede-project.org/t/lede-table-of-hardware-review-of-dataentry-fields/48]]
+
+  - Go to https://wiki.lede-project.org/templates:template_dataentry\\
+  - Click the LEFT edit button below the dataentry box
+
+  * **datafields to be added** (Is any useful information currently missing?)
+    * Add "Launchdate" datafield?
+  * **datafields to be deleted** (Are there any useless datafields that are not needed any more?)
+    * ...
+  * **datafields to be changed/updated**
+    * rename "//Platform//" to "//CPU//"? -> Done
+    * rename //CPU// to //SoC//? What is more accurate, what is more widely understood? What promises better dataquality at time of dataentry creation?
+  * **available dropdown values for certain datafields**
+    * //Device Type//: Do we need more? Is something missing?
+    * //Sub-/Instructionset//: Are the values complete and correct?
+
+<todo @tmomas>Think about adding short installation instructions below dataentries</todo>
+  * Some git commits contain already (very) short installation instructions.
+  * Short instructions in dataentries could be included in (yet to be created) devicepages via %%{{section>...}}%%
+  * Modularity: Some devices share installation instructions with other devices.
+    * Re-think the proposal to create modular/shared installation instructions that can be included in many other devicepages that use the same installation method. Do the work once, benefit from it with each new devicepage that is created by simply including the instructions via %%{{section>...}}%%.
+    * **Which devices share the same instructions?**
+      * D-Link DIR-505 -> [[https://wiki.openwrt.org/toh/d-link/dir-505#web_interface|D-Link Router Recovery Mode]]
+      * D-Link DIR-890L, DGL-5500, DIR-868L, DIR-615, DIR-655 (Rev B and C), DIR-657, DIR-825, DIR-685, DIR-601, DAP-1360, DIR-826L, DAP-1350, DSL-2750B and 2750U [[http://forums.dlink.com/index.php?topic=44909.msg163599#msg163599|Source]]
+      * Does not work: DGL-4500 [[http://forums.dlink.com/index.php?topic=44909.msg163599#msg163599|Source]]
+      * Procedure for DSL series Modems seems different -> [[http://forums.dlink.com/index.php?topic=44909.msg163599#msg163599|Source]]
+
+~~DISCUSSION~~

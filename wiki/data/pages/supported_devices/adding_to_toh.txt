@@ -1,0 +1,31 @@
+====== Add a device to the Table of Hardware ======
+
+Thank you for helping to improve the LEDE Wiki! Our wiki grows and improves every time someone contributes their knowledge about LEDE.
+
+
+===== Please be accurate =====
+
+We ask that you put some effort and thought into your description. The dataentry and the Details Page you create become a critical part of the wiki. Hundreds of readers will look at your page, presume it's correct, and rely on that information. Although these pages are somewhat supervised, they are rarely groomed, therefore:
+
+  * Create new pages only if you have some substantial information to add.
+  * Please do not dump half-truths in a page and hope that others will finish your work; it'll probably never happen.
+  * If you're not sure, it's far better to say //Unknown// than to write something that's incorrect.
+
+===== Adding a device to the Table of Hardware =====
+
+The Table of Hardware (ToH) is automatically generated - you cannot edit it directly. The ToH is built up from a set of //dataentry pages//. Here's how to add a device to the [[toh:views:toh_minimal_all|Table of Hardware]]:
+  - Verify that the device is not already present [[toh:views:toh_minimal_all|Table of Hardware]].\\ If the device can not be found, go on with the next step.
+  - Verify that the device meets the [[meta:criteria_for_adding_new_devices_to_the_toh|Criteria for adding devices to the ToH]].\\ If those criteria are met, go on with the next step.
+  - [[meta:create_new_dataentry_page|Create a new 'Dataentry' page]] and add the information you have available.
+  - Search the Wiki for the Brand or the Model.\\ If the device can not be found, go on with the next step.
+  - [[meta:create_new_device_page|Create a new 'Device Details' page]] that gives narrative information about the router/device. It can draw from the device's dataentry page.
+
+===== Editing a device's info in the Table of Hardware =====
+
+  - Go to the Techdata page of the device (can be found via the [[toh:start|ToH]])
+  - Click the edit button on the BOTTOM LEFT of the box (not on the right)
+  - Edit the data 
+
+===== Questions? =====
+
+In case of any questions, please [[https://forum.lede-project.org/c/documentation|post them in the LEDE forum.]]

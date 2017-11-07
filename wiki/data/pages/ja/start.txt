@@ -1,0 +1,45 @@
+====== LEDE Project へようこそ ======
+~~NOTOC~~
+
+LEDE Project (“Linux Embedded Development Environment”) は、OpenWrt を基とした Linux オペレーティング システムです。無線ルーターから非ネットワーク機器にいたる幅広い機器のメーカー提供ファームウェアを完全代替するものです。サポートされている機器については、[[toh:start|Table of Hardware]] をご覧ください。LEDE Project の組織についての詳細情報は [[:about|About LEDE]] ページをご覧ください。
+
+===== なぜLEDEを使うのか？ =====
+
+メーカー提供の標準ファームウェアよりも高機能と考える人々が LEDE をインストールしています。LEDE はより安定的で多機能、そしてセキュアで、優れたサポートがあることに気付かれると思います。
+
+  * **拡張性:** LEDE は通常ハイエンドの機器でしかサポートされない多くの機能を提供します。3000以上のアプリケーション パッケージが標準化されていて、サポート機器では同様のセットアップ方法で簡単に機能を実現できます。これは2年前(場合によっては5年前)のルーターでも可能です。 [[reasons_to_use_lede#extensibility|詳細...]]
+
+  * **セキュリティ:** LEDE を標準インストールした場合 、初期状態で Wi-Fi は無効になっています。脆弱なパスワードやバックドアが含まれず、デフォルトでセキュアな状態になっています。LEDE のソフトウェア コンポーネントは最新の状態に保たれており、脆弱性が発見されても短期間で対応されます。 [[reasons_to_use_lede#security|詳細...]]
+
+  * **パフォーマンスと安定性:** 全てのサポート機器で標準化されたモジュールによってLEDE ファームウェアは構成されています。これは個々の製品ごとに調整されてその後再調整されないメーカー純正ファームウェアよりも多くのテストとバグ修正が期待できることを意味しています。 [[reasons_to_use_lede#performance_stability|詳細...]]
+
+  * **強力なコミュニティ サポート:** LEDE の正式なチームメンバーは、[[https://forum.lede-project.org|LEDE Forum]] や [[http://lists.infradead.org/mailman/listinfo/lede-dev|LEDE Developer]] 、[[http://lists.infradead.org/mailman/listinfo/lede-adm|LEDE Admin]] メーリングリスト、[[:contact#irc_channels|LEDE's IRC channels]] で活動しています。 開発者やソフトウェア モジュールの管理ボランティア、そしてその他のベテランLEDE ユーザーと直接交流することができ、問題を自己解決できる手段が豊富に用意されています。 [[:contact|詳細...]]
+
+  * **研究:** 多くのチームがネットワーク性能の研究プラットフォームとして LEDE を使用しています。これは研究で得られた改善点がLinuxメインラインやメーカーファームウェアに組み込まれるよりも早く、LEDEで利用可能になることを意味しています。 [[reasons_to_use_lede#research_platform|詳細...]]
+
+  * **オープンソース / 追加コスト無し:** LEDE は無償で提供されています。そして開発者とメンテナ、個人と法人によるボランティアのチームによって開発されています。もし LEDE を使用して気に入った場合には、 [[#lede_はあなたの力を必要としています|他の人達への貢献をご検討ください。]] これらは LEDE がオープンソースの一部であり、Linux カーネル上で動いているからこそ可能なのです。 [[https://git.lede-project.org|ソースコードの取得...]]
+
+  * **更に詳しくは...** [[reasons_to_use_lede#configuration|Reasons to Use LEDE]] をご覧ください...
+===== LEDE のダウンロード =====
+LEDEは以下のリンクからダウンロードできます。(以下は最新のrelease noteからの引用です。)
+------
+{{section>releases:17.01:start#lede_1701_reboot&firstseconly&noheader&nofooter&readmore&noeditbutton}}
+
+===== LEDE はあなたの力を必要としています！ =====
+
+あらゆるオープンソース プロジェクトと同様にLEDE はユーザーと開発者の努力によって成長しています。
+
+  * もしソフトウェアの開発をしたい場合、 ソースコードの取得やビルド、変更をプロジェクトへ反映させる方法を知るために [[docs:guide-developer:the-source-code|Developer Guide]] を参照してください。
+
+  * もしあなたが開発者では無くてもヘルプは可能です。（書かれている内容があなたの経験と合致しているものだとしても）ドキュメントもどんどん改善でき、また、困っているコミュニティ メンバーを助けることもできます。[[:register_yourself_in_the_wiki|Wiki へのユーザー登録]] を躊躇したりしないでください。また、連絡を取り合うために [[https://lists.infradead.org/mailman/listinfo/lede-dev|mailing list]] や [[:contact#irc_channels|IRC channels]] に参加してください。
+
+
+===== このプロジェクトへの支持 =====
+
+*Wrt コミュニティは、この地球で様々なものの改善に取り組む、多くの素晴らしいコミュニティによって成り立っています。以下のコミュニティは、このプロジェクトを支持する決定をしてくれています。ありがとう！
+| {{wiki:qmp.png|qMp logo}}| **[[http://qmp.cat/News/31_qMp_endorses_the_LEDE_project|qMp endorses the LEDE project]]** |
+| {{wiki:wirelesspt.png|WirelessPT logo}}| **[[https://wirelesspt.net/wiki/LEDE|"We wish huge success to the LEDE project"]]** |
+| {{wiki:weimarnetz.png|Weimarnetz logo}}| **[[https://weimarnetz.de/|Weimarnetz Project Homepage]]** |
+| {{wiki:bmx7.png|bmx.net logo}}| **[[http://bmx6.net/news/24|"We … will consider it the new default OS environment for embedded devices running bmx6 and bmx7"]]** |
+| {{wiki:libremesh.png|Libre-Mesh logo}}| **[[http://libre-mesh.org/news.html#2016_08_06_endorsement_to_lede_project|"We endorse the LEDE project and we plan to start basing Libre-Mesh releases on Linux Embedded Development Environment"]]** |
+| {{wiki:openwisp.png|OpenWISP logo}}| **[[http://openwisp.org/news/lede.html|"We deeply appreciate the efforts of the LEDE project …"]]** |

@@ -1,0 +1,3 @@
+====== Pages containing FIXMEs ======
+
+{{pagequery>FIXME -ns:wiki:maintenance;fulltext;filter=!name:syntax;display={title} - {date:created} / {last_change:date} {last_change:user};label=Pagetitle - created / lastmoddate lastmoduser;hidejump}}

@@ -1,0 +1,77 @@
+=====Overview =====
+
+If you are already familiar with Linux systems, you will find your way pretty easily, if you are not, then we will need to start from basic concepts first.
+
+You might have read that LEDE is a Linux distribution (or "distro") aimed at embedded devices.\\ A Linux "**distribution**" is a project that creates and maintains packages used to create a linux operating system tailored to the user's needs.\\ A "**package**" is a compressed archive containing a program or some scripts, its accompanying configuration files and also the information used to integrate it in the operating system. These packages are handled by a **package manager**, (opkg in LEDE) a program that downloads/opens/installs/uninstalls the packages.\\
+So, a LEDE firmware is made by assembling packages around a Linux kernel.
+
+Each package is compiled separately and then when it's all done the needed packages are "installed" in a temporary folder that will then be 
+compressed to become the compressed-read-only partition (squashfs) in the device firmware.
+
+Also the kernel is handled like a package, but is added to the firmware image in the special way each device's bootloader expects it, so you can replace the stock firmware without touching the bootloader itself (that is dangerous and not always possible).
+
+The last step in the building process is actually creating a firmware file, (the files you use to install LEDE or to upgrade it).\\ 
+This file is usually a disk image ready to be written raw in the internal flash storage of the device, so you will find many developers that just call it "image" on IRC or in the mailing list.
+
+====How a package is compiled===
+
+If you look at a package Makefile (the file defining settings for building a specific package), https://github.com/lede-project/source/blob/master/package/utils/busybox/Makefile you will notice that it states the official download link for the sources that will be compiled, a SHA256 hash to check the integrity of such download, and two version numbers (one for upstream and one for LEDE).
+On some other packages it will state git commit/timestamp or other way to identify the same source to pull down and build.
+They generally favor archives with sources from official releases, but some upstream projects don't always have that.
+
+In /patches folder of each package's folder you will find any patches that will be applied to the source after downloading it, before 
+compiling it:
+https://github.com/lede-project/source/tree/master/package/utils/busybox/patches
+There are also other folders for configuration files or for uci integration (not always present).
+
+The kernel's makefile is a bit more complex because of reasons, but you can see that it still uses the same structure, pulling down the same kernel version (depending from device) every time.
+https://github.com/lede-project/source/blob/master/package/kernel/linux/Makefile
+
+All packages are compiled by LEDE's own toolchain, which is again handled like packages (see /toolchain and /tools in the source) so you will always have the same compiler/tools as everyone else as they get downloaded from the same sources at the same version.
+
+When you run a **make** the LEDE build system will use your system's existing building infrastructure to compile the LEDE's toolchain first, 
+and then use that to compile the packages. This also has the major benefit of not requiring the user to set up a cross-compiling toolchain 
+that is rather annoying and relatively complex. 
+
+====Package feeds====
+
+Not all packages you can install in LEDE are from LEDE project proper, in fact most packages are not. 
+
+The packages from LEDE's main repository are maintained directly by core developers (and they are the more important or even essential components of LEDE firmware, or parts of the build system), and "**package feeds**" that are source repositories that contain additional packages, maintained by the community (each package has its own maintainer).
+This is LEDE's main repo (on github) https://github.com/lede-project/source
+
+These are official package feeds (currently shared with OpenWRT):
+https://github.com/openwrt/luci
+https://github.com/openwrt/telephony
+https://github.com/openwrt-routing/packages
+https://github.com/openwrt/packages
+
+Being "official feeds", the packages therein will be compiled and offered by the official download server, but they are not technically LEDE or 
+OpenWRT proper, they are community-maintained.
+The "package feed" system is designed to allow easy addition of your own custom feeds too in your custom firmware images, but you will have to compile them and host them on your own servers, of course.
+
+If you look at the built packages here on the download server (this is the same server opkg uses to download pakcages in a live LEDE system), https://downloads.lede-project.org/releases/17.01.1/packages/x86_64/
+
+They are divided by feed name, packages in "base" come from main repository, and also from main repository you get packages that are found in target-specific folders, like for example here https://downloads.lede-project.org/releases/17.01.1/targets/x86/64/packages/ that you see has mostly kmod-* and other drivers.
+
+====Package Versions====
+As said above, package makefiles have PKG_VERSION that shows the upstream version (major version) and PKG_RELEASE that is used to show changes on the LEDE side (the minor version). If you see a package that lists version as 123-1, it's major version is 123 and it's minor version is 1.
+
+Packages with a timestamp use that instead of major version, and they still have a minor version, for example  2016-09-21-42ad5367-1 where the last "1" is the minor version.
+
+You can see all versions used in the first page of the table of packages in the wiki https://lede-project.org/packages/start
+
+Or by browsing a Package.manifest in the package download folders https://downloads.lede-project.org/releases/17.01.1/packages/aarch64_armv8-a/base/Packages.manifest
+
+====Repeatable builds====
+Most of the above system allows repeatable builds, the hashes and time stamps of source archives or commits are written in 
+the package's makefile in the git repository (either main repo or community package feeds), you can see full history of changes to that file with git.
+
+There is a cache server that stores source archives because it's more convenient than having the build bots spamming upstream download servers 
+and it is a fallback if the upstream download disappears, it should keep the source packages for a long while (as long as the release is supported for sure, as it is used by build bots).
+
+It is here http://sources.lede-project.org/
+
+Also OpenWRT's source cache server is used https://downloads.openwrt.org/sources/
+
+

@@ -1,0 +1,14 @@
+====== Discussion about start ======
+
+/* NOTE: If this page has just been newly created, JUST SAVE IT
+and a discussion editor will appear (not visible in the preview) */
+
+  * If you want to reply on a comment, use the **''Reply''** button, then type your comment in the discussion editor.
+  * If you want to create a new comment (not a reply), just type your comment in the discussion editor
+  * If you want to get notified when someone replies to your comment, check **''Subscribe to comments''**
+
+===== Todo's =====
+
+
+===== Discussion =====
+~~DISCUSSION~~

@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: rsync ======
+---- dataentry packages ----
+Name                             : rsync
+Version                          : 3.1.2-1
+Description                      : rsync is a program that allows files to be copied to and from remote machines\\ in much the same way as rcp. It has many more options than rcp, and uses the\\ rsync remote-update protocol to greatly speed up file transfers when the\\ destination file already exists.\\  \\ The rsync remote-update protocol allows rsync to transfer just the differences\\ between two sets of files across the network link.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 133 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libssp, libpopt, zlib
+Categories_pkg-categorys         : network---file-transfer #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arc_arc700, arc_archs, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 134
+License                          : GPL-3.0
+Maintainer_pkg-maintainer        : Maxim Storchak
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/net/rsync|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 3.1.2-1 # short version of the package, for display in table
+----
+

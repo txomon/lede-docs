@@ -1,0 +1,167 @@
+====== Quality of Service (qos-scripts) 설정======
+ UCI 설정 파일 / etc / config / qos의 설명서입니다. 
+
+**경고** : luci-app-qos 는 **System -> Startup* 탭에서 qos Initscript를 활성화하고 **network -> QoS**에서 qos 를 활성화 할 때까지 시작되지 않습니다 
+
+===== 세션 =====
+최소 QoS 설정은 일반적으로 다음과 같이 구성됩니다. 
+  * 하나의 //interface// 세션
+  * 적어도 두 개의 bucket에 패킷을 할당하는 규칙 
+  * bucket의 설정
+
+==== 인터페이스 ====
+각 인터페이스는 자체 버퍼를 가질 수 있습니다. interface 세션은 지정된 인터페이스가 통신하고있는 연결의 전역 특성을 선언합니다. 
+이 세션에서는 다음 옵션을 정의합니다. 
+
+<code>
+config interface dsl
+        option enabled      1
+        option classgroup  "Default"
+        option overhead     1
+        option upload       512
+        option download     4096
+</code>
+
+^ 이름 ^ Type ^ Required ^ 초기값 ^ 설명^
+| ''enabled'' | boolean | yes | ''1'' | QoS 활성화 / 비활성화  |
+| ''classgroup'' | string | yes | ''Default'' | ''classgroup''지정 (아래 클래스 classgroup 설명 참조). |
+| ''overhead'' | boolean | yes | ''1'' | 링크 포화를 방지하기 위해 업로드 및 다운로드 비율 줄이기  |
+| ''download'' | integer | yes | ''4096'' | 다운로드 제한 ''kilobits/second'' |
+| ''upload'' | integer | yes | ''512'' | 업로드 제한 ''kilobits/second'' |
+
+==== Rules ====
+각 ''classify'' 세션은 하나의 패킷 그룹과이 그룹이 속하는 대상 (즉, 버킷)을 정의합니다. 모든 패킷은 지정된 버킷을 공유합니다. 
+
+^ 이름 ^ Type ^ Required ^ 초기값^ 설명^
+| ''target'' | bucket | yes | //(none)// | 네 가지 기본값은 Priority, Express, Normal 및 Bulk  |
+| ''proto'' | string | no | ''0'' | 이 프로토콜과 일치하는 패킷은 target에 정의 된 버킷에 속합니다.  |
+| ''srchost'' | string | no | //(none)// | 이 원본 호스트 (단일 IP 또는 CIDR 표기법)와 일치하는 패킷은 대상에 정의 된 버킷에 속합니다  |
+| ''dsthost'' | string | no | //(none)// | 이 대상 호스트 (단일 IP 또는 CIDR 표기법)와 일치하는 패킷은 대상에 정의 된 버킷에 속합니다  |
+| ''ports'' | integer | no | //(none)// | 이것과 일치하는 패킷은 target에 정의 된 버킷에 속합니다.  |
+| ''srcports'' | integer | no | //(none)// | 이것과 일치하는 패킷은 target에 정의 된 버킷에 속합니다.  |
+| ''dstports'' | integer | no | //(none)// | 이것과 일치하는 패킷은 target에 정의 된 버킷에 속합니다.  |
+| ''portrange'' | integer | no | //(none)// | 이것과 일치하는 패킷은 target에 정의 된 버킷에 속합니다. |
+| ''pktsize'' | integer | no | //(none)// | 이것과 일치하는 패킷은 target에 정의 된 버킷에 속합니다.  |
+| ''tcpflags'' | string | no | //(none)// | 이것과 일치하는 패킷은 target에 정의 된 버킷에 속합니다.  |
+| ''mark'' | string | no | //(none)// | 이것과 일치하는 패킷은 target에 정의 된 버킷에 속합니다.  |
+| ''connbytes'' | int | no | //(none)// | 이것과 일치하는 패킷은 target에 정의 된 버킷에 속합니다.  |
+| ''tos'' | string | no | //(none)// | 이것과 일치하는 패킷은 target에 정의 된 버킷에 속합니다.  |
+| ''dscp'' | string | no | //(none)// | 이것과 일치하는 패킷은 target에 정의 된 버킷에 속합니다. |
+| ''direction'' | string | no | //(none)// | 이 트래픽 방향과 일치하는 패킷 ( in 또는 out )은 target에 정의 된 버킷에 속합니다.  |
+
+참고 : 이미 깨진 'layer7'옵션은 r45425에 의해 제거되었습니다. 
+==== Classgroup ====
+하나 이상의 인터페이스를 가질 수 있으므로 더 많은 클래스 그룹을 가질 수 있습니다. 
+
+<code>
+config classgroup "Default"
+	option classes      "Priority Express Normal Bulk"
+	option default      "Normal"
+</code>
+
+^ 이름 ^ Type ^ Required ^ 초기값 ^ 설명^
+| ''classes'' | bucket names | yes | //(none)// | 클래스 이름 목록을 지정 합니다.  |
+| ''default'' | bucket name | yes | //(none)// | 기본으로 간주되는 클래스 를 정의합니다. |
+
+
+==== Classes ====
+각 버킷에는 자체 설정이 있습니다. 
+
+Example:
+<code>
+config class "Normal"
+	option packetsize  1500
+	option packetdelay 100
+	option avgrate     10
+	option priority    5
+</code>
+
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''packetsize'' | integer | yes | //(none)// | 바이트|
+| ''packetdelay'' | integer | yes | //(none)// | ms |
+| ''maxsize'' | integer | yes | //(none)// | bytes |
+| ''avgrate'' | integer | yes | //(none)// | 이 클래스의 평균 속도, 대역폭의 % 단위 값 (이 값은 'tc … hfsc rt m1 N1 d N2 m2 N3 '의 vaues 'Nx'계산에 사용됨) |
+| ''limitrate'' | integer | no  | 100 | 이 클래스가 사용 가능한 대역폭의 비율 (%)을 정의합니다.  |
+| ''maxsize'' | integer | yes | //(none)// | bytes |
+| ''priority'' | integer | yes | //(none)// | % |
+
+==== Classes (For Advanced Users) ====
+다음은 각 / etc / config / qos 클래스 매개 변수의 확인되지 않은 기술 분류입니다. 출처 :  [[http://pastebin.com/YL55na2E]]
+<code>
+### Params:
+#
+# maxsize:
+#       limits packet size in iptables rule
+#
+# avgrate: (note: sum(avgrates) ~ 100)
+#       rt m1 = avgrate / sum (avgrate) * max_bandwidth
+#       rt m2 = avgrate * max_bandwidth / 100
+#       ls m1 = rt m1
+#
+# packetsize & packetdelay: (only works if avgrate is present)
+#       rt d = max( packetdelay, 'time required for packetsize to transfer' ) (smaller ps -> smaller d)
+#       ls d = rt d
+#
+# priority:
+#       ls m2 = priority / sum (priority) * max_bandwidth
+#
+# limitrate:
+#       ul rate = limitrate * max_bandwidth / 100
+</code>
+
+===== 빠른 시작 가이드 =====
+
+1. qos-scripts 패키지를 설치하십시오:
+
+<code>
+opkg install qos-scripts
+</code>
+
+2. UCI 명령 행을 사용한 기본 설정 :
+
+<code>
+uci set qos.wan.upload=1000            # Upload speed in kBits/s
+uci set qos.wan.download=16000         # Download speed in kBits/s
+uci set qos.wan.enabled=1
+uci commit qos</code>
+
+3. 시작하고 오류 출력 및 테스트를 찾습니다.
+
+<code>
+/etc/init.d/qos start
+</code>
+
+4. 부팅 할 때마다 스크립트를 실행합니다. 
+
+<code>
+/etc/init.d/qos enable
+</code>
+
+===== Troubleshooting =====
+
+다음을 실행하여 생성 된 트래픽 제어 qdisc 설정을보십시오:
+
+<code>
+tc qdisc
+</code>
+모든 인터페이스의 기본 (즉, QoS가 적용되지 않은) 값은 다음과 같습니다. 
+
+<code>
+qdisc fq_codel 0: dev eth0 root refcnt 2 limit 1024p flows 1024 quantum 300 target 5.0ms interval 100.0ms ecn
+</code>
+이 줄과 동일한 설정을 나타내는 단일 qdisc 줄만 인쇄 된 인터페이스 (dev eth0의 경우 )는 해당 인터페이스에 QoS가 없음을 나타냅니다. 
+
+QoS가 활성화 된 네트워크 인터페이스에는 여러 개의 qdisc 라인이 인쇄되며 각각 QoS 클래스에 해당합니다. 
+
+인쇄 된 qdisc 설정이 올바르지 않은 경우, 다음을 실행하여 OpenWRT / etc / config / qos 에서 생성 된 tc 명령을 미리 볼 수 있습니다. 
+<code>
+/usr/lib/qos/generate.sh interface wan
+</code>
+( / etc / config / qos 파일에 지정된대로 디버깅중인 UCI 인터페이스 이름으로 wan 을 바꾸십시오.) 
+
+이것은 QoS 서브 시스템을 설정하는 데 사용되는 일련의 insmod 및 tc 명령을 인쇄해야합니다.
+ 다음을 실행하여 이러한 명령을 실행하여 발생하는 오류를 디버그 할 수 있습니다. 
+<code>
+/usr/lib/qos/generate.sh interface wan | sh -x
+</code>
+/usr/lib/qos/generate.sh 의 출력은 일반적으로 /etc/hotplug.d/iface/10-qos의 일부로 자동 실행됩니다. 

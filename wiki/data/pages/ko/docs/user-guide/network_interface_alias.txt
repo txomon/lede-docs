@@ -1,0 +1,57 @@
+==== Aliases ====
+
+//Alias// 세션을 사용하여 인터페이스에 대한 추가 IPv4 및 IPv6 주소를 정의 할 수 있습니다,
+또한 기본 인터페이스의 DHCP와 aliase의 고정 IPv6 주소 (예 : 일반적인 인터넷 연결을 유지하면서 wan에 IPv6을 배포)와 같은 조합을 허용합니다.
+각 인터페이스에는 여러 개의 aliase이 첨부 될 수 있습니다. 
+
+IP마다 '인터페이스'세션을 만들지 만 aliase 인터페이스는 브리지 유형이 아니어야합니다. 
+
+  * 브리지되지 않은 인터페이스 (물리적 인터페이스 인 physdev)의 경우''ifname'' 은 <interface-of-network-for-same-phydev>
+  * For cases where the interface is bridged the ''ifname'' is br-''base-interface'', where ''base-interface'' is the name of the primary IP's config section (e.g. for a the default lan interface config, the first alias would use ifname br-lan).
+
+브리지 인터페이스의 최소 aliase 정의는 다음과 같습니다 (VLAN이없는 시나리오의 경우). 
+<code>config interface lan
+        option 'ifname' 'eth0'
+        option 'type' 'bridge'
+        option 'proto' 'static'
+        option 'ipaddr' '192.168.1.1'
+        option 'netmask' '255.255.255.0'</code>
+
+<code>config interface lan2
+       option 'ifname' 'br-lan'
+       option 'proto' 'static'
+       option 'ipaddr' '10.0.0.1'
+       option 'netmask' '255.255.255.0'</code>
+
+혹은 브리지가 아닌 인터페이스
+
+<code>config interface lan
+        option 'ifname' 'eth0'
+        option 'proto' 'static'
+        option 'ipaddr' '192.168.1.1'
+        option 'netmask' '255.255.255.0'</code>
+
+<code>config interface lan2
+       option 'ifname' 'eth0'
+       option 'proto' 'static'
+       option 'ipaddr' '10.0.0.1'
+       option 'netmask' '255.255.255.0'</code>
+
+인터페이스 리스트를 보기위해서 ''ubus list network.interface.*'' 하고 특정 인터페이스의 IP (물리적 인터페이스가 아닌 UCI 이름)를'' ifstatus <interface>'' (예 : ''ifstatus lan2'' )를 수행하십시오. 
+
+''alias'' 세션의 옵션은 다음과 같습니다. 
+
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''interface'' | string | yes | //(none)// | 이 aliase이 속한 부모 (또는 마스터) 인터페이스의 논리적 인터페이스 이름 을 지정합니다. 정의 된 interface 세션 중 하나를 참조해야합니다.  |
+| ''proto'' | string | yes | //(none)// | //alias 인터페이스 프로토콜//을 지정 |
+| ''ipaddr'' | ip address | yes, if no ''ip6addr'' is set | //(none)// | alias IP 주소|
+| ''netmask'' | netmask | yes, if no ''ip6addr'' is set | //(none)// | alias Netmask |
+| ''gateway'' | ip address | no | //(none)// | 기본 gateway |
+| ''broadcast'' | ip address | no | //(none)// | Broadcast 주소 (설정 하지 않은 경우 자동 생성) |
+| ''ip6addr'' | ipv6 address | yes, if no ''ipaddr'' is set | //(none)// | IPv6 주소(CIDR 표기법) |
+| ''ip6gw'' | ipv6 address | no | //(none)// | IPv6 기본게이트웨이 |
+| ''dns'' | list of ip addresses | no | //(none)// | DNS 서버 |
+| ''layer'' | integer | no | ''3'' | 스택 프로토콜에 연결할 인터페이스를 선택합니다 (eth, ppp, ppp 등).\\ 3 : 레이어 3 인터페이스에 연결 ( tun * , ppp * 부모가 레이어 3이면 폴백 2) \\ 2 : 레이어 2 인터페이스에 연결 ( br- * 부모가 브리지 인 경우 다른 레이어 1로 폴백) \\ 1 : 레이어 1 인터페이스에 연결 ( eth * , wlan * )  |
+
+FIXME 이것이 사실인지 아닌지를 확인하십시오 : 서면 작성시 static 프로토콜 유형 만 aliase에 허용됩니다. 
+

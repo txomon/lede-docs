@@ -1,0 +1,190 @@
+====== Advanced xDSL tweaks [WIP] ======
+LEDE/OpenWrt has a utility for xdsl lantiq chips called ''vdsl_cpe_control'', unfortunately no documentation is available, one of the developers said that it is due to NDA (Non disclosure agreement) that lantiq enforces.
+So i will attempt to create unofficial documentation here on the wiki by looking up technical dsl documents and looking for comments in the source code, i am not a programmer and not an engineer either so bear with me i am trying my best ;)
+
+FIXME :!: Warning i havent tested anything yet and this is still WIP so some information might be not correct and will be corrected later.
+
+===== Help screen =====
+
+<code>
+root@LEDE:/# /sbin/vdsl_cpe_control -h
+DSL_CPE: Welcome to DSL CPI API control application
+DSL_CPE: usage: [options]
+DSL_CPE: following options are available:
+DSL_CPE:  --help        (-h)    - help screen
+DSL_CPE:  --version     (-v)    - display version
+DSL_CPE:  --init        (-i)    - init device w/ <xtu> Bits seperated by underscore (e.g. -i05_01_04_00_04_01_00_00)
+DSL_CPE:  --low_cfg     (-l)    - low level configuration file
+DSL_CPE:  --console     (-c)    - start console
+DSL_CPE:  --event_cnf   (-e)    - configure instance activation handling <enable/disable>[_mask] (e.g. -e1_1)
+DSL_CPE:  --msg_dump    (-m)    - enable message dump
+DSL_CPE:  --auto_scr_1  (-a)    - autoboot start script for ADSL (empty by default)
+DSL_CPE:  --auto_scr_2  (-A)    - autoboot start script for VDSL (empty by default)
+DSL_CPE:  --firmware1   (-f)    - firmware file, default /opt/lantiq/firmware/xcpe_hw.bin
+DSL_CPE:  --notif       (-n)    - notification script name, default ./xdslrc.sh
+DSL_CPE:  --tcpmsg      (-t)    - enable dbgtool, listen only on <ipaddr> (optional, e.g. -t0.0.0.0)
+DSL_CPE:  --multimode   (-M)    - set multimode config -M<NextMode> (e.g. -M1)
+DSL_CPE:  --tc-layer    (-T)    - config TC-Layer -T<TcA>:<TcCfgUsA>:<TcCfDsA>_<TcV>:<TcCfgUsV>:<TcCfDsV> (e.g. -T1:0x0:0x0_2:0x0:0x0)
+DSL_CPE:  --sequence    (-S)    - set activation sequence -S<Sequence>_<Mode> (e.g. -S0_0)
+DSL_CPE:  --remember    (-R)    - set remember config -R<Remember> (e.g. -R1)
+DSL_CPE:  --debug_drv   (-g)    -
+DSL_CPE:  --debug_app   (-G)    -
+</code>
+
+===== Console help screen =====
+
+<code>
+root@LEDE:~# /sbin/vdsl_cpe_control --console
+
+DSL_CPE#>help
+   acog,          AutobootConfigOptionGet
+   acos,          AutobootConfigOptionSet
+   acs,           AutobootControlSet
+   alf,           AutobootLoadFirmware
+   asecg,         AutobootScriptExecuteConfigGet
+   asecs,         AutobootScriptExecuteConfigSet
+   asg,           AutobootStatusGet
+   aufg,          AutobootUsedFirmwareGet
+   alig,          AuxLineInventoryGet
+   bpstg,         BandPlanSTatusGet
+   bpsg,          BandPlanSupportGet
+   dbgmdg,        DBG_ModuleDestinationGet
+   dbgmds,        DBG_ModuleDestinationSet
+   dbgmlg,        DBG_ModuleLevelGet
+   dbgmls,        DBG_ModuleLevelSet
+   dsmcg,         DSM_ConfigGet
+   dsmcs,         DSM_ConfigSet
+   dsmmcg,        DSM_MacConfigGet
+   dsmmcs,        DSM_MacConfigSet
+   dsmstatg,      DSM_STATisticsGet
+   dsmsg,         DSM_StatusGet
+   dsnrg,         DeltSNRGet
+   dmms,          DeviceMessageModifySend
+   dms,           DeviceMessageSend
+   esmcg,         EventStatusMaskConfigGet
+   esmcs,         EventStatusMaskConfigSet
+   fddg,          FilterDetectionDataGet
+   fdsg,          FirmwareDownloadStatusGet
+   fpsg,          FramingParameterStatusGet
+   g997amdpfcg,   G997_AlarmMaskDataPathFailuresConfigGet
+   g997amdpfcs,   G997_AlarmMaskDataPathFailuresConfigSet
+   g997amlfcg,    G997_AlarmMaskLineFailuresConfigGet
+   g997amlfcs,    G997_AlarmMaskLineFailuresConfigSet
+   g997ansg,      G997_AttainableNdrStatusGet
+   g997bang,      G997_BitAllocationNscGet
+   g997bansg,     G997_BitAllocationNscShortGet
+   g997cdrtcg,    G997_ChannelDataRateThresholdConfigGet
+   g997cdrtcs,    G997_ChannelDataRateThresholdConfigSet
+   g997csg,       G997_ChannelStatusGet
+   g997dpfsg,     G997_DataPathFailuresStatusGet
+   g997dfr,       G997_DeltFreeResources
+   g997dhling,    G997_DeltHLINGet
+   g997dhlinsg,   G997_DeltHLINScaleGet
+   g997dhlogg,    G997_DeltHLOGGet
+   g997dqlng,     G997_DeltQLNGet
+   g997dsnrg,     G997_DeltSNRGet
+   g997fpsg,      G997_FramingParameterStatusGet
+   g997gang,      G997_GainAllocationNscGet
+   g997gansg,     G997_GainAllocationNscShortGet
+   g997lstg,      G997_LastStateTransmittedGet
+   g997lacg,      G997_LineActivateConfigGet
+   g997lacs,      G997_LineActivateConfigSet
+   g997lfsg,      G997_LineFailureStatusGet
+   g997lisg,      G997_LineInitStatusGet
+   g997lig,       G997_LineInventoryGet
+   g997listrg,    G997_LineInventorySTRingGet
+   g997lis,       G997_LineInventorySet
+   g997lsg,       G997_LineStatusGet
+   g997lspbg,     G997_LineStatusPerBandGet
+   g997ltsg,      G997_LineTransmissionStatusGet
+   g997lpmcg,     G997_LowPowerModeConfigGet
+   g997lpmcs,     G997_LowPowerModeConfigSet
+   g997pmsft,     G997_PowerManagementStateForcedTrigger
+   g997pmsg,      G997_PowerManagementStatusGet
+   g997racg,      G997_RateAdaptationConfigGet
+   g997racs,      G997_RateAdaptationConfigSet
+   g997rasg,      G997_RateAdaptationStatusGet
+   g997sang,      G997_SnrAllocationNscGet
+   g997sansg,     G997_SnrAllocationNscShortGet
+   g997upbosg,    G997_UsPowerBackOffStatusGet
+   g997xtusecg,   G997_XTUSystemEnablingConfigGet
+   g997xtusecs,   G997_XTUSystemEnablingConfigSet
+   g997xtusesg,   G997_XTUSystemEnablingStatusGet
+   help,          Help
+   hsdg,          HybridSelectionDataGet
+   ics,           InstanceControlSet
+   isg,           InstanceStatusGet
+   lecg,          LastExceptionCodesGet
+   lfcg,          LineFeatureConfigGet
+   lfcs,          LineFeatureConfigSet
+   lfsg,          LineFeatureStatusGet
+   locg,          LineOptionsConfigGet
+   locs,          LineOptionsConfigSet
+   lsg,           LineStateGet
+   llsg,          LoopLengthStatusGet
+   llcg,          LowLevelConfigurationGet
+   llcs,          LowLevelConfigurationSet
+   meipocg,       MEI_PllOffsetConfigGet
+   meipocs,       MEI_PllOffsetConfigSet
+   nsecg,         NotificationScriptExecuteConfigGet
+   nsecs,         NotificationScriptExecuteConfigSet
+   osg,           OlrStatisticsGet
+   pmcc15mg,      PM_ChannelCounters15MinGet
+   pmcc1dg,       PM_ChannelCounters1DayGet
+   pmccsg,        PM_ChannelCountersShowtimeGet
+   pmcctg,        PM_ChannelCountersTotalGet
+   pmcg,          PM_ConfigGet
+   pmcs,          PM_ConfigSet
+   pmdpc15mg,     PM_DataPathCounters15MinGet
+   pmdpc1dg,      PM_DataPathCounters1DayGet
+   pmdpcsg,       PM_DataPathCountersShowtimeGet
+   pmdpctg,       PM_DataPathCountersTotalGet
+   pmlesc15mg,    PM_LineEventShowtimeCounters15MinGet
+   pmlesc1dg,     PM_LineEventShowtimeCounters1DayGet
+   pmlescsg,      PM_LineEventShowtimeCountersShowtimeGet
+   pmlesctg,      PM_LineEventShowtimeCountersTotalGet
+   pmlic15mg,     PM_LineInitCounters15MinGet
+   pmlic1dg,      PM_LineInitCounters1DayGet
+   pmlicsg,       PM_LineInitCountersShowtimeGet
+   pmlictg,       PM_LineInitCountersTotalGet
+   pmlsc15mg,     PM_LineSecCounters15MinGet
+   pmlsc1dg,      PM_LineSecCounters1DayGet
+   pmlscsg,       PM_LineSecCountersShowtimeGet
+   pmlsctg,       PM_LineSecCountersTotalGet
+   pmr,           PM_Reset
+   ptsg,          PilotTonesStatusGet
+   quit,          Quit
+   rccg,          RebootCriteriaConfigGet
+   rccs,          RebootCriteriaConfigSet
+   rusg,          ResourceUsageStatisticsGet
+   se,            ScriptExecute
+   sicg,          SystemInterfaceConfigGet
+   sics,          SystemInterfaceConfigSet
+   sisg,          SystemInterfaceStatusGet
+   t1413xtuorg,   T1413_XTUO_RevisionGet
+   t1413xtuovrg,  T1413_XTUO_VendorRevisionGet
+   t1413xturrg,   T1413_XTUR_RevisionGet
+   t1413xturvrg,  T1413_XTUR_VendorRevisionGet
+   tcpmistart,    TCPMessageInterfaceSTART
+   tcpmistop,     TCPMessageInterfaceSTOP
+   tmcs,          TestModeControlSet
+   tmsg,          TestModeStatusGet
+   vpcg,          VdslProfileConfigGet
+   vpcs,          VdslProfileConfigSet
+   vig,           VersionInformationGet
+
+DSL_CPE#>
+</code>
+
+===== SNR tweak =====
+
+In order to tweak the SNR use the "locs" cmd
+<code>locs 0 [value]</code>
+Note that the value doesn't need a decimal fraction "." as the last number is the fraction
+example: 20 = 2dbm , 35 = 3.5dbm .
+
+Then use "acs" cmd to force resynchronization
+<code>acs 2</code>
+
+== Refrence sources ==
+  - [[http://www.forum-orange.com/viewtopic.php?id=77962]] a forum thread with some info

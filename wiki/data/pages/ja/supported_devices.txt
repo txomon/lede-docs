@@ -1,0 +1,25 @@
+====== サポートされるデバイス ======
+~~NOTOC~~
+
+
+===== LEDE サポートの全体要件 =====
+<WRAP 1000px>
+<columns 100% 45% ->
+  - SoC / [[docs:targets:|target]] が LEDE によってサポートされていること
+  - LEDE ファームウェア イメージを収容するのに十分な Flash
+    * 最小: 4MB (GUI (LuCI) はインストールできないでしょう)
+    * 推奨: 8MB (GUI やその他多少のアプリケーションにちょうど良いでしょう)
+  - 安定動作のために十分な RAM
+    * 最小: 32MB 、推奨: 64MB
+
+<newcolumn>
+{{section>meta/infobox/432_warning#infobox_for_tohs&noheader&nofooter&noeditbutton}}
+</columns>
+</WRAP>
+
+===== あなたの質問への回答となるテーブル =====
+
+  * [[toh:start|私の持っているルーターが、LEDE によってサポートされているかを知りたい]]
+  * [[toh:views:toh_available_864|LEDE によってサポートされているルーターを購入したい]]
+  * [[toh:views:toh_fwdownload|私のルーター用のファームウェアは、どこからダウンロードできますか？]]
+

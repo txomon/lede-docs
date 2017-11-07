@@ -1,0 +1,72 @@
+======LEDE country code for WiFi operation======
+
+LEDE is free software, but not free as in "free of responsibilities".
+Your one simple responsibility when operating a LEDE device with WiFi, is to use WiFi according to your countries regulation.
+For obvious reasons, applying LEDE on any purchased device does not change your responsibilities regarding compliance to your country's WiFi regulations.
+
+=====Mandatory WiFi country code=====
+When setting up WiFi, it is mandatory, to set the correct country code, where your router is currently being operated.
+
+This config field is not meant, to set where you were born and not the country where you would prefer to live happily forever end ever with Katy Perry. And it's also not some optional "cloud usage statistics" input field.
+
+This country setting ensures that your router will only enable WiFi radio settings that conform with the countries official regulatory laws.
+
+You can find this country setting in the web admin GUI (LuCi) unter https://192.168.1.1 -> Menu: Network/Wireless
+  * click "Edit" on any of your WiFi radios, then open the "Advanced Settings" tab - and there is the "Country Code" field. 
+  * If you do not see any "Edit" button, then you have not yet configured any WiFi radio configuration using "Add"
+
+On the command line you can set the country with ''iw reg set''
+
+=====WiFi outdoor operation=====
+Needless to say that some WiFi frequencies are still for indoor use only, no matter if LEDE or the vendor firmware runs on your device. 
+LEDE can by itself enforce settings like the maximum transmit power, but it cannot not tell, if you have setup your LEDE device outdoors.
+So know your allowed frequencies, before providing WiFi to the roses at to the far end of your garden.
+
+=====How dow LEDE known what WiFi channel settings are ok for my country?=====
+The following is for informational purpose for technically interested readers, you do not have to worry about the low level stuff, there is nothing you have to do beyond setting your proper country code. LEDE automatically takes care of everything else for you.
+
+LEDE relies on the LEDE-firmware-contained [[https://wireless.wiki.kernel.org/en/developers/Regulatory#crda|CRDA database]], containing the regulation details for each supported country.
+
+If you are curious  into specific details for your country, run ''iw reg get'' on the command line:
+Example output for Belgium:
+<code>
+country BE: DFS-ETSI
+        (2402 - 2482 @ 40), (N/A, 20), (N/A)
+        (5170 - 5250 @ 80), (N/A, 20), (N/A), AUTO-BW
+        (5250 - 5330 @ 80), (N/A, 20), (0 ms), DFS, AUTO-BW
+        (5490 - 5710 @ 160), (N/A, 27), (0 ms), DFS
+        (57000 - 66000 @ 2160), (N/A, 40), (N/A)
+</code>
+Note: this is not what your WiFi hardware is technically capable of.\\
+These are the max values your hardware is allowed to use, according to your country's regulation.\\
+If your hardware could do more, it will be capped by this regulatory limits during opertion.
+
+Explanation of some commonly used values in ''iw'' output:
+  * "(2402 - 2482)" : the first set of brackes in each line is an allowed WiFi frequency range (in this case of the 2.4GHz WiFi. The output will not show actual WiFi channel numbers)
+  * "(N/A, 20)": The second set of bracks in each line is the antenna transmit power limit for this frequency range. If there is no unit label "mW" given (as in this example: 20=20dbm), the limit is stated in exponential "dbm" notion. dbm notion values are exponential: +3=doubling the power, e.g. 17dbm = 50milliWatt, 20dbm=100milliWatt transmit power
+  * "@ .." in the first bracket is the maximium allowed channel width in the given frequency range
+  * "AUTO-BW: "Auto-bandwith": The WiFi stack may automatically decide about the channel width
+  * "DFS": "dynamic frequency selection": Wi-Fi networks operating in those bands are required to employ a radar detection and avoidance capability. 
+  * "NO-OUTDOOR": Frequency range must not be used for outdoor usage.
+See above CRDA database link for explanation of further values.
+
+=====WiFi channels and weather radar detection=====
+The following is for informational purpose for technically interested readers, you do not have to worry about the low level stuff, there is nothing you have to do beyond setting your proper country code. LEDE automatically takes care of everything else for you.
+
+Regulatory requirements for DFS-marked frequency require that LEDE automatically scans these WiFi frequencies for 60seconds for any weather radar activity, before actually using them for WiFi activities.
+
+An effect that you may notice about this scan delay is a temporary user-unexpected WiFi downtime. 
+Such a short downtime may be experienced, when LEDE's WiFi software stack switches to a DFS channel or when LEDE is done booting, but does not yet offer WiFi for connection.
+
+This delay isn't due to a bad software implementation, it's only due to a regulatory requirement. Factory firmware either does not support DFS channels at all or has to implement the same scan delays. Future hardware may support extra antennas for transparent DFS-scanning in the background to remove the user-noticable delays on such WiFi frequencies.
+
+=====Changes in frequency regulation=====
+It could happen rarely, but if any changes happen in your country's wireless regulation, these changes will be reflected as part of a new regular LEDE firmware update. So you as the WiFi device operator are  responsible to keep the device within the current limits of your regulatory laws. And practically you can achieve this simply by keeping the firmware of your LEDE firmware up to date and apply newer releases from LEDE from time to time.\\
+In rare cases even new frequencies get added to the allowed WiFi spectrum of your country.
+
+=====Hardware-encoded WiFi country-restrictions=====
+It may be that your device has been branded by the vendor to be sold in a specific country and therefore has some additional hardcoded WiFi limits for that particular country. 
+
+The WiFi radio chip of your device might enforce such limits in addition to the country limits LEDE brings. Such hardware limits will precede LEDE regulatory settings. 
+
+If your take such a limited device to a different country, such hardware-encoded limitation will cause your hardware to still enforces the stronger limits of the original country. There is nothing you can do about such hard-encoded limits, you cannot circumvent them, you have to live with these extra-applied WiFi limits.

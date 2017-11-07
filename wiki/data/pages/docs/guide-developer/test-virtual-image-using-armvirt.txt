@@ -1,0 +1,120 @@
+====== Testing LEDE with a virtual image using the armvirt target ======
+
+A new target "armvirt" was merged in LEDE in December 2016.  It runs under the QEMU emulator.
+
+This can be very useful to test changes without having to use a physical router.
+
+===== Getting armvirt images =====
+
+Images can be built manually or downloaded from the usual location, e.g. [[http://lede-project.tetaneutral.net/releases/17.01.0/targets/armvirt/generic/|armvirt images for lede-17.01]].
+
+===== Running the image =====
+
+==== Pre-requisite ====
+
+This method uses ''qemu-system-arm'', so you should install the necessary packages, depending on your distro.
+
+E.g. on Debian:
+
+    apt-get install qemu qemu-system-arm
+
+E.g. on Arch Linux:
+
+    pacman -S qemu qemu-arch-extra
+
+==== Boot with initramfs ====
+
+This is the simplest method that can be used to test an image.  However, it runs entirely in RAM: any modification made is lost upon reboot.
+
+To use this boot method, here with 64 MB of RAM, run:
+
+	qemu-system-arm -nographic -M virt -m 64 -kernel lede-armvirt-zImage-initramfs
+
+===== Network configuration =====
+
+qemu has several options to provide network connectivity to emulated images, see all ''-net'' options in qemu(1).
+
+==== Provide Internet access to LEDE ====
+
+The default networking mode for qemu is "user mode network stack".
+
+In this mode, ''qemu'' acts as a proxy for outbound TCP/UDP connections.  It also provides DHCP and DNS service to the emulated system.
+
+To provide Internet access to the emulated LEDE system, use:
+
+    qemu-system-arm -net nic,vlan=0 -net nic,vlan=1 -net user,vlan=1 \
+      -nographic -M virt -m 64 -kernel lede-17.01.0-r3205-59508e3-armvirt-zImage-initramfs
+
+Here, we setup two network cards inside the emulated LEDE system:
+
+  * ''eth0'', used as LAN in LEDE (not connected to anything here)
+  * ''eth1'', used as WAN in LEDE, and connected to qemu that will proxy all TCP/UDP connections towards the Internet
+
+The LEDE system should get both an IPv4 and an IPv6 on ''eth1'' (via DHCP/DHCPv6).  The ranges will be 10.0.2.0/24 and fec0::/64 (qemu defaults, see qemu(1) to configure other ranges).
+1).
+
+==== Provide access to LUCI inside LEDE ====
+
+LUCI is the web UI used by LEDE. If you want to check how LUCI works or to poke around with LUCI-apps this setup is for you.
+
+**Note**: This setup requires some privileges (''CAP_NET_ADMIN'' and ''CAP_MKNOD'' under Linux) so it's easier to run it under ''sudo'' 
+
+Save the script and edit ''IMAGE'' variable to reflect your LEDE version, then run it under ''sudo''
+  
+	#!/bin/sh
+	IMAGE=lede-17.01.0-r3205-59508e3-armvirt-zImage-initramfs                                 
+	LAN=ledetap0
+	# create tap interface which will be connected to LEDE LAN NIC
+	ip tuntap add mode tap $LAN
+	ip link set dev $LAN up
+	# configure interface with static ip to avoid overlapping routes                         
+	ip addr add 192.168.1.101/24 dev $LAN
+	qemu-system-arm \
+	    -device virtio-net-pci,netdev=lan \
+	    -netdev tap,id=lan,ifname=$LAN,script=no,downscript=no \
+	    -device virtio-net-pci,netdev=wan \
+	    -netdev user,id=wan \
+	    -M virt -nographic -m 64 -kernel $IMAGE
+	# cleanup. delete tap interface created earlier
+	ip addr flush dev $LAN
+	ip link set dev $LAN down
+	ip tuntap del mode tap dev $LAN
+
+How networking works:
+
+  * ''eth0'', used as LAN in LEDE, and connected to ''ledetap0'' in host system(static address ''192.168.1.101/24''), providing access to LUCI at ''http://192.168.1.1'' 
+  * ''eth1'', used as WAN in LEDE, and connected to qemu that will proxy all TCP/UDP connections towards the Internet
+
+===== Advanced boot methods =====
+
+==== Use KVM acceleration ====
+
+This will be much faster, but will only work if the architecture of your CPU is the same as the target image (here, ARM cortex-a15).
+
+	qemu-system-arm -nographic -M virt,accel=kvm -cpu host -m 64 -kernel lede-armvirt-zImage-initramfs
+
+==== Boot with a separate rootfs ====
+
+	qemu-system-arm -nographic -M virt -m 64 -kernel lede-armvirt-zImage \
+	  -drive file=lede-armvirt-root.ext4,format=raw,if=virtio -append 'root=/dev/vda rootwait'
+
+==== Boot with local directory as rootfs ====
+
+	qemu-system-arm -nographic -M virt -m 64 -kernel lede-armvirt-zImage \
+	  -fsdev local,id=rootdev,path=root-armvirt/,security_model=none \
+	  -device virtio-9p-pci,fsdev=rootdev,mount_tag=/dev/root \
+	  -append 'rootflags=trans=virtio,version=9p2000.L,cache=loose rootfstype=9p'
+
+==== Run with kvmtool ====
+
+	# start a named machine
+	lkvm run -k lede-armvirt-zImage -i lede-armvirt-rootfs.cpio --name armvirt0
+
+	# start with virtio-9p rootfs
+	lkvm run -k lede-armvirt-zImage -d root-armvirt/
+
+	# stop "armvirt0"
+	lkvm stop --name armvirt0
+
+	# stop all
+	lkvm stop --all

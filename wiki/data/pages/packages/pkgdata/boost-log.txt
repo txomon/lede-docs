@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: boost-log ======
+---- dataentry packages ----
+Name                             : boost-log
+Version                          : 1.63.0-1
+Description                      : This package contains the Boost log library.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 328 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libstdcpp, libpthread, librt, boost-system, boost-chrono, boost-date_time, boost-thread, boost-filesystem, boost-regex
+Categories_pkg-categorys         : libraries #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arm_arm1176jzf-s_vfp, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_mpcore, arm_mpcore_vfp, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips_24kc, mipsel_24kc, mipsel_74kc, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 324
+License                          : Boost Software License
+Maintainer_pkg-maintainer        : Carlos M. Ferreira
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/libs/boost|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1.63.0-1 # short version of the package, for display in table
+----
+

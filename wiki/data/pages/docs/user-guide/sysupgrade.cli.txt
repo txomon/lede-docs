@@ -1,0 +1,104 @@
+======Upgrading LEDE firmware from the Command Line ======
+:!: **For experienced users only!**
+
+This howto will upgrade an existing LEDE firmware to a new version from the SSH command line.\\
+Non-experienced users are strongly advised to [[docs:guide-quick-start:sysupgrade.luci|sysupgrade from the web admin GUI]] instead.
+
+===== Backup =====
+If you do not want to preserve existing configuration or files, feel free to skip this section.
+
+The default upgrade on command line will automatically preserve basic LEDE configuration by saving and then restoring configuration files in default locations (/etc/config). This will preserve things like network settings, WiFi settings, the device hostname, and so on. A LEDE command line upgrade by default preserves the following configuration files:
+    * listed by ''opkg list-changed-conffiles''
+    * listed within the text files in ''/lib/upgrade/keep.d/'' (for example, ''/lib/upgrade/keep.d/base-files-essential'')
+    * listed in ''/etc/sysupgrade.conf''
+For your information: Legacy setting behaviour of LuCI: There is a separate set of settings in the"config extern 'flash_keep' section of the file /etc/config/luci. In the past, it appears that this list was used by LuCI (see [[https://forum.openwrt.org/viewtopic.php?pid=100739#p100739|this post]]). However, LuCI upgrade procedure actually calls the sysupgrade script and so it appears the flash_keep settings in /etc/config/luci are now ignored.
+
+
+Backup steps, you have to do:
+  - Custom installed packages and their own configuration will not be preserved, so it may be necessary to document your programs and save the settings that will need to be re-installed or restored after the upgrade. There are scripts available [[https://forum.openwrt.org/viewtopic.php?id=42739|from OpenWRT forum]] to deal with that automatically. If you want to make some manual notes about installed packages: (script by user valentijn)<code>awk '/^Package:/{PKG= $2} /^Status: .*user installed/{print PKG}' /usr/lib/opkg/status
+</code>
+  - If you want to preserve further user-specific files, you have to add such files manually to the preservation-config: ''vi /etc/sysupgrade.conf'': <code>
+## This file contains files and directories that should
+## be preserved during an upgrade.
+# /etc/example.conf
+# /etc/openvpn/
+</code>
+
+===== Download and verify the LEDE firmware upgrade image =====
+Download and use only LEDE firmware images ending in **"-sysupgrade.bin"** for command line upgrades.\\
+For x86 systems there is no "sysupgrade" image, just be sure the new firmware image has the same family of filesystem as your old one.
+
+:!: Note: upgrade files must be placed in /tmp, as the sysupgrade procedure unmounts flash storage during the upgrade process. If the upgrade file is not in **/tmp**, sysupgrade will NOT perform any upgrade and only reboot the system.
+
+Download the desired upgrade file to your LEDE's ''/tmp'' directory, which is stored in the device RAM:
+
+  - Check free memory is available: Run ''free''. Proceed, if "free Mem" is the size of your firmware file + some extra mem (at least twice the size of your firmware file is perfect).
+  - Set the following variables to the download address of your LEDE firmware file (you must customize the URL!): <code>DOWNLOAD_LINK="http://URLOFFIRMWAREBIN"; SHA256SUMS="lhttp://URLOFSHA256"</code>
+  - Download and check the firmware checksum with: <code>cd /tmp;wget $DOWNLOAD_LINK;wget $SHA256SUMS;sha256sum -c sha256sums 2>/dev/null|grep OK</code>
+  - In the screen output, look for the correct checksum verification: <code>FILE_NAME: OK</code>
+  - Do not continue, if the checksum verification mismatches!
+
+**Troubleshooting:**
+  * If you **cant use 'wget'** (e.g. because you want to transfer firmware from your PC to your LEDE device)
+    *  you can use **scp**: ''scp lede-ar71xx-tl-wr1043nd-v1-squashfs-sysupgrade.bin root@192.168.1.1:/tmp'' (Ensure you have set a non-null password for your device root account to properly use scp)
+    * you can also use **nc/netcat**:
+      - On your Linux PC run: ''cat [specified firmware].bin | pv -b | nc -l -p 3333''
+      - On your LEDE device run (Assuming 192.168.1.111 is the IP of your Linux PC): ''nc 192.168.1.111 3333 > /tmp/[specified firmware].bin''
+  * If the **checksum mismatches**: Redo the firmware download, if the mismatch remains, ask for help in the [[https://forum.lede-project.org/c/installation|"Installing and Using LEDE" Forum]]
+  * If **low on RAM**: If your device's ''/tmp'' filesystem is not large enough to store the upgrade image, you have to free up RAM. 
+    * First, simply try to reboot your device, this could already free up a sufficient amount of RAM.
+    * You can  try to gain some free space by removing the package index: <code>root@lede:/# rm -r /tmp/opkg-lists/</code>
+    * You can also try to drop caches: <code>root@lede:/# sync && echo 3 > /proc/sys/vm/drop_caches</code>
+    * As a last desperate measure to free some RAM, you could disable the wireless drivers by deleting them and then reboot. The wireless drivers usually take up quite a bit of RAM and are not really required if you are upgrading, as they will be reinstalled. You shouldn't do this if you are connected to the system via wireless, of course.<code>root@lede:/# rm /etc/modules.d/*80211*; rm /etc/modules.d/*ath9k*; rm /etc/modules.d/b43*
+root@lede:/# reboot</code>
+
+===== Flash the new LEDE firmware =====
+
+  - The firmware file is now in /tmp, so you can start the flashing process
+  - Preferably have an assistant physically present at the location of the device, if you upgrade it from remote (as some devices may require a hard reset after the update)
+  - Execute the following command to upgrade: <code>root@lede:/# sysupgrade -v /tmp/*.bin</code>
+  - While the new firmware gets flashed, an output similar to the following will be shown:<code>
+Saving config files...
+etc/config/dhcp
+...
+etc/config/wireless
+etc/dropbear/authorized_keys
+...
+etc/sysupgrade.conf
+killall: watchdog: no process killed
+Sending TERM to remaining processes ... ubusd askfirst logd logread netifd odhcpd snmpd uhttpd ntpd dnsmasq
+Sending KILL to remaining processes ... askfirst
+Switching to ramdisk...
+Performing system upgrade...
+Unlocking firmware ...
+Writing from <stdin> to firmware ...  [w]
+Appending jffs2 data from /tmp/sysupgrade.tgz to firmware...TRX header not found
+Error fixing up TRX header
+Upgrade completed
+Rebooting system...
+</code>
+  - Ignore the "TRX header not found" and "Error fixing up TRX header" errors. These errors are not relevant according to [[https://dev.openwrt.org/ticket/8623]]
+  - Wait until the router comes back online. The system should come up the same configuration settings as before (same network IP addresses, same SSH password, etc.)
+
+**Troubleshooting:**
+  * **does not reboot automatically or remains unresponsive**: Wait 5 minutes, then do a hard reset: Turn it off, wait 2-3 seconds and turn it back on (or pull the power plug and plug it back in).\\ :!: Doing this while the device is still updating might softbrick it and require serial or even jtag connection to recover it. Such a cold restart has been reported to be required often after a sysupgrade by command line.
+  * **OPKG issues**: if after flashing you have issues with package installation or because opkg.conf has outdated data, read [[https://dev.openwrt.org/ticket/13309]]
+  * **'sysupgrade' not available** on your LEDE device, you can use 'mtd' instead to flash the firmware: ''mtd -r write /tmp/lede-ar71xx-generic-wzr-hp-ag300h-squashfs-sysupgrade.bin firmware''
+  * **Low RAM**: Only recommended for devices with really very little RAM, you could try the more risky flashing-by-streaming-to-mtd variant (risky, because the firmware gets streamed from the client to the device during flashing. Any network issues during the process are likely to brick your device). Use this only, if you really cannot free **enough RAM** with other means. Netcat must be installed on the LEDE device for this. If you need help for netcat, refer to external links: [[man>netcat|1]], [[http://www.g-loaded.eu/2006/11/06/netcat-a-couple-of-useful-examples/|2]], [[http://www.screenage.de/blog/2007/12/30/using-netcat-and-tar-for-network-file-transfer/|3]], [[https://help.ubuntu.com/community/BackupYourSystem/TAR|4]], [[http://www.aboutdebian.com/tar-backup.htm|5]]
+    - On your Linux PC run:<code>nc -q0 192.168.1.1 1234 < lede-ar71xx-tl-wr1043nd-v1-squashfs-sysupgrade.bin</code>
+    - On the LEDE device, run:<code>nc -l -p 1234 | mtd write - firmware</code>
+
+
+===== Post-upgrade steps =====
+
+  * Verify the new OS version: The simpler way to see if the firmware was actually upgraded. In SSH, the login banner states the release information like version and so on.
+
+  * Check for any upgradable packages. After the firmware update, it is good to check for any updated packages released after the base OS firmware image was built.
+
+  * Reinstall user-installed packages. After a successful upgrade, you will need to reinstall all previously installed packages according to your notes. Package configuration files should have been preserved due to steps above, but not the actual packages themselves. If you used the scripts provided in the forum, this step might not be necessary.
+
+  * Check for default configuration changes in user-installed packages.\\ The new package installations will have installed new default versions of package configuration files. As your existing configuration files were already in place, opkg would have displayed a warning about this and saved the new configuration file versions under ...-opkg filenames. The new package-provided configuration files should be compared with your older customized files to merge in any new options or changes of syntax in these files. The ''diffutils'' program is helpful for this.\\ install diffutils<code>root@lede:/# opkg install diffutils</code> locate all -opkg files<code>root@lede:/# find /etc -name *-opkg</code> compare old customized /etc/config/snmpd with new generic file /etc/config/snmpd-opkg<code>root@lede:/# diff /etc/config/snmpd /etc/config/snmpd-opkg</code> merge in any needed changes to the active version of the configuration file <code>root@lede:/# vi /etc/config/snmpd</code> if the new version provided by the package maintainer should replace the old config file then just swap it in <code>root@lede:/# mv /etc/config/snmpd-opkg /etc/config/snmpd </code> clean up by removing the package manager-version of the configuration file <code>root@lede:/# rm /etc/config/snmpd-opkg</code>
+
+  * Some user-installed packages need to be enabled and started, for example to start snmpd:<code>root@lede:/# /etc/init.d/snmpd enable && /etc/init.d/snmpd start</code>
+
+  * Perform a manual reboot after your post-upgrade steps. It is a good idea to do a device reboot and ensure all expected functionality is working as before.<code>reboot</code>

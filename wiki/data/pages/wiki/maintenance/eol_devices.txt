@@ -1,0 +1,18 @@
+====== EoL devices ======
+
+Links to OEM information about EoL / discontinued devices. This can be useful in combination with [[toh:views:toh_admin_available|Table of Hardware: Availability column]] to update the availability status of devices.
+
+If you know of other websites which list EoL / discontinued devices, please add it to this table.
+
+^ Asus         | http://www.asus.com/event/network/EOL-product/                                                     |
+^ AVM          | https://avm.de/service/eos-liste/                                                                  |
+^ Buffalo      | http://www.buffalo-technology.com/en/productdocumentation/doc-archive-eol-devices/                 |
+^ Cisco        | http://www.cisco.com/c/en/us/products/eos-eol-listing.html                                         |
+^ Cloudtrax    | https://help.cloudtrax.com/hc/en-us/sections/200775200-End-of-Life-Announcements                   |
+^ Compex       | http://www.compex.com.sg/end-of-life-products/                                                     |
+^ EnGenius     | https://www.engeniustech.com/discontinued-products.html                                            |
+^ Mikrotik     | https://www.mikrotik-store.eu/de/restposten/end-of-life\\ https://routerboard.com/ -> Archived     |
+^ Netgear      | <del>https://www.netgear.com/landing/eol.aspx</del>\\ http://www.netguardstore.com/Netgear-EOL.asp |
+^ PC Engines   | https://pcengines.ch/product.htm                                                                   |
+^ Trendnet     | https://www.trendnet.com/support/discontinuedproducts.asp                                          |
+^ ZyXEL        | http://www.zyxel.co.uk/upload/doc/All%20EURB-EOL.xlsx                                              |

@@ -1,0 +1,177 @@
+===== How configuring LEDE works =====
+
+**LEDE** has the following ways to configure stuff
+  - There is "UCI" (Unified Configuration Interface) to store and manipulate all its configuration. This is a LEDE/OpenWrt-own format and standard for config files and command line utilities to configure LEDE-related stuff.
+  - There is "LuCi" - a web GUI interface for UCI, by default usually listening at ''http://192.168.1.1'' (and ''http://lede''). Not all devices with less than 8MB of Flash ROM have LuCi available, as LuCi requires about 1MB of flash space. LuCi is based on LUA and its a LEDE/OpenWrt own standard as well. You can also enable https for LuCi access. Not all options may be available in LuCi.
+  - There are several classic Linux config files also used in on LEDE devices. These files use the same format and config options as in other Linux distributions.
+  - optional installable packages sometimes integrate into the UCI config model and may also provide a LuCi config extension, but many extension packages also bring their own config files.
+
+The recommended way to configure a LEDE system is to use the UCI's command line interface.\\ 
+If you use it you do not need to worry about making syntax errors in the configuration files, or where the files are actually located.\\ 
+When using the command line or the web interface to modify values, all changes are staged and not saved to the file directly, so remember to save the changes after you have set them. \\ 
+
+==== Uci configuration internal structure ==== 
+The configuration is split into subsystems, and each subsystem is split into sections, each section contains a list of key='value' entries.\\
+Available sybsystems are: **dnsmasq**, **dropbear**, **firewall**, **fstab**, **net**, **qos**, **samba**, **system**, **wireless**.\\
+
+All UCI configuration is stored as a list of values that look like this\\
+**<config>.<section>.<option>=<string>**\\
+where the <option> is optional.\\
+
+Here an example, looking at the first two sections of the "system" subsystem from uci's command line interface:
+<code>root@lede:~# uci show system
+system.@system[0]=system
+system.@system[0].hostname='lede'
+system.@system[0].timezone='UTC'
+system.ntp=timeserver
+system.ntp.server='0.lede.pool.ntp.org' '1.lede.pool.ntp.org' '2.lede.pool.ntp.org' '3.lede.pool.ntp.org'
+system.ntp.enabled='1'
+system.ntp.enable_server='0'
+</code>\\
+
+and this is how the same two sections look inside the actual config file;\\
+
+<code>root@LEDE:~# cat /etc/config/system 
+config system
+        option hostname 'lede'
+        option timezone 'UTC'
+
+config timeserver 'ntp'
+        list server '0.lede.pool.ntp.org'
+        list server '1.lede.pool.ntp.org'
+        list server '2.lede.pool.ntp.org'
+        list server '3.lede.pool.ntp.org'
+        option enabled '1'
+        option enable_server '0'
+</code>
+
+
+==== Uci commandline tool built-in help text ==== 
+<code>
+Usage: uci [<options>] <command> [<arguments>]
+
+Commands:
+        batch
+        export     [<config>]
+        import     [<config>]
+        changes    [<config>]
+        commit     [<config>]
+        add        <config> <section-type>
+        add_list   <config>.<section>.<option>=<string>
+        del_list   <config>.<section>.<option>=<string>
+        show       [<config>[.<section>[.<option>]]]
+        get        <config>.<section>[.<option>]
+        set        <config>.<section>[.<option>]=<value>
+        delete     <config>[.<section>[[.<option>][=<id>]]]
+        rename     <config>.<section>[.<option>]=<name>
+        revert     <config>[.<section>[.<option>]]
+        reorder    <config>.<section>=<position>
+
+Options:
+        -c <path>  set the search path for config files (default: /etc/config)
+        -d <str>   set the delimiter for list values in uci show
+        -f <file>  use <file> as input instead of stdin
+        -m         when importing, merge data into an existing package
+        -n         name unnamed sections on export (default)
+        -N         don't name unnamed sections
+        -p <path>  add a search path for config change files
+        -P <path>  add a search path for config change files and use as default
+        -q         quiet mode (don't print error messages)
+        -s         force strict mode (stop on parser errors, default)
+        -S         disable strict mode
+        -X         do not use extended syntax on 'show'
+</code>\\
+
+==== Show the whole current configuration ====
+<code> root@lede:/# uci show </code> \\
+
+==== Show the a subsystem's current configuration ====
+<code> root@lede:/# uci show SUBSYSTEM_NAME</code>
+Available sybsystems are: **defaults**, **dnsmasq**, **dropbear**, **firewall**, **fstab**, **net**, **qos**, **samba**, **system**, **wireless**.\\
+Here an example:
+<code>
+root@lede:/# uci show system 
+system.@system[0]=system 
+system.@system[0].hostname='lede' 
+system.@system[0].timezone='UTC' 
+system.ntp=timeserver 
+system.ntp.server='0.openwrt.pool.ntp.org' '1.openwrt.pool.ntp.org' '2.openwrt.pool.ntp.org' '3.openwrt.pool.ntp.org' 
+system.ntp.enabled='1' 
+system.ntp.enable_server='0'
+</code>\\
+
+==== Setting single value options ====
+<code>root@lede:/# uci set key='value'</code>
+for example:
+<code>root@lede:/# uci set system.@system[0].hostname='foo' </code>\\
+==== Appending or deleting values on a list option ====
+<code>root@lede:/# uci add_list key='value'
+root@lede:/# uci delete_list key='value'</code>
+This is what must be done to manipulate the //system.ntp.server// key above.\\
+-\\
+
+==== Adding a new section to subsystem configuration ====
+<code>root@lede:/# uci add SECTION_NAME SUBSYSTEM_NAME</code>\\
+will generate a new section called SECTION_NAME inside the subsystem called SUBSYSTEM_NAME
+afterwards you can add keys to this section as normal.\\
+It will print an alphanumeric code that you can use as "section" for further adding keys to it.\\
+See this example:\\
+<code>root@LEDE:~# uci add firewall rule
+cfg2092bd
+root@LEDE:~# uci set firewall.cfg2092bd.src='wan'</code>
+
+==== Showing the not-yet-saved modified values ====
+<code>root@lede:/# uci changes</code>\\
+
+==== Saving modified values of a single subsystem ====
+<code>root@lede:/# uci commit SUBSYSTEM_NAME 
+root@lede:/# reload_config </code>\\
+
+==== Saving all modified values ====
+<code>root@lede:/# uci commit
+root@lede:/# reload_config </code>\\
+
+
+==== Generating a full uci section with a simple copy-paste ====
+
+This block of code catches the code printed by uci when you add a new section (see above) and reuses it in all the new keys you want to add after it. This automates what would be a very fun typing or copy-paste job. You can also do this in your scripts.
+
+Generic version:
+<code>rule_name=$(uci add <config> <section-type>) 
+uci batch <<EOF set <config>.$rule_name.<option1>='value'
+set <config>.$rule_name.<option2>='value'
+set <config>.$rule_name..<option3>='value'
+#... any number of them
+EOF
+uci commit</code>
+
+A working example:
+<code>rule_name=$(uci add firewall rule) 
+uci batch <<EOF firewall.$rule_name.enabled='1'
+set firewall.$rule_name.target='ACCEPT'
+set firewall.$rule_name.src='wan'
+set firewall.$rule_name.proto='tcp udp'
+set firewall.$rule_name.dest_port='111'
+set firewall.$rule_name.name='NFS_share'
+EOF
+uci commit</code>
+
+==== Manually editing configuration files ====
+All configuration files are stored in the ''/etc/config/'' folder, they are plain text files written in human-readable but rigid way.\\ 
+Each file is a UCI subsystem and it contains a number of options, options can be single values or lists of values.\\ 
+You can manually edit these files, but please keep in mind that **even minor syntax errors will make the whole configuration unreadable**, which is why the recommended method is using the UCI's command line interface as explained above.
+<code>
+root@lede:/# cat etc/config/system
+config system 
+  option hostname lede 
+  option timezone UTC
+
+config timeserver ntp 
+  list server   0.openwrt.pool.ntp.org 
+  list server   1.openwrt.pool.ntp.org 
+  list server   2.openwrt.pool.ntp.org 
+  list server   3.openwrt.pool.ntp.org 
+  option enabled 1 
+  option enable_server 0
+</code>
+ 

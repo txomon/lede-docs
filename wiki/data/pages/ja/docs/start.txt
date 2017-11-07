@@ -1,0 +1,17 @@
+====== LEDE ドキュメント ======
+~~NOTOC~~
+
+LEDE は、組み込みデバイス（主に無線ルーター）向けの高い拡張性を持つ GNU/Linux ディストリビューションです。LEDE は、OpenWrt プロジェクトがベースです。他の多くのルーター向けディストリビューションとは異なり、LEDE はフル機能を持ち、組み込みデバイス向けに簡単に作り変えられるまでに一から作り上げられたオペレーティング システムです。 In practice, this means that you can have all the features you need with none of the bloat, powered by a modern Linux kernel. 
+
+===== LEDE ガイド =====
+/* 各リンクは、リンク先ドキュメントの翻訳が完了後 "docs" の前に "ja:" を付加 */
+^  [[docs:guide-quick-start:start|クイックスタート ガイド]]        ^  [[docs:user-guide:start|ユーザー ガイド]]      ^  [[docs:guide-developer:start|開発者ガイド]]         ^
+| もし LEDE が初めてなら、ここからスタートします。LEDE を使ったり、家庭内のネットワークをよりよくするために、家庭用ルーターのファームウェアのアップグレード方法を調べます。//[[docs:guide-quick-start:start|さらに読む...]]//| もし既に自身のルーターで LEDE を実行しているならば、ここからスタートします。LEDE には、VPN や VLAN 、あるいはその他の能力を提供する何百というパッケージがあります。//[[docs:user-guide:start|さらに読む...]]//| LEDE のカスタム ビルドを作りたいという場合や、開発に寄与したい場合は、ここからスタートします。ここには、開発を簡単にする多数のツールがあります。//[[docs:guide-developer:the-source-code|さらに読む...]]//|
+
+===== どこでさらに学べるでしょう？ =====
+上記3つのガイド (初心者, ユーザー, 開発者ガイド) は、LEDE についての実質全ての情報へのリンクを持っています。
+Wiki 内のどのページからでも検索機能を使用することもでき、また、以下に示すドキュメント ページの完全なリストを通して調べることができます。
+/* /docs/ をある程度日本語訳ページ作成後、下記に置き換える
+ * {{pagequery>@:ja:docs: *;sort=ns,title;group;cols=2;label=Documentation pages by namespace;hidestart;hidejump;display={title};}}
+ */
+{{pagequery>@:docs: *;sort=ns,title;group;cols=2;label=Documentation pages by namespace;hidestart;hidejump;display={title};}}

@@ -1,0 +1,193 @@
+===== 기본 IPv4 설정 ====
+
+IPv4는 기본펌웨어에서 완벽하게 지원됩니다.
+
+==== Wan인터페이스의 upstream 설정====
+다음은 ISP혹은 upstream 라우터로 IPv4 연결 설정에 대해 설명합니다.
+
+기본 IPv4 연결을 사용하는 uplink의 경우 기본 설정만 사용할 수 있습니다.
+
+<code>root@lede:/# uci show network
+...
+network.wan=interface
+network.wan.ifname='eth0.2'
+network.wan.proto='dhcp'
+...</code>
+
+<code>root@lede:/# cat /etc/config/network
+...
+config interface 'wan'
+        option ifname 'eth0.2'
+        option proto 'dhcp'
+...</code>
+
+=== "정적" 프로토콜, IPv4 ===
+^ 이름 ^ Type ^ Required ^ 초기값^ 설명 ^
+| ''ipaddr'' | ip address | yes, if no ''ip6addr'' is set. | //(none)// | IP 주소. [openwrt 12.09] 이것은 아이피주소의 목록 일 수 있습니다. 즉, 여러 개의 ipaddress가 인터페이스에 할당됩니다. 목록 대신 여러 ipaddr이 옵션으로 지정되면 마지막 항목 만 적용됩니다.  |
+| ''netmask'' | netmask | yes, if no ''ip6addr'' is set | //(none)// | 넷 마스크  |
+| ''gateway'' | ip address | no | //(none)// | 기본 게이트웨이  |
+| ''broadcast'' | ip address | no | //(none)// | 브로드 캐스트 주소 (설정되지 않은 경우 자동 생성 됨) ) |
+| ''dns'' | list of ip addresses | no | //(none)// | DNS 서버 |
+| ''dns_search'' | list of domain names | no | //(none)// | 호스트 이름 조회 목록 검색  |
+| ''metric'' | integer | no | ''0'' | 사용할 기본 경로 메트릭을 지정합니다.  |
+
+=== 프로토콜"dhcp" ===
+^ 이름^ Type ^ Required ^ 초기값^ 설명 ^
+| ''<del>gateway</del>'' | <del>string</del> | <del>no</del> | <del>//(none)//</del> | <del>Suppresses DHCP-assigned default gateway if set to 0.0.0.0</del> \\ (deprecated) |
+| ''broadcast'' | boolean | no | ''0'' | 특정 ISP에 필요한 DHCP 요청에서 브로드 캐스트 플래그를 활성화합니다 (예 : DOCSIS 3의 헌장).  |
+| ''ipaddr'' | IP address | no | //(none)// | DHCP 서버에 요청할 IP 주소  |
+| ''hostname'' | string | no | //(none)// | DHCP 요청에 포함 할 호스트 이름  |
+| ''clientid'' | string | no | //system default// | DHCP 요청에서 클라이언트 식별자 무시  |
+| ''vendorid'' | string | no | //system default// | DHCP 요청에서 공급 업체 클래스 재정의  |
+| ''dns'' | list of ip addresses | no | //(none)// | DHCP 할당 DNS 서버를 보완하거나 peerdns가 0 인 경우에만 이들을 사용하십시오. |
+| ''peerdns'' | boolean | no | ''1'' | DHCP 제공 DNS 서버 사용  |
+| ''defaultroute'' | boolean | no | ''1'' | 수신 된 게이트웨이를 통해 기본 경로를 만들지 여부  |
+| ''customroutes'' | string | no | //(none)// |수신 된 게이트웨이를 통해 삽입 할 추가 경로의 공백으로 구분 된 목록  |
+| ''metric'' | integer | no | ''0'' | 기본 경로와 맞춤 경로 모두에 사용할 경로 메트릭을 지정합니다.  |
+| ''classlessroute'' | boolean | no | ''1'' | "클래스없는 경로"옵션 (DHCP 옵션 121)을 요청할지 여부 - LEDE r2001 이후 사용 가능 |
+| ''reqopts'' | string | no | //(none)// | 서버에서 요청할 추가 DHCP 옵션의 공백으로 구분 된 목록  |
+| ''sendopts'' | string | no | //(none)// | 서버에 보낼 추가 DHCP 옵션의 공백으로 구분 된 목록입니다. 구문 : option:value 여기서 ''option'' 은 정수 코드 또는 ''hostname'' 과 같은 기호 이름입니다. . |
+| ''zone'' | firewall zone | no | //(none)// | 이 인터페이스를 추가해야하는 방화벽 영역  |
+
+:!: 이 변수들은 부분적으로 netifd에 의해 (''interface.c''에 있는)처리되며 나머지는 ''lib/netifd/proto/dhcp.sh''의 쉘 스크립트에 의해 처리됩니다.
+
+FIXME 오래된 정보는 고치고 테스트 하세요. 
+
+:!: 인터페이스가 dhcp클라이언트로 설정 되어 있는 경우, 수신 경로는 하나이며 다른 인터페이스로 정의된 기본 길들은 제거됩니다. 예를 들어:
+<code>
+config interface wan
+    option ifname eth0
+    option proto static
+    ..other options..
+    
+config interface wan2
+    option ifname eth1
+    option proto dhcp
+    ..other options..
+</code>
+위의 경우 "wan"에 의해 설정된 기본 라우트를 덮어 씁니다.
+반대되는 경우:
+<code>
+config interface wan
+    option ifname eth0
+    option proto dhcp
+    ..other options..
+    
+config interface wan2
+    option ifname eth1
+    option proto static
+    ..other options..
+</code>
+wan과 wan2로 설정된 기본 경로가 모두 라우팅 테이블에 나타납니다.
+
+
+==== lan 인터페이스 Downstream 설정 ====
+IPv4 연결을 사용하는 downlink는 기본 설정 을 사용 할 수 있으며 dhcp서버는 기본적으로 활성화 되어 있습니다. 자세한 내용은[[docs:user-guide:dhcp_configuration|DHCP 설정]]을 참조하세요.
+
+<code>root@lede:/# uci show network
+...
+network.lan=interface
+network.lan.type='bridge'
+network.lan.ifname='eth0.1'
+network.lan.proto='static'
+network.lan.netmask='255.255.255.0'
+network.lan.ip6assign='60'
+network.lan.ipaddr='192.168.1.1'
+...</code>
+
+<code>root@lede:/# cat /etc/config/network
+...
+config interface 'lan'
+        option type 'bridge'
+        option ifname 'eth0.1'
+        option proto 'static'
+        option netmask '255.255.255.0'
+        option ip6assign '60'
+        option ipaddr '192.168.1.1'
+
+...</code>
+
+===== 예제들 =====
+
+아래의 예제들은 표준화 되지 않은 인터페이스 설정들 입니다.
+
+==== IP없는 Bridge ====
+
+<code>config 'interface' 'example'
+        option 'type'    'bridge'
+        option 'proto'   'none'
+        option 'ifname'  'eth0 eth1'
+        option 'auto'    '1'</code>
+
+==== 기본 게이트웨이 없는 DHCP ====
+
+<code>config 'interface' 'example'
+        option 'proto'   'dhcp'
+        option 'ifname'  'eth0'
+        option 'defaultroute' '0'
+</code>
+
+==== DHCP 와 IPv6 ====
+
+<code>config 'interface' 'example'
+        option 'proto'     'dhcp'
+        option 'ifname'    'eth0'
+
+config 'alias'
+        option 'interface' 'example'
+        option 'proto'     'static'
+        option 'ip6addr'   '2001:0DB8:100:F00:BA3::1'</code>
+
+==== 여러개의 DNS가 있는 정적 IP 설정 ====
+<code>config 'interface' 'example'
+        option 'proto'     'static'
+        option 'ifname'    'eth0'
+        option 'ipaddr'    '192.168.1.200'
+        option 'netmask'   '255.255.255.0'
+        list   'dns'       '192.168.1.1'
+        list   'dns'       '192.168.10.1'
+</code>
+:!: 나열된 마지막 dns가 이름 확인을 위해 선택된 첫 번째 DNS가 됩니다.
+
+:!: LEDE를 재부팅하거나 ''/etc/init.d/dnsmasq restart'' 후에만 설정된 새 dns를 사용합니다.
+==== metric이 0이 아닌 기본 게이트웨이와 정적 IP설정 ====
+
+<code>config 'interface' 'example'
+        option 'proto'     'static'
+        option 'ifname'    'eth0'
+        option 'ipaddr'    '192.168.1.200'
+        option 'netmask'   '255.255.255.0'
+        option 'dns'       '192.168.1.1'
+
+config 'route'
+        option 'interface' 'example'
+        option 'target'    '0.0.0.0'
+        option 'netmask'   '0.0.0.0'
+        option 'gateway'   '192.168.1.1'
+        option 'metric'    '100'</code>
+        
+===== 여러 개 IP 주소 =====
+동일한 인터페이스에 여러개의 IP주소 할당:
+<code>
+config interface foo
+  option ifname eth1
+  list ipaddr 10.8.0.1/24
+  list ipaddr 10.9.0.1/24
+  list ip6addr fdca:abcd::1/64
+  list ip6addr fdca:cdef::1/64
+</code>
+동일한 장치를 공유하는 여러 인터페이스의 설정:
+<code>
+config interface foo
+  option ifname eth1
+  option ipaddr 10.8.0.1
+  option netmask 255.255.255.0
+  option ip6addr fdca:abcd::1/64
+
+config interface foo2
+  option ifname eth1
+  option ipaddr 10.9.0.1
+  option netmask 255.255.255.0
+  option ip6addr fdca:cdef::1/64
+</code>
+[[https://dev.openwrt.org/ticket/2829#comment:7]]게시된 것입니다.

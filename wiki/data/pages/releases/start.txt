@@ -1,0 +1,9 @@
+====== LEDE Release Builds ======
+
+LEDE software has two distinct branches: a stable "Release" build that is suitable for production use, and a [[releases:snapshot|"Development" build]] that contains an ever-evolving set of enhancements. From time to time, we declare one version of the development builds to be a "Release Candidate" for a subsequent stable version.
+
+The following stable release builds of LEDE are now available:
+
+  * [[:releases:17.01:start|LEDE 17.01.4]]
+
+This page will contain archived versions of all full release builds, plus the most recent release candidate builds.

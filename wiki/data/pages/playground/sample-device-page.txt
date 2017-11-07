@@ -1,0 +1,449 @@
+====== Vendor @@Brand@@ Model @@Model@@ ======
+
+//The @@Brand@@ model @@Model@@ is a router with ? gigabit LAN ports, ? gigabit WAN port, and ? wifi radios. The rest of this paragraph should provide a two-three sentence explanation of what makes it good. No marketing fluff, please.//
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * After you have updated this page with good information regarding the LEDE build,
+ * consider removing the "Note" below, so this page can become the definitive
+ * source of information about the device on the LEDE site. Thanks!
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+| **Note** | This page is an automatically-generated placeholder for this device. If you own one of these devices, please take the time to update this page to with what you've learned.  |
+
+Historical information for the @@brand@@ @@model@@ may be available from the original Device Page on the OpenWrt site at: @@URL-To-OpenWrt-Device-Page@@
+
+
+===== Hardware Information =====
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+ *                    DO NOT CHANGE THIS SECTION OF THIS PAGE.
+ *
+ * This Hardware Information section is automatically generated, using information from the Device Techdata. 
+ * To update the information for the device, click Cancel, then click View/Edit data in the Links tab.
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+//Note: Information below will be automatically generated from ToH dataentry pages. \\
+The data shown is a placeholder, using information about the Netgear WNDR3800 to show how it would appear.//
+
+<WRAP 100%>
+<tabbox LEDE Support>
+---- datatable ----
+cols    : Model, Versions, LEDE Supported Current Rel, OEM device homepage URL_url, Forum Topic URL_url
+headers : Model, Version, Current Release, OEM Info, Forum Topic
+align   : l,l,c
+filter  : Brand=Netgear
+filter  : Model=WNDR3800
+----
+
+<tabbox Hardware Highlights>
+---- datatable ----
+cols    : Model, Versions, CPU, CPU MHz, Flash MB_mbflashs, RAM MB_mbram, WLAN Hardware, WLAN 2.4Ghz, WLAN 5.0Ghz, Ethernet 100M ports_, Ethernet Gbit ports_, Modem, USB ports_
+header  : Model, Version,SoC,CPU MHz,Flash MB,RAM MB,WLAN Hardware,WLAN2.4,WLAN5.0,100M ports,Gbit ports,Modem,USB
+align   : c,c,c,c,c,c,c,c,c,c,c,c
+filter  : Brand=Netgear
+filter  : Model=WNDR3800
+----
+
+<tabbox Hardware Details>
+---- datatemplatelist frumious ----
+template: meta:template_hardwaredetails
+cols    : Brand, Model, Versions, Device Type, Availability, Comments_, Supported Since Rev, Supported since Rel, Supported current Rel,  Instruction Set, Sub Instruction Set, Bootloader, Platform, Target, CPU MHz, Flash MBs, RAM MB, Switch, Ethernet 100M ports_, Ethernet Gbit ports_, Comments network ports_, Modem, VLAN, WLAN 2.4GHz, WLAN 5.0GHz, Detachable Antennas_, WLAN Comments_,  USB ports_, SATA ports_,  Serial, JTAG, Comments USB SATA ports_,LED count, Button count, Device Techdata_pageid, Forum topic URL_url, wikidevi URL_url, OEM Device Homepage URL_url, Firmware OEM Stock URL_url, Firmware OpenWrt Install URL_url, Firmware OpenWrt Upgrade URL_url
+filter  : Brand=Netgear
+filter  : Model=WNDR3800
+----
+
+<tabbox Firmware Downloads>
+---- datatable ----
+cols       : Model, Versions, LEDE Supported Current Rel, Firmware LEDE Install URL_url, Firmware LEDE Upgrade URL_url, Firmware OEM Stock URL_url
+headers    : Model, Versions, Current Release, LEDE Factory Image, LEDE Sysupgrade Image, OEM Firmware URL
+filter  : Brand=Netgear
+filter  : Model=WNDR3800
+----
+
+<tabbox Links>
+---- datatemplatelist bandersnatch ----
+template: meta:template_links 
+cols       : LEDE Forum topic URL_url, wikidevi URL_url, OEM Device Homepage URL_url, Firmware OEM Stock URL_url, Firmware LEDE Install URL_url, Firmware LEDE Upgrade URL_url, Device Techdata_pageid
+filter  : Brand=Netgear
+filter  : Model=WNDR3800
+----
+</tabbox>
+</WRAP>
+
+
+===== Getting and Flashing Firmware =====
+
+  * Get firmware via the links shown above
+  * The [[docs:guide-quick-start:factory_installation|Standard Flashing Instructions]] work perfectly for this device.
+  * Factory firmware flash usually takes 5 or more minutes. You will know it has completed when xxx light starts flashing.
+  * //If the device requires additional steps or an alternative flashing process, include that information here.//
+
+
+===== Troubleshooting/Unbricking =====
+
+  * Refer to [[docs:user-guide:failsafe_and_factory_reset|Failsafe Mode and Factory Reset]]
+  * [[faq:after_installation|Frequently Asked Questions: After installation]]
+  * [[docs:user-guide:uninstall|Uninstall LEDE]] (back to stock firmware)
+  * //Include other tips here//
+
+
+===== Other Information about the Device =====
+ //Include memory layouts, pinouts for RS-232/JTAG, etc. here//
+
+==== Photos ====
+ //Include photos of the router, board, RS-232 ports, etc. here//
+
+==== Boot Logs ====
+//Empty in the basic Device Page template. May use the folded plugin so they don't occupy screen space unless the reader explicitly un-hides them.//
+
+
+===== Some examples for folded, hidden + outliner plugin =====
+
+**My favourite:** hidden plugin. --- //[[tmo26@gmx.de|tmomas]] 2016/11/01 21:08//
+
+++ Bootlog | Folded plugin -> https://www.dokuwiki.org/plugin:folded\\
+Doesn't work with %%<code>%% tags or %%<WRAP>%% :(
+++ 
+
+<hidden onHidden="Bootlog" onVisible="Hide bootlog" edit="any edit text">Hidden plugin -> [[https://www.dokuwiki.org/plugin:hidden]]
+<code>## Booting image at 81000000 ...
+   Image Name:   MIPS OpenWrt Linux-3.3.8
+   Created:      2012-11-26  17:01:44 UTC
+   Image Type:   MIPS Linux Kernel Image (lzma compressed)
+   Data Size:    4269201 Bytes =  4.1 MB
+   Load Address: 80060000
+   Entry Point:  80060000
+   Verifying Checksum at 0x81000040 ...OK
+   Uncompressing Kernel Image ... OK
+No initrd
+## Transferring control to Linux (at address 80060000) ...
+## Giving linux memsize in bytes, 67108864
+
+Starting kernel ...
+
+[    0.000000] Linux version 3.3.8 (dzubey@Spartan) (gcc version 4.6.3 20120201 (prerelease) (Linaro GCC 4.6-2012.02) ) #6 Mon Nov 26 10:01:28 MST 2012
+[    0.000000] bootconsole [early0] enabled
+[    0.000000] CPU revision is: 00019374 (MIPS 24Kc)
+[    0.000000] SoC: Atheros AR9330 rev 1
+[    0.000000] Clocks: CPU:400.000MHz, DDR:400.000MHz, AHB:200.000MHz, Ref:25.000MHz
+[    0.000000] Determined physical RAM map:
+[    0.000000]  memory: 04000000 @ 00000000 (usable)
+[    0.000000] Initrd not found or empty - disabling initrd
+[    0.000000] Zone PFN ranges:
+[    0.000000]   Normal   0x00000000 -> 0x00004000
+[    0.000000] Movable zone start PFN for each node
+[    0.000000] Early memory PFN ranges
+[    0.000000]     0: 0x00000000 -> 0x00004000
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 16256
+[    0.000000] Kernel command line:  board=DIR-505-A1 console=ttyATH0,115200 mtdparts=spi0.0:64k(u-boot)ro,64k(art)ro,64k(mac)ro,64k(nvram)ro,256k(language)ro,1024k(kernel),6656k(rootfs),7680k@0x80000(firmware) rootfstype=squashfs,jffs2 noinitrd
+[    0.000000] PID hash table entries: 256 (order: -2, 1024 bytes)
+[    0.000000] Dentry cache hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.000000] Inode-cache hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.000000] Primary instruction cache 64kB, VIPT, 4-way, linesize 32 bytes.
+[    0.000000] Primary data cache 32kB, 4-way, VIPT, cache aliases, linesize 32 bytes
+[    0.000000] Writing ErrCtl register=00000000
+[    0.000000] Readback ErrCtl register=00000000
+[    0.000000] Memory: 58492k/65536k available (2121k kernel code, 7044k reserved, 401k data, 3432k init, 0k highmem)
+[    0.000000] SLUB: Genslabs=9, HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] NR_IRQS:51
+[    0.000000] Calibrating delay loop... 265.42 BogoMIPS (lpj=1327104)
+[    0.080000] pid_max: default: 32768 minimum: 301
+[    0.080000] Mount-cache hash table entries: 512
+[    0.090000] NET: Registered protocol family 16
+[    0.090000] gpiochip_add: registered GPIOs 0 to 29 on device: ath79
+[    0.100000] MIPS: machine is D-Link DIR-505 A1
+[    0.350000] bio: create slab <bio-0> at 0
+[    0.360000] Switching to clocksource MIPS
+[    0.360000] NET: Registered protocol family 2
+[    0.370000] IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.370000] TCP established hash table entries: 2048 (order: 2, 16384 bytes)
+[    0.380000] TCP bind hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.380000] TCP: Hash tables configured (established 2048 bind 2048)
+[    0.390000] TCP reno registered
+[    0.390000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    0.400000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    0.400000] NET: Registered protocol family 1
+[    6.810000] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    6.820000] JFFS2 version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    6.830000] msgmni has been set to 114
+[    6.830000] io scheduler noop registered
+[    6.830000] io scheduler deadline registered (default)
+[    6.840000] Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+[    6.840000] ar933x-uart: ttyATH0 at MMIO 0x18020000 (irq = 11) is a AR933X UART
+[    6.850000] console [ttyATH0] enabled, bootconsole disabled
+[    6.850000] console [ttyATH0] enabled, bootconsole disabled
+[    6.870000] m25p80 spi0.0: found mx25l6405d, expected m25p80
+[    6.870000] m25p80 spi0.0: mx25l6405d (8192 Kbytes)
+[    6.880000] 8 cmdlinepart partitions found on MTD device spi0.0
+[    6.880000] Creating 8 MTD partitions on "spi0.0":
+[    6.890000] 0x000000000000-0x000000010000 : "u-boot"
+[    6.890000] 0x000000010000-0x000000020000 : "art"
+[    6.900000] 0x000000020000-0x000000030000 : "mac"
+[    6.900000] 0x000000030000-0x000000040000 : "nvram"
+[    6.910000] 0x000000040000-0x000000080000 : "language"
+[    6.910000] 0x000000080000-0x000000180000 : "kernel"
+[    6.920000] 0x000000180000-0x000000800000 : "rootfs"
+[    6.920000] mtd: partition "rootfs" set to be root filesystem
+[    6.930000] mtd: partition "rootfs_data" created automatically, ofs=6E0000, len=120000 
+[    6.940000] 0x0000006e0000-0x000000800000 : "rootfs_data"
+[    6.940000] 0x000000080000-0x000000800000 : "firmware"
+[    6.970000] ag71xx_mdio: probed
+[    6.970000] eth0: Atheros AG71xx at 0xb9000000, irq 4
+[    7.530000] ag71xx ag71xx.0: eth0: connected to PHY at ag71xx-mdio.1:04 [uid=004dd041, driver=Generic PHY]
+[    7.540000] TCP cubic registered
+[    7.540000] NET: Registered protocol family 17
+[    7.540000] Bridge firewalling registered
+[    7.550000] 8021q: 802.1Q VLAN Support v1.8
+[    7.580000] Freeing unused kernel memory: 3432k freed
+- preinit -
+Press the [f] key and hit [enter] to enter failsafe mode
+[   10.530000] eth0: link up (100Mbps/Full duplex)
+- regular preinit -
+[   11.540000] eth0: link down
+- init -
+[   11.860000] Compat-drivers backport release: compat-drivers-2012-09-04-2-gddac993
+[   11.860000] Backport based on wireless-testing.git master-2012-09-07
+[   11.870000] compat.git: wireless-testing.git
+[   11.900000] cfg80211: Calling CRDA to update world regulatory domain
+[   11.910000] cfg80211: World regulatory domain updated:
+[   11.910000] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp)
+[   11.920000] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   11.930000] cfg80211:   (2457000 KHz - 2482000 KHz @ 20000 KHz), (300 mBi, 2000 mBm)
+[   11.940000] cfg80211:   (2474000 KHz - 2494000 KHz @ 20000 KHz), (300 mBi, 2000 mBm)
+[   11.950000] cfg80211:   (5170000 KHz - 5250000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   11.950000] cfg80211:   (5735000 KHz - 5835000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   12.030000] NET: Registered protocol family 10
+[   12.170000] usbcore: registered new interface driver usbfs
+[   12.170000] usbcore: registered new interface driver hub
+[   12.180000] usbcore: registered new device driver usb
+[   12.330000] ieee80211 phy0: Atheros AR9330 Rev:1 mem=0xb8100000, irq=2
+[   12.340000] cfg80211: Calling CRDA for country: US
+[   12.340000] cfg80211: Regulatory domain changed to country: US
+[   12.340000] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp)
+[   12.350000] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (300 mBi, 2700 mBm)
+[   12.360000] cfg80211:   (5170000 KHz - 5250000 KHz @ 40000 KHz), (300 mBi, 1700 mBm)
+[   12.370000] cfg80211:   (5250000 KHz - 5330000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   12.380000] cfg80211:   (5490000 KHz - 5600000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   12.380000] cfg80211:   (5650000 KHz - 5710000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   12.390000] cfg80211:   (5735000 KHz - 5835000 KHz @ 40000 KHz), (300 mBi, 3000 mBm)
+[   12.470000] PPP generic driver version 2.4.2
+[   12.510000] tun: Universal TUN/TAP device driver, 1.6
+[   12.510000] tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+[   12.610000] ip_tables: (C) 2000-2006 Netfilter Core Team
+[   12.780000] NET: Registered protocol family 24
+[   12.800000] nf_conntrack version 0.5.0 (967 buckets, 3868 max)
+[   13.320000] xt_time: kernel timezone is -0000
+[   13.760000] Netfilter messages via NETLINK v0.30.
+[   13.780000] Ebtables v2.0 registered
+[   14.030000] ip6_tables: (C) 2000-2006 Netfilter Core Team
+[   14.270000] ctnetlink v0.93: registering with nfnetlink.
+[   14.420000] pwm: module license 'unspecified' taints kernel.
+[   14.430000] Disabling lock debugging due to kernel taint
+[   14.430000] pwm: Unknown symbol device_unregister (err 0)
+[   14.440000] pwm: Unknown symbol put_device (err 0)
+[   14.440000] pwm: Unknown symbol __class_register (err 0)
+[   14.450000] pwm: Unknown symbol device_create (err 0)
+[   14.450000] pwm: Unknown symbol sysfs_create_group (err 0)
+[   14.460000] pwm: Unknown symbol queue_work (err 0)
+[   14.460000] pwm: Unknown symbol __alloc_workqueue_key (err 0)
+[   14.470000] pwm: Unknown symbol class_find_device (err 0)
+[   14.510000] i2c /dev entries driver
+[   14.530000] gpio_pwm: Unknown symbol pwm_unregister (err 0)
+[   14.530000] gpio_pwm: Unknown symbol pwm_register (err 0)
+[   14.590000] usbcore: registered new interface driver usbserial
+[   14.600000] USB Serial support registered for generic
+[   14.600000] usbcore: registered new interface driver usbserial_generic
+[   14.610000] usbserial: USB Serial Driver core
+[   14.650000] Linux video capture interface: v2.00
+[   14.710000] USB Serial support registered for FTDI USB Serial Device
+[   14.720000] usbcore: registered new interface driver ftdi_sio
+[   14.720000] ftdi_sio: v1.6.0:USB FTDI Serial Converters Driver
+[   14.750000] USB Serial support registered for pl2303
+[   14.750000] usbcore: registered new interface driver pl2303
+[   14.760000] pl2303: Prolific PL2303 USB to serial adaptor driver
+[   14.840000] fuse init (API version 7.18)
+[   14.870000] usbcore: registered new interface driver uvcvideo
+[   14.880000] USB Video Class driver (1.1.1)
+
+Please press Enter to activate this console. [   16.910000] ADDRCONF(NETDEV_UP): eth0: link is not ready
+[   16.910000] device eth0 entered promiscuous mode
+[   16.920000] ADDRCONF(NETDEV_UP): br-lan: link is not ready
+[   17.530000] eth0: link up (100Mbps/Full duplex)
+[   17.530000] br-lan: port 1(eth0) entered forwarding state
+[   17.540000] br-lan: port 1(eth0) entered forwarding state
+[   17.540000] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[   17.550000] ADDRCONF(NETDEV_CHANGE): br-lan: link becomes ready
+[   19.540000] br-lan: port 1(eth0) entered forwarding state</code></hidden>
+
+
+--> Bootlog#
+outliner plugin -> [[https://www.dokuwiki.org/plugin:outliner]]
+<code>## Booting image at 81000000 ...
+   Image Name:   MIPS OpenWrt Linux-3.3.8
+   Created:      2012-11-26  17:01:44 UTC
+   Image Type:   MIPS Linux Kernel Image (lzma compressed)
+   Data Size:    4269201 Bytes =  4.1 MB
+   Load Address: 80060000
+   Entry Point:  80060000
+   Verifying Checksum at 0x81000040 ...OK
+   Uncompressing Kernel Image ... OK
+No initrd
+## Transferring control to Linux (at address 80060000) ...
+## Giving linux memsize in bytes, 67108864
+
+Starting kernel ...
+
+[    0.000000] Linux version 3.3.8 (dzubey@Spartan) (gcc version 4.6.3 20120201 (prerelease) (Linaro GCC 4.6-2012.02) ) #6 Mon Nov 26 10:01:28 MST 2012
+[    0.000000] bootconsole [early0] enabled
+[    0.000000] CPU revision is: 00019374 (MIPS 24Kc)
+[    0.000000] SoC: Atheros AR9330 rev 1
+[    0.000000] Clocks: CPU:400.000MHz, DDR:400.000MHz, AHB:200.000MHz, Ref:25.000MHz
+[    0.000000] Determined physical RAM map:
+[    0.000000]  memory: 04000000 @ 00000000 (usable)
+[    0.000000] Initrd not found or empty - disabling initrd
+[    0.000000] Zone PFN ranges:
+[    0.000000]   Normal   0x00000000 -> 0x00004000
+[    0.000000] Movable zone start PFN for each node
+[    0.000000] Early memory PFN ranges
+[    0.000000]     0: 0x00000000 -> 0x00004000
+[    0.000000] Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 16256
+[    0.000000] Kernel command line:  board=DIR-505-A1 console=ttyATH0,115200 mtdparts=spi0.0:64k(u-boot)ro,64k(art)ro,64k(mac)ro,64k(nvram)ro,256k(language)ro,1024k(kernel),6656k(rootfs),7680k@0x80000(firmware) rootfstype=squashfs,jffs2 noinitrd
+[    0.000000] PID hash table entries: 256 (order: -2, 1024 bytes)
+[    0.000000] Dentry cache hash table entries: 8192 (order: 3, 32768 bytes)
+[    0.000000] Inode-cache hash table entries: 4096 (order: 2, 16384 bytes)
+[    0.000000] Primary instruction cache 64kB, VIPT, 4-way, linesize 32 bytes.
+[    0.000000] Primary data cache 32kB, 4-way, VIPT, cache aliases, linesize 32 bytes
+[    0.000000] Writing ErrCtl register=00000000
+[    0.000000] Readback ErrCtl register=00000000
+[    0.000000] Memory: 58492k/65536k available (2121k kernel code, 7044k reserved, 401k data, 3432k init, 0k highmem)
+[    0.000000] SLUB: Genslabs=9, HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.000000] NR_IRQS:51
+[    0.000000] Calibrating delay loop... 265.42 BogoMIPS (lpj=1327104)
+[    0.080000] pid_max: default: 32768 minimum: 301
+[    0.080000] Mount-cache hash table entries: 512
+[    0.090000] NET: Registered protocol family 16
+[    0.090000] gpiochip_add: registered GPIOs 0 to 29 on device: ath79
+[    0.100000] MIPS: machine is D-Link DIR-505 A1
+[    0.350000] bio: create slab <bio-0> at 0
+[    0.360000] Switching to clocksource MIPS
+[    0.360000] NET: Registered protocol family 2
+[    0.370000] IP route cache hash table entries: 1024 (order: 0, 4096 bytes)
+[    0.370000] TCP established hash table entries: 2048 (order: 2, 16384 bytes)
+[    0.380000] TCP bind hash table entries: 2048 (order: 1, 8192 bytes)
+[    0.380000] TCP: Hash tables configured (established 2048 bind 2048)
+[    0.390000] TCP reno registered
+[    0.390000] UDP hash table entries: 256 (order: 0, 4096 bytes)
+[    0.400000] UDP-Lite hash table entries: 256 (order: 0, 4096 bytes)
+[    0.400000] NET: Registered protocol family 1
+[    6.810000] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    6.820000] JFFS2 version 2.2 (NAND) (SUMMARY) (LZMA) (RTIME) (CMODE_PRIORITY) (c) 2001-2006 Red Hat, Inc.
+[    6.830000] msgmni has been set to 114
+[    6.830000] io scheduler noop registered
+[    6.830000] io scheduler deadline registered (default)
+[    6.840000] Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+[    6.840000] ar933x-uart: ttyATH0 at MMIO 0x18020000 (irq = 11) is a AR933X UART
+[    6.850000] console [ttyATH0] enabled, bootconsole disabled
+[    6.850000] console [ttyATH0] enabled, bootconsole disabled
+[    6.870000] m25p80 spi0.0: found mx25l6405d, expected m25p80
+[    6.870000] m25p80 spi0.0: mx25l6405d (8192 Kbytes)
+[    6.880000] 8 cmdlinepart partitions found on MTD device spi0.0
+[    6.880000] Creating 8 MTD partitions on "spi0.0":
+[    6.890000] 0x000000000000-0x000000010000 : "u-boot"
+[    6.890000] 0x000000010000-0x000000020000 : "art"
+[    6.900000] 0x000000020000-0x000000030000 : "mac"
+[    6.900000] 0x000000030000-0x000000040000 : "nvram"
+[    6.910000] 0x000000040000-0x000000080000 : "language"
+[    6.910000] 0x000000080000-0x000000180000 : "kernel"
+[    6.920000] 0x000000180000-0x000000800000 : "rootfs"
+[    6.920000] mtd: partition "rootfs" set to be root filesystem
+[    6.930000] mtd: partition "rootfs_data" created automatically, ofs=6E0000, len=120000 
+[    6.940000] 0x0000006e0000-0x000000800000 : "rootfs_data"
+[    6.940000] 0x000000080000-0x000000800000 : "firmware"
+[    6.970000] ag71xx_mdio: probed
+[    6.970000] eth0: Atheros AG71xx at 0xb9000000, irq 4
+[    7.530000] ag71xx ag71xx.0: eth0: connected to PHY at ag71xx-mdio.1:04 [uid=004dd041, driver=Generic PHY]
+[    7.540000] TCP cubic registered
+[    7.540000] NET: Registered protocol family 17
+[    7.540000] Bridge firewalling registered
+[    7.550000] 8021q: 802.1Q VLAN Support v1.8
+[    7.580000] Freeing unused kernel memory: 3432k freed
+- preinit -
+Press the [f] key and hit [enter] to enter failsafe mode
+[   10.530000] eth0: link up (100Mbps/Full duplex)
+- regular preinit -
+[   11.540000] eth0: link down
+- init -
+[   11.860000] Compat-drivers backport release: compat-drivers-2012-09-04-2-gddac993
+[   11.860000] Backport based on wireless-testing.git master-2012-09-07
+[   11.870000] compat.git: wireless-testing.git
+[   11.900000] cfg80211: Calling CRDA to update world regulatory domain
+[   11.910000] cfg80211: World regulatory domain updated:
+[   11.910000] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp)
+[   11.920000] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   11.930000] cfg80211:   (2457000 KHz - 2482000 KHz @ 20000 KHz), (300 mBi, 2000 mBm)
+[   11.940000] cfg80211:   (2474000 KHz - 2494000 KHz @ 20000 KHz), (300 mBi, 2000 mBm)
+[   11.950000] cfg80211:   (5170000 KHz - 5250000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   11.950000] cfg80211:   (5735000 KHz - 5835000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   12.030000] NET: Registered protocol family 10
+[   12.170000] usbcore: registered new interface driver usbfs
+[   12.170000] usbcore: registered new interface driver hub
+[   12.180000] usbcore: registered new device driver usb
+[   12.330000] ieee80211 phy0: Atheros AR9330 Rev:1 mem=0xb8100000, irq=2
+[   12.340000] cfg80211: Calling CRDA for country: US
+[   12.340000] cfg80211: Regulatory domain changed to country: US
+[   12.340000] cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp)
+[   12.350000] cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (300 mBi, 2700 mBm)
+[   12.360000] cfg80211:   (5170000 KHz - 5250000 KHz @ 40000 KHz), (300 mBi, 1700 mBm)
+[   12.370000] cfg80211:   (5250000 KHz - 5330000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   12.380000] cfg80211:   (5490000 KHz - 5600000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   12.380000] cfg80211:   (5650000 KHz - 5710000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[   12.390000] cfg80211:   (5735000 KHz - 5835000 KHz @ 40000 KHz), (300 mBi, 3000 mBm)
+[   12.470000] PPP generic driver version 2.4.2
+[   12.510000] tun: Universal TUN/TAP device driver, 1.6
+[   12.510000] tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+[   12.610000] ip_tables: (C) 2000-2006 Netfilter Core Team
+[   12.780000] NET: Registered protocol family 24
+[   12.800000] nf_conntrack version 0.5.0 (967 buckets, 3868 max)
+[   13.320000] xt_time: kernel timezone is -0000
+[   13.760000] Netfilter messages via NETLINK v0.30.
+[   13.780000] Ebtables v2.0 registered
+[   14.030000] ip6_tables: (C) 2000-2006 Netfilter Core Team
+[   14.270000] ctnetlink v0.93: registering with nfnetlink.
+[   14.420000] pwm: module license 'unspecified' taints kernel.
+[   14.430000] Disabling lock debugging due to kernel taint
+[   14.430000] pwm: Unknown symbol device_unregister (err 0)
+[   14.440000] pwm: Unknown symbol put_device (err 0)
+[   14.440000] pwm: Unknown symbol __class_register (err 0)
+[   14.450000] pwm: Unknown symbol device_create (err 0)
+[   14.450000] pwm: Unknown symbol sysfs_create_group (err 0)
+[   14.460000] pwm: Unknown symbol queue_work (err 0)
+[   14.460000] pwm: Unknown symbol __alloc_workqueue_key (err 0)
+[   14.470000] pwm: Unknown symbol class_find_device (err 0)
+[   14.510000] i2c /dev entries driver
+[   14.530000] gpio_pwm: Unknown symbol pwm_unregister (err 0)
+[   14.530000] gpio_pwm: Unknown symbol pwm_register (err 0)
+[   14.590000] usbcore: registered new interface driver usbserial
+[   14.600000] USB Serial support registered for generic
+[   14.600000] usbcore: registered new interface driver usbserial_generic
+[   14.610000] usbserial: USB Serial Driver core
+[   14.650000] Linux video capture interface: v2.00
+[   14.710000] USB Serial support registered for FTDI USB Serial Device
+[   14.720000] usbcore: registered new interface driver ftdi_sio
+[   14.720000] ftdi_sio: v1.6.0:USB FTDI Serial Converters Driver
+[   14.750000] USB Serial support registered for pl2303
+[   14.750000] usbcore: registered new interface driver pl2303
+[   14.760000] pl2303: Prolific PL2303 USB to serial adaptor driver
+[   14.840000] fuse init (API version 7.18)
+[   14.870000] usbcore: registered new interface driver uvcvideo
+[   14.880000] USB Video Class driver (1.1.1)
+
+Please press Enter to activate this console. [   16.910000] ADDRCONF(NETDEV_UP): eth0: link is not ready
+[   16.910000] device eth0 entered promiscuous mode
+[   16.920000] ADDRCONF(NETDEV_UP): br-lan: link is not ready
+[   17.530000] eth0: link up (100Mbps/Full duplex)
+[   17.530000] br-lan: port 1(eth0) entered forwarding state
+[   17.540000] br-lan: port 1(eth0) entered forwarding state
+[   17.540000] ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+[   17.550000] ADDRCONF(NETDEV_CHANGE): br-lan: link becomes ready
+[   19.540000] br-lan: port 1(eth0) entered forwarding state</code>
+<--

@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: kmod-airo ======
+---- dataentry packages ----
+Name                             : kmod-airo
+Version                          : see kernel for details
+Description                      : Kernel support for Cisco Aironet cards\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 36 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : kernel, kmod-cfg80211
+Categories_pkg-categorys         : kernel-modules---wireless-drivers #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : x86-64, x86-generic, x86-geode, x86-legacy,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 36
+License                          : 
+Maintainer_pkg-maintainer        : Felix Fietkau
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/kernel/mac80211|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : see kernel for details # short version of the package, for display in table
+----
+

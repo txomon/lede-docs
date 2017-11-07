@@ -1,0 +1,402 @@
+====== LEDE v17.01.1 Changelog ======
+
+This changelog lists all commits done in LEDE since the [[releases:17.01:changelog-17.01.0|v17.01.0 tag]], grouped by subsystem.
+The changes are chronologically ordered from top to bottom and cover the Git repository history until the tagging of the final 17.01.1 release. 
+
+==== Build System / Buildroot (8 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f6d94b0dd67f4d5e5dbadbd97a765732d6a0e757|f6d94b0]]'' **<nowiki>cmake:</nowiki>** <nowiki>skip build system check on compile</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4bd0edc8fdbb8c02c71dacdfc2d6ebef3716eda5|4bd0edc]]'' **<nowiki>scripts/getver.sh:</nowiki>** <nowiki>append short git hash based on upstream commit</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=23fd4e65bafb7856770075522111bcba3cb3b6fb|23fd4e6]]'' **<nowiki>scripts:</nowiki>** <nowiki>get_source_date_epoch.sh: fix mercurial support, add mtime fallback</nowiki> //<color #ccc>(</color><color #282>+7</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2d5f8eb0671b40fa266b3ca07404a8ec4ed2c207|2d5f8eb]]'' **<nowiki>rstrip.sh:</nowiki>** <nowiki>fix handling variations in "file" output</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=fffabd3c44137f07f8c8959c1b16ad6944bc5110|fffabd3]]'' **<nowiki>gen-dependencies.sh:</nowiki>** <nowiki>fix handling variations in "file" output</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=e3021e0308cccd721a2e4b06f9a7e4aafb31f35e|e3021e0]]'' **<nowiki>scripts/feeds:</nowiki>** <nowiki>Reuse TOPDIR if defined in environment</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=53fcaed1f78a4fa4073c96801e4a365e61866e62|53fcaed]]'' **<nowiki>image.mk:</nowiki>** <nowiki>force kernel rebuild on every run</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=48461b5abc382b26edd0d2637f0f7b952bed90ba|48461b5]]'' <nowiki>LEDE v17.01.1: adjust config defaults</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+
+==== Build System / Feeds (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=48461b5abc382b26edd0d2637f0f7b952bed90ba|48461b5]]'' <nowiki>LEDE v17.01.1: adjust config defaults</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+
+==== Kernel (9 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=7fd494d4b23697a329dcde89df412edaaf96a83d|7fd494d]]'' **<nowiki>ar8216:</nowiki>** <nowiki>flush ARL table during reset after init_globals</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5c1758d46893ea20983e21172b8654f44f10c872|5c1758d]]'' **<nowiki>kernel:</nowiki>** <nowiki>backport bcm47xxsflash support for reading 32 MiB flashes</nowiki> //<color #ccc>(</color><color #282>+144</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5fed9ef842285106378eaf6b54a2693c7401670e|5fed9ef]]'' **<nowiki>kernel:</nowiki>** <nowiki>move upstream accepted bcm47xxpart TRX cleanups</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=65b05463d78dd68db81e5c7236363128667b5699|65b0546]]'' **<nowiki>netfilter:</nowiki>** <nowiki>re-enable TEE support for kernel 4.4</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=b036a22fcc700239827b10ab0b123bc541eed415|b036a22]]'' **<nowiki>kernel:</nowiki>** <nowiki>add Chinese codepages</nowiki> //<color #ccc>(</color><color #282>+32</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=09a8183ce849984b725d1c8be21ea93ce93e7f09|09a8183]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.52</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>,</color><color #f00>-11</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0dcc4d239da78bc20b091d50c097c386e0e61902|0dcc4d2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.59</nowiki> //<color #ccc>(</color><color #282>+135</color><color #ccc>,</color><color #f00>-527</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=638ca50f3b1d66fb165891552ed8cde31aa2f194|638ca50]]'' **<nowiki>kernel:</nowiki>** <nowiki>Fix the incorrect i_nlink count after jffs2's RENAME_EXCHANGE operati...</nowiki> //<color #ccc>(</color><color #282>+28</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=6ca5ccc62019cf9376b552c0635f4242dd4fae0f|6ca5ccc]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.61</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-117</color><color #ccc>)</color>//\\
+
+==== Packages / Boot Loaders (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f0e8470aa93642b14dfe71386438662e2ba49cde|f0e8470]]'' **<nowiki>grub2:</nowiki>** <nowiki>update to 2.02~rc1</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+
+==== Packages / Common (35 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f1336d2a702938efe5857ffd3290d90b2877f1cc|f1336d2]]'' **<nowiki>iw:</nowiki>** <nowiki>sync nl80211.h with mac80211 package</nowiki> //<color #ccc>(</color><color #282>+289</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=bf53a8327f258d18878f145a652d91d31878cc6c|bf53a83]]'' **<nowiki>acx-mac80211:</nowiki>** <nowiki>fix scan API error that could lead to a crash</nowiki> //<color #ccc>(</color><color #282>+29</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2b22e1d5c3aa7740c94ea56dee6b91732b92e0c1|2b22e1d]]'' **<nowiki>openvpn:</nowiki>** <nowiki>adding key_direction to append_params.</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=709c326461553a9a8e511021b8f283d056d499b8|709c326]]'' **<nowiki>hostapd:</nowiki>** <nowiki>fix feature indication</nowiki> //<color #ccc>(</color><color #282>+14</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c5d8d8fd64c2ff0d46ac05124153af3d1b763bde|c5d8d8f]]'' **<nowiki>x86:</nowiki>** <nowiki>drop ep80579-drivers</nowiki> //<color #ccc>(</color><color #f00>-13.9K</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2b122a6750010b03945c48d60ab392852dbf4b8c|2b122a6]]'' **<nowiki>gpio-nct5104d:</nowiki>** <nowiki>Add nct5104d driver package</nowiki> //<color #ccc>(</color><color #282>+519</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=9451cd7c5b6ccce9e790159fb8d71b054fa8325f|9451cd7]]'' **<nowiki>leds-apu2:</nowiki>** <nowiki>Add PC Engines APU2 LED driver</nowiki> //<color #ccc>(</color><color #282>+435</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=e1e9d27655bd0fd93dd09f3de907a03c96c59f55|e1e9d27]]'' **<nowiki>uclibc++:</nowiki>** <nowiki>patch bugfix erase() on derived __base_associative</nowiki> //<color #ccc>(</color><color #282>+40</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=352f92fe0820468f5a9a7a9b159ea1d38aa9444c|352f92f]]'' **<nowiki>ppp:</nowiki>** <nowiki>add pppoe-discovery to an independent package</nowiki> //<color #ccc>(</color><color #282>+17</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=3983b4ad0fb6e9f6a62a89711cc87bd2bc06f35b|3983b4a]]'' **<nowiki>ppp:</nowiki>** <nowiki>honor ip6table for IPv6 PPP interfaces</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=8aa92deaf6da29bc2c95f8823257ec451da9c136|8aa92de]]'' **<nowiki>hostapd:</nowiki>** <nowiki>mv netifd.sh hostapd.sh</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=00e4f6fd367e604f06b4205a02f62a9748ca267e|00e4f6f]]'' **<nowiki>ebtables:</nowiki>** <nowiki>update to last commit</nowiki> //<color #ccc>(</color><color #282>+12</color><color #ccc>,</color><color #f00>-183</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=db7f80c587fd98ffda12c4ed488cf702945d7342|db7f80c]]'' **<nowiki>libpcap:</nowiki>** <nowiki>remove feature dependencies on kmod-* packages</nowiki> //<color #ccc>(</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2e8545333a356a413c44fd8c673039807b780c42|2e85453]]'' **<nowiki>mbedtls:</nowiki>** <nowiki>add --function-sections and --data-sections to CFLAGS</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0f2757dce4f555e53e80e8238810c9419336758b|0f2757d]]'' **<nowiki>px5g:</nowiki>** <nowiki>replace px5g-standalone with a statically linked variant of px5g-mbedtls</nowiki> //<color #ccc>(</color><color #282>+22</color><color #ccc>,</color><color #f00>-8.0K</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=87e021e6e3eecb8dcaf1e38d5f63264629696743|87e021e]]'' **<nowiki>libpcap:</nowiki>** <nowiki>add optional netfilter support</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1b2a54b5cd3ecd9bd192e4fe4574d4626e107c99|1b2a54b]]'' **<nowiki>iftop:</nowiki>** <nowiki>bump to latest upstream</nowiki> //<color #ccc>(</color><color #282>+8</color><color #ccc>,</color><color #f00>-73</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=21903d056eeca4f28144299c87a031bb11afcf12|21903d0]]'' **<nowiki>wireless-tools:</nowiki>** <nowiki>Change download url to github</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=20a2db83de5803a0899f3164a25314300557a703|20a2db8]]'' **<nowiki>ppp:</nowiki>** <nowiki>propagate master peerdns setting to dynamic slave interface</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=b3ba3764d0e81097229ffeb0eff9d72ee42a801d|b3ba376]]'' **<nowiki>brcm2708-gpu-fw:</nowiki>** <nowiki>update to latest version</nowiki> //<color #ccc>(</color><color #282>+8</color><color #ccc>,</color><color #f00>-8</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0eed4a61b9a535631ec6e2f6d2e2ac11366fe945|0eed4a6]]'' **<nowiki>umdns:</nowiki>** <nowiki>update to the 2017-03-10 version</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=e985074edacf30012e360f7cc745e070ce997141|e985074]]'' <nowiki>Drop unneeded casting of "entry" from struct cache_service</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=46b87811664756aacaf6ef945b9d247790de49df|46b8781]]'' <nowiki>Drop unneeded code to simplify getting hosts over ubus</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=d4376788601c38963c4c836d325e3a66498079ea|d437678]]'' <nowiki>Cancel (re)connect timer when deleting interface</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c4ed92ae7d9568b42490eeba540e68684c6ed981|c4ed92a]]'' **<nowiki>mbedtls:</nowiki>** <nowiki>update to version 2.4.2</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-4</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=111cf1b9f37b902dbc4ac2934f38ee6418600f69|111cf1b]]'' **<nowiki>curl:</nowiki>** <nowiki>fix CVE-2017-2629 SSL_VERIFYSTATUS ignored</nowiki> //<color #ccc>(</color><color #282>+36</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0f23e80c272be4eaaa3e898f9e427886203be720|0f23e80]]'' **<nowiki>iproute2:</nowiki>** <nowiki>fix ip monitor can't work when NET_NS is not enabled</nowiki> //<color #ccc>(</color><color #282>+41</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ba076ebbc595c527aed286e6055046d31b3204cb|ba076eb]]'' **<nowiki>umdns:</nowiki>** <nowiki>update to the version 2017-03-14</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=65151014cf120bdd53acee9e9b9bf97ccd49efbf|6515101]]'' <nowiki>Access cached records (instead of services) to read list of hosts</nowiki> //<color #ccc>(</color><color #282>+13</color><color #ccc>,</color><color #f00>-7</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=80dd246024800b3f33bacc6cf01184da6f57dfa4|80dd246]]'' <nowiki>Refresh DNS records A and AAAA directly</nowiki> //<color #ccc>(</color><color #282>+18</color><color #ccc>,</color><color #f00>-8</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=fd5a160a15c48a97f7fc755c1310f17c869f0233|fd5a160]]'' <nowiki>Don't cache hosts as services</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=474c31a20d834d24646837738355d7ffc2483efa|474c31a]]'' **<nowiki>umdns:</nowiki>** <nowiki>update to the version 2017-03-21</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=f89986b67dd5256c6570e563c81aded4d39bc002|f89986b]]'' <nowiki>Fix refreshing cached A(AAA) records that expire</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=496aeba797c7d0246e88eedadff080fcaffd9013|496aeba]]'' <nowiki>Fix comment typo in cache_gc_timer</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=e1bacef27d869234149951cc7f4c9d3e0d8f07ad|e1bacef]]'' <nowiki>Drop entries cached for interface we're going to delete</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=ce7e9e939dbf4e100bfece5a46b3ef17fd99d034|ce7e9e9]]'' <nowiki>Use one define for DNS-Based Service Discovery service name</nowiki> //<color #ccc>(</color><color #282>+6</color><color #ccc>,</color><color #f00>-8</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=c725494833228cb6e60633ef191e850903158ae1|c725494]]'' <nowiki>Use MCAST_PORT define for port 5353</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=943bedb9dae8ff083e18795a7f82c7071988ea03|943bedb]]'' <nowiki>Fix reading port of incoming packets</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-4</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=9f1cc226e4be47d32e4df796c94cbee1437960aa|9f1cc22]]'' <nowiki>Fix replying to "QU" questions received on unicast interface</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=1478293fd95f29f16887c5e6554035cd38d4b2d7|1478293]]'' <nowiki>Fix code freeing cached non-A(AAA) records too early</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=a0403cde2d5684b63c0ea2c25a5414ede9ac99c3|a0403cd]]'' <nowiki>Keep source sockaddr for every cached DNS record</nowiki> //<color #ccc>(</color><color #282>+20</color><color #ccc>,</color><color #f00>-12</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/mdnsd.git;a=commitdiff;h=480d7bc74eba20c03875aa06c1c25dbdb98e0b12|480d7bc]]'' <nowiki>Fix sending unicast questions on cache expire</nowiki> //<color #ccc>(</color><color #282>+14</color><color #ccc>,</color><color #f00>-12</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0d304d4228332b2233d40207ca686083cb4a5ae1|0d304d4]]'' **<nowiki>busybox:</nowiki>** <nowiki>vi: backporting patches to fix ZZ and :x command</nowiki> //<color #ccc>(</color><color #282>+154</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1b94737824bb046bd9796aa6ab01a56dacc49622|1b94737]]'' **<nowiki>iw:</nowiki>** <nowiki>enable MESH ID in scan output</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-4</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a49503bbc75da39a8a2b0a9da0053e7b968b5e8b|a49503b]]'' **<nowiki>sysntpd:</nowiki>** <nowiki>restore support for peer-less (standalone) mode</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5aa97e35dec1783c98d0f28502b2d16879ffc8ee|5aa97e3]]'' **<nowiki>opkg:</nowiki>** <nowiki>switch to LEDE fork (#120, #551, #571)</nowiki> //<color #ccc>(</color><color #282>+27</color><color #ccc>,</color><color #f00>-3.5K</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f2a365388250f62d86f5b1905316e3b3262b3874|f2a3653]]'' **<nowiki>utils/util-linux:</nowiki>** <nowiki>Update to 2.29.2</nowiki> //<color #ccc>(</color><color #282>+6</color><color #ccc>,</color><color #f00>-39</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0faf921a016fde64687e8fcdb8eace7854ce5876|0faf921]]'' **<nowiki>util-linux:</nowiki>** <nowiki>unconditionally enable ncursesw support</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-6</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=caaa214eae5ddf25fd0796724331c217deb3f845|caaa214]]'' **<nowiki>util-linux:</nowiki>** <nowiki>re-enable parallel builds</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1d76542ccafe533bfef20074b115dbed4549c986|1d76542]]'' **<nowiki>busybox:</nowiki>** <nowiki>add musl compatible nslookup replacement</nowiki> //<color #ccc>(</color><color #282>+931</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=7eb58cf1090a6a0912c5cbdfd023555096a20cf3|7eb58cf]]'' **<nowiki>utils/f2fs-tools:</nowiki>** <nowiki>Update to 1.8.0</nowiki> //<color #ccc>(</color><color #282>+7</color><color #ccc>,</color><color #f00>-59</color><color #ccc>)</color>//\\
+
+==== Packages / Firmware (5 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=8a3ac15a471163f81f91e59f863a269a6191ab11|8a3ac15]]'' **<nowiki>ath10k-ct:</nowiki>** <nowiki>Support ath10k CT firmware for 9887 chipsets.</nowiki> //<color #ccc>(</color><color #282>+41</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=e59183143069fa1c0d37bae2836102ecd9112a84|e591831]]'' **<nowiki>ath10k-firmware:</nowiki>** <nowiki>update qca9984 firmware and board data</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=37b0d547db63132cfd24ec62a1c4e25de63ecce2|37b0d54]]'' **<nowiki>ath10k-firmware:</nowiki>** <nowiki>revert faulty PKG_SOURCE_DATE change from 7cb27b46</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2856c7e32070347615f7e759f1c25e7b78c765af|2856c7e]]'' **<nowiki>ath10k-firmware:</nowiki>** <nowiki>update qca9984 firmware</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c03083339a40853df9da4628e1bec7b821aee39e|c030833]]'' **<nowiki>mac80211:</nowiki>** <nowiki>add support for Marvell 802.11n/802.11ac SDIO Wireless cards</nowiki> //<color #ccc>(</color><color #282>+27</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+
+==== Packages / LEDE base files (3 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=8bb839e85a38118b1e4d7de92c92427a7e9c31bf|8bb839e]]'' **<nowiki>base-files:</nowiki>** <nowiki>Add wifi config to wifi command usage</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=31c2461e3f776bca9963c4c03d8a012b793efbb2|31c2461]]'' **<nowiki>base-files:</nowiki>** <nowiki>Added a deprecation notice on wifi detect</nowiki> //<color #ccc>(</color><color #282>+7</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=48461b5abc382b26edd0d2637f0f7b952bed90ba|48461b5]]'' <nowiki>LEDE v17.01.1: adjust config defaults</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+
+==== Packages / LEDE network userland (13 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=b24273fe71a794440f689a45ce53da069fe5fb60|b24273f]]'' **<nowiki>ppp:</nowiki>** <nowiki>ppp6-up: add executable permission bit</nowiki> //<color #ccc>(</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=77fb98ee41930d96e3c5a6bdb9341df20ae3afcb|77fb98e]]'' **<nowiki>relayd:</nowiki>** <nowiki>remove old start-stop-service related code</nowiki> //<color #ccc>(</color><color #f00>-15</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ef5cb964b170d369e971371fe4644d17cf1b3c60|ef5cb96]]'' **<nowiki>relayd:</nowiki>** <nowiki>fix making incomplete instance json data</nowiki> //<color #ccc>(</color><color #282>+14</color><color #ccc>,</color><color #f00>-7</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=83d3e393bfe85350fcce55735125b5037b0d4ad7|83d3e39]]'' **<nowiki>6in4:</nowiki>** <nowiki>add missing colon when setting default ca_path</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=3983b4ad0fb6e9f6a62a89711cc87bd2bc06f35b|3983b4a]]'' **<nowiki>ppp:</nowiki>** <nowiki>honor ip6table for IPv6 PPP interfaces</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=df041b65200cc4c9d989164de51f9c058e8d272f|df041b6]]'' **<nowiki>netifd:</nowiki>** <nowiki>fix stopping netifd + interfaces</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-10</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=3d52251df42c810e84c712f8dded2fe3af44f7e6|3d52251]]'' **<nowiki>swconfig:</nowiki>** <nowiki>Bugfix switch_port uci option parsing</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=20a2db83de5803a0899f3164a25314300557a703|20a2db8]]'' **<nowiki>ppp:</nowiki>** <nowiki>propagate master peerdns setting to dynamic slave interface</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=910a9430a0c0da2e60c1b84bbf640d310aba4bd7|910a943]]'' **<nowiki>firewall:</nowiki>** <nowiki>document rules for IPSec ESP/ISAKMP with 'name' option</nowiki> //<color #ccc>(</color><color #282>+16</color><color #ccc>,</color><color #f00>-15</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=298c40fd34e9da78f6880e0c5f0b93bf14fd6418|298c40f]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>fix sha256 sum</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=425c6d0462ddbe66a93744e39972ff55464be160|425c6d0]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>update to version 2017-02-21</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=ac70d28ed6ec96e6911cdf56b903f5c5ee3e67c5|ac70d28]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>fix white space errors</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=fa57225cb62b43adffc37a50c3dbd3fa7d225b0b|fa57225]]'' **<nowiki>ndp:</nowiki>** <nowiki>deregister netlink event socket for non recoverable errors</nowiki> //<color #ccc>(</color><color #282>+13</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=68ee0b59040625d2ab5830b1c1cc8eca2da0dcf1|68ee0b5]]'' **<nowiki>treewide:</nowiki>** <nowiki>define and use macro IN6_IS_ADDR_ULA</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=51c756cfc15c63322df9fdb70d5c701cfb6b9a9f|51c756c]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>display correct default log level in usage text</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=a898ee5458950203d4b2f8fec28c85313c855b91|a898ee5]]'' **<nowiki>config:</nowiki>** <nowiki>make loglevel configurable via uci (FS#481)</nowiki> //<color #ccc>(</color><color #282>+21</color><color #ccc>,</color><color #f00>-6</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=62ea54f5db4c636710781056541c4b85d043bef8|62ea54f]]'' **<nowiki>odhcpd.h:</nowiki>** <nowiki>fix alignment style</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=4dc7edb23f1d587f9e09ad84ee200a9edf351d00|4dc7edb]]'' <nowiki>Revert "odhcpd.h: fix alignment style"</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=f91333771b9625850e0f5cad8af6e9c6441e387e|f913337]]'' **<nowiki>router.h:</nowiki>** <nowiki>fix alignment style</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=942fb33d3017e8769a7354ee008daf0f31a40fe2|942fb33]]'' **<nowiki>router:</nowiki>** <nowiki>support ra_mininterval and ra_lifetime uci parameters (FS#397)</nowiki> //<color #ccc>(</color><color #282>+96</color><color #ccc>,</color><color #f00>-47</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=e437ce9422c2f92752be5b6b3fd453e099a98a7e|e437ce9]]'' **<nowiki>treewide:</nowiki>** <nowiki>simplify dhcp leasetime checking</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>,</color><color #f00>-22</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=3495f179bd901d6d232e0dbf35444ebe483fdfd9|3495f17]]'' **<nowiki>router:</nowiki>** <nowiki>allow RA prefix lifetime being set to leasetime value (FS#397)</nowiki> //<color #ccc>(</color><color #282>+30</color><color #ccc>,</color><color #f00>-8</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=ba0cac09cc22c911c1c20c2947dd23f795599627|ba0cac0]]'' **<nowiki>router:</nowiki>** <nowiki>fix arithmetic exception fault</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=1b630f8bc59978884c9caccebca3b6d8e9b045a1|1b630f8]]'' **<nowiki>router:</nowiki>** <nowiki>don't announce prefixes with valid lifetime equal to 0</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=a532aaa2aaea71e05487a4248ca948107e9abc5c|a532aaa]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>update to version 2017-02-28</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=9eac2a8963415e6a74c2fc13a3c8d05cd0f81d4d|9eac2a8]]'' **<nowiki>dhcpv6-ia:</nowiki>** <nowiki>Check lockf return value</nowiki> //<color #ccc>(</color><color #282>+6</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c2999ef592cd130a722c15c7d885ef3ca32a151b|c2999ef]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>update to version 2017-03-29 (FS#635)</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=24d21c7c26d07e93fb329ac62da5e974cf44213b|24d21c7]]'' **<nowiki>ndp:</nowiki>** <nowiki>add syslog debug tracing</nowiki> //<color #ccc>(</color><color #282>+32</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=eea7d037b93020dd5d5d2e5a698e88650a0f0912|eea7d03]]'' <nowiki>rework IPv6 address dump logic</nowiki> //<color #ccc>(</color><color #282>+28</color><color #ccc>,</color><color #f00>-8</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=6eb1e01b1a7cc5e73829bf2a050ba2cff57cbebd|6eb1e01]]'' **<nowiki>ndp:</nowiki>** <nowiki>code cleanup</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-35</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=bc6c3ace738fd4eb28c06be533f6bbc75d0587a5|bc6c3ac]]'' **<nowiki>ndp:</nowiki>** <nowiki>keep an exact copy of IPv6 interface addresses</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=3d9f4067d56660a2c75ab2ce9b801ae1a4ff4cde|3d9f406]]'' <nowiki>rework IPv6 dns address selection (FS#635)</nowiki> //<color #ccc>(</color><color #282>+52</color><color #ccc>,</color><color #f00>-6</color><color #ccc>)</color>//\\
+
+==== Packages / LEDE system userland (10 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=67c2a176ce8944fc77a8531a6061fe519f508f15|67c2a17]]'' **<nowiki>libubox:</nowiki>** <nowiki>update to the latest version</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/libubox.git;a=commitdiff;h=f9db1cb918da64101fdc72422551d95b054b1a38|f9db1cb]]'' **<nowiki>libubox:</nowiki>** <nowiki>allow reading out the remaining time of a uloop timer in Lua</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/libubox.git;a=commitdiff;h=372e1e65efc3c94a0ba15ae4168e76dc6bffeea0|372e1e6]]'' **<nowiki>uloop:</nowiki>** <nowiki>remove useless epoll data assignment</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/libubox.git;a=commitdiff;h=4a9f74f7ae6c092c731969c93f90ab4d6a07b524|4a9f74f]]'' **<nowiki>libubox:</nowiki>** <nowiki>allow reading out the pid of uloop process in lua</nowiki> //<color #ccc>(</color><color #282>+13</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/libubox.git;a=commitdiff;h=8fc1c3053e1cdaa341a6009e18eced821f1eda3e|8fc1c30]]'' **<nowiki>libubox:</nowiki>** <nowiki>replace strtok with _r version.</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/libubox.git;a=commitdiff;h=0fe13749d095ca22c788e55902979323e85367c3|0fe1374]]'' **<nowiki>utils:</nowiki>** <nowiki>add helper functions useful for allocating a ring buffer</nowiki> //<color #ccc>(</color><color #282>+67</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/libubox.git;a=commitdiff;h=7f671b1e68a6664b5baf3e3cffc1bb0880984267|7f671b1]]'' **<nowiki>blobmsg:</nowiki>** <nowiki>add support for double</nowiki> //<color #ccc>(</color><color #282>+37</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/libubox.git;a=commitdiff;h=3b6181b63d80e77c04a52d7439a87850eea1fe78|3b6181b]]'' **<nowiki>utils:</nowiki>** <nowiki>fix build on Mac OS X 10.12</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/libubox.git;a=commitdiff;h=de3f14b643f09c799845073eaf3577a334d0726d|de3f14b]]'' **<nowiki>uloop:</nowiki>** <nowiki>add uloop_cancelling function</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4c9b45966ed044b8ee977a82b578b1b84fdd6a7a|4c9b459]]'' **<nowiki>libubox:</nowiki>** <nowiki>Update to latest version</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/libubox.git;a=commitdiff;h=96305a3cafcc9c0df7f189567671bb26ce3eb129|96305a3]]'' **<nowiki>libubox:</nowiki>** <nowiki>Change calloc_a() to return size_t aligned pointers</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=fdc22b616cdedea6d68e36ae464551607c51d2a7|fdc22b6]]'' **<nowiki>ubus:</nowiki>** <nowiki>update to the latest version</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/ubus.git;a=commitdiff;h=763b9b2cf293fb60b5c2ddf34e2500f95200b6b5|763b9b2]]'' **<nowiki>libubus:</nowiki>** <nowiki>reset ctx->sock.eof to fix reconnect issues</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/ubus.git;a=commitdiff;h=91acde66b963e238aba35fb4f2030a147df84cd4|91acde6]]'' **<nowiki>libubus:</nowiki>** <nowiki>do not modify uloop_cancelled</nowiki> //<color #ccc>(</color><color #282>+13</color><color #ccc>,</color><color #f00>-12</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=6cb46adbc937d8aa1d8bc9465097953ebf091c94|6cb46ad]]'' **<nowiki>ubus:</nowiki>** <nowiki>update to the latest version</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/ubus.git;a=commitdiff;h=c09e4f06f0f54be8304fb4459445198920fea32e|c09e4f0]]'' **<nowiki>ubusd:</nowiki>** <nowiki>fix incomplete copy of shared buf during queue-ing</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/ubus.git;a=commitdiff;h=453b87f6315fe923b38eff0f4cead622f8f31b12|453b87f]]'' **<nowiki>cli:</nowiki>** <nowiki>add support for subscribing to objects</nowiki> //<color #ccc>(</color><color #282>+73</color><color #ccc>,</color><color #f00>-13</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/ubus.git;a=commitdiff;h=6eb3c9647e04d38f14e6c8d3e2d9b6922f2a43d1|6eb3c96]]'' **<nowiki>cli:</nowiki>** <nowiki>do not use default timeout for listen</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/ubus.git;a=commitdiff;h=dfe338350e4dc6912a2552570fa5dd8d5bc84ff0|dfe3383]]'' **<nowiki>libubus:</nowiki>** <nowiki>reset ctx->sock.error when doing ubus reconnect</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/ubus.git;a=commitdiff;h=34c6e818e431cc53478a0f7c7c1eca07d194d692|34c6e81]]'' **<nowiki>cli:</nowiki>** <nowiki>fix listen_timeout compile issue</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=bc61c1328d51bf8e9f7291449565a5620ac78b55|bc61c13]]'' **<nowiki>procd:</nowiki>** <nowiki>update to the latest version</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=f13e12cc86163662c51a9109fdccd52812564c33|f13e12c]]'' <nowiki>add missing includes</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ee1cd31d2b2693afa0c16e1d2b1292b5b95ab4c4|ee1cd31]]'' **<nowiki>procd:</nowiki>** <nowiki>update to latest git HEAD</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=961dc692aff7457f874bce61f8e766514edcf794|961dc69]]'' **<nowiki>procd:</nowiki>** <nowiki>stop service using SIGKILL if SIGTERM failed to do so</nowiki> //<color #ccc>(</color><color #282>+57</color><color #ccc>,</color><color #f00>-17</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=5f9124103410c178d816bb5229fba7dd2286a49b|5f91241]]'' **<nowiki>procd:</nowiki>** <nowiki>add cancel_timeout on rc scripts when a runtime_timeout is specified</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1adc6db0362d2fdede68a3f1f3a5f119ca39d30a|1adc6db]]'' **<nowiki>ubox:</nowiki>** <nowiki>fix sha256 mirror hash</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0cb669b46976a83b94bba26b4a54424e513dafc4|0cb669b]]'' **<nowiki>ugps:</nowiki>** <nowiki>fix and improve init script</nowiki> //<color #ccc>(</color><color #282>+7</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=293c54c5677cb7db21a53df7fae0a1fd2f663b04|293c54c]]'' **<nowiki>libubox:</nowiki>** <nowiki>add host build</nowiki> //<color #ccc>(</color><color #282>+14</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5866ff8be8ef961cf17c4469f5afb54f91570b95|5866ff8]]'' **<nowiki>libubox:</nowiki>** <nowiki>fix host build on macOS</nowiki> //<color #ccc>(</color><color #f00>-7</color><color #ccc>)</color>//\\
+
+==== Target / ar71xx (4 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=cff47cacd15a50f981689038fc154faf3d383abf|cff47ca]]'' **<nowiki>ar71xx:</nowiki>** <nowiki>fix platform_find_rootfspart()</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1bba5789af399daadbecf6479ff527de0738ec61|1bba578]]'' **<nowiki>ar71xx:</nowiki>** <nowiki>add ath10k driver and firmware for Netgear R6100 to firmware image</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0dcc4d239da78bc20b091d50c097c386e0e61902|0dcc4d2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.59</nowiki> //<color #ccc>(</color><color #282>+135</color><color #ccc>,</color><color #f00>-527</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1bdd23231b9de6f98b5c51360167abc7b5e92716|1bdd232]]'' **<nowiki>ar71xx:</nowiki>** <nowiki>fix Wallys DR344 ethernet MAC addresses offsets</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+
+==== Target / arc770 (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=657e3ce8a290758b05e212fea2fc6657badb6e98|657e3ce]]'' **<nowiki>arc770:</nowiki>** <nowiki>only calculate entry point address when necessary</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+
+==== Target / archs38 (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2e67e8c90f5041f730cdf81669e8b690a4b51c9f|2e67e8c]]'' **<nowiki>archs38:</nowiki>** <nowiki>only calculate entry point address when necessary</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+
+==== Target / bcm53xx (2 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0c05cadeb775f83fa40fbdd13941a5e7396505f5|0c05cad]]'' **<nowiki>bcm53xx:</nowiki>** <nowiki>include Broadcom PHY driver in the kernel</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=514854d6368fc566339b29a51d69fc8a7b6a05bf|514854d]]'' **<nowiki>bcm53xx:</nowiki>** <nowiki>backport accepted BCM5301X and BCM53573 patches</nowiki> //<color #ccc>(</color><color #282>+689</color><color #ccc>)</color>//\\
+
+==== Target / brcm2708 (5 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=8b52a8906bf376610e5a8d051ead1d50610e6da1|8b52a89]]'' **<nowiki>brcm2708:</nowiki>** <nowiki>update linux 4.4 patches to latest version</nowiki> //<color #ccc>(</color><color #282>+3.2K</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=e091e8951d2672d472deba8079d6569f3fec8566|e091e89]]'' **<nowiki>brcm2708:</nowiki>** <nowiki>order boards and models alphabetically</nowiki> //<color #ccc>(</color><color #282>+24</color><color #ccc>,</color><color #f00>-20</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=4a405ac8f956b725de037744d62497f93bba6080|4a405ac]]'' **<nowiki>brcm2708:</nowiki>** <nowiki>add support for the new Raspberry Pi Zero W</nowiki> //<color #ccc>(</color><color #282>+12</color><color #ccc>,</color><color #f00>-4</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=9d84accea1da951c59e28ec0528e2ae2f8d26375|9d84acc]]'' **<nowiki>brcm2708:</nowiki>** <nowiki>remove duplicated gzip from image generation</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0dcc4d239da78bc20b091d50c097c386e0e61902|0dcc4d2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.59</nowiki> //<color #ccc>(</color><color #282>+135</color><color #ccc>,</color><color #f00>-527</color><color #ccc>)</color>//\\
+
+==== Target / brcm47xx (3 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=09a8183ce849984b725d1c8be21ea93ce93e7f09|09a8183]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.52</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>,</color><color #f00>-11</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0dcc4d239da78bc20b091d50c097c386e0e61902|0dcc4d2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.59</nowiki> //<color #ccc>(</color><color #282>+135</color><color #ccc>,</color><color #f00>-527</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=6ca5ccc62019cf9376b552c0635f4242dd4fae0f|6ca5ccc]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.61</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-117</color><color #ccc>)</color>//\\
+
+==== Target / cns3xxx (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0dcc4d239da78bc20b091d50c097c386e0e61902|0dcc4d2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.59</nowiki> //<color #ccc>(</color><color #282>+135</color><color #ccc>,</color><color #f00>-527</color><color #ccc>)</color>//\\
+
+==== Target / imx6 (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0dcc4d239da78bc20b091d50c097c386e0e61902|0dcc4d2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.59</nowiki> //<color #ccc>(</color><color #282>+135</color><color #ccc>,</color><color #f00>-527</color><color #ccc>)</color>//\\
+
+==== Target / kirkwood (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f4fc12f0230b9c99b4140a1b4700d42010b86609|f4fc12f]]'' **<nowiki>kirkwood:</nowiki>** <nowiki>fix include in etc/board.d/02_network</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+
+==== Target / lantiq (3 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=39d03d99594db558f23eb906bd06c7ec0cd648bb|39d03d9]]'' **<nowiki>lantiq:</nowiki>** <nowiki>fix broadcast packets leaking on the wrong vlan on xrx200</nowiki> //<color #ccc>(</color><color #282>+6</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0dcc4d239da78bc20b091d50c097c386e0e61902|0dcc4d2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.59</nowiki> //<color #ccc>(</color><color #282>+135</color><color #ccc>,</color><color #f00>-527</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=6ca5ccc62019cf9376b552c0635f4242dd4fae0f|6ca5ccc]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.61</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-117</color><color #ccc>)</color>//\\
+
+==== Target / mvebu (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=fc90e87b655084f5164435a0225ab6c3b5f17956|fc90e87]]'' **<nowiki>mvebu:</nowiki>** <nowiki>wrt3200acm enable SDIO interface</nowiki> //<color #ccc>(</color><color #282>+11</color><color #ccc>)</color>//\\
+
+==== Target / ramips (6 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=e19fbd32974dec3f01b8882413977aff0c7446c1|e19fbd3]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix Airlink AR725W device title</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f8e08ffd94ded1b3b3ae58566d130c2dfa71e531|f8e08ff]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix Linksys RE6500 switch port mapping</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0dcc4d239da78bc20b091d50c097c386e0e61902|0dcc4d2]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.59</nowiki> //<color #ccc>(</color><color #282>+135</color><color #ccc>,</color><color #f00>-527</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f3dc2ffdd4462dd08220fbafc4ac2971f7ef43b0|f3dc2ff]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix WHR-600D eeprom dt property</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f2f672c32ca32643c6985ff4f7f994934725cd40|f2f672c]]'' **<nowiki>ramips:</nowiki>** <nowiki>add RP-N53 pcie wireless eeprom</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=6ca5ccc62019cf9376b552c0635f4242dd4fae0f|6ca5ccc]]'' **<nowiki>kernel:</nowiki>** <nowiki>update kernel 4.4 to 4.4.61</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-117</color><color #ccc>)</color>//\\
+
+==== Target / x86 (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=bc443b105269192d336cacfcc062f61484d43216|bc443b1]]'' **<nowiki>x86/64:</nowiki>** <nowiki>Enable GPIO sysfs & GPIO LED support</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>)</color>//\\
+
+==== Wireless / Ath10k CT (3 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=09620c0825b46e98259c3e9230a28f5f6b8019fe|09620c0]]'' **<nowiki>ath10k-ct:</nowiki>** <nowiki>Fix performance of 2x2 hardware running 3x3 firmware.</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://github.com/greearb/ath10k-ct/commit/d5d17060c1511070f3ad721a1a3dd2cfc67c598f|d5d1706]]'' **<nowiki>ath10k:</nowiki>** <nowiki>Backport more proper pre-rcu fix, compile on older backports.</nowiki> //<color #ccc>(</color><color #282>+35</color><color #ccc>,</color><color #f00>-20</color><color #ccc>)</color>//\\
+ => ''[[https://github.com/greearb/ath10k-ct/commit/e2fb92f23623d22353042b178d6fb65644ab9ef0|e2fb92f]]'' **<nowiki>ath10k:</nowiki>** <nowiki>Fix 2x2 NICs running on firmware compiled for 3x3.</nowiki> //<color #ccc>(</color><color #282>+46</color><color #ccc>,</color><color #f00>-19</color><color #ccc>)</color>//\\
+ => ''[[https://github.com/greearb/ath10k-ct/commit/9fc6c4f4b97c934a66043d1b7c8f8cbc415bd538|9fc6c4f]]'' **<nowiki>ath10k-ct:</nowiki>** <nowiki>Fix hack for openwrt that broke build on LEDE.</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://github.com/greearb/ath10k-ct/commit/d2bc84ff277936c58231f0c2280242eda4199e63|d2bc84f]]'' **<nowiki>ath10k-ct:</nowiki>** <nowiki>Improve rate-ctrl support for 9887 NIC.</nowiki> //<color #ccc>(</color><color #282>+5</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0ce2d5b6bf1e29ab0c4b69a3aeb5fb2f1ee745e8|0ce2d5b]]'' **<nowiki>ath10k-ct:</nowiki>** <nowiki>fix kernel api compatibility issues</nowiki> //<color #ccc>(</color><color #282>+108</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=d27dd6298b0f9a66199758b32ce19c0932ef2ee0|d27dd62]]'' **<nowiki>ath10k-ct:</nowiki>** <nowiki>depend on kmod-hwmon-core, it gets used when CONFIG_THERMAL is set</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+
+==== Wireless / Common (6 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=703515f889124248480f39d65f8704548cbf1c09|703515f]]'' **<nowiki>mac80211:</nowiki>** <nowiki>sync with master branch as of 9edff13abd97</nowiki> //<color #ccc>(</color><color #282>+1.8K</color><color #ccc>,</color><color #f00>-12.9K</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5f5fae27b508a86599e93ac74c611e0dadf9105a|5f5fae2]]'' **<nowiki>mac80211:</nowiki>** <nowiki>hwsim: select DRIVER_11AC_SUPPORT and DRIVER_11W_SUPPORT</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c03083339a40853df9da4628e1bec7b821aee39e|c030833]]'' **<nowiki>mac80211:</nowiki>** <nowiki>add support for Marvell 802.11n/802.11ac SDIO Wireless cards</nowiki> //<color #ccc>(</color><color #282>+27</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=7ae68124a49c0abf1117d8971eab900ee9a803e9|7ae6812]]'' **<nowiki>mac80211:</nowiki>** <nowiki>mwifiex-pcie: select DRIVER_11AC_SUPPORT</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=7d70ad66ac7e30e7387debbedd6ec6c996ce3257|7d70ad6]]'' **<nowiki>mac80211:</nowiki>** <nowiki>mwifiex-sdio: select DRIVER_11AC_SUPPORT</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=47bf110cbbfbb425d7538c566332d2058fb45248|47bf110]]'' **<nowiki>mac80211:</nowiki>** <nowiki>backport an upstream fix for queue start/stop handling</nowiki> //<color #ccc>(</color><color #282>+29</color><color #ccc>)</color>//\\
+
+==== Wireless / MT76 (2 changes) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0a3088cb4b21458dff1b5c1837ce635ec4154b5a|0a3088c]]'' **<nowiki>mt76:</nowiki>** <nowiki>split kmod package</nowiki> //<color #ccc>(</color><color #282>+49</color><color #ccc>,</color><color #f00>-13</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=7099bb19b50d74d3a400aa3a60e0b7ba0157bc1e|7099bb1]]'' **<nowiki>mt76:</nowiki>** <nowiki>ensure that the metapackage gets built as .ipk</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>)</color>//\\
+
+==== Miscellaneous (1 change) ====
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c6e79980b87e918fec5020bf91207ef51c24924d|c6e7998]]'' **<nowiki>build:</nowiki>** <nowiki>fix triggering opkg/host compilation</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+
+===== Addressed bugs =====
+=== #120 ===
+**Description:** <nowiki>opkg fails with Out of memory on a device with 32 MB of RAM</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=120]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5aa97e35dec1783c98d0f28502b2d16879ffc8ee|5aa97e3]]'' **<nowiki>opkg:</nowiki>** <nowiki>switch to LEDE fork (#120, #551, #571)</nowiki> //<color #ccc>(</color><color #282>+27</color><color #ccc>,</color><color #f00>-3.5K</color><color #ccc>)</color>//\\
+\\
+=== #155 ===
+**Description:** <nowiki>nslookup: can't resolve</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=155]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1d76542ccafe533bfef20074b115dbed4549c986|1d76542]]'' **<nowiki>busybox:</nowiki>** <nowiki>add musl compatible nslookup replacement</nowiki> //<color #ccc>(</color><color #282>+931</color><color #ccc>)</color>//\\
+\\
+=== #217 ===
+**Description:** <nowiki>nslookup behaving weirdly</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=217]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=1d76542ccafe533bfef20074b115dbed4549c986|1d76542]]'' **<nowiki>busybox:</nowiki>** <nowiki>add musl compatible nslookup replacement</nowiki> //<color #ccc>(</color><color #282>+931</color><color #ccc>)</color>//\\
+\\
+=== #384 ===
+**Description:** <nowiki>IPQ806X: CMD: swconfig on R7800 generate Kernel Panic!</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=384]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=7fd494d4b23697a329dcde89df412edaaf96a83d|7fd494d]]'' **<nowiki>ar8216:</nowiki>** <nowiki>flush ARL table during reset after init_globals</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=349577adbf84ea8544838894a1edee7c13fd0dcd|349577a]]'' <nowiki>Revert "kernel: ar8327/ar8337: disable ARL access code to avoid lockups (FS#3...</nowiki> //<color #ccc>(</color><color #f00>-6</color><color #ccc>)</color>//\\
+\\
+=== #396 ===
+**Description:** <nowiki>odhcpd: IPv6 relay mode is unreliable</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=396]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=298c40fd34e9da78f6880e0c5f0b93bf14fd6418|298c40f]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>fix sha256 sum</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== #397 ===
+**Description:** <nowiki>odhcpd: link prefix and route life time to UCI dhcp option 'leasetime'</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=397]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=425c6d0462ddbe66a93744e39972ff55464be160|425c6d0]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>update to version 2017-02-21</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=ac70d28ed6ec96e6911cdf56b903f5c5ee3e67c5|ac70d28]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>fix white space errors</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=fa57225cb62b43adffc37a50c3dbd3fa7d225b0b|fa57225]]'' **<nowiki>ndp:</nowiki>** <nowiki>deregister netlink event socket for non recoverable errors</nowiki> //<color #ccc>(</color><color #282>+13</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=68ee0b59040625d2ab5830b1c1cc8eca2da0dcf1|68ee0b5]]'' **<nowiki>treewide:</nowiki>** <nowiki>define and use macro IN6_IS_ADDR_ULA</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=51c756cfc15c63322df9fdb70d5c701cfb6b9a9f|51c756c]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>display correct default log level in usage text</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=a898ee5458950203d4b2f8fec28c85313c855b91|a898ee5]]'' **<nowiki>config:</nowiki>** <nowiki>make loglevel configurable via uci (FS#481)</nowiki> //<color #ccc>(</color><color #282>+21</color><color #ccc>,</color><color #f00>-6</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=62ea54f5db4c636710781056541c4b85d043bef8|62ea54f]]'' **<nowiki>odhcpd.h:</nowiki>** <nowiki>fix alignment style</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=4dc7edb23f1d587f9e09ad84ee200a9edf351d00|4dc7edb]]'' <nowiki>Revert "odhcpd.h: fix alignment style"</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=f91333771b9625850e0f5cad8af6e9c6441e387e|f913337]]'' **<nowiki>router.h:</nowiki>** <nowiki>fix alignment style</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=942fb33d3017e8769a7354ee008daf0f31a40fe2|942fb33]]'' **<nowiki>router:</nowiki>** <nowiki>support ra_mininterval and ra_lifetime uci parameters (FS#397)</nowiki> //<color #ccc>(</color><color #282>+96</color><color #ccc>,</color><color #f00>-47</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=e437ce9422c2f92752be5b6b3fd453e099a98a7e|e437ce9]]'' **<nowiki>treewide:</nowiki>** <nowiki>simplify dhcp leasetime checking</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>,</color><color #f00>-22</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=3495f179bd901d6d232e0dbf35444ebe483fdfd9|3495f17]]'' **<nowiki>router:</nowiki>** <nowiki>allow RA prefix lifetime being set to leasetime value (FS#397)</nowiki> //<color #ccc>(</color><color #282>+30</color><color #ccc>,</color><color #f00>-8</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=ba0cac09cc22c911c1c20c2947dd23f795599627|ba0cac0]]'' **<nowiki>router:</nowiki>** <nowiki>fix arithmetic exception fault</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=1b630f8bc59978884c9caccebca3b6d8e9b045a1|1b630f8]]'' **<nowiki>router:</nowiki>** <nowiki>don't announce prefixes with valid lifetime equal to 0</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+\\
+=== #481 ===
+**Description:** <nowiki>odhcpd: make log level a UCI file option</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=481]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=425c6d0462ddbe66a93744e39972ff55464be160|425c6d0]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>update to version 2017-02-21</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=ac70d28ed6ec96e6911cdf56b903f5c5ee3e67c5|ac70d28]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>fix white space errors</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=fa57225cb62b43adffc37a50c3dbd3fa7d225b0b|fa57225]]'' **<nowiki>ndp:</nowiki>** <nowiki>deregister netlink event socket for non recoverable errors</nowiki> //<color #ccc>(</color><color #282>+13</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=68ee0b59040625d2ab5830b1c1cc8eca2da0dcf1|68ee0b5]]'' **<nowiki>treewide:</nowiki>** <nowiki>define and use macro IN6_IS_ADDR_ULA</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=51c756cfc15c63322df9fdb70d5c701cfb6b9a9f|51c756c]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>display correct default log level in usage text</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=a898ee5458950203d4b2f8fec28c85313c855b91|a898ee5]]'' **<nowiki>config:</nowiki>** <nowiki>make loglevel configurable via uci (FS#481)</nowiki> //<color #ccc>(</color><color #282>+21</color><color #ccc>,</color><color #f00>-6</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=62ea54f5db4c636710781056541c4b85d043bef8|62ea54f]]'' **<nowiki>odhcpd.h:</nowiki>** <nowiki>fix alignment style</nowiki> //<color #ccc>(</color><color #282>+1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=4dc7edb23f1d587f9e09ad84ee200a9edf351d00|4dc7edb]]'' <nowiki>Revert "odhcpd.h: fix alignment style"</nowiki> //<color #ccc>(</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=f91333771b9625850e0f5cad8af6e9c6441e387e|f913337]]'' **<nowiki>router.h:</nowiki>** <nowiki>fix alignment style</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=942fb33d3017e8769a7354ee008daf0f31a40fe2|942fb33]]'' **<nowiki>router:</nowiki>** <nowiki>support ra_mininterval and ra_lifetime uci parameters (FS#397)</nowiki> //<color #ccc>(</color><color #282>+96</color><color #ccc>,</color><color #f00>-47</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=e437ce9422c2f92752be5b6b3fd453e099a98a7e|e437ce9]]'' **<nowiki>treewide:</nowiki>** <nowiki>simplify dhcp leasetime checking</nowiki> //<color #ccc>(</color><color #282>+10</color><color #ccc>,</color><color #f00>-22</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=3495f179bd901d6d232e0dbf35444ebe483fdfd9|3495f17]]'' **<nowiki>router:</nowiki>** <nowiki>allow RA prefix lifetime being set to leasetime value (FS#397)</nowiki> //<color #ccc>(</color><color #282>+30</color><color #ccc>,</color><color #f00>-8</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=ba0cac09cc22c911c1c20c2947dd23f795599627|ba0cac0]]'' **<nowiki>router:</nowiki>** <nowiki>fix arithmetic exception fault</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=1b630f8bc59978884c9caccebca3b6d8e9b045a1|1b630f8]]'' **<nowiki>router:</nowiki>** <nowiki>don't announce prefixes with valid lifetime equal to 0</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+\\
+=== #516 ===
+**Description:** <nowiki>procd doesn't wait for a process to quit during restart</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=516]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ee1cd31d2b2693afa0c16e1d2b1292b5b95ab4c4|ee1cd31]]'' **<nowiki>procd:</nowiki>** <nowiki>update to latest git HEAD</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=961dc692aff7457f874bce61f8e766514edcf794|961dc69]]'' **<nowiki>procd:</nowiki>** <nowiki>stop service using SIGKILL if SIGTERM failed to do so</nowiki> //<color #ccc>(</color><color #282>+57</color><color #ccc>,</color><color #f00>-17</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/procd.git;a=commitdiff;h=5f9124103410c178d816bb5229fba7dd2286a49b|5f91241]]'' **<nowiki>procd:</nowiki>** <nowiki>add cancel_timeout on rc scripts when a runtime_timeout is specified</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== #530 ===
+**Description:** <nowiki>The switch and vlan are wrrong port with linksys RE6500</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=530]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f8e08ffd94ded1b3b3ae58566d130c2dfa71e531|f8e08ff]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix Linksys RE6500 switch port mapping</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== #537 ===
+**Description:** <nowiki>OpenVPN init.d-Script append_params missing value</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=537]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=2b22e1d5c3aa7740c94ea56dee6b91732b92e0c1|2b22e1d]]'' **<nowiki>openvpn:</nowiki>** <nowiki>adding key_direction to append_params.</nowiki> //<color #ccc>(</color><color #282>+2</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+\\
+=== #541 ===
+**Description:** <nowiki>process relayd is missing after boot</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=541]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=ef5cb964b170d369e971371fe4644d17cf1b3c60|ef5cb96]]'' **<nowiki>relayd:</nowiki>** <nowiki>fix making incomplete instance json data</nowiki> //<color #ccc>(</color><color #282>+14</color><color #ccc>,</color><color #f00>-7</color><color #ccc>)</color>//\\
+\\
+=== #551 ===
+**Description:** <nowiki>leftover printf's in the new opkg (since Feb 20)</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=551]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5aa97e35dec1783c98d0f28502b2d16879ffc8ee|5aa97e3]]'' **<nowiki>opkg:</nowiki>** <nowiki>switch to LEDE fork (#120, #551, #571)</nowiki> //<color #ccc>(</color><color #282>+27</color><color #ccc>,</color><color #f00>-3.5K</color><color #ccc>)</color>//\\
+\\
+=== #571 ===
+**Description:** <nowiki>opkg can be too easily removed</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=571]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=5aa97e35dec1783c98d0f28502b2d16879ffc8ee|5aa97e3]]'' **<nowiki>opkg:</nowiki>** <nowiki>switch to LEDE fork (#120, #551, #571)</nowiki> //<color #ccc>(</color><color #282>+27</color><color #ccc>,</color><color #f00>-3.5K</color><color #ccc>)</color>//\\
+\\
+=== #597 ===
+**Description:** <nowiki>Unchecking "Use DNS servers advertised by peer" has no effect for IPv6</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=597]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=20a2db83de5803a0899f3164a25314300557a703|20a2db8]]'' **<nowiki>ppp:</nowiki>** <nowiki>propagate master peerdns setting to dynamic slave interface</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-2</color><color #ccc>)</color>//\\
+\\
+=== #620 ===
+**Description:** <nowiki>ip-full: monitor command throws error</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=620]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=0f23e80c272be4eaaa3e898f9e427886203be720|0f23e80]]'' **<nowiki>iproute2:</nowiki>** <nowiki>fix ip monitor can't work when NET_NS is not enabled</nowiki> //<color #ccc>(</color><color #282>+41</color><color #ccc>,</color><color #f00>-1</color><color #ccc>)</color>//\\
+\\
+=== #635 ===
+**Description:** <nowiki>IPv6 RA provides broken DNS</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=635]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c2999ef592cd130a722c15c7d885ef3ca32a151b|c2999ef]]'' **<nowiki>odhcpd:</nowiki>** <nowiki>update to version 2017-03-29 (FS#635)</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=24d21c7c26d07e93fb329ac62da5e974cf44213b|24d21c7]]'' **<nowiki>ndp:</nowiki>** <nowiki>add syslog debug tracing</nowiki> //<color #ccc>(</color><color #282>+32</color><color #ccc>,</color><color #f00>-9</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=eea7d037b93020dd5d5d2e5a698e88650a0f0912|eea7d03]]'' <nowiki>rework IPv6 address dump logic</nowiki> //<color #ccc>(</color><color #282>+28</color><color #ccc>,</color><color #f00>-8</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=6eb1e01b1a7cc5e73829bf2a050ba2cff57cbebd|6eb1e01]]'' **<nowiki>ndp:</nowiki>** <nowiki>code cleanup</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-35</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=bc6c3ace738fd4eb28c06be533f6bbc75d0587a5|bc6c3ac]]'' **<nowiki>ndp:</nowiki>** <nowiki>keep an exact copy of IPv6 interface addresses</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+ => ''[[https://git.lede-project.org/?p=project/odhcpd.git;a=commitdiff;h=3d9f4067d56660a2c75ab2ce9b801ae1a4ff4cde|3d9f406]]'' <nowiki>rework IPv6 dns address selection (FS#635)</nowiki> //<color #ccc>(</color><color #282>+52</color><color #ccc>,</color><color #f00>-6</color><color #ccc>)</color>//\\
+\\
+=== #640 ===
+**Description:** <nowiki>Undocumented / unnamed firewall rules installed by default</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=640]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=910a9430a0c0da2e60c1b84bbf640d310aba4bd7|910a943]]'' **<nowiki>firewall:</nowiki>** <nowiki>document rules for IPSec ESP/ISAKMP with 'name' option</nowiki> //<color #ccc>(</color><color #282>+16</color><color #ccc>,</color><color #f00>-15</color><color #ccc>)</color>//\\
+\\
+=== #691 ===
+**Description:** <nowiki>5Ghz radio detected as 2.4Ghz and not-functional on Asus RP-N53 and Buffalo WHR-600D (Ralink RT5592)</nowiki>\\
+**Link:** [[https://bugs.lede-project.org/index.php?do=details&task_id=691]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f3dc2ffdd4462dd08220fbafc4ac2971f7ef43b0|f3dc2ff]]'' **<nowiki>ramips:</nowiki>** <nowiki>fix WHR-600D eeprom dt property</nowiki> //<color #ccc>(</color><color #282>+3</color><color #ccc>,</color><color #f00>-3</color><color #ccc>)</color>//\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=f2f672c32ca32643c6985ff4f7f994934725cd40|f2f672c]]'' **<nowiki>ramips:</nowiki>** <nowiki>add RP-N53 pcie wireless eeprom</nowiki> //<color #ccc>(</color><color #282>+9</color><color #ccc>)</color>//\\
+\\
+
+===== Security fixes ====
+=== CVE-2017-2629 ===
+**Description:** <nowiki>** RESERVED ** This candidate has been reserved by an organization or individual that will use it when announcing a new security problem.  When the candidate has been publicized, the details for this candidate will be provided.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-2629]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=111cf1b9f37b902dbc4ac2934f38ee6418600f69|111cf1b]]'' **<nowiki>curl:</nowiki>** <nowiki>fix CVE-2017-2629 SSL_VERIFYSTATUS ignored</nowiki> //<color #ccc>(</color><color #282>+36</color><color #ccc>,</color><color #f00>-5</color><color #ccc>)</color>//\\
+\\
+=== CVE-2017-2784 ===
+**Description:** <nowiki>** RESERVED ** This candidate has been reserved by an organization or individual that will use it when announcing a new security problem.  When the candidate has been publicized, the details for this candidate will be provided.</nowiki>
+
+**Link:** [[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-2784]]\\
+**Commits:**\\
+''[[https://git.lede-project.org/?p=source.git;a=commitdiff;h=c4ed92ae7d9568b42490eeba540e68684c6ed981|c4ed92a]]'' **<nowiki>mbedtls:</nowiki>** <nowiki>update to version 2.4.2</nowiki> //<color #ccc>(</color><color #282>+4</color><color #ccc>,</color><color #f00>-4</color><color #ccc>)</color>//\\
+\\

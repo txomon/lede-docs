@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: kmod-rtl8192ce ======
+---- dataentry packages ----
+Name                             : kmod-rtl8192ce
+Version                          : see kernel for details
+Description                      : Realtek RTL8192CE/RTL8188CE support\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 21 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : kernel, kmod-rtlwifi-pci, kmod-rtl8192c-common, rtl8192ce-firmware
+Categories_pkg-categorys         : kernel-modules---wireless-drivers #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : apm821xx-nand, apm821xx-sata, ar71xx-generic, ar71xx-mikrotik, ar71xx-nand, arm64-generic, armvirt-generic, ath25-generic, bcm53xx-generic, brcm47xx-generic, brcm47xx-legacy, brcm47xx-mips74k, brcm63xx-generic, brcm63xx-smp, cns3xxx-generic, gemini-wiligear, imx6-generic, ipq806x-generic, ixp4xx-generic, ixp4xx-harddisk, kirkwood-generic, lantiq-xrx200, lantiq-xway, lantiq-xway_legacy, layerscape-32b, layerscape-64b, mediatek-generic, mpc85xx-generic, mpc85xx-p1020, mvebu-generic, octeon-generic, oxnas-generic, ramips-mt7620, ramips-mt7621, ramips-mt7628, ramips-mt7688, ramips-rt288x, ramips-rt3883, rb532-generic, x86-64, x86-generic, x86-geode, x86-legacy, zynq-generic,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 22
+License                          : 
+Maintainer_pkg-maintainer        : Felix Fietkau
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/kernel/mac80211|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : see kernel for details # short version of the package, for display in table
+----
+

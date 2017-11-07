@@ -1,0 +1,73 @@
+====== How to get rid of LuCi https certificate warnings ======
+
+Do you like the security of using LuCi-SSL (or Luci-SSL-OpenSSL), but sick of the security warnings your browser gives you because of an invalid certificate?
+
+With these instructions, you can generate your own self-signed certificate, which your browser will accept as valid.
+
+One new headache was that, browsers usually only look at one key part of a self-signed certificate, the CN (common name).  However, starting with Chrome version 58, it not only looks at the CN (common name) in the certificate, but also at the SAN (subject alt name or DNS name), which makes generating a certificate more complicated than before.  You might have even had a certificate you made yourself, that worked until recently, stop working when Chrome 58 was released and most likely automatically updated and installed.
+
+So, to get rid of the annoying "Warning, this is an insecure site, do you want to proceed?" warning messages, and other similar messages from other browsers, proceed with the following.
+
+I know it looks long, but it's easy and goes fast.  Should take about 10 minutes tops.
+
+
+===== Creating and installing a new customized certificate =====
+
+  - Connect via SSH
+  - Install the openssl-util and LuCi uhttpd packages. This is required to generate a new certificate in the way you want it to be, and to be able to easily tell LuCi how to use it.\\ <code>
+opkg update
+opkg install libopenssl
+opkg install openssl-util
+opkg install luci-app-uhttpd
+</code>
+  - Create ''/etc/ssl/myconfig.conf'' with the following content:\\ <code>
+[req]
+distinguished_name  = req_distinguished_name
+x509_extensions     = v3_req
+prompt              = no
+[req_distinguished_name]
+C           = US
+ST          = CA
+L           = WRT1200AC
+O           = Home
+OU          = Router
+CN          = 192.168.1.1
+[v3_req] 
+keyUsage           = keyEncipherment, dataEncipherment
+extendedKeyUsage   = serverAuth
+subjectAltName = @alt_names
+[alt_names]
+DNS.1 = 192.168.1.1
+IP.1 = 192.168.1.1
+</code>
+  - You can edit the values for C (country), ST (state), L (location), O (organization), OU (organization unit) to whatever you want. They don't matter at all. What is **extremely important** is the value for **CN (common name), DNS.1, and IP.1**. They must match whatever you type into the browser to access LuCi.  Some of you might have a different IP, or you might access it via a hostname, whatever you key into your browser's address bar must match all three of those values.
+  - Save the file, then issue the following command:\\ <code>openssl req -x509 -nodes -days 730 -newkey rsa:2048 -keyout mycert.key -out mycert.crt -config myconfig.conf</code> This will create two files, ''mycert.key'' and ''mycert.crt'', both in ''/etc/ssl/''
+  - In LuCi, go to Services -> uHTTPd
+    * In the field for HTTPS Certificate, paste ''/etc/ssl/mycert.crt''
+    * In the field for HTTPS Private Key, paste ''/etc/ssl/mycert.key''
+    * Hit save and apply.
+  - Restart uhttpd\\ <code> /etc/init.d/uhttpd restart</code>
+  - Now to make it so that those 2 files are saved when you make a backup, in LuCi, go to System -> Backup/Flash Firmware, Click Configuration tab, and add\\ <code>
+/etc/ssl/mycert.crt
+/etc/ssl/mycert.key
+</code> **This way when you make and restore a backup, your cert and key will automatically be backed up and restored.** The changes you made in LuCi -> Services -> uHTTPd will automatically be backed up because ''/etc/config/uhttpd'' is automatically backed up.
+  - Hit Submit ( Or Save and Apply, depending on the LuCi Theme you're using )
+
+
+
+===== Getting Windows to trust your customized certificate =====
+
+  * Now we have to get your computer to trust the certificate.  These instructions are for Windows. They will get all browsers to work.  However you need Chrome installed to do the process.  Google how to do this for other operating systems.  If you don't use Chrome, install it for now, and you can uninstall after.  As I said, these instructions will get all browsers to accept the certificate (IE, Edge, Firefox, etc).
+  * Reload 192.168.1.1 (or however you access LuCi) in Chrome.  Make sure you close and refresh the page after restarting uhttpd.  Ignore the warning, and get to at least the login screen.
+  * Hit F12, click the security tab, click on view certificate, click the details tab, and click copy to file, just keep hitting next (don't change anything), and save (just name it, don't give it an extension as it'll be automatically added for you) the certificate somewhere easy to find.  You can name it anything.  Now close that window and the window that opened when you pressed F12.
+    * In place of the last 2 steps above, you can pull /etc/ssl/mycert.crt off your router using other means such as SCP if you're a pro.
+  * In Chrome, go to settings, advanced, and click manage certificates.
+  * Select the Trusted Root Certification Authorities tab and click import.
+  * Just follow the prompts, find the location of where you saved the certificate, and just keep clicking next.  (Don't change anything, make sure it says it's going to place it in the Trusted Root Certification Authorities store which it should have selected by default).
+  * Close all the windows and chrome and all your browsers.  Next time you access LuCi, it will show the certificate and connection as valid and secure.
+
+
+
+Enjoy!!
+
+//All the credit for the creation of this walk-through goes to @StarCMS who originally posted this in @Davidc502's thread , here [[https://forum.openwrt.org/viewtopic.php?id=64949&p=81]] . Minor changes and wiki formatting by @mariano.silva ( mariano.silva@gmail.com )//

@@ -1,0 +1,99 @@
+====== Techdata: T-Com / Telekom Speedport W 504V  ======
+~~HIDEPAGE~~
+~~NOTOC~~
+
+{{page>meta:infobox:dataentry_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+
+/*********************************************************
+*                 >>>>>>>> ! <<<<<<<<
+* -------- >>>>>>>>  W A R N I N G  <<<<<<<<--------
+*                 >>>>>>>> ! <<<<<<<<
+*
+*   If you can read this, YOU ARE DOING IT WRONG.
+*
+*   To edit this page in the only right way, do this:
+*   1) Click "Cancel", then
+*   2) Edit this page ONLY via the lower LEFT edit button.
+*
+*   In case you disobey to the above: You break it, you pay it.
+*   Thank you for respecting the rules of this wiki.
+*
+*   --- Your wiki administration
+*********************************************************/
+
+===== Dataentry =====
+---- dataentry techdata ----
+Device Type_devicetype                         : WiFi Router # If 'other' -> request new devicetype @wiki admin
+Brand                                          : T-Com / Telekom # ===>  Mandatory  <===
+Model                                          : Speedport W 504V # ===>  Mandatory  <===
+Versions                                       :  # List versions comma separated: v1, v1.1, v1.5, v2, v2.5
+FCCID_urls                                     :  # link-scheme: https://fcc.io/yourFCCid
+Availability_availability                      : unknown 2017
+OWrt Supported Since Rev_hidden                :  # https://dev.openwrt.org/changeset/xxxxx
+OWrt Supported Since Rel_hidden                :  # First official release (i.e. not trunk)
+OWrt Supported Current Rel_hidden              :  # Current official release (i.e. not trunk)
+OWrt Unsupported_hidden                        : WIP # e.g. '5GHz wifi'; Describe what is not supported
+LEDE Supported Since Commit_git                : https://git.lede-project.org/?p=source.git;a=commit;h=b9963bbe804f12873a58cb2f4b675e68f5e92158 # https://git.lede-project.org/?p=source.git;a=commit;h=<commithash>
+LEDE Supported Since Rel_releasesince-lede     : 17.01.0 # First official release (i.e. not trunk)
+LEDE Supported Current Rel_releasecurrent-lede : 17.01.4 # Current official release (i.e. not trunk)
+LEDE Unsupported                               :  # Describe what is not supported, e.g. '5GHz wifi'
+Target_target                                  : lantiq # https://wiki.lede-project.org/docs/targets
+Subtarget                                      : xway # https://wiki.lede-project.org/docs/targets
+Instruction Set_hidden                         : MIPS32 # https://en.wikipedia.org/wiki/List_of_instruction_sets
+Sub Instruction Set_hidden                     : MIPS32 24K/E series # --------> Description goes here
+Package architecture_pkg-arch                  : mips_24kc # https://wiki.lede-project.org/docs/instructionset
+Packages download_pkg-dl                       : mips_24kc|Download # https://wiki.lede-project.org/docs/instructionset
+Bootloader_bootloader                          : brnboot # https://wiki.lede-project.org/doc/techref/bootloader
+CPU                                            : Lantiq Danube # Main CPU/SoC, e.g. Atheros AR9331; Broadcom BCM6361
+CPU Cores_numcores_                            : 1 # Number of CPU cores
+CPU MHz                                        : 333 # pure number without 'MHz'
+Flash MB_mbflashs                              : 8 # CTRL+click for multiselect
+RAM MB_mbram                                   : 64
+Ethernet 100M ports_numethport                 : 4 # Number of 100Mbit ethernet ports
+Ethernet GBit ports_numethport                 : - # Number of Gbit ethernet ports
+Switch                                         :  # e.g. Atheros AR8236
+Modem_modem                                    : ADSL2+ # Select type of modem
+Comments network ports_                        :  # Comments on Ethernet, Fibre and Modem
+VLAN_yesno                                     : ¿
+WLAN Hardwares                                 : Atheros AR9220 # e.g. Atheros AR5416; separate multiple by comma; add '#x (mini-)PCI(e)' if necessary
+WLAN 2.4GHz_wlan24                             : b/g/n
+WLAN 5.0GHz_wlan50                             : a/n
+WLAN Comments_                                 :  # MIMO and other WIFI information
+Detachable Antennas_numdetachantenna           :  # Number of detachable antennas
+Bluetooth_bluetooth                            : - # Bluetooth version, e.g. 4.1
+USB ports_port-usbs                            : 1x 2.0 # Number of USB2.0 & 3.0 ports; CTRL+click for multiselect
+SATA ports_numsataport                         : - # Number of SATA or eSATA ports
+Comments USB SATA ports_                       :  # Comments on USB, SATA and eSATA ports
+Video ports_port-videos                        : - # Kind of video port, e.g. LVDS, HDMI, Composite, ...
+Audio ports_port-audios                        : - # Kind of audio port, e.g. Line out, phone jack, ...
+Phone ports_port-phones                        : 2 # Number or kind of phone ports
+Comments AV ports_                             :  # Comments on Audio, Video, Phone ports
+Serial_yesno                                   : Yes
+Serial connection parameters_serialparam       : 115200 / 8N1 # e.g. 115200 / 8N1
+JTAG_yesno                                     : 
+LED count_numled                               :  # Number of (user configurable) LEDs
+Button count_numbutton                         :  # Number of (user configurable) buttons/switches (other than Power)
+GPIOs_numgpio                                  : - # Number of accessible GPIOs
+Power Supply                                   :  # Specifications of Power Supply (Volt, Amp) or Battery (Volt, mAh)
+OpenWrt Device Page_hidden                     : https://wiki.openwrt.org/toh/t-com/spw504v # https://wiki.openwrt.org/toh/brand/brand_model_version
+LEDE Device Page_page                          :  # toh/brand/brand_model_version
+Device Techdata_hidden                         : View/Edit data # ===> Mandatory, must be "View/Edit data" <===
+OWrt Forum Topic URL_hidden                    :  # forum.openwrt.org/viewtopic.php?id=xxxxx
+LEDE Forum Topic URL_url                       :  # forum.lede-project.org/...
+WikiDevi URL_url                               :  # wikidevi.com/wiki/yourdevice
+OEM Device Homepage URL_url                    :  # yourbrand.com/yourdevice
+Firmware OEM Stock URL_url                     :  # yourbrand.com/yourdevice/stockfirmware
+Firmware OWrt Install URL_hidden               :  # downloads.openwrt.org/latest/...factory.bin; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware OWrt Upgrade URL_hidden               :  # downloads.openwrt.org/latest/...sysupgrade.bin; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware LEDE Install URL_url                  :  # downloads.lede-project.org/releases/<release>/targets/...; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware LEDE Upgrade URL_url                  : https://downloads.lede-project.org/releases/17.01.4/targets/lantiq/xway/lede-17.01.4-lantiq-xway-ARV8539PW22-squashfs-sysupgrade.bin # downloads.lede-project.org/releases/<release>/targets/...; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Picture_img100s                                : media:example:genericrouter1.png # media:brand:model_general_view.jpg; Single general picture to identify the device; detail pictures to be provided on device page. How to add images: http://wiki.lede-project.org/meta/adding_images_to_lede_wiki
+Comments_                                      : a.k.a. ARV8539PW22 (see git-commit) # Anything that is worth mentioning
+----
+
+
+
+
+
+{{section>:meta:template_dataentry_background#conventions_for_dataentry_values&nofooter&noeditbtn}}

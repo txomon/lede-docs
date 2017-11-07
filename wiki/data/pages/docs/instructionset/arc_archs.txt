@@ -1,0 +1,24 @@
+====== arc_archs ======
+
+The ARC HS Family includes the multicore-capable HS34, HS36 and HS38 processors. The HS34 is a high-performance cacheless processor, while the HS36 includes up to 64KB of instruction and data caches. The HS38, optimized for applications running Linux, has a full-featured memory management unit (MMU) supporting a 40-bit physical address space and page sizes up to 16 megabytes, giving designers the ability to directly address a terabyte of memory with faster data access and higher system performance.\\ 
+All three processors are available in dual- and quad-core configurations.
+
+[[http://www.synopsys.com/IP/ProcessorIP/ARCProcessors/arc-hs/Pages/default.aspx|source]]
+
+===== Download Packages =====
+
+/* Link to packages download goes here. */
+
+| HTTP   | [[https://downloads.lede-project.org/releases/packages-17.01/arc_archs/]]      |
+| FTP    | [[ftp://ftp.halifax.rwth-aachen.de/lede/releases/packages-17.01/arc_archs/]]   |
+
+See [[/downloads#mirrors|Mirrors]] for more download sites.
+
+===== Devices with this instructionset =====
+
+---- datatable ----
+cols   : Package architecture, Target, Subtarget, Brand, Model_pageid, Version
+filter : Package architecture=arc_archs
+filter : Brand!=(EXAMPLE)
+sort   : Brand
+----

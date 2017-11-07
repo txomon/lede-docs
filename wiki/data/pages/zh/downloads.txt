@@ -1,0 +1,65 @@
+====== 下载最新的LEDE固件 ======
+
+LEDE固件包括两大分支：**发行版**适合稳定的办公及家庭使用。而**开发版**则包括不断开发的新技术。
+
+^  [[https://downloads.lede-project.org/releases/|稳定发行版]]  ^  [[https://downloads.lede-project.org/snapshots/targets/|开发快照版本]]  ^
+| **发行版**经过严格测试。适合稳定的办公、家庭使用。亦或是稳定的生产应用。 [[:releases:17.01:start|更多...]]| **开发版**包含最新技术，但它可能不够稳定。做好准备提交bug。 [[https://downloads.lede-project.org/snapshots/targets/|更多...]]|
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ *
+**Test the Current Release Candidates!**
+
+We are currently testing release candidates of LEDE 17.01.0 - to prepare for our first stable build. Learn more at: https://lede-project.org/releases/17.01/start
+ *
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+
+===== 关于下载 =====
+
+[[toh:views:toh_fwdownload|找出您的设备需要下载的固件]].
+
+请参阅 [[docs:user-guide:release_signatures|文件签名]] 以了解如何验证下载固件的完整性
+
+===== 获取软件包 =====
+
+各种硬件架构的软件包可在此处找到: [[https://downloads.lede-project.org/snapshots/packages/]]
+
+参阅[[toh:views:toh_dev_arch-target-cpu| 硬件架构 ]]以确认您的设备属于哪种硬件架构。
+
+===== Buildbot活动 =====
+
+LEDE 拥有一些buildbot计算机用以构建版本。 您可以在以下链接中找到Buildbot活动:
+
+  * Phase 1: [[http://phase1.builds.lede-project.org/builders|target/subtargets]]
+  * Phase 2: [[http://phase2.builds.lede-project.org/builders|packages]]
+
+===== 源代码 - Git存储库 =====
+
+主LEDE源代码存储库驻留在LEDE项目git服务器上: https://git.lede-project.org/
+
+===== 源代码 - Github镜像 =====
+
+LEDE项目在Github上保留了主存储库的镜像: https://github.com/lede-project
+===== 镜像 =====
+
+下载服务器的内容也可以在以下几个镜像服务器上使用。 请根据地理位置选择。
+
+| **Country** | **HTTP** | **HTTPS** | **FTP** | **RSYNC** | **Sponsor** |
+| **Germany** | [[http://ftp.halifax.rwth-aachen.de/lede/|HTTP]] | - | [[ftp://ftp.halifax.rwth-aachen.de/lede/|FTP]] |[[rsync://ftp.halifax.rwth-aachen.de/lede/]] |Sponsored by [[http://www.rwth-aachen.de/|RWTH Aachen]] | 
+| **Romania**  | [[http://mirrors.linux.ro/lede/downloads/|HTTP]]  | - | [[ftp://mirrors.linux.ro/lede/downloads/|FTP]]| [[rsync://mirrors.linux.ro/lede/downloads/]] |Sponsored by [[http://www.rcs-rds.ro|RCS&RDS]] | 
+| **France**  | [[http://lede-project.tetaneutral.net/|HTTP]]  | - | - |[[rsync://lede-project.tetaneutral.net/downloads/]] |Sponsored by [[http://tetaneutral.net/|tetaneutral.net]] | 
+| **Netherlands**  | [[http://ftp.snt.utwente.nl/pub/software/lede/|HTTP]] | - | [[ftp://ftp.snt.utwente.nl/pub/software/lede/|FTP]] | [[rsync://ftp.snt.utwente.nl/lede/]]|Sponsored by the [[http://www.snt.utwente.nl/|SNT, University of Twente]] | 
+| **Washington State, US**  | [[http://mirror.mediaarchitectu.re/lede/|HTTP]]  | [[https://mirror.mediaarchitectu.re/lede/|HTTPS]] | - | - |Sponsored by [[http://mediaarchitectu.re/|mediaarchitectu.re]] | 
+| **Singapore**  | [[http://mirror.0x.sg/lede/|HTTP]]  | [[https://mirror.0x.sg/lede/|HTTPS]]  | [[ftp://mirror.0x.sg/lede/|FTP]]  | [[rsync://mirror.0x.sg/lede/]]|Sponsored by Andrew Yong | 
+
+==== 如何镜像 ====
+
+使用 ''%%rsync://downloads.lede-project.org/downloads%%'' 以获取下载库的副本。
+
+每12到24小时同步一次下载共享是理想的。 一旦镜子设置完毕，随时在 ''%%lede-adm@lists.lede-project.org%%''上公布，以便可以在此页面上发布。
+
+快照的数据量大约为35GB，我们预计每个版本的数据量增长30-40GB。 由于当前的带宽限制，我们请求在最初提取数据时使用类似''%%rsync --bwlimit 8000%%''的内容。
+==== Sources ====
+
+<del>Any source code archives fetched by the buildbots during the build process are available at http://sources.lede-project.org/
+</del>

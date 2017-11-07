@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: kmod-rt2800-soc ======
+---- dataentry packages ----
+Name                             : kmod-rt2800-soc
+Version                          : see kernel for details
+Description                      : Ralink Drivers for RT2x00 cards (RT28xx/RT3xxx SoC)\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 3 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : kernel, kmod-rt2800-mmio, kmod-rt2800-lib
+Categories_pkg-categorys         : kernel-modules---wireless-drivers #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : ramips-mt7620, ramips-rt288x, ramips-rt305x, ramips-rt3883,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 4
+License                          : 
+Maintainer_pkg-maintainer        : Felix Fietkau
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/kernel/mac80211|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : see kernel for details # short version of the package, for display in table
+----
+

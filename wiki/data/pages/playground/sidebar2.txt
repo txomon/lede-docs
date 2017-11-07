@@ -1,0 +1,22 @@
+  * [[:supported_devices|Supported devices]] 
+    * [[:downloads|Downloads ]] 
+
+  * [[docs:start|User Documentation]] 
+    * [[docs:guide-quick-start:start|Quick Start Guide]] 
+    * [[:faq|FAQ ]] 
+    * [[https://forum.lede-project.org|Forum]]
+
+  * [[docs:guide-developer:the-source-code|Developer Docs]]
+    * [[:about|About LEDE ]] 
+    * [[:rules|LEDE Rules]]
+    * [[:infrastructure|LEDE Infrastructure]]
+    * [[:contact#mailing_lists|Mailing Lists]]
+    * [[https://bugs.lede-project.org/|Bug Tracker]] 
+
+  * [[:contact|Contacts ]] 
+
+/******
+    * [[https://lists.infradead.org/mailman/listinfo/lede-dev|Dev Mailing List]]
+    * [[https://lists.infradead.org/mailman/listinfo/lede-adm|Admin Mailing List]]
+    * [[:contact#irc_channels|IRC Channels]] 
+*****/

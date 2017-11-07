@@ -1,0 +1,49 @@
+====== Страница загрузки ======
+
+===== Текущая прошивка LEDE =====
+
+В настоящее время мастер ветви регулярно обрабатываются BuildBot системой и полученный результат можно найти на https://downloads.lede-project.org/snapshots/targets/
+
+[[toh:views:toh_fwdownload|Узнать, какую скачать прошивку для вашего устройства]].
+
+Пожалуйста, обратитесь к [[docs:user-guide:release_signatures|документации]] чтобы узнать, как проверить целостность загрузки встроенного программного обеспечения.
+
+===== Получить пакеты =====
+
+Пакеты можно найти здесь: [[https://downloads.lede-project.org/snapshots/packages/]]
+
+[[toh:views:toh_packagedownload|Узнать,какие пакеты имеются для вашего устройства]]
+===== Buildbot Activity =====
+
+Lede имеет ряд BuildBot компьютеров для сборки релизов. Вы можете найти результат сборки BuildBot в следующих ссылок:
+
+  * Сервер 1: [[http://phase1.builds.lede-project.org/builders|target/subtargets]]
+  * Сервер 2: [[http://phase2.builds.lede-project.org/builders|packages]]
+
+===== Исходный код - Git Repositories =====
+
+Основной исходный код LEDE находится в репозитории LEDE Project на git server: https://git.lede-project.org/
+
+
+===== Исходный код - GitHub Зеркала =====
+
+LEDE Project также имеет зеркало в репозитарии на Github по адресу: https://github.com/lede-project
+===== Зеркала =====
+
+Загрузка доступна и с других зеркал. Пожалуйста, обратитесь к списку альтернативных мест ниже.
+| **Country** | **HTTP** | **HTTPS** | **FTP** | **RSYNC** | **Sponsor** |
+| **Germany** | [[http://ftp.halifax.rwth-aachen.de/lede/|HTTP]] | - | [[ftp://ftp.halifax.rwth-aachen.de/lede/|FTP]] |[[rsync://ftp.halifax.rwth-aachen.de/lede/]] |Sponsored by [[http://www.rwth-aachen.de/|RWTH Aachen]] | 
+| **Romania**  | [[http://mirrors.linux.ro/lede/downloads/|HTTP]]  | - | [[ftp://mirrors.linux.ro/lede/downloads/|FTP]]| [[rsync://mirrors.linux.ro/lede/downloads/]] |Sponsored by [[http://www.rcs-rds.ro|RCS&RDS]] | 
+| **France**  | [[http://lede-project.tetaneutral.net/|HTTP]]  | - | - |[[rsync://lede-project.tetaneutral.net/downloads/]] |Sponsored by [[http://tetaneutral.net/|tetaneutral.net]] | 
+| **Netherlands**  | [[http://ftp.snt.utwente.nl/pub/software/lede/|HTTP]] | - | [[ftp://ftp.snt.utwente.nl/pub/software/lede/|FTP]] | [[rsync://ftp.snt.utwente.nl/lede/]]|Sponsored by the [[http://www.snt.utwente.nl/|SNT, University of Twente]] | 
+| **Washington State, US**  | [[http://mirror.mediaarchitectu.re/lede/|HTTP]]  | [[https://mirror.mediaarchitectu.re/lede/|HTTPS]] | - | - |Sponsored by [[http://mediaarchitectu.re/|mediaarchitectu.re]] | 
+| **Singapore**  | [[http://mirror.0x.sg/lede/|HTTP]]  | [[https://mirror.0x.sg/lede/|HTTPS]]  | [[ftp://mirror.0x.sg/lede/|FTP]]  | [[rsync://mirror.0x.sg/lede/]]|Sponsored by Andrew Yong | 
+
+==== Как создать зеркало ====
+
+Пожалуйста, используйте ''%%rsync://downloads.lede-project.org/downloads%%'' чтобы получить копию репозитария для загрузки.
+
+Делайте синхронизацию зеркало от 12 до 24 часов, это будет идеально. После того, как зеркало было установлино, не стесняйтесь заявить об этом в ''%%lede-adm@lists.lede-project.org%%'' так, что оно может быть размещено и на этой странице.
+
+Объем данных примерно 35GB, мы ожидаем, что он вырастет еще на 30-40GB с каждым выпуском. Из-за существующих ограничений пропускной способности мы просим вас использовать что-то вроде ''%%rsync --bwlimit 8000%%''.
+

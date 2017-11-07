@@ -1,0 +1,178 @@
+====== Run LEDE as a Virtualbox virtual machine ======
+This document describes how to run the x86-64 LEDE images in [[https://www.virtualbox.org|VirtualBox]], or VB for short.
+
+===== Prerequisites =====
+  * Download and install [[https://www.virtualbox.org/wiki/Downloads|VirtualBox]]
+  * Download and install the Virtualbox Guest Additions (needed for USB connectivity among others)
+  * Download the //lede-x86-64-combined-squashfs.img// image, from [[http://downloads.lede-project.org/snapshots/targets/x86/64/|snapshots/targets/x86/64/]](On Linux, downlaod the //lede-x86-64-combined-ext4.img// image)
+  * Open a terminal and go in the folder where you have downloaded the file (sorry, the tool has only a command line interface)
+  * Convert it to native VB format by writing this in command line (the same for Windows, Mac and Linux. Sadly this tool does not have graphical user interface): ''VBoxManage convertfromraw %%--%%format VDI lede-x86-64-combined-squashfs.img lede-x86-64-combined-squashfs.vdi'' (tested and working in VB 5.1.8)(tested and working in VB 5.1.10 on debian8)
+
+if you receive an error similar to ''VBoxManage: error: VD: The given disk size 19444018 is not aligned on a sector boundary (512 bytes)
+VBoxManage: error: Error code VERR_VD_INVALID_SIZE at /Users/vbox/tinderbox/5.1-mac-rel/src/VBox/Storage/VD.cpp(7002) in function int VDCreateBase(PVBOXHDD, const char *, const char *, uint64_t, unsigned int, const char *, PCVDGEOMETRY, PCVDGEOMETRY, PCRTUUID, unsigned int, PVDINTERFACE, PVDINTERFACE)
+VBoxManage: error: Cannot create the disk image "lede.vdi": VERR_VD_INVALID_SIZE'' you may need to pad the image with ''dd if=lede-x86-64-combined-squashfs.img of=lede.img bs=128000 conv=sync'' and use the padded image as input to VBoxManage convertfromraw.
+
+Or you can compile your own image (//Target System -> x86-64// and //Target Images -> Build VirtualBox image files//). ''ext4'' needs to be enabled first.
+
+
+===== VM Setup in VirtualBox =====
+
+==== VM creation ====
+:!: tutorial and screenshots from Virtualbox 5.1.8 on Linux host, on Windows or MacOS hosts there will be some cosmetic differences (a different top bar) but the Virtualbox panels and buttons will be exactly the same
+
+{{:docs:user-guide:vboxstart.png?direct&70 |}} Start VirtualBox and click //New// to add a virtual machine (VM)\\
+----
+{{:docs:user-guide:vboxaddvm1.png?direct&70 |}} Choose a //Name// for your virtual machine, choose ''Linux'' for //Type//, and ''Linux 2.6 / 3.x / 4.x (64-bit)'' for //Version//, then click //Next//.\\
+----
+{{:docs:user-guide:vboxaddvm2.png?direct&70 |}} LEDE will work fine with much less RAM than the recommended amount, 128 MiB will be enough. 
+----
+{{:docs:user-guide:vboxaddvm3.png?direct&70 |}} Choose //Use an existing hard disk file//, click the //file// icon to open //Virtual Media Manager//, click //Add// and choose your ''.vdi'' file using the file chooser window. Click //Create// to end this guided procedure.\\
+----
+:!: It's recommended to place the disk image in a permanent place //before// linking it with VB. If you move it //afterwards//, VB will not find it anymore and will complain about this issue on next start (or when you try to start the VM). It will offer a guided procedure to link the disk image again, so don't worry.
+
+
+==== VM setup ====
+This part of the configuration will deal with setting up networking manually.\\
+The configuration you will set up by following this tutorial is:
+  * **eth0** of the VM on **mng** (management) interface, fixed address 192.168.56.2, set in Virtualbox as **Host-only Adapter** on adapter **vboxnet0**. This interface will be __always__ available to the host even if host or VM are disconnected from any network.
+  * **eth1** of the VM on **wan** interface, dynamic address, set in Virtualbox as **NAT**. This interface will be used to access the Internet through whatever setup the host also uses.
+  * //(optional) **eth2** of the VM on **lan** interface, configured depending on your local network, set in Virtualbox as **Bridged Adapter**. This interface allows other devices (host included) to connect to the VM as if it was a physical device in the local network. Will only work if there is already a local network of some kind.//
+  * //For a setup with 2 bridged physical network cards WAN/LAN Setup see [[#troubleshooting]]. The rest of this guide applies to a setup with 2 physical cards as well. //
+
+=== Virtualbox settings ===
+== Host-only network adapter ==
+we first need to make sure there is a Host-only network adapter and that it has the right settings\\
+----
+{{:docs:user-guide:vboxvmhost-only-network1.png?direct&70 |}} click on **File** -> **Preferences** -> **Network**\\ 
+----
+{{:docs:user-guide:vboxvmhost-only-network2.png?direct&70 |}} click on Host-only Networks tab and then if you don't see a **vboxnet0** entry click on the  **+** icon on the right of the window to add a new one.\\
+Now select the **vboxnet0** entry, and click on the screwdriver icon on the right to open its settings.\\
+----
+{{:docs:user-guide:vboxvmhost-only-network3.png?direct&70 |}} **IPv4 Address** should be **192.168.56.1**, **IPv4 Network Mask** should be **255.255.255.0**, **IPv6 Address** should be empty and **IPv6 Network Mask** should be **0**\\
+----
+{{:docs:user-guide:vboxvmhost-only-network4.png?direct&70 |}} //(optional) you can also set the DHCP server as shown in the screenshot if you want to have dynamic addresses to the VM, but for this tutorial it is not required as we set a static address in the VM itself//
+----
+press OK to save and close until you are back to Virtualbox Manager interface again.
+
+== Network Settings ==
+{{:docs:user-guide:vboxvmsettings1.png?direct&70 |}} Open the VM's settings
+----
+{{:docs:user-guide:vboxvmsettings2.png?direct&70 |}} Go in the **Network** tab 
+----
+{{:docs:user-guide:vboxvmsettings3.png?direct&70 |}}configure **Adapter 1**:\\
+    - with **Host-only Adapter**
+    - select vboxnet0 as (adapter) **Name**
+    - click on **Advanced** and in **Adapter Type** select **Intel PRO/1000 MT Desktop**
+    - **Promiscuous mode** should be set to **Deny** unless you have good reasons to enable it.\\ 
+
+  * Configure **Adapter 2** 
+    - with **NAT**
+  * //(optional) Configure **Adapter 3**//
+    - //with **Bridged Adapter**//
+    - //in the Name field select the name of the network card (ethernet or wifi) of your PC that connected to a local network. On Windows it has a full device name, on Linux it will have codenames like **eth0**, **eth1** for ethernet or **wlp2s0** for wifi.//
+    - //Click on **Advanced** and do the same you did for **Adapter 1**'s advanced options//
+
+=== VM Settings ===
+:!: due to LEDE limitations, the keyboard in the VM's terminal screen is set as US, so some (or most) of your keys will not print the right symbols.\\
+Also, due to the fact that what you see there is a bare machine terminal and not a smart thing like a ssh program (Putty/Kitty/whatever) or a terminal emulator program, you cannot copy-paste text into it.\\
+Don't worry, most of the setup will be done after you are connected with SSH (remote terminal) that does not have any of these issues.\\
+{{:docs:user-guide:1280px-qwerty.png?direct&50 |}} Look at this US keyboard layout to find what button you need to press on your keyboard to generate the right symbol. 
+----
+  - Boot into your VM
+  - Wait 4 seconds for GRUB to boot automatically
+  - Press Enter to activate the console when the boot messages have finished to scroll by
+  - let's see the current network configuration\\ <code>root@lede:~# uci show network
+network.loopback=interface
+network.loopback.ifname='lo'
+network.loopback.proto='static'
+network.loopback.ipaddr='127.0.0.1'
+network.loopback.netmask='255.0.0.0'
+network.globals=globals
+network.globals.ula_prefix='fd1b:e541:8f1a::/48'
+network.lan=interface
+network.lan.type='bridge'
+network.lan.ifname='eth0'
+network.lan.proto='static'
+network.lan.netmask='255.255.255.0'
+network.lan.ip6assign='60'
+network.lan.ipaddr='192.168.56.2'
+network.wan=interface
+network.wan.ifname='eth1'
+network.wan.proto='dhcp'
+network.wan6=interface
+network.wan6.ifname='eth1'
+network.wan6.proto='dhcpv6'</code>
+  - edit the network configuration to allow SSH access by writing these commands and pressing enter: 
+    - **uci set network.lan.ipaddr='192.168.56.2'**
+    - **uci commit**
+    - **reboot**
+  - now your VM should be accessible from SSH, user **root** (no password) address **192.168.56.2**
+  - after you have logged in successfully, we can actually do the true configuration, please copy-paste the following block of code and press enter:\\ <code>uci batch <<EOF 
+set network.mng=interface 
+set network.mng.type='bridge' 
+set network.mng.proto='static'
+set network.mng.netmask='255.255.255.0'
+set network.mng.ifname='eth0'
+set network.mng.ipaddr='192.168.56.2'
+delete network.lan
+delete network.wan6
+set network.wan=interface
+set network.wan.ifname='eth1'
+set network.wan.proto='dhcp'
+EOF</code>
+  - now write **uci changes** to check if the setting configuration was loaded correctly. If you see the following (the **network.mng** entries MUST be the same as the ones shown here, the **network.wan** might be slightly different), everything went well\\ <code>root@lede:~# uci changes
+network.mng='interface'
+network.mng.type='bridge'
+network.mng.proto='static'
+network.mng.netmask='255.255.255.0'
+network.mng.ifname='eth0'
+network.mng.ipaddr='192.168.56.2'
+-network.lan
+-network.wan6
+network.wan='interface'</code>
+  - if all is well, save config with **uci commit && reboot**, if all is NOT well, write **reboot** to erase the temporary changes and find a way to set the above configuration manually.
+  - close and open again the SSH terminal when the VM has restarted, with same connection parameters (user **root** and **192.168.56.2**)
+  - now you should have both internet access (try a **opkg update**) AND a management interface with a static address you can connect your SSH client program to even if your PC is disconnected from a local network.
+  - the optional **Bridged Adapter** on **Adapter 3** isn't crucial for basic functionality and is also specific for your own local network parameters. In my own network (and in most home networks) it will work fine if you write <code>uci batch <<EOF 
+set network.lan=interface
+set network.lan.ifname='eth2'
+set network.lan.proto='dhcp'
+EOF
+uci commit</code>\\ If you have more complex requirements you will have to set that up on your own by reading the documentation, or through luci.
+  - you can now install packages to this images as normal, you will probably want to install luci, write **opkg update && opkg install luci**, then you can connect to the VM's luci by typing 192.168.56.2 in your browser address bar or [[http://192.168.56.2|click on this link]] to get there.
+
+
+===== Troubleshooting =====
+  * If you rebuild the disk image, and VirtualBox complains about invalid UUIDs for the disk
+    * You need to remove the disk from **both** the VM **and also** from the //Virtual Media Manager//
+    * Then add the disk image to the VM again
+
+  * If you want to use a bridged VPN on your LEDE to bridge it to your local network you need to set the
+    * **Promiscuous Mode** of the corresponding **Bridged Network Adapter** to "Allow All" or else your local network won't be bridged properly to your vpn bridged network
+
+  * You can also have 2 physical network interfaces on your main operating system that is hosting the virtual machine. In this case
+    * Use one Network Adapter as **WAN** and in VirtualBox you select **Bridged Adapter** with **Promiscuous Mode** to **Deny**
+    * Use the other Network Adapter as **LAN** and in VirtualBox you select **Bridged Adapter** with **Promiscuous Mode** to
+      * **Deny** if you don't want to expose bridged virtual networks to your physical network
+      * **Allow All** if you want to connect your bridged virtual network to your physical network
+
+
+===== Run Lede with Virtual Box automatically on Start of Windows OS =====
+
+  * Ordered List ItemImport the following entry to your registry or add it manually:
+    - [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run]
+    - "VB-LEDE"="\"C:\\Program Files\\Oracle\\VirtualBox\\VBoxManage.exe\" startvm \"NAMEOFVBINSTANCE\" --type headless"
+
+  * Alternative create 2 shortcuts and use the Windows Task sheduler
+    - "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" startvm LEDE --type headless
+      - Create a task in the Scheduler triggered by logon of any user as action the shortcut
+    - "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" controlvm LEDE acpipowerbutton
+      - Create a task in the Scheduler triggered by an event and as action the shortcut
+        - Begin the task: On an event
+        - Basic Log: System
+        - Source: User32
+        - Event ID: 1074
+  
+  * Or use following:
+       - VB Service: https://sourceforge.net/projects/vboxvmservice/
+

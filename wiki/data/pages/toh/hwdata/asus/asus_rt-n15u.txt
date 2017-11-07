@@ -1,0 +1,98 @@
+====== Techdata: Asus RT-N15U  ======
+~~HIDEPAGE~~
+~~NOTOC~~
+
+{{page>meta:infobox:dataentry_topnote&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+
+/*********************************************************
+*                 >>>>>>>> ! <<<<<<<<
+* -------- >>>>>>>>  W A R N I N G  <<<<<<<<--------
+*                 >>>>>>>> ! <<<<<<<<
+*
+*   If you can read this, YOU ARE DOING IT WRONG.
+*
+*   To edit this page in the only right way, do this:
+*   1) Click "Cancel", then
+*   2) Edit this page ONLY via the lower LEFT edit button.
+*
+*   In case you disobey to the above: You break it, you pay it.
+*   Thank you for respecting the rules of this wiki.
+*
+*   --- Your wiki administration
+*********************************************************/
+
+===== Dataentry =====
+---- dataentry techdata ----
+Device Type_devicetype                         : WiFi Router # If 'other' -> request new devicetype @wiki admin
+Brand                                          : Asus # ===>  Mandatory  <===
+Model                                          : RT-N15U # ===>  Mandatory  <===
+Versions                                       :  # List versions comma separated: v1, v1.1, v1.5, v2, v2.5
+FCCID_urls                                     :  # link-scheme: https://fcc.io/yourFCCid
+Availability_availability                      : Discontinued 2016
+OWrt Supported Since Rev_hidden                : https://dev.openwrt.org/changeset/41501 # https://dev.openwrt.org/changeset/xxxxx
+OWrt Supported Since Rel_hidden                : 15.05 # First official release (i.e. not trunk)
+OWrt Supported Current Rel_hidden              : 15.05 # Current official release (i.e. not trunk)
+OWrt Unsupported_hidden                        : WiFi # e.g. '5GHz wifi'; Describe what is not supported
+LEDE Supported Since Commit_git                : https://git.lede-project.org/?p=source.git;a=commit;h=3f64bb8f8f49ef2c718173b4b76c18bbc455933c # https://git.lede-project.org/?p=source.git;a=commit;h=<commithash>
+LEDE Supported Since Rel_releasesince-lede     : 17.01.0 # First official release (i.e. not trunk)
+LEDE Supported Current Rel_releasecurrent-lede : 17.01.4 # Current official release (i.e. not trunk)
+LEDE Unsupported                               : WiFi # Describe what is not supported, e.g. '5GHz wifi'
+Target_target                                  : brcm47xx # https://wiki.lede-project.org/docs/targets
+Subtarget                                      : mips74k # https://wiki.lede-project.org/docs/targets
+Instruction Set_hidden                         : MIPS32 # https://en.wikipedia.org/wiki/List_of_instruction_sets
+Sub Instruction Set_hidden                     : MIPS32 74K series # --------> Description goes here
+Package architecture_pkg-arch                  : mipsel_74kc # https://wiki.lede-project.org/docs/instructionset
+Packages download_pkg-dl                       : mipsel_74kc|Download # https://wiki.lede-project.org/docs/instructionset
+Bootloader_bootloader                          : ¿ # https://wiki.lede-project.org/doc/techref/bootloader
+CPU                                            : BCM47186B0 # Main CPU/SoC, e.g. Atheros AR9331; Broadcom BCM6361
+CPU Cores_numcores_                            : 1 # Number of CPU cores
+CPU MHz                                        : 500 # pure number without 'MHz'
+Flash MB_mbflashs                              : 8 # CTRL+click for multiselect
+RAM MB_mbram                                   : 64
+Ethernet 100M ports_numethport                 : - # Number of 100Mbit ethernet ports
+Ethernet GBit ports_numethport                 : 5 # Number of Gbit ethernet ports
+Switch                                         : Broadcom BCM53125 # e.g. Atheros AR8236
+Modem_modem                                    : No # Select type of modem
+Comments network ports_                        :  # Comments on Ethernet, Fibre and Modem
+VLAN_yesno                                     : ¿
+WLAN Hardwares                                 : BCM47186B0 # e.g. Atheros AR5416; separate multiple by comma; add '#x (mini-)PCI(e)' if necessary
+WLAN 2.4GHz_wlan24                             : b/g/n
+WLAN 5.0GHz_wlan50                             : -
+WLAN Comments_                                 : MIMO 2x2:2 # MIMO and other WIFI information
+Detachable Antennas_numdetachantenna           : - # Number of detachable antennas
+Bluetooth_bluetooth                            : - # Bluetooth version, e.g. 4.1
+USB ports_port-usbs                            : 1x 2.0 # Number of USB2.0 & 3.0 ports; CTRL+click for multiselect
+SATA ports_numsataport                         : - # Number of SATA or eSATA ports
+Comments USB SATA ports_                       :  # Comments on USB, SATA and eSATA ports
+Video ports_port-videos                        : - # Kind of video port, e.g. LVDS, HDMI, Composite, ...
+Audio ports_port-audios                        : - # Kind of audio port, e.g. Line out, phone jack, ...
+Phone ports_port-phones                        : - # Number or kind of phone ports
+Comments AV ports_                             :  # Comments on Audio, Video, Phone ports
+Serial_yesno                                   : Yes
+Serial connection parameters_serialparam       :  # e.g. 115200 / 8N1
+JTAG_yesno                                     : Yes
+LED count_numled                               : 5 # Number of (user configurable) LEDs
+Button count_numbutton                         : 1 # Number of (user configurable) buttons/switches (other than Power)
+GPIOs_numgpio                                  : - # Number of accessible GPIOs
+Power Supply                                   : 12 VDC, 1.0 A # Specifications of Power Supply (Volt, Amp) or Battery (Volt, mAh)
+OpenWrt Device Page_hidden                     : https://wiki.openwrt.org/toh/asus/rt-n15u # https://wiki.openwrt.org/toh/brand/brand_model_version
+LEDE Device Page_page                          :  # toh/brand/brand_model_version
+Device Techdata_hidden                         : View/Edit data # ===> Mandatory, must be "View/Edit data" <===
+OWrt Forum Topic URL_hidden                    : https://forum.openwrt.org/viewtopic.php?id=50257 # forum.openwrt.org/viewtopic.php?id=xxxxx
+LEDE Forum Topic URL_url                       :  # forum.lede-project.org/...
+WikiDevi URL_url                               : https://wikidevi.com/wiki/ASUS_RT-N15U # wikidevi.com/wiki/yourdevice
+OEM Device Homepage URL_url                    : https://www.asus.com/Networking/RTN15U/ # yourbrand.com/yourdevice
+Firmware OEM Stock URL_url                     : https://www.asus.com/Networking/RTN15U/HelpDesk_Download/ # yourbrand.com/yourdevice/stockfirmware
+Firmware OWrt Install URL_hidden               : https://downloads.openwrt.org/chaos_calmer/15.05/brcm47xx/mips74k/openwrt-15.05-brcm47xx-mips74k-asus-rt-n15u-squashfs.trx # downloads.openwrt.org/latest/...factory.bin; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware OWrt Upgrade URL_hidden               : https://downloads.openwrt.org/chaos_calmer/15.05/brcm47xx/mips74k/openwrt-15.05-brcm47xx-mips74k-asus-rt-n15u-squashfs.trx # downloads.openwrt.org/latest/...sysupgrade.bin; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware LEDE Install URL_url                  : https://downloads.lede-project.org/releases/17.01.4/targets/brcm47xx/mips74k/lede-17.01.4-brcm47xx-mips74k-asus-rt-n15u-squashfs.trx # downloads.lede-project.org/releases/<release>/targets/...; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Firmware LEDE Upgrade URL_url                  : https://downloads.lede-project.org/releases/17.01.4/targets/brcm47xx/mips74k/lede-17.01.4-brcm47xx-mips74k-asus-rt-n15u-squashfs.trx # downloads.lede-project.org/releases/<release>/targets/...; If more than 1 file for install/upgrade -> link to download *folder* instead of image
+Picture_img100s                                : media:example:genericrouter1.png # media:brand:model_general_view.jpg; Single general picture to identify the device; detail pictures to be provided on device page. How to add images: http://wiki.lede-project.org/meta/adding_images_to_lede_wiki
+Comments_                                      :  # Anything that is worth mentioning
+----
+
+
+
+
+{{section>:meta:template_dataentry_background#conventions_for_dataentry_values&nofooter&noeditbtn}}

@@ -1,0 +1,141 @@
+====== VLAN explained ======
+
+VLAN is the acronym for **V**irtual **L**ocal **A**rea **N**etwork, it is a virtual partitioning of physical network switches on OSI layer 2.
+
+It is a way to keep network clients separated from each other even if they use the same shared physical network, without setting up a whole subnet and a router.\\
+It works by adding a label (VLAN ID) on networking traffic, and using this label to route the traffic to keep isolated clients in different VLANs. To use a VLAN you need at least 2 devices supporting VLAN features (as any route requires at least 2 points), which is usually advanced routers, any LEDE device, and any self-respecting PC or single-board computer (Windows, MacOS, Linux and BSDs support VLANs).
+
+LEDE supports [[https://en.wikipedia.org/wiki/IEEE_802.1Q|IEEE 802.1Q]] and [[https://en.wikipedia.org/wiki/IEEE_802.1ad|IEEE 802.1ad]] VLAN standards.
+
+Many embedded devices with more than 1 port contain a VLAN-capable switch (all routers with a WAN port have a VLAN-capable switch for example). Single-port devices and devices where there is an ethernet controller for each port (like for example PCEngines boards or most PC hardware in general) will have VLAN managed by OS drivers.
+
+A VLAN-capable switch is an integrated version of an independent device called "managed switch". It is connected to an internal "ethernet" interface of your device, and it is more or less independent from the main CPU.\\
+It can place ports under the same VLAN (and they will communicate with each other) by just setting the right VLAN ID(s) on the ports (with the right configuration, below), and this will work irrespective of the fact that the network communication reaches or not the router CPU itself (do note that to configure the router itself you still need at least one VLAN to reach the CPU).
+
+A device where there is software VLAN support is just a device with many different ethernet controllers, so if you want to place 2 interfaces in the same VLAN, AND you want these two interfaces to also route traffic to-from each other (to act as if they were a VLAN-capable switch as the one I talked about above), you need to bridge them too (i.e. both must be in the same Interface, be it **lan**, **wan** or whatever).
+
+If you have any question, feel free to discuss this guide on LEDE forum:
+https://forum.lede-project.org/t/vlan-assigning
+
+===== VLAN explained with default scenario of most LEDE routers =====
+
+A very common default VLAN configuration on many off-the-shelf routers is the LAN<->WAN separation.\\
+LEDE default configuration on such devices does usually mirror the stock configuration.\\
+Most of such routers only contain a single network interface (eth0), leading to a 5-port VLAN-enabled switch that is virtually partitioned into a LAN and WAN network by using VLANs:
+|  VLAN ID  |  <WRAP>Upstream:\\ HW switch\\ ↑↓\\ eth0 driver</WRAP>  |  <WRAP>Downstream:\\ HW switch\\ ↑↓\\ physical ports</WRAP>  |||||
+| |  CPU (eth0)  |  LAN 1  |  LAN 2  |  LAN 3  |  LAN4  |  WAN  |
+| 1 |  tagged  |  untagged  |  untagged  |  untagged  |  untagged  |  off  |
+| 2 |  tagged  |  off  |  off  |  off  |  off  |  untagged  |
+
+Note that the terms "incoming" and "outgoing" and similar refer to network traffic reaching the switch physical ports (or internal CPU port), NOT to traffic that has already entered in the switch.
+
+  * **Tagged** on "CPU (eth0)" means that the two VLAN ID tags used in this example (1, 2) are sent to the router CPU "as tagged data". Remember: you can only send Tagged data to VLAN-aware devices configured to deal with it properly.
+  * **Untagged** means that on these ports the switch will accept only the incoming traffic without any VLAN IDs (i.e. normal ethernet traffic). The switch will remove VLAN IDs on outgoing data in such ports. Each port can only be assigned as "untagged" to exactly one VLAN ID. 
+  * **Off** no traffic to or from the tagged ports of this VLAN ID will reach these ports.
+
+The router CPU then uses the tag information configured above to know if the data came from VLAN 1 (LAN) or VLAN 2 (WAN) and will then act accordingly. In the default configuration, the CPU will only receive and generate "Tagged" data (as there is no other way for it to tell what is what). The CPU uses driver level VLAN-management for this, as it acts as a single-port device.
+
+Note how the WAN and LAN VLAN IDs in this example do not share any external ports. For any data to cross the WAN and LAN border, it has to pass the CPU on eth0 (where the router and firewall will be filtering the data). As said above, nothing prevents to make VLANs that bypass the CPU entirely.
+
+
+===== Is there a VLAN-capable hardware switch integrated in your device? =====
+
+To find out, if the ports of a LEDE device consist of several distinct network interfaces or if it is a single network interface leading to a switch
+  * you can check the LEDE tech page for your router.
+  * you can run the following SSH command on your device to find out ''ls -l /sys/class/net''.
+
+<WRAP center round info 90%>Newer devices with embedded switches (like Netgear R7800) use the DSA switch driver, that creates a distinct network interface for each switch port as if they didn't have a switch at all.
+
+Most LEDE-supported devices can use the DSA driver, but they aren't ported over yet because the switch configuration would change significantly and likely break any custom setup in devices in the field.</WRAP>
+
+
+Example: The following ALIX.2D13 has 3 **real** network interfaces: eth0, eth1 and eth2. Each leads to a single non-switched physical network jack. If needed, you have to use OS-software based VLAN configuration:
+  ls -l /sys/class/net
+  ...
+  lrwxrwxrwx    1 root     root             0 Jul 25 14:10 eth0 -> ../../devices/pci0000:00/0000:00:09.0/net/eth0
+  lrwxrwxrwx    1 root     root             0 Jul 25 14:10 eth1 -> ../../devices/pci0000:00/0000:00:0a.0/net/eth1
+  lrwxrwxrwx    1 root     root             0 Jul 25 14:10 eth2 -> ../../devices/pci0000:00/0000:00:0b.0/net/eth2
+
+Example: The following TP-Link TL-WDR3600 has only  1 real network interface: eth0. It's 5 physical network jacks belong to a single VLAN-capable switch, that in this example is segmented into 2 VLANs, managed by the switch-hardware : eth0.1 and eth0.2:
+  ls -l /sys/class/net
+  ...
+  lrwxrwxrwx    1 root     root             0 Jan  1  1970 eth0 -> ../../devices/platform/ag71xx.0/net/eth0
+  lrwxrwxrwx    1 root     root             0 Jul 21 22:13 eth0.1 -> ../../devices/virtual/net/eth0.1
+  lrwxrwxrwx    1 root     root             0 Jul 21 22:13 eth0.2 -> ../../devices/virtual/net/eth0.2
+
+===== Assigning VLAN IDs on VLAN-enabled switch hardware =====
+
+The ''switch'' section of ''/etc/config/network'' is responsible for partitioning the embedded switch into several //VLANs// which appear as independent interfaces in the system although they share the same hardware.\\ 
+
+This section might not be present on some platforms (depends on specific hardware support). Also, some switches only support 4-bit VLANs.
+
+The example below shows a typical configuration:
+<code>config 'switch' 'eth0'
+        option 'reset' '1'
+        option 'enable_vlan' '1'
+
+config 'switch_vlan' 'eth0_1'
+        option 'device' 'eth0'
+        option 'vlan' '1'
+        option 'ports' '0 1 3t 5t'
+
+config 'switch_vlan' 'eth0_2'
+        option 'device' 'eth0'
+        option 'vlan' '2'
+        option 'ports' '2 4t 5t'
+
+config 'switch_vlan' 'eth0_3'
+        option 'device' 'eth0'
+        option 'vlan' '3'
+        option 'ports' '3t 4t'
+
+config 'switch_port'
+        option 'device' 'eth0'
+        option 'port' '3'
+        option 'pvid' '3'</code>
+
+Common properties are defined within the ''switch'' section; vlan specific properties are located in additional ''switch_vlan'' sections linked to the ''switch'' section through the ''device'' option; pvid specific properties are found in ''switch_port'' sections linked to the ''switch'' section through the ''device'' option.
+
+Ports can be //tagged// or //untagged//:
+
+  * The //tagged// port (''t'' is appended to the port number) is the one that forces usage of VLAN tags, i.e. when the packet is outgoing, the VLAN ID tag with ''vlan'' value is added to the packet, and when the packet is incoming, the VLAN ID tag has to be present and match the configured ''vlan'' value(s).
+  * The //untagged// port is removing the VLAN ID tag when leaving the port -- this is used for communication with ordinary devices that does not have any clue about VLANs. When the untagged packet arrives to the port, the default port VLAN ID (called ''pvid'') is assigned to the packet automatically. The ''pvid'' value can be selected by the ''switch_port'' section.
+
+The CPU port (number ''5'' in our example) may be configured as tagged or untagged, it may even be omitted in the port configuration. The CPU port works like any other ordinary port and can be configured to be tagged or untagged -- when the switch routes packet to the CPU port, it appears on the corresponding switch interface (with VLAN ID tag number appended to the interface name in case of a tagged port) as incoming packet to allow software routing (to WiFi for example).
+
+In our example, untagged packet coming to port 0 would be marked as VLAN ID 1 first, then sent to port 1 (untagged, VLAN ID tag removed), port 3 (tagged) and the CPU port (tagged), so the packet appears on ''eth0.1'' interface. Another packet arriving to port 2 tagged with VLAN ID 2 would be sent to port 4 (tagged) and the CPU port (tagged), the packet appears on ''eth0.2'' interface. Each tagged switch CPU port has a corresponding interface, in our example you see ''eth0.1'' and ''eth0.2'' in the system (as well as ''eth0''). When the packet is sent by the software to the tagged CPU port, it has the corresponding VLAN ID assigned automatically. So when the software sends packet to ''eth0.2'', is is marked with VLAN ID 2 tag automatically first, and then sent to port 2 (untagged, VLAN ID tag removed) and port 4 (tagged).
+
+:!: Once the port is marked as tagged, it cannot be listed anywhere else as untagged :!:
+
+===== Creating driver-level VLANs =====
+
+A driver-level VLAN could be created in the ''interface'' section by adding a dot (''.'') and the respective VLAN ID after the interface name (in the ''ifname'' option), like ''eth1.2'' for VLAN ID 2 on ''eth1''.\\ 
+When any internal software routing decision sends the packet to the software VLAN, it leaves the respective interface (''eth1'' in our example) with the VLAN tag present and VLAN ID set to the number corresponding to the interface name (''2'' in our example on ''eth1.2'').\\
+If the incoming packet arrives to the interface with software VLANs (incoming packet to ''eth1'') and has a VLAN ID tag set, it appears on the respective software-VLAN-interface instead (VLAN ID 2 tag arrives on ''eth1.2'') -- if it exists in the configuration! Otherwise the packet is dropped. Non-tagged packets are deliveded to non-VLAN interface (''eth1'') as usual.
+
+When you bridge non-VLAN and VLAN interfaces together, the system takes care about adding VLAN ID when sending packet from non-VLAN to VLAN interface, and it automatically removes the VLAN ID when sending packet from VLAN interface to non-VLAN one.
+
+
+Let's take the example of TP-Link outdoor CPE210 wireless adapter. It has only one NIC, like most outdoor devices, but it can be extended to support several virtual NICs very easily.
+
+In the following example, eth0 is segmented into 2 VLAN-interfaces, with VLAN ID 106 and 204:
+
+<code>config device 'eth0.106'
+	option name 'vlan1'
+</code>
+
+
+<code>config device 'eth0.204'
+	option name 'vlan2'
+</code>
+
+driver-level VLAN Interfaces may be configured manually. If not, they are created on the fly by netifd. Defining VLANs manually gives more options.
+The following options are supported:
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''type'' | VLAN Type | no | 802.1q | VLAN type, possible values: 8021q or 8021ad |
+| ''name'' | Name | yes | //(none)// | Name of device, i.e. eth0.5 or vlan5 |
+| ''ifname'' | Parent interface | yes | //(none)// | Name of parent/base interface, i.e. eth0 |
+| ''vid'' | VLAN Id | yes | //(none)// | VLAN Id |
+| ''macaddr'' | MAC | no | //(none)// | MAC of new interface |
+

@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: libunwind ======
+---- dataentry packages ----
+Name                             : libunwind
+Version                          : 1.1-1
+Description                      : Libunwind defines a portable and efficient C programming interface (API) to determine the call-chain of a program.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 52 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc
+Categories_pkg-categorys         : libraries #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 52
+License                          : X11
+Maintainer_pkg-maintainer        : Yousong Zhou
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/libs/libunwind|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1.1-1 # short version of the package, for display in table
+----
+

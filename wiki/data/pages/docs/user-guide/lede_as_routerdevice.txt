@@ -1,0 +1,23 @@
+====== LEDE as router device ======
+If your device has some ports labeled LAN and at least a port labeled WAN and you want it to operate as a router (a connection between two different networks). Depending on actual hardware support, it may be possible to create a WAN port on a device with only LAN ports, see your device's page for more info about this.\\ :!: the default IP of the LAN ports of a LEDE device is 192.168.1.1, if the addresses of the devices in the network you connect to the WAN port are **192.168.1.X** (X=any number), you need to change the IP address of the LAN interfaces your LEDE router to **192.168.2.1** (or to something that isn't **192.168.1.X**, anyway), or change the addressing of the other network you are connecting to.\\ The LAN and WAN ports MUST have at least different subnets for routing to work.
+
+This means:
+  * LEDE will be mostly in its default factory configuration
+    * LEDE firewall on
+    * LEDE DHCP is on 
+  * The following steps are optional: 
+    * you can customize the router address and the address of the subnet that LEDE manages, but you don't have to (you preferrably want to do this, if the addresses 192.168.1.* are already in use on the WAN side)
+    * you can change the WAN side IP address to no longer obtain a dynamic address: if your ISP wants you to set a fixed address then set it to a fixed address instead
+  * If you are confused now or don't know, simply start by leaving both config parts in its default configuration. If you experience problems with these defaults, then adapt them accordingly later.
+
+**Luci instructions**:
+  - Click on **Network** -> **Interfaces**, then click on the **Edit** button of the LAN Network.
+  - In **General Setup** tab, in **IPv4 address** write the static address of this device, if your router's address is 192.168.1.1 (most common) you can usually choose any address from 192.168.1.2 to 192.168.1.250. Once you have chosen and written the IP address, write it down in the same sticker with the user/password above, it will be used to connect to your device in the future.\\
+  - By default the WAN interface/port is set as **DHCP client**, this will allow it to work with networks where there is another router giving addresses without further configuration. If you need to set static address please see the instructions for Client device, and change the WAN interface settings accordingly.
+
+**Command line instructions**:
+  - type ''uci set network.lan.ipaddr='new-ip-address''' ("new-ip-address" is the new IP address you want for the LEDE device in your network) and press Return, 
+  - if needed, type ''uci set network.wan.proto='static''' to switch to static protocol on WAN interface, then change wan settings by using the same procedure detailed for Client device, settings for wan interface are ''network.wan.ipaddr'', ''network.wan.gateway'', ''network.wan.dns'', and so on, so change the commands accordingly.
+  - You might want to [[docs:user-guide:start#basic_configuration|basic LEDE documentation]] too, as these setups are usually very specific to your own network setup and it makes no sense to try to cover all possible cases here.
+  - type ''uci commit && service network restart'' and press Return 
+  - then connect again to your device at its new IP address and continue

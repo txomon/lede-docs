@@ -1,0 +1,14 @@
+====== LEDE 도큐먼트 ======
+~~NOTOC~~
+
+LEDE는 임베디드 장치들(일반적으로 무선 라우터)을 위한 확장성 높은 GUN/Linux 배포판입니다. LEDE는 OpenWrt 프로젝트를 기반으로 하였습니다. 라우터를 위한 많은 다른 배포판들과 달리 LEDE는 임베디드 장치들을 위해 완벽한 기능들을 갖추고 수정하기 쉬운 운영체제를 구축하였습니다 
+
+===== LEDE 가이드 =====
+^  [[ko:docs:guide-quick-start:start|빠른 시작 가이드]]    ^  [[ko:docs:user-guide:start|사용자 가이드]]          ^  [[ko:docs:guide-developer:start|개발자 가이드]]               ^
+| LEDE가 처음이라면 이것을 시작하세요. LEDE를 사용하여 여러분의 집에 있는 라우터의 펌웨어를 어떻게 업그레이드 할 수 있는지, 더 나은 집안의 네트워크를 구축하는 법을 발견할 수 있습니다. //[[docs:guide-quick-start:start|더 보기...]]//| 당신의 라우터를 구동할 준비가 되었다면 이것을 시작하세요. LEDE는 VPN,VLAN 다른 수백가지의 추가적인 기능을 갖고 있습니다. //[[docs:user-guide:start|더보기...]]//| 당신이 LEDE로 새로운 것을 빌드하거나 개발에 기여하고 싶다면 이것을 시작하세요. 쉽게 개발할 수 있는 수 많은 방법들이 있습니다. //[[ko:docs:guide-developer:the-source-code|더보기...]]//|
+
+===== 어디서 배워야 할까요? =====
+위의 세가지 가이드(입문자, 사용자, 개발자 가이드)들은 사실상 LEDE에 대한 거의 모든 정보를 담고 있습니다.
+wiki페이지를 이용하여 기능들을 찾아 사용하거나 밑의 문서들의 목록을 보며 작업할 수 있습니다.
+
+{{pagequery>@:docs: *;sort=ns,title;group;cols=2;label=Documentation pages by namespace;hidestart;hidejump;display={title};}}

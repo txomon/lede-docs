@@ -1,0 +1,59 @@
+====== Failsafe Mode and Factory Reset ======
+//LEDE// allows you to boot into a **failsafe mode** that overrides its current configuration. If your device becomes inaccessible, e.g. after a configuration error, then failsafe mode is there to help you out. When you reboot in failsafe mode, the device starts up in a basic operating state, with a few hard coded defaults, and you can begin to fix the problem manually. 
+
+Failsafe mode **cannot**, however, fix more deeply rooted problems like faulty hardware or a broken kernel. It is similar to a reset, however with failsafe, you can to access your device and restore settings if desired, whereas a reset would just wipe everything.
+
+**Caveat:** Failsafe mode is only available if you have installed firmware from a SquashFS image, that includes the required read-only root partition. To verify whether your device has the SquashFS root partition, check for "squashfs" either in the //LEDE// image name or perform the following check on your device:
+
+<code>
+grep squash /proc/mount
+</code>
+==== Entering failsafe mode ====
+
+Make sure you use a wired connection, since the failsafe will disable your wireless connectivity.
+
+On most routers, LEDE will blink a LED (usually "Power", may be other) during the boot process after it gets control from the initial bootloader (like u-boot). LEDE will rather early in the boot cycle check if the user wants to enter the failsafe mode instead of a normal boot. It listens for a button press inside a specific two second window, which is indicated with LEDs and by transmitting an UDP package.
+
+There are three different (power) LED blinking speeds during boot for most of the routers:
+
+  * first a moderate 0.1 second blinking rhythm during those two seconds, when router waits for user to trigger the failsafe mode
+  * then either
+       * a slow 0.2 second blink continuing to the end of boot, if the failsafe was not triggered and the normal boot continues
+       * a rapid 0.05 second blink if the user pressed a button and failsafe mode was triggered
+
+**To enter failsafe mode, follow one of the procedures listed below:**
+
+  * **Wait for a flashing LED and press a button.** This is usually the easiest method once you figure out the correct moment.
+  * **Wait (with a packet sniffer) for a special broadcast packet and press a button.** The packet will be sent to destination address 192.168.1.255 port UDP 4919. The packet contains the text "//Please press button now to enter failsafe//". So for example, in a terminal and using tcpdump, with the router connected to port eth0, you would enter the command <code>tcpdump -Ani eth0 port 4919 and udp</code>
+  * **Watch for a boot message on the serial console and press a key ("f") on the serial keyboard.** This requires that you have attached a serial cable to the device. The message shown in the console is "//Press the [f] key and hit [enter] to enter failsafe mode//"
+
+Usually, it is easiest to watch the LEDs. However, do consult the available documentation for your device, as there is no default button assigned as a reset button and not all procedures work on every device. Whichever trigger you use, the device will enter failsafe mode and you can access the command line with SSH (always possible) or a serial keyboard.
+
+Note that LEDE uses always SSH, but early OpenWrt releases (15.05 and before) offered a telnet connection in this state but no SSH.
+
+Note: old Openwrt wiki page offer more details, most of them still valid: https://wiki.openwrt.org/doc/howto/generic.failsafe
+==== Fixing your settings ====
+
+Once failsafe mode is triggered, the router will boot with a network address of 192.168.1.1/24, usually on the //eth0// network interface, with only essential services running. Using SSH or a serial connection, you can then mount the JFFS2 partition with the following command:
+
+<code>
+mount_root
+</code>
+
+After that, you can start looking around and fix what’s broken. The JFFS2 partition will be mounted to ///overlay//, as under normal operation.
+
+==== Soft Factory Reset ====
+If you want a clean slate, there’s no need to flash again; just enter the following command and your device's settings will be reset to defaults like when LEDE was first installed.
+
+<code>
+umount /overlay && firstboot && reboot
+</code>
+Note: for most routers, "firstboot" actually just issues a "jffs2reset" command, so there is no difference compared to the "hard reset" advice below.
+==== Hard Factory Reset ====
+This command will erase and reformat the whole jffs2 partition and create it again: 
+
+<code>
+umount /overlay && jffs2reset && reboot
+</code>
+
+While essentially doing the same thing as //firstboot//, this actually rewrites the whole flash area of the JFFS2 (read-write) partition instead of just re-formatting it.

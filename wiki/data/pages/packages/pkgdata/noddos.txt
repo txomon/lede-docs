@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: noddos ======
+---- dataentry packages ----
+Name                             : noddos
+Version                          : 0.5.2-1
+Description                      : Noddos discovers what devices you have in your network and tailors the firewall rules based on whitelisted flows for that device. Noddos downloads the firewall rules periodically from the cloud. In order to support creating these firewall rules, noddos can optionally upload anonimized traffic statistics for each device to the cloud.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 179 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libstdcpp, libnetfilter-conntrack, libcurl, libopenssl, openssl-util, ca-bundle, ca-certificates, wget, bzip2, libtins, ipset, libpthread
+Categories_pkg-categorys         : network #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arm_arm1176jzf-s_vfp, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_mpcore, arm_mpcore_vfp, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 180
+License                          : GPLv3
+Maintainer_pkg-maintainer        : Steven Hessing
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/net/noddos|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 0.5.2-1 # short version of the package, for display in table
+----
+

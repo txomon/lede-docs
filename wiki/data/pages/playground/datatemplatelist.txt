@@ -1,0 +1,12 @@
+/* The datatemplate plugin seems to be somehow broken.
+* This page is for testing this issue.
+*  --- //[[tmo26@gmx.de|tmomas]] 2016/11/02 22:32//
+*/
+
+<todo @tmomas>Make the datatemplatelist work</todo> -> Ticket created 2017-01-28: https://github.com/Cyrille37/dokuwiki-plugin-datatemplate/issues/6
+
+---- datatemplatelist dttpllist ----
+template : templates:datatemplate_list2
+cols     : brand, model
+filter   : model=DIR-505
+----

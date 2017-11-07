@@ -1,0 +1,15 @@
+====== Backing up your configuration ======
+
+It's a great idea to make a backup //before// you make changes to the device configuration. This makes it easier to revert to the previous state - you can simply restore the settings. To make a backup archive:
+
+  - Optional, if you have custom configurations outside /etc/config: Go to **System > Backup/Flash Firmware > Configuration** tab. This will allow you to add your custom configuration files to the [[https://wiki.openwrt.org/doc/howto/notuci.config#etcsysupgradeconf|/etc/sysupgrade.conf]] file that is read by sysupgrade when it is backing up files. Click “Submit” when done editing.
+  - Navigate to the **System->Backup\Flash Firmware**
+  - Click “Generate Archive” to save the settings on your computer. The file will be saved with the name in the format “backup-LEDE-YYYY-MM-DD.tar.gz”.
+  
+===== Restoring Settings =====
+
+You can restore previously-saved settings from an archive to revert to an earlier state. To do this:
+
+  - Navigate to the **System->Backup\Flash Firmware**
+  - Click the "Choose file" button next to **Restore backup:** then select the desired backup archive. 
+  - Click the "Upload Archive" button. The earlier settings will be restored to your device.

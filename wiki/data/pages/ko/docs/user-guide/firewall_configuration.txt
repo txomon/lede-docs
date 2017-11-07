@@ -1,0 +1,260 @@
+====== 방화벽 설정 ======
+방화벽 설정은  **''/etc/config/firewall''**에 있습니다.
+
+===== 개요 =====
+OpenWrt는 패킷 필터링, NAT 및 mangling을 위해 netfilter를 사용합니다. UCI 방화벽은 [[http://www.netfilter.org|iptables system]]에서 추상화 된 인터페이스를 제공하여 사용자가 필요한 경우 iptables 규칙을 스스로 제공 할 수있게하면서 가장 일반적인 목적에 맞는 단순한 설정 모델을 제공합니다
+
+UCI 방화벽은 두 개 이상의 인터페이스를 함께 매핑하여 특정 인터페이스에 대한 기본 규칙, 인터페이스 간 전달 규칙 및 추가 규칙을 설명하는 데 사용됩니다. 설정 파일에서 기본 규칙이 먼저 나오지만 마지막으로 적용됩니다. 넷 필터 시스템은 패킷이 다양한 규칙을 통과하는 체인 처리 필터입니다. 일치하는 첫 번째 규칙이 실행되어 패킷이 ACCEPT 또는 DROP / REJECT 중 하나에 도달 할 때까지 다른 규칙 체인으로 연결됩니다. 이러한 결과는 최종적인 것이므로 기본 규칙이 마지막에 적용되며 가장 구체적인 규칙이 먼저 적용됩니다. 영역은 NAT (network-address-translation)라고도하는 가장 한 마스 쿼 레이 딩 을 구성 하는데도 사용됩니다. 뿐만 아니라 일반적으로 리디렉션이라고하는 포트 전달 규칙이 있습니다. 
+
+영역은 항상 물리적 장치에 매핑되는 하나 이상의 인터페이스에 매핑되어야합니다. 따라서 영역은 네트워크 (서브넷)를 지정하는 데 사용할 수 없으며 생성 된 iptables 규칙은 인터페이스에서만 작동합니다. 차이점은 서브넷에 다른 게이트웨이가 포함되어있을 때 인터페이스가 자체 서브넷의 일부가 아닌 대상에 도달하는 데 사용될 수 있다는 것입니다. 그러나 일반적으로 포워딩은 lan 인터페이스와 wan 인터페이스 사이에서 이루어지며 라우터는 인터넷의 'edge'게이트웨이 역할을합니다. UCI 방화벽l의 기본 설정은 이러한 공통 설정을 제공합니다. 
+===== 요구사항 =====
+  * **''firewall''** (또는  **''firewall3''**) 및 필요한것들 (//사전 설치//)
+  * **''iptables''** (//사전 설치//)
+  * **''iptables-mod-?''** (//선택사항//) -필요한 특수 기능에 따라 다름 
+
+===== 세션 =====
+다음은 방화벽 구성에서 정의 할 수있는 세션 유형에 대한 개요입니다. 라우터의 최소 방화벽 구성은 일반적으로 하나의 기본 세션, 최소 두 개의 영역 ( ''lan'' 밒 ''wan'') 과 ''lan'' 에서 ''wan'' 트래픽을 허용하는 하나의 전달 로 구성됩니다. (전달 세션은 둘 이상의 영역이 없으면 규칙이 필요 없으므로 규칙을 해당 영역의 '전역 기본값'으로 설정할 수 있습니다.) 
+==== 기본값 ====
+''defaults''세션은 특정 영역에 속하지 않는 글로벌 방화벽 설정을 선언합니다. 이 세션에서는 다음 옵션을 정의합니다. 
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''input'' | string | no | ''REJECT'' | ''filter'' 테이블의''INPUT'' 체인에 대한 정책을 설정합니다. |
+| ''output'' | string | no | ''REJECT'' | ''filter'' 테이블의''OUPUT'' 체인에 대한 정책을 설정합니다. |
+| ''forward'' | string | no | ''REJECT'' |''filter'' 테이블의''FORWARD'' 체인에 대한 정책을 설정합니다. |
+| ''drop_invalid'' | boolean | no | ''0'' | 잘못된 패킷을 버리십시오 (예 : 활성화 된 연결과 일치하지 않음).  |
+| ''syn_flood'' | boolean | no | ''0'' | [[wp>SYN flood]] 보호를 사용합니다 (''synflood_protect'' 설정에 의해 사용). |
+| ''synflood_protect'' | boolean | no | ''0'' | [[wp>SYN flood]] 보호를 사용합니다. |
+| ''synflood_rate'' | string | no | ''25'' | 트래픽이 홍수로 간주되는 SYN 패킷의 속도 제한 (패킷 / 초)을 설정합니다. |
+| ''synflood_burst'' | string | no | ''50'' | 허용 된 속도를 초과하면 트래픽이 홍수로 간주되는 SYN 패킷의 버스트 제한을 설정합니다.  |
+| ''tcp_syncookies'' | boolean | no | ''1'' | [[wp>SYN cookies]]사용하도록 설정합니다. . |
+| ''tcp_ecn'' | boolean | no | ''0'' |  |
+| ''tcp_westwood'' | boolean | no | ''0'' |  |
+| ''tcp_window_scaling'' | boolean | no | ''1'' | TCP 창 크기 조정을 사용합니다.|
+| ''accept_redirects'' | boolean | no | ''0'' |  |
+| ''accept_source_route'' | boolean | no | ''0'' |  |
+| ''custom_chains'' | boolean | no | ''1'' |  |
+| ''disable_ipv6'' | boolean | no | ''0'' |IPv6 방화벽 규칙을 비활성화하십시오.  |
+
+==== Zones ====
+
+''zone'' 세션은 하나 이상의 인터페이스를 그룹화 하고 전달 , 규칙 및 리디렉션 의 소스 또는 대상 역할을합니다. 나가는 트래픽의 마스커레이딩 (마스커레이딩)은 영역 단위로 제어됩니다. 매스커레이딩은 나가는 인터페이스에서 정의됩니다. 
+
+  * 영역에 대한 INPUT 규칙은 해당 영역의 인터페이스를 통해 라우터 자체에 도달하려는 트래픽에 어떤 일이 발생하는지 설명합니다.
+  * 영역에 대한 OUTPUT 규칙은 해당 영역의 인터페이스를 통과하는 라우터 자체에서 발생하는 트래픽에 어떤 일이 발생하는지 설명합니다. 
+  * 영역에 대한 앞으로의 규칙은 해당 영역의 여러 인터페이스간에 전달되는 트래픽에 어떤 일이 발생하는지 설명합니다. 
+
+아래 옵션은 ''zone'' 세션에서 정의됩니다.
+
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''name'' | zone name | yes | //(none)// | 고유 한 영역 이름. 11 문자는 최대 작동 방화벽 존 이름 길이입니다. |
+| ''network'' | list | no | //(none)// | 이 영역에 연결된 //[[docs:user-guide:network_configuration#interfaces|인터페이스]]// 목록입니다. 생략되고 추가 * 옵션, 서브넷 또는 장치가 제공되지 않으면 ''name''의 값이 기본적으로 사용됩니다. 네트워크 구성에 정의 된 별칭 인터페이스는 유효한 '독립형'네트워크로 사용할 수 없습니다. [[docs:user-guide:introduction_to_lede_configuration#appending_or_deleting_values_on_a_list_option | list syntax]]을 사용하세요 . | 
+| ''masq'' | boolean | no | ''0'' | 나가는 영역 트래픽을 마스 쿼 레이 딩할지 여부를 지정합니다. 일반적으로 WAN 영역에서 활성화됩니다.  |
+| ''masq_src'' | list of subnets | no | ''0.0.0.0/0'' | 지정된 소스 서브넷으로 위장하는 것을 제한하십시오. 서브넷 prefix를 ''!'' 로 지정하면 부정 할 수 있습니다 ! ; 여러 서브넷이 허용됩니다. |
+| ''masq_dest'' | list of subnets | no | ''0.0.0.0/0'' | 지정된 dest 서브넷으로 위장하는 것을 제한하십시오. 서브넷 prefix를 ''!'' 로 지정하면 부정 할 수 있습니다 ! ; 여러 서브넷이 허용됩니다.  |
+| ''conntrack'' | boolean | no | ''1'' if masquerading is used, ''0'' otherwise | 이 영역에 강제 연결 추적. (최신 fw3 버전에서는 지원되지 않음)([[#notes_on_connection_tracking|Note on connection tracking]] 참조). |
+| ''mtu_fix'' | boolean | no | ''0'' | 나가는 영역 트래픽에 대해 MSS 클램핑을 사용합니다.  |
+| ''input'' | string | no | ''DROP'' | 들어오는 영역 트래픽에 대한 기본 정책 ( ''ACCEPT'', ''REJECT'', ''DROP'') |
+| ''forward'' | string | no | ''DROP'' | 전달된 영역 트래픽에 대한 기본 정책 ( ''ACCEPT'', ''REJECT'', ''DROP'') |
+| ''output'' | string | no | ''DROP'' | 나가는 영역 트래픽에 대한 기본 정책 ( ''ACCEPT'', ''REJECT'', ''DROP'') |
+| ''family'' | string | no | ''any'' | 이러한 iptables 규칙의 프로토콜 패밀리 ( ''ipv4'', ''ipv6'' 또는 ''any'')는 다음과 같습니다.  |
+| ''log'' | boolean | no | ''0'' | 이 영역에서 거부 및 삭제 된 트래픽에 대한 로그 규칙을 만듭니다.  |
+| ''log_limit'' | string | no | ''10/minute'' | 간격 당 로그 메시지의 양을 제한합니다.  |
+| ''device'' | list | no | //(none)// | 이 영역에 연결된 원시 네트워크 장치 이름 목록입니다 (예 : ppp+ 를 사용하여 PPP 인터페이스 일치).  |
+| ''subnet'' | list | no | //(none)// | 이 영역에 연결된 IP 서브넷 목록입니다. |
+| ''extra'' | string | no | //(none)// | 추가 인수는 iptables에 직접 전달됩니다. 이러한 옵션은 소스 및 대상 분류 규칙으로 전달되므로 여기서는 -dport와 같은 –dport 별 옵션을 사용하면 안됩니다.이 경우에는 extra_src 및 extra_dest 옵션을 대신 사용해야합니다.   |
+| ''extra_src'' | string | no | //Value of ''extra''// | 추가 인수는 소스 분류 규칙을 위해 iptables에 직접 전달됩니다.   |
+| ''extra_dest'' | string | no | //Value of ''extra''// | 추가 인수는 dest 분류 규칙을 위해 iptables에 직접 전달됩니다.   |
+
+==== Forwardings ====
+
+The ''forwarding'' 세션은 zone 간의 트래픽 흐름을 제어하고 특정 방향에 대한 [[wp>Path_MTU_discovery#Problems_with_PMTUD|MSS clamping]] 을 활성화 할 수 있습니다. 하나의 방향 만 forwarding 규칙에 포함됩니다. 두 영역간에 양방향 트래픽 흐름을 허용하려면 두 가지 전달 이 필요하며 ''src'' 와 ''dest'' 는 각각 반대입니다. 
+
+다음은 forwarding 내에서 허용되는 옵션 목록입니다. 
+
+^ 이름 ^ Type ^ Required ^ 초기값^ 설명^
+| ''src'' | zone name | yes | //(none)// | 트래픽 소스 영역을 지정 합니다. 정의 된 영역 이름 중 하나를 참조해야합니다. 일반적인 포트 포워드의 경우 일반적으로 'wan'입니다.  |
+| ''dest'' | zone name | yes | //(none)// | 트래픽 대상 영역을 지정 합니다. 정의 된 영역 이름 중 하나를 참조해야합니다.  |
+| <del>''mtu_fix''</del> | <del>boolean</del> | <del>no</del> | <del>''0''</del> | <del>Enable MSS clamping for traffic flowing from the //source zone// to the //destination zone//</del> (Deprecated and moved to ''zone'' sections in 8.09.2+) |
+| ''family'' | string | no | ''any'' | iptables 규칙을 생성 any 프로토콜 패밀리 ( ''ipv4'' , ''ipv6'' ).  |
+
+:!: 이 섹션에 대해 생성 된 ''iptables'' 규칙은 연결 추적이 작동해야하는 상태 일치 에 의존합니다. src 또는 dest 영역 중 적어도 하나는 masq 또는 conntrack 옵션을 통해 connection tracking을 활성화 해야 합니다. 
+
+==== Redirects ====
+
+포트 포워딩 (DNAT)은 ''redirect'' 세션으로 정의됩니다. 지정된 규칙과 일치하는 지정된 소스 영역 의 모든 수신 트래픽은 지정된 내부 호스트로 보내집니다. 
+
+redirect는 일반적으로 "포트 전달"및 "가상 서버"라고도합니다. 
+
+포트 범위는 start:stop 으로 지정됩니다 (예 6666:6670 . 이는 iptables 구문과 유사합니다. )
+
+아래 옵션은 redirect 에 유효합니다. 
+
+^ 이름 ^ Type ^ Required ^ 초기값^ 설명^
+| ''src'' | zone name | yes for ''DNAT'' target | //(none)// | 트래픽 소스 영역을 지정 합니다. 정의 된 영역 이름 중 하나를 참조해야합니다. 일반적인 포트 포워드의 경우 이는 대개 wan 합니다. |
+| ''src_ip'' | ip address | no | //(none)// | 지정된 소스 IP 주소 에서 들어오는 트래픽을 일치시킵니다. |
+| ''src_dip'' | ip address | yes for ''SNAT'' target | //(none)// | DNAT의 경우 지정된 대상 IP 주소 로 향하는 수신 트래픽을 찾습니다 . SNAT 의 경우 소스 주소 를 주어진 주소로 다시 작성하십시오.  |
+| ''src_mac'' | mac address | no | //(none)// | 지정된 mac 주소 에서 들어오는 트래픽을 일치시킵니다.  |
+| ''src_port'' | port or range | no | //(none)// | 클라이언트 호스트에서 주어진 소스 포트 또는 포트 범위 에서 발생하는 수신 트래픽을 일치시킵니다. |
+| ''src_dport'' | port or range | no | //(none)// | DNAT의 경우이 호스트의 지정된 대상 포트 또는 포트 범위 로 향하는 들어오는 트래픽을 일치시킵니다. SNAT 의 경우 소스 포트 를 주어진 값으로 다시 작성하십시오.  |
+| ''proto'' | protocol name or number | yes | //tcpudp// | 주어진 프로토콜을 사용하여 들어오는 트래픽을 일치시킵니다. |
+| ''dest'' | zone name | yes for ''SNAT'' target | //(none)// | 트래픽 대상 영역을 지정 합니다. 정의 된 영역 이름 중 하나를 참조해야합니다. Attitude Adjustment에서 DNAT target의 경우 NAT reflection은 이것이 lan 과 같은 경우에만 작동합니다. |
+| ''dest_ip'' | ip address | yes for ''DNAT'' target | //(none)// | DNAT의 경우 일치하는 들어오는 트래픽을 지정된 내부 호스트로 리디렉션합니다. SNAT 의 경우 지정된 주소로 전달되는 트래픽을 일치시킵니다. DNAT의 경우 dest_ip 값이 라우터의 로컬 IP 주소와 일치하면 ifconfig 와 같이 DNAT + 입력 'accept'규칙으로 변환됩니다. 그렇지 않으면 DNAT + 전달 규칙입니다.  |
+| ''dest_port'' | port or range | no | //(none)// | DNAT의 경우 일치하는 들어오는 트래픽을 내부 호스트의 지정된 포트로 리디렉션합니다. SNAT 의 경우 지정된 포트로 향하는 트래픽을 일치시킵니다. 하나의 포트 또는 범위 만 지정할 수 있으며 규칙 (아래)과 같이 다른 포트는 지정할 수 없습니다. |
+| ''ipset'' | string | no | //(none)// | 지정된 경우, 주어진 ipset 에 대해 트래픽을 일치 시킵니다 . 느낌표 앞에 값을 붙이면 일치가 반전 될 수 있습니다. |
+| ''mark'' | string | no | //(none)// | 지정된 경우 임의의 표시 값과 일치하도록 트래픽을 지정된 방화벽 표시 (예 : 0xFF 는 255 또는 0x0/0x1 )와 일치시킵니다. 매치는 느낌표로 접두어를 붙여서 반전시킬 수 있습니다 (예 : !0x10 ). |
+| ''start_date'' | date (''yyyy-mm-dd'') | no | //(always)// | 지정된 경우 지정된 날짜 이후의 트래픽 만 일치시킵니다. ). |
+| ''stop_date'' | date (''yyyy-mm-dd'') | no | //(always)// | 지정된 경우 지정된 날짜 이전의 트래픽 만 일치시킵니다.  |
+| ''start_time'' | time (''hh:mm:ss'') | no | //(always)// | 지정된 경우 지정된 시간 (일치하는 시간) 이후의 트래픽 만 일치시킵니다.  |
+| ''stop_time'' | time (''hh:mm:ss'') | no | //(always)// | 지정된 경우 지정된 시간 (일치하는 시간) 전에 일치하는 트래픽 만 일치시킵니다. |
+| ''weekdays'' | list of weekdays | no | //(always)// | 지정된 경우 일요일, 월요일, 목요일 및 금요일에만 일치하는 일요일 월요일과 같이 지정된 요일에 트래픽을 일치시킵니다. 목록 앞에 느낌표를 붙여서 목록을 뒤집을 수 있습니다 (예 : ! sat sun ! sat sun 와 일요일은 항상 일치하지만 토요일과 일요일에는 앉았습니다.  |
+| ''monthdays'' | list of dates | no | //(always)// | 이 옵션을 지정하면 매월 2 일, 5 일 및 2 5 30 에 한 번만 일치하는 월의 지정된 요일에 트래픽을 일치시킵니다. 목록 앞에 느낌표를 붙여서 목록을 뒤집을 수 있습니다 (예 : ! 31 ! 31 과 매치하지만 매월 31 일.  |
+| ''utc_time'' | boolean | no | ''0'' | 모든 주어진 시간 값을 현지 시간 대신 UTC 시간으로 처리하십시오.  |
+| ''target'' | string | no | ''DNAT'' | 규칙을 생성 할 때 사용할 NAT 대상 ( DNAT 또는 SNAT )입니다.  |
+| ''family'' | string | no | ''any'' | iptables 규칙을 생성 any 프로토콜 패밀리 ( ipv4 , ipv6 또는 any ).  |
+| ''reflection'' | boolean | no | ''1'' | DNAT 대상에 적용 할 수있는이 리디렉션에 NAT 반영을 활성화합니다.  |
+| ''reflection_src'' | string | no | ''internal'' | reflection 가 1 경우 NAT 반영 패킷에 사용할 원본 주소입니다. 이것은 사용할 인터페이스의 주소를 지정하는 internal 또는 external 일 수 있습니다. DNAT 대상에 적용 가능합니다.  |
+| ''limit'' | string | no | //(none)// | 최대 평균 일치율; /second , /minute , /hour 또는 /day 접미사와 함께 숫자로 지정됩니다. 예 : 3/second , 3/sec 또는 3/s .  |
+| ''limit_burst'' | integer | no | ''5'' | 일치시킬 패킷의 최대 초기 수로서 단기 평균 이상으로 limit 합니다.  |
+| ''extra'' | string | no | //(none)// | iptables에 전달할 추가 인수. 주로 IPsec 용 -m policy --dir in 과 같은 추가 일치 옵션을 지정하는 데 유용합니다.  |
+| ''enabled'' | string | no | ''1'' or ''yes'' | 리디렉션 규칙을 사용할지 여부를 설정합니다.  |
+
+:!: Attitude 조정에서 NAT reflection이 작동하려면 **반드시** ''redirect'' 세션에서 ''option dest lan'' 을 지정해야 합니다. ( DNAT 대상을 사용하고 있음에도 불구하고). 
+
+==== Rules ====
+
+''rule'' 세션을 사용하여 특정 포트 또는 호스트에 대한 액세스를 허용하거나 제한하는 기본 승인 또는 거부 규칙을 정의 할 수 있습니다. 
+
+방화벽 v2, 버전 57 이하의 규칙은 redirect 과 같이 작동하며 지정된 소스 영역 에 연결되어 수신 트래픽을 일치시킵니다. 
+
+이후 버전에서는 규칙이 다음과 같이 정의됩니다. 
+  * src 와 dest 가 주어지면 규칙은 전달 된 트래픽과 일치합니다
+  * src 만 주어진 경우 규칙은 들어오는 트래픽을 일치시킵니다. 
+  * dest 만 주어진 경우 규칙은 나가는 트래픽과 일치합니다. 
+  * src 도 dest 도 지정되지 않은 경우 규칙은 기본적으로 나가는 트래픽 규칙으로 설정됩니다. 
+
+포트 범위는 start:stop 으로 지정됩니다 (예 6666:6670 . 이는 iptables 구문과 유사합니다. 
+
+이 세션에 대한 유효한 옵션은 다음과 같습니다. 
+
+^ 이름 ^ Type ^ Required ^ 초기값^ 설명^
+| ''src'' | zone name | yes (:!: optional since Firewall v2, version 58 and above) | //(none)// | 트래픽 소스 영역을 지정 합니다. 정의 된 영역 이름 중 하나를 참조해야합니다.  |
+| ''src_ip'' | ip address | no | //(none)// | 지정된 소스 IP 주소 에서 들어오는 트래픽을 일치시킵니다.  |
+| ''src_mac'' | mac address | no | //(none)// | 지정된 mac 주소 에서 들어오는 트래픽을 일치시킵니다. |
+| ''src_port'' | port or range | no | //(none)// | 해당 proto 가 지정된 경우 지정된 소스 포트 또는 포트 범위 에서 들어오는 트래픽을 일치시킵니다. 여러 포트는 '80 443 465 '[[https://forum.openwrt.org/viewtopic.php?pid=287271|1]]과 같이 지정할 수 있습니다. |
+| ''proto'' | protocol name or number | no | ''tcpudp'' | 주어진 프로토콜을 사용하여 들어오는 트래픽을 일치시킵니다. tcp , udp , tcpudp , udplite , icmp , esp , ah , sctp 또는 all 중 하나 일 수 있으며, 이들 프로토콜 중 하나를 나타내는 숫자 값이거나 다른 값일 수 있습니다. /etc/protocols 의 프로토콜 이름도 사용할 수 있습니다. 숫자 0은 모두에 all 합니다.  |
+| ''icmp_type'' | list of type names or numbers | no | any | 프로토콜 icmp 경우 특정 ICMP 유형을 선택하여 일치시킵니다. 값은 정확한 icmp 유형 숫자 또는 유형 이름 일 수 있습니다 (아래 참조). ). |
+| ''dest'' | zone name | no | //(none)// | 트래픽 대상 영역을 지정 합니다. 정의 된 영역 이름 중 하나를 참조하거나 영역의 *를 참조해야합니다. 이 규칙을 지정 하면 전달 된 트래픽에 규칙이 적용됩니다. 그렇지 않으면 입력 규칙으로 처리됩니다.  |
+| ''dest_ip'' | ip address | no | //(none)// | 지정된 대상 IP 주소 로 향하는 들어오는 트래픽을 일치시킵니다. 대상 영역이 없으면 입력 규칙으로 처리됩니다.  |
+| ''dest_port'' | port or range | no | //(none)// |관련 proto 이 지정된 경우 지정된 대상 포트 또는 포트 범위 로 향하는 수신 트래픽을 일치시킵니다. 여러 포트는 '80 443 465 ' [[https://forum.openwrt.org/viewtopic.php?pid=287271|1]].과 같이 지정할 수 있습니다.  |
+| ''ipset'' | string | no | //(none)// | 지정된 경우 지정된 //[[#ip.sets|ipset]]//에 대해 트래픽을 일치 시킵니다 . 느낌표 앞에 값을 붙이면 일치가 반전 될 수 있습니다. 방향을 'setname src'또는 'setname dest'로 지정할 수 있습니다. |
+| ''mark'' | mark/mask | no | //(none)// | 지정된 경우 임의의 표시 값과 일치하도록 트래픽을 지정된 방화벽 표시 (예 : 0xFF 는 255 또는 0x0/0x1 )와 일치시킵니다. 매치는 느낌표로 접두어를 붙여서 반전시킬 수 있습니다 (예 : !0x10 ). |
+| ''start_date'' | date (''yyyy-mm-dd'') | no | //(always)// | 지정된 경우 지정된 날짜 이후의 트래픽 만 일치시킵니다.  |
+| ''stop_date'' | date (''yyyy-mm-dd'') | no | //(always)// | 지정된 경우 지정된 날짜 이전의 트래픽 만 일치시킵니다.  |
+| ''start_time'' | time (''hh:mm:ss'') | no | //(always)// | 지정된 경우 지정된 시간 (일치하는 시간) 이후의 트래픽 만 일치시킵니다.  |
+| ''stop_time'' | time (''hh:mm:ss'') | no | //(always)// | 지정된 경우 지정된 시간 (일치하는 시간) 전에 일치하는 트래픽 만 일치시킵니다.  |
+| ''weekdays'' | list of weekdays | no | //(always)// | 지정된 경우 일요일, 월요일, 목요일 및 금요일에만 일치하는 일요일 월요일과 같이 지정된 요일에 트래픽을 일치시킵니다. 목록 앞에 느낌표를 붙여서 목록을 뒤집을 수 있습니다 (예 : ! sat sun ! sat sun 은 항상 일치하지만 토요일과 일요일에는 열심히 일합니다.  |
+| ''monthdays'' | list of dates | no | //(always)// | 이 옵션을 지정하면 매월 2 일, 5 일 및 2 5 30 에 한 번만 일치하는 월의 지정된 요일에 트래픽을 일치시킵니다. 목록 앞에 느낌표를 붙여서 목록을 뒤집을 수 있습니다 (예 : ! 31 ! 31 과 매치하지만 매월 31 일.  |
+| ''utc_time'' | boolean | no | ''0'' | 모든 주어진 시간 값을 현지 시간 대신 UTC 시간으로 처리하십시오.  |
+| ''target'' | string | yes | ''DROP'' | 일치 트래픽에 대한 방화벽 동작 ( ACCEPT , REJECT , DROP , MARK , NOTRACK )  |
+| ''set_mark'' | mark/mask | yes for target ''MARK'' | //(none)// | mask와 OR에 의해 주어진 비트들을 패킷 표시로 제로합니다. 마스크를 생략하면 0xFFFFFFFF로 간주됩니다.  |
+| ''set_xmark'' | ::: | ::: | ::: |마스크 및 XOR 값에 의해 주어진 비트를 패킷 표시로 제로합니다. 마스크를 생략하면 0xFFFFFFFF로 간주됩니다. |
+| ''family'' | string | no | ''any'' | iptables 규칙을 생성 any 프로토콜 패밀리 ( ipv4 , ipv6 또는 any ). |
+| ''limit'' | string | no | //(none)// | 최대 평균 일치율; /second , /minute , /hour 또는 /day 접미사와 함께 숫자로 지정됩니다. 예 : 3/minute , 3/min 또는 3/m . |
+| ''limit_burst'' | integer | no | ''5'' | 일치시킬 패킷의 최대 초기 수를 limit 하여 단기 평균을 허용합니다.  |
+| ''extra'' | string | no | //(none)// | iptables에 전달할 추가 인수. 주로 IPsec 용 -m policy --dir in 과 같은 추가 일치 옵션을 지정하는 데 유용합니다 |
+| ''enabled'' | boolean | no | yes | 규칙 사용 또는 사용 중지  |
+
+
+icmp_type에 사용할 수있는 ICMP 유형 이름 : 
+
+| ''address-mask-reply'' | ''host-redirect'' | ''pong'' | ''time-exceeded'' |
+| ''address-mask-request'' | ''host-unknown'' | ''port-unreachable'' | ''timestamp-reply'' |
+| ''any'' | ''host-unreachable'' | ''precedence-cutoff'' | ''timestamp-request'' |
+| ''communication-prohibited'' | ''ip-header-bad'' | ''protocol-unreachable'' | ''TOS-host-redirect'' |
+| ''destination-unreachable'' | ''network-prohibited'' | ''redirect'' | ''TOS-host-unreachable'' |
+| ''echo-reply'' | ''network-redirect'' | ''required-option-missing'' | ''TOS-network-redirect'' |
+| ''echo-request'' | ''network-unknown'' | ''router-advertisement'' | ''TOS-network-unreachable'' |
+| ''fragmentation-needed'' | ''network-unreachable'' | ''router-solicitation'' | ''ttl-exceeded'' |
+| ''host-precedence-violation'' | ''parameter-problem'' | ''source-quench'' | ''ttl-zero-during-reassembly'' |
+| ''host-prohibited'' | ''ping'' | ''source-route-failed'' | ''ttl-zero-during-transit'' |
+==== Includes ====
+
+방화벽 설정에 하나 이상의 include 세션을 지정하여 사용자 지정 방화벽 스크립트를 포함 할 수 있습니다. 
+
+includes에 사용할 수있는 매개 변수는 하나뿐입니다. 
+
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''enabled'' | boolean | no | ''1'' | 섹션을 삭제하지 않고도 해당 포함을 사용 중지 할 수 있습니다.  |
+| ''type'' | string | no | ''script'' | Include의 유형을 지정하고, iptables-restore 형식으로 일반 파일에 포함되거나 restore 되는 일반 쉘 스크립트의 스크립트가 될 수 있습니다.  |
+| ''path'' | file name | yes | ''/etc/firewall.user'' | 부팅 또는 방화벽 다시 시작시 실행할 셸 스크립트를 지정합니다. |
+| ''family'' | string | no | ''any'' | 
+include가 호출되는 주소 패밀리 ( ipv4 , ipv6 또는 any )를 지정합니다.  |
+| ''reload'' | boolean | no | ''0'' | include에서 재로드 할 때 호출해야하는지 여부를 지정합니다. include가 내부 체인에 규칙을 삽입하는 경우에만 필요합니다.  |
+
+유형 script 에는 임의의 명령이 포함될 수 있습니다 (예 : 고급 iptables 규칙 또는 트래픽 형성에 필요한 tc 명령). 
+
+:!: 사용자 정의 iptables 규칙은 일반 규칙보다 구체적이기 때문에 -A (추가) 대신 -I (삽입)를 사용하여 규칙이 기본 규칙보다 먼저 나타나는지 확인 해야 합니다. 
+
+
+==== IP 설정 ====
+
+UCI 방화벽 버전 3은 일치시킬 항목 당 하나의 규칙을 만들 필요없이 거대한 주소 또는 포트 목록의 일치를 단순화하기 위해[[http://ipset.netfilter.org/|ipsets]] 를 참조하거나 작성하는 것을 지원합니다. 
+
+다음 옵션은 ipsets에 대해 정의됩니다.
+
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''enabled'' | boolean | no | ''1'' | 세션을 삭제할 필요없이 ipset에 대한 선언을 비활성화 할 수 있습니다. . |
+| ''external'' | string | no | //(none)// | external 옵션이 이름으로 설정되면 방화벽은 이름이 가리키는 기존 IP 집합을 참조하기 만합니다. external 옵션이 설정되지 않은 경우 방화벽은 시작할 때 ipset을 만들고 중지시 ipset을 삭제합니다.  | 
+| ''name'' | string | yes if ''external'' is unset \\ no if ''external'' is set | //(none)// if ''external'' is unset \\ value of ''external'' if ''external'' is set | 규칙이나 리디렉션의 집합을 참조하는 데 사용되는 IPset의 방화벽 내부 이름을 지정합니다.  |
+| ''family'' | string | no | ''ipv4'' | 프로토콜 제품군 ( ipv4 또는 ipv6 )을 사용하여 ipset을 만듭니다. 저장소 유형 hash 및 list 에만 적용 가능하며 bitmap 유형은 ipv4 의미합니다.  |
+| ''storage'' | string | no | //varies// | ipset에서 사용하는 저장 방법 ( bitmap , hash 또는 list )을 지정합니다. 기본값은 사용되는 데이터 유형에 따라 다릅니다 (아래의 match 옵션 참조). 대부분의 경우 저장 방법은 데이터 유형 조합에서 자동으로 추론 될 수 있지만 경우에 따라 여러 가지 선택이 가능합니다 (예 : bitmap:ip vs. hash:ip ). |
+| ''match'' | list of direction/type tuples | yes | //(none)// | 일치하는 데이터 유형 ( ip , port , mac , net 또는 set ) 및 해당 방향 ( src 또는 dest )을 지정합니다. 방향은 튜플을 형성하기 위해 밑줄로 데이터 유형과 조인됩니다 (예 : 소스 포트를 일치시키는 src_port 또는 대상 CIDR 범위를 일치시키는 dest_net). hash:ip,port 와 같이 여러 요소에 일치하는 ipsets를 사용할 때는 따옴표 나 쉼표로 구분 된 패킷 필드를 지정하십시오 (예 : "dest_ip dest_port와 일치"). |
+| ''iprange'' | IP range | yes for storage type ''bitmap'' with datatype ''ip'' | //(none)// | 덮을 IP 범위를 지정합니다. [[http://ipset.netfilter.org/ipset.man.html|ipset(8)]]를 참조하세요.hash 저장 유형에만 적용됩니다.  |
+| ''portrange'' | Port range | yes for storage type ''bitmap'' with datatype ''port'' | //(none)// | 커버 할 포트 범위를 지정합니다.  [[http://ipset.netfilter.org/ipset.man.html|ipset(8)]]를 참조하세요. hash 저장 유형에만 적용됩니다.  |
+| ''netmask'' | integer | no | ''32'' | 지정하면 네트워크 주소가 IP 호스트 주소 대신 집합에 저장됩니다. 값은 1 에서 32 사이 여야합니다.[[http://ipset.netfilter.org/ipset.man.html|ipset(8)]]참조하세요. 일치 ip 가있는 bitmap 저장소 유형 또는 일치 ip 있는 hash 저장소 유형에만 적용됩니다.  |
+| ''maxelem'' | integer | no | ''65536'' | 집합에 추가 할 수있는 항목의 수를 제한하며 hash 및 list 저장소 유형에만 적용 할 수 있습니다.  |
+| ''hashsize'' | integer | no | ''1024'' | hash 저장 유형에만 적용 할 수있는 초기 해시 크기를 지정합니다.  |
+| ''timeout'' | integer | no | ''0'' | 세트에 추가 된 항목의 기본 시간 초과를 지정합니다. 값 0 은 시간 종료 없음을 의미합니다.  |
+
+=== 가능한 Storage / Match Combinations ===
+
+아래 표에는 사용 가능한 IP 주소 제품군뿐만 아니라 저장 방법과 일치하는 데이터 유형의 가능한 조합이 요약되어 있습니다. 데이터 유형 일치의 순서는 중요합니다. 
+
+^ Family ^ Storage ^ Match ^ Notes ^
+| ''ipv4'' | ''bitmap'' | ''ip'' | ''iprange'' 옵션 필요 |
+| ''ipv4'' | ''bitmap'' | ''ip mac'' | ''iprange'' 옵션 필요 |
+| ''ipv4'' | ''bitmap'' | ''port'' |''portrange'' 옵션 필요|
+| //any// | ''hash'' | ''ip'' | - |
+| //any// | ''hash'' | ''net'' | - |
+| //any// | ''hash'' | ''ip port'' | - |
+| //any// | ''hash'' | ''net port'' | - |
+| //any// | ''hash'' | ''ip port ip'' | - |
+| //any// | ''hash'' | ''ip port net'' | - |
+| - | ''list'' | ''set'' | 세트를 생성하는 메타 타입  |
+
+===== IPv6 주의사항 =====
+위에서 설명한 것처럼 옵션 family 은 IPv4, IPv6 및 두 프로토콜을 구별하는 데 사용됩니다. 그러나 IPv6 주소가 사용되는 경우 가족은 자동으로 유추됩니다. 
+
+<code>
+config rule
+        option src wan
+        option src_ip fdca:f00:ba3::/64
+        option target ACCEPT
+</code>
+
+...는 IPv6 전용 규칙으로 자동 처리됩니다. 
+비슷한, 그런 규칙 : 
+
+<code>
+config rule
+        option src wan
+        option dest_ip 88.77.66.55
+        option target REJECT
+</code>
+
+...은 IPv4로만 탐지됩니다. 
+IP 옵션이없는 규칙은 패밀리 옵션으로 덮어 쓰지 않는 한 iptables 및 ip6tables에 자동으로 추가됩니다. 리다이렉트 규칙 (portforwards)은 IPv6 DNAT 지원이 없기 때문에 (현재는) 항상 IPv4입니다. 
+
+
+===== 예시들 =====
+ [[docs:user-guide:firewall_configuration|링크]]를 타고 아래의 examples를 참고하세요
+

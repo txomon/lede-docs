@@ -1,0 +1,9 @@
+====== Newly created pages ======
+
+{{pagequery>@toh:hwdata dataentry;fulltext;filter=cdate:3 months ago->;sort=cmonth,cdate;group;cols=2;hidestart;spelldate;hidemsg;hidejump;bullet=disc;underline;display={title} [{cdate} -- {user}];showcount;label=Techdata pages created within last 3 months}}
+
+{{pagequery>@:toh: ^:toh:hwdata: ^:toh:views: *;maxns=2;filter=cdate:3 months ago->;sort=cmonth,cdate;group;cols=2;hidestart;spelldate;hidemsg;hidejump;bullet=disc;underline;display={title} [{cdate} -- {user}];showcount;label=Devicepages created within last 3 months}}
+
+{{pagequery>@:inbox:toh: *;maxns=2;filter=cdate:3 months ago->;sort=cmonth,cdate;group;cols=2;hidestart;spelldate;hidemsg;hidejump;bullet=disc;underline;display={title} [{cdate} -- {user}];showcount;label=Devicepages in INBOX created within last 3 months}}
+
+{{pagequery>^toh: ^packages: *;filter=cdate:3 months ago->;sort=cmonth,cdate;group;cols=2;hidestart;spelldate;hidemsg;hidejump;bullet=disc;underline;display={title} [{cdate} -- {user}];showcount;label=wiki pages created within last 3 months}}

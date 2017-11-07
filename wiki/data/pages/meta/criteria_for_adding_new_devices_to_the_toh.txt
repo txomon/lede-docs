@@ -1,0 +1,37 @@
+====== Criteria for adding devices to the ToH ======
+
+Only add a new dataentry if there is substantial hardware information available, together with some evidence of public interest or even better, some kind of LEDE support.
+
+We already have enough unsupported devices, which only increase the noisefloor of the ToH. Please help keeping the ToH free from "i-wish-it-was-supported devices", and only add a new dataentry if the following criteria are met:
+
+===== Hardware information available =====
+
+
+
+  * **Mandatory: Fundamental hardware information available** -> [[toh:resources|Resources for technical information]]
+    * Brand, Model, [version]
+    * SoC/CPU model, CPU MHz, RAM MB, Flash MB
+    * Flash must be ≥4MB; RAM must be ≥32MB (min. required for current LEDE)
+    * If you don't have the mandatory hardware information: **Do not add the device to the ToH.**
+  * **Optional: Additional hardware information available**
+    * WLAN hardware (if present)
+    * Switch hardware (if present)
+    * Complete serial bootlog available (dmesg is only second best, but better than nothing)
+    * Picture of PCB top/bottom side (may help with getting Platform/SoC, WLAN/Switch hardware, ...)
+    * Picture of the case: Front-, backside, label incl. model and version/revision number.
+    * [[https://wikidevi.com/wiki/Main_Page|wikidevi]] link available (with substantial information about the device, i.e. more than '?'!) -> [[https://wikidevi.com/wiki/Netgear_WNDR3700v1|Good example]]
+    * Devicepage available (with substantial information, i.e. more than just the raw template values!)
+
+
+===== Interest =====
+
+If you can neither demonstrate Alternative #1 nor Alternative #2: **Do not add the device to the ToH.**
+
+  * **Alternative 1: Interest available**
+    * Forum link available, preferrably with more than 1 posting and at least some basic hardware information.
+    * Interested users (more than one, please) and/or interested developers
+
+  * **Alternative 2: Already supported or serious efforts to get LEDE running on the device** (one of them is sufficient)
+    * Patch available
+    * git-commit available that adds support for this device (e.g. [[https://git.lede-project.org/?p=source.git;a=commit;h=f9278337cf4b9c699a41dfc1e4c448213be53e61]])
+    * LEDE image available (http://downloads.lede-project.org/...)

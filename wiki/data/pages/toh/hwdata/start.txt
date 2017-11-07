@@ -1,0 +1,6 @@
+====== Hardwaredata ======
+
+Pages in the '':toh:hwdata'' namespace are the source of information for the [[toh:start|Table of Hardware]].
+The information contained therein is purely technical facts and numbers.
+
+If you are searching for more detailed information, like install descriptions, pictures, mods, etc., please look at the respective devicepage, which you can find via the [[toh:start|Table of Hardware]].

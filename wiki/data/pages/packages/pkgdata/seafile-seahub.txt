@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: seafile-seahub ======
+---- dataentry packages ----
+Name                             : seafile-seahub
+Version                          : 5.1.4-1e1c02aa4f2a0256ffa29a28224aad2d678f43a0-1
+Description                      : The web end of seafile server.\\  \\ NOTE: in order to have better performance, localization support is turned off by default.\\ Please set 'USE_I18N = True' in seahub_settings.py if you intend to use languages other than English.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 7130 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, simplejson, python, pillow, chardet, django, django-appconf, django-compressor, django-constance, django-jsonfield, django-picklefield, django-postoffice, django-restframework, django-statici18n, et_xmlfile, flup, gunicorn, jdcal, openpyxl, python-dateutil, python-mysql, pytz, rcssmin
+Categories_pkg-categorys         : network #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : aarch64_armv8-a, arc_arc700, arc_archs, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 7112
+License                          : Apache-2.0
+Maintainer_pkg-maintainer        : Gergely Kiss
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/net/seafile-seahub|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 5.1.4-1e1c02aa4f2a025..0-1 # short version of the package, for display in table
+----
+

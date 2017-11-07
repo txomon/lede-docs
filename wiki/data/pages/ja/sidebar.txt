@@ -1,0 +1,23 @@
+~~NOCACHE~~
+
+  * [[:ja:start|LEDE Project へようこそ]]
+  * [[:ja:supported_devices|サポート済みデバイス]]
+  * [[:ja:packages:start|パッケージ]]
+  * [[:ja:downloads|ダウンロード]]
+  * [[:ja:docs:start|ドキュメント]]
+  * [[:ja:submitting-patches|パッチの提出]]
+  * [[:ja:bugs|バグ報告]]
+  * [[https://forum.lede-project.org|フォーラム]]
+  * [[:ja:faq|FAQ]] 
+
+----
+
+  * [[:ja:about|LEDE について]] 
+    * [[:ja:rules|LEDE のルール]]
+    * [[:ja:todo|LEDE To-Do]] 
+    * [[:ja:infrastructure|LEDE インフラストラクチャ]]
+  * [[:ja:wiki:start|このサイトについて]]
+
+  * [[:ja:contact|連絡先]] 
+
+----

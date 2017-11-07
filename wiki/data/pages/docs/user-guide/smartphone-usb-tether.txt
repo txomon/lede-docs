@@ -1,0 +1,24 @@
+====== Smartphone tethering ======
+
+This guide shows how to set-up Smartphone tethering on your USB-port enabled LEDE device via LUCI webui.
+
+===== Setup =====
+
+Easiest way to do this is to have WAN via LAN port when setting up Smartphone tethering.
+
+  - Login to luci (e.g. http://192.168.1.1)
+  - Go to 'System' -> 'Software'
+  - Click 'Update' (This will update software repositories)
+  - Copy-paste "kmod-usb-net kmod-usb-net-rndis kmod-usb-net-cdc-ether usbutils udev" (without quotes) to 'Download and install package' and press 'OK' (This will install needed packages to support Smartphone tethering)
+  - Connect your Smartphone to your LEDE device and enable USB Tethering from your Smartphone
+  - Go to 'Network' -> 'Interfaces'
+  - Find red 'WAN' interface and click 'Edit'
+  - Go to 'Physical Settings' tab
+  - Choose 'usb0' as 'Interface' (This will change WAN interface from LAN to usb0 (Smarthphone))
+  - Click 'Save and Apply'
+
+Now your Smartphone mobile data works as WAN for your LEDE router.
+
+===== Sources =====
+  * https://wiki.openwrt.org/doc/howto/usb.tethering
+  * https://medium.com/openwrt-iot/openwrt-setting-up-usb-internet-passthrough-a14a7b0e0d82

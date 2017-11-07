@@ -1,0 +1,64 @@
+^  General  ^^
+^ Brand                                                 | @@brand@@                          |
+^ Model                                                 | @@model@@                          |
+^ Versions                                              | @@version@@                        |
+^ FCCID                                                 | @@fccid@@                          |
+^ Device Type                                           | @@device type@@                    |
+^ Availability                                          | @@availability@@                   |
+^ Comments - general                                    | @@comments@@                       |
+^  LEDE Support  ^^
+^ Supported Since Commit                                | @@lede supported since commit@@    |
+^ Supported Since Release                               | @@lede supported since rel@@       |
+^ Supported Current Release                             | @@lede supported current rel@@     |
+^ Unsupported                                           | @@lede unsupported@@               |
+^  OpenWrt Support  ^^
+^ Supported Since Revision                              | @@openwrt supported since rev@@    |
+^ Supported Since Release                               | @@openwrt since rel@@              |
+^ Supported Current Release                             | @@openwrt current rel@@            |
+^ Unsupported                                           | @@openwrt unsupported@@            |
+^  Hardware  ^^
+^ [[wp>Instruction set]]                                | @@instruction set@@                |
+^ Sub Instruction Set                                   | @@sub instruction set@@            |
+^ LEDE Instructionset                                   | @@lede instructionset@@            |
+^ [[docs:techref:Bootloader]]                            | @@bootloader@@                     |
+^ Target                                                | @@target@@                         |
+^ [[docs:hardware:soc|System-On-Chip]]                   | @@platform@@                       |
+^ [[docs:hardware:cpu|CPU]] MHz                          | @@cpu mhz@@                        |
+^ Flash MB                                              | @@flash mb@@                       |
+^ RAM MB                                                | @@ram mb@@                         |
+^  Network  ^^
+^ Ethernet 100M ports                                   | @@ethernet 100m ports@@            |
+^ Ethernet Gbit ports                                   | @@ethernet gbit ports@@            |
+^ [[docs:hardware:Switch]]                               | @@switch@@                         |
+^ [[docs:hardware:internet.access.technologies|Modem]]   | @@modem@@                          |
+^ VLAN                                                  | @@vlan@@                           |
+^ Comments - network ports                              | @@comments network ports@@         |
+^  Wireless  ^^
+^ WLAN 2.4GHz                                           | @@wlan 2.4ghz@@                    |
+^ WLAN 5.0GHz                                           | @@wlan 5.0ghz@@                    |
+^ WLAN Hardware                                         | @@wlan hardware@@                  |
+^ Detachable Antennas                                   | @@detachable antennas@@            |
+^ Comments - WLAN                                       | @@wlan comments@@                  |
+^  Interfaces  ^^
+^ [[docs:howto:usb.essentials|USB]] ports                | @@usb ports@@                      |
+^ SATA ports                                            | @@sata ports@@                     |
+^ [[docs:hardware:port.serial|Serial]]                   | @@serial@@                         |
+^ Serial connection parameters                          | @@serial connection parameters@@   |
+^ [[docs:hardware:port.jtag|JTAG]]                       | @@jtag@@                           |
+^ Comments - USB & SATA ports                           | @@comments usb sata ports@@        |
+^  Misc  ^^
+^ LED count                                             | @@led count@@                      |
+^ [[docs:howto:hardware.button|Button]] count            | @@button count@@                   |
+^ Power supply                                          | @@power supply@@                   |
+^  Links  ^^
+^ [[https://forum.lede-project.org/|LEDE Forum]] Topic URL | @@lede forum topic url@@        |
+^ [[https://forum.openwrt.org/|Forum]] Topic URL        | @@openwrt forum topic url@@        |
+^ [[https://wikidevi.com/|WikiDevi]] URL                | @@wikidevi url@@                   |
+^ OEM device homepage URL                               | @@oem device homepage url@@        |
+^ Firmware OEM Stock URL                                | @@firmware oem stock url@@         |
+^ Firmware OpenWrt Install URL                          | @@firmware lede install url@@      |
+^ Firmware OpenWrt Upgrade URL                          | @@firmware lede upgrade url@@      |
+^ Packages download URL                                 | @@packages download@@              |
+^ Firmware OpenWrt Install URL                          | @@firmware openwrt install url@@   |
+^ Firmware OpenWrt Upgrade URL                          | @@firmware openwrt upgrade url@@   |
+^ Edit the underlying data                              | @@device techdata@@                |

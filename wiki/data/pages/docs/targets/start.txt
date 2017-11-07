@@ -1,0 +1,60 @@
+~~NOTOC~~
+
+====== Targets ======
+{{pagequery> * ns:docs:targets:;
+    sort=title;
+    display={title};
+    bullet=disc;
+    hidestart;
+    hidejump;
+    fontsize=100%;
+}}
+
+===== Devices with certain target =====
+---- datacloud ----
+field     : Target
+summarize : 1
+page      : toh/views/toh_dev_arch-target-cpu
+----
+
+===== LEDE targets and package architectures =====
+
+  * [[https://downloads.lede-project.org/snapshots/packages/|LEDE packages listed by instructionset]]
+  * [[https://forum.lede-project.org/t/packages-for-instruction-sets/95/4]]
+
+^  Instruction set  ^ Target / Subtarget  ^                LEDE Package architecture                                                           ^ Packages download                                                          ^
+|           | arm64/generic\\ layerscape/64b\\ | [[docs:instructionset:aarch64_armv8-a|aarch64_armv8-a]]                            |[[https://downloads.lede-project.org/snapshots/packages/aarch64_armv8-a/]] |
+|           | arc770/generic | [[docs:instructionset:arc_arc700|arc_arc700]]                                      |[[https://downloads.lede-project.org/snapshots/packages/arc_arc700/]] |
+|           | archs38/generic | [[docs:instructionset:arc_archs|arc_archs]]                                       |[[https://downloads.lede-project.org/snapshots/packages/arc_archs/]] |
+|    ARM    | brcm2708/bcm2708 | [[docs:instructionset:arm_arm1176jzf-s_vfp|arm_arm1176jzf-s_vfp]]                |[[https://downloads.lede-project.org/snapshots/packages/arm_arm1176jzf-s_vfp/]] |
+|    ARM    | at91/legacy\\ mcs814x/generic\\ mxs/generic\\ | [[docs:instructionset:arm_arm926ej-s|arm_arm926ej-s]] | [[https://downloads.lede-project.org/snapshots/packages/arm_arm926ej-s/]] |
+|    ARM    | ipq806x/generic | [[docs:instructionset:arm_cortex-a15_neon-vfpv4|arm_cortex-a15_neon-vfpv4]]       | [[https://downloads.lede-project.org/snapshots/packages/arm_cortex-a15_neon-vfpv4/]] |
+|    ARM    | at91/sama5d3 | [[docs:instructionset:arm_cortex-a5|arm_cortex-a5]]                                  | [[https://downloads.lede-project.org/snapshots/packages/arm_cortex-a5/]] |
+|    ARM    | brcm2708/bcm2710 | [[docs:instructionset:arm_cortex-a53_neon-vfpv4|arm_cortex-a53_neon-vfpv4]]      | [[https://downloads.lede-project.org/snapshots/packages/arm_cortex-a53_neon-vfpv4/]] |
+|    ARM    | mediatek/generic | [[docs:instructionset:arm_cortex-a7|arm_cortex-a7]]                              | [[https://downloads.lede-project.org/snapshots/packages/arm_cortex-a7/]]   |
+|    ARM    | brcm2708/bcm2709 | [[docs:instructionset:arm_cortex-a7_neon-vfpv4|arm_cortex-a7_neon-vfpv4]]        | [[https://downloads.lede-project.org/snapshots/packages/arm_cortex-a7_neon-vfpv4/]] |
+|    ARM    | sunxi/generic | [[docs:instructionset:arm_cortex-a8_vfpv3|arm_cortex-a8_vfpv3]]                     | [[https://downloads.lede-project.org/snapshots/packages/arm_cortex-a8_vfpv3/]] |
+|    ARM    | bcm53xx/generic\\ layerscape/32b\\ | [[docs:instructionset:arm_cortex-a9|arm_cortex-a9]]                               | [[https://downloads.lede-project.org/snapshots/packages/arm_cortex-a9/]] |
+|    ARM    | imx6/generic\\ zynq/generic | [[docs:instructionset:arm_cortex-a9_neon|arm_cortex-a9_neon]]         | [[https://downloads.lede-project.org/snapshots/packages/arm_cortex-a9_neon/]] |
+|    ARM    | mvebu/generic\\ omap/generic | [[docs:instructionset:arm_cortex-a9_vfpv3|arm_cortex-a9_vfpv3]]      | [[https://downloads.lede-project.org/snapshots/packages/arm_cortex-a9_vfpv3/]] |
+|    ARM    | gemini/raidsonic\\ gemini/wiligear | [[docs:instructionset:arm_fa526|arm_fa526]]                    | [[https://downloads.lede-project.org/snapshots/packages/arm_fa526/]] |
+|    ARM    | oxnas/generic | [[docs:instructionset:arm_mpcore|arm_mpcore]]                                       | [[https://downloads.lede-project.org/snapshots/packages/arm_mpcore/]] |
+|    ARM    | cns3xxx/generic | [[docs:instructionset:arm_mpcore_vfp|arm_mpcore_vfp]]          | [[https://downloads.lede-project.org/snapshots/packages/arm_mpcore_vfp/]] |
+|    ARM    | kirkwood/generic | [[docs:instructionset:arm_xscale|arm_xscale]]                                    | [[https://downloads.lede-project.org/snapshots/packages/arm_xscale/]] |
+|    ARM    | ixp4xx/generic\\ ixp4xx/harddisk | [[docs:instructionset:armeb_xscale|armeb_xscale]]                | [[https://downloads.lede-project.org/snapshots/packages/armeb_xscale/]] |
+|  MIPS64   | malta/be64 | [[docs:instructionset:mips64_mips64|mips64_mips64]]                                    | [[https://downloads.lede-project.org/snapshots/packages/mips64_mips64/]] |
+|  MIPS64   | octeon/generic | [[docs:instructionset:mips64_octeon|mips64_octeon]]                                | [[https://downloads.lede-project.org/snapshots/packages/mips64_octeon/]] |
+|  MIPS64   | malta/le64 | [[docs:instructionset:mips64el_mips64|mips64el_mips64]]                                | [[https://downloads.lede-project.org/snapshots/packages/mips64el_mips64/]] |
+|   MIPS    | [[docs:targets:ar71xx|ar71xx]]/generic\\ [[docs:targets:ar71xx|ar71xx]]/nand\\ [[docs:targets:ar71xx|ar71xx]]/mikrotik\\ lantiq/xrx200\\ lantiq/xway\\ lantiq/xway_legacy\\ malta/be | [[docs:instructionset:mips_24kc|mips_24kc]] | [[https://downloads.lede-project.org/snapshots/packages/mips_24kc/]] |
+|   MIPS    | adm5120/router_be\\ ath25/generic\\ brcm63xx/generic\\ brcm63xx/smp | [[docs:instructionset:mips_mips32|mips_mips32]] | [[https://downloads.lede-project.org/snapshots/packages/mips_mips32/]] |
+|   MIPS    | malta/le\\ ramips/rt305x\\ ramips/mt7620\\ ramips/mt7621\\ ramips/mt7628\\ ramips/mt7688\\ | [[docs:instructionset:mipsel_24kc|mipsel_24kc]] | [[https://downloads.lede-project.org/snapshots/packages/mipsel_24kc/]] |
+|   MIPS    | [[docs:targets:brcm47xx|brcm47xx]]/mips74k\\ ramips/rt3883 | [[docs:instructionset:mipsel_74kc|mipsel_74kc]]                  | [[https://downloads.lede-project.org/snapshots/packages/mipsel_74kc/]] |
+|   MIPS    | adm5120/router_le\\ adm5120/rb1xx\\ adm8668/generic\\ ar7/generic\\ ar7/ac49x\\ au1000/au1500\\ au1000/au1550\\ [[docs:targets:brcm47xx|brcm47xx]]/generic\\ [[docs:targets:brcm47xx|brcm47xx]]/legacy\\ rb532/generic\\ xburst/qi_lb60 | [[docs:instructionset:mipsel_mips32|mipsel_mips32]] | [[https://downloads.lede-project.org/snapshots/packages/mipsel_mips32/]] |
+|   MIPS    | ramips/rt288x | [[docs:instructionset:mipsel_mips32r2|mipsel_mips32r2]]                             | [[https://downloads.lede-project.org/snapshots/packages/mipsel_mips32r2/]] |
+|    PPC    | [[docs:targets:ppc44x|ppc44x]]/generic | [[docs:instructionset:powerpc_440|powerpc_440]]            | [[https://downloads.lede-project.org/snapshots/packages/powerpc_440/]] |
+|    PPC    | apm821xx/nand\\ apm821xx/sata | [[docs:instructionset:powerpc_464fp|powerpc_464fp]]                 | [[https://downloads.lede-project.org/snapshots/packages/powerpc_464fp/]] |
+|    PPC    | mpc85xx/generic, mpc85xx/p1020 | [[docs:instructionset:powerpc_8540|powerpc_8540]]                  | [[https://downloads.lede-project.org/snapshots/packages/powerpc_8540/]] |
+|    x86    | x86/geode | [[docs:instructionset:i386_geode|i386_geode]]                                           | [[https://downloads.lede-project.org/snapshots/packages/i386_geode/]] |
+|    x86    | x86/legacy | [[docs:instructionset:i386_i486|i386_i486]]                                            | [[https://downloads.lede-project.org/snapshots/packages/i386_i486/]] |
+|    x86    | x86/generic | [[docs:instructionset:i386_pentium4|i386_pentium4]]                     | [[https://downloads.lede-project.org/snapshots/packages/i386_pentium4/]] |
+|  x86_64   | x86/64 | [[docs:instructionset:x86_64|x86_64]]                                                      | [[https://downloads.lede-project.org/snapshots/packages/x86_64/]] |

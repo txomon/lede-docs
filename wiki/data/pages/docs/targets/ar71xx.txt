@@ -1,0 +1,35 @@
+====== ar71xx ======
+
+  * [[https://git.lede-project.org/?p=source.git&a=search&h=HEAD&st=commit&s=ar71xx|Latest git commits for this target]]
+  * [[https://downloads.lede-project.org/snapshots/targets/ar71xx/generic/lede-imagebuilder-ar71xx-generic.Linux-x86_64.tar.xz|Image builder for ar71xx/generic]]
+  * [[https://downloads.lede-project.org/snapshots/targets/ar71xx/mikrotik/lede-imagebuilder-ar71xx-mikrotik.Linux-x86_64.tar.xz|Image builder for ar71xx/mikrotik]]
+  * [[https://downloads.lede-project.org/snapshots/targets/ar71xx/nand/lede-imagebuilder-ar71xx-nand.Linux-x86_64.tar.xz|Image builder for ar71xx/nand]]
+
+===== Devices with this target =====
+<hidden onHidden="Show devices with this target" onVisible="Hide devices with this target">
+++++Filter: Subtarget|
+---- datacloud ----
+col        : subtarget
+filter     : Target=ar71xx
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+++++Filter: LEDE Instructionset|
+---- datacloud ----
+col        : lede instructionset
+filter     : Target=ar71xx
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+---- datatable ----
+cols       : Target, Subtarget, Package architecture_pkg-arch, Brand, Model, Version, LEDE Device Page_page
+filter     : Target=ar71xx
+filter     : Brand!=(EXAMPLE)
+sort       : Brand
+rownumbers : 1
+----
+</hidden>

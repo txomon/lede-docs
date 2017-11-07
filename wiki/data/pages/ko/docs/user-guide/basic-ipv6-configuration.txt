@@ -1,0 +1,267 @@
+====== 기본 IPv6 설정 ======
+
+기본 펌웨어는 DHCPv6 클라이언트 (''odhcp6c''), RA & DHCPv6 서버 (''odhcpd'') and a IPv6 방화벽(''ip6tables'')들을 포함한 완전한 IPv6를 제공합니다.\\
+또한 ''luci''웹 인터페이스 에서 IPv6 설정이 필요하기 때문에 기본 설치 과정에 ''luci-proto-ipv6''라는 웹 인터페이스 페키지가 포함되어 있습니다. 
+
+
+:!: 사용자 정의 빌드를 사용 하는 경우 위에 언급된 패키지가 해당 IPv6기능을 제공하기 위해 설치되어 있지 않기 때문에 사용하기 위해서는 설치해야 합니다.
+==== 규정 ====
+우리의 목적은 [[http://tools.ietf.org/html/rfc7084|RFC 7084]]을 따르는 것입니다.\\
+표준 사항을 위반하는 것을 발견한다면 저희에게 알려주세요.
+
+현재 [[http://tools.ietf.org/html/rfc7084|RFC 7084]]의 아래 요구 사항을 충족 하지 않습니다.:
+  *  [[http://tools.ietf.org/html/rfc7084|RFC 7084]] WAA-5 (필수-요구사항): NTP 서버가 요청되고 수신되었지만 처리되거나 사용되지 않습니다.
+
+==== 일반 기능 ====
+  * 접두어 처리
+    * upstream 연결 및 로컬 ULA 접두사의 접두사, 주소 및 라우트 관리 
+    * 접두사 도달 불능 경로, 비추천 접두사 ([[http://tools.ietf.org/html/rfc7084|RFC 7084]]) 및 접두사 클래스 관리
+    * downstream 인터페이스로의 접두사 배포 (크기, ID 및 클래스 힌트 포함)
+    * 여러 uplink 인터페이스를 올바르게 처리하기위한 소스 기반 정책 라우팅, 수신 정책 필터링([[http://tools.ietf.org/html/rfc7084|RFC 7084]])
+
+===== WAN인터페이스의 upstream 설정 =====
+다음 절에서는 ISP 또는 upstream 라우터에 대한 IPv6 연결 설정에 대해 설명합니다. 6in4, 6rd 및 6to4와 같은 대부분의 터널링 메커니즘은 NAT 라우터 뒤에서 작동하지 않을 수 있습니다. 
+
+==== 기본 IPv6 연결 ====
+  * SLAAC, 상태 비 저장 DHCPv6, 상태 저장 DHCPv6, DHCPv6-PD 및 모든 조합의 자동 부트 스트랩 
+  * 선호되고 유효한 주소 및 접두사 수명 처리 
+  * 중복 주소 및 링크 MTU 감지 
+  * DHCPv6 확장 : 재구성, 정보 새로 고침, SOL_MAX_RT = 3600 
+  * DHCPv6 확장 : RDNSS, DNS 검색 도메인, NTP, SIP, ds-lite, 접두사 제외 (실험) 
+
+네이티브 IPv6 연결을 사용하는 uplink의 경우 다음 예제 설정을 사용할 수 있습니다. Prefix Delegation이있는 DHCPv6을 지원하는 uplink와 DHCPv6-PD 또는 DHCPv6을 전혀 지원하지 않는 uplink (SLAAC- 전용) 모두에서 작동합니다. 
+
+<code>root@lede:/# cat /etc/config/network
+config interface wan
+        option ipv6 1 # only required for PPP-based protocols
+        ...
+
+config interface wan6
+        option ifname   eth1 # use same ifname as in wan-section or "@wan"
+        option proto    dhcpv6
+
+config interface lan
+        option proto    static
+        option ip6assign 60
+        ...
+</code>
+
+프로토콜 **dhcpv6** 의 고급 구성 옵션은 아래를 참조하십시오. 
+
+=== 프로토콜 "dhcpv6" ===
+이것은 클라이언트 ipv6 인터페이스의 uci 구성에서 사용할 수있는 옵션입니다 ( "dhcpv6"프로토콜 사용). 
+^ 이름 ^ Type ^ Required ^ 초기값^ 설명^
+| ''reqaddress'' | [try,force,none] | no | try | 주소 요청을 위한 동작  |
+| ''reqprefix'' | [auto,no,0-64] | no | auto | 접두사를 요구하는 동작 (접두사 길이를 나타내는 숫자). 라우팅을위한 서브넷없이 AP 자체에 대해 단일 IPv6 주소 만 원하면 '아니오'를 사용하십시오.  |
+| ''clientid'' | hexstring | no | //system default// | DHCP 요청에서 클라이언트 식별자 무시  |
+| ''ifaceid'' | ipv6 addr | no | //link-local identifier// | RA를 통해 수신 된 주소에 대한 인터페이스 식별자를 무시합니다.  |
+| ''dns'' | list of ip addresses | no | //(none)// | DHCP 할당 DNS 서버를 보완하거나 peerdns가 0 인 경우에만 이들을 사용하십시오.  |
+| ''peerdns'' | boolean | no | ''1'' | DHCP 제공 DNS 서버 사용  |
+| ''defaultroute'' | boolean | no | ''1'' | 수신 된 게이트웨이를 통해 IPv6 기본 경로를 생성할지 여부 |
+| ''reqopts'' | list of numbers | no | //(none)// | 요청할 추가 DHCP 옵션 목록을 지정합니다.  |
+| ''noslaaconly'' | boolean | no | ''0'' | SLAAC (RAs)를 통해서만 구성을 허용하지 마십시오 (reqprefix! = no로 함축 됨)  |
+| ''norelease'' | boolean | no | ''0'' | 인터페이스가 다운되었을 때 RELEASE를 보내지 마십시오.  |
+| ''ip6prefix'' | ipv6 prefix | no | //(none)// | 클라이언트에 배포 할 때 사용자가 제공 한 (추가) IPv6 접두어 사용  |
+| ''iface_dslite'' | logical interface | no | //(none)// | DS-Lite의 자동 구성을위한 논리적 인터페이스 템플릿  |
+
+**주의:** dhcpv6에서 자동적으로 ds-lite를 설정하기 위해서 인터페이스를 ''option auto 0''로 생성하고 'iface_dslite'매개 변수로 이름을 지정해야합니다. 또한 / etc / config / firewall의 적절한 방화벽 영역에 이름을 추가해야합니다.
+
+
+==== 정적 IPv6로 연결 ====
+IPv6 uplink의 정적 설정도 지원됩니다. 다음 예제를 보세요. 
+
+<code>root@lede:/# cat /etc/config/network
+config interface wan
+        option ifname   eth1
+        option proto    static
+        option ip6addr  2001:db80::2/64   # Own address
+        option ip6gw    2001:db80::1      # Gateway address
+        option ip6prefix 2001:db80:1::/48 # Prefix addresses for distribution to downstream interfaces
+        option dns      2001:db80::1      # DNS server
+
+config interface lan
+        option proto    static
+        option ip6assign 60
+        ...
+</code>
+고급 설정 옵션의 경우 IPv6 "정적"프로토콜에서 사용할 수 있는 옵션은 아래를 참조하십시오:
+
+===  IPv6 정적 프로토콜 ===
+
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''ip6addr'' | ipv6 address | yes, if no ''ipaddr'' is set | //(none)// | 이 인터페이스에 지정된 IPv6 주소 할당 (CIDR 표기)  |
+| ''ip6ifaceid'' | ipv6 suffix | no | ::1 |  허용되는 값 : 'eui64', 'random', ':: 1 : 2'와 같은 고정 값. 위임 서버에서 IPv6 접두사 (예 : 'a : b : c : d ::')를 받으면 접미어 ( ':: 1'과 같은)를 사용하여 IPv6 주소 ( 'a : b : c : d : : 1 '). LAN의 여러 라우터에 유용합니다. 이 옵션은 2015 년 1 월에 netifd에  [[http://git.openwrt.org/?p=project/netifd.git;a=commitdiff;h=0b0e5e2fc5b065092644a5c4717c0a03a9098dcf;hp=e9d2014a478807c7fac0581bb4a145901a3f23b4|이 커밋]]에 의해 도입되었습니다. |
+| ''ip6gw'' | ipv6 address | no | //(none)// | 주어진 IPv6 기본 게이트웨이를이 인터페이스에 할당  |
+| ''ip6assign'' | prefix length | no | //(none)// | 주어진 길이의 프리픽스를이 인터페이스에 위임합니다 (아래의 downtream 설정 참조).  |
+| ''ip6hint'' | prefix hint (hex) | no | //(none)// | 하위 16 진수로 위임해야하는 하위 ID를 알립니다 (아래의 서브시스템 참조). | 
+| ''ip6prefix'' | ipv6 prefix | no | //(none)// | 다른 인터페이스에서 사용하기 위해 여기에 라우팅 된 IPv6 접두사 (Barrier Breaker 이상)  |
+| ''ip6class'' | list of strings | no | //(none)// | IPv6 접두사를 정의합니다.이 인터페이스는 사용할 수있는 클래스입니다.  |
+| ''dns'' | list of ip addresses | no | //(none)// | DNS 서버 |
+| ''dns_search'' | list of domain names | no | //(none)// | 호스트 이름 조회 목록 검색  |
+| ''metric'' | integer | no | ''0'' | 사용할 기본 경로 메트릭을 지정합니다.  |
+
+
+===== LAN인터페이스의 downstream 설정 =====
+  * 라우터 광고, DHCPv6 (상태 비 저장 및 상태 저장) 및 DHCPv6-PD에 대한 서버 지원 
+  * 발표 된 접두사, 위임 된 접두사, 기본 경로 및 MTU 자동 검색 
+  * RA 및 DHCPv6 재전송을 트리거하는 접두사 및 경로에 대한 감지 변경 - 재설정
+  * 클라이언트 호스트 이름 감지 및 증대 된 호스트 파일로 내보내기 
+  * 접두사 위임없이 uplink를 지원하는 RA 및 DHCPv6 중계 및 NDP 프록시 지원 
+
+
+LEDE는 유연한 로컬 접두사 ​​위임 메커니즘을 제공합니다. \\
+모든 downstream 인터페이스를 개별적으로 조정할 수 있습니다.이 매개 변수는 모두 선택 사항입니다:
+  * ''ip6assign'':할당 된 접두사에 사용되는 접두어 크기입니다 (예 : 64는 접두어 / 64 접두사를 할당합니다). 
+  * ''ip6hint'': 사용할 수있는 하위 접두어 ID (예 : 646의 ip6 할당을 사용하는 1234는 ... : 1234 :: / 64 형식의 접두사를 할당합니다) 
+  * ''ip6class'':이 인터페이스에서 접두사 클래스를 받아들이도록 필터링합니다 (예 : wan6은 접두사에 "wan6"클래스 만 지정하고 "local"은 그렇지 않음). 
+
+ip6assign 및 / 또는 ip6hint-settings는 원하는 하위 접두사를 할당 할 수없는 경우 무시 될 수 있습니다. 이 경우 시스템은 먼저 같은 길이지만 다른 서브 프리픽스 ID를 갖는 접두사를 할당하려고합니다. 
+이것이 실패하더라도 접두어 길이는 할당이 만족 될 때까지 감소됩니다. ip6hint가 설정되어 있지 않으면 임의의 ID가 선택됩니다. ip6assign-parameter를 64보다 작은 값으로 설정하면 DHCPv6 서버가 인터페이스의 다운 스트림 라우터에 DHCPv6-Prefix Delegation을 통해 첫 번째 / 64를 제외한 모든 것을 넘겨 줄 수 있습니다. ip6hint가 주어진 ip6assign에 적합하지 않으면 가능한 가장 가까운 값으로 반올림됩니다. 
+
+ip6class가 설정되어 있지 않은 경우,이 인터페이스로 모든 접두사 클래스가 받아 들여집니다. 접두어의 기본 클래스는 인터페이스 이름 (예 : "wan6") 또는 ULA 접두어의 "local"입니다. 서브 프리픽스가 할당 된 업스트림 인터페이스를 선택하는 데 사용할 수 있습니다. DHCPv6와 같은 동적 구성 방법으로부터 수신 된 접두어의 경우 prefix-class가 source-interface와 동일하지는 않지만 ISP가 제공 한 숫자 접두사 class-value로 증가 될 수 있습니다.
+
+<code>root@lede:/# cat /etc/config/network
+config globals globals
+        option ula_prefix fd00:db80::/48
+
+config interface wan6
+        option proto static
+        option ip6prefix 2001:db80::/56
+        ...
+
+config interface lan
+        option proto static
+        option ip6assign 60
+        option ip6hint 10
+        ...
+
+config interface guest
+        option proto static
+        option ip6assign 64
+        option ip6hint abcd
+        list ip6class wan6
+        ...
+</code>
+
+해당 설정의 결과는 다음과 같습니다. 
+
+  * ''lan'' 인터페이스에는 접두사 2001 : db80 : 0 : 10 :: / 60 및 fd00 : db80 : 0 : 10 :: / 60이 할당됩니다.
+  * DHCPv6-server는 DHCPv6-PD를 통해 ''lan'' downstream 라우터에 2001 : db80 : 0 : 10 :: / 64 및 fd00 : db80 : 0 : 10 :: / 64를 제외한 두 접두사를 제공 할 수 있습니다. 
+  * ''guest''인터페이스는 클래스 필터로 인해 접두사 2001 : db80 : 0 : abcd :: / 64 만 암시합니다. 
+
+:!: 라우터가 인터넷에 ping6 수행 할 수 있지만 lan 시스템에서 "Destination unreachable : Unknown code 5"또는 "Source address / ingress / egress policy"오류가 발생하면 lan 인터페이스에 ip6assign 옵션이 누락됩니다. 
+
+===== Router Advertisement & DHCPv6 =====
+LEDE는 다양한 RA 및 DHCPv6 서버 및 릴레이를 제공합니다. 기본 SLAAC에 따라, 상태 비 저장 및 상태 저장 DHCPv6은 인터페이스에서 활성화됩니다. 크기가 64 자 이상인 접두어가 있으면 각 접두어에서 주소가 전달됩니다. 인터페이스의 모든 접두사의 크기가 / 64보다 크면 DHCPv6 접두사 위임이 downstream 라우터에서 활성화됩니다. 기본 경로가 있는 경우 라우터는 인터페이스에서 기본 라우터로 자신을 알립니다. 
+
+또한 시스템은 upstream 인터페이스에서 사용할 수있는 접두어가 없을 때 이를 감지 할 수 있으며 릴레이 모드로 자동 전환하여 upstream 인터페이스 구성을 다운 stream 인터페이스로 확장 할 수 있습니다. 이는 대상 라우터를 DHCPv6-PD를 통해 접두어를 제공하지 않는 다른 IPv6 라우터 뒤에 배치 할 때 유용합니다. 
+
+SLAAC + DHCPv6 서버 모드의 구성 섹션 예제입니다. 터널 인터페이스 구성에서 고정 LAN 접두어를 지정하는 일반적인 6in4 터널 구성에도 적합합니다. 
+<code>root@lede:/# cat /etc/config/dhcp
+config dhcp lan
+    option dhcpv6 server
+    option ra server
+</code>
+
+Example configuration section for SLAAC alone
+<code>root@lede:/# cat /etc/config/dhcp
+config dhcp lan
+    option dhcpv6 disabled
+    option ra server
+</code>
+
+Example configuration section for relaying
+<code>root@lede:/# cat /etc/config/dhcp
+config dhcp wan6
+    option dhcpv6 relay
+    option ra relay
+    option ndp relay
+    option master 1
+
+config dhcp lan
+    option dhcpv6 relay
+    option ra relay
+    option ndp relay
+</code>
+
+===== 라우팅 관리 =====
+LEDE는 소스 주소 및 소스 인터페이스 기반의 정책 라우팅 시스템을 사용합니다. 다른 업 링크 인터페이스를 올바르게 처리하는 데 필요합니다. 각 위임 된 prefix는 도달 할 수 없는 경로로 추가되어 IPv6 라우팅 루프를 피합니다. 
+
+경로의 현재 상태를 확인하려면 ''ifstatus''제공 한 정보를 참조하세요.
+
+Example (ifstatus wan6):
+<code>
+...
+        "ipv6-address": [
+                {
+                        "address": "2001:db80::a00:27ff:fe67:cd9c",
+                        "mask": 64,
+                        "preferred": 1681,
+                        "valid": 7081
+                }
+        ],
+        "ipv6-prefix": [
+                {
+                        "address": "2001:db80:0:100::",
+                        "mask": 56,
+                        "preferred": 86282,
+                        "valid": 86282,
+                        "class": "wan6",
+                        "assigned": {
+                                "lan": {
+                                        "address": "2001:db80:0:110::",
+                                        "mask": 60
+                                }
+                        }
+                }
+        ],
+        "route": [
+                {
+                        "target": "2001:db80::",
+                        "mask": 48,
+                        "nexthop": "fe80::800:27ff:fe00:0",
+                        "metric": 1024,
+                        "valid": 7081
+                },
+                {
+                        "target": "::",
+                        "mask": 0,
+                        "nexthop": "fe80::800:27ff:fe00:0",
+                        "metric": 1024,
+                        "valid": 7081
+                }
+        ],
+...
+</code>
+해석:
+  * 인터페이스에는 2 개의 경로가 제공됩니다 : 2001 : db80 :: / 48 및 라우터 fe80 :: 800 : 27ff : fe00 : 0을 통한 기본경로. 
+  * 이 경로는 로컬 주소 나 위임 된 prefix 중 하나 인 적합한 소스 주소로 로컬에서 생성 된 트래픽 및 트래픽에 의해서만 사용할 수 있습니다. 
+
+:!: LEDE는 기본 라우팅과 같은 IPv6 라우팅을 특정 라우팅 테이블에 추가하며 기본 테이블에는 추가하지 않으므로 기본적으로 표시되지 않을 수 있습니다. ''ip -6 rule'' 명령을 사용하여 현재의 모든 라우팅 정책을 나열 할 수 있습니다. 
+
+
+===== 여러개의 IP 주소=====
+동일한 인터페이스에 여러 개의 IP 주소 할당 : 
+<code>
+config interface foo
+  option ifname eth1
+  list ipaddr 10.8.0.1/24
+  list ipaddr 10.9.0.1/24
+  list ip6addr fdca:abcd::1/64
+  list ip6addr fdca:cdef::1/64
+</code>
+동일한 장치를 공유하는 여러 인터페이스 지정 : 
+<code>
+config interface foo
+  option ifname eth1
+  option ipaddr 10.8.0.1
+  option netmask 255.255.255.0
+  option ip6addr fdca:abcd::1/64
+
+config interface foo2
+  option ifname eth1
+  option ipaddr 10.9.0.1
+  option netmask 255.255.255.0
+  option ip6addr fdca:cdef::1/64
+</code>
+[[https://dev.openwrt.org/ticket/2829#comment:7]]에 게시되어 있습니다.

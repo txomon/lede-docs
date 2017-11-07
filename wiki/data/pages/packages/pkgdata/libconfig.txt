@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: libconfig ======
+---- dataentry packages ----
+Name                             : libconfig
+Version                          : 1.5-1
+Description                      : Libconfig is a simple library for manipulating structured configuration\\ files. This file format is more compact and more readable than XML. And\\ unlike XML, it is type-aware, so it is not necessary to do string\\ parsing in application code.\\  \\ Libconfig is very compact -- just 38K for the stripped C shared\\ library (less than one-fourth the size of the expat XML parser library)\\ and 66K for the stripped C++ shared library. This makes it well-suited\\ for memory-constrained systems like handheld devices.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 13 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libssp
+Categories_pkg-categorys         : libraries #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : aarch64_armv8-a, arc_arc700, arc_archs, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 14
+License                          : LGPL-2.1+
+Maintainer_pkg-maintainer        : Felix Fietkau
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/libs/libconfig|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 1.5-1 # short version of the package, for display in table
+----
+

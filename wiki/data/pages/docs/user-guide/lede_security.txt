@@ -1,0 +1,91 @@
+======Hardening of your LEDE device======
+Good news, LEDE has reasonable security by default.\\
+If you are inexperienced in hardening and firewall and web security, there is no need to worry, LEDE is "hardened" by default in a sufficient way, such that non-experienced muggles can use it right away, without being worried.
+
+**...with one important single exception:**\\
+You need to set a password on your LEDE "root" admin account. The "root" account is the default LEDE admin account on your device. The next chapter will show you how to do this.\\
+
+This page also contains some general information about security of LEDE and what you should do in general, to keep your router in a properly secured state.
+
+=====Setting a 'root' password=====
+To initially set (or later on change) the "root" admin account password on the web admin GUI, goto http://192.168.1.1 -> Menu System/Adminstration
+  * Enter the new password in the "Router Password" section 
+  * Click "Save&Apply" a the bottom of the page
+  
+Alternatively, on the commandline use ''passwd'' to set a password.
+
+=====I am expert, show me some extra "hardening"...=====
+  * If you have >=8MB Flash ROM and share your homenetwork with other people, it is good practice to activating https for your LuCi admin web GUI. As this requires some free flash space, https isn't activated by default in the current version (as otherwise several devices <= 4MB could not be supported by LEDE any longer). It may be that the maintainer of your device has  already activated https in your devices LEDE edition by default. In this case you already got this security bonus right away without extra effort. (And note: The SSH admin access is always SSL-encrypted by default) 
+    - ''opkg update'' 
+    - ''opkg install luci-ssl''
+    - you can now access the web admin GUI by using https://192.168.1.1
+  * if you don't ever use your LuCi web admin GUI at all, you can even disable LuCi (the web admin GUI): 
+    - disable LuCi autostart:  ''/etc/init.d/uhttpd disable''
+    - stop the LuCi service: ''/etc/init.d/uhttpd stop''
+  * if you have disabled your web GUI and and want to reenable it:
+    - enable LuCi autostartion: ''/etc/init.d/uhttpd enable''
+    - start the LuCi service: ''/etc/init.d/uhttpd start''
+
+  
+=====My LEDE web admin page is always open in the background for ease of access...=====
+...and that is a very bad idea.
+
+Treat your admin root account with some sane respect.
+
+Do what every major company does with the "root" accounts of their Linux servers:
+  * Stay away from admin access (SSH and web GUI), when you don't need it
+  * Close/Log off your root admin sessions once your are done administrating (not 8h later)
+  * Only connect as root, when really in the need for administration
+  * Don't share your root password with others
+  * Don't share your root password with others, even if they promise some hot Katy Perry pictures in return
+ 
+
+=====I don't need to set a 'root' password, when I am the only user. Right?....=====
+Congratulations that you do not have to share precious bandwidth with others, but you still need to set a root password.
+
+Because any web site you call from a browser in your home network (e.g. those that promise hot Katy Perry pictures) could easily use so called "cross site request forgery" to access admin GUI of your LEDE device, without you noticing it and then do evil things there. If no 'root' password is set, such malicious sites could manipulate your LEDE device in a way that you won't like.
+
+So just go and set a password on your "root" account now.
+
+=====Let's just open this one single port for incoming traffic, what could possibly go wrong?...=====
+Handle firewall rules with care:
+  * Do not expose services on the WAN Internet port, if you do not understand the security implications. Automatic scanners of evil fources and script kids will find any open port on your WAN side sometimes within minutes and will then run extensive intrusion software suits on such open ports, probing a lot of attack vectors without any manual effort. The Internet is permanently being scanned for careless people.
+  * if you want to access home services while being on the road, consider using openVPN instead of opening service-related ports publically on the WAN side.
+  * Unfortunately a lot of online games have lots of "recommended settings" to permanently open various port ranges for best gaming experience. Before blindly following these practices, check first, if any server connection problems are due to a [[docs:user-guide:switch_router_gateway_and_nat| double NAT situation of cascaded routers]] at your home.
+  * Always use reasonable comments, when you add your own customized firewall rules (e.g. "...that's the rule that a random nice guy on the Internet asked me to add, promising me some really hot Katy Perry pictures in return...")
+
+If you have already performed various firewall changes on your LEDE device and now lost overview of your custom rules, you can always reset all your LEDE settings back to the to the initial default (see trouble shooting section).
+
+=====So I've switched from insecure vendor firmware to LEDE. Finally, I am safe forever...=====
+Not so fast...
+
+Did you notice that even LEDE firmware gets updated from time to time?
+
+As with your former vendor firmware, you should check regularly, whether LEDE has released new firmware and apply these updates to your device. There is even a configuration backup and restore feature, such that you do not have to start from scratch after each update.
+
+=====I have custom packages installed...=====
+As with the firmware you should also keep an eye on the custom packages you install. There are several hundreds of optional packages. Not all security problems of those packages get addressed by LEDE system upgrades, but instead require you to manually upgrade the packages as well.
+
+If you are using custom packages, you should run a ''opkg update;opkg list-upgradable'' from time to time. This shows your installed packages that have available updates.
+You then install package upgrades manually by running ''opkg upgrade SOMEPACKAGENAME''.
+Note that not every listed package upgrade is due to security issues, it can also be a harmless bug fix or feature extension.
+
+An update will continue to use your existing service configuration, but for critical LEDE environments, a manual config backup never hurts as safety precaution before upgrading packages...
+
+Note: LEDE uses a read-only root file system plus a differential extension partition for all package installs and upgrades. When wanting to maximize usage of your precious flash space, it tends to be a better approach, to applying up-to-date LEDE firmware and then reinstall your packages instead of only upgrading packages, when expecting larger volumes of upgrades.
+
+=====A word about high-value weak points on LEDE=====
+LEDE devices have 2-4 common services running, which kind of mark high-value targets for malware (even when only available in your LAN-zone): Any harmless looking web site, you have visited in your browser, could use cross site request forgery tricks, abusing an unpached security flaw in one of these services.
+
+These high-value services in particular are:
+  * the webserver running LuCi (based on LUA) for LEDE GUI admin access
+  * the dropbear SSH server for LEDE commandline admin access
+  * The SFTP deamon for GUI file explorer admin access (only if manually activated, it's not there by default)
+  * Samba SMB share to provide user network file shares (only if manually activated, it's not there by default)
+
+It is up to your personal responsibility, to counter such weak points on your LEDE device(s):
+  * set a "root" password
+  * keep your LEDE firmware up to date
+  * when you have Samba and/or SFTP activated manually: check regularly, if there are package ugrade available for Samba and SFTP and apply those upgrades
+
+  

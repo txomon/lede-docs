@@ -1,0 +1,88 @@
+====== SSH Configuration ======
+
+The ssh configuration is handled by the **dropbear** subsystem of uci and the configuration file is located in **///etc/config/dropbear//**.\\
+If the subsystem name wasn't obvious enough, the default daemon responsible of the SSH service in LEDE is **dropbear**.\\
+Each dropbear SSH server instance uses a single section of the configuration file, and you can have multiple instances.
+
+====Default configuration====
+<code>root@lede:~# uci show dropbear
+dropbear.@dropbear[0]=dropbear
+dropbear.@dropbear[0].RootPasswordAuth='on'
+dropbear.@dropbear[0].PasswordAuth='on'
+dropbear.@dropbear[0].Port='22'
+</code>
+<code>root@lede:~# cat /etc/config/dropbear
+config dropbear
+        option RootPasswordAuth 'on'
+	option PasswordAuth 'on'
+	option Port '22'
+	option Interface 'lan'
+</code>
+A single instance of dropbear.
+==== Available settings ====
+^Name                ^Type   ^Required^Default   ^Description                                                                 ^
+|//enable//          |boolean|no      |1         |Set to //0// to disable starting dropbear at system boot.                   |
+|//verbose//         |boolean|no      |0         |Set to //1// to enable verbose output by the start script.                  |
+|//BannerFile//      |string |no      |//(none)//|Name of a file to be printed before the user has authenticated successfully.|
+|//PasswordAuth//    |boolean|no      |1         |Set to //0// to disable authenticating with passwords.                      |
+|//Port//            |integer|no      |22        |Port number to listen on.                                                   |
+|//RootPasswordAuth//|boolean|no      |1         |Set to //0// to disable authenticating as root with passwords.              |
+|//RootLogin//       |boolean|no      |1         |Set to //0// to disable SSH logins as root.                                 |
+|//GatewayPorts//    |boolean|no      |0         |Set to //1// to allow remote hosts to connect to forwarded ports.           |
+|//Interface//       |string |no      |//(none)//|Tells dropbear to listen only on the specified interface.e.g. //lan//       |
+|//rsakeyfile//      |file   |no      |//(none)//|Path to RSA file                                                            |
+|//dsskeyfile//      |file   |no      |//(none)//|Path to DSS/DSA file                                                        |
+|//SSHKeepAlive//    |integer|no      |300       |Keep Alive                                                                  |
+|//IdleTimeout//     |integer|no      |0         |Idle Timeout                                                                |
+|//mdns//            |integer|no      |1         |Whether to annouce the service via [[docs:guide-developer:mdns|mDNS]]       |
+|//MaxAuthTries//            |integer|no      |3         |Amount of times you can retry writing the password when logging in before the SSH server closes the connection   [[https://git.lede-project.org/?p=lede/stintel/staging.git;a=commitdiff;h=eb22143b08f908c15035be563c111cd866638566|from this commit]]    |
+==== Multiple dropbear instances ====
+
+To add a second instance of dropbear you must add another section to the dropbear subsystem configuration, you should end with something like this
+<code>root@lede:~# uci show dropbear
+dropbear.@dropbear[0]=dropbear
+dropbear.@dropbear[0].RootPasswordAuth='on'
+dropbear.@dropbear[0].PasswordAuth='on'
+dropbear.@dropbear[0].Port='22'
+dropbear.@dropbear[0].Interface='lan'
+dropbear.@dropbear[1]=dropbear
+dropbear.@dropbear[1].RootPasswordAuth='on'
+dropbear.@dropbear[1].PasswordAuth='on'
+dropbear.@dropbear[1].Port='2022'
+dropbear.@dropbear[1].Interface='wan'
+</code>
+<code>root@lede:~# cat /etc/config/dropbear
+config dropbear
+        option RootPasswordAuth 'on'
+	option PasswordAuth 'on'
+	option Port '22'
+	option Interface 'lan'
+
+config dropbear
+        option RootPasswordAuth 'on'
+	option PasswordAuth 'on'
+	option Interface 'wan'
+	option Port '2022'
+</code>
+
+The example above shows two dropbear instances:
+  * The first instance will listen on port 22 on the lan interface (default internal network)
+  * The second one on port 2022 on the wan interface (default external network)
+
+Also make sure to check your firewall DNAT (port forward) to allow access to the wan side port, 2022 in this case.
+
+==== Security considerations ====
+Security considerations are beyond the scope of this document, but:
+  * You should never allow SSH access on the WAN area. Please use a VPN instead to access your router.
+  * Avoid connecting using passwords and use SSH keys mechanisms.
+
+To disable password authentication:
+<code>
+root@OpenWrt:~# uci set dropbear.@dropbear[0].PasswordAuth=of
+root@OpenWrt:~# uci commit dropbear
+</code>
+
+Then install your public SSH key in:
+<code>
+/etc/dropbear/authorized_keys 
+</code>

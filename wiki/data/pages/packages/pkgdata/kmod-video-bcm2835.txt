@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: kmod-video-bcm2835 ======
+---- dataentry packages ----
+Name                             : kmod-video-bcm2835
+Version                          : see kernel for details
+Description                      : This is a V4L2 driver for the Broadcom 2835 MMAL camera host interface\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 21 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : kernel, kmod-video-core, kmod-video-videobuf2
+Categories_pkg-categorys         : kernel-modules---video-support #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : brcm2708-bcm2708, brcm2708-bcm2709, brcm2708-bcm2710,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 22
+License                          : GPLv2
+Maintainer_pkg-maintainer        : LEDE team
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/kernel/linux|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : see kernel for details # short version of the package, for display in table
+----
+

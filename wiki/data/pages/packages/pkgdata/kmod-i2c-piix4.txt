@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: kmod-i2c-piix4 ======
+---- dataentry packages ----
+Name                             : kmod-i2c-piix4
+Version                          : see kernel for details
+Description                      : Support for the Intel PIIX4 family of mainboard I2C interfaces,\\ specifically Intel PIIX4, Intel 440MX, ATI IXP200, ATI IXP300,\\ ATI IXP400, ATI SB600, ATI SB700/SP5100, ATI SB800, AMD Hudson-2,\\ AMD ML, AMD CZ, Serverworks OSB4, Serverworks CSB5,\\ Serverworks CSB6, Serverworks HT-1000, Serverworks HT-1100 and\\ SMSC Victory66.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 4 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : kernel, kmod-i2c-core
+Categories_pkg-categorys         : kernel-modules---i2c-support #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : x86-64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 5
+License                          : GPLv2
+Maintainer_pkg-maintainer        : LEDE team
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/kernel/linux|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : see kernel for details # short version of the package, for display in table
+----
+

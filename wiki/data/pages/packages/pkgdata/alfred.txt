@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: alfred ======
+---- dataentry packages ----
+Name                             : alfred
+Version                          : 2016.5-0
+Description                      : alfred is a user space daemon for distributing arbitrary local information over\\ the mesh/network in a decentralized fashion. This data can be anything which\\ appears to be useful - originally designed to replace the batman-adv\\ visualization (vis), you may distribute hostnames, phone books, administration\\ information, DNS information, the local weather forecast ...\\  \\ alfred runs as daemon in the background of the system. A user may insert\\ information by using the alfred binary on the command line, or use special\\ programs to communicate with alfred (done via unix sockets). alfred then takes\\ care of distributing the local information to other alfred servers on other\\ nodes. This is done via IPv6 link-local multicast, and does not require any\\ configuration. A user can request data from alfred, and will receive the\\ information available from all alfred servers in the network.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 23 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libnl-tiny, librt
+Categories_pkg-categorys         : network #
+Repositories_pkg-repository      : routing
+Architectures_pkg-archs          : aarch64_armv8-a, arc_arc700, arc_archs, arm_arm1176jzf-s_vfp, arm_arm926ej-s, arm_cortex-a15_neon-vfpv4, arm_cortex-a5, arm_cortex-a53_neon-vfpv4, arm_cortex-a7_neon-vfpv4, arm_cortex-a8_vfpv3, arm_cortex-a9, arm_cortex-a9_neon, arm_cortex-a9_vfpv3, arm_fa526, arm_mpcore, arm_mpcore_vfp, arm_xscale, armeb_xscale, i386_geode, i386_i486, i386_pentium, i386_pentium4, mips64_octeon, mips_24kc, mips_mips32, mipsel_24kc, mipsel_74kc, mipsel_mips32, powerpc_464fp, powerpc_8540, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 24
+License                          : GPL-2.0
+Maintainer_pkg-maintainer        : common routing maintainers
+Bug report_wiki                  : [[https://github.com/openwrt-routing/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt-routing/packages/tree/lede-17.01/alfred|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 2016.5-0 # short version of the package, for display in table
+----
+

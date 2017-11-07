@@ -1,0 +1,111 @@
+====== Frequently Asked Questions: Before installation ======
+===== Hardware =====
+==== Which router should I buy? ====
+See [[:supported_devices|Supported Devices]] and [[toh:views:toh_available_864|Table of Hardware: Ideal for LEDE]]
+
+In case you still have questions, take a look at the LEDE forum: [[https://forum.lede-project.org/c/hardware-questions-and-recommendations]].
+
+==== Will LEDE run on ...? ====
+See [[:supported_devices|Supported Devices]] and [[toh:start|Table of Hardware]] for the list of supported devices.
+
+==== How often can I write on the flash chip? ====
+Flash devices can be written to, at minimum, anywhere between 100,000 and 1,000,000 times (according to the manufacturers). Keep in mind we have a [[wp>normal distribution]] and also, that Flash never ever just stops working, but merely distinct blocks do. I.e. you won't be able to write to them any longer, but you should be able to still read them.
+
+===== Software =====
+==== How do I get started? ====
+-> [[docs:guide-quick-start:start|Quick Start Guide - Installing LEDE]] should hook you up.
+
+==== How can I obtain LEDE firmware images? ====
+-> [[toh:views:toh_fwdownload|Table of Hardware: Firmware downloads]]
+
+==== What's the difference between a "release" and a "trunk" build? ====
+
+A //release// build of LEDE is a stable version of the firmware. It is expected to be supported for the long term, and is safe to use in production, or with your family.
+
+A //trunk// (or //snapshot//) build is a version of LEDE that is “in development”. These are rebuilt frequently, often multiple times a day. Although they are the latest version, there is no guarantee that any particular snapshot build will be bug-free, or even work at all.
+
+==== What is the difference between the different image formats? ====
+
+  * a **factory image** is designed to replace the vendor's "stock" firmware. It matches the format of the file the vendor supplies. You usually use the vendor's Web GUI to install a factory image.
+  * a **sysupgrade image** (previously named trx image) is designed to replace a LEDE image. Use a //sysupgrade// image to update a LEDE (or OpenWrt) system with a newer LEDE image.
+
+The two have the same content, but a factory image would have extra header information or whatever the platform needs. Generally speaking, the factory image is to be used with the OEM GUI or OEM flashing utilities to convert the device to LEDE. After that, use the sysupgrade images.
+
+  * a **uImage** is a [[http://docs.blackfin.uclinux.org/doku.php?id=bootloaders:u-boot:uimage|tagged]] linux image expected by the u-boot loader
+  * a **tftp image** is XXX
+  * a **vmlinux.bin image** is XXX
+  * a **vmlinux.elf "image"** is XXX
+
+
+==== How do I install LEDE? ====
+-> [[docs:guide-quick-start:start|Quick Start Guide - Installing LEDE]]
+
+==== Upgrade from OpenWrt to LEDE ====
+
+If I upgrade from OpenWrt to LEDE, do I need to re-config all the settings?
+
+For all practical purposes, you can consider LEDE as the next version of OpenWrt, and expect as much trouble going from OpenWrt to LEDE than getting from one version of OpenWrt to another one. There will probably be some package whose configuration file needs some tweaking after the upgrade, but the vast majority of settings are exactly the same.
+
+Source: [[https://forum.lede-project.org/t/upgrade-from-openwrt-to-lede-does-the-config-compatible/6252]]
+
+==== How do I compile LEDE? ====
+[[docs:guide-developer:quickstart-build-images|Quick Image Building Guide]]
+
+==== How do I compile all LEDE packages? ====
+<code>CONFIG_ALL=y + make V=99 IGNORE_ERRORS=m</code>
+
+==== How do I compile for multiple targets? ====
+See [[https://forum.lede-project.org/t/compile-for-more-target-profiles/7575]]
+
+==== Which packages can I safely remove to save space? ====
+Flash space is scarce on devices with only 4MB flash. You can save some space while compiling your own image (e.g. with the [[docs:user-guide:imagebuilder|imagebuilder]]) by removing packages that are not needed for your usecase.
+
+^ Action               ^ Packages                                                                                                    ^
+| remove pppoe         | ''-ppp -ppp-mod-pppoe''                                                                                         |
+| remove IPv6          | ''-ip6tables -odhcp6c -kmod-ipv6 -kmod-ip6tables''                                                              |
+| remove dhcp server   | ''-odhcpd''                                                                                                     |
+| remove  iptables     | ''-iptables''                                                                                                   |
+| remove opkg          | ''-opkg''                                                                                                       |
+| add LuCI minimal     | ''uhttpd uhttpd-mod-ubus libiwinfo-lua luci-base luci-app-firewall luci-mod-admin-full luci-theme-bootstrap''   |
+| add zram             | ''zram-swap''                                                                                                   |
+
+
+=== Build image for devices with only 4MB flash ===
+
+**Example image builder command line**\\
+**Note:** In the command line shown below, you need to adjust ''PROFILE=tl-wr941nd-v6'' to your device.
+
+^ LuCI    ^ Action ^ Imagebuilder commandline ^
+| with LuCI | - remove pppoe and IPv6\\ + include only needed luci components, not full luci package. | ''make image PROFILE=tl-wr941nd-v6 PACKAGES="uhttpd uhttpd-mod-ubus libiwinfo-lua luci-base luci-app-firewall luci-mod-admin-full luci-theme-bootstrap -ppp -ppp-mod-pppoe -ip6tables -odhcp6c -kmod-ipv6 -kmod-ip6tables"'' |
+| without LuCI | - remove pppoe and IPv6 | ''make image PROFILE=tl-wr941nd-v6 PACKAGES="-ppp -ppp-mod-pppoe -ip6tables -odhcp6c -kmod-ipv6 -kmod-ip6tables"'' |
+
+
+Resources:
+  * [[https://forum.lede-project.org/t/can-i-strip-the-ipv6-out-with-the-imagebuilder/3465/5]]
+  * [[https://forum.lede-project.org/t/build-lede-without-ipv6/2043]]
+  * [[https://forum.lede-project.org/t/make-image-problem/898]]
+  * [[https://forum.lede-project.org/t/tp-link-tl-mr-3420-v3-build/855/8]]
+
+
+=== Build image for devices with only 16/32MB RAM ===
+
+If the device has 16MB or less of RAM, then it should only be used as Internal AP (e.g. to extend Wi-Fi coverage).\\
+
+**Example image builder command line**\\
+**Note:** In the command line shown below, you need to adjust ''PROFILE=tl-wr941nd-v6'' to your device.
+
+^  RAM   ^ Action ^ Imagebuilder commandline ^
+|  16MB  | - remove pppoe and IPv6\\ - remove all related elements to iptables\\ - remove dhcp servers \\ + add LUCI\\ + add zram-swap\\ - remove opkg - not needed after making these adjustments | ''make image PROFILE=tl-wr941nd-v6 PACKAGES="uhttpd uhttpd-mod-ubus libiwinfo-lua luci-base luci-app-firewall luci-mod-admin-full luci-theme-bootstrap zram-swap -ppp -ppp-mod-pppoe -iptables -ip6tables -odhcp6c -kmod-ipv6 -kmod-ip6tables -odhcpd -opkg"''|
+|  32MB  | - remove pppoe and IPv6\\ + add LUCI\\ + add zram-swap\\ - remove opkg - not needed after making these adjustments | ''make image PROFILE=tl-wr941nd-v6 PACKAGES="uhttpd uhttpd-mod-ubus libiwinfo-lua luci-base luci-app-firewall luci-mod-admin-full luci-theme-bootstrap zram-swap -ppp -ppp-mod-pppoe -ip6tables -odhcp6c -kmod-ipv6 -kmod-ip6tables -opkg"'' |
+
+Resources:
+  * [[https://forum.lede-project.org/t/zram-configuration/3560]]
+  * [[https://forum.lede-project.org/t/best-practices-for-32-mb-ram/5050]]
+  * [[https://forum.lede-project.org/t/luci-slow-down-to-death-wr1043n-v1/1992]]
+
+==== Error code: 18005 ====
+When trying to install a firmware image, I get the following error:
+
+''Error code: 18005, Upgrade unsuccessfully because the version of the upgraded file was incorrect. Please check the file name.''
+
+**Solution:** Rename the firmware image to something short, like e.g. ''factory.bin''

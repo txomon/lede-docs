@@ -1,0 +1,7 @@
+====== Pages requiring proofreading ======
+
+**Purpose of this listing:** Show overview  of pages that are in need of proofreading.
+
+**Criteria:** Pages shown here have "proofreading" somewhere in them. To make a page show up here, simply add some text explaining that you think that the page needs proofreading.
+
+{{pagequery> proofreading -ns:wiki:maintenance;fulltext;display={title} - {date:created} / {last_change:date} {last_change:user};label=Pagetitle - created / lastmoddate lastmoduser;hidejump}}

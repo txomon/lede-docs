@@ -1,0 +1,10 @@
+====== Maintenance ======
+
+  * [[wiki:maintenance:wanted_pages|Wanted pages]]
+  * [[wiki:maintenance:orphaned_pages|Orphaned pages]]
+  * [[wiki:maintenance:created_pages|Newly created pages]]
+  * [[wiki:maintenance:to_do_list|To do list]]
+  * [[wiki:maintenance:proofreading_required|Pages requiring proofreading]]
+  * [[wiki:maintenance:fixmes|Pages containing FIXMEs]]
+  * [[wiki:maintenance:eol_devices|EoL devices]]
+  * [[wiki:maintenance:missing_dataentries|Missing dataentries]]

@@ -1,0 +1,45 @@
+====== LEDE 웹사이트 ======
+
+===== 누가 이 사이트를 운영하나요? =====
+
+  * 이 사이트는 커뮤니티에 의해 운영되며 커뮤티니를 위한 사이트입니다. 
+  * LEDE 개발자들은 사이트의 운영자이면서 커뮤니티의 회원입니다.
+  * 커뮤니티 운영 규칙 중 최상의 몇 개는 읽기 전용 페이지에 존재합니다. 이 사이트의 대부분은 회원들이 자유롭게 편집하고 개선할 수 있습니다.
+
+===== 목적 =====
+
+이 사이트의 목적은 다음과 같은 것을 제공하기 위함입니다:
+  * LEDE를 지원하는 [[toh:views:start|기기에 대한 정보]] 
+  * [[ko:docs:guide-quick-start:start|설치 가이드]]
+  * VPN, WIFI 등의 [[docs/howto/start|설정 방법]]
+
+
+===== 페이지 편집 – Dokuwiki 문법을 이용 =====
+
+사용 가능한 마크업 명령과 설치된 문법 플러그인에 대해서는 [[wiki:syntax|Dokuwiki 문법 튜토리얼]]을 읽어보세요. [[playground:playground|연습 페이지]]에서 얼마든지 연습해 볼 수 있습니다! 
+
+===== 사진 =====
+
+좋은 사진들을 사이트에 업로드하고 싶다면 [[meta:adding_images_to_lede_wiki|LEDE Wiki에 사진을 추가하기]] 페이지를 참조해주세요.
+
+
+===== 유지보수 =====
+이 사이트에는 일관성 테스트가 내장되어 있습니다. 이 페이지들은 자동으로 문제들을 리포트합니다.
+  * 정기적인 [[wiki:maintenance:start|유지보수]]가 이 사이트가 좋은 모습을 유지할 수 있게 도와줍니다.
+  * Check the [[wiki:maintenance:to_do_list|To do list]] for tasks flagged as needing to be done
+
+===== 여러분의 도움은 언제든지 환영합니다! =====
+
+  * [[http://lists.infradead.org/pipermail/lede-dev/2016-September/thread.html#2807|LEDE 웹사이트 팀에 참여하세요!]]
+  * [[:register_yourself_in_the_wiki|사이트에 가입하세요.]]
+
+===== 문의 =====
+
+사이트에 대해 궁금한 점이 있다면 아래 사람들에게 연락하세요.
+
+^ 문의                                             ^ 담당자                   ^ 문의 링크          ^ 
+| [[toh:views:start|하드웨어 표]]                   | [[user:tmomas|tmomas]]   | [[https://forum.lede-project.org/c/documentation|포럼]]  |
+| [[:start|Wiki]] (사용법, 문법, ...)  | [[user:tmomas|tmomas]]   | [[https://forum.lede-project.org/c/documentation|포럼]]  |
+| [[packages:start|패키지 목록]]                  | bobafetthotmail          | [[https://forum.lede-project.org/c/documentation|포럼]]  |
+| 인프라            | thess, jow               | [[https://bugs.lede-project.org/|버그 추적기]]          |
+|lede-project.org에 대해 궁금한 다른점들           | Forum                    | [[https://forum.lede-project.org/c/documentation|포럼]]  |

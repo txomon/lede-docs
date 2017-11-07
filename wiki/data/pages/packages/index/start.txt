@@ -1,0 +1,15 @@
+~~NOCACHE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+{{pagequery>ns:packages:index: *;
+    sort=pagename;
+    cols=3;
+    bullet=none;
+    underline;
+    border=both;
+    hidestart;
+    hidejump;
+    fontsize=130%;
+    label=Package categories;
+}}
+

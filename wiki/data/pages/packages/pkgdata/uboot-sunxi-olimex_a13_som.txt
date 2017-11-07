@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: uboot-sunxi-OLIMEX_A13_SOM ======
+---- dataentry packages ----
+Name                             : uboot-sunxi-OLIMEX_A13_SOM
+Version                          : 2016.03
+Description                      : U-Boot for the Olimex A13 SOM\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 0 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc
+Categories_pkg-categorys         : boot-loaders #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : arm_cortex-a8_vfpv3,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 0
+License                          : GPL-2.0 GPL-2.0+
+Maintainer_pkg-maintainer        : Zoltan HERPAI
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/boot/uboot-sunxi|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 2016.03 # short version of the package, for display in table
+----
+

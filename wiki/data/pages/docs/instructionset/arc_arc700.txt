@@ -1,0 +1,29 @@
+====== arc_arc700 ======
+   * Highly configurable 32-bit processor core
+   * Linux acceleration package including shared library address space identifier (ASID) support in MMU and load lock/store conditional instructions
+   * MMU-based memory solution supports Linux and other high-end operating systems
+   * Built-in DSP features include instruction and register extensions that accelerate signal processing algorithms
+   * Optional DesignWare ARC XY Advanced DSP solution delivers the performance of dedicated DSP cores, allowing external logic and DSP blocks to be eliminated
+   * DesignWare ARCompact™ 16-/32-bit Instruction Set Architecture reduces code size by up to 40 percent compared to 32-bit only instruction sets
+   * JTAG debug port and optional embedded hardware breakpoints facilitate software debug
+   * Delivered as synthesizable RTL source code (Verilog®), fully compatible with industry standard design methodologies and tool flows
+
+[[https://www.synopsys.com/dw/ipdir.php?ds=arc_770d|source]]
+
+===== Download Packages =====
+
+/* Link to packages download goes here. */
+
+| HTTP   | [[https://downloads.lede-project.org/releases/packages-17.01/arc_arc700/]]      |
+| FTP    | [[ftp://ftp.halifax.rwth-aachen.de/lede/releases/packages-17.01/arc_arc700/]]   |
+
+See [[/downloads#mirrors|Mirrors]] for more download sites.
+
+===== Devices with this instructionset =====
+
+---- datatable ----
+cols   : Package architecture, Target, Subtarget, Brand, Model_pageid, Version
+filter : Package architecture=arc_arc700
+filter : Brand!=(EXAMPLE)
+sort   : Brand
+----

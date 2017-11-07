@@ -1,0 +1,285 @@
+====== Basic IPv6 Configuration ======
+
+The default firmware provides full IPv6 support with a DHCPv6 client (''odhcp6c''), an RA & DHCPv6 Server (''odhcpd'') and a IPv6 firewall (''ip6tables'').\\
+Also, the default installation of the web interface includes the package ''luci-proto-ipv6'', required to configure IPv6 from the ''luci'' web interface.
+
+:!: If you are making a custom build please not that the packages stated above must be installed to provide the corresponding IPv6 functionality.
+
+==== Compliance ====
+Our aim is to follow [[http://tools.ietf.org/html/rfc7084|RFC 7084]] where possible.\\
+Please notify us if you find any standard violations.
+
+The following requirements of [[http://tools.ietf.org/html/rfc7084|RFC 7084]] are currently known not to be met:
+  *  [[http://tools.ietf.org/html/rfc7084|RFC 7084]] WAA-5 (SHOULD-requirement): The NTP-Server is requested and received but currently not processed or used.
+
+==== General features ====
+  * Prefix Handling
+    * Management of prefixes, addresses and routes from upstream connections and local ULA-prefixes
+    * Management of prefix unreachable-routes, prefix deprecation ([[http://tools.ietf.org/html/rfc7084|RFC 7084]]) and prefix classes
+    * Distribution of prefixes onto downstream interfaces (including size, ID  and class hints)
+    * Source-based policy routing to correctly handle multiple uplink interfaces, ingress policy filtering ([[http://tools.ietf.org/html/rfc7084|RFC 7084]])
+
+===== Upstream configuration for WAN-Interfaces =====
+The following sections describe the configuration of IPv6 connections to your ISP or an upstream router. Please note that most tunneling mechanisms like 6in4, 6rd and 6to4 may not work behind a NAT-router.
+
+==== Native IPv6 connection ====
+  * Automatic bootstrap from SLAAC, stateless DHCPv6, stateful DHCPv6, DHCPv6-PD and any combination
+  * Handling of preferred and valid address and prefix lifetimes
+  * Duplicate address and Link-MTU detection
+  * DHCPv6 Extensions: Reconfigure, Information-Refresh, SOL_MAX_RT=3600
+  * DHCPv6 Extensions: RDNSS, DNS Search Domain, NTP, SIP, ds-lite, prefix exclusion (experimental)
+
+For an uplink with native IPv6-connectivity you can use the following example configuration. It will work both for uplinks supporting DHCPv6 with Prefix Delegation and those that don't support DHCPv6-PD or DHCPv6 at all (SLAAC-only).
+
+<code>root@lede:/# cat /etc/config/network
+config interface wan
+        option ipv6 1 # only required for PPP-based protocols
+        ...
+
+config interface wan6
+        option ifname   eth1 # use same ifname as in wan-section or "@wan"
+        option proto    dhcpv6
+
+config interface lan
+        option proto    static
+        option ip6assign 60
+        ...
+</code>
+
+See below for advanced configuration options of protocol **dhcpv6**.
+
+=== Protocol "dhcpv6" ===
+These are available options in uci configuration of client ipv6 interface (using the "dhcpv6" protocol).
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''reqaddress'' | [try,force,none] | no | try | Behaviour for requesting addresses |
+| ''reqprefix'' | [auto,no,0-64] | no | auto | Behaviour for requesting prefixes (numbers denote hinted prefix length).  Use 'no' if you only want a single IPv6 address for the AP itself without a subnet for routing |
+| ''clientid'' | hexstring | no | //system default// | Override client identifier in DHCP requests |
+| ''ifaceid'' | ipv6 addr | no | //link-local identifier// | Override the interface identifier for adresses received via RA |
+| ''dns'' | list of ip addresses | no | //(none)// | Supplement DHCP-assigned DNS server(s), or use only these if peerdns is 0 |
+| ''peerdns'' | boolean | no | ''1'' | Use DHCP-provided DNS server(s) |
+| ''defaultroute'' | boolean | no | ''1'' | Whether to create an IPv6 default route via the received gateway |
+| ''reqopts'' | list of numbers | no | //(none)// | Specifies a list of additional DHCP options to request |
+| ''noslaaconly'' | boolean | no | ''0'' | Don't allow configuration via SLAAC (RAs) only (implied by reqprefix != no) |
+| ''forceprefix'' | boolean | no | ''0'' | Require presence of IPv6 Prefix in received DHCP message |
+| ''norelease'' | boolean | no | ''0'' | Don't send a RELEASE when the interface is brought down |
+| ''ip6prefix'' | ipv6 prefix | no | //(none)// | Use an (additional) user-provided IPv6 prefix for distribution to clients |
+| ''iface_dslite'' | logical interface | no | //(none)// | Logical interface template for auto-configuration of DS-Lite (0 means disable DS-Lite autoconfiguration; every other value will autoconfigure DS-Lite when the AFTR-Name option is received) |
+| ''zone_dslite'' | string | no | //(none)// | Firewall zone of the logical DS-Lite interface |
+| ''iface_map'' | string | no | //(none)// | Logical interface template for auto-configuration of either map-e/map-t/lw6o4 autoconfiguration (0 means disable map-e/map-t/lw406 autoconfiguration; every other value will autoconfigure map-e/map-t/lw4o6 when the corresponding Softwire46 options are received) |
+| ''zone_map'' | string | no | //(none)// | Firewall zone of the logical map-e/map-t/lw6o4 interface |
+| ''iface_464xlat'' | string | no | //(none)// | Logical interface template for the 464xlat interface (0 means disable 464xlat autoconfiguration; every other value will try to autoconfigure 464xlat) |
+| ''zone_464xlat'' | string | no | //(none)// | Firewall zone of the logical 464xlat interface |
+| ''zone'' | string | no | //(none)// | Firewall zone to which the interface will be added |
+| ''sourcerouting'' | boolean | no | ''1''' | Whether to enable source based IPv6 routing |
+| ''vendorclass'' | string | no | //(none)// | Vendor class to be included in the DHCP messages |
+| ''userclass'' | string | no | //(none)// | User class to be be included in the DHCP messages |
+| ''delegate'' | boolean | no | ''1'' | Whether to enable prefix delegation in case of DS-Lite/map/464xlat |
+| ''soltimeout'' | integer | no | ''120'' | The maximum solicit timeout |
+| ''fakeroute'' | boolean | no | ''1'' | Fake default route when no route info via RA is received |
+| ''ra_holdoff'' | integer | no | ''3'' | Minimum time in seconds between accepting RA updates |
+
+**Note:** To automatically configure ds-lite from dhcpv6 you need to create an interface with ''option auto 0'' and put its name as the 'iface_dslite' parameter. In addition you also need to add its name to a suitable firewall zone in /etc/config/firewall.
+
+
+==== Static IPv6 connection ====
+Static configuration of the IPv6 uplink is supported as well. The following example demonstrates this.
+
+<code>root@lede:/# cat /etc/config/network
+config interface wan
+        option ifname   eth1
+        option proto    static
+        option ip6addr  2001:db80::2/64   # Own address
+        option ip6gw    2001:db80::1      # Gateway address
+        option ip6prefix 2001:db80:1::/48 # Prefix addresses for distribution to downstream interfaces
+        option dns      2001:db80::1      # DNS server
+
+config interface lan
+        option proto    static
+        option ip6assign 60
+        ...
+</code>
+For advanced configuration options see below for the usable options in a IPv6 "static" protocol:
+
+=== Protocol "static" with IPv6 ===
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''ip6addr'' | ipv6 address | yes, if no ''ipaddr'' is set | //(none)// | Assign given IPv6 address to this interface (CIDR notation) |
+| ''ip6ifaceid'' | ipv6 suffix | no | ::1 | Allowed values: 'eui64', 'random', fixed value like '::1:2'. \\ When IPv6 prefix (like 'a:b:c:d::') is received from a delegating server, use the suffix (like '::1') to form the IPv6 address ('a:b:c:d::1') for this interface. Useful with several routers in LAN. The option was introduced by [[http://git.openwrt.org/?p=project/netifd.git;a=commitdiff;h=0b0e5e2fc5b065092644a5c4717c0a03a9098dcf;hp=e9d2014a478807c7fac0581bb4a145901a3f23b4|this commit]] to netifd in Jan 2015. |
+| ''ip6gw'' | ipv6 address | no | //(none)// | Assign given IPv6 default gateway to this interface |
+| ''ip6assign'' | prefix length | no | //(none)// | Delegate a prefix of given length to this interface (see Downstream configuration below) |
+| ''ip6hint'' | prefix hint (hex) | no | //(none)// | Hint the subprefix-ID that should be delegated as hexadecimal number (see Downstream configuration below) | 
+| ''ip6prefix'' | ipv6 prefix | no | //(none)// | IPv6 prefix routed here for use on other interfaces (Barrier Breaker and later only) |
+| ''ip6class'' | list of strings | no | //(none)// | Define the IPv6 prefix-classes this interface will accept |
+| ''dns'' | list of ip addresses | no | //(none)// | DNS server(s) |
+| ''dns_search'' | list of domain names | no | //(none)// | Search list for host-name lookup |
+| ''metric'' | integer | no | ''0'' | Specifies the default route metric to use |
+
+
+===== Downstream configuration for LAN-Interfaces =====
+  * Server support for Router Advertisement, DHCPv6 (stateless and stateful) and DHCPv6-PD
+  * Automatic detection of announced prefixes, delegated prefixes, default routes and MTU
+  * Change detection for prefixes and routes triggering resending of RAs and DHCPv6-Reconfigure
+  * Detection of client hostnames and export as augmented hosts-file
+  * Support for RA & DHCPv6-relaying and NDP-proxying to e.g. support uplinks without prefix delegation
+
+
+LEDE provides a flexible local prefix delegation mechanism.\\
+It can be tuned for each downstream-interface individually with 3 parameters which are all optional:
+  * ''ip6assign'': Prefix size used for assigned prefix to the interface (e.g. 64 will assign /64-prefixes)
+  * ''ip6hint'': Subprefix ID to be used if available (e.g. 1234 with an ip6assign of 64 will assign prefixes of the form ...:1234::/64)
+  * ''ip6class'': Filter for prefix classes to accept on this interface (e.g. wan6 will only assign prefixes with class "wan6" but not e.g. "local")
+
+ip6assign and / or ip6hint-settings might be ignored if the desired subprefix cannot be assigned. In this case the system will first try to assign a prefix with the same length but different subprefix-ID.
+If this fails as well the prefix length is reduced until the assignment can be satisfied. If ip6hint is not set an arbitrary ID will be chosen. Setting the ip6assign-parameter to a value < 64 will allow the DHCPv6-server to hand out all but the first /64 via DHCPv6-Prefix Delegation to downstream routers on the interface. If the ip6hint is not suitable for the given ip6assign it will be rounded down to the nearest possible value.
+
+If ip6class is not set then all prefix classes are accepted on this interface. The default class for a prefix is the interface-name (e.g. "wan6") or "local" for the ULA-prefix.
+This can be used to select upstream interfaces from which subprefixes are assigned. For prefixes received from dynamic-configuration methods like DHCPv6 it is possible that the prefix-class
+is not equal to the source-interface but e.g. augmented with an ISP-provided numeric prefix class-value.
+
+<code>root@lede:/# cat /etc/config/network
+config globals globals
+        option ula_prefix fd00:db80::/48
+
+config interface wan6
+        option proto static
+        option ip6prefix 2001:db80::/56
+        ...
+
+config interface lan
+        option proto static
+        option ip6assign 60
+        option ip6hint 10
+        ...
+
+config interface guest
+        option proto static
+        option ip6assign 64
+        option ip6hint abcd
+        list ip6class wan6
+        ...
+</code>
+
+The results of that configuration would be:
+
+  * The ''lan'' interface will be assigned the prefixes 2001:db80:0:10::/60 and fd00:db80:0:10::/60.
+  * The DHCPv6-server can offer both prefixes except 2001:db80:0:10::/64 and fd00:db80:0:10::/64 to downstream routers on ''lan'' via DHCPv6-PD.
+  * The ''guest'' interface will only get assinged the prefix 2001:db80:0:abcd::/64 due to the class filter.
+
+:!: If the router can ''ping6'' the internet, but lan machines get "Destination unreachable: Unknown code 5" or "Source address failed ingress/egress policy" then the **ip6assign** option is missing on your lan interface.
+
+===== Router Advertisement & DHCPv6 =====
+LEDE features a versatile RA & DHCPv6 server and relay. Per default SLAAC, stateless and stateful DHCPv6 are enabled on an interface. If there are prefix of size /64 or greater present then addresses will be handed out from each prefix. If all prefixes on an interface have a size greater /64 then DHCPv6-Prefix Delegation is enabled for downstream-routers. If a default route is present the router advertises itself as default router on the interface.
+
+The system is also able to detect when there is no prefix available from an upstream interface and can switch into relaying mode automatically to extend the upstream interface configuration onto its downstream interfaces. This is useful for putting the target router behind another IPv6-router which doesn't offer prefixes via DHCPv6-PD.
+
+Example configuration section for SLAAC + DHCPv6 server mode. This is suitable also for a typical 6in4 tunnel configuration, where you specify the fixed LAN prefix in the tunnel interface config.
+<code>root@lede:/# cat /etc/config/dhcp
+config dhcp lan
+    option dhcpv6 server
+    option ra server
+</code>
+
+Example configuration section for SLAAC alone
+<code>root@lede:/# cat /etc/config/dhcp
+config dhcp lan
+    option dhcpv6 disabled
+    option ra server
+</code>
+
+Example configuration section for relaying
+<code>root@lede:/# cat /etc/config/dhcp
+config dhcp wan6
+    option dhcpv6 relay
+    option ra relay
+    option ndp relay
+    option master 1
+
+config dhcp lan
+    option dhcpv6 relay
+    option ra relay
+    option ndp relay
+</code>
+
+===== Routing Mangement =====
+LEDE uses a source-address and source-interface based policy-routing system. This is required to correctly handle different uplink interfaces.
+Each delegated prefix is added with an unreachable route to avoid IPv6-routing loops.
+
+To determine the current status of routes you can consult the information provided by ''ifstatus''.
+
+Example (ifstatus wan6):
+<code>
+...
+        "ipv6-address": [
+                {
+                        "address": "2001:db80::a00:27ff:fe67:cd9c",
+                        "mask": 64,
+                        "preferred": 1681,
+                        "valid": 7081
+                }
+        ],
+        "ipv6-prefix": [
+                {
+                        "address": "2001:db80:0:100::",
+                        "mask": 56,
+                        "preferred": 86282,
+                        "valid": 86282,
+                        "class": "wan6",
+                        "assigned": {
+                                "lan": {
+                                        "address": "2001:db80:0:110::",
+                                        "mask": 60
+                                }
+                        }
+                }
+        ],
+        "route": [
+                {
+                        "target": "2001:db80::",
+                        "mask": 48,
+                        "nexthop": "fe80::800:27ff:fe00:0",
+                        "metric": 1024,
+                        "valid": 7081
+                },
+                {
+                        "target": "::",
+                        "mask": 0,
+                        "nexthop": "fe80::800:27ff:fe00:0",
+                        "metric": 1024,
+                        "valid": 7081
+                }
+        ],
+...
+</code>
+Interpretation:
+  * On the interface 2 routes are provided: 2001:db80::/48 and a default-route via the router fe80::800:27ff:fe00:0.
+  * These routes can only be used by locally generated traffic and traffic with a suitable source-address, that is either one of the local addresses or an address out of the delegated prefix.
+
+:!: LEDE adds IPv6-routes (like default routes) to specific routing-tables and not the main-table thus they may not be seen by default. You can use the command ''ip -6 rule'' to list all current routing policies.
+
+
+===== Multiple IP addresses =====
+Assigning multiple ip addresses to the same interface:
+<code>
+config interface foo
+  option ifname eth1
+  list ipaddr 10.8.0.1/24
+  list ipaddr 10.9.0.1/24
+  list ip6addr fdca:abcd::1/64
+  list ip6addr fdca:cdef::1/64
+</code>
+Specifying multiple interfaces sharing the same device:
+<code>
+config interface foo
+  option ifname eth1
+  option ipaddr 10.8.0.1
+  option netmask 255.255.255.0
+  option ip6addr fdca:abcd::1/64
+
+config interface foo2
+  option ifname eth1
+  option ipaddr 10.9.0.1
+  option netmask 255.255.255.0
+  option ip6addr fdca:cdef::1/64
+</code>
+Originally posted at [[https://dev.openwrt.org/ticket/2829#comment:7]].

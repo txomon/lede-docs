@@ -1,0 +1,211 @@
+====== Network overview ======
+  * This is an default LEDE network stack of a typical home router
+  * your device may vary slightly in features or numbering scheme
+  * Pay attention, that the labels "WAN" and "LAN" can mean different things, depending on their context
+
+^  LuCi web GUI  ^  Comment  ^ ^^^^^^^^
+| "Firewall" | Rules for traffic between zones |  Forwarding Rules, Traffic Rules, Custom Rules  ||||||||
+| "Firewall", "Interfaces" | Network zone configuration |  WAN (Zone)  ||  LAN (Zone)  ||||||
+| "Interfaces" | TCP config & Bridge configuration |  WAN  |  WAN6  |  LAN (TCP and Bridge config)  ||||||
+| "Switch", "Wireless" | VLANs and wireless SSIDs |  VLAN 1 (eth 0.2)  ||  VLAN 2 (eth 0.1)  ||||   LEDE 5  |  LEDE 2.4  |
+| "Switch", "Wireless" | Internal jack labels and radio labels|  WAN (Interface)  ||  LAN 1  |  LAN 2  |  LAN 3  |  LAN 4  |  radio0  |  radio1  |
+| - | Common vendor labels on backside a device |  "Internet"  ||  "1"  |  "2"  |  "3"  |  "4"  |  "n/ac"  |  "b/g/n"  |
+
+
+===== Network configuration =====
+The central network configuration is handled by the uci **network** subsystem, and stored in the file ''/etc/config/network''. This uci susbsystem is responsible for defining //switch VLANs//, //interface configurations// and //network routes//.\\ 
+After any network configuration change (through uci or otherwise) you need to reload the network configuration in the netifid daemon by writing:\\
+<code>root@lede:/# service network reload</code> 
+Thanks to [[docs:guide-developer:netifid|netifd]] (Network Interface Daemon), the changed interfaces will be restarted automatically to apply the changes live.\\
+Rebooting the router is not necessary, but is also another way that will force a configuration reload.
+
+Here an example network uci subsystem with default settings for a TL-WR1043ND
+<code>root@lede:/# uci show network
+network.loopback=interface
+network.loopback.ifname='lo'
+network.loopback.proto='static'
+network.loopback.ipaddr='127.0.0.1'
+network.loopback.netmask='255.0.0.0'
+network.globals=globals
+network.globals.ula_prefix='fd27:70fa:5c1d::/48'
+network.lan=interface
+network.lan.type='bridge'
+network.lan.ifname='eth0.1'
+network.lan.proto='static'
+network.lan.netmask='255.255.255.0'
+network.lan.ip6assign='60'
+network.lan.ipaddr='192.168.1.1'
+network.wan=interface
+network.wan.ifname='eth0.2'
+network.wan.proto='dhcp'
+network.wan6=interface
+network.wan6.ifname='eth0.2'
+network.wan6.proto='dhcpv6'
+network.@switch[0]=switch
+network.@switch[0].name='switch0'
+network.@switch[0].reset='1'
+network.@switch[0].enable_vlan='1'
+network.@switch_vlan[0]=switch_vlan
+network.@switch_vlan[0].device='switch0'
+network.@switch_vlan[0].vlan='1'
+network.@switch_vlan[0].ports='1 2 3 4 5t'
+network.@switch_vlan[1]=switch_vlan
+network.@switch_vlan[1].device='switch0'
+network.@switch_vlan[1].vlan='2'
+network.@switch_vlan[1].ports='0 5t'
+</code>
+
+and here the same settings as written in ''/etc/config/network''
+
+<code>root@lede:/# cat /etc/config/network
+
+config interface 'loopback'
+        option ifname 'lo'
+        option proto 'static'
+        option ipaddr '127.0.0.1'
+        option netmask '255.0.0.0'
+
+config globals 'globals'
+        option ula_prefix 'fd27:70fa:5c1d::/48'
+
+config interface 'lan'
+        option type 'bridge'
+        option ifname 'eth0.1'
+        option proto 'static'
+        option netmask '255.255.255.0'
+        option ip6assign '60'
+        option ipaddr '192.168.1.1'
+
+config interface 'wan'
+        option ifname 'eth0.2'
+        option proto 'dhcp'
+
+config interface 'wan6'
+        option ifname 'eth0.2'
+        option proto 'dhcpv6'
+
+config switch
+        option name 'switch0'
+        option reset '1'
+        option enable_vlan '1'
+
+config switch_vlan
+        option device 'switch0'
+        option vlan '1'
+        option ports '1 2 3 4 5t'
+
+config switch_vlan
+        option device 'switch0'
+        option vlan '2'
+        option ports '0 5t'
+</code>
+
+To see a list of interfaces write 
+<code>root@lede:/# ubus list network.interface.*</code>\\ 
+To view all info about a particular interface (the UCI name not the physical interface), write ifstatus <interface_name> 
+<code>root@lede:/# ifstatus lan</code>
+
+===== Sections =====
+A minimal network configuration for a router usually consists of at least two //interfaces// (''lan'' and ''wan'') and a //switch// section if applicable.
+
+===== Globals =====
+The ''globals'' section contains interface-independent options affecting the network configuration in general.
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''ula_prefix'' | IPv6-prefix | no | //(none)// | IPv6 [[wp>Unique local address|ULA]]-Prefix for this device |
+
+===== Interfaces =====
+Sections of the type ''interface'' declare logical networks serving as containers for IP address settings, [[docs:user-guide:network_interface_alias|aliases]], [[docs:user-guide:routes_configuration|routes]], physical interface names and [[docs:user-guide:firewall_configuration|firewall rules]] - they play a central role within the LEDE configuration concept.
+
+A minimal interface declaration consists of the following lines:
+
+**uci:** 
+<code>network.wan=interface
+network.wan.ifname='eth0.2'
+network.wan.proto='dhcp'</code>
+
+**config file:**
+<code>config 'interface' 'wan'
+        option 'proto' 'dhcp'
+        option 'ifname' 'eth0.2'</code>
+
+  * ''wan'' is a unique //logical interface name//
+  * ''dhcp'' specifies the //interface protocol//, DHCP in this example
+  * ''eth0.2'' is the //physical interface// associated with this section
+
+:!: The system limits the //physical interface name// length to 15 characters including the automatically added prefix that is added for some protocols (e.g. "6in4-", "pppoa-", "pppoe-") or due to bridge status ("br-").\\ 
+Depending on the protocol type, the //logical interface name// may thus be limited to only 9 characters. E.g. 'abcde67890' is a valid interface name for a normal interface using dhcp, but not for a pppoe interface where the final name would be 'pppoe-abcde67890', which is >15 chars.\\ 
+Using a too long name may lead into errors, as some of the settings in network, firewall or dhcp config may be left unapplied.
+
+The //interface protocol// may be one of the following:
+
+^ Protocol ^ Description ^ Program ^
+| ''static'' | Static configuration with fixed address and netmask |  ''ip''/''ifconfig''  |
+| ''dhcp'' | Address and netmask are assigned by DHCP |  ''udhcpc'' (Busybox)  |
+| ''dhcpv6'' | Address and netmask are assigned by DHCPv6 |  ''odhcpc6c''  |
+| ''ppp'' | PPP protocol - dialup modem connections |  ''pppd''  |
+| ''pppoe'' | PPP over Ethernet - DSL broadband connection |  ''pppd'' + ''plugin rp-pppoe.so''  |
+| ''pppoa'' | PPP over ATM - DSL connection using a builtin modem |  ''pppd'' + plugin ...  |
+| ''3g'' | CDMA, UMTS or GPRS connection using an AT-style 3G modem |  ''comgt''  |
+| ''qmi'' | USB modems using QMI protocol |  ''uqmi''  |
+| ''ncm'' | USB modems using NCM protocol |  ''comgt-ncm'' + ?  |
+| ''wwan'' | USB modems with protocol autodetection |  ''wwan''  |
+| ''hnet'' | Self-managing home network (HNCP) |  ''hnet-full''  |
+| ''pptp'' | Connection via PPtP VPN |  ?  |
+| ''6in4'' | IPv6-in-IPv4 tunnel for use with Tunnel Brokers like HE.net |  ?  |
+| ''aiccu'' | Anything-in-anything tunnel  |  ''aiccu''  |
+| ''6to4'' | Stateless IPv6 over IPv4 transport |  ?  |
+| ''6rd'' | IPv6 rapid deployment |  ''6rd''  |
+| ''dslite'' | Dual-Stack Lite |  ''ds-lite''  |
+| ''l2tp'' | PPP over L2TP Pseudowire Tunnel |  ''xl2tpd''  |
+| ''relay'' | relayd pseudo-bridge |  ''relayd''  |
+| ''gre'', ''gretap'' | GRE over IPv4 |  ''gre'' + ''kmod-gre''  |
+| ''grev6'', ''grev6tap'' | GRE over IPv6 |  ''gre'' + ''kmod-gre6''  |
+| ''vti'' | VTI over IPv4 |  ''vti'' + ''kmod-ip_vti''  |
+| ''vtiv6'' | VTI over IPv6 |  ''vti'' + ''kmod-ip6_vti''  |
+| ''none'' | Unspecified protocol, therefore all the other interface settings will be ignored (like disabling the configuration) |  -  |
+
+Depending on the used //interface protocol// several other options may be required for a complete interface declaration.
+The corresponding options for each protocol are listed below. Options marked as "yes" in the "Required" column //must// be defined in the interface section if the corresponding protocol is used, options marked as "no" //may// be defined but can be omitted as well.
+
+:!: If an interface section has no protocol defined (not even ''none'' ), the other settings are completely ignored. The result is that, if the interface section is mentioning a physical network interface (i.e. eth0), this will be down even if a cable is connected (with proto 'none' the interface is up).
+
+==== Options valid for all protocol types ====
+
+^ Name ^ Type ^ Required ^ Default ^ Description ^
+| ''ifname'' | interface name(s) | yes(*) | //(none)// | Physical interface name to assign to this section, list of interfaces if type bridge is set.\\ //(*) This option may be empty or missing if only a wireless interface references this network or if the protocol type is ''pptp'', ''pppoa'' or ''6in4''// |
+| ''type'' | string | no | //(none)// | If set to "bridge", a bridge containing the given //ifnames// is created\\ [[https://forum.openwrt.org/viewtopic.php?pid=203784#p203784|Wlan interface names are not predictable, therfore you cannot reference them directly in the network config]] |
+| ''stp'' | boolean | no | ''0'' | Only valid for type "bridge", enables the Spanning Tree Protocol |
+| ''bridge_empty'' | boolean | no | ''0'' | Only valid for type "bridge", enables creating empty bridges |
+| ''igmp_snooping'' | boolean | no | ''1'' | Only valid for type "bridge", sets the multicast_snooping kernel setting for a bridge |
+| ''macaddr'' | mac address | no | //(none)// | Override MAC address of this interface |
+| ''mtu'' | number | no | //(none)// | Override the default MTU on this interface |
+| ''auto'' | boolean | no | ''0'' for proto ''none'', else ''1'' | Specifies whether to bring up interface on boot |
+| ''ipv6'' | boolean | no | ''1'' | Specifies whether to enable (1) or disable (0) IPv6 on this interface (Barrier Breaker and later only) |
+| <del>''accept_ra''</del> | <del>boolean</del> | <del>no</del> | <del>''1'' for protocol ''dhcp'', else ''0''</del> | <del>Specifies whether to accept IPv6 Router Advertisements on this interface</del> **deprecated:** |
+| <del>''send_rs''</del> | <del>boolean</del> | <del>no</del> | <del>''1'' for protocol ''static'', else ''0''</del> |  <del>Specifies whether to send Router Solicitations on this interface</del> **deprecated:** |
+| ''force_link'' | boolean | no | ''1'' for protocol ''static'', else ''0'' | Specifies whether ip address, route, and optionally gateway are assigned to the interface regardless of the link being active ('1') or only after the link has become active ('0'); when set to '1', carrier sense events do not invoke hotplug handlers |
+| ''enabled'' | boolean | no | ''1''  | enable or disable the interface section |
+| ''ip4table'' | string | no | //(none)//  | (ipv4) routing table for routes of this interface. E.g., when proto = dhcp, the dhcp client will add routes to that table |
+| ''ip6table'' | string | no | //(none)//  | (ipv6) routing table for routes of this interface. E.g., when proto = dhcp6, the dhcp6 client will add routes to that table |
+
+
+===== Network management =====
+
+Network configuration can be re-applied by running ''/etc/init.d/network restart''.\\
+Individual interfaces can be brought up with ''ifup //name//'' or down with ''ifdown //name//'' where //name// corresponds to the //logical interface name// of the corresponding ''config interface'' section. An ''ifup'' implies a prior ''ifdown'' so there is no need to invoke both when reloading an interface.
+
+Note that wireless interfaces are managed externally and ''ifup'' may break the relation to existing bridges. In such a case it is required to run ''wifi up'' after ''ifup'' in order to re-establish the bridge connection.
+
+===== Script-friendly Interface =====
+For scripts that need to get network-related information you can use the functions found in ''/lib/functions/network.sh'' in stock LEDE firmware. 
+See the source and comments in that file for further information on what is available and how to call it.
+
+A simple example:
+<code>root@lede:/# source /lib/functions/network.sh ; if network_get_ipaddr addr "lan"; then echo "IP is $addr"; fi
+IP is 192.168.1.1
+</code>
+
+To get a Linux interface name like ''eth1'' from a logical network name like ''wan'' you can do as in this example:
+<code>root@lede:/# uci get network.wan.ifname
+eth0.2</code>

@@ -1,0 +1,43 @@
+====== Witaj na stronie projektu LEDE ======
+~~NOTOC~~
+
+LEDE (“Linux Embedded Development Environment”) jest to system operacyjny Linux który jest bazowany na OpenWrt. Jest to zamiennik dla oryginalnego oprogramowania od producenta dla szerokiego pola różnego rodzaju routerów. Zobacz [[toh:start|Listę obsługiwanych urządzeń]] aby zobaczyć czy twoje urządzenie jest wspierane. Aby poczytać o organizacji LEDE Project, zobacz stronę [[:about|O LEDE]].
+
+===== Dlaczego LEDE? =====
+
+Ludzie instalują LEDE ponieważ wierzą że będzie działał lepiej niż oryginalne oprogramowanie od producenta. LEDE jest bardziej stabilny, ma więcej możliwości, oraz jest bardziej bezpieczny.
+
+  * **Możliwości:** LEDE oferuje funkcje które można znaleźć tylko w produktach najwyższej półki. Ma 3000+ aplikacji które są ustandaryzowane, więc możesz łatwo skopiować ustawienia z i do każdego wspieranego urządzenia, w tym dwu (albo nawet pięcio) letnie routery. [[dlaczego_lede#mozliwosci|Więcej...]]
+
+  * **Bezpieczeństwo:** Domyślna instalacja LEDE jest bezpieczna od samego początku, domyślnie wyłączone Wi-Fi, żadnych słabych haseł czy "tylnych drzwi" zostawionych przez producentów oprogramowania. Oprogramowanie LEDE jest często aktualizowane, więc wszelkie błędy czy luki bezpieczeństwa są likwidowane bardzo szybko. [[dlaczego_lede#bezpieczenstwo|Więcej...]]
+
+  * **Szybkość i niezawodność:** LEDE jest stworzony z ustandaryzowanych modułów używanych na wszystkich wspieranych urządzeniach. To znaczy że każdy moduł jest testowany i otrzymuje więcej poprawek niż w oprogramowaniu producenta co sprawia że wszystko działa sprawniej. [[dlaczego_lede#szybkosc_niezawodnosc|Więcej...]]
+
+  * **Duże wsparcie społeczności:** Społeczność LEDE regularnie udziela się na [[https://forum.lede-project.org|LEDE Forum]], [[http://lists.infradead.org/mailman/listinfo/lede-dev|LEDE Developer]] i [[http://lists.infradead.org/mailman/listinfo/lede-adm|LEDE Admin]], oraz [[:contact#irc_channels|Kanały IRC.]] Możesz porozmawiać z deweloperami, wolontariuszami zajmującymi się modułami systemu oraz z innymi użytkownikami LEDE, którzy sprawiają że szanse na zlikwidowanie twojego problemu zostaną usunięte w następnej aktualizacji. [[:kontakt|Więcej...]]
+
+  * **Badania:** Wiele użytkowników używa LEDE aby badać prędkość internet. To znaczy że badania tych użytkowników będą przyczynialy się do ciągłego ulepszania wspieranych urzadzeń które będą dostępne w pierwszej kolejności dla LEDE [[dlaczego_lede#badania|Więcej...]]
+
+  * **Otwarto źródłowy/Bez dodatkowych kosztów:** LEDE jest rozprowadzany kompletnie za darmo. Został stworzony przez naszych wolontariuszy: deweloperów, uzytkowników indywidualnych oraz różne firmy. Jeżeli lubisz LEDE, rozważ przekazanie darowizny [[#lede_wants_you|Pomóż nam ulepszac LEDE!]] LEDE jest częścią społeczności Open Source, i jest wspierany przez jądro Linux. [[https://git.lede-project.org|Zdobądź kod źródłowy...]]
+
+  * **I jeszcze więcej...** Zobacz więcej [[dlaczego_lede#konfiguracja|Dlaczego LEDE...]]
+
+
+===== LEDE chce cię! =====
+
+Jak każdy projekt otwarto źródłowy, LEDE rozwija się dzięki wysiłkom użytkowników i programistów
+
+  * Jeżeli chcesz pomóc nam tworzyć LEDE, proszę przeczytać [[docs:guide-developer:the-source-code|Przewodnik programisty]] aby dowiedzieć się jak zdobyć kod źródłowy, skompilować go, oraz dodać twoje zmiany do projektu.
+
+  * Jeżeli nie jesteś programistą, nadal możesz pomóc. Dokumentacja zawsze moze być poprawiana (nawet jeżeli będzie trzeba zweryfikować czy tekst jest dostosowany do twojej wiedzy), albo możesz pomóc innym uzytkownikom którzy mają problem z LEDE. Nie bój się [[:register_yourself_in_the_wiki|Zarejestrować na wiki]], albo dołączyć do [[https://lists.infradead.org/mailman/listinfo/lede-dev|mailing list]] lub [[:contact#irc_channels|Kanałów IRC]].
+
+
+===== Adnotacja =====
+
+Społeczność *Wrt jest stworzona z innych wspaniałych społeczności wszystko sprowadza nas do misji polegającej na ulepszeniu czegoś na tej planecie. Następujące społeczności pomogły nam rozwinąć nasz projekt. Dziękujemy!
+
+| {{wiki:qmp.png|qMp logo}}| **[[http://qmp.cat/News/31_qMp_endorses_the_LEDE_project|qMp endorses the LEDE project]]** |
+| {{wiki:wirelesspt.png|WirelessPT logo}}| **[[https://wirelesspt.net/wiki/LEDE|"We wish huge success to the LEDE project"]]** |
+| {{wiki:weimarnetz.png|Weimarnetz logo}}| **[[https://weimarnetz.de/|Weimarnetz Project Homepage]]** |
+| {{wiki:bmx7.png|bmx.net logo}}| **[[http://bmx6.net/news/24|"We … will consider it the new default OS environment for embedded devices running bmx6 and bmx7"]]** |
+| {{wiki:libremesh.png|Libre-Mesh logo}}| **[[http://libre-mesh.org/news.html#2016_08_06_endorsement_to_lede_project|"We endorse the LEDE project and we plan to start basing Libre-Mesh releases on Linux Embedded Development Environment"]]** |
+| {{wiki:openwisp.png|OpenWISP logo}}| **[[http://openwisp.org/news/lede.html|"We deeply appreciate the efforts of the LEDE project …"]]** |

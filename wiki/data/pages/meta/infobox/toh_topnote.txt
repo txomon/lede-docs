@@ -1,0 +1,23 @@
+====== ToH Topnote ======
+~~NOTOC~~
+{{page>meta:infobox:tohstyles&noheader&nofooter&noeditbtn&inline&indent&link}}
+
+----
+
+<columns 100% 400px ->
+==== Using the Table of Hardware ====
+  * **Sort the columns** by clicking the column header
+  * **Enter your filter criteria** in the **<color black/white>'' white fields ''</color>**\\ You can filter for partial matches, e.g.
+    * D-Li, D-Lin, D-Link, Net, Netg, ...
+    * DIR-6, TL-WR, 3700, 43, 430, 4300, ...
+
+<newcolumn>
+==== Other Resources ====
+  * **If your device is supported:**\\ [[docs:guide-quick-start:start|Learn how to install LEDE on your Router.]]
+  * **Looking for other ways to view the Table of Hardware?**\\ [[toh:start?dataflt%5B0%5D=LEDE supported%20current%20rel_%3D17.01.2|Devices supported by current LEDE release]], [[toh:views:toh_extended_all|Full Details]], [[toh:views:dataclouds|Dataclouds]],  [[toh:views:start|All Views]]
+  * **Help maintain this page:**\\ [[supported_devices:adding_to_toh|Add a device to the ToH]] or [[supported_devices:adding_to_toh##editing_a_device_s_info_in_the_table_of_hardware|edit a device in the ToH]]
+</columns>
+
+----
+
+{{section>meta:infobox:432_warning#infobox_for_tohs&noheader&nofooter&noeditbutton}}

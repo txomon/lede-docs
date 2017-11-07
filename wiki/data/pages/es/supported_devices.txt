@@ -1,0 +1,25 @@
+====== Dispositivos compatibles ======
+~~NOTOC~~
+
+
+===== Requisitos generales para el soporte de LEDE =====
+<WRAP 1000px>
+<columns 100% 45% ->
+  - SoC / [[docs:targets:|target]] soportado por LEDE
+  - Suficiente Flash para alojar la imagen del firmware LEDE
+    * 4MB min (no se podrá instalar la GUI (LuCI))
+    * 8MB mejor (podrá caber la GUI y algunas aplicaciones)
+  - Suficiente RAM para un funcionamiento estable
+    * 32MB min, 64MB mejor
+
+<newcolumn>
+{{section>es/meta/infobox/432_warning#infobox_para_tohs&noheader&nofooter&noeditbutton}}
+</columns>
+</WRAP>
+
+===== Tablas que responden a sus preguntas =====
+
+  * [[es:toh:start|Tengo un enrutador y quiero saber si es compatible]] con LEDE
+  * [[es:toh:views:toh_available_864|Quiero comprar un enrutador que sea compatible]] con LEDE
+  * [[es:toh:views:toh_fwdownload|¿Dónde puedo descargar el firmware LEDE para mi enrutador?]]
+

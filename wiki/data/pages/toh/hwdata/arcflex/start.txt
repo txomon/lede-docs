@@ -1,0 +1,9 @@
+====== ARC Flex ======
+**Techdata + Device pages**
+---- datatable ----
+cols   : %title%, OpenWrt Device Page_url, LEDE device page_page
+header : Techdata page, OpenWrt Device page, LEDE device page
+filter : %class%=techdata
+filter : Brand=ARC Flex
+sort   : model
+----

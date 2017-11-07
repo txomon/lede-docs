@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: gdb-arc ======
+---- dataentry packages ----
+Name                             : gdb-arc
+Version                          : arc-2016.03-gdb-1
+Description                      : GDB, the GNU Project debugger, allows you to see what is going on `inside'\\ another program while it executes -- or what another program was doing at the\\ moment it crashed.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 1348 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc, libssp, libthread-db, zlib, libreadline, libncurses, zlib
+Categories_pkg-categorys         : development #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : arc_arc700, arc_archs,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 1344
+License                          : GPL-3.0+
+Maintainer_pkg-maintainer        : LEDE team
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/devel/gdb-arc|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : arc-2016.03-gdb-1 # short version of the package, for display in table
+----
+

@@ -1,0 +1,21 @@
+====== x86_64 ======
+
+This is the most "modern" linux arch you also find called "64-bit" and the one you will want to use on devices with more than 4 GiB of RAM.
+
+===== Download Packages =====
+
+/* Link to packages download goes here. */
+
+| HTTP   | [[https://downloads.lede-project.org/releases/packages-17.01/x86_64/]]      |
+| FTP    | [[ftp://ftp.halifax.rwth-aachen.de/lede/releases/packages-17.01/x86_64/]]   |
+
+See [[/downloads#mirrors|Mirrors]] for more download sites.
+
+===== Devices with this instructionset =====
+
+---- datatable ----
+cols   : Package architecture, Target, Subtarget, Brand, Model_pageid, Version
+filter : Package architecture=x86_64
+filter : Brand!=(EXAMPLE)
+sort   : Brand
+----

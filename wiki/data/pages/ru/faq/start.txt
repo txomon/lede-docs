@@ -1,0 +1,5 @@
+====== Часто задаваемые вопросы ======
+
+  * [[faq:general|FAQ: Основной]]
+  * [[faq:before_installation|FAQ: Перед установкой]]
+  * [[faq:after_installation|FAQ: После установки]]

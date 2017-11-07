@@ -1,0 +1,73 @@
+====== Firmware image names ======
+~~NOTOC~~
+
+If you are confused by the many different firmware types and extensions in the [[toh:views:toh_fwdownload|LEDE firmware downloads]] table, read on, this pages tries to explain a bit about this topic.
+
+<WRAP center round info 50%>
+You can help to improve this page by adding explanations for the different firmware types below.
+</WRAP>
+
+
+<WRAP group>
+<WRAP half column>
+===== Firmware types =====
+^ Target       ^ Install                                                                                     ^ Upgrade                                             ^
+| adm5120      | squashfs.bin                                                                                | squashfs.bin                                        |
+| apm821xx     | squashfs-factory.img\\ initramfs-kernel.bin                                                 | squashfs-sysupgrade.tar\\ ext4-rootfs.img.gz        |
+| ar7          | squashfs.bin\\ squashfs-code.bin                                                            | squashfs.bin                                        |
+| ar71xx       | factory.img\\ factory.bin                                                                   | sysupgrade.bin                                      |
+| at91         |                                                                                             |                                                     |
+| atheros      | squashfs-factory.bin                                                                        | squashfs-sysupgrade.tar                             |
+| brcm2708     | ext4-sdcard.img.gz                                                                          | -                                                   |
+| brcm47xx     | squashfs.bin\\ squashfs.chk\\ squashfs.trx                                                  | squashfs.bin\\ squashfs.chk\\ squashfs.trx          |
+| bcm53xx      | squashfs.bin\\ squashfs.chk\\ squashfs.trx                                                  | \\ squashfs.chk\\ squashfs.trx                      |
+| brcm63xx     | squashfs-cfe.bin\\ squashfs-factory.chk                                                     | squashfs-sysupgrade.bin                             |
+| cns3xxx      | -                                                                                           | sysupgrade.bin                                      |
+| imx6         | ?                                                                                           | ?                                                   |
+| ipq806x      | factory.img                                                                                 | sysupgrade.tar                                      |
+| ixp4xx       | squashfs.bin\\ squashfs.img\\ zImage                                                        | squashfs-sysupgrade.bin                             |
+| kirkwood     | squashfs-factory.bin                                                                        | squashfs-sysupgrade.bin                             |
+| lantiq       | initramfs-kernel.bin\\ squashfs-factory.bin                                                 | squashfs-sysupgrade.bin                             |
+| layerscape   | squashfs-firmware.bin                                                                       | -                                                   |
+| mpc85xx      | squashfs-factory.bin                                                                        | squashfs-sysupgrade.bin                             |
+| mvebu        | sdcard.img.gz\\ squashfs-factory.img                                                        | \\ squashfs-sysupgrade.bin                          |
+| mxs          | ?                                                                                           | ?                                                   |
+| orion        | not supported                                                                               | not supported                                       |
+| oxnas        | squashfs-ubinized.bin\\ ubifs-ubinized.bin                                                  | squashfs-sysupgrade.tar\\ ubifs-sysupgrade.tar      |
+| ramips       | initramfs-kernel.bin\\ squashfs-factory.bin\\ squashfs-factory.dlf\\ initramfs-uImage.bin   | squashfs-sysupgrade.bin\\ squashfs-sysupgrade.tar   |
+| sunxi        | ext4-sdcard.img.gz \\ squashfs-sdcard.img.gz                                                |                                                     |
+| x86          | combined-ext4.img.gz                                                                        | -                                                   |
+</WRAP>
+
+<WRAP half column>
+===== Explanations =====
+
+==== factory.img/.bin ====
+
+====  initramfs-uImage.bin ====
+ 
+====  initramfs-kernel.bin ====
+
+==== sdcard.img.gz ====
+
+==== sysupgrade / factory ====
+
+There are basically two potential reasons why only a sysupgrade image is available for your router, either the router is already running some kind of OpenWrt fork (which understands the sysupgrade format natively) or there simply is no known way to assemble a factory image accepted by the router.\\
+<sub>Source: [[https://forum.lede-project.org/t/install-lede-on-sitecom-wlr-8100/3304/2]]</sub>
+
+==== sysupgrade.bin/.tar ====
+
+
+==== squashfs.bin/.chk/.trx ====
+
+  * See also [[https://wiki.openwrt.org/doc/techref/header|TRX vs. TRX2 vs. BIN]]
+
+==== ubinized.bin ====
+
+==== uImage ====
+
+==== zImage ====
+
+
+</WRAP>
+</WRAP>

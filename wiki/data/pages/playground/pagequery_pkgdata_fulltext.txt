@@ -1,0 +1,6 @@
+  * Pagequery with fulltext search (this page) **doesn't** produce double dataentries.
+  * [[playground:pagequery_pkgdata|Pagequery without fulltext]] search (i.e. with query = *) **does** produce double dataentries.  --- //[[tmo26@gmx.de|tmomas]] 2016/12/14 15:37//
+
+----
+
+{{pagequery>@packages:pkgdata: dataentry;fulltext;cols=6;hidestart;hidejump;sort=ns;showcount;}}

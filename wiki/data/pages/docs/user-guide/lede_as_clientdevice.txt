@@ -1,0 +1,27 @@
+====== LEDE as Client Device - Connecting the LEDE device to an existing network ======
+LEDE will provide additional functions for the network (for example, you just want to use the Wi-Fi network it provides, or the device is a NAS serving files over the network, or a mini-server offering whatever other service).
+
+This means: 
+  * the other router will provide DHCP services to your network (LEDE's DHCP server will be turned off)
+  * LEDE's network firewall will be off, such that e.g. wired devices connected to the other router can contact e.g. wireless devices conencted to the LEDE router
+
+**Luci instructions**:
+  - Click on **Network** -> **Interfaces**, then click on the **Edit** button of the LAN Network.
+  - In **General Setup** tab, in **Protocol**, select **Static Address**
+  - In **IPv4 address** write the new static address of this device, if your old router's address is 192.168.1.1 (most common) and there are no other devices with static addresses on your network (also the most common situation for home networks) you can usually choose any address from 192.168.1.2 to 192.168.1.250. Once you have chosen and written the IP address, write it down in the same sticker with the user/password above, it will be used to connect to your device in the future.\\
+  - in **IPv4 Netmask** select the same netmask as set in your old router's Lan/ethernet settings, it is (very) usually 255.255.255.0 
+  - in **IPv4 gateway** write the address of the gateway, the device that allows internet access in your local network. In most home networks, the old router is the gateway too, and its default address is 192.168.1.1. 
+  - Set the DNS in the Custom DNS field. A DNS is a server used to translate human-readable website names (like "www.google.com") into their actual IP address. In most cases you should write there the address of the local network's router/gateway (that acts as local DNS), so 192.168.1.1, or the address of an actual DNS server in the internet, for example 8.8.8.8 that is the address of Google's DNS servers.
+  - Scroll down and in **DHCP Server**, in **General** tab, select "**Disable DHCP for this interface**", to disable automatic IP assignment on the LAN. Client devices will be connected to a network where there is a router doing DHCP server already and this will avoid conflicts with it.
+  - :!: Setting **DHCP Client** in the **Protocol** field will allow you to skip all of the above in most cases, but a device set like that will have an IP that changes depending on the current network router's decisions, so any time you need to connect to it you need to find its current IP first, which may be easy or not depending on the router's web interface or other networking tools you have on your PC/smartphone. This option is not recommended, as it makes connecting with the device unnecessarily more complex.
+  - When you are done, click on **Save & Apply** button at the end of the page. This will change the network configuration of the device, and will now be accessible at the IP you set above (or at an unknown dynamic IP if you used "**DHCP client option**"), so the current page you used for configuring it will fail to connect to the device. Disconnect the cable from the PC and connect it to the current network router's Lan ethernet ports, write the IP address in your browser's address bar and you should be able to connect to it again as normal.
+
+**Command line instructions** to make the same we just did with Luci webinterface above, see above for more detailed explanation of the steps:
+  - type ''uci set network.lan.ipaddr='new-ip-address''' and press Return 
+  - type ''uci set network.lan.gateway='your-gateway-address''' and press Return 
+  - type ''uci set network.lan.dns='dns-address-here''' and press Return  
+  - type ''uci commit && service network restart'' (this will save the changes and restart network interfaces)
+  - the ssh session will not work anymore because the device has changed address, this is normal
+  - now you can connect the network cable from the device's LAN port to your existing network (the other router's LAN ports usually)
+  - connect again to the device at its new address as defined above
+

@@ -1,0 +1,39 @@
+====== LEDE 17.01.1 - First Service Release - April 2017 ======
+
+<code>
+     _________
+    /        /\      _    ___ ___  ___
+   /  LE    /  \    | |  | __|   \| __|
+  /    DE  /    \   | |__| _|| |) | _|
+ /________/  LE  \  |____|___|___/|___|                      lede-project.org
+ \        \   DE /
+  \    LE  \    /  -----------------------------------------------------------
+   \  DE    \  /    Reboot (17.01.1, r3316-7eb58cf109)
+    \________\/    -----------------------------------------------------------
+</code>
+
+The LEDE Project (“Linux Embedded Development Environment”) is a Linux operating system emerged from the [[https://openwrt.org|OpenWrt]] project. It is a complete replacement for the vendor-supplied firmware of a wide range of wireless routers and non-network devices. See the [[https://lede-project.org/toh/start|Table of Hardware]] for supported devices. For more information about LEDE Project organization, see the [[https://lede-project.org/about|About LEDE pages.]]
+
+Get LEDE Firmware at: http://downloads.lede-project.org/releases/
+
+===== Highlights In LEDE 17.01.1 ===== 
+
+The LEDE Community is proud to announce the first service release of the LEDE 17.01 stable series. It incorporates a fair number of fixes back ported from the development branch during the last six weeks.
+
+Some selected highlights of the service release are:
+
+  * Linux kernel updated to version 4.4.61 (from 4.4.50 in v17.01.0)
+  * Reworked opkg to reduce resource usage
+  * Bug fixes and improvements for MT7620 radios
+  * Bug fixes and improvements for the //odhcpd// DHCPv6 server
+  * Bug fixes for the //umdns// mDNS implementation
+  * Fixed and improved //nslookup// applet
+  * API additions to the //libubox// library
+  * Improved service termination logic in //procd//
+  * Assorted platform fixes for //ar71xx//, //arc770//, //archs38//, //bcm53xx//, //brcm2708//, //kirkwood//, //lantiq//, //mvebu//, //ramips// and //x86//
+
+As always, a big thank you goes to all our active package maintainers, testers, documenters, and supporters.
+
+Have fun!
+    
+The LEDE Community

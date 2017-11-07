@@ -1,0 +1,267 @@
+===== IPv4-IPv6 변환 기술 =====
+전환 기술은 동일한 이름의 패키지를 사용하여 설치할 수 있습니다. \\
+IPv6-in-IPv4 터널 설정 및 관리 : ''6rd'', ''6to4'', ''6in4''.\\ 
+IPv4-in-IPv6 터널 설정 및 관리 : ''ds-lite''\\ 
+
+==== 6in4 tunnel (HEnet tunnelbroker, SixXS static tunnel, ...) ====
+6in4 터널은 일반적으로 HE.net 또는 SixXS와 같은 외부 터널 프로바이더에서 제공합니다. 다음 예제를 처음 설정으로 사용할 수 있습니다. 
+
+:!: 6in4 터널을 사용하려면 패키지 ''6in4''가 설치되어 있어야합니다. 
+
+''/etc/config/network''
+<code>
+config 'interface' 'wan6'
+        option 'proto' '6in4'
+        option 'mtu' '1424'                          # the IPv6 tunnel MTU (optional)
+        option 'peeraddr' '62.12.34.56'              # the IPv4 tunnel endpoint at the tunnel provider
+        option 'ip6addr' '2001:DB8:2222:EFGH::2/64'  # the IPv6 tunnel
+        option 'ip6prefix' '2001:DB8:1234:ABCD::/64' # Your routed prefix (required!)
+        # configuration options below are only valid for HEnet tunnels. ignore them for other tunnel providers.
+        option tunnelid '123456' # HE.net tunnel id
+        option username 'username' # HE.net username used to login into tunnelbroker, not the User ID shown after login in.
+        option password 'password' # HE.net password if there is no updatekey for tunnel
+        option updatekey 'updatekey' # HE.net updatekey instead of password, default for new tunnels
+
+config 'interface' 'lan'
+        option 'proto' 'static'
+        option ip6assign 60
+...
+</code>
+
+일반적인 터널 설정 (예 : HEnet 또는 SixXS)에서는 터널 프로바이더로 부터 두 개의 서로 다른 ipv6 주소 / prefix를 얻습니다. 
+  * ip6addr: 터널 엔드 포인트 주소는 '2001 : DB8 : 2222 : EFGH :: 2/64'와 같습니다. 이 ... :: 2 주소는 터널 인터페이스 끝점에만 사용됩니다. 라우팅 가능한 주소가 아니며 일반적으로 터널의 다른 쪽 끝 (일반적으로 ... :: 1)에 연결하는 것 이외에는 사용할 수 없습니다.  .
+  * ip6prefix: 터널 프로바이더 라우팅 할 수 있는 prefix (일반적으로 / 48 또는 / 64)를 제공합니다 (예 : '2001 : DB8 : 1234 : ABCD :: / 64'). 올바르게 구성된 시스템에서 LAN 클라이언트는 해당 prefix에서 주소를 가져옵니다. 
+  * 
+:!: 'wan6'과 다른 터널 인터페이스의 이름을 선택하면 해당 이름을 / etc / config / firewall의 firewall-zone 'wan'네트워크 옵션에 추가하십시오. 
+
+:!: HE.net은 2014 년 2 월부터 새로운 터널에 기본적으로 "업데이트 키"를 할당합니다. updatekey가있는 경우 (he.net 사이트의 터널의 고급 정보 페이지에서 볼 수 있음) 암호 대신 사용해야합니다. 업데이트 키가 없는 이전 터널은 비밀번호로 계속 작동합니다. 
+
+:!: 6in4 트래픽이 항상 터널 엔드 포인트에 도달하도록 하려면 다음 방화벽 설정 stanza와 함께 IPv4 프로토콜 41 트래픽을 전달해야 할 수 있습니다. :
+
+<code>config rule
+        option src      wan
+        option proto    41
+        option target   ACCEPT
+</code>
+
+고급 설정 옵션은 아래를 참조하십시오. 
+
+=== 프로토콜 "6in4" (IPv6-in-IPv4 Tunnel) ===
+:!: 이 프로토콜을 사용하려면 패키지 ''6in4'' 가 설치되어 있어야합니다.
+
+^ 이름 ^ Type ^ Required ^ 초기값^ 설명^
+| ''ipaddr'' | IPv4 address | no | Current WAN IPv4 address | 로컬 IPv4 끝점 주소  |
+| ''peeraddr'' | IPv4 address | yes | //(none)// | 원격 IPv4 끝점 주소  |
+| ''ip6addr'' | IPv6 address (CIDR) | yes | //(none)// | 터널 종점에 위임 된 로컬 IPv6 주소  |
+| ''ip6prefix'' | IPv6 prefix | no | //(none)// | downstream 인터페이스에 대한 라우팅 된 IPv6 prefix (Barrier Breaker 이상)  |
+| ''sourcerouting'' | boolean | no | ''1'' | 위임 된 prefix에서 패킷 만 라우팅할지 여부 (Barrier Breaker 이상) |
+| ''defaultroute'' | boolean | no | ''1'' | 터널을 통해 IPv6 기본 경로를 만들지 여부  |
+| ''ttl'' | integer | no | ''64'' | 터널 인터페이스에 사용되는 TTL  |
+| ''tos'' | string | no | //(none)// | 서비스 유형 : "상속"(외부 헤더가 내부 헤더의 값을 상속 받음) 또는 16 진수 값. DSCP라고도합니다. (카오스 캄머와 이후에만)  |
+| ''mtu'' | integer | no | ''1280'' | 터널 인터페이스에 사용되는 MTU  |
+| ''tunnelid'' | integer | no | //(none)// | HE.net 글로벌 터널 ID (끝점 업데이트에 사용됨)  |
+| ''username'' | string | no | //(none)// | 사용자가 로그인 int (끝점 업데이트에 사용됨) 이후에 사용자 ID가 아니라 터널 브로커에 로그인하는 데 사용하는 HE.net 사용자 이름  |
+| ''password'' | string | no | //(none)// | <del>md5sum of</del> HE.net 암호 (끝점 업데이트에 사용됨)  |
+| ''updatekey'' | string | no | //(none)// | HE.net updatekey는 암호를 무시합니다 (끝점 업데이트에 사용됨).  |
+| ''metric'' | integer | no | ''0'' | 사용할 기본 경로 메트릭을 지정합니다.  |
+
+:!: 이 프로토콜 유형은 인터페이스 섹션에 ''ifname'' 옵션을 설정할 필요가 없습니다. 인터페이스 이름은 세션 이름에서 파생됩니다 (예 : ''config interface sixbone 6in4-sixbone'' . ''6in4-sixbone'' 이라는 sixbone이 됩니다. .
+
+:!: HE.net은 2014 년 2 월에 새로운 터널의 기본값으로 updatekey를 도입했습니다. 
+
+:!: **username**, **password** , **updatekey** 는 모두 일반 텍스트 항목입니다. 
+
+:!: ip6prefix는 필수는 아니지만 기본적으로 사용하도록 설정된 sourcerouting은 ip6prefix가 지정되어 있지 않으면 패킷 전달을 금지합니다. 
+
+==== 6rd tunnel (ISP-provided IPv6 transition) ====
+6rd는 6to4 기반의 터널 메커니즘입니다. 다른 터널링 메커니즘과 달리, 6th는 대개 ISP 자체에서 제공됩니다. 
+
+:!: 이 프로토콜을 사용하려면 패키지 ''6rd''가 설치되어 있어야합니다. 
+
+:!: 6rd의 설정은 보통 자동으로 감지되며 수동 설정은 필요하지 않습니다. 6th 패키지를 설치하기 만하면됩니다 (그리고 재부팅하는 것). 
+
+:!: dhcp에서 자동적으로 6번째 것을 설정하기 위해서 인터페이스를 ''option auto 0''로 생성하고 'iface_dslite'매개 변수로 이름을 지정해야합니다. 또한 / etc / config / firewall의 적절한 방화벽 영역에 이름을 추가해야합니다.
+
+아래의 설정 옵션은 터널 하드 코딩에만 필요합니다. 
+
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''peeraddr'' | IPv4 address | yes | no | 6rd - 게이트웨이   |
+| ''ipaddr'' | IPv4 address | no | Current WAN IPv4 address | 로컬 IPv4 끝점 주소  |
+| ''ip6prefix'' | IPv6 prefix (without length) | yes | no | 6rd-IPv6 prefix|
+| ''ip6prefixlen'' | IPv6 prefix length | yes | no | 6rd-IPv6 Prefix 길이 |
+| ''ip4prefixlen'' | IPv6 prefix length | no | 0 | IPv4 공통 prefix |
+| ''defaultroute'' | boolean | no | ''1'' | 터널을 통해 IPv6 기본 경로를 만들지 여부  |
+| ''ttl'' | integer | no | ''64'' | 터널 인터페이스에 사용되는 TTL  |
+| ''tos'' | string | no | //(none)// | 서비스 유형 : "상속"(외부 머리글이 내부 머리글의 값을 상속 함) 또는 16 진수 값 (Chaos Calmer 이상에만 해당)  |
+| ''mtu'' | integer | no | ''1280'' | M터널 인터페이스에 사용되는 MTU  |
+| ''iface6rd'' | logical interface | no | //(none)// | 6th 자동 구성을위한 논리적 인터페이스 템플릿 |
+| ''mtu6rd'' | integer | no | //system default// | 6 번째 인터페이스의 MTU  |
+| ''zone6rd'' | firewall zone | no | //system default// | 6rd 인터페이스를 추가해야하는 방화벽 영역 |
+
+
+:!: 이 프로토콜 유형은 인터페이스 세션에 ''ifname'' 옵션을 설정할 필요가 없습니다. 인터페이스 이름은 세션 이름에서 파생됩니다.(예 : config interface wan6 에서 6rd-wan6이 됩니다. 
+
+:!: 일부 ISP는 WAN IP에서 IPv6 주소를 계산할 때 사용해야하는 바이트 수를 제공합니다. ip4prefixlen은 WAN IP의 prefix 바이트가 IPv6 주소를 계산할 것으로 예상합니다. 따라서 ISP에서 계산할 14 바이트를 제공하면 18 (32 - 14)을 입력하십시오. 
+
+DHCP를 통해 6rd를 디버깅하려면 먼저 매개 변수가 전송되는지 확인하십시오. 다음 내용으로 ''/etc/udhcpc.user'' 파일을 만듭니다.:
+
+<code>
+#!/bin/sh
+env >> /tmp/udhcpc.log
+</code>
+
+라우터를 재부팅하고 ''/tmp/udhcpc.log''로그 파일에서 다음 줄을 확인하십시오:
+
+<code>
+ip6rd=16 40 2001:0838:ad00:0000:0000:0000:0000:0000 77.174.0.2
+</code>
+
+이 행이 없으면 ISP에서 peeraddr, ip6prefix, ip6prefixlen 및 ip4prefixlen에 대한 올바른 값을 얻어야합니다. 위의 ip6rd 또는 획득 된 값은 6RD 터널을 하드 코드하는 데 사용될 수 있습니다. wan 섹션에서 iface6rd 행을 제거하거나 주석 처리하십시오. 
+
+''/etc/config/network''
+<code>
+config interface 'wan6'
+        option proto '6rd'
+        option peeraddr '77.174.0.2'
+        option ip6prefix '2001:838:ad00::'
+        option ip6prefixlen '40'
+        option ip4prefixlen '16'
+</code>
+
+:!: 'wan6'과 다른 터널 인터페이스의 이름을 선택하면 해당 이름을 / etc / config / firewall의 firewall-zone 'wan'네트워크 옵션에 추가하십시오. 
+
+
+==== 6pe, L2TP 터널(ISP-provided IPv6 전환) ====
+이것은 일부 ISP에서 사용하는 IPv6의 또 다른 전환 메커니즘이며 L2TPv2 터널을 사용합니다. 
+
+:!: 이 프로토콜을 사용하려면''xl2tpd'' 패키지를 설치해야합니다. 
+
+터널링의 상위 레벨 설명은 다음과 같습니다. 
+
+  - IPv4를 통해 UDP 패킷으로 캡슐화 된 L2TP 터널이 생성됩니다. 
+  - PPP 세션이 터널 내에서 설정됩니다. 
+  - IPv6CP (see [[http://tools.ietf.org/html/rfc5072|RFC 5072]]) 는 링크 로컬 IPv6 주소를 협상하는 데 사용됩니다.
+  - DHCPv6 덕택에 IPv6 prefix를 얻습니다. 
+
+이 하우투는 프랑스 SFR 경험 (FTTH 거주 접근)에서 파생 된 것입니다. 그것은 다른 ISP들에게도 적용될 수 있습니다. 
+SFR의 경우, 1 단계와 2 단계는 인증을 요구한다. 다행히 L2TP 암호는 하드 코드되어 있습니다. PPP 암호는 일반 텍스트로 보내지는 것이 아니므로 간단한 스니핑으로 복구 할 수 있습니다. 
+
+=== 설치 ===
+L2TP 터널과 PPP 세션을 처리 할''xl2tpd''를 설치해야 합니다. 
+
+=== 설정 ===
+''/etc/config/network''
+<code>
+config interface 6pe
+        option proto l2tpv2
+        option server <LNS address>
+        option username '<PPP username>'
+        option password '<PPP password>'
+        option keepalive '6'
+        option ipv6 '1'
+
+config interface 'wan6'
+        option ifname '@6pe'
+        option proto 'dhcpv6'
+</code>
+
+L2TP 수준 (PPP 이전)에서 인증이 필요한 경우 ''/etc/xl2tpd/xl2tp-secrets''에 설정하세요.:
+<code>
+* * my_l2tp_password
+</code>
+
+이 시점에서 "/etc/init.d/network reload"를 실행하거나 단순히''ifup wan6'' 실행 하므로서 완전한 IPv6 설정이 제공됩니다.\\ 
+디버그하려면 로그 ( ''logread'' )와 인터페이스 상태  (''ifstatus 6pe'' 및 ''ifstatus wan6'')를 확인하십시오. .
+
+이 프로토콜에 대한 고급 옵션은 다음과 같습니다. 
+
+=== Protocol "l2tp" (PPP over L2TP Tunnel) ===
+대부분의 옵션은 프로토콜 "ppp"와 유사합니다. 
+
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''server'' | string | yes | //(none)// | 연결할 L2TP 서버. 사용할 수있는 데이터 유형은 호스트 이름 또는 IP 주소이며 선택적 포트는 콜론으로 구분 '':'' . 포트 지정은 최근에 지원되며 DD 릴리스에 나타나야합니다. |
+| ''username'' | string | no | //(none)// | PAP / CHAP 인증의 사용자 이름 |
+| ''password'' | string | yes if ''username'' is provided | //(none)// | PAP / CHAP 인증을위한 암호  |
+| ''ipv6'' | bool | no | 0 | PPP 링크 (IPv6CP)에서 IPv6 사용  |
+| ''mtu'' | int | no | ''pppd'' default | 최대 송신 / 수신 단위 (바이트) |
+| ''keepalive'' | string | no | //(none)// | 피어가 죽은 것으로 간주하기 전에 응답하지 않은 반향 요청 수입니다. 에코 요청 간격은 5 초입니다.  |
+| ''checkup_interval'' | int | no | //(none)// | 마지막 설치 시도 이후 인터페이스가 작동하지 않는지 확인하기 전에 경과 한 시간 (초). 그렇지 않으면 연결을 다시 시도하십시오. 성공적인 L2TP 연결에 충분한 값으로 설정하십시오. 주로 netifd가 연결 요청을 보냈지 만 xl2tpd가 netifd 통지없이 연결 요청을 완료하지 못했습니다.  |
+| ''pppd_options'' | string | no | //(none)// | ''pppd'' 에 전달할 추가 옵션 |
+
+물리적 인터페이스의 이름은 "l2tp- <logical interface name>"입니다. 
+
+
+==== 6to4 tunnel ====
+6to4는 가장 간단한 IPv6 터널링 메커니즘이며 공개적으로 사용 가능한 게이트웨이에 의존합니다. 
+
+:!:6to4 터널을 사용하려면 패키지''6to4''가 설치되어 있어야합니다. 
+
+''/etc/config/network''
+<code>
+config 'interface' 'wan6'
+        option 'proto' '6to4'
+
+config 'interface' 'lan'
+        option 'proto' 'static'
+        option ip6assign 60
+...
+</code>
+
+:!: 'wan6'과 다른 터널 인터페이스의 이름을 선택하면 해당 이름을 / etc / config / firewall의 firewall-zone 'wan'네트워크 옵션에 추가하십시오. 
+
+고급 구성 옵션은 아래를 참조하십시오.
+
+=== 프로토콜 "6to4" (IPv6-in-IPv4 Tunnel) ===
+
+^ 이름 ^ Type ^ Required ^ 초기값^ 설명^
+| ''ipaddr'' | IPv4 address | no | Current WAN IPv4 address | 로컬 IPv4 끝점 주소  |
+| ''defaultroute'' | boolean | no | ''1'' | 터널을 통해 IPv6 기본 경로를 만들지 여부 |
+| ''ttl'' | integer | no | ''64'' | 터널 인터페이스에 사용되는 TTL  |
+| ''tos'' | string | no | //(none)// | 서비스 유형 : "상속"(외부 헤더가 내부 헤더의 값을 상속 함) 또는 16 진수 값  |
+| ''mtu'' | integer | no | ''1280'' | 터널 인터페이스에 사용되는 MTU  |
+| ''metric'' | integer | no | ''0'' | 사용할 기본 경로 메트릭을 지정합니다. |
+| <del>''adv_interface''</del> | <del>string</del> | <del>no</del> | <del>''lan''</del> | **deprecated** <del>The //logical interface name// of the network the subnet should be advertised on. Multiple interface names can be given.</del> |
+| <del>''adv_subnet''</del> | <del>hex number</del> | <del>no</del> | <del>''1''</del> | **deprecated** <del>A subnet ID between ''1'' and ''FFFF'' which selects the advertised /64 prefix from the mapped 6to4 space. The subnet ID is incremented by 1 for every interface specified in ''adv_interface''.</del>  |
+| <del>''adv_valid_lifetime''</del> |<del> integer</del> | <del>no</del> | <del>''300''</del> | **deprecated** <del>Overrides the advertised valid prefix lifetime, in seconds (used with radvd)</del> |
+| <del>''adv_preferred_lifetime''</del> | <del>integer</del> | <del>no</del> | <del>''120''</del> | **deprecated** <del>Overrides the advertised preferred prefix lifetime, in seconds (used with radvd)</del> |
+
+:!:  이 프로토콜 유형은 인터페이스 세션에 ''ifname'' 옵션을 설정할 필요가 없습니다. 인터페이스 이름은 섹션 이름에서 파생됩니다 (예 :''config interface wan6'' 은 ''6to4-wan6''이 됩니다. \\
+
+:!: <del>If radvd is installed and enabled, the 6to4 scripts will add a temporary prefix and interface declaration to the //radvd// uci configuration and perform a daemon restart if required. </del> (**deprecated**)
+
+==== Dual-Stack Lite tunnel (ds-lite IPv4 in IPv6) ====
+ds-lite는 네이티브 IPv6 연결을 통해 레거시 IPv4 연결을 지원하기 위해 ISP에서 사용하는 전환 메커니즘입니다. 
+
+:!: 이 프로토콜을 사용하려면 ''ds-lite'' 패키지를 설치해야합니다.
+
+:!: 구성은 일반적으로 자동 감지되며 수동 구성은 필요하지 않으며 ds-lite 패키지를 설치하기 만하면됩니다 (예 : 구성을 변경할 때 네트워크 인터페이스를 다시 시작하는 것). 
+
+''/etc/config/network''
+<code>config 'interface' 'wan6'
+        option 'ifname' 'eth1'
+        option 'proto' 'dhcpv6'
+
+config 'interface' 'wan'
+        option 'proto' 'dslite'
+        option 'peeraddr' '2001:db80::1' # Your ISP's DS-Lite AFTR
+</code>
+
+:!: 'wan'과 다른 터널 인터페이스의 이름을 선택하면 / etc / config / firewall의 firewall-zone 'wan'의 network-option에 해당 이름을 추가하십시오. 
+
+:!: ds-lite-tunnel을 사용하려면 ds-lite 패키지를 설치해야합니다. 
+
+고급 구성 옵션은 아래를 참조하십시오.
+
+=== 프로토콜 "dslite" (Dual-Stack Lite) ===
+
+^ 이름^ Type ^ Required ^ 초기값^ 설명^
+| ''peeraddr'' | IPv6 address | yes | no | DS-Lite AFTR 주소  |
+| ''ip6addr'' | IPv6 address | no | 현재 WAN IPv6 주소  | 로컬 IPv6 끝점 주소 |
+| ''tunlink'' | Logical Interface | no | 현재 WAN 인터페이스 | 터널 기본 인터페이스 |
+| ''defaultroute'' | boolean | no | ''1'' | 터널을 통해 IPv6 기본 경로를 만들지 여부 |
+| ''ttl'' | integer | no | ''64'' | 터널 인터페이스에 사용되는 TTL  |
+| ''mtu'' | integer | no | ''1280'' | 터널 인터페이스에 사용되는 MTU  |
+
+:!: ds-lite 작업을 수행하려면 IPv4 NAT가 비활성화되어 있어야합니다. 그에 따라 / etc / config / firewall에서 설정을 적절하게 조정해야합니다. 
+
+:!: 이 프로토콜 유형은 인터페이스 세션에 ''ifname'' 옵션을 설정할 필요가 없습니다. 인터페이스 이름은 섹션 이름에서 파생됩니다 (예 : ''config interface wan''은''dslite-wan''이 됩니다.

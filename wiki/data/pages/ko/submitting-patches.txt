@@ -1,0 +1,96 @@
+===== 패치 배포 =====
+
+패치는 Github에서 pull 명령어를 이용하거나 메일링 리스트를 통해 받을 수 있습니다 .\\ 
+
+Submission은 다음과 같은 가이드라인을 따라서 할 수 있습니다:
+
+  * 각 pull 요청마다 다른 git 브랜치를 사용합니다.  (GitHub는 웹 사이트를 통해 파일은 편집하는 경우 자동으로 이 작업을 수행합니다.)
+
+  * 명령형으로 커밋 제목과 메시지를 작성해야 합니다: "added support for X"가 아니라 “add support for X”
+
+  * **코드 형식 지정**
+    * 수정중인 파일과 동일한 들여쓰기를 사용해야하고 파일의 나머지 부분에서 완료된 것은 탭과 스페이스만 사용해야 합니다.
+    * 목록의 항목들은 알파벳 순으로 배치해야 합니다.
+
+  * **커밋 제목** 
+    * 커밋에서 무엇을 했는지에 따라 접두어를 정해야 합니다.
+      * **kernel:** 커널 및 kmod (커널 모드) 패키지 용
+      * **package name:** 패키지 용 
+      * **device architecture:** 기기 용 (예, **mvebu:** or **ramips:** )
+      * **tool name:** 도구 용
+      * **build:** /toolchain에서 타겟되지 않은 일반적인 빌드 시스템 변경 시
+    * __50 자 미만__ 이어야 합니다.
+    * 커밋이 필요한 이유와 커밋 시 변경되는 점을 설명해야합니다.\\ 간결하고 잘 설명하기란 어렵지만 좋은 요약은 그래야합니다.
+    * 접두사 뒤의 첫단어를 대문자로 써선 안됩니다.
+    * 제목 끝에 full stop을 써선 안됩니다.
+
+  * **커밋 설명** 
+    * 한 줄에 70자 미만이여야 합니다.
+    * 소스의 변경점을 커밋했으면,  __왜 이 커밋을 하였는지 설명해야합니다.__.\\커밋 로그를 검색하여 문제에 대한 답을 원하는 사람들에게 도움이 되도록 수정중인 오류의 증상(로그 메시지, 오류 메시지 등)을 포함 시키십시오.\\패치가 컴파일 오류를 수정하면 실패 로그의 가장 관련있는 부분만 포함하십시오.
+
+  * 모든 커밋에는 ''%%Signed-off-by: My Name <my@email.address>%%''이 포함되어야 합니다. [[http://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/submitting-patches.rst?id=HEAD#n416|리눅스 커널 패치 가이드의 섹션 11]]에 따라 실제 이름과 실제 이메일 주소를 작성해야 합니다.
+    * git 명령어인 ''git commit --signoff''으로 자동으로 완료될 수 있습니다.
+
+  * 작성자 필드는 "Signed-off-by:" 라인과 일치해야 합니다. 
+    * 파일을 편집하고 Github를 통해 커밋하는 경우 Github 설정의 "Name" 필드에 실명을 써야하며 "Signed-off-by:"에 사용된 이메일은 기본 github 이메일이어야 합니다.
+    * 로컬 PC에서 파일을 편집하고 커밋할 경우 이름과 이메일을 다음과 같이 작성해야 합니다.\\    **git config --global user.name "my name"**\\ **git config --global user.email "my@email.address"**
+
+----
+
+==== Github에서 작업하기 ====
+
+[[https://github.com/lede-project/source|여기]]에 소스가 저장된 Github 미러가 있습니다.\\ 
+Github 웹 인터페이스를 이용해서 프로젝트를 개인 저장소로 포크하고 로컬 컴퓨터로 복사한 뒤 바뀐 점을 브랜치하고 Github로 push한 뒤 pull 요청을 보내세요.
+
+만약 방법을 모른다면 계속 읽으세요.\\
+
+Github 계정을 생성하면 LEDE 소스의 포크를 호스팅하고 Github의 작업에 사용됩니다.
+
+PC에 git을 설치하고 git 설정에 올바른 이름과 메일이 있는지 확인하세요.\\
+**git config --global user.name "my name"**\\ 
+**git config --global user.email "my@email.address"**\\
+
+원한다면 기본 git 에디터가 아닌 선호하는 에디터로 바꿀 수 있습니다.  (linux의 GUI 버전을 사용하고 있다면 **geany**, **kwrite**, **pluma**, **gedit**를 사용할 수 있고 , 커맨드 라인을 사용한다면 **nano**가 좋은 선택이 될 수 있습니다.)\\
+**git config --global core.editor "editor-name-here"** \\
+
+다음으로 문서들을 따라 [[https://help.github.com/articles/fork-a-repo/|저장소에 포크하고]]  [[https://help.github.com/articles/fork-a-repo/#step-2-create-a-local-clone-of-your-fork|포크에 대한 클론을 만들 수 있습니다.]]\\
+
+설명한 대로 설정이 끝났다면 **git checkout -b my-new-branch-name**을 통해 브랜치할 수 있습니다. ("my-new-branch-name" 예시의 이름이고 다른 이름을 사용하세요).\\ 
+이 명령 뒤에 하는 모든 커밋은 이 브랜치에서 그룹화 됩니다. 이후에 각 PR마다 여러 브랜치를 가질 수 있습니다.\\
+이미 생성한 분기를 바꾸려면 **git checkout my-branch-name**를 사용하세요.\\
+
+변경한 후에 **git add -i**를 이용하여 인터페이스를 통해 발견되지 않은(새로운) 파일을 추가하고 기존 파일을 업데이트 하세요.\\
+
+그 후에 **git commit --signoff**를 통해 기본 git 에디터를 열고 커밋 메시지를 작성할 수 있습니다. 첫 번째 줄은 커밋 제목이고 빈줄을 하나 만든 후에 커밋 상세정보를 작성하세요. 이 명령어가 자동으로 Signed-off-by line에 위에 설정한 이름과 메일주소를 추가합니다.\\
+
+Github 저장소로 로컬에서 작업한 변경 사항을 보내고 싶다면, **git push --all**을 사용하세요.\\ 
+이 과정에서 Github ID와 비밀번호를 묻습니다.\\
+
+GIthub 저장소에 코드가 업로드 되고 나면, Github 웹 인터페이스를 사용하여 PR을 보낼 수 있습니다, Github의[[https://help.github.com/articles/creating-a-pull-request/|pull 요청 생성하기]]에 대한 문서를 다시 보세요.\\
+
+----
+==== 이메일을 통해 패치 전송 ====
+
+[[https://lists.infradead.org/mailman/listinfo/lede-dev|개발 메일링 리스트]]로 메일을 보내세요. 모든 패치는 [[https://patchwork.ozlabs.org/project/lede/list/|패치워크]]에 작성된 포맷에 따라 전송되어야 합니다. 패치워크에 없는 패치라면 처리될 수 없습니다.
+이메일 클라이언트들은 공백을 넣고 서식을 이상하게 만들거나, 알수 없는 문자를 추가하는 경우가 있기 때문에 **git send-email** 를 사용하는 것을 추천합니다.
+
+==== 커밋하기 ====
+PR에 커밋하거나 메일로 보내려면, 검토자가 PR에서 바뀐점을 일일이 찾아서 바꿀 수 없으므로 merge할 변경 사항이 있어야 합니다. \\
+
+그러므로 커밋을 새로 작성해야 될 경우가 있으므로 항상 정상적인 커밋으로 끝을 내야 합니다.
+
+PR의 로컬 git 브랜치에선 git 커맨드라인을 이용해서 작업하세요.\\
+
+**git reset HEAD~X** (X는 삭제하려는 커밋의 수이며 마지막 커밋에서부터 계산 됨)로 커밋을 삭제 한 후 시작합니다. 이 경우 수정된 파일은 변경되지 않으며 커밋만 삭제됩니다.\\
+**git add -i**를 이용하여 git tracking에 파일을 추가하고 **git commit --signoff**을 사용하여 다시 커밋하세요.\\
+**git push -f**을 사용하여 업데이트 된 브랜치를 github에 보냅니다.
+
+==== 패치 합병과 트리의 생명주기 ====
+
+우리는 커미터들이 패치들을 저장해둔 트리를 호스트할 것을 권장합니다. 트리가 검토되고 테스트를 마치면 마스터 브랜치에 포함되도록 제안 할 수 있습니다.
+
+
+  - 트리는 언제든 마스터에 합병될 수 있습니다.
+  - 마스터 브랜치에 직접적으로 버그 수정을 할 수 있습니다.
+  - PR은 어떤 소스든 패치 메일링 리스트로 보낼 수 있으며 좋은 질의 트리와 제출 형식이 올바른 경우에 얼마든지 포함 될 수 있습니다.
+  - Staging 트리는 git 인프라, 개인 서버, Github의 일부로 호스팅 될 수 있습니다.

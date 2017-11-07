@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: dmidecode ======
+---- dataentry packages ----
+Name                             : dmidecode
+Version                          : 3.0-3
+Description                      : Dmidecode reports information about your system's hardware\\ as described in your system BIOS according to the SMBIOS/DMI\\ standard. \\  \\ # max. 1kB
+Installed size_pkg-filesize      : 33 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : libc
+Categories_pkg-categorys         : utilities #
+Repositories_pkg-repository      : community-packages
+Architectures_pkg-archs          : i386_geode, i386_i486, i386_pentium, i386_pentium4, x86_64,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 34
+License                          : GPL-2.0
+Maintainer_pkg-maintainer        : Álvaro Fernández Rojas
+Bug report_wiki                  : [[https://github.com/openwrt/packages/issues|Bug reports]]
+Source code_wiki                 : [[https://github.com/openwrt/packages/tree/lede-17.01/utils/dmidecode|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : 3.0-3 # short version of the package, for display in table
+----
+

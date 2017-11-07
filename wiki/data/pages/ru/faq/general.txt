@@ -1,0 +1,65 @@
+====== Часто задаваемые вопросы: Общие ======
+
+===== Какие устройства поддерживает ядро LEDE =====
+
+LEDE поддерживает большую часть устройств которые способны работать на Linux. В основном это беспроводные маршрутизаторы. Это не изменилось по сравнению с OpenWrt.
+
+===== Является ли Lede совместим с OpenWRT?=====
+
+Пакеты распространяемые вместе с Lede те же что в OpenWrt, и любая инструкция что вы найдете должны работать на обоих системах.
+Переход от OpenWrt к Lede или наоборот поддерживаются, но рекомендуется не сохранять настройки, чтобы извлечь выгоду из обновленных настроек по умолчанию.
+
+===== Является ли LEDE подходящим для меня? =====
+
+В первую очередь LEDE предназначен для сетей энтузиастов, беспроводных сообществ, разработчиков встроенных устройств и опытных пользователей.
+
+LEDE представляет собой набор строительных блоков для реализации собственных проектов, установка по умолчанию (с Luci web интерфейсом) дает гораздо больше возможностей, чем заводские прошивки большинства устройств, и добавлет больше функциональных возможностей лишь после нескольких щелчков мышью.
+===== Как мне обновить OpenWrt до LEDE? =====
+
+Миграция с OpenWrt на LEDE больше похожа на переход с одной версии OpenWRT на другую. Использование ''[[docs:user-guide:sysupgrade.cli|sysupgrade]]'' команды является предпочтительным подходом, поскольку при этом система будет пытаться сохранить конфигурацию.
+
+===== Где находится форум? =====
+А вот здесь
+-> [[https://forum.lede-project.org/]]
+
+===== What happens to the OpenWrt package feed? =====
+
+LEDE plans to use the normal OpenWrt package feed, till it deviates too much from OpenWrt and it would be easier to have an own branch or feed.
+
+===== Will OpenWrt Chaos Calmer still be supported? =====
+
+OpenWrt Chaos Calmer will be supported with security and bug fixes by the OpenWrt project.
+
+===== Were there any technical reasons to split from OpenWrt? =====
+
+Nothing special, expect that LEDE wants to focus more on stability and not so much on bleeding edge any more. The release process should be better automatized and the release should be better tested.
+
+===== Is LEDE represented by any Company or Industry organization? =====
+
+No, LEDE is not affiliated with any specific company or any industry organization.
+
+===== The company I work for uses LEDE and wants to support the project. What should we do? =====
+
+Companies can best support LEDE by upstreaming the required code to support their products, any platform support code, patch submissions or even just detailed specifications are most appreciated.
+
+Upstreaming product support also benefits the company in the long run as ongoing maintenance and porting effort decreases over time while the amount of internally required changes can be reduced.
+
+===== Are there plans to license LEDE under a different License? =====
+
+There are no plans to change the license of the LEDE code. It should be easy to copy code from and to OpenWrt.
+
+===== What license does LEDE use? =====
+
+The build system and many LEDE components are licensed under the GNU General Public License Version 2. Some parts are licensed under different licenses, this is mostly the case for packages not created in LEDE or OpenWrt.
+
+===== Who holds the copyright of LEDE code? =====
+
+The original authors of the code hold the copyright.
+
+===== Is the LEDE project a registered legal entity? =====
+
+No, the LEDE project is not a registered legal entity. The OpenWrt project is also not a registered legal entity, but OpenWrt is represented by Software in the Public Interest (SPI).
+
+===== Is LEDE a registered trademark? =====
+
+No, LEDE is not a registered trademark, but OpenWrt is a registered trademark which is held by the Software in the Public Interest (SPI) in the name of the OpenWrt project.

@@ -1,0 +1,39 @@
+====== ISP Configurations ======
+This page describes how to connect to networks of different commercial Internet service providers.
+
+===== Germany =====
+==== Deutsche Telekom ====
+Deutsche Telekom provides a documentation for their network here:
+https://www.telekom.de/hilfe/geraete-zubehoer/telefone-und-anlagen/informationen-zu-telefonanlagen/schnittstellenbeschreibungen-fuer-hersteller
+=== ADSL ===
+  * ADSL LINK
+  * ATM
+    * VPI (Virtual Path Identifier): 1
+    * VCI (Virtual Channel Identifier): 32
+
+=== VDSL ===
+The network protocols are layered in this way:
+  - VDSL link (17a profile, G.993.5 depending on the DSLAM)
+  - PTM (Packet Transfer Mode)
+  - Ethernet with VLAN 7 (data + voice)
+  - PPPoE
+    - For some resale accounts an "H" has to be added in front of the pppoe user name, for 1und1 it looks like this "H1und1/1234-567@online.de"
+You global routed IPv4 address and a some IPv6 subnets
+
+When the network supports VDSL vectoring, but the VDSL modem does not support it, the device will be put into a fall back mode using only the lower 2.2 MHz of the band, this results in reduced rates like 13 MBit/s down and 1.4 MBit/s up instead of 50 MBit/s. Details: https://telekomhilft.telekom.de/t5/Telefonie-Internet/Fallbackprofil-bei-Vectoring/ta-p/2431567
+
+Example VDSL configuration for Lantiq based devices:
+
+<code>config dsl 'dsl'
+	option annex 'a'
+	option tone 'av'
+	option xfer_mode 'ptm'
+
+config interface 'wan'
+	option proto 'pppoe'
+	option _orig_ifname 'ptm0'
+	option _orig_bridge 'false'
+	option ifname 'ptm0.7'
+	option username 'H1und1/1234-567@online.de'
+	option password 'abcdefghijklm'
+	option ipv6 'auto'</code>

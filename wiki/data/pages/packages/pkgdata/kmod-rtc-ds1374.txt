@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: kmod-rtc-ds1374 ======
+---- dataentry packages ----
+Name                             : kmod-rtc-ds1374
+Version                          : see kernel for details
+Description                      : Kernel module for Dallas/Maxim DS1374.\\  \\ # max. 1kB
+Installed size_pkg-filesize      : 2 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : kernel, kmod-i2c-core
+Categories_pkg-categorys         : kernel-modules---other-modules #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : apm821xx-nand, ar71xx-nand, armvirt-generic, at91-legacy, at91-sama5d3, cns3xxx-generic, gemini-wiligear, imx6-generic, ipq806x-generic, ixp4xx-generic, ixp4xx-harddisk, kirkwood-generic, layerscape-32b, mediatek-generic, mvebu-generic, mxs-generic, omap-generic, oxnas-generic, ramips-mt7621, sunxi-generic, x86-64, x86-generic, x86-geode, x86-legacy, zynq-generic,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 3
+License                          : GPLv2
+Maintainer_pkg-maintainer        : LEDE team
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/kernel/linux|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : see kernel for details # short version of the package, for display in table
+----
+

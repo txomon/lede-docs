@@ -1,0 +1,66 @@
+====== Using the SDK ======
+The [[wp>Software_development_kit|SDK]] is a pre-compiled [[wp>Toolchain|toolchain]] designed to [[wp>Cross_compile|cross compile]] packages for a specific target without compiling the whole system from scratch.
+
+Tasks you can do with the SDK:
+  * Compile custom software for a specific release while ensuring binary and feature compatibility
+  * Compile newer versions of certain packages for a specific release
+  * Recompile existing packages with custom patches or different features
+
+
+=== Prerequisites ===
+
+The SDK has the same prerequisites of the LEDE buildroot system, so please see [[docs:guide-developer:install-buildsystem|Build system – Installation]] page to install the needed software to build the packages on the SDK.\\
+
+Note: On some hosts it is needed to install the **ccache** package
+
+:!: Do everything as normal user, don't use root user or sudo!\\ 
+:!: Do not build in a directory that has spaces in its full path\\ 
+===== Obtain the SDK =====
+You can either download an already compiled SDK, or compile it from LEDE sources. Compilation from source will be talked about more diffusely in the appropriate article.\\
+The precompiled SDK is found in the same download folder where you find the firmware images for your device.\\
+
+for example, [[https://downloads.lede-project.org/snapshots/targets/adm5120/rb1xx/|this]] is the folder where you find firmware images of adm5120-rb1xx target, and the SDK is called **lede-sdk-adm5120-rb1xx_gcc-5.4.0_musl-1.1.15.Linux-x86_64.tar.xz**
+
+==== Package Feeds ====
+After decompressing the SDK archive, edit the ''feeds.conf.default'' file to add your packages, by default it has LEDE feeds, and you can add your own feeds, local or remote.
+
+For example, you can add all packages you have in a local folder by adding this line
+
+**src-link custom /full/path/to/the/local/folder**
+
+===== Usage =====
+
+==== Setting up the environment ==== 
+
+open a terminal in the SDK's folder and then open the SDK's menu by writing ''make menuconfig''\\
+Instructions on how to use the menu are written at the top.
+
+Select Global Build Settings and press enter, in the submenu deselect/exclude the following options:\\
+"Select all target specific packages by default"\\
+"Select all kernel module packages by default"\\
+"Select all userspace packages by default"\\
+
+Now save your changes and exit from the SDK's menu.
+
+==== Load package lists ====
+
+''./scripts/feeds update -a'' command will refresh the package lists. It will download from github the LEDE feeds, and then it will also download from github or read from your local folder the packages you have loaded in the Package Feeds step above.
+
+==== Select Packages ====
+
+''./scripts/feeds install <packagename>'' will load the package and its dependencies in the SDK
+
+Then open the SDK menu again, find the package you want to build and select it by pressing "m", this will also select all the dependencies, and you will see that they are all tagged with "<M>" in the menu.
+
+You can select multiple packages too.
+
+Save the configuration and exit the menu. 
+
+==== Compile Packages ====
+
+Write ''make'' to start the compilation phase. 
+
+You can compile faster by writing ''make -j5'' if you have a quadcore CPU or if you have a true octacore or a quadcore with hyperthreading (like most intel i7 processors) you can write ''make -j9''
+
+
+After the compilation is finished, the generated .ipk files are placed in the bin/packages directory inside the directory you extracted the SDK into.

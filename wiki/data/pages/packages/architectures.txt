@@ -1,0 +1,9 @@
+~~NOTOC~~
+
+====== Package architectures ======
+---- datacloud ----
+col        : Architecturess
+filter     : %class%=packages
+summarize  : 1
+----
+

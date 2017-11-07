@@ -1,0 +1,1 @@
+<nspages :toh:hwdata -title -r=3 -textPages="Index of techdata pages" -textNS="Index of Brands / Manufacturers" -subns -nbCol=4>

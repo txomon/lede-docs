@@ -1,0 +1,21 @@
+===== Reporting Bugs =====
+
+In case you are unsure if what you found is a bug, or if you have other issues that are not bugs, please use the forum, IRC or mailing list.
+
+Report bugs pertaining LEDE core functionality and device support using our [[https://bugs.lede-project.org/|issue tracker]].\\
+If the bug is about a secondary package in the feeds you need to open an issue in the package feed's issue tracker instead. 
+
+If you are unsure, please use the [[packages:start|Packages tables]] to know where you should report the bug.
+
+When reporting bugs please make sure to:
+
+  * Name the tree/revision/version
+  * Name the affected device
+  * What does it do that it should not do / what does it not do that it should do
+  * Steps to reproduce
+  * What you have already done to workaround/fix the problem
+  * Any additional info you thinks is important
+
+Remember, the better is your bug report, the more likely it is that it will be worked on.
+
+:!: Reporting a bug is important as it raises awareness of an issue, but it does not constitute a claim that anyone has to work on fixing it.

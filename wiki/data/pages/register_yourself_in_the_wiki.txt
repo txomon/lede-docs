@@ -1,0 +1,3 @@
+====== Register yourself in the wiki ======
+
+It is easy to [[https://wiki.lede-project.org/start?do=register|register yourself in the LEDE wiki]]. Just do it! :)

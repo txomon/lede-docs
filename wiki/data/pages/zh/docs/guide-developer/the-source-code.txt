@@ -1,0 +1,42 @@
+====== LEDE 开发向导 ======
+
+本页面的链接的所有页面，LEDE开发文档。使用搜索工具找到更多信息。
+
+==== 快速了解 LEDE 内部   ===
+  * [[docs:guide-developer:overview| 概览]]
+
+==== ImageBuilder 快速开始  ===
+  * [[docs:guide-developer:quickstart-build-images| LEDE ImageBuilder]]
+
+==== 贡献 代码 指南 ====
+Click on "Submitting patches" on the left menu list.
+
+==== 源代码 ====
+  * [[docs:guide-developer:the-source-code| LEDE 源代码 ]]
+  * [[docs:guide-developer:source-revision-calculation| 源码修订版本 ]]
+
+==== 使用工具集  ====
+  * [[docs:guide-developer:Compile packages for LEDE with the SDK]]
+  * [[docs:guide-developer:build-system | 构建系统]]
+    * [[docs:guide-developer:install-buildsystem | Install the build system on the host]]
+    * [[docs:guide-developer:use-buildsystem| Use the build system to compile a firmware image]]
+    * [[docs:guide-developer:use-patches-with-buildsystem| Work with patches in the build system]]
+
+==== 开发工件 ====
+
+
+  * [[docs:guide-developer:uci-defaults]]
+  * [[docs:guide-developer:adding_new_device]]
+  * [[docs:guide-developer:mdns]]
+  * [[docs:guide-developer:procd]]
+  * [[docs:guide-developer:rpcd]]
+  * [[docs:guide-developer:ubus]]
+  * [[docs:guide-developer:netifid]]
+  * [[https://github.com/btsimonh/lede-vagrant|Vagrant-based automatic setup for a LEDE build environment in a VM]]
+  * [[docs:guide-developer:embedding-files-in-image| Including custom files/configurations in a firmware image]]
+  * [[docs:guide-developer:using-build-environments| Build for multiple targets from the same build tree (build environments aka config swapping)]]
+  * [[docs:guide-developer:test-virtual-image-using-armvirt|Testing a virtual image using the armvirt target]]
+
+==== Bug 提交 ====
+
+Please submit bug reports at https://bugs.lede-project.org/. 

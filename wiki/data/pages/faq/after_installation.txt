@@ -1,0 +1,91 @@
+====== Frequently Asked Questions: After installation ======
+
+===== User Interface =====
+==== I can not connect via webbrowser ====
+
+Development snapshots do not contain LuCI. Use a stable release, where LuCI is included in the firmware image.
+
+
+===== Installing packages =====
+
+==== How do I install packages? ====
+
+  * via commandline
+    * See [[docs:user-guide:opkg#examples|OPKG Examples]] to get you started
+    * See [[docs:user-guide:opkg|OPKG]] for in-depth explanation
+  * via GUI / LuCi
+    - //System -> Software -> Update lists//
+    - //Filter// for the device you are searching for
+    - Click //Available packages//
+
+==== OPKG update: Failed to establish connection ====
+
+When doing ''opkg update'' you will get the error message //Failed to establish connection// if your internet connection is not properly setup.
+
+**Solution:** Set up your internet connnection properly, then try again.
+
+==== Cannot satisfy dependencies ====
+
+You will get the message //"Cannot satisfy the following dependencies for..."//
+  - if the kernel version installed on your device does not match the kernel version required by the package you want to install. This happens very easily when you are using a snapshot image.
+    * Try to install via opkg with option ''[[docs/user-guide/opkg#options|--force-depends]]'' (=Install/remove despite failed dependencies). Mind that this is likely to fail for kernel related packages (kmods).
+    * Make local copy of snapshot packages (not recommended, needs much space!)
+  - if you are using a snapshot image, and the snapshot packages are missing in current builds.
+    * Wait some days, then check if the packages are being built again.
+
+As general advice, especially for inexperienced users: Go for the latest [[:releases:|stable release]], not a snapshot version, then the package repositories will match and packages will be available.
+
+==== Failed to download, wget returned 4 ====
+
+This "famous" wget 4 error in opkg is just a general error from wget that says that your network settings are wrong, see [[https://www.gnu.org/software/wget/manual/wget.html|wget manual]]. It has almost nothing to do with opkg itself.
+
+**Solution:** Check your network settings and get your internet access up and running, then it should work. \\
+//Note:// Some people report that wget may give this response if it attempts to use IPv6 and fails. See https://forum.lede-project.org/t/opkg-update-error-wget-returned-4/637/6 for details.
+
+
+==== Signature check failed ====
+
+
+==== Could not obtain administrative lock ====
+
+See also [[docs/user-guide/opkg#out_of_space|OPKG troubleshooting: Out of space]]
+
+==== No space left on device ====
+
+See also [[docs/user-guide/opkg#out_of_space|OPKG troubleshooting: Out of space]]
+
+=== How do I free up some space? ===
+By removing packages you installed //after// flashing OpenWrt onto your Router. You cannot remove packages on the SquashFS partition, which is included in the image you flashed.
+
+=== Still not enough free space ===
+This happens easily with recent firmware on 4MB Flash devices.\\
+You can press-fit an OpenWrt image into this small flash by building your own image, with only the packages you need, tailored for your usecase.
+
+You can build your own image and [[faq:before_installation#which_packages_can_i_safely_remove_to_save_space|remove packages that are not needed for your usecase]]
+
+  * via [[docs:user-guide:imagebuilder|Image Builder]]
+  * via [[docs:guide-developer:quickstart-build-images|custom build]]
+
+=== I need many MB (GB) free space ===
+  * If you need even more space for package installation, you probably want [[docs:user-guide:extroot_configuration|Extroot]].
+  * If you just want simple USB storage for e.g. pictures, video, music, see [[docs:user-guide:drives|Using storage devices]].
+
+==== Command not found ====
+
+After installation of a package, the respective command is not found, e.g.
+
+<code>root@LEDE:~# ./examplecommand
+-ash: ./examplecommand: not found</code>
+
+Binaries compiled with older OpenWrt or LEDE versions will cause that kind of error due to changed libc versions. OpenWrt 14.07 and 15.05 still used uclibc, while OpenWrt DD trunk and LEDE use [[https://www.musl-libc.org/|musl libc]].
+
+**Solution:** In order to make your package work you need to cross compile it again with the current [[docs:guide-developer:compile_packages_for_lede_with_the_sdk|LEDE toolchain]].
+
+==== Howto install opkg packages on a USB stick? ====
+  * →[[docs:techref:opkg#installation_destinations|opkg installation destinations]]
+  * →[[docs:uci:fstab|/etc/config/fstab]] or →[[docs:user-guide:drives]]
+
+
+==== Is package ... available? ====
+
+You can check yourself: [[packages:start|Packages overview]]

@@ -1,0 +1,23 @@
+~~HIDEPAGE~~
+/* This page is updated automatically every sunday and can not be edited. */
+/* If you spot mistakes or your package isn't being loaded, please notify a wiki admin or bobafetthotmail in wiki/forum */
+====== package: kmod-phy-bcm-ns-usb2 ======
+---- dataentry packages ----
+Name                             : kmod-phy-bcm-ns-usb2
+Version                          : see kernel for details
+Description                      : Support for Broadcom USB 2.0 PHY connected to the USB controller on Northstar\\ family. \\  \\ # max. 1kB
+Installed size_pkg-filesize      : 1 # kilobytes occupied on jffs2/ubifs when installed
+Dependencies_pkg-dependencies    : kernel 
+Categories_pkg-categorys         : kernel-modules---usb-support #
+Repositories_pkg-repository      : base
+Architectures_pkg-archs          : bcm53xx-generic,
+LEDE releases_lede-release       : LEDE-17.01.2
+File size_pkg-filesize           : 2
+License                          : GPLv2
+Maintainer_pkg-maintainer        : LEDE team
+Bug report_wiki                  : [[https://bugs.lede-project.org/|Bug reports]]
+Source code_wiki                 : [[https://github.com/lede-project/source/tree/lede-17.01/package/kernel/linux|Sources]]
+Packagedata_hidden               : View data # Must be "View data"
+Version-short_hidden             : see kernel for details # short version of the package, for display in table
+----
+

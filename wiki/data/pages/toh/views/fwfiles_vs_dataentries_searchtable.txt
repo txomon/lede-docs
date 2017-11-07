@@ -1,0 +1,32 @@
+~~NOSIDEBAR~~
+~~NOTOC~~
+
+====== Firmware files, Device specs, Installation instructions ======
+
+<columns 100% 50% ->
+===== Purpose =====
+
+**Main purpose:** Maintenance of dataentry- and devicepages.\\
+**Goal:** Provide for as much as possible firmware files a corresponding dataentry + installation instructions.
+
+This table lists
+  * Firmware files available at %%https://downloads.lede-project.org/<release>/targets/%% (([[meta:fwfiles_excludes|Files exluded from this table]]\\ Assumed as not relevant in regards to firmware files shown in dataentries. Correct me if I'm wrong, or tell me which other files can be excluded --- tmomas))
+  * Technical specs (aka "dataentries") available in the [[toh:views:toh_fwdownload|Table of Hardware]]
+  * Installation instructions available in the wiki (aka "devicepage")
+
+
+<newcolumn>
+===== Usage =====
+
+  * Enter your query in the ''Search'' field. This can be practically anything from target, subtarget, brand, model, file extension, ...\\ **Example queries:** Netgear, ramips, brcm, 74k, 63xx, 6300, 7506, squashfs, tgz
+
+  * **If //Device Specs// or //Installation instructions// are missing for available firmware files, this can have two reasons:**
+    - Device Specs are available, but Firmware file and/or Installation Instructions are not listed therein\\ -> Search device via [[toh:views:toh_fwdownload|Table of Hardware]], then update dataentry with [[https://downloads.lede-project.org/snapshots/targets/|firmware download url]] and/or Installation instructions (devicepage)
+    - Device Specs not available yet\\ -> [[meta:create_new_dataentry_page|Create new dataentry]] (Please create new dataentries only if you have a good amount of data available; mostly empty dataentries are of no big value)
+  * **Note:** The update of this list is manually triggered, hence not immediately showing changes to dataentries.
+</columns>
+
+/* Note: The source page "meta:fwfiles_datatable" of the below page-include which includes the datatable is created */
+/* in regular intervals via script.  --- //[[tmo26@gmx.de|tmomas]] 2017/01/03 19:50//                              */
+
+{{page>meta:fwfiles_datatable&noeditbutton&noheader&nofooter}}

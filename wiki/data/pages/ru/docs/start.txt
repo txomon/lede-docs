@@ -1,0 +1,14 @@
+====== Документация по Lede ======
+~~NOTOC~~
+
+Lede является очень расширенным развитием  GNU / Linux для встраиваемых устройств (как правило, беспроводные маршрутизаторы). Lede основан на проекте OpenWRT. В отличие от многих других дистрибутивов для маршрутизаторов, Lede построена с нуля, чтобы быть полнофункциональной, легко изменяемой операционной системой для встраиваемых устройств. На практике это означает, что вы можете иметь все функции необходимые вам функции, которыми обладает современное ядро Linux. 
+
+===== Путеводитель по LEDE =====
+^  [[docs:guide-quick-start:start|Инструкция по началу работы]]        ^  [[docs:user-guide:start|Руководство для пользователя]]      ^  [[docs:guide-developer:start|Руководство разработчика]]         ^
+| Start here if you are new to LEDE. Find out how to upgrade the firmware your home router to use LEDE and make your network at home much better. //[[docs:guide-quick-start:start|Read more...]]//| Start here if you already have LEDE running on your router. LEDE has hundreds of optional packages that give you VPNs, VLANs, and other capabilities. //[[docs:user-guide:start|Read more...]]//| Start here if you want to create custom builds of LEDE or contribute to its development. There are a large number of tools that make the development easy. //[[docs:guide-developer:the-source-code|Read more...]]//|
+
+===== Где я могу узнать больше? =====
+The three guides above (Newcomer, User, and Developer Guides) have links to virtually all the information about LEDE.
+You can also use the Search function from any wiki page, or work you through the complete listing of documentation pages shown below.
+
+{{pagequery>@:docs: *;sort=ns,title;group;cols=2;label=Documentation pages by namespace;hidestart;hidejump;display={title};}}

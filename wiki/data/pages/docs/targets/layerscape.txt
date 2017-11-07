@@ -1,0 +1,34 @@
+====== layerscape ======
+
+//Description of this target goes here.//
+
+  * [[https://git.lede-project.org/?p=source.git&a=search&h=HEAD&st=commit&s=layerscape:|Latest git commits for this target]]
+
+===== Devices with this target =====
+<hidden onHidden="Show devices with this target" onVisible="Hide devices with this target">
+++++Filter: Subtarget|
+---- datacloud ----
+col        : subtarget
+filter     : Target=layerscape
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+++++Filter: LEDE Instructionset|
+---- datacloud ----
+col        : lede instructionset
+filter     : Target=layerscape
+summarize  : 1
+rownumbers : 1
+----
+++++
+
+---- datatable ----
+cols       : Target, Subtarget, Lede Instructionset_lede-instset, Brand, Model, Version, LEDE Device Page_page
+filter     : Target=layerscape
+filter     : Brand!=(EXAMPLE)
+sort       : Brand
+rownumbers : 1
+----
+</hidden>
