@@ -8,6 +8,8 @@ name = "pypi"
 [packages]
 
 sphinx = "*"
+sphinx-intl = "*"
+sphinx-rtd-theme = "*"
 
 
 [dev-packages]

@@ -31,7 +31,10 @@
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.mathjax']
+extensions = [
+    'sphinx.ext.mathjax',
+    'sphinx.ext.autosectionlabel',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -46,7 +49,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'Openwrt docs'
+project = 'LEDE docs'
 copyright = '2017, People on the internet'
 author = 'People on the internet'
 
@@ -84,6 +87,11 @@ todo_include_todos = False
 # a list of builtin themes.
 #
 html_theme = 'alabaster'
+# TODO: Fix how images are viewed in rtd theme
+#import sphinx_rtd_theme
+#html_theme = "sphinx_rtd_theme"
+#html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -169,7 +177,6 @@ texinfo_documents = [
 ]
 
 
-
 # -- Options for Epub output ----------------------------------------------
 
 # Bibliographic Dublin Core info.
@@ -190,4 +197,11 @@ epub_copyright = copyright
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
 
+# Options for i18n
+# TODO: Setup i18n http://www.sphinx-doc.org/en/stable/intl.html#quick-guide
 
+# locale_dirs = ['locale/']
+# gettext_compat = False
+
+# -- Options for Autosection Label ----------------------------------------
+autosectionlabel_prefix_document = True

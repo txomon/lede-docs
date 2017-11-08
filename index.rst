@@ -4,7 +4,7 @@ Welcome to the LEDE Project
 The LEDE Project (“Linux Embedded Development Environment”) is a Linux
 operating system based on OpenWrt. It is a complete replacement for the
 vendor-supplied firmware of a wide range of wireless routers and
-non-network devices. See the `Table of Hardware <toh:start>` for
+non-network devices. See the `Table of Hardware <toh>`_ for
 supported devices. For more information about LEDE Project organization,
 see the :doc:`About LEDE <about>` page.
 
@@ -19,47 +19,47 @@ features, is more secure and has better support.
    high-end devices. Its 3000+ application packages are standardized, so
    you can easily replicate the same setup on any supported device,
    including two (or even five) year old routers.
-   `More... <reasons_to_use_lede#extensibility>`_
+   :ref:`More about extensibility... <reasons-to-use:Extensibility>`
 
 -  **Security:** LEDE's standard installation is secure by default, with
    Wi-Fi disabled, no poor passwords or backdoors. LEDE's software
    components are kept up-to-date, so vulnerabilities get closed shortly
-   after they are discovered. `More... <reasons_to_use_lede#security>`_
+   after they are discovered. :ref:`More about security...
+   <reasons-to-use:Security>`
 
 -  **Performance and Stability:** LEDE firmware is made of standardized
    modules used in all supported devices. This means each module will
    likely receive more testing and bug fixing than stock firmware which
    can be tweaked for each product line and never touched again.
-   `More... <reasons_to_use_lede#performance_stability>`_
+   :ref:`More about performance and stability...
+   <reasons-to-use:Performance & Stability>`
 
 -  **Strong Community Support:** LEDE team members are regular
    participants on the `LEDE Forum <https://forum.lede-project.org>`_,
-   `LEDE
-   Developer <http://lists.infradead.org/mailman/listinfo/lede-dev>`_
-   and `LEDE
-   Admin <http://lists.infradead.org/mailman/listinfo/lede-adm>`_
+   `LEDE Developer <http://lists.infradead.org/mailman/listinfo/lede-dev>`_
+   and `LEDE Admin <http://lists.infradead.org/mailman/listinfo/lede-adm>`_
    mailing lists, and `LEDE's IRC channels. <:contact#irc_channels>`_
    You can interact directly with developers, volunteers managing the
    software modules and with other long-time LEDE users, drastically
    increasing the chances you will solve the issue at hand.
-   `More... <:contact>`_
+   :ref:`More about community... <reasons-to-use:Community Support>`
 
 -  **Research:** Many teams use LEDE as a platform for their research
    into network performance. This means that the improvements of their
    successful experiments will be available in LEDE first, well before
    it gets incorporated into mainline, vendor firmware.
-   `More... <reasons_to_use_lede#research_platform>`_
+   :ref:`More about research... <reasons-to-use:Research Platform>`
 
 -  **Open Source/No additional cost:** LEDE is provided without any
    monetary cost. It has been entirely created by a team of volunteers:
    developers and maintainers, individuals and companies. If you enjoy
-   using LEDE, consider contributing some effort to `help us improve it
-   for others! <#lede_wants_you>`_ All of the above is possible because
+   using LEDE, consider contributing some effort to :ref:`help us improve it
+   for others! <Lede wants you!>` All of the above is possible because
    LEDE is part of the Open Source community, and powered by Linux
    kernel. `Get the source code... <https:git.lede-project.org>`_
 
--  **And more...** See more `Reasons to Use
-   LEDE... <reasons_to_use_lede#configuration>`_
+-  **And more...** See more :ref:`Reasons to Use LEDE...
+   <reasons-to-use:Configuration>`
 
 Download LEDE
 -------------
