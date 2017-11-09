@@ -53,7 +53,7 @@ The vibrant community of developers, volunteers, and other long-time LEDE users 
   * `LEDE forum <https://forum.lede-project.org>`_ - member-to-member conversations about LEDE
   * `LEDE Developer <http://lists.infradead.org/mailman/listinfo/lede-dev>`_ and `LEDE Admin <http://lists.infradead.org/mailman/listinfo/lede-adm>`_ mailing lists
   * `#lede-dev and #lede-adm <https://webchat.freenode.net/?channels=lede-dev%2Clede-adm>`_ on Freenode IRC
-  * `Contact <contacts>`_ on the LEDE site for more information.
+  * Refer to the :doc:`contact page <contact>` for a complete list to contact the project.
 
 
 Research Platform

@@ -39,20 +39,22 @@ Cmder, Smartty, Putty, and WinSCP are terminal emulators that allow you to ssh i
 Using Cmder
 -----------
 **Cmder for Windows** is an open-source terminal emulator that runs on Windows. It is free to use and provides an easy "command line shell" that allows you to ssh into LEDE. Its attractive fonts and color scheme are easy on the eyes. The //Full// distribution is preferred (over the //mini// distribution), since it provides a bash emulation, with a Unix-y suite of commands.
-  - Download cmder from `http://cmder.net/`_
+  - Download cmder from http://cmder.net/
   - Unzip the `cmder.zip` file
-  - Open the Cmder folder, and double-click the {{:media:docs:howto:cmdericon.png?16|}} Cmder icon. You'll see a Cmder window open similar to the image below.
+  - Open the Cmder folder, and double-click the |cmdericon| Cmder icon. You'll see a Cmder window open similar to the image below.
   - To ssh into the LEDE router at 192.168.1.1, type ''ssh root@192.168.1.1'' then press Return
 
-.. image:: /media/
-   image
+.. |cmdericon| image:: images/cmdericon.png
+               :scale: 50%
+
+.. image:: images/cmder.png
 
 Using Smartty
 -------------
 
 Smartty gives you command line access to LEDE and allows you to open/edit/download/upload files in LEDE, and is overall more modern and user-friendly than Putty (another tool detailed below):
 
-  - Download Smartty from [[http://smartty.sysprogs.com/]]: choose "download" for the installer, or "portable version" if you want it as a standalone program that works without installation.
+  - Download Smartty from http://smartty.sysprogs.com/: choose "download" for the installer, or "portable version" if you want it as a standalone program that works without installation.
   - after installation or after unzipping the archive, doubleclick on **SmarTTY** executable file.
   - You will be greeted by a window with two choices, doubleclick on "setup a new SSH connection" (the other option is for serial connections, for usb-TTL dongles and somesuch you connect to the device's debug serial pins on the board, we won't use that now).
   - The window changes into the SSH setup, write the following info:
@@ -70,7 +72,7 @@ Using putty
 -----------
 
 Putty gives you command line access to LEDE:
-  - Download Putty from [[http://www.putty.org]]: Simply get the 32bit ''putty.exe'' download from the ''Alternative binary files'' section.
+  - Download Putty from http://www.putty.org: Simply get the 32bit ''putty.exe'' download from the ''Alternative binary files'' section.
   - Start ''putty.exe'' on your Windows client -> Putty's login window pops up.
   - go to the''Session'' category of Putty's login window, look for the field ''Host Name (or IP address)'' and simply enter the IP-address (e.g. **192.168.1.1**) of your LEDE device, keep the default provided port **22**.
   - Click the ''Open'' button at the Bottom to open a connection. This will pop up a shell windows, asking to ''login as''. Login as **root** with the LEDE password you have defined some time before. If you have not yet set a password yet on "root", you will not be asked for the password.
@@ -82,10 +84,12 @@ Using WinSCP
 
 WinSCP allows you to browse the LEDE file system in Windows Exlorer like GUI-style:
   - You have to install the SFTP server on the LEDE side first, as WinSCP needs that to connect successfully. On the putty command line (see previous section) execute:
+
     - ''opkg update''
     - ''opkg install openssh-sftp-server''
     - It usually is not required at this point, but for the sake of simplicity of this howto, reboot your LEDE device now, to make sure the SFTP service really starts up
-  - Download WinSCP from [[https://winscp.net/eng/download.php]], get the non-beta ''Installation package'' or ''portable executables'' and install or unzip them on your Windows client
+
+  - Download WinSCP from https://winscp.net/eng/download.php, get the non-beta ''Installation package'' or ''portable executables'' and install or unzip them on your Windows client
   - Start ''WinSCP.exe'' on your Windows client, WinSCP's login window will pop up
   - Click on ''New Site'' on the left, then enter your LEDE device IP address (192.168.1.1) on the right side into ''Host name'', keep the default port ''22''. In ''User name'' enter **root**, in ''Password'', enter your root **password** (or leave blank, if you have not set a password yet)
   - Click the ''Login'' at the bottom of the Window.
@@ -99,8 +103,9 @@ Linux Terminal Emulators
 
 All Linux distributions provide a command-line ssh client as part of the default installation.
 
-  - Open a terminal emulator and write ''ssh root@192.168.1.1'' ("ssh" is the command, "root" is the LEDE user you are connecting to, and "192.168.1.1" is LEDE default IP)
+  - Open a terminal emulator and write `ssh root@192.168.1.1` ("ssh" is the command, "root" is the LEDE user you are connecting to, and "192.168.1.1" is LEDE default IP)
   - there will be a message about accepting a new key from the LEDE device, write "yes" and press Enter key.
+
     - If for some reason you have reinstalled LEDE the device will have a different key and you get an error about key mismatch. The error will state what is the command line to copy-paste in your terminal to delete the old key and proceed.
   - if you want to close the session, write "exit"
 
@@ -113,6 +118,6 @@ macOS Terminal Emulators
 On macOS (formerly Mac OSX) any terminal emulator will allow you to ssh. There several terminal emulators:
 
   - Terminal - The macOS built-in terminal program. Find it in /Applications/Utilities
-  - iTerm2 [[https://iterm2.com/]] a much-enhanced terminal program. Donation-ware - it's worth it.
+  - iTerm2 https://iterm2.com/ a much-enhanced terminal program. Donation-ware - it's worth it.
 
 To ssh into your LEDE router at 192.168.1.1, type ''ssh root@192.168.1.1'', then press Return.

@@ -4,8 +4,8 @@ Sysupgrading an existing LEDE device from the web admin GUI
 Your device must already have an older LEDE or OpenWrt firmware installed, to be eligible for this "sysupgrade" procedure.
 
   * Alternatively refer to the :doc:`factory installation <factory-installation>` howto, to install LEDE on a device that still has vendor factory firmware on it.
-  * If your current LEDE installation does not have the web admin GUI installed or if you prefer to upgrade from the command line (upgrade from command line provides more fine-grained control), refer to :doc:`Upgrading LEDE from the Command Line </user-guide/sysupgrade.cli>`.
-  * If you have any questions about this description, ask for help on the `Installing and Using LEDE forum section <https://forum.lede-project.org/c/installation`_ before beginning.
+  * If your current LEDE installation does not have the web admin GUI installed or if you prefer to upgrade from the command line (upgrade from command line provides more fine-grained control), refer to :doc:`Upgrading LEDE from the Command Line </user-guide/sysupgrade-cli>`.
+  * If you have any questions about this description, ask for help on the `Installing and Using LEDE forum section <https://forum.lede-project.org/c/installation>`_ before beginning.
 
 Locate and download the LEDE firmware
 -------------------------------------
@@ -15,7 +15,7 @@ Locate and download the LEDE firmware
 
 Troubleshooting:
   * Some devices lack a sysupgrade image and require a special (and usually a bit more complex) installation procedure that is device-specific. This tutorial won't apply for such devices. Instead follow the custom installation description on the corresponding device page in the OpenWrt wiki.
-  * If you can't find your device, or if there is no "...sysupgrade.bin", you can consult the `"Installing and Using LEDE" Forum <https://forum.lede-project.org/c/installation`_ for help.
+  * If you can't find your device, or if there is no "...sysupgrade.bin", you can consult the `"Installing and Using LEDE" Forum <https://forum.lede-project.org/c/installation>`_ for help.
   * If you don't find your device in the Table of Hardware or Device Pages/Techdata pages, you can also try :doc:`alternative ways to find LEDE firmware images <alternate-directory-search>`
   * If you have accidently browsed the generic LEDE download folders to locate your device, you might see some more download files matching your device. Ignore those files: you only want the "...sysupgrade.bin" file .
 
