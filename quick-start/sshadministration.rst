@@ -39,12 +39,13 @@ Cmder, Smartty, Putty, and WinSCP are terminal emulators that allow you to ssh i
 Using Cmder
 -----------
 **Cmder for Windows** is an open-source terminal emulator that runs on Windows. It is free to use and provides an easy "command line shell" that allows you to ssh into LEDE. Its attractive fonts and color scheme are easy on the eyes. The //Full// distribution is preferred (over the //mini// distribution), since it provides a bash emulation, with a Unix-y suite of commands.
-
-  - Download cmder from [[http://cmder.net/]]
-  - Unzip the //cmder.zip// file
+  - Download cmder from `http://cmder.net/`_
+  - Unzip the `cmder.zip` file
   - Open the Cmder folder, and double-click the {{:media:docs:howto:cmdericon.png?16|}} Cmder icon. You'll see a Cmder window open similar to the image below.
   - To ssh into the LEDE router at 192.168.1.1, type ''ssh root@192.168.1.1'' then press Return
-{{:media:docs:howto:cmder.png?1592|}}
+
+.. image:: /media/
+   image
 
 Using Smartty
 -------------

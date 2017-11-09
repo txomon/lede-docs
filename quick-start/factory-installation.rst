@@ -2,7 +2,7 @@ Factory install: First-time installation of LEDE on a device
 ============================================================
 
 Your device must still have the vendor firmware to be eligible for this so-called "factory installation" procedure.
-  * If your device already has an older LEDE or OpenWrt firmware on it, refer to the `sysupgrade <quick-start/sysupgrade>`_ howto instead .
+  * If your device already has an older LEDE or OpenWrt firmware on it, refer to the :doc:`sysupgrade <sysupgrade>` howto instead .
   * If you have any questions about this description, ask for help on the `Installing and Using LEDE forum section <https://forum.lede-project.org/c/installation>`_ before beginning.
 
 Device selection
@@ -57,8 +57,8 @@ Check flash result
 
 Troubleshooting:
   * For this check only use an Ethernet cable, as WiFi is by default only enabled for devices that do not have Ethernet ports
-  * If you have flashed a development/snapshot firmware of LEDE, you first need to manually enable the admin web GUI: `development installation guide <quick-start:developmentinstallation>`_. Or verify the result on snapshot builds by SSH-connecting to your LEDE device IP 192.168.1.1
-  * You can consult the troubleshooting section of the `User Guide <user-guide/start>`_, if you think that resetting LEDE's settings might help.
+  * If you have flashed a development/snapshot firmware of LEDE, you first need to manually enable the admin web GUI: :doc:`development installation guide <developmentinstallation>`. Or verify the result on snapshot builds by SSH-connecting to your LEDE device IP 192.168.1.1
+  * You can consult the troubleshooting section of the :doc:`User Guide </user-guide/start>`, if you think that resetting LEDE's settings might help.
   * You can consult the `Installing and Using LEDE forum section <https://forum.lede-project.org/c/installation>`_, if something went wrong. Please provide specific details of your device and what you did so far and what you have attempted to fix it.
 
 Next steps
@@ -69,7 +69,7 @@ Next steps
      * or, if using LEDE SSH command line, you can use the command ''ping lede-project.org''
      * This should return "0% packet loss" if everything is allright with your Internet connection.
   * Decide, whether you want to use LEDE `as switch,  router or gateway <user-guide/switch_router_gateway_and_nat>`_
-  * **When using your LEDE device as a WiFi access point, remember to initially set your country code in the LEDE WiFi configuration, to properly comply with your country's WiFi legal regulation!**, e.g. see here for a first `basic WiFi setup <quick-start/basic_wifi>`_.
+  * **When using your LEDE device as a WiFi access point, remember to initially set your country code in the LEDE WiFi configuration, to properly comply with your country's WiFi legal regulation!**, e.g. see here for a first :doc:`basic WiFi setup <basic-wifi>`.
   * Consult the `User Guide <user-guide>`_ for more advanced configuration.
   * Install custom software packages that you might be interested in.
 

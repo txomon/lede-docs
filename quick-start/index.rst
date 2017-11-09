@@ -17,9 +17,9 @@ If you have any questions
 ...and now let's go installing LEDE on your device: `>> factory install howto << <guide-quick-start:factory_installation>`_
 
 .. toctree::
-   :maxdepth:2
+   :maxdepth: 2
 
-   admingui_sysupgrade_keepsettings
+   admingui-sysupgrade-keepsettings
    alternate-directory-search
    basic-wifi
    developmentinstallation

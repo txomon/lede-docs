@@ -11,13 +11,16 @@ On web admin GUI
   - Login with your "root" password
   - Go to the menu Network → Wireless. This page list a separate WiFi configuration section for each of your pysical radios, (many devices you will have a first radio for 2.4 GHz and a second one for 5 GHz).
   - For each of your radios, you can create a WiFi network by clicking ''Add'':
+
     - On the first WiFi network that you configure, go to the **Device Configuration** and open the tab **Advanced Settings**: in the ''Country Code'' field, select the correct county code, where your LEDE device is installed. This is important to ensure your LEDE device meets legal regulations in your country. (all other configured radios will use the same device settings)
     - For each WiFi network, in the "Interface Configuration" section, configure your WiFi settings, at least customizing the following settings:
+
       * In the tab **General Setup**, define a custom ''ESSID'' (the name of your WiFi network)
       * In the tab **Wireless Security**, activate some ''Encryption'' (e,g, "WPA2-PSK")
       * In the tab **Wireless Security**, activate a ''Cipher'' (e.g. "Force CCMP AES")
       * In the tab **Wireless Security**, in ''Key'', define a personal secret phrase, which clients need to use, to successfully connect to your WiFi network.
       * If needed, configure further settings according to your needs. often the default settings like **auto** are sufficient for general usage.
+
   - Click ''Save & Apply'' when done.
 
 Troubleshooting:

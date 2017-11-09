@@ -1,4 +1,5 @@
-====== LEDE Starter FAQ ======
+LEDE Starter FAQ
+================
 
 **Ok, so I've successfully flashed LEDE on my device. what should I do next?**\\
 Set an initial root password, setup WiFi, get familiar with the troubleshooting/rescue options in the user guide, then browse the user guide for further config you may be interested in.
@@ -10,7 +11,7 @@ Open http://192.168.1.1 or http://lede in your favorite web browser
 "root"
 
 **What is the initial password for root?**\\
-There is no initial password set. Please set one manually, after your first login, either by using ''passwd'' on the command line or in [[http://lede/cgi-bin/luci/admin/system/admin| LUCI Menu System/Administration]]
+There is no initial password set. Please set one manually, after your first login, either by using ''passwd'' on the command line or in `LUCI Menu System/Administration <http://lede/cgi-bin/luci/admin/system/admin>`_
 
 **Can I reset the 'root' password, in case I have forgotten it?**\\
 Yes, check the troubleshooting section of the user guide.
@@ -32,7 +33,7 @@ use ''vi''. It's most important key shortcuts are:\\
 |ESC O | open new line above cursor|
 
 **What other tools can I use for administration of LEDE from a windows client?**\\
-Get [[http://www.putty.org|Putty]] for SSH access to LEDE and get [[https://winscp.net|WinSCP]] as a file browser. For WinSCP to connect successful, you have to first ''opkg update'' then install the package ''opkg install openssh-sftp-server''. You can then use WinSCP to click through the LEDE file system and use its GUI editor for editing LEDE config files.
+Get `Putty <http://www.putty.org>`_ for SSH access to LEDE and get `WinSCP <https://winscp.net>`_ as a file browser. For WinSCP to connect successful, you have to first ''opkg update'' then install the package ''opkg install openssh-sftp-server''. You can then use WinSCP to click through the LEDE file system and use its GUI editor for editing LEDE config files.
 
 **I would like to customize LEDE, but am having difficulties finding the packages that I am interested in.**\\
 Remember to first run ''opkg update'' once after each LEDE reboot, to refresh the list of available packages. LEDE will only temporary store the retrieved list in a temp RAM filesystem, losing the list of updates on every reboot.

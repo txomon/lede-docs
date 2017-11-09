@@ -1,4 +1,6 @@
-======Accessing the LEDE web admin GUI======
+Accessing the LEDE web admin GUI
+================================
+
 LEDE has a web admin GUI called "LuCi".
 
   * If your LEDE device has been configured as a router or gateway with default settings, LuCi is listening on your local IP subnet's default gateway address http://192.168.1.1.
