@@ -15,7 +15,7 @@ help:
 .PHONY: help Makefile
 
 autobuild:
-	bash -c 'while true; do clear; $(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O);  $(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O); inotifywait -e modify -r "${SOURCEDIR}"; done'
+	bash -c 'while true; do clear; $(SPHINXBUILD) -M clean "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O);  $(SPHINXBUILD) -M html "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O);  $(SPHINXBUILD) -M singlehtml "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O); inotifywait -e modify -r "${SOURCEDIR}"; done'
 
 
 # Catch-all target: route all unknown targets to Sphinx using the new

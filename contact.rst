@@ -19,24 +19,28 @@ The project offers the following mailing lists:
 In addition there are two read-only announcement lists:
 
   - `lede-bugs@lists.infradead.org <http://lists.infradead.org/mailman/listinfo/lede-bugs>`_ - This list receives bug tracking notifications from Flyspray.
-  - `lede-commits@lists.infradead.org <http://lists.infradead.org/mailman/listinfo/lede-commits>`_ - This list tracks the commits to our ''%%source.git%%'' and ''%%web.git%%'' repositories.
+  - `lede-commits@lists.infradead.org <http://lists.infradead.org/mailman/listinfo/lede-commits>`_ - This list tracks the commits to our `source.git` and `web.git` repositories.
 
-===== IRC Channels =====
+IRC Channels
+------------
 
 The project provides 2 IRC channels on `freenode <https://webchat.freenode.net/>`_:
 
   - #lede-dev - a public channel for everyone to join and participate.
   - #lede-adm - a moderated channel that anyone can join but only people with +v flag can write on.
 
-===== Bug Tracker =====
+Bug Tracker
+-----------
 
 Please submit bug reports at https://bugs.lede-project.org/.
 
-===== Server Status Changes Announcements on Twitter =====
+Server Status Changes Announcements on Twitter
+----------------------------------------------
 
 We will post notices of server outages, maintenance, or other disruption on the `lede_project account on Twitter <https://twitter.com/lede_project>`_.
 
-===== Corporate Contact =====
+Corporate Contact
+-----------------
 
 Please direct general inquiries to `lede-contact@lede-project.org <mailto:lede-contact@lede-project.org>`_ to open a confidential discussion with the :ref:`project developers <about:people>`.
 

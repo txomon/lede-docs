@@ -65,5 +65,5 @@ Restore backed up LEDE configuration
 ------------------------------------
 
   * If you have chosen to backup your previous config in the previous step, you can now restore it, using LuCi's **System > Backup/flash firmware** menu.
-  * Otherwise you need to start configuring from scratch. In this case, remember to properly **set your country code in the LEDE WiFi configuration** again, to comply with your country's WiFi legal regulation, e.g. see in :doc:`basic WiFi setup <basic_wifi>`.
+  * Otherwise you need to start configuring from scratch. In this case, remember to properly **set your country code in the LEDE WiFi configuration** again, to comply with your country's WiFi legal regulation, e.g. see in :doc:`basic WiFi setup <basic-wifi>`.
 

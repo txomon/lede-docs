@@ -1,7 +1,10 @@
-LEDE
-====
+:orphan:
 
-This is a content list for all the resources. In the following list you can find information about the project.
+
+LEDE Project Information
+------------------------
+
+In the following sections you will be able to find all the resources contained . In the following list you can find information about the project.
 
 
 .. toctree::
@@ -10,6 +13,7 @@ This is a content list for all the resources. In the following list you can find
    reasons-to-use
    about
    contact
+
 
 LEDE Documentation
 ------------------
@@ -39,6 +43,7 @@ Start here if you want to create custom builds of LEDE or contribute to its deve
 
 
 Where can I learn more?
------------------------
+>>>>>>>>>>>>>>>>>>>>>>>
 
 The three guides above (Newcomer, User, and Developer Guides) have links to virtually all the information about LEDE contained in this documentation. However, you may find more support in
+

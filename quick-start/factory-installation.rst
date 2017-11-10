@@ -2,7 +2,7 @@ Factory install: First-time installation of LEDE on a device
 ============================================================
 
 Your device must still have the vendor firmware to be eligible for this so-called "factory installation" procedure.
-  * If your device already has an older LEDE or OpenWrt firmware on it, refer to the :doc:`sysupgrade <sysupgrade>` howto instead .
+  * If your device already has an older LEDE or OpenWrt firmware on it, refer to the :doc:`sysupgrade <sysupgrade-luci>` howto instead .
   * If you have any questions about this description, ask for help on the `Installing and Using LEDE forum section <https://forum.lede-project.org/c/installation>`_ before beginning.
 
 Device selection
@@ -76,6 +76,6 @@ Next steps
 Troubleshooting your first steps with the new LEDE device
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-  * Do not worry, if the 5 GHz WiFi does not seem to start immediately after having enabled it. It might be busy for 1-10 min scanning for weather radar, see `basic WiFi setup <quick-start:basic_wifi>`_ for more background info.
+  * Do not worry, if the 5 GHz WiFi does not seem to start immediately after having enabled it. It might be busy for 1-10 min scanning for weather radar, see :doc:`basic WiFi setup <basic-wifi>` for more background info.
   * Note that you can always run ''logread'' on the SSH command line, to gain more insight into what the device is currently doing or to diagnose any kind of problems.
-  * If needed, you can also take a look at `Troubleshooting Internet Connectivity <quick-start:ts-internetconnectivity>`_].
+  * If needed, you can also take a look at :doc:`Troubleshooting Internet Connectivity <ts-internetconnectivity>`.

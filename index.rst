@@ -38,11 +38,21 @@ Like any open source project, LEDE thrives on the efforts of its users and devel
 
 -  If you're not a developer, you can still help. The documentation can always be improved (even if it's to verify that the instructions match your experience), or you can help other community members with questions. Don’t hesitate to `Register yourself in the wiki <:register_yourself_in_the_wiki>`_, or join our `mailing list <https:lists.infradead.org/mailman/listinfo/lede-dev>`_ and `IRC channels <:contact#irc_channels>`_ to get in touch.
 
-Documentation
--------------
 
-You can access the complete set of documents contained in this site through :doc:`this link <contents>`.
+Contents
+--------
 
+Lede documentation is organised in a set of guides, a table of supported hardware, and package reference.
+
+.. only:: builder_html
+
+   You can access the complete set of documents contained in this site through :doc:`the contents page <contents>`.
+
+
+.. toctree::
+   :hidden:
+
+   contents
 
 Endorsements
 ------------
@@ -63,8 +73,3 @@ The \*Wrt community is made up of many great communities all tinkering on their 
 | .. image:: /media/endorsements/openwisp.png   | `“We deeply appreciate the efforts of the LEDE project …” <http://openwisp.org/news/lede.html>`_                                                                                                    |
 +-----------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-
-.. toctree::
-   :hidden:
-
-   contents
