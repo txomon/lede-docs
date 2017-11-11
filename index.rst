@@ -54,6 +54,7 @@ Lede documentation is organised in a set of guides, a table of supported hardwar
 
    contents
 
+
 Endorsements
 ------------
 

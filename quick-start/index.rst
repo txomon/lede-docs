@@ -1,6 +1,3 @@
-Quick Start Guide for LEDE installation
-=======================================
-
 So you want to install LEDE on one of your devices.
 
 The following preparation is recommended, before flashing LEDE firmware:
@@ -19,14 +16,6 @@ If you have any questions
 .. toctree::
    :maxdepth: 2
 
-   factory-installation
-   sysupgrade-luci
-   developmentinstallation
-   verify-firmware-checksum
-   admingui-sysupgrade-keepsettings
-   webadmingui
-   alternate-directory-search
-   basic-wifi
-   sshadministration
+   install
+   setup
    starterfaq
-   ts-internetconnectivity
