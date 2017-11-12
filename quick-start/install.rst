@@ -286,6 +286,10 @@ Manual LuCi installation by package may require more free flash storage than a 4
 
 To manually install LuCi: `LuCI installation <user-guide/luci:Essentials>`_
 
+TL;DR: opkg update ; opkg install luci ; /etc/init.d/uhttpd start ; /etc/init.d/uhttpd enable
+
+This should get a working GUI that repsonpds to  http://192.168.1.1 requests by a browser, mind you I did not actually test that...
+
 Installing a LEDE Snapshot
 ''''''''''''''''''''''''''
 
